@@ -1,1 +1,1 @@
-Esta es la descripcion del proyecto
+Repositorio asociado a implementacion de bot en discord, para gestion de informacion de usuarios y participacion en eventos registrados.
