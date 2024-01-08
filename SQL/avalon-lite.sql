@@ -1,56 +1,52 @@
 --==============================================================
 -- DBMS name:      ANSI Level 2
--- Created on:     7/01/2024 2:56:14 p. m.
+-- Created on:     7/01/2024 5:10:18 p.ï¿½m.
 --==============================================================
 
 
 --==============================================================
--- Table: EVENTOS
+-- Table: eventos
 --==============================================================
-create table EVENTOS (
-ID                   NUMERIC(6)           not null,
-NAME                 VARCHAR(200)         not null,
-POINTS               NUMERIC(12,2)        not null default 0,
-DESCRIPTION          VARCHAR(1000)        not null,
-primary key (ID)
+create table eventos (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name                 varchar(200)         not null,
+points               numeric(12,2)        not null default 0,
+description          varchar(1000)        not null
 );
 
 --==============================================================
--- Table: RANGOS
+-- Table: rangos
 --==============================================================
-create table RANGOS (
-ID                   NUMERIC(6)           not null,
-NAME                 VARCHAR(200)         not null,
-DESCRIPTION          VARCHAR(1000)        not null,
-primary key (ID)
+create table rangos (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name                 varchar(200)         not null,
+description          varchar(1000)        not null
 );
 
 --==============================================================
--- Table: INTEGRANTES
+-- Table: integrantes
 --==============================================================
-create table INTEGRANTES (
-ID                   NUMERIC(6)           not null,
-NAME                 VARCHAR(200)         not null,
-RANGO_ID             INTEGER              not null,
-DATECREATE           DATE                 not null,
-DATEUPDATE           DATE                  default NULL,
-primary key (ID),
-foreign key (RANGO_ID)
-      references RANGOS (ID)
+create table integrantes (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name                 varchar(200)         not null,
+rango_id             integer              not null,
+datecreate           date                 not null,
+dateupdate           date                  default null,
+foreign key (rango_id)
+      references rangos (id)
 );
 
 --==============================================================
--- Table: PARTICIPACION
+-- Table: participacion
 --==============================================================
-create table PARTICIPACION (
-ID                   NUMERIC(6)           not null,
-INTEGRANTE_ID        INTEGER              not null,
-EVENTO_ID            INTEGER              not null,
-"DATE"               DATE                 not null,
-primary key (ID),
-foreign key (INTEGRANTE_ID)
-      references INTEGRANTES (ID),
-foreign key (EVENTO_ID)
-      references EVENTOS (ID)
+create table participacion (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+integrante_id        integer              not null,
+evento_id            integer              not null,
+"date"               date                 not null,
+foreign key (integrante_id)
+      references integrantes (id),
+foreign key (evento_id)
+      references eventos (id)
 );
 
