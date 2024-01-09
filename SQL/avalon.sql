@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     7/01/2024 5:09:33 p. m.                      */
+/* Created on:     7/01/2024 5:09:33 p.ï¿½m.                      */
 /*==============================================================*/
 
 
@@ -30,9 +30,9 @@ create table integrantes
 );
 
 /*==============================================================*/
-/* Table: participacion                                         */
+/* Table: participaciones                                         */
 /*==============================================================*/
-create table participacion
+create table participaciones
 (
    id                   bigint not null auto_increment,
    integrante_id        bigint not null,
@@ -55,9 +55,9 @@ create table rangos
 alter table integrantes add constraint fk_integran_reference_rangos foreign key (rango_id)
       references rangos (id) on delete restrict on update cascade;
 
-alter table participacion add constraint fk_particip_reference_integran foreign key (integrante_id)
+alter table participaciones add constraint fk_particip_reference_integran foreign key (integrante_id)
       references integrantes (id) on delete restrict on update cascade;
 
-alter table participacion add constraint fk_particip_reference_eventos foreign key (evento_id)
+alter table participaciones add constraint fk_particip_reference_eventos foreign key (evento_id)
       references eventos (id) on delete restrict on update cascade;
 

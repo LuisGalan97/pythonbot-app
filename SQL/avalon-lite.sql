@@ -37,9 +37,9 @@ foreign key (rango_id)
 );
 
 --==============================================================
--- Table: participacion
+-- Table: participaciones
 --==============================================================
-create table participacion (
+create table participaciones (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 integrante_id        integer              not null,
 evento_id            integer              not null,
