@@ -23,7 +23,7 @@ class Database:
             print(f"-> La base de datos '{self.__dbName}' se ha eliminado correctamente.")
             return True
         except Exception as ex:
-            print(f"-> Error al intentar eliminar la base de datos '{self.__dbName}': '{str(ex)}'.")
+            print(f"-> Error al intentar eliminar la base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
 
     def check_connection(self):
@@ -44,7 +44,7 @@ class Database:
                 print(f"-> La conexion con la base de datos '{self.__dbName}' ya existe.")
                 return True
         except Exception as ex:
-            print(f"-> Error al intentar conectar con la base de datos '{self.__dbName}' : '{str(ex)}'")
+            print(f"-> Error al intentar conectar con la base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
     
     def close_connection(self):
@@ -57,7 +57,7 @@ class Database:
                 print(f"-> Ya se encuentra desconectado de la base de datos '{self.__dbName}'.")
                 return True
         except Exception as ex:
-            print(f"-> Error al intentar desconectar de la base de datos '{self.__dbName}' : '{str(ex)}'")
+            print(f"-> Error al intentar desconectar de la base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
 
     def execute_script(self, script):
@@ -73,7 +73,7 @@ class Database:
                 print(f"-> No fue posible cargar el script '{script}' debido a una ausencia de conexion con la base de datos '{self.__dbName}'.")
                 return False
         except Exception as ex:
-            print(f"-> Error al intentar cargar el script '{script}' en la base de datos '{self.__dbName}' : '{str(ex)}'")
+            print(f"-> Error al intentar cargar el script '{script}' en la base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
 
     def execute_query(self, query, parameters = None):
@@ -91,7 +91,7 @@ class Database:
                 print(f"-> No fue posible realizar la consulta '{query.split()[0]}' debido a una ausencia de conexion con la base de datos '{self.dbName}'.")
                 return False
         except Exception as ex:
-            print(f"-> Error al intentar realizar la consulta '{query.split()[0]}' en la base de datos '{self.__dbName}' : '{str(ex)}'")
+            print(f"-> Error al intentar realizar la consulta '{query.split()[0]}' en la base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
 
 db = Database("avalon.db")
