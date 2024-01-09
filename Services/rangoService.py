@@ -1,14 +1,17 @@
 import sys
 sys.path.insert(1, './DB')
-from database import db
+from database import Database
 sys.path.insert(1, './Models')
 from rangoModel import RangoModel
 
 class RangoService:
+    def __init__(self, db : Database):
+        self.db = db
+
     def select(self, id):
-        db.start_connection()
-        data = db.execute_query("SELECT * FROM rangos WHERE id = ?", (id,))
-        db.close_connection()
+        self.db.start_connection()
+        data = self.db.execute_query("SELECT * FROM rangos WHERE id = ?", (id,))
+        self.db.close_connection()
         if isinstance(data, list):
             for row in data:
                 rango = RangoModel(row[0], row[1], row[2])
@@ -17,9 +20,9 @@ class RangoService:
             return False
 
     def selectAll(self):
-        db.start_connection()
-        data = db.execute_query("SELECT * FROM rangos")
-        db.close_connection()
+        self.db.start_connection()
+        data = self.db.execute_query("SELECT * FROM rangos")
+        self.db.close_connection()
         if isinstance(data, list):
             rangos = []
             for row in data:
@@ -29,29 +32,29 @@ class RangoService:
             return False
 
     def insert(self, rango : RangoModel):
-        db.start_connection()
-        data = db.execute_query("INSERT INTO \
+        self.db.start_connection()
+        data = self.db.execute_query("INSERT INTO \
         rangos (name, description) \
         VALUES (?, ?)", 
         (rango.getName(), rango.getDescription(),))
-        db.close_connection()
+        self.db.close_connection()
         return(data)
 
     def update(self, rango: RangoModel):
-        db.start_connection()
-        data = db.execute_query("UPDATE rangos \
+        self.db.start_connection()
+        data = self.db.execute_query("UPDATE rangos \
         SET name = ?, description = ? \
         WHERE id = ?", 
         (rango.getName(), 
          rango.getDescription(),
          rango.getId(),))
-        db.close_connection()
+        self.db.close_connection()
         return(data)
 
     def delete(self, rango: RangoModel):
-        db.start_connection()
-        data = db.execute_query("DELETE FROM rangos \
+        self.db.start_connection()
+        data = self.db.execute_query("DELETE FROM rangos \
         WHERE id = ?", 
         (rango.getId(),))
-        db.close_connection()
+        self.db.close_connection()
         return(data)

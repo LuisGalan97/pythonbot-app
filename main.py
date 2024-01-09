@@ -1,4 +1,5 @@
 # This example requires the 'message_content' intent.
+#db = Database("avalon.db", "avalon-lite.sql", "data.sql")
 import sys
 sys.path.insert(1, './Config')
 from config import Config

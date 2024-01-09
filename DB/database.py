@@ -2,29 +2,24 @@ import os
 import sqlite3 as sql
 
 class Database:
-    def __init__(self, dbName):
+    def __init__(self, dbName, scriptStruct, scriptData):
         self.__conn = None
         self.__dbName = dbName
-        self.__exist = True if os.path.exists("./DB/"+dbName) else False
-        self.__success = self.start_connection()
+        self.__exist = True if os.path.exists(f"./DB/{dbName}") else False
+        self.__created = self.start_connection()
+        self.__loaded = self.load_data(f"./SQL/{scriptStruct}", f"./SQL/{scriptData}")
                        
     def getExist(self):
         return self.__exist
     
-    def getSuccess(self):
-        return self.__success
+    def getCreated(self):
+        return self.__created
 
     def getDBName(self):
         return self.__dbName
-
-    def removeDB(self):
-        try:
-            os.remove("./DB/"+self.__dbName)
-            print(f"-> La base de datos '{self.__dbName}' se ha eliminado correctamente.")
-            return True
-        except Exception as ex:
-            print(f"-> Error al intentar eliminar la base de datos '{self.__dbName}' : '{str(ex)}'.")
-            return False
+    
+    def getLoaded(self):
+        return self.__loaded
 
     def check_connection(self):
         try:
@@ -93,17 +88,29 @@ class Database:
         except Exception as ex:
             print(f"-> Error al intentar realizar la consulta '{query.split()[0]}' en la base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
-
-db = Database("avalon.db")
-if db.getSuccess():
-    if not db.getExist():
-        if db.execute_script("./SQL/avalon-lite.sql") and db.execute_script("./SQL/data.sql"):
-            print(f"-> Nueva base de datos '{db.getDBName()}' creada satisfactoriamente.")
-            db.close_connection()
-        else:
-            print(f"-> Ocurrio un error al intentar crear la base de datos '{db.getDBName()}'.")
-            db.close_connection()
-            db.removeDB()
-    else:
-        print("-> No se han realizado modificaciones al contenido actual de la base de datos.")
-        db.close_connection()
+        
+    def removeDB(self):
+        try:
+            os.remove("./DB/"+self.__dbName)
+            print(f"-> La base de datos '{self.__dbName}' se ha eliminado correctamente.")
+            return True
+        except Exception as ex:
+            print(f"-> Error al intentar eliminar la base de datos '{self.__dbName}' : '{str(ex)}'.")
+            return False
+        
+    def load_data(self, scriptStruct, scriptData):
+        if self.__created:
+            if not self.__exist:
+                if self.execute_script(scriptStruct) and self.execute_script(scriptData):
+                    print(f"-> Nueva base de datos '{self.__dbName}' creada satisfactoriamente.")
+                    self.close_connection()
+                    return True
+                else:
+                    print(f"-> Ocurrio un error al intentar crear la base de datos '{self.__dbName}'.")
+                    self.close_connection()
+                    self.removeDB()
+                    return False
+            else:
+                print("-> No se han realizado modificaciones al contenido actual de la base de datos.")
+                self.close_connection()
+                return True
