@@ -11,10 +11,10 @@ import json
 class AppHandler:
     def __init__(self):
         self.db = Database("avalon.db", "avalon-lite.sql", "data.sql")
-        self.participacionController = ParticipacionController(self.db)
-        self.rangoController = RangoController(self.db)
-        self.eventoController = EventoController(self.db)
-        self.integranteController = IntegranteController(self.db)
+        self.partCtrl = ParticipacionController(self.db)
+        self.rangoCtrl = RangoController(self.db)
+        self.eventCtrl = EventoController(self.db)
+        self.inteCtrl = IntegranteController(self.db)
 
 
 

@@ -2,4 +2,4 @@ from appHandler import AppHandler
 
 app = AppHandler()
 
-print(app.participacionController.getParticipacion(5))
+print(app.partCtrl.getParticipacion(5))
