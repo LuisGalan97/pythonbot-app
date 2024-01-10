@@ -6,12 +6,12 @@ from eventoModel import EventoModel
 
 class EventoService:
     def __init__(self, db : Database):
-        self.db = db
+        self.__db = db
 
     def select(self, id):
-        self.db.start_connection()
-        data = self.db.execute_query("SELECT * FROM eventos WHERE id = ?", (id,))
-        self.db.close_connection()
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM eventos WHERE id = ?", (id,))
+        self.__db.close_connection()
         if isinstance(data, list):
             for row in data:
                 evento = EventoModel(row[0], row[1], row[2], row[3])
@@ -20,9 +20,9 @@ class EventoService:
             return False
 
     def selectAll(self):
-        self.db.start_connection()
-        data = self.db.execute_query("SELECT * FROM eventos")
-        self.db.close_connection()
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM eventos")
+        self.__db.close_connection()
         if isinstance(data, list):
             eventos = []
             for row in data:
@@ -32,30 +32,30 @@ class EventoService:
             return False
 
     def insert(self, evento : EventoModel):
-        self.db.start_connection()
-        data = self.db.execute_query("INSERT INTO \
+        self.__db.start_connection()
+        data = self.__db.execute_query("INSERT INTO \
         eventos (name, points, description) \
         VALUES (?, ?, ?)", 
         (evento.getName(), evento.getPoints(), evento.getDescription(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)
 
     def update(self, evento: EventoModel):
-        self.db.start_connection()
-        data = self.db.execute_query("UPDATE eventos \
+        self.__db.start_connection()
+        data = self.__db.execute_query("UPDATE eventos \
         SET name = ?, points = ?, description = ? \
         WHERE id = ?", 
         (evento.getName(), 
          evento.getPoints(), 
          evento.getDescription(), 
          evento.getId(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)
 
     def delete(self, evento: EventoModel):
-        self.db.start_connection()
-        data = self.db.execute_query("DELETE FROM eventos \
+        self.__db.start_connection()
+        data = self.__db.execute_query("DELETE FROM eventos \
         WHERE id = ?", 
         (evento.getId(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)

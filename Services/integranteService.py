@@ -6,12 +6,12 @@ from integranteModel import IntegranteModel
 
 class IntegranteService:
     def __init__(self, db : Database):
-        self.db = db
+        self.__db = db
 
     def select(self, id):
-        self.db.start_connection()
-        data = self.db.execute_query("SELECT * FROM integrantes WHERE id = ?", (id,))
-        self.db.close_connection()
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM integrantes WHERE id = ?", (id,))
+        self.__db.close_connection()
         if isinstance(data, list):
             for row in data:
                 integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
@@ -20,9 +20,9 @@ class IntegranteService:
             return False
 
     def selectAll(self):
-        self.db.start_connection()
-        data = self.db.execute_query("SELECT * FROM integrantes")
-        self.db.close_connection()
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM integrantes")
+        self.__db.close_connection()
         if isinstance(data, list):
             integrantes = []
             for row in data:
@@ -32,30 +32,30 @@ class IntegranteService:
             return False
 
     def insert(self, integrante : IntegranteModel):
-        self.db.start_connection()
-        data = self.db.execute_query("INSERT INTO \
+        self.__db.start_connection()
+        data = self.__db.execute_query("INSERT INTO \
         integrantes (name, rango_id, datecreate) \
         VALUES (?, ?, ?)", 
         (integrante.getName(), integrante.getRangoId(), integrante.getDateCreate(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)
 
     def update(self, integrante: IntegranteModel):
-        self.db.start_connection()
-        data = self.db.execute_query("UPDATE integrantes \
+        self.__db.start_connection()
+        data = self.__db.execute_query("UPDATE integrantes \
         SET name = ?, rango_id = ?, dateupdate = ? \
         WHERE id = ?", 
         (integrante.getName(), 
          integrante.getRangoId(), 
          integrante.getDateUpdate(), 
          integrante.getId(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)
 
     def delete(self, integrante: IntegranteModel):
-        self.db.start_connection()
-        data = self.db.execute_query("DELETE FROM integrantes \
+        self.__db.start_connection()
+        data = self.__db.execute_query("DELETE FROM integrantes \
         WHERE id = ?", 
         (integrante.getId(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)

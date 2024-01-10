@@ -1,14 +1,8 @@
 # This example requires the 'message_content' intent.
-
 import sys
 sys.path.insert(1, './Config')
 from config import Config
-sys.path.insert(1, './DB')
-from database import Database
-
 import discord
-
-db = Database("avalon.db", "avalon-lite.sql", "data.sql")
 
 intents = discord.Intents.default()
 intents.message_content = True

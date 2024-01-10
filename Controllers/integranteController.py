@@ -8,10 +8,10 @@ from database import Database
 
 class IntegranteController:
     def __init__(self, db : Database):
-        self.service = IntegranteService(db)
+        self.__service = IntegranteService(db)
 
     def getIntegrantes(self):
-        integrantes = self.service.selectAll()
+        integrantes = self.__service.selectAll()
         if integrantes:
             data = []
             for integrante in integrantes:
@@ -28,7 +28,7 @@ class IntegranteController:
             return False
 
     def getIntegrante(self, id):
-        integrante = self.service.select(id)
+        integrante = self.__service.select(id)
         if integrante:
             data = {
                 "id" : integrante.getId(),
@@ -43,7 +43,7 @@ class IntegranteController:
     
     def createIntegrante(self, name, rango_id, datecreate):
         integrante = IntegranteModel(None, name, rango_id, datecreate, None)
-        result = self.service.insert(integrante)
+        result = self.__service.insert(integrante)
         if result:
             return True
         else:
@@ -51,14 +51,14 @@ class IntegranteController:
     
     def updateIntegrante(self, id, name, rango_id, dateupdate):
         integrante = IntegranteModel(id, name, rango_id, None, dateupdate)
-        result = self.service.update(integrante)
+        result = self.__service.update(integrante)
         if result:
             return True
         else:
             return False
     
     def deleteIntegrante(self, id):
-        result = self.service.delete(id)
+        result = self.__service.delete(id)
         if result:
             return True
         else:

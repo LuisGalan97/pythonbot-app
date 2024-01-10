@@ -6,12 +6,12 @@ from participacionModel import ParticipacionModel
 
 class ParticipacionService:
     def __init__(self, db : Database):
-        self.db = db
+        self.__db = db
 
     def select(self, id):
-        self.db.start_connection()
-        data = self.db.execute_query("SELECT * FROM participaciones WHERE id = ?", (id,))
-        self.db.close_connection()
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM participaciones WHERE id = ?", (id,))
+        self.__db.close_connection()
         if isinstance(data, list):
             for row in data:
                 participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
@@ -20,9 +20,9 @@ class ParticipacionService:
             return False
 
     def selectAll(self):
-        self.db.start_connection()
-        data = self.db.execute_query("SELECT * FROM participaciones")
-        self.db.close_connection()
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM participaciones")
+        self.__db.close_connection()
         if isinstance(data, list):
             participaciones = []
             for row in data:
@@ -32,30 +32,30 @@ class ParticipacionService:
             return False
 
     def insert(self, participacion : ParticipacionModel):
-        self.db.start_connection()
-        data = self.db.execute_query("INSERT INTO \
+        self.__db.start_connection()
+        data = self.__db.execute_query("INSERT INTO \
         participaciones (integrante_id, evento_id, date) \
         VALUES (?, ?, ?)", 
         (participacion.getIntegranteId(), participacion.getEventoId(), participacion.getDate(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)
 
     def update(self, participacion: ParticipacionModel):
-        self.db.start_connection()
-        data = self.db.execute_query("UPDATE participaciones \
+        self.__db.start_connection()
+        data = self.__db.execute_query("UPDATE participaciones \
         SET integrante_id = ?, evento_id = ?, date = ? \
         WHERE id = ?", 
         (participacion.getIntegranteId(), 
          participacion.getEventoId(), 
          participacion.getDate(), 
          participacion.getId(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)
 
     def delete(self, participacion: ParticipacionModel):
-        self.db.start_connection()
-        data = self.db.execute_query("DELETE FROM participaciones \
+        self.__db.start_connection()
+        data = self.__db.execute_query("DELETE FROM participaciones \
         WHERE id = ?", 
         (participacion.getId(),))
-        self.db.close_connection()
+        self.__db.close_connection()
         return(data)

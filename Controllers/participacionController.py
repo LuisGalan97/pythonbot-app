@@ -8,10 +8,10 @@ from database import Database
 
 class ParticipacionController:
     def __init__(self, db : Database):
-        self.service = ParticipacionService(db)
+        self.__service = ParticipacionService(db)
     
     def getParticipaciones(self):
-        participaciones = self.service.selectAll()
+        participaciones = self.__service.selectAll()
         if participaciones:
             data = []
             for participacion in participaciones:
@@ -27,7 +27,7 @@ class ParticipacionController:
             return False
     
     def getParticipacion(self, id):
-        participacion = self.service.select(id)
+        participacion = self.__service.select(id)
         if participacion:
             data = {
                 "id" : participacion.getId(),
@@ -41,7 +41,7 @@ class ParticipacionController:
 
     def createParticipacion(self, integrante_id, evento_id, date):
         participacion = ParticipacionModel(None, integrante_id, evento_id, date)
-        result = self.service.insert(participacion)
+        result = self.__service.insert(participacion)
         if result:
             return True
         else:
@@ -49,14 +49,14 @@ class ParticipacionController:
     
     def updateParticipacion(self, id, integrante_id, evento_id, date):
         participacion = ParticipacionModel(id, integrante_id, evento_id, date)
-        result = self.service.update(participacion)
+        result = self.__service.update(participacion)
         if result:
             return True
         else:
             return False
     
     def deleteParticipacion(self, id):
-        result = self.service.delete(id)
+        result = self.__service.delete(id)
         if result:
             return True
         else:
