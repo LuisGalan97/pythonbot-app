@@ -9,3 +9,58 @@ from database import Database
 class IntegranteController:
     def __init__(self, db : Database):
         self.service = IntegranteService(db)
+
+    def getIntegrantes(self):
+        integrantes = self.service.selectAll()
+        if integrantes:
+            data = []
+            for integrante in integrantes:
+                data.append(
+                    {
+                        "id" : integrante.getId(),
+                        "name" : integrante.getName(),
+                        "rango_id" : integrante.getRangoId(),
+                        "datecreate" : integrante.getDateCreate(),
+                        "dateupdate" : integrante.getDateUpdate()
+                    })
+            return data
+        else:
+            return False
+
+    def getIntegrante(self, id):
+        integrante = self.service.select(id)
+        if integrante:
+            data = {
+                "id" : integrante.getId(),
+                "name" : integrante.getName(),
+                "rango_id" : integrante.getRangoId(),
+                "datecreate" : integrante.getDateCreate(),
+                "dateupdate" : integrante.getDateUpdate()
+            }
+            return data
+        else:
+            return False
+    
+    def createIntegrante(self, name, rango_id, datecreate):
+        integrante = IntegranteModel(None, name, rango_id, datecreate, None)
+        result = self.service.insert(integrante)
+        if result:
+            return True
+        else:
+            return False
+    
+    def updateIntegrante(self, id, name, rango_id, dateupdate):
+        integrante = IntegranteModel(id, name, rango_id, None, dateupdate)
+        result = self.service.update(integrante)
+        if result:
+            return True
+        else:
+            return False
+    
+    def deleteIntegrante(self, id):
+        result = self.service.delete(id)
+        if result:
+            return True
+        else:
+            return False
+    

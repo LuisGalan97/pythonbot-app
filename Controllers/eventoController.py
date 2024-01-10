@@ -10,3 +10,54 @@ class EventoController:
     def __init__(self, db : Database):
         self.service = EventoService(db)
     
+    def getEventos(self):
+        eventos = self.service.selectAll()
+        if eventos:
+            data = []
+            for evento in eventos:
+                data.append(
+                    {
+                        "id" : evento.getId(),
+                        "name" : evento.getName(),
+                        "points" : evento.getPoints(),
+                        "description" : evento.getDescription(),
+                    })
+            return data
+        else:
+            return False
+    
+    def getEvento(self, id):
+        evento = self.service.select(id)
+        if evento:
+            data = {
+                "id" : evento.getId(),
+                "name" : evento.getName(),
+                "points" : evento.getPoints(),
+                "description" : evento.getDescription(),
+            }
+            return data
+        else:
+            return False
+    
+    def createEvento(self, name, points, description):
+        evento = EventoModel(None, name, points, description)
+        result = self.service.insert(evento)
+        if result:
+            return True
+        else:
+            return False
+
+    def updateEvento(self, id, name, points, description):
+        evento = EventoModel(id, name, points, description)
+        result = self.service.update(evento)
+        if result:
+            return True
+        else:
+            return False
+    
+    def deleteEvento(self, id):
+        result = self.service.delete(id)
+        if result:
+            return True
+        else:
+            return False

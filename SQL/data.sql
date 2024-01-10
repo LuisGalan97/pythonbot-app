@@ -147,3 +147,15 @@ INSERT INTO integrantes (name, rango_id, datecreate) VALUES ('Yatanokagami', 18,
 INSERT INTO integrantes (name, rango_id, datecreate) VALUES ('Zaagann', 18, '2024-01-07');
 INSERT INTO integrantes (name, rango_id, datecreate) VALUES ('Zamanny', 18, '2024-01-07');
 INSERT INTO integrantes (name, rango_id, datecreate) VALUES ('Zetas-Zora', 18, '2024-01-07');
+
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');
+INSERT INTO participaciones (integrante_id, evento_id, date) VALUES (1, 3, '2024-01-07');

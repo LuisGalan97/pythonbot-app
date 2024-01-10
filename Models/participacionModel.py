@@ -1,7 +1,3 @@
-import sys
-sys.path.insert(1, './DB')
-from database import db
-
 class ParticipacionModel:
     def __init__(self, id, integrante_id, evento_id, date):
         self.__id = id
