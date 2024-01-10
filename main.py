@@ -3,7 +3,12 @@ import sys
 import os
 sys.path.insert(1, './Config')
 from config import Config
+sys.path.insert(1, './DF')
+from dataframe import DataFrame
+from appHandler import AppHandler
 import discord
+
+app = AppHandler()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -19,20 +24,19 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    if message.content.startswith('$enviar_archivo'):
-        # Crear un archivo de ejemplo
-        contenido_archivo = "Contenido del archivo de ejemplo."
-        with open("archivo_ejemplo.txt", "w", encoding="utf-8") as archivo:
-            archivo.write(contenido_archivo)
-
-        # Crear un objeto de tipo discord.File con el archivo
-        archivo_discord = discord.File("archivo_ejemplo.txt")
-
-        # Enviar el archivo al canal donde se recibió el mensaje
-        await message.channel.send(file=archivo_discord)
-
-        # Eliminar el archivo local (opcional)
-        os.remove("archivo_ejemplo.txt")
+    if message.content.startswith('$integrantes'):
+        integrantes = app.getIntegrantes()
+        if integrantes:
+            df = DataFrame('integrantes', integrantes)
+            if df.getSuccess():
+                discordFile = discord.File(df.getDirectory())
+                await message.channel.send(file=discordFile)
+                if not df.deleteFrame():
+                    await message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador.')
+            else:
+                await message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
+        else:
+            await message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
 
     if message.content.startswith('$comando'):
         await message.channel.send('Respuesta del bot en discord')

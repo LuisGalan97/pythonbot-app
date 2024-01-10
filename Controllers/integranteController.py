@@ -17,11 +17,11 @@ class IntegranteController:
             for integrante in integrantes:
                 data.append(
                     {
-                        "id" : integrante.getId(),
-                        "name" : integrante.getName(),
-                        "rango_id" : integrante.getRangoId(),
-                        "datecreate" : integrante.getDateCreate(),
-                        "dateupdate" : integrante.getDateUpdate()
+                        "id" : integrante.getId() if integrante.getId() else 'None',
+                        "name" : integrante.getName() if integrante.getName() else 'None',
+                        "rango_id" : integrante.getRangoId() if integrante.getRangoId() else 'None',
+                        "datecreate" : integrante.getDateCreate() if integrante.getDateCreate() else 'None',
+                        "dateupdate" : integrante.getDateUpdate() if integrante.getDateUpdate() else 'None'
                     })
             return data
         else:
@@ -31,11 +31,11 @@ class IntegranteController:
         integrante = self.__service.select(id)
         if integrante:
             data = {
-                "id" : integrante.getId(),
-                "name" : integrante.getName(),
-                "rango_id" : integrante.getRangoId(),
-                "datecreate" : integrante.getDateCreate(),
-                "dateupdate" : integrante.getDateUpdate()
+                "id" : integrante.getId() if integrante.getId() else 'None',
+                "name" : integrante.getName() if integrante.getName() else 'None',
+                "rango_id" : integrante.getRangoId() if integrante.getRangoId() else 'None',
+                "datecreate" : integrante.getDateCreate() if integrante.getDateCreate() else 'None',
+                "dateupdate" : integrante.getDateUpdate() if integrante.getDateUpdate() else 'None'
             }
             return data
         else:

@@ -17,10 +17,10 @@ class ParticipacionController:
             for participacion in participaciones:
                 data.append(
                     {
-                        "id" : participacion.getId(),
-                        "integrante_id" : participacion.getIntegranteId(),
-                        "evento_id" : participacion.getEventoId(),
-                        "date" : participacion.getDate()
+                        "id" : participacion.getId() if participacion.getId() else 'None',
+                        "integrante_id" : participacion.getIntegranteId() if participacion.getIntegranteId() else 'None',
+                        "evento_id" : participacion.getEventoId() if participacion.getEventoId() else 'None',
+                        "date" : participacion.getDate() if participacion.getDate() else 'None'
                     })
             return data
         else:
@@ -30,10 +30,10 @@ class ParticipacionController:
         participacion = self.__service.select(id)
         if participacion:
             data = {
-                "id" : participacion.getId(),
-                "integrante_id" : participacion.getIntegranteId(),
-                "evento_id" : participacion.getEventoId(),
-                "date" : participacion.getDate()
+                "id" : participacion.getId() if participacion.getId() else 'None',
+                "integrante_id" : participacion.getIntegranteId() if participacion.getIntegranteId() else 'None',
+                "evento_id" : participacion.getEventoId() if participacion.getEventoId() else 'None',
+                "date" : participacion.getDate() if participacion.getDate() else 'None'
             }
             return data
         else:

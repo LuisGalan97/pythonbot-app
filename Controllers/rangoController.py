@@ -17,9 +17,9 @@ class RangoController:
             for rango in rangos:
                 data.append(
                     {
-                        "id" : rango.getId(),
-                        "name" : rango.getName(),
-                        "description" : rango.getDescription(),
+                        "id" : rango.getId() if rango.getId() else 'None',
+                        "name" : rango.getName() if rango.getName() else 'None',
+                        "description" : rango.getDescription() if rango.getDescription() else 'None'
                     })
             return data
         else:
@@ -29,9 +29,9 @@ class RangoController:
         rango = self.__service.select(id)
         if rango:
             data = {
-                "id" : rango.getId(),
-                "name" : rango.getName(),
-                "description" : rango.getDescription(),
+                "id" : rango.getId() if rango.getId() else 'None',
+                "name" : rango.getName() if rango.getName() else 'None',
+                "description" : rango.getDescription() if rango.getDescription() else 'None'
             }
             return data
         else:

@@ -2,3 +2,7 @@ Config/config.py
 __pycache__/
 DB/*
 !DB/database.py
+DB/*
+!DB/database.py
+DF/*
+!DF/dataframe.py

@@ -17,10 +17,10 @@ class EventoController:
             for evento in eventos:
                 data.append(
                     {
-                        "id" : evento.getId(),
-                        "name" : evento.getName(),
-                        "points" : evento.getPoints(),
-                        "description" : evento.getDescription(),
+                        "id" : evento.getId() if evento.getId() else 'None',
+                        "name" : evento.getName() if evento.getName() else 'None',
+                        "points" : evento.getPoints() if evento.getPoints() else 'None',
+                        "description" : evento.getDescription() if evento.getDescription() else 'None'
                     })
             return data
         else:
@@ -30,10 +30,10 @@ class EventoController:
         evento = self.__service.select(id)
         if evento:
             data = {
-                "id" : evento.getId(),
-                "name" : evento.getName(),
-                "points" : evento.getPoints(),
-                "description" : evento.getDescription(),
+                "id" : evento.getId() if evento.getId() else 'None',
+                "name" : evento.getName() if evento.getName() else 'None',
+                "points" : evento.getPoints() if evento.getPoints() else 'None',
+                "description" : evento.getDescription() if evento.getDescription() else 'None'
             }
             return data
         else:
