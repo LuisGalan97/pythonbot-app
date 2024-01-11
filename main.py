@@ -1,11 +1,11 @@
 # This example requires the 'message_content' intent.
 import sys
-import os
 sys.path.insert(1, './Config')
 from config import Config
 sys.path.insert(1, './DF')
 from dataframe import DataFrame
 from appHandler import AppHandler
+from messageHandler import MessageHandler
 import discord
 
 app = AppHandler()
@@ -21,6 +21,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    handler = MessageHandler(message, client)
+    await handler.handle_message("probando", "Hola mundo jaja")
+    
+    """
     if message.author == client.user:
         return
     
@@ -82,6 +86,7 @@ async def on_message(message):
 
     if message.content.startswith('$comando'):
         await message.channel.send('Respuesta del bot en discord')
+    """
 
 client.run(Config.TOKEN)
 #Este token es valido unicamente para el servidor Omega-xis
