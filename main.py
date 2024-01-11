@@ -27,7 +27,35 @@ async def on_message(message):
     if message.content.startswith('$integrantes'):
         integrantes = app.getIntegrantes()
         if integrantes:
-            df = DataFrame('integrantes', integrantes)
+            df = DataFrame('Lista de integrantes', integrantes)
+            if df.getSuccess():
+                discordFile = discord.File(df.getDirectory())
+                await message.channel.send(file=discordFile)
+                if not df.deleteFrame():
+                    await message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador.')
+            else:
+                await message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
+        else:
+            await message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
+
+    if message.content.startswith('$eventos'):
+        eventos = app.getEventos()
+        if eventos:
+            df = DataFrame('Lista de eventos', eventos)
+            if df.getSuccess():
+                discordFile = discord.File(df.getDirectory())
+                await message.channel.send(file=discordFile)
+                if not df.deleteFrame():
+                    await message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador.')
+            else:
+                await message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
+        else:
+            await message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
+
+    if message.content.startswith('$participaciones'):
+        participaciones = app.getParticipaciones()
+        if participaciones:
+            df = DataFrame('Lista de participaciones', participaciones)
             if df.getSuccess():
                 discordFile = discord.File(df.getDirectory())
                 await message.channel.send(file=discordFile)
