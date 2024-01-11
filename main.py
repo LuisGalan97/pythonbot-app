@@ -66,6 +66,20 @@ async def on_message(message):
         else:
             await message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
 
+    if message.content.startswith('$rangos'):
+        rangos = app.getRangos()
+        if rangos:
+            df = DataFrame('Lista de rangos', rangos)
+            if df.getSuccess():
+                discordFile = discord.File(df.getDirectory())
+                await message.channel.send(file=discordFile)
+                if not df.deleteFrame():
+                    await message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador.')
+            else:
+                await message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
+        else:
+            await message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
+
     if message.content.startswith('$comando'):
         await message.channel.send('Respuesta del bot en discord')
 

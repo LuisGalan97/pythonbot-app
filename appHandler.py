@@ -45,7 +45,7 @@ class AppHandler:
                         "Id" : evento["id"],
                         "Nombre" : evento["name"],
                         "Puntos" : evento["points"],
-                        "Descripcion" : evento["description"]
+                        "Descripción" : evento["description"]
                     }
                 )
             return data
@@ -70,6 +70,22 @@ class AppHandler:
                         "Evento" : eventoName,
                         "Puntos" : eventoPoints,
                         "Fecha" : participacion["date"]
+                    }
+                )
+            return data
+        else: 
+            return False
+        
+    def getRangos(self):
+        rangos = self.__rangoController.getRangos()
+        if rangos:
+            data = []
+            for rango in rangos:
+                data.append(
+                    {
+                        "Id" : rango["id"],
+                        "Nombre" : rango["name"],
+                        "Descripción" : rango["description"]
                     }
                 )
             return data
