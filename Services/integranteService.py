@@ -38,7 +38,7 @@ class IntegranteService:
         VALUES (?, ?, ?)", 
         (integrante.getName(), integrante.getRangoId(), integrante.getDateCreate(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def update(self, integrante: IntegranteModel):
         self.__db.start_connection()
@@ -50,7 +50,7 @@ class IntegranteService:
          integrante.getDateUpdate(), 
          integrante.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def delete(self, integrante: IntegranteModel):
         self.__db.start_connection()
@@ -58,4 +58,4 @@ class IntegranteService:
         WHERE id = ?", 
         (integrante.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data

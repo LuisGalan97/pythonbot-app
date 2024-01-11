@@ -38,7 +38,7 @@ class EventoService:
         VALUES (?, ?, ?)", 
         (evento.getName(), evento.getPoints(), evento.getDescription(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def update(self, evento: EventoModel):
         self.__db.start_connection()
@@ -50,7 +50,7 @@ class EventoService:
          evento.getDescription(), 
          evento.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def delete(self, evento: EventoModel):
         self.__db.start_connection()
@@ -58,4 +58,4 @@ class EventoService:
         WHERE id = ?", 
         (evento.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data

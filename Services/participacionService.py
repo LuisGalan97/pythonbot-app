@@ -38,7 +38,7 @@ class ParticipacionService:
         VALUES (?, ?, ?)", 
         (participacion.getIntegranteId(), participacion.getEventoId(), participacion.getDate(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def update(self, participacion: ParticipacionModel):
         self.__db.start_connection()
@@ -50,7 +50,7 @@ class ParticipacionService:
          participacion.getDate(), 
          participacion.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def delete(self, participacion: ParticipacionModel):
         self.__db.start_connection()
@@ -58,4 +58,4 @@ class ParticipacionService:
         WHERE id = ?", 
         (participacion.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data

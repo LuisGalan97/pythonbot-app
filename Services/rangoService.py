@@ -38,7 +38,7 @@ class RangoService:
         VALUES (?, ?)", 
         (rango.getName(), rango.getDescription(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def update(self, rango: RangoModel):
         self.__db.start_connection()
@@ -49,7 +49,7 @@ class RangoService:
          rango.getDescription(),
          rango.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data
 
     def delete(self, rango: RangoModel):
         self.__db.start_connection()
@@ -57,4 +57,4 @@ class RangoService:
         WHERE id = ?", 
         (rango.getId(),))
         self.__db.close_connection()
-        return(data)
+        return data
