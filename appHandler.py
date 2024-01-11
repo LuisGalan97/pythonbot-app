@@ -6,7 +6,6 @@ from participacionController import ParticipacionController
 from rangoController import RangoController
 from eventoController import EventoController
 from integranteController import IntegranteController
-import json
 
 class AppHandler:
     def __init__(self):
