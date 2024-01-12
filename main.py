@@ -21,9 +21,9 @@ async def on_message(message):
     handler = MessageHandler(message, client)
     await handler.initialMessage()
     await handler.textMessage("comando", "Hola mundo desde el bot de discord.")
-    await handler.dataFrameMessage("integrantes", app.getIntegrantes)
-    await handler.dataFrameMessage("eventos", app.getEventos)
-    await handler.dataFrameMessage("participaciones", app.getParticipaciones)
-    await handler.dataFrameMessage("rangos", app.getRangos)
+    await handler.dataFrameMessage("lista_integrantes", app.getIntegrantes)
+    await handler.dataFrameMessage("lista_eventos", app.getEventos)
+    await handler.dataFrameMessage("lista_participaciones", app.getParticipaciones)
+    await handler.dataFrameMessage("lista_rangos", app.getRangos)
 
 client.run(Config.TOKEN)
