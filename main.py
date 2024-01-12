@@ -25,5 +25,6 @@ async def on_message(message):
     await handler.dataFrameMessage("lista_eventos", app.getEventos)
     await handler.dataFrameMessage("lista_participaciones", app.getParticipaciones)
     await handler.dataFrameMessage("lista_rangos", app.getRangos)
+    await handler.addContentMessage("add_integrante", app.setIntegrante)
 
 client.run(Config.TOKEN)

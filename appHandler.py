@@ -2,10 +2,14 @@ import sys
 sys.path.insert(1, './DB')
 from database import Database
 sys.path.insert(1, './Controllers')
+from database import Database
+sys.path.insert(1, './Helpers')
 from participacionController import ParticipacionController
 from rangoController import RangoController
 from eventoController import EventoController
 from integranteController import IntegranteController
+from helpers import Helpers
+from datetime import datetime
 
 class AppHandler:
     def __init__(self):
@@ -90,6 +94,26 @@ class AppHandler:
             return data
         else: 
             return False
+
+    def setIntegrante(self, request):
+        struct = {
+            "Nombre" : str,
+            "Rango" : str,
+            "Fecha (AA-MM-DD)" : datetime
+        }
+        data = Helpers.checkRequest(request, struct)
+        if type(data) == list:
+            data = self.__integranteController.createIntegrante(data[0], data[1], data[2])
+            return data
+        else:
+            return data
+        
+        
+        
+        
+        
+        
+        
 
 
 
