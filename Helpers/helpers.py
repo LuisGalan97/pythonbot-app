@@ -18,6 +18,7 @@ class Helpers:
                             if not datas[i]:
                                 return "No fue ingresado ningun dato en el campo "\
                                 f"'{list(struct.keys())[i]}'"
+                            
                             try:
                                 if types[i] == datetime:
                                     datas[i] = datetime.strptime(datas[i], "%Y-%m-%d")
@@ -27,11 +28,13 @@ class Helpers:
                             except ValueError:
                                 return f"El dato '{datas[i]}' ingresado en el campo "\
                                 f"'{list(struct.keys())[i]}' es invalido"     
+                            
                             if types[i] == str:
                                 if Helpers.checkTrueChar(datas[i][0]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"'{list(struct.keys())[i]}' no debe comenzar "\
                                     "con valores numericos ni caracteres especiales" 
+                                
                                 try:
                                     int(datas[i][0])
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
@@ -39,10 +42,12 @@ class Helpers:
                                     "con valores numericos ni caracteres especiales" 
                                 except ValueError:
                                     pass
+                                
                                 if Helpers.checkChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"'{list(struct.keys())[i]}' no debe contener "\
                                     "caracteres especiales a excepcion de '-' o '|'"
+                                
                                 if Helpers.checkRepeatChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"'{list(struct.keys())[i]}' no debe debe repetir "\
