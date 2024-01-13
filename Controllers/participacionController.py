@@ -10,8 +10,20 @@ class ParticipacionController:
     def __init__(self, db : Database):
         self.__service = ParticipacionService(db)
     
-    def getParticipaciones(self):
-        participaciones = self.__service.selectAll()
+    def getParticipaciones(self, target = None):
+        if target is None:
+            participaciones = self.__service.selectAll()
+        elif list(target.keys())[0] == "id":
+            participaciones  = self.__service.selectById(target["id"])
+        elif list(target.keys())[0] == "name":
+            participaciones = self.__service.selectByName(target["name"])
+        elif list(target.keys())[0] == "integrante_id":
+            participaciones = self.__service.selectByIntegranteId(target["integrante_id"])
+        elif list(target.keys())[0] == "evento_id":
+            participaciones = self.__service.selectByEventoId(target["evento_id"])
+        elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
+            participaciones = self.__service.selectByDates(target["date_1"], target["date_2"])
+
         if participaciones:
             data = []
             for participacion in participaciones:
@@ -22,19 +34,6 @@ class ParticipacionController:
                         "evento_id" : participacion.getEventoId() if participacion.getEventoId() else 'None',
                         "date" : participacion.getDate() if participacion.getDate() else 'None'
                     })
-            return data
-        else:
-            return False
-    
-    def getParticipacionById(self, id):
-        participacion = self.__service.selectById(id)
-        if participacion:
-            data = {
-                "id" : participacion.getId() if participacion.getId() else 'None',
-                "integrante_id" : participacion.getIntegranteId() if participacion.getIntegranteId() else 'None',
-                "evento_id" : participacion.getEventoId() if participacion.getEventoId() else 'None',
-                "date" : participacion.getDate() if participacion.getDate() else 'None'
-            }
             return data
         else:
             return False

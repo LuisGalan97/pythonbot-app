@@ -10,8 +10,12 @@ class EventoController:
     def __init__(self, db : Database):
         self.__service = EventoService(db)
     
-    def getEventos(self):
-        eventos = self.__service.selectAll()
+    def getEventos(self, target = None):
+        if target is None:
+            eventos = self.__service.selectAll()
+        elif list(target.keys())[0] == "id":
+            eventos = self.__service.selectById(target["id"])
+            
         if eventos:
             data = []
             for evento in eventos:
@@ -22,19 +26,6 @@ class EventoController:
                         "points" : evento.getPoints() if evento.getPoints() else 'None',
                         "description" : evento.getDescription() if evento.getDescription() else 'None'
                     })
-            return data
-        else:
-            return False
-    
-    def getEventoById(self, id):
-        evento = self.__service.selectById(id)
-        if evento:
-            data = {
-                "id" : evento.getId() if evento.getId() else 'None',
-                "name" : evento.getName() if evento.getName() else 'None',
-                "points" : evento.getPoints() if evento.getPoints() else 'None',
-                "description" : evento.getDescription() if evento.getDescription() else 'None'
-            }
             return data
         else:
             return False

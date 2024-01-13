@@ -41,7 +41,7 @@ class IntegranteService:
         else:
             return False
     
-    def selectBetweenDates(self, date_1, date_2):
+    def selectByDates(self, date_1, date_2):
         self.__db.start_connection()
         data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (date_1, date_2,))
         self.__db.close_connection()

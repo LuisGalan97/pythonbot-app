@@ -10,8 +10,12 @@ class RangoController:
     def __init__(self, db : Database):
         self.__service = RangoService(db)
     
-    def getRangos(self):
-        rangos = self.__service.selectAll()
+    def getRangos(self, target = None):
+        if target is None:
+            rangos = self.__service.selectAll()
+        elif list(target.keys())[0] == "id":
+            rangos  = self.__service.selectById(target["id"])
+            
         if rangos:
             data = []
             for rango in rangos:
@@ -21,18 +25,6 @@ class RangoController:
                         "name" : rango.getName() if rango.getName() else 'None',
                         "description" : rango.getDescription() if rango.getDescription() else 'None'
                     })
-            return data
-        else:
-            return False
-    
-    def getRangoById(self, id):
-        rango = self.__service.selectById(id)
-        if rango:
-            data = {
-                "id" : rango.getId() if rango.getId() else 'None',
-                "name" : rango.getName() if rango.getName() else 'None',
-                "description" : rango.getDescription() if rango.getDescription() else 'None'
-            }
             return data
         else:
             return False
