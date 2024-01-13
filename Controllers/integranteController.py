@@ -27,8 +27,8 @@ class IntegranteController:
         else:
             return False
 
-    def getIntegrante(self, id):
-        integrante = self.__service.select(id)
+    def getIntegranteById(self, id):
+        integrante = self.__service.selectById(id)
         if integrante:
             data = {
                 "id" : integrante.getId() if integrante.getId() else 'None',

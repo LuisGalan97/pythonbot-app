@@ -25,8 +25,8 @@ class RangoController:
         else:
             return False
     
-    def getRango(self, id):
-        rango = self.__service.select(id)
+    def getRangoById(self, id):
+        rango = self.__service.selectById(id)
         if rango:
             data = {
                 "id" : rango.getId() if rango.getId() else 'None',

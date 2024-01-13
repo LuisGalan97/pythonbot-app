@@ -26,8 +26,8 @@ class ParticipacionController:
         else:
             return False
     
-    def getParticipacion(self, id):
-        participacion = self.__service.select(id)
+    def getParticipacionById(self, id):
+        participacion = self.__service.selectById(id)
         if participacion:
             data = {
                 "id" : participacion.getId() if participacion.getId() else 'None',

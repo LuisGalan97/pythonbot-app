@@ -26,8 +26,8 @@ class EventoController:
         else:
             return False
     
-    def getEvento(self, id):
-        evento = self.__service.select(id)
+    def getEventoById(self, id):
+        evento = self.__service.selectById(id)
         if evento:
             data = {
                 "id" : evento.getId() if evento.getId() else 'None',
