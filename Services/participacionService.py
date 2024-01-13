@@ -8,9 +8,42 @@ class ParticipacionService:
     def __init__(self, db : Database):
         self.__db = db
 
-    def select(self, id):
+    def selectById(self, id):
         self.__db.start_connection()
         data = self.__db.execute_query("SELECT * FROM participaciones WHERE id = ?", (id,))
+        self.__db.close_connection()
+        if isinstance(data, list):
+            for row in data:
+                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
+            return participacion
+        else:
+            return False
+
+    def selectByIntegranteId(self, integrante_id):
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM participaciones WHERE integrante_id = ?", (integrante_id,))
+        self.__db.close_connection()
+        if isinstance(data, list):
+            for row in data:
+                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
+            return participacion
+        else:
+            return False
+    
+    def selectByEventoId(self, evento_id):
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM participaciones WHERE evento_id = ?", (evento_id,))
+        self.__db.close_connection()
+        if isinstance(data, list):
+            for row in data:
+                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
+            return participacion
+        else:
+            return False
+    
+    def selectBetweenDates(self, date_1, date_2):
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM participaciones WHERE date BETWEEN ? AND ?", (date_1, date_2,))
         self.__db.close_connection()
         if isinstance(data, list):
             for row in data:

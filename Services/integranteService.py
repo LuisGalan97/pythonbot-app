@@ -8,9 +8,42 @@ class IntegranteService:
     def __init__(self, db : Database):
         self.__db = db
 
-    def select(self, id):
+    def selectById(self, id):
         self.__db.start_connection()
         data = self.__db.execute_query("SELECT * FROM integrantes WHERE id = ?", (id,))
+        self.__db.close_connection()
+        if isinstance(data, list):
+            for row in data:
+                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
+            return integrante
+        else:
+            return False
+    
+    def selectByName(self, name):
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM integrantes WHERE name = ?", (name,))
+        self.__db.close_connection()
+        if isinstance(data, list):
+            for row in data:
+                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
+            return integrante
+        else:
+            return False
+    
+    def selectByRangoId(self, rango_id):
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM integrantes WHERE rango_id = ?", (rango_id,))
+        self.__db.close_connection()
+        if isinstance(data, list):
+            for row in data:
+                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
+            return integrante
+        else:
+            return False
+    
+    def selectBetweenDates(self, date_1, date_2):
+        self.__db.start_connection()
+        data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (date_1, date_2,))
         self.__db.close_connection()
         if isinstance(data, list):
             for row in data:
