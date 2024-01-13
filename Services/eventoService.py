@@ -14,6 +14,8 @@ class EventoService:
             data = self.__db.execute_query("SELECT * FROM eventos")
         elif list(target.keys())[0] == "id":
             data = self.__db.execute_query("SELECT * FROM eventos WHERE id = ?", (target["id"],))
+        else:
+            data = None
         self.__db.close_connection()
         if isinstance(data, list):
             eventos = []

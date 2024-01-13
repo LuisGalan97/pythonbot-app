@@ -20,6 +20,8 @@ class ParticipacionService:
             data = self.__db.execute_query("SELECT * FROM participaciones WHERE evento_id = ?", (target["evento_id"],))
         elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
             data = self.__db.execute_query("SELECT * FROM participaciones WHERE date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
+        else:
+            data = None
         self.__db.close_connection()
         if isinstance(data, list):
             participaciones = []

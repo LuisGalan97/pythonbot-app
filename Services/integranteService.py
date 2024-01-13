@@ -20,6 +20,8 @@ class IntegranteService:
             data = self.__db.execute_query("SELECT * FROM integrantes WHERE rango_id = ?", (target["rango_id"],))
         elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
             data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
+        else:
+            data = None
         self.__db.close_connection()
         if isinstance(data, list):
             integrantes = []

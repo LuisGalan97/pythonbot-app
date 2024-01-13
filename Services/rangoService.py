@@ -14,6 +14,8 @@ class RangoService:
             data = self.__db.execute_query("SELECT * FROM rangos")
         elif list(target.keys())[0] == "id":
             data = self.__db.execute_query("SELECT * FROM rangos WHERE id = ?", (target["id"],))
+        else:
+            data = None
         self.__db.close_connection()
         if isinstance(data, list):
             rangos = []
