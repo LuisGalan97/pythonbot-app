@@ -8,53 +8,18 @@ class ParticipacionService:
     def __init__(self, db : Database):
         self.__db = db
 
-    def selectById(self, id):
+    def select(self, target = None):
         self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM participaciones WHERE id = ?", (id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
-            return participacion
-        else:
-            return False
-
-    def selectByIntegranteId(self, integrante_id):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM participaciones WHERE integrante_id = ?", (integrante_id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
-            return participacion
-        else:
-            return False
-    
-    def selectByEventoId(self, evento_id):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM participaciones WHERE evento_id = ?", (evento_id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
-            return participacion
-        else:
-            return False
-    
-    def selectByDates(self, date_1, date_2):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM participaciones WHERE date BETWEEN ? AND ?", (date_1, date_2,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                participacion = ParticipacionModel(row[0], row[1], row[2], row[3])
-            return participacion
-        else:
-            return False
-
-    def selectAll(self):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM participaciones")
+        if target is None:
+            data = self.__db.execute_query("SELECT * FROM participaciones")
+        elif list(target.keys())[0] == "id":
+            data = self.__db.execute_query("SELECT * FROM participaciones WHERE id = ?", (target["id"],))
+        elif list(target.keys())[0] == "integrante_id":
+            data = self.__db.execute_query("SELECT * FROM participaciones WHERE integrante_id = ?", (target["integrante_id"],))
+        elif list(target.keys())[0] == "evento_id":
+            data = self.__db.execute_query("SELECT * FROM participaciones WHERE evento_id = ?", (target["evento_id"],))
+        elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
+            data = self.__db.execute_query("SELECT * FROM participaciones WHERE date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         self.__db.close_connection()
         if isinstance(data, list):
             participaciones = []

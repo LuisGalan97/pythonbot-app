@@ -8,53 +8,18 @@ class IntegranteService:
     def __init__(self, db : Database):
         self.__db = db
 
-    def selectById(self, id):
+    def select(self, target = None):
         self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM integrantes WHERE id = ?", (id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
-            return integrante
-        else:
-            return False
-    
-    def selectByName(self, name):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM integrantes WHERE name = ?", (name,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
-            return integrante
-        else:
-            return False
-    
-    def selectByRangoId(self, rango_id):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM integrantes WHERE rango_id = ?", (rango_id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
-            return integrante
-        else:
-            return False
-    
-    def selectByDates(self, date_1, date_2):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (date_1, date_2,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                integrante = IntegranteModel(row[0], row[1], row[2], row[3], row[4])
-            return integrante
-        else:
-            return False
-
-    def selectAll(self):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM integrantes")
+        if target is None:
+            data = self.__db.execute_query("SELECT * FROM integrantes")
+        elif list(target.keys())[0] == "id":
+            data = self.__db.execute_query("SELECT * FROM integrantes WHERE id = ?", (target["id"],))
+        elif list(target.keys())[0] == "name":
+            data = self.__db.execute_query("SELECT * FROM integrantes WHERE name = ?", (target["name"],))
+        elif list(target.keys())[0] == "rango_id":
+            data = self.__db.execute_query("SELECT * FROM integrantes WHERE rango_id = ?", (target["rango_id"],))
+        elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
+            data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         self.__db.close_connection()
         if isinstance(data, list):
             integrantes = []

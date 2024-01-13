@@ -8,20 +8,12 @@ class RangoService:
     def __init__(self, db : Database):
         self.__db = db
 
-    def selectById(self, id):
+    def select(self, target = None):
         self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM rangos WHERE id = ?", (id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                rango = RangoModel(row[0], row[1], row[2])
-            return rango
-        else:
-            return False
-
-    def selectAll(self):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM rangos")
+        if target is None:
+            data = self.__db.execute_query("SELECT * FROM rangos")
+        elif list(target.keys())[0] == "id":
+            data = self.__db.execute_query("SELECT * FROM rangos WHERE id = ?", (target["id"],))
         self.__db.close_connection()
         if isinstance(data, list):
             rangos = []

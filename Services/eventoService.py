@@ -8,20 +8,12 @@ class EventoService:
     def __init__(self, db : Database):
         self.__db = db
 
-    def selectById(self, id):
+    def select(self, target = None):
         self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM eventos WHERE id = ?", (id,))
-        self.__db.close_connection()
-        if isinstance(data, list):
-            for row in data:
-                evento = EventoModel(row[0], row[1], row[2], row[3])
-            return evento
-        else:
-            return False
-
-    def selectAll(self):
-        self.__db.start_connection()
-        data = self.__db.execute_query("SELECT * FROM eventos")
+        if target is None:
+            data = self.__db.execute_query("SELECT * FROM eventos")
+        elif list(target.keys())[0] == "id":
+            data = self.__db.execute_query("SELECT * FROM eventos WHERE id = ?", (target["id"],))
         self.__db.close_connection()
         if isinstance(data, list):
             eventos = []

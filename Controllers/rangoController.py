@@ -11,11 +11,7 @@ class RangoController:
         self.__service = RangoService(db)
     
     def getRangos(self, target = None):
-        if target is None:
-            rangos = self.__service.selectAll()
-        elif list(target.keys())[0] == "id":
-            rangos  = self.__service.selectById(target["id"])
-            
+        rangos = self.__service.select(target)
         if rangos:
             data = []
             for rango in rangos:

@@ -11,11 +11,7 @@ class EventoController:
         self.__service = EventoService(db)
     
     def getEventos(self, target = None):
-        if target is None:
-            eventos = self.__service.selectAll()
-        elif list(target.keys())[0] == "id":
-            eventos = self.__service.selectById(target["id"])
-            
+        eventos = self.__service.select(target)
         if eventos:
             data = []
             for evento in eventos:

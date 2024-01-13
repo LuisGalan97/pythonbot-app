@@ -11,17 +11,7 @@ class IntegranteController:
         self.__service = IntegranteService(db)
 
     def getIntegrantes(self, target = None):
-        if target is None:
-            integrantes = self.__service.selectAll()
-        elif list(target.keys())[0] == "id":
-            integrantes = self.__service.selectById(target["id"])
-        elif list(target.keys())[0] == "name":
-            integrantes = self.__service.selectByName(target["name"])
-        elif list(target.keys())[0] == "rango_id":
-            integrantes = self.__service.selectByRangoId(target["rango_id"])
-        elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
-            integrantes = self.__service.selectByDates(target["date_1"], target["date_2"])
-        
+        integrantes = self.__service.select(target)
         if integrantes:
             data = []
             for integrante in integrantes:
