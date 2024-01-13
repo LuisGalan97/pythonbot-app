@@ -19,8 +19,18 @@ class AppHandler:
         self.__eventoController = EventoController(self.__db)
         self.__integranteController = IntegranteController(self.__db)
     
-    def getIntegrantes(self, target = None):
-        integrantes = self.__integranteController.getIntegrantes(target)
+    def getIntegrantes(self, request, struct = None):
+        if struct is None:
+            integrantes = self.__integranteController.getIntegrantes()
+        else:
+            data = Helpers.checkRequest(request, struct)
+            if type(data) == list:
+                target = {}
+                for index, key in enumerate(struct.keys()):
+                    target[key] = data[index]
+                integrantes = self.__integranteController.getIntegrantes(target)
+            else:
+                return data
         if integrantes:
             data = []
             for integrante in integrantes:

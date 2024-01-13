@@ -16,10 +16,12 @@ class MessageHandler:
         if self.__message.content.startswith(f'${command}'):
             await self.__message.channel.send(message)
     
-    async def dataFrameMessage(self, command, method):
+    async def dataFrameMessage(self, command, method, struct = None):
         if self.__message.content.startswith(f'${command}'):
-            datas = method()
-            if datas:
+            request = self.__message.content.replace(f'${command}', '').strip()
+            request = f"${command} {request}"
+            datas = method(request, struct)    
+            if type(datas) == list:
                 df = DataFrame(command, datas)
                 if df.getSuccess():
                     discordFile = discord.File(df.getDirectory())
@@ -28,6 +30,8 @@ class MessageHandler:
                         await self.__message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador')
                 else:
                     await self.__message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador')
+            elif type(datas) == str:
+                await self.__message.channel.send(datas)
             else:
                 await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador')
             
