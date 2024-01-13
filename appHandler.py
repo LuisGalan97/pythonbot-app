@@ -119,9 +119,18 @@ class AppHandler:
 
     def setIntegrante(self, request):
         struct = {
-            "Nombre" : str,
-            "Rango" : str,
-            "Fecha (AA-MM-DD)" : datetime
+            "name" : {
+                "type" : str,
+                "alias" : "Nombre"
+            },
+            "rango" : {
+                "type" : str,
+                "alias" : "Rango"
+            },
+            "date" : {
+                "type" : datetime,
+                "alias" : "Fecha (AA-MM-DD)"
+            }
         }
         data = Helpers.checkRequest(request, struct)
         if type(data) == list:

@@ -27,13 +27,13 @@ class MessageHandler:
                     discordFile = discord.File(df.getDirectory())
                     await self.__message.channel.send(file=discordFile)
                     if not df.deleteFrame():
-                        await self.__message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador')
+                        await self.__message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador.')
                 else:
-                    await self.__message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador')
+                    await self.__message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
             elif type(datas) == str:
                 await self.__message.channel.send(datas)
             else:
-                await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador')
+                await self.__message.channel.send('No se encontraron resultados para la consulta solicitada.')
             
     async def addContentMessage(self, command, method):
         if self.__message.content.startswith(f'${command}'):    

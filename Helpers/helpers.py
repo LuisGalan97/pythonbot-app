@@ -5,19 +5,20 @@ class Helpers:
     def checkRequest(request, struct):
             command = request.split(' ')[0]
             content = request.replace(command, '').strip()
-            reference = f"{', '.join(map(str, list(struct.keys())))}"
-            types = list(struct.values())
+            references = f"{', '.join(map(str, list(struct.keys())))}"
+            types = [value["type"] for value in struct.values()]
+            alias = f"{', '.join(map(str, [value['alias'] for value in struct.values()]))}"  
             if content.startswith('['):
                 content = content.replace('[', '')
                 if content.find(']') != -1:
                     content = content[: content.find(']')]
                     datas = content.split(',') 
-                    if len(datas) == len(reference.split(',')):
+                    if len(datas) == len(references.split(',')):
                         for i in range(len(datas)):
                             datas[i] = datas[i].strip()
                             if not datas[i]:
                                 return "No fue ingresado ningun dato en el campo "\
-                                f"'{list(struct.keys())[i]}'."
+                                f"'{alias.split(',')[i].strip()}'."
                             try:
                                 if types[i] == datetime:
                                     datas[i] = datetime.strptime(datas[i], "%Y-%m-%d")
@@ -26,38 +27,38 @@ class Helpers:
                                     datas[i] = types[i](datas[i])
                             except ValueError:
                                 return f"El dato '{datas[i]}' ingresado en el campo "\
-                                f"'{list(struct.keys())[i]}' es invalido."
+                                f"'{alias.split(',')[i].strip()}' es invalido."
                             if types[i] == str:
                                 if Helpers.checkTrueChar(datas[i][0]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{list(struct.keys())[i]}' no debe comenzar "\
+                                    f"'{alias.split(',')[i].strip()}' no debe comenzar "\
                                     "con valores numericos ni caracteres especiales."
                                 try:
                                     int(datas[i][0])
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{list(struct.keys())[i]}' no debe comenzar "\
+                                    f"'{alias.split(',')[i].strip()}' no debe comenzar "\
                                     "con valores numericos ni caracteres especiales."
                                 except ValueError:
                                     pass
                                 if Helpers.checkChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{list(struct.keys())[i]}' no debe contener "\
+                                    f"'{alias.split(',')[i].strip()}' no debe contener "\
                                     "caracteres especiales a excepcion de '-' o '|'."
                                 if Helpers.checkRepeatChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{list(struct.keys())[i]}' no debe debe repetir "\
+                                    f"'{alias.split(',')[i].strip()}' no debe debe repetir "\
                                     "mas de dos veces los caracteres '-' o '|'."
                         return datas
                     else:
                         return "Datos ingresados invalidos, "\
                         "recuerda que debes ingresar:\n"\
-                        f"{reference}."
+                        f"{alias}."
                 else:
                     return "El comando debe mantener la forma:\n"\
-                    f"{command} [{reference}]."
+                    f"{command} [{alias}]."
             else:
                 return "El comando debe mantener la forma:\n"\
-                f"{command} [{reference}]."
+                f"{command} [{alias}]."
 
     @staticmethod 
     def checkChar(strValue):
