@@ -27,29 +27,29 @@ class EventoService:
 
     def insert(self, evento : EventoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("INSERT INTO \
-        eventos (name, points, description) \
-        VALUES (?, ?, ?)", 
+        data = self.__db.execute_query("INSERT INTO "\
+        "eventos (name, points, description) "\
+        "VALUES (?, ?, ?)",
         (evento.getName(), evento.getPoints(), evento.getDescription(),))
         self.__db.close_connection()
         return data
 
     def update(self, evento: EventoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("UPDATE eventos \
-        SET name = ?, points = ?, description = ? \
-        WHERE id = ?", 
-        (evento.getName(), 
-         evento.getPoints(), 
-         evento.getDescription(), 
-         evento.getId(),))
+        data = self.__db.execute_query("UPDATE eventos "\
+        "SET name = ?, points = ?, description = ? "\
+        "WHERE id = ?",
+        (evento.getName(),
+        evento.getPoints(),
+        evento.getDescription(),
+        evento.getId(),))
         self.__db.close_connection()
         return data
 
     def delete(self, evento: EventoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("DELETE FROM eventos \
-        WHERE id = ?", 
+        data = self.__db.execute_query("DELETE FROM eventos "\
+        "WHERE id = ?",
         (evento.getId(),))
         self.__db.close_connection()
         return data

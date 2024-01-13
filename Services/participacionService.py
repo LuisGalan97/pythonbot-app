@@ -33,29 +33,29 @@ class ParticipacionService:
 
     def insert(self, participacion : ParticipacionModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("INSERT INTO \
-        participaciones (integrante_id, evento_id, date) \
-        VALUES (?, ?, ?)", 
+        data = self.__db.execute_query("INSERT INTO "\
+        "participaciones (integrante_id, evento_id, date) "\
+        "VALUES (?, ?, ?)",
         (participacion.getIntegranteId(), participacion.getEventoId(), participacion.getDate(),))
         self.__db.close_connection()
         return data
 
     def update(self, participacion: ParticipacionModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("UPDATE participaciones \
-        SET integrante_id = ?, evento_id = ?, date = ? \
-        WHERE id = ?", 
-        (participacion.getIntegranteId(), 
-         participacion.getEventoId(), 
-         participacion.getDate(), 
-         participacion.getId(),))
+        data = self.__db.execute_query("UPDATE participaciones "\
+        "SET integrante_id = ?, evento_id = ?, date = ? "\
+        "WHERE id = ?",
+        (participacion.getIntegranteId(),
+        participacion.getEventoId(),
+        participacion.getDate(),
+        participacion.getId(),))
         self.__db.close_connection()
         return data
 
     def delete(self, participacion: ParticipacionModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("DELETE FROM participaciones \
-        WHERE id = ?", 
+        data = self.__db.execute_query("DELETE FROM participaciones "\
+        "WHERE id = ?",
         (participacion.getId(),))
         self.__db.close_connection()
         return data

@@ -33,29 +33,29 @@ class IntegranteService:
 
     def insert(self, integrante : IntegranteModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("INSERT INTO \
-        integrantes (name, rango_id, datecreate) \
-        VALUES (?, ?, ?)", 
+        data = self.__db.execute_query("INSERT INTO "\
+        "integrantes (name, rango_id, datecreate) "\
+        "VALUES (?, ?, ?)",
         (integrante.getName(), integrante.getRangoId(), integrante.getDateCreate(),))
         self.__db.close_connection()
         return data
 
     def update(self, integrante: IntegranteModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("UPDATE integrantes \
-        SET name = ?, rango_id = ?, dateupdate = ? \
-        WHERE id = ?", 
-        (integrante.getName(), 
-         integrante.getRangoId(), 
-         integrante.getDateUpdate(), 
-         integrante.getId(),))
+        data = self.__db.execute_query("UPDATE integrantes "\
+        "SET name = ?, rango_id = ?, dateupdate = ? "\
+        "WHERE id = ?",
+        (integrante.getName(),
+        integrante.getRangoId(),
+        integrante.getDateUpdate(),
+        integrante.getId(),))
         self.__db.close_connection()
         return data
 
     def delete(self, integrante: IntegranteModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("DELETE FROM integrantes \
-        WHERE id = ?", 
+        data = self.__db.execute_query("DELETE FROM integrantes "\
+        "WHERE id = ?",
         (integrante.getId(),))
         self.__db.close_connection()
         return data

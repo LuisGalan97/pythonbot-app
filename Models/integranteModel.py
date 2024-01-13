@@ -8,7 +8,7 @@ class IntegranteModel:
 
     def getId(self):
         return self.__id
-    
+
     def getName(self):
         return self.__name
 

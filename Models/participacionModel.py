@@ -7,7 +7,7 @@ class ParticipacionModel:
 
     def getId(self):
         return self.__id
-    
+
     def getIntegranteId(self):
         return self.__integrante_id
 

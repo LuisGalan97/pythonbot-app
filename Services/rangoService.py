@@ -27,28 +27,28 @@ class RangoService:
 
     def insert(self, rango : RangoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("INSERT INTO \
-        rangos (name, description) \
-        VALUES (?, ?)", 
+        data = self.__db.execute_query("INSERT INTO "\
+        "rangos (name, description) "\
+        "VALUES (?, ?)",
         (rango.getName(), rango.getDescription(),))
         self.__db.close_connection()
         return data
 
     def update(self, rango: RangoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("UPDATE rangos \
-        SET name = ?, description = ? \
-        WHERE id = ?", 
-        (rango.getName(), 
-         rango.getDescription(),
-         rango.getId(),))
+        data = self.__db.execute_query("UPDATE rangos "\
+        "SET name = ?, description = ? "\
+        "WHERE id = ?",
+        (rango.getName(),
+        rango.getDescription(),
+        rango.getId(),))
         self.__db.close_connection()
         return data
 
     def delete(self, rango: RangoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("DELETE FROM rangos \
-        WHERE id = ?", 
+        data = self.__db.execute_query("DELETE FROM rangos "\
+        "WHERE id = ?",
         (rango.getId(),))
         self.__db.close_connection()
         return data

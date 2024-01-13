@@ -7,10 +7,10 @@ class EventoModel:
 
     def getId(self):
         return self.__id
-    
+
     def getName(self):
         return self.__name
-    
+
     def getPoints(self):
         return self.__points
 
