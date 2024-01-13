@@ -73,7 +73,7 @@ class AppHandler:
                     eventoName = eventoName[0]["name"]
                 else: 
                     eventoName = 'Unknown'
-                eventoPoints = self.__eventoController.getEventos(participacion["evento_id"]) 
+                eventoPoints = self.__eventoController.getEventos({"id" : participacion["evento_id"]}) 
                 if eventoPoints: 
                     eventoPoints = eventoPoints[0]["points"]
                 else:
