@@ -32,8 +32,6 @@ class MessageHandler:
                     await self.__message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
             elif isinstance(result, str):
                 await self.__message.channel.send(result)
-            elif result:
-                await self.__message.channel.send('No se encontraron resultados para la consulta solicitada.')  
             else:
                 await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
             

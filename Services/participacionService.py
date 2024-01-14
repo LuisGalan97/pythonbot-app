@@ -10,15 +10,15 @@ class ParticipacionService:
 
     def select(self, target = None):
         self.__db.start_connection()
-        if target is None:
+        if not target:
             data = self.__db.execute_query("SELECT * FROM participaciones")
-        elif list(target.keys())[0] == "id":
+        elif "id" in target:
             data = self.__db.execute_query("SELECT * FROM participaciones WHERE id = ?", (target["id"],))
-        elif list(target.keys())[0] == "integrante_id":
+        elif "integrante_id" in target:
             data = self.__db.execute_query("SELECT * FROM participaciones WHERE integrante_id = ?", (target["integrante_id"],))
-        elif list(target.keys())[0] == "evento_id":
+        elif "evento_id" in target:
             data = self.__db.execute_query("SELECT * FROM participaciones WHERE evento_id = ?", (target["evento_id"],))
-        elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
+        elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query("SELECT * FROM participaciones WHERE date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         else:
             data = None

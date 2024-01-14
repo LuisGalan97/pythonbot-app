@@ -10,10 +10,12 @@ class EventoService:
 
     def select(self, target = None):
         self.__db.start_connection()
-        if target is None:
+        if not target:
             data = self.__db.execute_query("SELECT * FROM eventos")
-        elif list(target.keys())[0] == "id":
+        elif "id" in target:
             data = self.__db.execute_query("SELECT * FROM eventos WHERE id = ?", (target["id"],))
+        elif "name" in target:
+            data = self.__db.execute_query("SELECT * FROM eventos WHERE name = ?", (target["name"],))
         else:
             data = None
         self.__db.close_connection()

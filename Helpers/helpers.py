@@ -93,3 +93,28 @@ class Helpers:
             if strValue.count(char) > 2:
                 return True
         return False
+    
+    @staticmethod 
+    def strTemp(targets):
+        struct = {}
+        if "id" in targets:
+            struct["id"] = {"type" : int, "fk" : False, "alias" : "Identificador"}
+        if "name" in targets:
+            struct["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+        if "rango" in targets:
+            struct["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
+        if "rango_id" in targets:
+            struct["rango_id"] = {"type" : int, "fk" : False, "alias" : "ID Rango"}
+        if "evento" in targets:
+            struct["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
+        if "evento_id" in targets:
+            struct["evento_id"] = {"type" : int, "fk" : False, "alias" : "ID Evento"}
+        if "integrante" in targets:
+            struct["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
+        if "integrante_id" in targets:
+            struct["integrante_id"] = {"type" : int, "fk" : False, "alias" : "ID Integrante"}
+        if "date_1" in targets:
+            struct["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (AAAA-MM-DD)"}
+        if "date_2" in targets:
+            struct["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (AAAA-MM-DD)"}
+        return struct

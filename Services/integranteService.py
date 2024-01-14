@@ -10,15 +10,15 @@ class IntegranteService:
 
     def select(self, target = None):
         self.__db.start_connection()
-        if target is None:
+        if not target:
             data = self.__db.execute_query("SELECT * FROM integrantes")
-        elif list(target.keys())[0] == "id":
+        elif "id" in target:
             data = self.__db.execute_query("SELECT * FROM integrantes WHERE id = ?", (target["id"],))
-        elif list(target.keys())[0] == "name":
+        elif "name" in target:
             data = self.__db.execute_query("SELECT * FROM integrantes WHERE name = ?", (target["name"],))
-        elif list(target.keys())[0] == "rango_id":
+        elif "rango_id" in target:
             data = self.__db.execute_query("SELECT * FROM integrantes WHERE rango_id = ?", (target["rango_id"],))
-        elif list(target.keys())[0] == "date_1" and list(target.keys())[1] == "date_2":
+        elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         else:
             data = None

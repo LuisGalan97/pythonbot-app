@@ -10,10 +10,12 @@ class RangoService:
 
     def select(self, target = None):
         self.__db.start_connection()
-        if target is None:
+        if not target:
             data = self.__db.execute_query("SELECT * FROM rangos")
-        elif list(target.keys())[0] == "id":
+        elif "id" in target:
             data = self.__db.execute_query("SELECT * FROM rangos WHERE id = ?", (target["id"],))
+        elif "name" in target:
+            data = self.__db.execute_query("SELECT * FROM rangos WHERE name = ?", (target["name"],))
         else:
             data = None
         self.__db.close_connection()
