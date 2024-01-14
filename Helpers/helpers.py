@@ -48,6 +48,7 @@ class Helpers:
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"'{alias.split(',')[i].strip()}' no debe debe repetir "\
                                     "mas de dos veces los caracteres '-' o '|'."
+                        references = list(map(lambda x: x.strip(), references.split(',')))
                         datas = dict(zip(references, datas))
                         return datas
                     else:
