@@ -12,7 +12,7 @@ class RangoController:
     
     def getRangos(self, target = None):
         rangos = self.__service.select(target)
-        if rangos:
+        if isinstance(rangos, list):
             data = []
             for rango in rangos:
                 data.append(
@@ -22,6 +22,8 @@ class RangoController:
                         "description" : rango.getDescription() if rango.getDescription() else 'None'
                     })
             return data
+        elif rangos:
+            return True
         else:
             return False
 

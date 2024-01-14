@@ -28,6 +28,8 @@ class ParticipacionService:
             for row in data:
                 participaciones.append(ParticipacionModel(row[0], row[1], row[2], row[3]))
             return participaciones
+        elif data:
+            return True
         else:
             return False
 

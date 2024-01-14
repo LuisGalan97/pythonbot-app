@@ -28,6 +28,8 @@ class IntegranteService:
             for row in data:
                 integrantes.append(IntegranteModel(row[0], row[1], row[2], row[3], row[4]))
             return integrantes
+        elif data:
+            return True
         else:
             return False
 

@@ -12,7 +12,7 @@ class ParticipacionController:
     
     def getParticipaciones(self, target = None):  
         participaciones = self.__service.select(target)
-        if participaciones:
+        if isinstance(participaciones, list):
             data = []
             for participacion in participaciones:
                 data.append(
@@ -23,6 +23,8 @@ class ParticipacionController:
                         "date" : participacion.getDate() if participacion.getDate() else 'None'
                     })
             return data
+        elif participaciones:
+            return True
         else:
             return False
 

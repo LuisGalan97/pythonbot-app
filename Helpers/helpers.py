@@ -48,11 +48,12 @@ class Helpers:
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"'{alias.split(',')[i].strip()}' no debe debe repetir "\
                                     "mas de dos veces los caracteres '-' o '|'."
+                        datas = dict(zip(references, datas))
                         return datas
                     else:
                         return "Datos ingresados invalidos, "\
                         "recuerda que debes ingresar:\n"\
-                        f"{alias}."
+                        f"[{alias}]."
                 else:
                     return "El comando debe mantener la forma:\n"\
                     f"{command} [{alias}]."

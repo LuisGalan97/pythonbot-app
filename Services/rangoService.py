@@ -22,6 +22,8 @@ class RangoService:
             for row in data:
                 rangos.append(RangoModel(row[0], row[1], row[2]))
             return rangos
+        elif data:
+            return True
         else:
             return False
 

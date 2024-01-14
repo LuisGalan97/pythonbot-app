@@ -25,6 +25,8 @@ async def on_message(message):
     await handler.dataFrameMessage("lista_eventos", app.getEventos)
     await handler.dataFrameMessage("lista_participaciones", app.getParticipaciones)
     await handler.dataFrameMessage("lista_rangos", app.getRangos)
+    await handler.dataFrameMessage("buscar_nombre_integrantes", app.getIntegrantes, 
+                                   {"name": {"type" : str, "alias" : "Nombre", "fk" : False}})
     await handler.addContentMessage("add_integrante", app.setIntegrante)
-    await handler.dataFrameMessage("lista_integrantes_name", app.getIntegrantes, {"name": {"type" : str, "alias" : "Nombre"}})
+    
 client.run(Config.TOKEN)

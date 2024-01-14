@@ -12,7 +12,7 @@ class EventoController:
     
     def getEventos(self, target = None):
         eventos = self.__service.select(target)
-        if eventos:
+        if isinstance(eventos, list):
             data = []
             for evento in eventos:
                 data.append(
@@ -23,6 +23,8 @@ class EventoController:
                         "description" : evento.getDescription() if evento.getDescription() else 'None'
                     })
             return data
+        elif eventos:
+            return True
         else:
             return False
     

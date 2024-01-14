@@ -12,7 +12,7 @@ class IntegranteController:
 
     def getIntegrantes(self, target = None):
         integrantes = self.__service.select(target)
-        if integrantes:
+        if isinstance(integrantes, list):
             data = []
             for integrante in integrantes:
                 data.append(
@@ -24,6 +24,8 @@ class IntegranteController:
                         "dateupdate" : integrante.getDateUpdate() if integrante.getDateUpdate() else 'None'
                     })
             return data
+        elif integrantes:
+            return True
         else:
             return False
     

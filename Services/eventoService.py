@@ -22,6 +22,8 @@ class EventoService:
             for row in data:
                 eventos.append(EventoModel(row[0], row[1], row[2], row[3]))
             return eventos
+        elif data:
+            return True
         else:
             return False
 
