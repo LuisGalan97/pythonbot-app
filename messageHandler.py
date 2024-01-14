@@ -8,15 +8,15 @@ class MessageHandler:
         self.__message = message
         self.__client = client
 
-    async def initialMessage(self):
+    async def inMsg(self):
         if self.__message.author == self.__client.user:
             return
 
-    async def textMessage(self, command, message):
+    async def txtMsg(self, command, message):
         if self.__message.content.startswith(f'${command}'):
             await self.__message.channel.send(message)
 
-    async def dataFrameMessage(self, command, method, struct = None):
+    async def dFMsg(self, command, method, struct = None):
         if self.__message.content.startswith(f'${command}'):
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
@@ -35,7 +35,7 @@ class MessageHandler:
             else:
                 await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
 
-    async def addContentMessage(self, command, method):
+    async def contMsg(self, command, method):
         if self.__message.content.startswith(f'${command}'):
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
