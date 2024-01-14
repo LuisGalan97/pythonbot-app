@@ -54,13 +54,13 @@ class Helpers:
                     else:
                         return "Datos ingresados invalidos, "\
                         "recuerda que debes ingresar:\n"\
-                        f"[{alias}]."
+                        f"[{alias}]"
                 else:
                     return "El comando debe mantener la forma:\n"\
-                    f"{command} [{alias}]."
+                    f"{command} [{alias}]"
             else:
                 return "El comando debe mantener la forma:\n"\
-                f"{command} [{alias}]."
+                f"{command} [{alias}]"
 
     @staticmethod
     def checkChar(strValue):
@@ -93,6 +93,38 @@ class Helpers:
             if strValue.count(char) > 2:
                 return True
         return False
+
+    @staticmethod
+    def setTarget(self, request, struct):
+        target = {}
+        if struct:
+            result = Helpers.checkRequest(request, struct)
+            if isinstance(result, dict):
+                foreignkey = {}
+                for key in struct:
+                    if struct[key]["fk"]:
+                        foreignkey[key] = result[key]
+                if foreignkey:
+                    foreignid = {}
+                    for key, value in foreignkey.items():
+                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value})
+                        if isinstance(foreignid[key], list):
+                            target[f"{key}_id"] = foreignid[key][0]["id"]
+                        elif foreignid[key]:
+                            return f"El valor '{value}' ingresado  en el campo "\
+                            f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
+                        else:
+                            return False
+                    for key, value in result.items():
+                        if not key in foreignid:
+                            target[key] = value
+                else:
+                    target = {}
+                    for key, value in result.items():
+                        target[key] = value
+                return target
+            else:
+                return result
 
     @staticmethod
     def strTemp(targets):
