@@ -7,12 +7,12 @@ class Helpers:
             content = request.replace(command, '').strip()
             references = f"{', '.join(map(str, list(struct.keys())))}"
             types = [value["type"] for value in struct.values()]
-            alias = f"{', '.join(map(str, [value['alias'] for value in struct.values()]))}"  
+            alias = f"{', '.join(map(str, [value['alias'] for value in struct.values()]))}"
             if content.startswith('['):
                 content = content.replace('[', '')
                 if content.find(']') != -1:
                     content = content[: content.find(']')]
-                    datas = content.split(',') 
+                    datas = content.split(',')
                     if len(datas) == len(references.split(',')):
                         for i in range(len(datas)):
                             datas[i] = datas[i].strip()
@@ -62,7 +62,7 @@ class Helpers:
                 return "El comando debe mantener la forma:\n"\
                 f"{command} [{alias}]."
 
-    @staticmethod 
+    @staticmethod
     def checkChar(strValue):
         spechar = ['/', '\\', '\'', '!', '¡',
         '?', '¿', '"', '´', '{', '}', '[', ']',
@@ -74,7 +74,7 @@ class Helpers:
                 return True
         return False
 
-    @staticmethod 
+    @staticmethod
     def checkTrueChar(strValue):
         spechar = ['/', '\\', '\'', '!', '¡',
         '?', '¿', '"', '´', '{', '}', '[', ']',
@@ -86,15 +86,15 @@ class Helpers:
                 return True
         return False
 
-    @staticmethod 
+    @staticmethod
     def checkRepeatChar(strValue):
         repeat = ['-', '|']
         for char in repeat:
             if strValue.count(char) > 2:
                 return True
         return False
-    
-    @staticmethod 
+
+    @staticmethod
     def strTemp(targets):
         struct = {}
         if "id" in targets:

@@ -2,7 +2,7 @@ import openpyxl
 from openpyxl.styles import Font
 from openpyxl.styles import Border, Side
 from openpyxl.utils import get_column_letter
-import os 
+import os
 
 class DataFrame:
     def __init__(self, name, datas):

@@ -9,8 +9,8 @@ from database import Database
 class ParticipacionController:
     def __init__(self, db : Database):
         self.__service = ParticipacionService(db)
-    
-    def getParticipaciones(self, target = None):  
+
+    def getParticipaciones(self, target = None):
         participaciones = self.__service.select(target)
         if isinstance(participaciones, list):
             data = []
@@ -35,7 +35,7 @@ class ParticipacionController:
             return True
         else:
             return False
-    
+
     def updateParticipacion(self, id, integrante_id, evento_id, date):
         participacion = ParticipacionModel(id, integrante_id, evento_id, date)
         result = self.__service.update(participacion)
@@ -43,7 +43,7 @@ class ParticipacionController:
             return True
         else:
             return False
-    
+
     def deleteParticipacion(self, id):
         result = self.__service.delete(id)
         if result:

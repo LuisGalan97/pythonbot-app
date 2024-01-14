@@ -7,20 +7,20 @@ class MessageHandler:
     def __init__(self, message, client):
         self.__message = message
         self.__client = client
-    
+
     async def initialMessage(self):
         if self.__message.author == self.__client.user:
             return
-    
+
     async def textMessage(self, command, message):
         if self.__message.content.startswith(f'${command}'):
             await self.__message.channel.send(message)
-    
+
     async def dataFrameMessage(self, command, method, struct = None):
         if self.__message.content.startswith(f'${command}'):
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
-            result = method(request, struct)    
+            result = method(request, struct)
             if isinstance(result, list):
                 df = DataFrame(command, result)
                 if df.getSuccess():
@@ -34,16 +34,10 @@ class MessageHandler:
                 await self.__message.channel.send(result)
             else:
                 await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
-            
+
     async def addContentMessage(self, command, method):
-        if self.__message.content.startswith(f'${command}'):    
+        if self.__message.content.startswith(f'${command}'):
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
             result = method(request)
             await self.__message.channel.send(result)
-            
-
-
-
-
-    

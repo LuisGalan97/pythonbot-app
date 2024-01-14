@@ -28,7 +28,7 @@ class IntegranteController:
             return True
         else:
             return False
-    
+
     def createIntegrante(self, name, rango_id, datecreate):
         integrante = IntegranteModel(None, name, rango_id, datecreate, None)
         result = self.__service.insert(integrante)
@@ -36,7 +36,7 @@ class IntegranteController:
             return True
         else:
             return False
-    
+
     def updateIntegrante(self, id, name, rango_id, dateupdate):
         integrante = IntegranteModel(id, name, rango_id, None, dateupdate)
         result = self.__service.update(integrante)
@@ -44,11 +44,10 @@ class IntegranteController:
             return True
         else:
             return False
-    
+
     def deleteIntegrante(self, id):
         result = self.__service.delete(id)
         if result:
             return True
         else:
             return False
-    

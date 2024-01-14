@@ -30,5 +30,5 @@ async def on_message(message):
     await handler.dataFrameMessage("buscar_nombre_integrantes", app.getIntegrantes, Helpers.strTemp(["date_1", "date_2"]))
     await handler.dataFrameMessage("buscar_rango_integrantes", app.getIntegrantes, Helpers.strTemp(["rango"]))
     await handler.addContentMessage("add_integrante", app.setIntegrante)
-    
+
 client.run(Config.TOKEN)

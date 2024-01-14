@@ -19,7 +19,7 @@ class AppHandler:
         self.__rangoController = RangoController(self.__db)
         self.__eventoController = EventoController(self.__db)
         self.__integranteController = IntegranteController(self.__db)
-    
+
     def getIntegrantes(self, request, struct = None):
         target = {}
         if struct:
@@ -31,22 +31,22 @@ class AppHandler:
                         foreignkey[key] = result[key]
                 if foreignkey:
                     foreignid = {}
-                    for key, value in foreignkey.items(): 
-                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value}) 
+                    for key, value in foreignkey.items():
+                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value})
                         if isinstance(foreignid[key], list):
-                            target[f"{key}_id"] = foreignid[key][0]["id"]      
+                            target[f"{key}_id"] = foreignid[key][0]["id"]
                         elif foreignid[key]:
                             return f"El valor '{value}' ingresado  en el campo "\
                             f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
-                        else: 
+                        else:
                             return False
                     for key, value in result.items():
                         if not key in foreignid:
-                            target[key] = value 
+                            target[key] = value
                 else:
                     target = {}
                     for key, value in result.items():
-                        target[key] = value        
+                        target[key] = value
             else:
                 return result
         integrantes = self.__integranteController.getIntegrantes(target)
@@ -55,9 +55,9 @@ class AppHandler:
             for integrante in integrantes:
                 rangoName = self.__rangoController.getRangos({"id" : integrante["rango_id"]})
                 if rangoName:
-                    rangoName = rangoName[0]["name"] 
+                    rangoName = rangoName[0]["name"]
                 else:
-                    rangoName = 'Unknown'   
+                    rangoName = 'Unknown'
                 data.append(
                     {   "Id" : integrante["id"],
                         "Nombre" : integrante["name"],
@@ -69,9 +69,9 @@ class AppHandler:
             return data
         elif integrantes:
             return "No se encontraron integrantes para la consulta realizada."
-        else: 
+        else:
             return False
-    
+
     def getEventos(self, request, struct = None):
         target = {}
         if struct:
@@ -83,22 +83,22 @@ class AppHandler:
                         foreignkey[key] = result[key]
                 if foreignkey:
                     foreignid = {}
-                    for key, value in foreignkey.items(): 
-                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value}) 
+                    for key, value in foreignkey.items():
+                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value})
                         if isinstance(foreignid[key], list):
-                            target[f"{key}_id"] = foreignid[key][0]["id"]      
+                            target[f"{key}_id"] = foreignid[key][0]["id"]
                         elif foreignid[key]:
                             return f"El valor '{value}' ingresado  en el campo "\
                             f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
-                        else: 
+                        else:
                             return False
                     for key, value in result.items():
                         if not key in foreignid:
-                            target[key] = value 
+                            target[key] = value
                 else:
                     target = {}
                     for key, value in result.items():
-                        target[key] = value        
+                        target[key] = value
             else:
                 return result
         eventos = self.__eventoController.getEventos(target)
@@ -116,7 +116,7 @@ class AppHandler:
             return data
         elif eventos:
             return True
-        else: 
+        else:
             return False
 
     def getParticipaciones(self, request, struct = None):
@@ -130,22 +130,22 @@ class AppHandler:
                         foreignkey[key] = result[key]
                 if foreignkey:
                     foreignid = {}
-                    for key, value in foreignkey.items(): 
-                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value}) 
+                    for key, value in foreignkey.items():
+                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value})
                         if isinstance(foreignid[key], list):
-                            target[f"{key}_id"] = foreignid[key][0]["id"]      
+                            target[f"{key}_id"] = foreignid[key][0]["id"]
                         elif foreignid[key]:
                             return f"El valor '{value}' ingresado  en el campo "\
                             f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
-                        else: 
+                        else:
                             return False
                     for key, value in result.items():
                         if not key in foreignid:
-                            target[key] = value 
+                            target[key] = value
                 else:
                     target = {}
                     for key, value in result.items():
-                        target[key] = value        
+                        target[key] = value
             else:
                 return result
         participaciones = self.__participacionController.getParticipaciones(target)
@@ -160,10 +160,10 @@ class AppHandler:
                 eventoName = self.__eventoController.getEventos({"id" : participacion["evento_id"]})
                 if eventoName:
                     eventoName = eventoName[0]["name"]
-                else: 
+                else:
                     eventoName = 'Unknown'
-                eventoPoints = self.__eventoController.getEventos({"id" : participacion["evento_id"]}) 
-                if eventoPoints: 
+                eventoPoints = self.__eventoController.getEventos({"id" : participacion["evento_id"]})
+                if eventoPoints:
                     eventoPoints = eventoPoints[0]["points"]
                 else:
                     eventoPoints = 'Unknown'
@@ -179,9 +179,9 @@ class AppHandler:
             return data
         elif participaciones:
             return True
-        else: 
+        else:
             return False
-        
+
     def getRangos(self, request, struct = None):
         target = {}
         if struct:
@@ -193,22 +193,22 @@ class AppHandler:
                         foreignkey[key] = result[key]
                 if foreignkey:
                     foreignid = {}
-                    for key, value in foreignkey.items(): 
-                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value}) 
+                    for key, value in foreignkey.items():
+                        foreignid[key] = getattr(getattr(self, f"_AppHandler__{key}Controller"), f"get{key.capitalize()}s")({"name" : value})
                         if isinstance(foreignid[key], list):
-                            target[f"{key}_id"] = foreignid[key][0]["id"]      
+                            target[f"{key}_id"] = foreignid[key][0]["id"]
                         elif foreignid[key]:
                             return f"El valor '{value}' ingresado  en el campo "\
                             f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
-                        else: 
+                        else:
                             return False
                     for key, value in result.items():
                         if not key in foreignid:
-                            target[key] = value 
+                            target[key] = value
                 else:
                     target = {}
                     for key, value in result.items():
-                        target[key] = value        
+                        target[key] = value
             else:
                 return result
         rangos = self.__rangoController.getRangos(target)
@@ -225,12 +225,12 @@ class AppHandler:
             return data
         elif rangos:
             return True
-        else: 
+        else:
             return False
 
     def setIntegrante(self, request):
-        struct = {"name" : {"type" : str, "alias" : "Nombre", "fk" : False}, 
-                 "rango" : {"type" : str, "alias" : "Rango", "fk" : True}, 
+        struct = {"name" : {"type" : str, "alias" : "Nombre", "fk" : False},
+                 "rango" : {"type" : str, "alias" : "Rango", "fk" : True},
                   "date" : {"type" : datetime, "alias" : "Fecha (AA-MM-DD)", "fk" : False}}
         data = Helpers.checkRequest(request, struct)
         if type(data) == list:
@@ -238,11 +238,3 @@ class AppHandler:
             return data
         else:
             return data
-        
-        
-        
-        
-        
-
-
-

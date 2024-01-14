@@ -9,7 +9,7 @@ from database import Database
 class RangoController:
     def __init__(self, db : Database):
         self.__service = RangoService(db)
-    
+
     def getRangos(self, target = None):
         rangos = self.__service.select(target)
         if isinstance(rangos, list):
@@ -34,7 +34,7 @@ class RangoController:
             return True
         else:
             return False
-    
+
     def updateRango(self, id, name, description):
         rango = RangoModel(id, name, description)
         result = self.__service.update(rango)
@@ -42,7 +42,7 @@ class RangoController:
             return True
         else:
             return False
-    
+
     def deleteRango(self, id):
         result = self.__service.delete(id)
         if result:

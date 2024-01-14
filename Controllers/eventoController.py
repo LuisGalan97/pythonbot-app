@@ -9,7 +9,7 @@ from database import Database
 class EventoController:
     def __init__(self, db : Database):
         self.__service = EventoService(db)
-    
+
     def getEventos(self, target = None):
         eventos = self.__service.select(target)
         if isinstance(eventos, list):
@@ -27,7 +27,7 @@ class EventoController:
             return True
         else:
             return False
-    
+
     def createEvento(self, name, points, description):
         evento = EventoModel(None, name, points, description)
         result = self.__service.insert(evento)
@@ -43,7 +43,7 @@ class EventoController:
             return True
         else:
             return False
-    
+
     def deleteEvento(self, id):
         result = self.__service.delete(id)
         if result:
