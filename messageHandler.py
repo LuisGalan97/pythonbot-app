@@ -16,7 +16,7 @@ class MessageHandler:
         if self.__message.content.startswith(f'${command}'):
             await self.__message.channel.send(message)
 
-    async def dFMsg(self, command, method, struct = None):
+    async def dFMsg(self, command, method, struct):
         if self.__message.content.startswith(f'${command}'):
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
