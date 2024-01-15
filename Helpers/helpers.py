@@ -53,8 +53,8 @@ class Helpers:
                                 f"'{alias.split(',')[i].strip()}'."
                             try:
                                 if types[i] == datetime:
-                                    datas[i] = datetime.strptime(datas[i], "%Y-%m-%d")
-                                    datas[i] = datas[i].strftime("%Y-%m-%d")
+                                    datas[i] = datetime.strptime(datas[i], "%d-%m-%Y")
+                                    datas[i] = datas[i].strftime("%d/%m/%Y")
                                 else:
                                     datas[i] = types[i](datas[i])
                             except ValueError:
@@ -153,7 +153,7 @@ class Helpers:
         if "integrante_id" in targets:
             struct["integrante_id"] = {"type" : int, "fk" : False, "alias" : "ID Integrante"}
         if "date_1" in targets:
-            struct["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (AAAA-MM-DD)"}
+            struct["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (DD-MM-AAAA)"}
         if "date_2" in targets:
-            struct["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (AAAA-MM-DD)"}
+            struct["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (DD-MM-AAAA)"}
         return struct
