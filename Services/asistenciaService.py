@@ -3,30 +3,57 @@ sys.path.insert(1, './DB')
 from database import Database
 sys.path.insert(1, './Models')
 from asistenciaModel import AsistenciaModel
+from integranteModel import IntegranteModel
+from rangoModel import RangoModel
+from eventoModel import EventoModel
 
 class AsistenciaService:
     def __init__(self, db : Database):
         self.__db = db
+        self.__selectQuery = (
+        "SELECT "\
+            "r.id AS rango_id, "\
+            "r.name AS rango_name, "\
+            "r.description AS rango_description, "\
+            "i.id as integrante_id, "\
+            "i.name AS integrante_name, "\
+            "i.datecreate AS integrante_datecreate, "\
+            "i.dateupdate AS integrante_dateupdate, "\
+            "e.id AS evento_id, "\
+            "e.name AS evento_name, "\
+            "e.points AS evento_points, "\
+            "e.description AS evento_description, "\
+            "a.id, "\
+            "a.date "\
+        "FROM asistencias a "\
+        "INNER JOIN integrantes i ON i.id = a.integrante_id "\
+        "INNER JOIN eventos e ON e.id = a.evento_id "\
+        "INNER JOIN rangos r ON r.id = i.rango_id"
+        )
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
-            data = self.__db.execute_query("SELECT * FROM asistencias")
+            data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
-            data = self.__db.execute_query("SELECT * FROM asistencias WHERE id = ?", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
         elif "integrante_id" in target:
-            data = self.__db.execute_query("SELECT * FROM asistencias WHERE integrante_id = ?", (target["integrante_id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE integrante_id = ?", (target["integrante_id"],))
         elif "evento_id" in target:
-            data = self.__db.execute_query("SELECT * FROM asistencias WHERE evento_id = ?", (target["evento_id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE evento_id = ?", (target["evento_id"],))
         elif "date_1" in target and "date_2" in target:
-            data = self.__db.execute_query("SELECT * FROM asistencias WHERE date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         else:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
             asistencias = []
             for row in data:
-                asistencias.append(AsistenciaModel(row[0], row[1], row[2], row[3]))
+                rango = RangoModel(row[0], row[1], row[2])
+                integrante = IntegranteModel(row[3], row[4], rango, row[5], row[6])
+                evento = EventoModel(row[7], row[8], row[9], row[10])
+                asistencia = AsistenciaModel(row[11], integrante, evento, row[12])
+                asistencias.append(asistencia)
             return asistencias
         elif data:
             return True

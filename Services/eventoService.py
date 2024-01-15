@@ -7,22 +7,24 @@ from eventoModel import EventoModel
 class EventoService:
     def __init__(self, db : Database):
         self.__db = db
+        self.__selectQuery = "SELECT * FROM eventos"
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
-            data = self.__db.execute_query("SELECT * FROM eventos")
+            data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
-            data = self.__db.execute_query("SELECT * FROM eventos WHERE id = ?", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
         elif "name" in target:
-            data = self.__db.execute_query("SELECT * FROM eventos WHERE name = ?", (target["name"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE name = ?", (target["name"],))
         else:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
             eventos = []
             for row in data:
-                eventos.append(EventoModel(row[0], row[1], row[2], row[3]))
+                evento = EventoModel(row[0], row[1], row[2], row[3])
+                eventos.append(evento)
             return eventos
         elif data:
             return True

@@ -3,30 +3,45 @@ sys.path.insert(1, './DB')
 from database import Database
 sys.path.insert(1, './Models')
 from integranteModel import IntegranteModel
+from rangoModel import RangoModel
 
 class IntegranteService:
     def __init__(self, db : Database):
         self.__db = db
+        self.__selectQuery = (
+        "SELECT "\
+            "r.id AS rango_id, "\
+            "r.name AS rango_name, "\
+            "r.description AS rango_description, "\
+            "i.id, "\
+            "i.name, "\
+            "i.datecreate, "\
+            "i.dateupdate "\
+        "FROM integrantes i "\
+        "INNER JOIN rangos r ON r.id = i.rango_id"
+        )
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
-            data = self.__db.execute_query("SELECT * FROM integrantes")
+            data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
-            data = self.__db.execute_query("SELECT * FROM integrantes WHERE id = ?", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
         elif "name" in target:
-            data = self.__db.execute_query("SELECT * FROM integrantes WHERE name = ?", (target["name"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE name = ?", (target["name"],))
         elif "rango_id" in target:
-            data = self.__db.execute_query("SELECT * FROM integrantes WHERE rango_id = ?", (target["rango_id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE rango_id = ?", (target["rango_id"],))
         elif "date_1" in target and "date_2" in target:
-            data = self.__db.execute_query("SELECT * FROM integrantes WHERE datecreate BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE datecreate BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         else:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
             integrantes = []
             for row in data:
-                integrantes.append(IntegranteModel(row[0], row[1], row[2], row[3], row[4]))
+                rango = RangoModel(row[0], row[1], row[2])
+                integrante = IntegranteModel(row[3], row[4], rango, row[5], row[6])
+                integrantes.append(integrante)
             return integrantes
         elif data:
             return True
