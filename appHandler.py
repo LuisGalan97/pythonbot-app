@@ -31,11 +31,11 @@ class AppHandler:
             for integrante in integrantes:
                 data.append(
                     {   
-                        "Id" : integrante["id"],
-                        "Nombre" : integrante["name"],
-                        "Rango" : integrante["rango_name"],
-                        "Fecha de creacion" : integrante["datecreate"],
-                        "Fecha de modificacion" : integrante["dateupdate"]
+                        "Id" : Helpers.checkValue(integrante["id"]),
+                        "Nombre" : Helpers.checkValue(integrante["name"]),
+                        "Rango" : Helpers.checkValue(integrante["rango_name"]),
+                        "Fecha de creacion" : Helpers.checkValue(integrante["datecreate"]),
+                        "Fecha de modificacion" : Helpers.checkValue(integrante["dateupdate"])
                     }
                 )
             return data
@@ -55,10 +55,10 @@ class AppHandler:
             for evento in eventos:
                 data.append(
                     {
-                        "Id" : evento["id"],
-                        "Nombre" : evento["name"],
-                        "Puntos" : evento["points"],
-                        "Descripción" : evento["description"]
+                        "Id" : Helpers.checkValue(evento["id"]),
+                        "Nombre" : Helpers.checkValue(evento["name"]),
+                        "Puntos" : Helpers.checkValue(evento["points"]),
+                        "Descripción" : Helpers.checkValue(evento["description"])
                     }
                 )
             return data
@@ -78,11 +78,11 @@ class AppHandler:
             for asistencia in asistencias:
                 data.append(
                     {
-                        "Id" : asistencia["id"],
-                        "Integrante" : asistencia["integrante_name"],
-                        "Evento" : asistencia["evento_name"],
-                        "Puntos" : asistencia["evento_points"],
-                        "Fecha" : asistencia["date"]
+                        "Id" : Helpers.checkValue(asistencia["id"]),
+                        "Integrante" : Helpers.checkValue(asistencia["integrante_name"]),
+                        "Evento" : Helpers.checkValue(asistencia["evento_name"]),
+                        "Puntos" : Helpers.checkValue(asistencia["evento_points"]),
+                        "Fecha" : Helpers.checkValue(asistencia["date"])
                     }
                 )
             return data
@@ -102,9 +102,9 @@ class AppHandler:
             for rango in rangos:
                 data.append(
                     {
-                        "Id" : rango["id"],
-                        "Nombre" : rango["name"],
-                        "Descripción" : rango["description"]
+                        "Id" : Helpers.checkValue(rango["id"]),
+                        "Nombre" : Helpers.checkValue(rango["name"]),
+                        "Descripción" : Helpers.checkValue(rango["description"])
                     }
                 )
             return data

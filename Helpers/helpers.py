@@ -127,6 +127,13 @@ class Helpers:
         return False
 
     @staticmethod
+    def checkValue(value):
+        if value:
+            return value
+        else:
+            return "Ninguno"
+        
+    @staticmethod
     def strTemp(targets):
         struct = {}
         if "id" in targets:
