@@ -24,9 +24,9 @@ description          varchar(1000)        not null
 );
 
 --==============================================================
--- Table: miembros
+-- Table: integrantes
 --==============================================================
-create table miembros (
+create table integrantes (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name                 varchar(200)         not null,
 rango_id             integer              default null,
@@ -40,10 +40,10 @@ foreign key (rango_id) references rangos (id) ON DELETE SET DEFAULT
 --==============================================================
 create table asistencias (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
-miembro_id           integer              not null,
+integrante_id           integer              not null,
 evento_id            integer              default null,
 "date"               date                 not null,
-foreign key (miembro_id) references miembros (id) ON DELETE CASCADE,
+foreign key (integrante_id) references integrantes (id) ON DELETE CASCADE,
 foreign key (evento_id) references eventos (id) ON DELETE SET DEFAULT
 );
 
