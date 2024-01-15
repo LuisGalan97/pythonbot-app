@@ -153,7 +153,7 @@ class Helpers:
         if "integrante_id" in targets:
             struct["integrante_id"] = {"type" : int, "fk" : False, "alias" : "ID Integrante"}
         if "date_1" in targets:
-            struct["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (DD-MM-AAAA)"}
+            struct["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (Día-Mes-Año)"}
         if "date_2" in targets:
-            struct["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (DD-MM-AAAA)"}
+            struct["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (Día-Mes-Año)"}
         return struct
