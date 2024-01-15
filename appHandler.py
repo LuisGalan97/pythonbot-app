@@ -34,7 +34,7 @@ class AppHandler:
                 datas = []
                 for item in items:
                     data = {}
-                    for key, value in references:
+                    for key, value in references.items():
                         data[key] = Helpers.checkValue(item[value])
                     datas.append(data)
                 return datas
