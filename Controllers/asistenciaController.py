@@ -17,10 +17,19 @@ class AsistenciaController:
             for asistencia in asistencias:
                 data.append(
                     {
-                        "id" : asistencia.getId() if asistencia.getId() else 'None',
-                        "integrante_id" : asistencia.getIntegranteId() if asistencia.getIntegranteId() else 'None',
-                        "evento_id" : asistencia.getEventoId() if asistencia.getEventoId() else 'None',
-                        "date" : asistencia.getDate() if asistencia.getDate() else 'None'
+                        "id" : asistencia.getId(),
+                        "integrante_id" : asistencia.getIntegrante().getId(),
+                        "integrante_name" : asistencia.getIntegrante().getName(),
+                        "integrante_rango_id" : asistencia.getIntegrante().getRango().getId(),
+                        "integrante_rango_name" : asistencia.getIntegrante().getRango().getName(),
+                        "integrante_rango_description" : asistencia.getIntegrante().getRango().getDescription(),
+                        "integrante_datecreate" : asistencia.getIntegrante().getDateCreate(),
+                        "integrante_dateupdate" : asistencia.getIntegrante().getDateUpdate(),
+                        "evento_id" : asistencia.getEvento().getId(),
+                        "evento_name" : asistencia.getEvento().getName(),
+                        "evento_points" : asistencia.getEvento().getPoints(),
+                        "evento_description" : asistencia.getEvento().getDescription(),
+                        "date" : asistencia.getDate()
                     })
             return data
         elif asistencias:

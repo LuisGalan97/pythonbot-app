@@ -12,9 +12,9 @@ class AsistenciaService:
         self.__db = db
         self.__selectQuery = (
         "SELECT "\
-            "r.id AS rango_id, "\
-            "r.name AS rango_name, "\
-            "r.description AS rango_description, "\
+            "r.id AS integrante_rango_id, "\
+            "r.name AS integrante_rango_name, "\
+            "r.description AS integrante_rango_description, "\
             "i.id as integrante_id, "\
             "i.name AS integrante_name, "\
             "i.datecreate AS integrante_datecreate, "\
@@ -26,9 +26,9 @@ class AsistenciaService:
             "a.id, "\
             "a.date "\
         "FROM asistencias a "\
-        "INNER JOIN integrantes i ON i.id = a.integrante_id "\
-        "INNER JOIN eventos e ON e.id = a.evento_id "\
-        "INNER JOIN rangos r ON r.id = i.rango_id"
+        "LEFT JOIN integrantes i ON i.id = a.integrante_id "\
+        "LEFT JOIN eventos e ON e.id = a.evento_id "\
+        "LEFT JOIN rangos r ON r.id = i.rango_id"
         )
 
     def select(self, target = None):

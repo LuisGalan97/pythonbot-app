@@ -17,9 +17,9 @@ class RangoController:
             for rango in rangos:
                 data.append(
                     {
-                        "id" : rango.getId() if rango.getId() else 'None',
-                        "name" : rango.getName() if rango.getName() else 'None',
-                        "description" : rango.getDescription() if rango.getDescription() else 'None'
+                        "id" : rango.getId(),
+                        "name" : rango.getName(),
+                        "description" : rango.getDescription()
                     })
             return data
         elif rangos:

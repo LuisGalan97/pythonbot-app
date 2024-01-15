@@ -17,11 +17,13 @@ class IntegranteController:
             for integrante in integrantes:
                 data.append(
                     {
-                        "id" : integrante.getId() if integrante.getId() else 'None',
-                        "name" : integrante.getName() if integrante.getName() else 'None',
-                        "rango_id" : integrante.getRangoId() if integrante.getRangoId() else 'None',
-                        "datecreate" : integrante.getDateCreate() if integrante.getDateCreate() else 'None',
-                        "dateupdate" : integrante.getDateUpdate() if integrante.getDateUpdate() else 'None'
+                        "id" : integrante.getId(),
+                        "name" : integrante.getName(),
+                        "rango_id" : integrante.getRango().getId(),
+                        "rango_name" : integrante.getRango().getName(),
+                        "rango_description" : integrante.getRango().getDescription(),
+                        "datecreate" : integrante.getDateCreate(),
+                        "dateupdate" : integrante.getDateUpdate()
                     })
             return data
         elif integrantes:

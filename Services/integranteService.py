@@ -18,7 +18,7 @@ class IntegranteService:
             "i.datecreate, "\
             "i.dateupdate "\
         "FROM integrantes i "\
-        "INNER JOIN rangos r ON r.id = i.rango_id"
+        "LEFT JOIN rangos r ON r.id = i.rango_id"
         )
 
     def select(self, target = None):
