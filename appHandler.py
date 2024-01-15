@@ -29,15 +29,11 @@ class AppHandler:
         if isinstance(integrantes, list):
             data = []
             for integrante in integrantes:
-                rangoName = self.__rangoController.getRangos({"id" : integrante["rango_id"]})
-                if rangoName:
-                    rangoName = rangoName[0]["name"]
-                else:
-                    rangoName = 'Unknown'
                 data.append(
-                    {   "Id" : integrante["id"],
+                    {   
+                        "Id" : integrante["id"],
                         "Nombre" : integrante["name"],
-                        "Rango" : rangoName,
+                        "Rango" : integrante["rango_name"],
                         "Fecha de creacion" : integrante["datecreate"],
                         "Fecha de modificacion" : integrante["dateupdate"]
                     }
@@ -80,27 +76,12 @@ class AppHandler:
         if isinstance(asistencias, list):
             data = []
             for asistencia in asistencias:
-                integranteName = self.__integranteController.getIntegrantes({"id" : asistencia["integrante_id"]})
-                if integranteName:
-                    integranteName = integranteName[0]["name"]
-                else:
-                    integranteName = 'Unknown'
-                eventoName = self.__eventoController.getEventos({"id" : asistencia["evento_id"]})
-                if eventoName:
-                    eventoName = eventoName[0]["name"]
-                else:
-                    eventoName = 'Unknown'
-                eventoPoints = self.__eventoController.getEventos({"id" : asistencia["evento_id"]})
-                if eventoPoints:
-                    eventoPoints = eventoPoints[0]["points"]
-                else:
-                    eventoPoints = 'Unknown'
                 data.append(
                     {
                         "Id" : asistencia["id"],
-                        "Integrante" : integranteName,
-                        "Evento" : eventoName,
-                        "Puntos" : eventoPoints,
+                        "Integrante" : asistencia["integrante_name"],
+                        "Evento" : asistencia["evento_name"],
+                        "Puntos" : asistencia["evento_points"],
                         "Fecha" : asistencia["date"]
                     }
                 )
