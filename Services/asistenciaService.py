@@ -17,14 +17,14 @@ class AsistenciaService:
             "r.description AS integrante_rango_description, "\
             "i.id as integrante_id, "\
             "i.name AS integrante_name, "\
-            "i.datecreate AS integrante_datecreate, "\
-            "i.dateupdate AS integrante_dateupdate, "\
+            "strftime('%d/%m/%Y', i.datecreate) AS integrante_datecreate, "\
+            "strftime('%d/%m/%Y', i.dateupdate) AS integrante_dateupdate, "\
             "e.id AS evento_id, "\
             "e.name AS evento_name, "\
             "e.points AS evento_points, "\
             "e.description AS evento_description, "\
             "a.id, "\
-            "a.date "\
+            "strftime('%d/%m/%Y', a.date) AS date "\
         "FROM asistencias a "\
         "LEFT JOIN integrantes i ON i.id = a.integrante_id "\
         "LEFT JOIN eventos e ON e.id = a.evento_id "\

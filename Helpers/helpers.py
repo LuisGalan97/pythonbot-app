@@ -54,7 +54,7 @@ class Helpers:
                             try:
                                 if types[i] == datetime:
                                     datas[i] = datetime.strptime(datas[i], "%d-%m-%Y")
-                                    datas[i] = datas[i].strftime("%d/%m/%Y")
+                                    datas[i] = datas[i].strftime("%Y-%m-%d")
                                 else:
                                     datas[i] = types[i](datas[i])
                             except ValueError:

@@ -15,8 +15,8 @@ class IntegranteService:
             "r.description AS rango_description, "\
             "i.id, "\
             "i.name, "\
-            "i.datecreate, "\
-            "i.dateupdate "\
+            "strftime('%d/%m/%Y', i.datecreate) AS datecreate, "\
+            "strftime('%d/%m/%Y', i.dateupdate) AS dateupdate "\
         "FROM integrantes i "\
         "LEFT JOIN rangos r ON r.id = i.rango_id"
         )
