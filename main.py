@@ -26,7 +26,7 @@ async def on_message(message):
     await hdlr.dFMsg("lista_integrantes", app.getDatas, Helpers.setStruct("integrante"))
     await hdlr.dFMsg("lista_eventos", app.getDatas, Helpers.setStruct("evento"))
     await hdlr.dFMsg("lista_asistencias", app.getDatas, Helpers.setStruct("asistencia"))
-    await hdlr.dFMsg("lista_rangos", app.getData, Helpers.setStruct("rango"))
+    await hdlr.dFMsg("lista_rangos", app.getDatas, Helpers.setStruct("rango"))
     await hdlr.dFMsg("buscar_nombre_integrantes", app.getDatas, Helpers.setStruct("integrante", ["date_1", "date_2"]))
     await hdlr.dFMsg("buscar_rango_integrantes", app.getDatas, Helpers.setStruct("integrante", ["rango"]))
     await hdlr.contMsg("add_integrante", app.setIntegrante)
