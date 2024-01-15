@@ -5,7 +5,7 @@ from database import Database
 sys.path.insert(1, './Controllers')
 from database import Database
 sys.path.insert(1, './Helpers')
-from participacionController import ParticipacionController
+from asistenciaController import AsistenciaController
 from rangoController import RangoController
 from eventoController import EventoController
 from integranteController import IntegranteController
@@ -15,7 +15,7 @@ from datetime import datetime
 class AppHandler:
     def __init__(self):
         self.__db = Database("avalon.db", "avalon-lite.sql", "data.sql")
-        self.__participacionController = ParticipacionController(self.__db)
+        self.__asistenciaController = AsistenciaController(self.__db)
         self.__rangoController = RangoController(self.__db)
         self.__eventoController = EventoController(self.__db)
         self.__integranteController = IntegranteController(self.__db)
@@ -71,41 +71,41 @@ class AppHandler:
         else:
             return False
 
-    def getParticipaciones(self, request, struct = None):
+    def getAsistencias(self, request, struct = None):
         target = Helpers.setTarget(self, request, struct)
         if isinstance(target, dict):
-            participaciones = self.__participacionController.getParticipaciones(target)
+            asistencias = self.__asistenciaController.getAsistencias(target)
         else:
             return target
-        if isinstance(participaciones, list):
+        if isinstance(asistencias, list):
             data = []
-            for participacion in participaciones:
-                integranteName = self.__integranteController.getIntegrantes({"id" : participacion["integrante_id"]})
+            for asistencia in asistencias:
+                integranteName = self.__integranteController.getIntegrantes({"id" : asistencia["integrante_id"]})
                 if integranteName:
                     integranteName = integranteName[0]["name"]
                 else:
                     integranteName = 'Unknown'
-                eventoName = self.__eventoController.getEventos({"id" : participacion["evento_id"]})
+                eventoName = self.__eventoController.getEventos({"id" : asistencia["evento_id"]})
                 if eventoName:
                     eventoName = eventoName[0]["name"]
                 else:
                     eventoName = 'Unknown'
-                eventoPoints = self.__eventoController.getEventos({"id" : participacion["evento_id"]})
+                eventoPoints = self.__eventoController.getEventos({"id" : asistencia["evento_id"]})
                 if eventoPoints:
                     eventoPoints = eventoPoints[0]["points"]
                 else:
                     eventoPoints = 'Unknown'
                 data.append(
                     {
-                        "Id" : participacion["id"],
+                        "Id" : asistencia["id"],
                         "Integrante" : integranteName,
                         "Evento" : eventoName,
                         "Puntos" : eventoPoints,
-                        "Fecha" : participacion["date"]
+                        "Fecha" : asistencia["date"]
                     }
                 )
             return data
-        elif participaciones:
+        elif asistencias:
             return True
         else:
             return False

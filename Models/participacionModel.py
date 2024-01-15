@@ -1,4 +1,4 @@
-class ParticipacionModel:
+class AsistenciaModel:
     def __init__(self, id, integrante_id, evento_id, date):
         self.__id = id
         self.__integrante_id = integrante_id

@@ -25,7 +25,7 @@ async def on_message(message):
     await hdlr.txtMsg("comando", "Hola mundo desde el bot de discord.")
     await hdlr.dFMsg("lista_integrantes", app.getIntegrantes)
     await hdlr.dFMsg("lista_eventos", app.getEventos)
-    await hdlr.dFMsg("lista_participaciones", app.getParticipaciones)
+    await hdlr.dFMsg("lista_asistencias", app.getAsistencias)
     await hdlr.dFMsg("lista_rangos", app.getRangos)
     await hdlr.dFMsg("buscar_nombre_integrantes", app.getIntegrantes, Helpers.strTemp(["date_1", "date_2"]))
     await hdlr.dFMsg("buscar_rango_integrantes", app.getIntegrantes, Helpers.strTemp(["rango"]))

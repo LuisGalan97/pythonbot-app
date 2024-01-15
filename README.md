@@ -1,1 +1,1 @@
-Repositorio asociado a implementacion de bot en discord, para gestion de informacion de usuarios y participacion en eventos registrados, mediante implementacion de controlador, modelos y servicios, para el guardado de datos en base de datos SQLite.
+Repositorio asociado a implementacion de bot en discord, para gestion de informacion de usuarios y asistencia en eventos registrados, mediante implementacion de controlador, modelos y servicios, para el guardado de datos en base de datos SQLite.
