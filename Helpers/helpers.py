@@ -18,7 +18,7 @@ class Helpers:
                         if isinstance(foreignid[key], list):
                             target[f"{key}_id"] = foreignid[key][0]["id"]
                         elif foreignid[key]:
-                            return f"El valor '{value}' ingresado  en el campo "\
+                            return f"El valor '{value}' ingresado en el campo "\
                             f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
                         else:
                             return False
@@ -190,3 +190,30 @@ class Helpers:
                 structTargets["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (Día-Mes-Año)"}
 
         return {"controller" : structCtrl, "targets" : structTargets}
+    
+    @staticmethod
+    def getStruct(nameCtrl):
+        structCtrl = {}
+        structTargets = {}
+        if nameCtrl == "integrante":
+            structCtrl[nameCtrl] = {"update" : True}
+            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
+            structTargets["datecreate"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (Día-Mes-Año)"}           
+        elif nameCtrl == "evento":
+            structCtrl[nameCtrl] = {"update" : True}
+            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos"}
+            structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
+        elif nameCtrl == "asistencia":
+            structCtrl[nameCtrl] = {"update" : False}
+            structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Nombre"}
+            structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Puntos"}
+            structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (Día-Mes-Año)"}
+        elif nameCtrl == "rango":
+            structCtrl[nameCtrl] = {"check" : True}
+            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
+        
+        return {"controller" : structCtrl, "targets" : structTargets}
+        

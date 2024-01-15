@@ -45,13 +45,16 @@ class AppHandler:
         except Exception as ex:
             return False
 
-    def setIntegrante(self, request):
-        struct = {"name" : {"type" : str, "alias" : "Nombre", "fk" : False},
-                 "rango" : {"type" : str, "alias" : "Rango", "fk" : True},
-                  "date" : {"type" : datetime, "alias" : "Fecha (AA-MM-DD)", "fk" : False}}
-        data = Helpers.checkRequest(request, struct)
-        if type(data) == list:
-            data = self.__integranteController.createIntegrante(data[0], data[1], data[2])
-            return data
-        else:
-            return data
+    def setData(self, request, struct):
+        try:
+            target = Helpers.setTarget(self, request, struct["targets"])
+            nameCtrl, references = struct["controller"].popitem()
+            if isinstance(target, dict):
+                controller = f"_AppHandler__{nameCtrl}Controller"
+                method = f"create{nameCtrl.capitalize()}"
+                result = getattr(getattr(self, controller), method)(**target)
+                return result
+            else:
+                return target
+        except Exception as ex:
+            return False
