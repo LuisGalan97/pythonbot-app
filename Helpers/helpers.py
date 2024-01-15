@@ -5,7 +5,6 @@ class Helpers:
     def setTarget(self, request, struct):
         target = {}
         if struct:
-            print("entramos aca jeje")
             result = Helpers.checkRequest(request, struct)
             if isinstance(result, dict):
                 foreignkey = {}
