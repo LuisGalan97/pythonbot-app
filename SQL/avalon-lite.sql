@@ -2,8 +2,8 @@
 -- DBMS name:      ANSI Level 2
 -- Created on:     7/01/2024 5:10:18 p.�m.
 --==============================================================
-
-
+-- Activar el soporte para claves foráneas
+PRAGMA foreign_keys = ON;
 --==============================================================
 -- Table: eventos
 --==============================================================
@@ -24,29 +24,26 @@ description          varchar(1000)        not null
 );
 
 --==============================================================
--- Table: integrantes
+-- Table: miembros
 --==============================================================
-create table integrantes (
+create table miembros (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name                 varchar(200)         not null,
-rango_id             integer              not null,
+rango_id             integer              default null,
 datecreate           date                 not null,
-dateupdate           date                  default null,
-foreign key (rango_id)
-      references rangos (id)
+dateupdate           date                 default null,
+foreign key (rango_id) references rangos (id) ON DELETE SET DEFAULT
 );
 
 --==============================================================
--- Table: participaciones
+-- Table: asistencias
 --==============================================================
-create table participaciones (
+create table asistencias (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
-integrante_id        integer              not null,
-evento_id            integer              not null,
+miembro_id           integer              not null,
+evento_id            integer              default null,
 "date"               date                 not null,
-foreign key (integrante_id)
-      references integrantes (id),
-foreign key (evento_id)
-      references eventos (id)
+foreign key (miembro_id) references miembros (id) ON DELETE CASCADE,
+foreign key (evento_id) references eventos (id) ON DELETE SET DEFAULT
 );
 
