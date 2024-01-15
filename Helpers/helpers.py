@@ -167,25 +167,26 @@ class Helpers:
                 "Descripción" : "description"
             }
         
-        if "id" in targets:
-            structTargets["id"] = {"type" : int, "fk" : False, "alias" : "Identificador"}
-        if "name" in targets:
-            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
-        if "rango" in targets:
-            structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
-        if "rango_id" in targets:
-            structTargets["rango_id"] = {"type" : int, "fk" : False, "alias" : "ID Rango"}
-        if "evento" in targets:
-            structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
-        if "evento_id" in targets:
-            structTargets["evento_id"] = {"type" : int, "fk" : False, "alias" : "ID Evento"}
-        if "integrante" in targets:
-            structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
-        if "integrante_id" in targets:
-            structTargets["integrante_id"] = {"type" : int, "fk" : False, "alias" : "ID Integrante"}
-        if "date_1" in targets:
-            structTargets["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (Día-Mes-Año)"}
-        if "date_2" in targets:
-            structTargets["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (Día-Mes-Año)"}
+        if targets:
+            if "id" in targets:
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "Identificador"}
+            if "name" in targets:
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            if "rango" in targets:
+                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
+            if "rango_id" in targets:
+                structTargets["rango_id"] = {"type" : int, "fk" : False, "alias" : "ID Rango"}
+            if "evento" in targets:
+                structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
+            if "evento_id" in targets:
+                structTargets["evento_id"] = {"type" : int, "fk" : False, "alias" : "ID Evento"}
+            if "integrante" in targets:
+                structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
+            if "integrante_id" in targets:
+                structTargets["integrante_id"] = {"type" : int, "fk" : False, "alias" : "ID Integrante"}
+            if "date_1" in targets:
+                structTargets["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (Día-Mes-Año)"}
+            if "date_2" in targets:
+                structTargets["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (Día-Mes-Año)"}
 
         return {"controller" : structCtrl, "targets" : structTargets}
