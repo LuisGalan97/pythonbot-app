@@ -18,11 +18,14 @@ class MessageHandler:
 
     async def dFMsg(self, command, method, struct):
         if self.__message.content.startswith(f'${command}'):
-            request = self.__message.content.replace(f'${command}', '').strip()
-            request = f"${command} {request}"
+            content = self.__message.content.replace(f'${command}', '').strip()
+            request = f"${command} {content}"
             result = method(request, struct)
             if isinstance(result, list):
-                df = DataFrame(command, result)
+                strContent = content.strip("[]").split(",")
+                strContent = "_".join(data.strip() for data in strContent)
+                fileName = f"{command.split(':')[0]}{command.split(':')[1].capitalize()}_{strContent}"
+                df = DataFrame(fileName, result)
                 if df.getSuccess():
                     discordFile = discord.File(df.getDirectory())
                     await self.__message.channel.send(file=discordFile)
