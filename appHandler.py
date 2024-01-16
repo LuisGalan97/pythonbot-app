@@ -51,11 +51,12 @@ class AppHandler:
             nameCtrl, references = struct["controller"].popitem()
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
-                if references["update"]:
+                if references["check"]:
+                    key = references["check"]
                     method = f"get{nameCtrl.capitalize()}s"
-                    exist = getattr(getattr(self, controller), method)({"name" : target["name"]})
+                    exist = getattr(getattr(self, controller), method)({key : target[key]})
                     if isinstance(exist, list):
-                        return f"El {nameCtrl} \'{target['name']}\' ya existe en la base de datos."
+                        return f"El {nameCtrl} \'{target[key]}\' ya existe en la base de datos."
                     elif exist:
                         method = f"create{nameCtrl.capitalize()}"
                         result = getattr(getattr(self, controller), method)(**target)
@@ -69,29 +70,49 @@ class AppHandler:
                 return target
         except Exception as ex:
             return False
-    
+
     def updateData(self, request, struct):
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
             nameCtrl, references = struct["controller"].popitem()
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
-                if references["update"]:
-                    method = f"get{nameCtrl.capitalize()}s"
-                    exist = getattr(getattr(self, controller), method)({"name" : target["name"]})
-                    if isinstance(exist, list):
-                        method = f"update{nameCtrl.capitalize()}"
-                        target["id"] = exist[0]["id"]
-                        result = getattr(getattr(self, controller), method)(**target)
-                    elif exist:
-                        return f"El {nameCtrl} \'{target['name']}\' no existe en la base de datos."
-                    else:
-                        return False
+                key = references["update"]
+                method = f"get{nameCtrl.capitalize()}s"
+                exist = getattr(getattr(self, controller), method)({key : target[key]})
+                if isinstance(exist, list):
+                    method = f"update{nameCtrl.capitalize()}"
+                    target["id"] = exist[0]["id"]
+                    result = getattr(getattr(self, controller), method)(**target)
+                elif exist:
+                    return f"El {nameCtrl} \'{target[key]}\' no existe en la base de datos."
                 else:
                     return False
                 return "Actualizado con exito." if result else "Ocurrio un error."
             else:
                 return target
         except Exception as ex:
-            print(str(ex))
+            return False
+    
+    def deleteData(self, request, struct):
+        try:
+            target = Helpers.setTarget(self, request, struct["targets"])
+            nameCtrl, references = struct["controller"].popitem()
+            if isinstance(target, dict):
+                controller = f"_AppHandler__{nameCtrl}Controller"
+                key = references["delete"]
+                method = f"get{nameCtrl.capitalize()}s"
+                exist = getattr(getattr(self, controller), method)({key : target[key]})
+                if isinstance(exist, list):
+                    method = f"delete{nameCtrl.capitalize()}"
+                    target["id"] = exist[0]["id"]
+                    result = getattr(getattr(self, controller), method)(**target)
+                elif exist:
+                    return f"El {nameCtrl} \'{target[key]}\' no existe en la base de datos."
+                else:
+                    return False
+                return "Eliminado con exito." if result else "Ocurrio un error."
+            else:
+                return target
+        except Exception as ex:
             return False
