@@ -53,8 +53,8 @@ class IntegranteService:
         data = self.__db.execute_query("INSERT INTO "\
         "integrantes (name, rango_id, datecreate) "\
         "VALUES (?, ?, ?)",
-        (integrante.getName(), 
-        integrante.getRango().getId(), 
+        (integrante.getName(),
+        integrante.getRango().getId(),
         integrante.getDateCreate(),))
         self.__db.close_connection()
         return data

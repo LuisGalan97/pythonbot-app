@@ -1,16 +1,13 @@
 import sys
-import pdb
 sys.path.insert(1, './DB')
 from database import Database
 sys.path.insert(1, './Controllers')
-from database import Database
-sys.path.insert(1, './Helpers')
 from asistenciaController import AsistenciaController
-from rangoController import RangoController
 from eventoController import EventoController
 from integranteController import IntegranteController
+from rangoController import RangoController
+sys.path.insert(1, './Helpers')
 from helpers import Helpers
-from datetime import datetime
 
 class AppHandler:
     def __init__(self):
@@ -51,8 +48,8 @@ class AppHandler:
             nameCtrl, references = struct["controller"].popitem()
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
-                if references["check"]:
-                    key = references["check"]
+                if references["create"]:
+                    key = references["create"]
                     method = f"get{nameCtrl.capitalize()}s"
                     exist = getattr(getattr(self, controller), method)({key : target[key]})
                     if isinstance(exist, list):

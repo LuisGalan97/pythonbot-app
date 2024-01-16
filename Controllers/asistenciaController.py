@@ -1,8 +1,8 @@
 import sys
 sys.path.insert(1, './Models')
 from asistenciaModel import AsistenciaModel
-from integranteModel import IntegranteModel
 from eventoModel import EventoModel
+from integranteModel import IntegranteModel
 sys.path.insert(1, './Services')
 from asistenciaService import AsistenciaService
 sys.path.insert(1, './DB')

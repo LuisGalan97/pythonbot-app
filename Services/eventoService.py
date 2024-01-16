@@ -36,8 +36,8 @@ class EventoService:
         data = self.__db.execute_query("INSERT INTO "\
         "eventos (name, points, description) "\
         "VALUES (?, ?, ?)",
-        (evento.getName(), 
-        evento.getPoints(), 
+        (evento.getName(),
+        evento.getPoints(),
         evento.getDescription(),))
         self.__db.close_connection()
         return data

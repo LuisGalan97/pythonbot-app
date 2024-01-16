@@ -3,9 +3,9 @@ sys.path.insert(1, './DB')
 from database import Database
 sys.path.insert(1, './Models')
 from asistenciaModel import AsistenciaModel
+from eventoModel import EventoModel
 from integranteModel import IntegranteModel
 from rangoModel import RangoModel
-from eventoModel import EventoModel
 
 class AsistenciaService:
     def __init__(self, db : Database):
@@ -65,8 +65,8 @@ class AsistenciaService:
         data = self.__db.execute_query("INSERT INTO "\
         "asistencias (integrante_id, evento_id, date) "\
         "VALUES (?, ?, ?)",
-        (asistencia.getIntegrante().getId(), 
-        asistencia.getEvento().getId(), 
+        (asistencia.getIntegrante().getId(),
+        asistencia.getEvento().getId(),
         asistencia.getDate(),))
         self.__db.close_connection()
         return data
