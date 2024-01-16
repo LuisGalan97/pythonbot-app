@@ -1,11 +1,11 @@
 import sys
+import discord
 sys.path.insert(1, './Config')
 from config import Config
-sys.path.insert(1, './Helpers')
 from appHandler import AppHandler
-from helpers import Helpers
 from messageHandler import MessageHandler
-import discord
+sys.path.insert(1, './Helpers')
+from helpers import Helpers
 
 app = AppHandler()
 
@@ -42,6 +42,4 @@ async def on_message(message):
     await hdlr.contMsg("del_evento", app.deleteData, Helpers.deleteStruct("evento", "name"))
     await hdlr.contMsg("del_rango", app.deleteData, Helpers.deleteStruct("rango", "name"))
     
-    
-
 client.run(Config.TOKEN)

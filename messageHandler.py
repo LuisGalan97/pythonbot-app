@@ -1,7 +1,7 @@
 import sys
+import discord
 sys.path.insert(1, './DF')
 from dataframe import DataFrame
-import discord
 
 class MessageHandler:
     def __init__(self, message, client):
@@ -27,13 +27,13 @@ class MessageHandler:
                     discordFile = discord.File(df.getDirectory())
                     await self.__message.channel.send(file=discordFile)
                     if not df.deleteFrame():
-                        await self.__message.channel.send('Error al intentar eliminar el dataframe, por favor informe al administrador.')
+                        await self.__message.channel.send('Error al intentar eliminar el excel, por favor consulte con el administrador.')
                 else:
-                    await self.__message.channel.send('Error al intentar crear el dataframe, por favor informe al administrador.')
+                    await self.__message.channel.send('Error al intentar crear el excel, por favor consulte con el administrador.')
             elif isinstance(result, str):
                 await self.__message.channel.send(result)
             else:
-                await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
+                await self.__message.channel.send('Error en la base de datos, por favor consulte con el administrador.')
 
     async def contMsg(self, command, method, struct):
         if self.__message.content.startswith(f'${command}'):
@@ -43,4 +43,4 @@ class MessageHandler:
             if result:
                 await self.__message.channel.send(result)
             else:
-                await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
+                await self.__message.channel.send('Error en la base de datos, por favor consulte con el administrador.')
