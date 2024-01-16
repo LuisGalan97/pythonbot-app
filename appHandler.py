@@ -105,6 +105,7 @@ class AppHandler:
                 exist = getattr(getattr(self, controller), method)({key : target[key]})
                 if isinstance(exist, list):
                     method = f"delete{nameCtrl.capitalize()}"
+                    target.pop(key)
                     target["id"] = exist[0]["id"]
                     result = getattr(getattr(self, controller), method)(**target)
                 elif exist:
@@ -115,4 +116,5 @@ class AppHandler:
             else:
                 return target
         except Exception as ex:
+            print(f"-> {str(ex)}")
             return False

@@ -60,7 +60,8 @@ class AsistenciaController:
             return False
 
     def deleteAsistencia(self, id):
-        result = self.__service.delete(id)
+        asistencia = AsistenciaModel(id, None, None, None)
+        result = self.__service.delete(asistencia)
         if result:
             return True
         else:

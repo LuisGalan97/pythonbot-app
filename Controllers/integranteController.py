@@ -51,7 +51,8 @@ class IntegranteController:
             return False
 
     def deleteIntegrante(self, id):
-        result = self.__service.delete(id)
+        integrante = IntegranteModel(id, None, None, None, None)
+        result = self.__service.delete(integrante)
         if result:
             return True
         else:

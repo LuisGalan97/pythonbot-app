@@ -192,7 +192,7 @@ class Helpers:
         return {"controller" : structCtrl, "targets" : structTargets}
     
     @staticmethod
-    def createStruct(nameCtrl):
+    def setStruct(nameCtrl):
         structCtrl = {}
         structTargets = {}
         if nameCtrl == "integrante":

@@ -45,7 +45,8 @@ class EventoController:
             return False
 
     def deleteEvento(self, id):
-        result = self.__service.delete(id)
+        evento = EventoModel(id, None, None, None)
+        result = self.__service.delete(evento)
         if result:
             return True
         else:
