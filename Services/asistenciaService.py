@@ -36,13 +36,13 @@ class AsistenciaService:
         if not target:
             data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.id = ?", (target["id"],))
         elif "integrante_id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE integrante_id = ?", (target["integrante_id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.integrante_id = ?", (target["integrante_id"],))
         elif "evento_id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE evento_id = ?", (target["evento_id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.evento_id = ?", (target["evento_id"],))
         elif "date_1" in target and "date_2" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.date BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
         else:
             data = None
         self.__db.close_connection()
@@ -65,7 +65,9 @@ class AsistenciaService:
         data = self.__db.execute_query("INSERT INTO "\
         "asistencias (integrante_id, evento_id, date) "\
         "VALUES (?, ?, ?)",
-        (asistencia.getIntegranteId(), asistencia.getEventoId(), asistencia.getDate(),))
+        (asistencia.getIntegrante().getId(), 
+        asistencia.getEvento().getId(), 
+        asistencia.getDate(),))
         self.__db.close_connection()
         return data
 
@@ -74,8 +76,8 @@ class AsistenciaService:
         data = self.__db.execute_query("UPDATE asistencias "\
         "SET integrante_id = ?, evento_id = ?, date = ? "\
         "WHERE id = ?",
-        (asistencia.getIntegranteId(),
-        asistencia.getEventoId(),
+        (asistencia.getIntegrante().getId(),
+        asistencia.getEvento().getId(),
         asistencia.getDate(),
         asistencia.getId(),))
         self.__db.close_connection()

@@ -27,8 +27,16 @@ async def on_message(message):
     await hdlr.dFMsg("lista_eventos", app.getDatas, Helpers.setStruct("evento"))
     await hdlr.dFMsg("lista_asistencias", app.getDatas, Helpers.setStruct("asistencia"))
     await hdlr.dFMsg("lista_rangos", app.getDatas, Helpers.setStruct("rango"))
-    await hdlr.dFMsg("buscar_nombre_integrantes", app.getDatas, Helpers.setStruct("integrante", ["date_1", "date_2"]))
+    await hdlr.dFMsg("buscar_nombre_integrantes", app.getDatas, Helpers.setStruct("integrante", ["name"]))
     await hdlr.dFMsg("buscar_rango_integrantes", app.getDatas, Helpers.setStruct("integrante", ["rango"]))
     await hdlr.contMsg("add_integrante", app.setData, Helpers.getStruct("integrante"))
+    await hdlr.contMsg("add_asistencia", app.setData, Helpers.getStruct("asistencia"))
+    await hdlr.contMsg("add_evento", app.setData, Helpers.getStruct("evento"))
+    await hdlr.contMsg("add_rango", app.setData, Helpers.getStruct("rango"))
+    await hdlr.contMsg("update_integrante", app.updateData, Helpers.getStruct("integrante"))
+    await hdlr.contMsg("update_asistencia", app.updateData, Helpers.getStruct("asistencia"))
+    await hdlr.contMsg("update_evento", app.updateData, Helpers.getStruct("evento"))
+    await hdlr.contMsg("update_rango", app.updateData, Helpers.getStruct("rango"))
+    
 
 client.run(Config.TOKEN)

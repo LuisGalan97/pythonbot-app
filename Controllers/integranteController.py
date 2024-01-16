@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(1, './Models')
 from integranteModel import IntegranteModel
+from rangoModel import RangoModel
 sys.path.insert(1, './Services')
 from integranteService import IntegranteService
 sys.path.insert(1, './DB')
@@ -31,16 +32,18 @@ class IntegranteController:
         else:
             return False
 
-    def createIntegrante(self, name, rango_id, datecreate):
-        integrante = IntegranteModel(None, name, rango_id, datecreate, None)
+    def createIntegrante(self, name, rango_id, date):
+        rango = RangoModel(rango_id, None, None)
+        integrante = IntegranteModel(None, name, rango, date, None)
         result = self.__service.insert(integrante)
         if result:
             return True
         else:
             return False
 
-    def updateIntegrante(self, id, name, rango_id, dateupdate):
-        integrante = IntegranteModel(id, name, rango_id, None, dateupdate)
+    def updateIntegrante(self, id, name, rango_id, date):
+        rango = RangoModel(rango_id, None, None)
+        integrante = IntegranteModel(id, name, rango, None, date)
         result = self.__service.update(integrante)
         if result:
             return True

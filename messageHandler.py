@@ -35,9 +35,12 @@ class MessageHandler:
             else:
                 await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')
 
-    async def contMsg(self, command, method):
+    async def contMsg(self, command, method, struct):
         if self.__message.content.startswith(f'${command}'):
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
-            result = method(request)
-            await self.__message.channel.send(result)
+            result = method(request, struct)
+            if result:
+                await self.__message.channel.send(result)
+            else:
+                await self.__message.channel.send('Error al consultar la base de datos, por favor informe al administrador.')

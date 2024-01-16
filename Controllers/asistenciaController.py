@@ -1,6 +1,8 @@
 import sys
 sys.path.insert(1, './Models')
 from asistenciaModel import AsistenciaModel
+from integranteModel import IntegranteModel
+from eventoModel import EventoModel
 sys.path.insert(1, './Services')
 from asistenciaService import AsistenciaService
 sys.path.insert(1, './DB')
@@ -38,7 +40,9 @@ class AsistenciaController:
             return False
 
     def createAsistencia(self, integrante_id, evento_id, date):
-        asistencia = AsistenciaModel(None, integrante_id, evento_id, date)
+        integrante = IntegranteModel(integrante_id, None, None, None, None)
+        evento = EventoModel(evento_id, None, None, None)
+        asistencia = AsistenciaModel(None, integrante, evento, date)
         result = self.__service.insert(asistencia)
         if result:
             return True
@@ -46,7 +50,9 @@ class AsistenciaController:
             return False
 
     def updateAsistencia(self, id, integrante_id, evento_id, date):
-        asistencia = AsistenciaModel(id, integrante_id, evento_id, date)
+        integrante = IntegranteModel(integrante_id, None, None, None, None)
+        evento = EventoModel(evento_id, None, None, None)
+        asistencia = AsistenciaModel(id, integrante, evento, date)
         result = self.__service.update(asistencia)
         if result:
             return True

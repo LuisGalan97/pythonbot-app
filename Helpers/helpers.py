@@ -199,7 +199,7 @@ class Helpers:
             structCtrl[nameCtrl] = {"update" : True}
             structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
             structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
-            structTargets["datecreate"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (Día-Mes-Año)"}           
+            structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (Día-Mes-Año)"}           
         elif nameCtrl == "evento":
             structCtrl[nameCtrl] = {"update" : True}
             structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
@@ -207,8 +207,8 @@ class Helpers:
             structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         elif nameCtrl == "asistencia":
             structCtrl[nameCtrl] = {"update" : False}
-            structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Nombre"}
-            structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Puntos"}
+            structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
+            structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
             structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (Día-Mes-Año)"}
         elif nameCtrl == "rango":
             structCtrl[nameCtrl] = {"check" : True}

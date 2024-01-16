@@ -36,7 +36,8 @@ class RangoService:
         data = self.__db.execute_query("INSERT INTO "\
         "rangos (name, description) "\
         "VALUES (?, ?)",
-        (rango.getName(), rango.getDescription(),))
+        (rango.getName(), 
+        rango.getDescription(),))
         self.__db.close_connection()
         return data
 
