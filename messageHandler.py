@@ -20,8 +20,9 @@ class MessageHandler:
             messages.append("**Lista de comandos**\n")
             messages.append("**_Asistencias:_**\n")
             messages.append("Las asistencias hacen referencia a una serie de registros de todas las participaciones, "\
-            "para las cuales los integrantes de la alianza ⚜Avalon⚜ han podido hacer parte "\
-            "y realizar su aporte, esto para actividades o eventos tales como ataques, defensas, AVAs, entre otros.\n")
+            "para las cuales los integrantes de ⚜Avalon⚜ han podido hacer parte y realizar su aporte, "\
+            "esto para actividades o eventos tales como ataques, defensas, AVAs, entre otros. Por tanto una asistencia "\
+            "por defecto contiene informacion de un integrante y evento asociado, junto con la fecha del suceso en cuestion\n")
             messages.append(f"{Helpers.genMsg('listAssist:all', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:id [ID]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:idmember [Integrante ID]', 'asistencia')}")
@@ -29,11 +30,17 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listAssist:idevent [Evento ID]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:event [Evento]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2]', 'asistencia')}")
-            messages.append("**_Tabla de Eventos:_**\n")
+            messages.append("**_Eventos:_**\n")
+            messages.append("Las eventos corresponden a una lista con informacion de las actividades "\
+            "que ⚜Avalon⚜ ha decidido tener en cuenta puntuar para poder premiar a sus integrantes, "\
+            "por aporte y participacion, involucrando ataques, defensas, AVAs, entre otros.\n")
             messages.append(f"{Helpers.genMsg('listEvent:all', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:id [ID]', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre]', 'evento')}")
-            messages.append("**_Tabla de Integrantes:_**\n")
+            messages.append("**_Integrantes:_**\n")
+            messages.append("Los integrantes son una serie de registros en los cuales se encuentran "\
+            "listados y referenciados todos los miembros de la alianza ⚜Avalon⚜, junto con informacion "\
+            "complementaria tales como un rango asignado y la fecha de ingreso.")
             messages.append(f"{Helpers.genMsg('listMember:all', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:id [ID]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:name [Nombre]', 'integrante')}")
@@ -41,6 +48,8 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listMember:range [Rango]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2]', 'integrante')}")
             messages.append("**_Tabla de Rangos:_**\n")
+            messages.append("Las rangos disponen registros con informacion de los diferentes "\
+            "rangos asignables a los integrante o miembros de la alianza ⚜Avalon⚜.\n")
             messages.append(f"{Helpers.genMsg('listRange:all', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
