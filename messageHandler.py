@@ -18,7 +18,10 @@ class MessageHandler:
         if self.__message.content.startswith(f'${command}'):
             messages = []
             messages.append("**Lista de comandos**\n")
-            messages.append("**_Tabla de Asistencias:_**\n")
+            messages.append("**_Asistencias:_**\n")
+            messages.append("Las asistencias hacen referencia a una serie de registros de todas las participaciones, "\
+            "para las cuales los integrantes de la alianza Avalon han podido hacer parte "\
+            "y realizar su aporte, esto para actividades o eventos tales como ataques, defensas, AVAs, entre otros.\n")
             messages.append(f"{Helpers.genMsg('listAssist:all', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:id [ID]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:idmember [Integrante ID]', 'asistencia')}")
