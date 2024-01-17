@@ -20,9 +20,12 @@ class MessageHandler:
             messages.append("**Lista de comandos**\n")
             messages.append("**_Asistencias:_**\n")
             messages.append("Las asistencias hacen referencia a una serie de registros de todas las participaciones, "\
-            "para las cuales los integrantes de ⚜Avalon⚜ han podido hacer parte y realizar su aporte, "\
-            "esto para actividades o eventos tales como ataques, defensas, AVAs, entre otros. Por tanto una asistencia "\
+            "en las cuales los integrantes de ⚜Avalon⚜ han podido hacer parte, "\
+            "para actividades o eventos tales como ataques, defensas, AVAs, entre otros. Por tanto una asistencia "\
             "por defecto contiene informacion de un integrante y evento asociado, junto con la fecha del suceso en cuestion\n")
+            messages.append(f"{Helpers.genMsg('addAssist:default [Nombre, Integrante, Evento, Fecha]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('updAssist:id [ID, Nombre, Integrante, Evento, Fecha]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('delAssist:id [ID]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:all', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:id [ID]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:idmember [Integrante ID]', 'asistencia')}")
@@ -32,24 +35,39 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2]', 'asistencia')}")
             messages.append("**_Eventos:_**\n")
             messages.append("Las eventos corresponden a una lista con informacion de las actividades "\
-            "que ⚜Avalon⚜ ha decidido tener en cuenta puntuar para poder premiar a sus integrantes, "\
+            "que ⚜Avalon⚜ ha decidido puntuar para poder premiar a sus integrantes, "\
             "por aporte y participacion, involucrando ataques, defensas, AVAs, entre otros.\n")
+            messages.append(f"{Helpers.genMsg('addEvent:default [Nombre, Puntos, Descripción]', 'evento')}")
+            messages.append(f"{Helpers.genMsg('updEvent:id [ID, Nombre, Puntos, Descripción]', 'evento')}")
+            messages.append(f"{Helpers.genMsg('updEvent:name [Nombre, Puntos, Descripción]', 'evento')}")
+            messages.append(f"{Helpers.genMsg('delEvent:id [ID]', 'evento')}")
+            messages.append(f"{Helpers.genMsg('delEvent:name [Nombre]', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:all', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:id [ID]', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre]', 'evento')}")
             messages.append("**_Integrantes:_**\n")
             messages.append("Los integrantes son una serie de registros en los cuales se encuentran "\
             "listados y referenciados todos los miembros de la alianza ⚜Avalon⚜, junto con informacion "\
-            "complementaria tales como un rango asignado y la fecha de ingreso.")
+            "complementaria tales como un rango asignado y la fecha de ingreso.\n")
+            messages.append(f"{Helpers.genMsg('addMember:default [Nombre, Rango, Fecha]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('updMember:id [ID, Nombre, Rango, Fecha]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('updMember:name [Nombre, Rango, Fecha]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('delMember:id [ID]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('delMember:name [Nombre]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:all', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:id [ID]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:name [Nombre]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:idrange [Rango ID]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:range [Rango]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2]', 'integrante')}")
-            messages.append("**_Tabla de Rangos:_**\n")
+            messages.append("**_Rangos:_**\n")
             messages.append("Las rangos disponen registros con informacion de los diferentes "\
             "rangos asignables a los integrante o miembros de la alianza ⚜Avalon⚜.\n")
+            messages.append(f"{Helpers.genMsg('addRange:default [Nombre, Descripción]', 'rango')}")
+            messages.append(f"{Helpers.genMsg('updRange:id [ID, Nombre, Descripción]', 'rango')}")
+            messages.append(f"{Helpers.genMsg('updRange:name [Nombre, Descripción]', 'rango')}")
+            messages.append(f"{Helpers.genMsg('delRange:id [ID]', 'rango')}")
+            messages.append(f"{Helpers.genMsg('delRange:name [Nombre]', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:all', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
@@ -59,7 +77,7 @@ class MessageHandler:
                 if i == 0:
                     await self.__message.channel.send(''.join(array))
                     array = [] 
-                if len(array) == 6: 
+                if len(array) == 4: 
                     await self.__message.channel.send(''.join(array))
                     array = []
                 elif i == len(messages) - 1:

@@ -307,55 +307,143 @@ class Helpers:
     def genMsg(command, controller):
         if command.find('[') != -1:   
             head = command[: command.find(':')]
+            upper = [i.isupper() for i in head]
+            mode = head[:upper.index(True)]
             target = command[command.find(':')+1 : command.find('[')].strip()
             parameters = command[command.find('[')+1 : command.find(']')]
             parameters = [parameter.strip() for parameter in parameters.split(',')]
         else:
             head = command[: command.find(':')]
-            target = command[command.find(':')+1 :].strip() 
-        if target == "all":
-            return (f"- **${head}:{target}**  ->  Lista en una hoja de excel "\
-                    f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
-                    f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos.\n")
-        elif target == "id":
-            return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
-                    f"{'la' if controller[0] == 'a' else 'el'} "\
-                    f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
-                    f"que se encuentre asociad{'a' if controller[0] == 'a' else 'o'} al identificador **_{parameters[0]}_** "\
-                    "ingresado como parametro dentro de los corchetes **[ ]**. "\
-                    f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
-        elif target.find("id") != -1:
-            return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
-                    f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
-                    f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
-                    f"asociad{'a' if controller[0] == 'a' else 'o'}s al identificador **_{parameters[0]}_**, "\
-                    "ingresado como parametro dentro de los corchetes **[ ]**, "\
-                    f"en relacion al identificador de{' la' if parameters[0][0] == 'a' else 'l'} "\
-                    f"_{parameters[0][:parameters[0].find(' ')].lower()}_ presente en "\
-                    f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
-                    f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
-        elif target == "name":
-            return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
-                    f"{'la' if controller[0] == 'a' else 'el'} "\
-                    f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
-                    f"asociad{'a' if controller[0] == 'a' else 'o'} al nombre **_{parameters[0]}_**, "\
-                    "ingresado como parametro dentro de los corchetes **[ ]**. "\
-                    f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
-        elif target == "date":
-            return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
-                    f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
-                    f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
-                    f"que lo hayan sido entre las fechas **_{parameters[0]}_** y **_{parameters[1]}_**, "\
-                    "ingresadas como parametros dentro de los corchetes **[ ]**. "\
-                    f"Estos parametros **_{parameters[0]}_** y **_{parameters[1]}_** "\
-                    "deben corresponder a valores de fecha en 'Dia-Mes-Año'.\n")
-        else:
-            return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
-                    f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
-                    f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
-                    f"asociad{'a' if controller[0] == 'a' else 'o'}s al nombre **_{parameters[0]}_**, "\
-                    "ingresado como parametro dentro de los corchetes **[ ]**, "\
-                    f"en relacion al nombre de{' la' if parameters[0][0] == 'a' else 'l'} "\
-                    f"_{parameters[0].lower()}_ presente en "\
-                    f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
-                    f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
+            upper = [i.isupper() for i in head]
+            mode = head[:upper.index(True)]
+            target = command[command.find(':')+1 :].strip()
+        if mode == "list":
+            if target == "all":
+                return (f"- **${head}:{target}**  ->  Lista en una hoja de excel "\
+                        f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
+                        f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos.\n")
+            elif target == "id":
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                        f"{'la' if controller[0] == 'a' else 'el'} "\
+                        f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
+                        f"que se encuentre asociad{'a' if controller[0] == 'a' else 'o'} al identificador **_{parameters[0]}_** "\
+                        "ingresado como parametro dentro de los corchetes **[ ]**. "\
+                        f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
+            elif target.find("id") != -1:
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                        f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
+                        f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
+                        f"asociad{'a' if controller[0] == 'a' else 'o'}s al identificador **_{parameters[0]}_**, "\
+                        "ingresado como parametro dentro de los corchetes **[ ]**, "\
+                        f"en relacion al identificador de{' la' if parameters[0][0] == 'a' else 'l'} "\
+                        f"_{parameters[0][:parameters[0].find(' ')].lower()}_ presente en "\
+                        f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
+                        f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
+            elif target == "name":
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                        f"{'la' if controller[0] == 'a' else 'el'} "\
+                        f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
+                        f"asociad{'a' if controller[0] == 'a' else 'o'} al nombre **_{parameters[0]}_**, "\
+                        "ingresado como parametro dentro de los corchetes **[ ]**. "\
+                        f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
+            elif target == "date":
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                        f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
+                        f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
+                        f"que lo hayan sido entre las fechas **_{parameters[0]}_** y **_{parameters[1]}_**, "\
+                        "ingresadas como parametros dentro de los corchetes **[ ]**. "\
+                        f"Estos parametros **_{parameters[0]}_** y **_{parameters[1]}_** "\
+                        "deben corresponder a valores de fecha en 'Día-Mes-Año'.\n")
+            else:
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                        f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
+                        f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
+                        f"asociad{'a' if controller[0] == 'a' else 'o'}s al nombre **_{parameters[0]}_**, "\
+                        "ingresado como parametro dentro de los corchetes **[ ]**, "\
+                        f"en relacion al nombre de{' la' if parameters[0][0] == 'a' else 'l'} "\
+                        f"_{parameters[0].lower()}_ presente en "\
+                        f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
+                        f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
+        elif mode == "add":
+            value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Añade "\
+                    f"{'una nueva'if controller[0] == 'a' else 'un nuevo'} "\
+                    f"_{controller}_ a la base de datos, ingresando dentro de los corchetes **[ ]** ")
+            for i in range(len(parameters)):
+                if parameters[i] == "Nombre":
+                    value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                elif parameters[i] == "Puntos":
+                    value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
+                elif parameters[i] == "Fecha":
+                    value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                elif parameters[i] == "Descripción":
+                    value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                else: 
+                    value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
+                    f"de un _{parameters[i].lower()}_ existente en la base de datos")
+                if i == len(parameters) - 1:
+                    value = value + ".\n"
+                elif i == len(parameters) - 2:
+                    value = value + " y "
+                else:
+                    value = value + ", "
+            return value
+        elif mode == "upd":
+            if target == "id":
+                value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Actualiza los datos de "\
+                        f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
+                        f"apuntando a su identificador **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** ")
+                for i in range(len(parameters)):
+                    if parameters[i] == "ID":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico"
+                    elif parameters[i] == "Nombre":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                    elif parameters[i] == "Puntos":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
+                    elif parameters[i] == "Fecha":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                    elif parameters[i] == "Descripción":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                    else: 
+                        value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
+                        f"de un _{parameters[i].lower()}_ existente en la base de datos")
+                    if i == len(parameters) - 1:
+                        value = value + ".\n"
+                    elif i == len(parameters) - 2:
+                        value = value + " y "
+                    else:
+                        value = value + ", "
+                return value
+            elif target == "name":
+                value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Actualiza los datos de "\
+                        f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
+                        f"apuntando a su nombre **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** ")
+                for i in range(len(parameters)):
+                    if parameters[i] == "Nombre":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                    elif parameters[i] == "Puntos":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
+                    elif parameters[i] == "Fecha":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                    elif parameters[i] == "Descripción":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                    else: 
+                        value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
+                        f"de un _{parameters[i].lower()}_ existente en la base de datos")
+                    if i == len(parameters) - 1:
+                        value = value + ".\n"
+                    elif i == len(parameters) - 2:
+                        value = value + " y "
+                    else:
+                        value = value + ", "
+                return value      
+        elif mode == "del":
+            if target == "id":
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Elimina "\
+                        f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
+                        f"apuntando a su identificador **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** "\
+                        f"un parametro **_{parameters[0]}_** como valor numerico.\n")
+            elif target == "name":
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Elimina "\
+                        f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
+                        f"apuntando a su nombre **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** "\
+                        f"un parametro **_{parameters[0]}_** como valor de texto.\n")               
