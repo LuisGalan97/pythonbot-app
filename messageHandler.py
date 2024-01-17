@@ -2,6 +2,8 @@ import sys
 import discord
 sys.path.insert(1, './DF')
 from dataframe import DataFrame
+sys.path.insert(1, './Helpers')
+from helpers import Helpers
 
 class MessageHandler:
     def __init__(self, message, client):
@@ -14,28 +16,43 @@ class MessageHandler:
 
     async def helpMsg(self, command):
         if self.__message.content.startswith(f'${command}'):
-            message = (
-                "**Lista de comandos:** \n"\
-                "- **listAssist:all** -> Genera un excel con todas las _asistencias_ "\
-                "registradas en la base de datos.\n"\
-                "- **listAssist:id [_ID_]** -> Genera un excel con la _asistencia_ "\
-                "registrada en la base de datos, asociada con un identificador **_ID_** , "\
-                "ingresado como parametro dentro de los corchetes **[ ]**. "\
-                "Este parametro **_ID_** debe corresponder a un valor numerico.\n"
-                "- **listAssist:idmember [_Integrante ID_]** -> Genera un excel con todas las _asistencias_ "\
-                "registradas en la base de datos, asociadas con un identificador **_Integrante ID_** "\
-                "ingresado como parametro dentro de los corchetes **[ ]**, "\
-                "en relacion con el identificador del _integrante_ que estuvo presente en la _asistencia_. "\
-                "Este parametro **_Integrante ID_** debe corresponder a un valor numerico.\n"
-                "- **listAssist:member [_Integrante_]** -> Genera una excel con todas las _asistencias_ "\
-                "registradas en la base de datos, asociadas con un nombre **_Integrante_** "\
-                "ingresado como parametro dentro de los corchetes **[ ]**, "\
-                "en relacion con el nombre del _integrante_ que estuvo presente en la _asistencia_. "\
-                "Este parametro **_Integrante_** debe corresponder a un valor de texto.\n"
-
-
-            )
-            await self.__message.channel.send(message)
+            messages = []
+            messages.append("**Lista de comandos**\n")
+            messages.append("**_Asistencias:_**\n")
+            messages.append(f"{Helpers.genMsg('listAssist:all', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:id [ID]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:idmember [Integrante ID]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member [Integrante]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:idevent [Evento ID]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:event [Evento]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2]', 'asistencia')}")
+            messages.append("**_Eventos:_**\n")
+            messages.append(f"{Helpers.genMsg('listEvent:all', 'evento')}")
+            messages.append(f"{Helpers.genMsg('listEvent:id [ID]', 'evento')}")
+            messages.append(f"{Helpers.genMsg('listEvent:name [Nombre]', 'evento')}")
+            messages.append("**_Integrantes:_**\n")
+            messages.append(f"{Helpers.genMsg('listMember:all', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:id [ID]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:name [Nombre]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:idrange [Rango ID]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:range [Rango]', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2]', 'integrante')}")
+            messages.append("**_Rangos:_**\n")
+            messages.append(f"{Helpers.genMsg('listRange:all', 'rango')}")
+            messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
+            messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
+            array = []  
+            for i in range(len(messages)):  
+                array.append(messages[i])
+                if i == 0:
+                    await self.__message.channel.send(''.join(array))
+                    array = [] 
+                if len(array) == 6: 
+                    await self.__message.channel.send(''.join(array))
+                    array = []
+                elif i == len(messages) - 1:
+                    await self.__message.channel.send(''.join(array))
+                    array = []
 
     async def dFMsg(self, command, method, struct):
         if self.__message.content.startswith(f'${command}'):
