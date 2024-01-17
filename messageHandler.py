@@ -16,17 +16,22 @@ class MessageHandler:
         if self.__message.content.startswith(f'${command}'):
             message = (
                 "**Lista de comandos:** \n"\
-                "- **listAssist:all** -> Genera una excel con todas las _asistencias_ "\
+                "- **listAssist:all** -> Genera un excel con todas las _asistencias_ "\
                 "registradas en la base de datos.\n"\
-                "- **listAssist:id [_ID_]** -> Genera una excel con la _asistencia_ "\
-                "registrada en la base de datos, asociada con un identificador unico **_ID_** , "\
+                "- **listAssist:id [_ID_]** -> Genera un excel con la _asistencia_ "\
+                "registrada en la base de datos, asociada con un identificador **_ID_** , "\
                 "ingresado como parametro dentro de los corchetes **[ ]**. "\
                 "Este parametro **_ID_** debe corresponder a un valor numerico.\n"
-                "- **listAssist:idmember [_Integrante ID_]** -> Genera una excel con todas las _asistencias_ "\
-                "registradas en la base de datos, asociadas con un identificador unico **_Integrante ID_** "\
+                "- **listAssist:idmember [_Integrante ID_]** -> Genera un excel con todas las _asistencias_ "\
+                "registradas en la base de datos, asociadas con un identificador **_Integrante ID_** "\
                 "ingresado como parametro dentro de los corchetes **[ ]**, "\
-                "en relacion con el _integrante_ que estuvo presente en la _asistencia_. "\
+                "en relacion con el identificador del _integrante_ que estuvo presente en la _asistencia_. "\
                 "Este parametro **_Integrante ID_** debe corresponder a un valor numerico.\n"
+                "- **listAssist:member [_Integrante_]** -> Genera una excel con todas las _asistencias_ "\
+                "registradas en la base de datos, asociadas con un nombre **_Integrante_** "\
+                "ingresado como parametro dentro de los corchetes **[ ]**, "\
+                "en relacion con el nombre del _integrante_ que estuvo presente en la _asistencia_. "\
+                "Este parametro **_Integrante_** debe corresponder a un valor de texto.\n"
 
 
             )
