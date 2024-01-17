@@ -12,8 +12,24 @@ class MessageHandler:
         if self.__message.author == self.__client.user:
             return
 
-    async def txtMsg(self, command, message):
+    async def helpMsg(self, command):
         if self.__message.content.startswith(f'${command}'):
+            message = (
+                "**Lista de comandos:** \n"\
+                "- **listAssist:all** -> Genera una excel con todas las _asistencias_ "\
+                "registradas en la base de datos.\n"\
+                "- **listAssist:id [_ID_]** -> Genera una excel con la _asistencia_ "\
+                "registrada en la base de datos, asociada con un identificador unico **_ID_** , "\
+                "ingresado como parametro dentro de los corchetes **[ ]**. "\
+                "Este parametro **_ID_** debe corresponder a un valor numerico.\n"
+                "- **listAssist:idmember [_Integrante ID_]** -> Genera una excel con todas las _asistencias_ "\
+                "registradas en la base de datos, asociadas con un identificador unico **_Integrante ID_** "\
+                "ingresado como parametro dentro de los corchetes **[ ]**, "\
+                "en relacion con el _integrante_ que estuvo presente en la _asistencia_. "\
+                "Este parametro **_Integrante ID_** debe corresponder a un valor numerico.\n"
+
+
+            )
             await self.__message.channel.send(message)
 
     async def dFMsg(self, command, method, struct):
@@ -24,7 +40,7 @@ class MessageHandler:
             if isinstance(result, list):
                 strContent = content.strip("[]").split(",")
                 strContent = "_".join(data.strip() for data in strContent)
-                fileName = f"{command.split(':')[0]}{command.split(':')[1].capitalize()}_{strContent}"
+                fileName = f"{command.split(':')[0]}{command.split(':')[1].capitalize()}{strContent}"
                 df = DataFrame(fileName, result)
                 if df.getSuccess():
                     discordFile = discord.File(df.getDirectory())

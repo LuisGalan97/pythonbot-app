@@ -22,7 +22,7 @@ async def on_ready():
 async def on_message(message):
     hdlr = MessageHandler(message, client)
     await hdlr.inMsg()
-    await hdlr.txtMsg("comando", "Hola mundo desde el bot de discord.")
+    await hdlr.helpMsg("help")
     await hdlr.dFMsg("listAssist:all", app.getDatas, Helpers.getStruct("asistencia"))
     await hdlr.dFMsg("listAssist:id", app.getDatas, Helpers.getStruct("asistencia", ["id"]))
     await hdlr.dFMsg("listAssist:idmember", app.getDatas, Helpers.getStruct("asistencia", ["integrante_id"]))
