@@ -20,7 +20,7 @@ class Helpers:
                             target[f"{key}_id"] = foreignid[key][0]["id"]
                         elif foreignid[key]:
                             return f"El valor '{value}' ingresado en el campo "\
-                            f"'{struct[key]['alias']}' no fue encontrado en la base de datos."
+                            f"**_{struct[key]['alias']}_** no fue encontrado en la base de datos."
                         else:
                             return False
                     for key, value in result.items():
@@ -51,7 +51,7 @@ class Helpers:
                             datas[i] = datas[i].strip()
                             if not datas[i]:
                                 return "No fue ingresado ningun dato en el campo "\
-                                f"'{alias.split(',')[i].strip()}'."
+                                f"**_{alias.split(',')[i].strip()}_**"
                             try:
                                 if types[i] == datetime:
                                     datas[i] = datetime.strptime(datas[i], "%d-%m-%Y")
@@ -60,40 +60,40 @@ class Helpers:
                                     datas[i] = types[i](datas[i])
                             except ValueError:
                                 return f"El dato '{datas[i]}' ingresado en el campo "\
-                                f"'{alias.split(',')[i].strip()}' es invalido."
+                                f"**_{alias.split(',')[i].strip()}_** es invalido."
                             if types[i] == str:
                                 if Helpers.checkTrueChar(datas[i][0]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{alias.split(',')[i].strip()}' no debe comenzar "\
+                                    f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
                                     "con valores numericos ni caracteres especiales."
                                 try:
                                     int(datas[i][0])
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{alias.split(',')[i].strip()}' no debe comenzar "\
+                                    f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
                                     "con valores numericos ni caracteres especiales."
                                 except ValueError:
                                     pass
                                 if Helpers.checkChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{alias.split(',')[i].strip()}' no debe contener "\
-                                    "caracteres especiales a excepcion de '-' o '|'."
+                                    f"**_{alias.split(',')[i].strip()}_** no debe contener "\
+                                    "caracteres especiales a excepcion de - o |."
                                 if Helpers.checkRepeatChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"'{alias.split(',')[i].strip()}' no debe debe repetir "\
-                                    "mas de dos veces los caracteres '-' o '|'."
+                                    f"**_{alias.split(',')[i].strip()}_** no debe debe repetir "\
+                                    "mas de dos veces los caracteres - o |."
                         references = list(map(lambda x: x.strip(), references.split(',')))
                         datas = dict(zip(references, datas))
                         return datas
                     else:
                         return "Datos ingresados invalidos, "\
                         "recuerda que debes ingresar:\n"\
-                        f"[{alias}]"
+                        f"**[_{alias}_]**"
                 else:
                     return "El comando debe mantener la forma:\n"\
-                    f"{command} [{alias}]"
+                    f"**{command} [_{alias}_]**"
             else:
                 return "El comando debe mantener la forma:\n"\
-                f"{command} [{alias}]"
+                f"**{command} [_{alias}_]**"
 
     @staticmethod
     def checkChar(strValue):
@@ -140,15 +140,15 @@ class Helpers:
         structTargets = {}
         if nameCtrl == "asistencia":
             structCtrl[nameCtrl] = {
-                "Id" : "id",
-                #"Id Integrante" : "integrante_id",
+                "ID" : "id",
+                #"Integrante ID" : "integrante_id",
                 "Integrante" : "integrante_name",
-                #"Id Rango" : "integrante_rango_id",
+                #"Rango ID" : "integrante_rango_id",
                 #"Rango" : "integrante_rango_name",
                 #"Descripción Rango" : "integrante_rango_description",
                 #"Fecha de creación Integrante" : "integrante_datecreate",
                 #"Fecha de modificación Integrante" : "integrante_dateupdate",
-                #"Id Evento" : "evento_id",
+                #"Evento ID" : "evento_id",
                 "Evento" : "evento_name",
                 "Puntos" : "evento_points",
                 #"Descripción Evento" : "evento_description",
@@ -156,16 +156,16 @@ class Helpers:
             }
         elif nameCtrl == "evento":
             structCtrl[nameCtrl] = {
-                "Id" : "id",
+                "ID" : "id",
                 "Nombre" : "name",
                 "Puntos" : "points",
                 "Descripción" : "description"
             }
         elif nameCtrl == "integrante":
             structCtrl[nameCtrl] = {
-                "Id" : "id",
+                "ID" : "id",
                 "Nombre" : "name",
-                #"Id Rango" : "rango_id",
+                #"Rango ID" : "rango_id",
                 "Rango" : "rango_name",
                 #"Descripción Rango" : "rango_description",
                 "Fecha de creación" : "datecreate",
@@ -179,25 +179,25 @@ class Helpers:
             }
         if targets:
             if "id" in targets:
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
             if "name" in targets:
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
             if "rango" in targets:
-                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango (texto)"}
+                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
             if "rango_id" in targets:
-                structTargets["rango_id"] = {"type" : int, "fk" : False, "alias" : "Rango ID (número)"}
+                structTargets["rango_id"] = {"type" : int, "fk" : False, "alias" : "Rango ID"}
             if "evento" in targets:
-                structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento (texto)"}
+                structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
             if "evento_id" in targets:
-                structTargets["evento_id"] = {"type" : int, "fk" : False, "alias" : "Evento ID (número)"}
+                structTargets["evento_id"] = {"type" : int, "fk" : False, "alias" : "Evento ID"}
             if "integrante" in targets:
-                structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante (texto)"}
+                structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
             if "integrante_id" in targets:
-                structTargets["integrante_id"] = {"type" : int, "fk" : False, "alias" : "Integrante ID (número)"}
+                structTargets["integrante_id"] = {"type" : int, "fk" : False, "alias" : "Integrante ID"}
             if "date_1" in targets:
-                structTargets["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1 (día-mes-año)"}
+                structTargets["date_1"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 1"}
             if "date_2" in targets:
-                structTargets["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2 (día-mes-año)"}
+                structTargets["date_2"] = {"type" : datetime, "fk" : False, "alias" : "Fecha 2"}
         return {"controller" : structCtrl, "targets" : structTargets}
 
     @staticmethod
@@ -206,23 +206,23 @@ class Helpers:
         structTargets = {}
         if nameCtrl == "asistencia":
             structCtrl[nameCtrl] = {"create" : False}
-            structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante (texto)"}
-            structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento (texto)"}
-            structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (día-mes-año)"}
+            structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
+            structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
+            structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha"}
         elif nameCtrl == "evento":
             structCtrl[nameCtrl] = {"create" : "name"}
-            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-            structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos (número)"}
-            structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción (texto)"}
+            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos"}
+            structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         elif nameCtrl == "integrante":
             structCtrl[nameCtrl] = {"create" : "name"}
-            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-            structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango (texto)"}
-            structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (día-mes-año)"}
+            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
+            structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha"}
         elif nameCtrl == "rango":
             structCtrl[nameCtrl] = {"create" : "name"}
-            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-            structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción (texto)"}
+            structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+            structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         return {"controller" : structCtrl, "targets" : structTargets}
 
     @staticmethod
@@ -232,44 +232,44 @@ class Helpers:
         if nameCtrl == "asistencia":
              if update == "id":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
-                structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante (texto)"}
-                structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento (texto)"}
-                structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (día-mes-año)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
+                structTargets["integrante"] = {"type" : str, "fk" : True, "alias" : "Integrante"}
+                structTargets["evento"] = {"type" : str, "fk" : True, "alias" : "Evento"}
+                structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha"}
         elif nameCtrl == "evento":
             if update == "name":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-                structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos (número)"}
-                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción (texto)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+                structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos"}
+                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
             elif update == "id":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-                structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos (número)"}
-                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción (texto)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+                structTargets["points"] = {"type" : float, "fk" : False, "alias" : "Puntos"}
+                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         elif nameCtrl == "integrante":
             if update == "name":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango (texto)"}
-                structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (día-mes-año)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
+                structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha"}
             elif update == "id":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango (texto)"}
-                structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha (día-mes-año)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+                structTargets["rango"] = {"type" : str, "fk" : True, "alias" : "Rango"}
+                structTargets["date"] = {"type" : datetime, "fk" : False, "alias" : "Fecha"}
         elif nameCtrl == "rango":
             if update == "name":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción (texto)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
             elif update == "id":
                 structCtrl[nameCtrl] = {"update" : update}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
-                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción (texto)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
+                structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         return {"controller" : structCtrl, "targets" : structTargets}
 
     @staticmethod
@@ -279,58 +279,62 @@ class Helpers:
         if nameCtrl == "asistencia":
              if delete == "id":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
         elif nameCtrl == "evento":
             if delete == "name":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
             elif delete == "id":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
         elif nameCtrl == "integrante":
             if delete == "name":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (Texto)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
             elif delete == "id":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
         elif nameCtrl == "rango":
             if delete == "name":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre (texto)"}
+                structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
             elif delete == "id":
                 structCtrl[nameCtrl] = {"delete" : delete}
-                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID (número)"}
+                structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
         return {"controller" : structCtrl, "targets" : structTargets}
 
     @staticmethod
     def genMsg(command, controller):
         if command.find('[') != -1:   
-            head = command[: command.find(':')]
+            head = command[: command.find(':')] if command.find(':') != -1 else command[: command.find('[')].strip()
             upper = [i.isupper() for i in head]
             mode = head[:upper.index(True)]
-            target = command[command.find(':')+1 : command.find('[')].strip()
+            target = command[command.find(':')+1 : command.find('[')].strip() if command.find(':') != -1 else ""
             parameters = command[command.find('[')+1 : command.find(']')]
             parameters = [parameter.strip() for parameter in parameters.split(',')]
+            excelrequest = True if command.find('>') != -1 else False
         else:
-            head = command[: command.find(':')]
+            head = command[: command.find(':')] if command.find(':') != -1 else command.strip()
             upper = [i.isupper() for i in head]
             mode = head[:upper.index(True)]
-            target = command[command.find(':')+1 :].strip()
+            target = command[command.find(':')+1 :].strip() if command.find(':') != -1 else ""
+            excelrequest = True if command.find('>') != -1 else False
         if mode == "list":
-            if target == "all":
-                return (f"- **${head}:{target}**  ->  Lista en una hoja de excel "\
+            if not target:
+                return (f"- **${head}**   ->   {'Lista en una hoja de excel ' if excelrequest else 'Lista '} "\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos.\n")
             elif target == "id":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
+                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
                         f"{'la' if controller[0] == 'a' else 'el'} "\
                         f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
                         f"que se encuentre asociad{'a' if controller[0] == 'a' else 'o'} al identificador **_{parameters[0]}_** "\
                         "ingresado como parametro dentro de los corchetes **[ ]**. "\
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
             elif target.find("id") != -1:
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
+                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
                         f"asociad{'a' if controller[0] == 'a' else 'o'}s al identificador **_{parameters[0]}_**, "\
@@ -340,14 +344,16 @@ class Helpers:
                         f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
             elif target == "name":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
+                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
                         f"{'la' if controller[0] == 'a' else 'el'} "\
                         f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
                         f"asociad{'a' if controller[0] == 'a' else 'o'} al nombre **_{parameters[0]}_**, "\
                         "ingresado como parametro dentro de los corchetes **[ ]**. "\
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
             elif target == "date":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
+                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
                         f"que lo hayan sido entre las fechas **_{parameters[0]}_** y **_{parameters[1]}_**, "\
@@ -355,7 +361,8 @@ class Helpers:
                         f"Estos parametros **_{parameters[0]}_** y **_{parameters[1]}_** "\
                         "deben corresponder a valores de fecha en 'Día-Mes-Año'.\n")
             else:
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Lista en una hoja de excel "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
+                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
                         f"asociad{'a' if controller[0] == 'a' else 'o'}s al nombre **_{parameters[0]}_**, "\
@@ -365,7 +372,7 @@ class Helpers:
                         f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
         elif mode == "add":
-            value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Añade "\
+            value = (f"- **${head} [_{', '.join(parameters)}_]**   ->   Añade "\
                     f"{'una nueva'if controller[0] == 'a' else 'un nuevo'} "\
                     f"_{controller}_ a la base de datos, ingresando dentro de los corchetes **[ ]** ")
             for i in range(len(parameters)):
@@ -389,7 +396,7 @@ class Helpers:
             return value
         elif mode == "upd":
             if target == "id":
-                value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Actualiza los datos de "\
+                value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Actualiza los datos de "\
                         f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su identificador **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** ")
                 for i in range(len(parameters)):
@@ -414,7 +421,7 @@ class Helpers:
                         value = value + ", "
                 return value
             elif target == "name":
-                value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Actualiza los datos de "\
+                value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Actualiza los datos de "\
                         f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su nombre **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** ")
                 for i in range(len(parameters)):
@@ -438,12 +445,12 @@ class Helpers:
                 return value      
         elif mode == "del":
             if target == "id":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Elimina "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
                         f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su identificador **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** "\
                         f"un parametro **_{parameters[0]}_** como valor numerico.\n")
             elif target == "name":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**  ->  Elimina "\
+                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
                         f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su nombre **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** "\
                         f"un parametro **_{parameters[0]}_** como valor de texto.\n")               

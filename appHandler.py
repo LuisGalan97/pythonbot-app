@@ -36,7 +36,7 @@ class AppHandler:
                     datas.append(data)
                 return datas
             elif items:
-                return f"No se encontraron {nameCtrl}s para la consulta realizada."
+                return f"No se encontraron _{nameCtrl}s_ para la consulta realizada."
             else:
                 return False
         except Exception as ex:
@@ -54,7 +54,9 @@ class AppHandler:
                     method = f"get{nameCtrl.capitalize()}s"
                     exist = getattr(getattr(self, controller), method)({key : target[key]})
                     if isinstance(exist, list):
-                        return f"{nameCtrl.capitalize()} \'{target[key]}\' ya se encuentra en la base de datos."
+                        return f"{'La' if nameCtrl[0] == 'a' else 'El'} _{nameCtrl}_ "\
+                           f"de **_{struct['targets'][key]['alias']}_** \'{target[key]}\' "\
+                            "ya se encuentra en la base de datos."
                     elif exist:
                         method = f"create{nameCtrl.capitalize()}"
                         result = getattr(getattr(self, controller), method)(**target)
@@ -63,7 +65,8 @@ class AppHandler:
                 else:
                     method = f"create{nameCtrl.capitalize()}"
                     result = getattr(getattr(self, controller), method)(**target)
-                return f"{nameCtrl.capitalize()} \'{target[key]}\' ha sido creado con exito." if result else False
+                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} _{nameCtrl}_ ha sido "\
+                        f"cread{'a' if nameCtrl[0] == 'a' else 'o'} con exito." if result else False)
             else:
                 return target
         except Exception as ex:
@@ -84,10 +87,13 @@ class AppHandler:
                     target["id"] = exist[0]["id"]
                     result = getattr(getattr(self, controller), method)(**target)
                 elif exist:
-                    return f"{nameCtrl.capitalize()} \'{target[key]}\' no se encuentra en la base de datos."
+                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} _{nameCtrl}_ "\
+                           f"de **_{struct['targets'][key]['alias']}_** \'{target[key]}\' "\
+                            "no se encuentra en la base de datos."
                 else:
                     return False
-                return f"{nameCtrl.capitalize()} \'{target[key]}\' ha sido actualizado con exito." if result else False
+                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} _{nameCtrl}_ ha sido "\
+                        f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} con exito." if result else False)
             else:
                 return target
         except Exception as ex:
@@ -109,10 +115,13 @@ class AppHandler:
                     target["id"] = exist[0]["id"]
                     result = getattr(getattr(self, controller), method)(**target)
                 elif exist:
-                    return f"{nameCtrl.capitalize()} \'{target[key]}\' no se encuentra en la base de datos."
+                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} _{nameCtrl}_ "\
+                           f"de **_{struct['targets'][key]['alias']}_** \'{target[key]}\' "\
+                            "no se encuentra en la base de datos."
                 else:
                     return False
-                return f"{nameCtrl.capitalize()} \'{target[key]}\' ha sido eliminado con exito." if result else False
+                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} _{nameCtrl}_ ha sido "\
+                        f"eliminad{'a' if nameCtrl[0] == 'a' else 'o'} con exito." if result else False)
             else:
                 return target
         except Exception as ex:
