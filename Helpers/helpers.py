@@ -76,11 +76,11 @@ class Helpers:
                                 if Helpers.checkChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"**_{alias.split(',')[i].strip()}_** no debe contener "\
-                                    "caracteres especiales a excepcion de - o |."
+                                    "caracteres especiales a excepcion de **-** o **|**."
                                 if Helpers.checkRepeatChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"**_{alias.split(',')[i].strip()}_** no debe debe repetir "\
-                                    "mas de dos veces los caracteres - o |."
+                                    f"**_{alias.split(',')[i].strip()}_** no debe repetir "\
+                                    "mas de dos veces los caracteres **-** o **|**."
                         references = list(map(lambda x: x.strip(), references.split(',')))
                         datas = dict(zip(references, datas))
                         return datas
@@ -321,12 +321,12 @@ class Helpers:
             excelrequest = True if command.find('>') != -1 else False
         if mode == "list":
             if not target:
-                return (f"- **${head}**   ->   {'Lista en una hoja de excel ' if excelrequest else 'Lista '} "\
+                return (f"- **${head}**   ->   {'Lista en una hoja de excel' if excelrequest else 'Lista'} "\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos.\n")
             elif target == "id":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
+                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
                         f"{'la' if controller[0] == 'a' else 'el'} "\
                         f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
                         f"que se encuentre asociad{'a' if controller[0] == 'a' else 'o'} al identificador **_{parameters[0]}_** "\
@@ -334,7 +334,7 @@ class Helpers:
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
             elif target.find("id") != -1:
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
+                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
                         f"asociad{'a' if controller[0] == 'a' else 'o'}s al identificador **_{parameters[0]}_**, "\
@@ -345,7 +345,7 @@ class Helpers:
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
             elif target == "name":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
+                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
                         f"{'la' if controller[0] == 'a' else 'el'} "\
                         f"_{controller}_ registrad{'a' if controller[0] == 'a' else 'o'} en la base de datos, "\
                         f"asociad{'a' if controller[0] == 'a' else 'o'} al nombre **_{parameters[0]}_**, "\
@@ -353,7 +353,7 @@ class Helpers:
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
             elif target == "date":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
+                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
                         f"que lo hayan sido entre las fechas **_{parameters[0]}_** y **_{parameters[1]}_**, "\
@@ -362,7 +362,7 @@ class Helpers:
                         "deben corresponder a valores de fecha en 'Día-Mes-Año'.\n")
             else:
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel ' if excelrequest else '   ->   Lista '}"\
+                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
                         f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
                         f"_{controller}s_ registrad{'a' if controller[0] == 'a' else 'o'}s en la base de datos, "\
                         f"asociad{'a' if controller[0] == 'a' else 'o'}s al nombre **_{parameters[0]}_**, "\
@@ -397,7 +397,7 @@ class Helpers:
         elif mode == "upd":
             if target == "id":
                 value = (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Actualiza los datos de "\
-                        f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
+                        f"{'una'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su identificador **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** ")
                 for i in range(len(parameters)):
                     if parameters[i] == "ID":
@@ -446,7 +446,7 @@ class Helpers:
         elif mode == "del":
             if target == "id":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
-                        f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
+                        f"{'una'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su identificador **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** "\
                         f"un parametro **_{parameters[0]}_** como valor numerico.\n")
             elif target == "name":
