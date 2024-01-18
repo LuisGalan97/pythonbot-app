@@ -34,7 +34,7 @@ async def on_message(message):
     #await hdlr.dFMsg("listAssist:event", app.getDatas, Helpers.getStruct("asistencia", ["evento"]))
     #await hdlr.dFMsg("listAssist:date", app.getDatas, Helpers.getStruct("asistencia", ["date_1", "date_2"]))
     #await hdlr.dFMsg("listEventos:all", app.getDatas, Helpers.getStruct("evento"))
-    #await hdlr.dFMsg("listIntegrantes:all", app.getDatas, Helpers.getStruct("integrante"))
+    await hdlr.dFMsg("listIntegrantes", app.getDatas, Helpers.getStruct("integrante"))
     #await hdlr.dFMsg("listRangos:all", app.getDatas, Helpers.getStruct("rango"))
     #await hdlr.dFMsg("listEventos:name]", app.getDatas, Helpers.getStruct("evento", ["name"]))
     #await hdlr.dFMsg("listIntegrantes:name]", app.getDatas, Helpers.getStruct("integrante", ["name"]))

@@ -84,7 +84,10 @@ class MessageHandler:
                     array = []
                     length = len(messages[i])
                     array.append(messages[i])
+                    if i == len(result) - 1:
+                        await self.__message.channel.send(''.join(array))
                 elif i == len(messages) - 1:
+                    array.append(messages[i])
                     await self.__message.channel.send(''.join(array))
                 else:
                     array.append(messages[i])
@@ -126,13 +129,16 @@ class MessageHandler:
                     length = 0
                     for i in range(len(result)):
                         tempdict = f"* {', '.join([f'**_{key}_** : _{value}_' for key, value in result[i].items()])}"
-                        length = length + len(tempdict)
+                        length = length + len(tempdict) + 1
                         if length >= 2000:
                             await self.__message.channel.send('\n'.join(array))
                             array = []
-                            length = len(tempdict)
+                            length = len(tempdict) + 1
                             array.append(tempdict)
+                            if i == len(result) - 1:
+                                await self.__message.channel.send('\n'.join(array))
                         elif i == len(result) - 1:
+                            array.append(tempdict)
                             await self.__message.channel.send('\n'.join(array))
                         else: 
                             array.append(tempdict)
