@@ -76,15 +76,19 @@ class MessageHandler:
             #messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
             #messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
             array = []
+            length = 0
             for i in range(len(messages)):
-                array.append(messages[i])
-                if len(array) == 4:
+                length = length + len(messages[i])
+                if length >= 2000:
                     await self.__message.channel.send(''.join(array))
                     array = []
+                    length = len(messages[i])
+                    array.append(messages[i])
                 elif i == len(messages) - 1:
                     await self.__message.channel.send(''.join(array))
-                    array = []
-
+                else:
+                    array.append(messages[i])
+                    
     async def dFMsg(self, command, method, struct):
         msg = self.__message.content
         msg = msg[:msg.find('[')].strip() if msg.find('[') != -1 else msg.strip()
@@ -119,15 +123,20 @@ class MessageHandler:
                                                          f"$**{command} [**{content[content.find('[')+1:content.find(']')]}**] > e**")
                 else:
                     array = []
+                    length = 0
                     for i in range(len(result)):
-                        tempdict = ", ".join([f"**_{key}_** : _{value}_" for key, value in result[i].items()])
-                        array.append(f"* {tempdict}")
-                        if len(array) == 10:
+                        tempdict = f"* {', '.join([f'**_{key}_** : _{value}_' for key, value in result[i].items()])}"
+                        length = length + len(tempdict)
+                        if length >= 2000:
                             await self.__message.channel.send('\n'.join(array))
                             array = []
+                            length = len(tempdict)
+                            array.append(tempdict)
                         elif i == len(result) - 1:
                             await self.__message.channel.send('\n'.join(array))
-                            array = []
+                        else: 
+                            array.append(tempdict)
+
             elif isinstance(result, str):
                 await self.__message.channel.send(result)
             else:
