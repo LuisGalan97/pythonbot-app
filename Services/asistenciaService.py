@@ -37,8 +37,20 @@ class AsistenciaService:
             data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.id = ?", (target["id"],))
+        elif "integrante_id" in target and "evento_id" in target and "date_1" in target and "date_2" in target:
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.date BETWEEN ? AND ? AND a.integrante_id = ? AND a.evento_id = ?",
+                  (target["date_1"], target["date_2"], target["integrante_id"], target["evento_id"],))
+        elif "integrante_id" in target and "evento_id" in target:
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.integrante_id = ? AND a.evento_id = ?", 
+                  (target["integrante_id"], target["evento_id"],))
+        elif "integrante_id" in target and "date_1" in target and "date_2" in target:
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.date BETWEEN ? AND ? AND a.integrante_id = ?",
+                  (target["date_1"], target["date_2"], target["integrante_id"],))
         elif "integrante_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.integrante_id = ?", (target["integrante_id"],))
+        elif "evento_id" in target and "date_1" in target and "date_2" in target:
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.date BETWEEN ? AND ? AND a.evento_id = ?",
+                  (target["date_1"], target["date_2"], target["evento_id"],))
         elif "evento_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.evento_id = ?", (target["evento_id"],))
         elif "date_1" in target and "date_2" in target:

@@ -32,6 +32,10 @@ async def on_message(message):
     await hdlr.dFMsg("listAssist:member", app.getDatas, Helpers.getStruct("asistencia", ["integrante"]))
     await hdlr.dFMsg("listAssist:event", app.getDatas, Helpers.getStruct("asistencia", ["evento"]))
     await hdlr.dFMsg("listAssist:date", app.getDatas, Helpers.getStruct("asistencia", ["date_1", "date_2"]))
+    await hdlr.dFMsg("listAssist:member&event", app.getDatas, Helpers.getStruct("asistencia", ["integrante", "evento"]))
+    await hdlr.dFMsg("listAssist:member&date", app.getDatas, Helpers.getStruct("asistencia", ["integrante", "date_1", "date_2"]))
+    await hdlr.dFMsg("listAssist:event&date", app.getDatas, Helpers.getStruct("asistencia", ["evento", "date_1", "date_2"]))
+    await hdlr.dFMsg("listAssist:member&event&date", app.getDatas, Helpers.getStruct("asistencia", ["integrante", "evento", "date_1", "date_2"]))
     #-----------------------------------Eventos----------------------------------------
     await hdlr.contMsg("addEvent", app.setData, Helpers.setStruct("evento"))
     await hdlr.contMsg("updEvent:id", app.updateData, Helpers.updStruct("evento", "id"))

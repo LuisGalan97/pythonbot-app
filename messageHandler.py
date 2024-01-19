@@ -39,6 +39,14 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listAssist:event [Evento] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&event [Integrante, Evento]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&event [Integrante, Evento] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&date [Integrante, Fecha 1, Fecha 2]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&date [Integrante, Fecha 1, Fecha 2] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:event&date [Evento, Fecha 1, Fecha 2]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:event&date [Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2]', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
             #-----------------------------------Eventos----------------------------------------
             messages.append("**_Eventos:_**\n")
             messages.append("Las eventos corresponden a una lista con informacion de las actividades "\
@@ -110,7 +118,19 @@ class MessageHandler:
     async def dFMsg(self, command, method, struct):
         msg = self.__message.content
         if msg.find(':') != -1 and command.find(':') != -1 and msg.startswith(f"${command}"):
-            msg = True
+            if msg.find('&') != -1 and command.find('&') != -1 and msg.startswith(f"${command}"):
+                msgpos = msg.find('&') + 1
+                cmdpos = command.find('&') + 1
+                if msg.find('&', msgpos) != -1 and command.find('&', cmdpos) != -1 and msg.startswith(f"${command}"):
+                    msg = True
+                elif not msg.startswith(f"${command}&") and command.find('&', cmdpos) == -1 and msg.startswith(f"${command}"):
+                    msg = True
+                else:
+                    msg = False
+            elif not msg.startswith(f"${command}&") and command.find('&') == -1 and msg.startswith(f"${command}"):
+                msg = True
+            else:
+                msg = False
         elif not msg.startswith(f"${command}:") and command.find(':') == -1 and msg.startswith(f"${command}"):
             msg = True
         else:
