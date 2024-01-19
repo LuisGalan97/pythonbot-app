@@ -27,7 +27,7 @@ async def on_message(message):
     await hdlr.contMsg("addAssist", app.setData, Helpers.setStruct("asistencia"))
     await hdlr.contMsg("updAssist:id", app.updateData, Helpers.updStruct("asistencia", "id"))
     await hdlr.contMsg("delAssist:id", app.deleteData, Helpers.delStruct("asistencia", "id"))
-    await hdlr.dFMsg("listAssist", app.getDatas, Helpers.getStruct("asistencia")) 
+    await hdlr.dFMsg("listAssist", app.getDatas, Helpers.getStruct("asistencia"))
     await hdlr.dFMsg("listAssist:id", app.getDatas, Helpers.getStruct("asistencia", ["id"]))
     await hdlr.dFMsg("listAssist:member", app.getDatas, Helpers.getStruct("asistencia", ["integrante"]))
     await hdlr.dFMsg("listAssist:event", app.getDatas, Helpers.getStruct("asistencia", ["evento"]))
@@ -61,5 +61,5 @@ async def on_message(message):
     await hdlr.dFMsg("listRange", app.getDatas, Helpers.getStruct("rango"))
     await hdlr.dFMsg("listRange:id", app.getDatas, Helpers.getStruct("rango", ["id"]))
     await hdlr.dFMsg("listRange:name", app.getDatas, Helpers.getStruct("rango", ["name"]))
-    
+
 client.run(Config.TOKEN)

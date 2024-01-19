@@ -106,7 +106,7 @@ class MessageHandler:
                     await self.__message.channel.send(''.join(array))
                 else:
                     array.append(messages[i])
-                    
+
     async def dFMsg(self, command, method, struct):
         msg = self.__message.content
         if msg.find(':') != -1 and command.find(':') != -1 and msg.startswith(f"${command}"):
@@ -147,8 +147,8 @@ class MessageHandler:
                         await self.__message.channel.send("Se ha detectado el uso del operador **>** despues del comando "\
                                                           "inicial, si desea obtener los datos en un archivo de excel, "\
                                                           "debe completar el comando ingresadolo de la siguiente forma:\n"\
-                                                         f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")                                      
-                else:                                    
+                                                         f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
+                else:
                     array = []
                     title = f"**_{list(struct['controller'].keys())[0].capitalize()}s_** "\
                             f"**_encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:_**"
@@ -167,7 +167,7 @@ class MessageHandler:
                         elif i == len(result) - 1:
                             array.append(tempdict)
                             await self.__message.channel.send('\n'.join(array))
-                        else: 
+                        else:
                             array.append(tempdict)
 
             elif isinstance(result, str):

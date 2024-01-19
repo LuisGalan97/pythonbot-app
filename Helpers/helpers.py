@@ -305,7 +305,7 @@ class Helpers:
 
     @staticmethod
     def genMsg(command, controller):
-        if command.find('[') != -1:   
+        if command.find('[') != -1:
             head = command[: command.find(':')] if command.find(':') != -1 else command[: command.find('[')].strip()
             upper = [i.isupper() for i in head]
             mode = head[:upper.index(True)]
@@ -341,7 +341,7 @@ class Helpers:
                         "ingresado como parametro dentro de los corchetes **[ ]**, "\
                         f"en relacion al identificador de{' la' if parameters[0][0] == 'a' else 'l'} "\
                         f"_{parameters[0][:parameters[0].find(' ')].lower()}_ presente en "\
-                        f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
+                        f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor numerico.\n")
             elif target == "name":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
@@ -369,7 +369,7 @@ class Helpers:
                         "ingresado como parametro dentro de los corchetes **[ ]**, "\
                         f"en relacion al nombre de{' la' if parameters[0][0] == 'a' else 'l'} "\
                         f"_{parameters[0].lower()}_ presente en "\
-                        f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "  
+                        f"{'la' if controller[0] == 'a' else 'el'} _{controller}_. "
                         f"Este parametro **_{parameters[0]}_** debe corresponder a un valor de texto.\n")
         elif mode == "add":
             value = (f"- **${head} [_{', '.join(parameters)}_]**   ->   Añade "\
@@ -384,7 +384,7 @@ class Helpers:
                     value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
                 elif parameters[i] == "Descripción":
                     value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
-                else: 
+                else:
                     value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
                     f"de un _{parameters[i].lower()}_ existente en la base de datos")
                 if i == len(parameters) - 1:
@@ -410,7 +410,7 @@ class Helpers:
                         value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
                     elif parameters[i] == "Descripción":
                         value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
-                    else: 
+                    else:
                         value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
                         f"de un _{parameters[i].lower()}_ existente en la base de datos")
                     if i == len(parameters) - 1:
@@ -433,7 +433,7 @@ class Helpers:
                         value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
                     elif parameters[i] == "Descripción":
                         value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
-                    else: 
+                    else:
                         value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
                         f"de un _{parameters[i].lower()}_ existente en la base de datos")
                     if i == len(parameters) - 1:
@@ -442,7 +442,7 @@ class Helpers:
                         value = value + " y "
                     else:
                         value = value + ", "
-                return value      
+                return value
         elif mode == "del":
             if target == "id":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
@@ -453,4 +453,4 @@ class Helpers:
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
                         f"{'una 'if controller[0] == 'a' else 'un'} _{controller}_ existente en la base de datos "\
                         f"apuntando a su nombre **_{parameters[0]}_**, ingresando dentro de los corchetes **[ ]** "\
-                        f"un parametro **_{parameters[0]}_** como valor de texto.\n")               
+                        f"un parametro **_{parameters[0]}_** como valor de texto.\n")
