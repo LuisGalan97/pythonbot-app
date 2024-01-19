@@ -20,7 +20,7 @@ class AppHandler:
     def getDatas(self, request, struct):
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
-            nameCtrl, references = struct["controller"].popitem()
+            nameCtrl, references = dict(struct["controller"]).popitem()
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 method = f"get{nameCtrl.capitalize()}s"
