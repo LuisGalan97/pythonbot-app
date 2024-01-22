@@ -14,13 +14,12 @@ class MessageHandler:
         if self.__message.author == self.__client.user:
             return
 
-    async def helpMsg(self, command):
+    async def helpMsg(self):
         msg = self.__message.content
-        msg = msg[:msg.find('[')].strip() if msg.find('[') != -1 else msg.strip()
-        if msg == f"${command}":
-            messages = []
-            messages.append("**Lista de comandos**\n")
-            #---------------------------------Asistencias----------------------------------------
+        messages = []
+        #messages.append("**Lista de comandos**\n")
+        if msg.startswith("$help:assist"):
+         #---------------------------------Asistencias----------------------------------------
             messages.append("**_Asistencias:_**\n")
             messages.append("Las asistencias hacen referencia a una serie de registros de todas las participaciones, "\
             "en las cuales los integrantes de ⚜Avalon⚜ han podido hacer parte, "\
@@ -47,7 +46,8 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listAssist:event&date [Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
-            #-----------------------------------Eventos----------------------------------------
+        elif msg.startswith("$help:event"):
+             #-----------------------------------Eventos----------------------------------------
             messages.append("**_Eventos:_**\n")
             messages.append("Las eventos corresponden a una lista con informacion de las actividades "\
             "que ⚜Avalon⚜ ha decidido puntuar para poder premiar a sus integrantes, "\
@@ -63,6 +63,7 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listEvent:id [ID] > e', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre]', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre] > e', 'evento')}")
+        elif msg.startswith("$help:member"):
             #----------------------------------Integrantes----------------------------------------
             messages.append("**_Integrantes:_**\n")
             messages.append("Los integrantes son una serie de registros en los cuales se encuentran "\
@@ -83,6 +84,7 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listMember:range [Rango] > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2] > e', 'integrante')}")
+        elif msg.startswith("$help:range"): 
             #-------------------------------------Rangos----------------------------------------
             messages.append("**_Rangos:_**\n")
             messages.append("Las rangos disponen registros con informacion de los diferentes "\
@@ -97,7 +99,8 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
-            messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
+            messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")           
+        if array:
             array = []
             length = 0
             for i in range(len(messages)):

@@ -22,7 +22,7 @@ async def on_ready():
 async def on_message(message):
     hdlr = MessageHandler(message, client)
     await hdlr.inMsg()
-    await hdlr.helpMsg("help")
+    await hdlr.helpMsg()
     #---------------------------------Asistencias----------------------------------------
     await hdlr.contMsg("addAssist", app.setData, Helpers.setStruct("asistencia"))
     await hdlr.contMsg("updAssist:id", app.updateData, Helpers.updStruct("asistencia", "id"))
