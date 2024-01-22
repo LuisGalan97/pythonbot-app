@@ -59,57 +59,87 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
         elif msg.startswith("$help:event"):
              #-----------------------------------Eventos----------------------------------------
-            messages.append("**_Eventos:_**\n")
-            messages.append("Las eventos corresponden a una lista con informacion de las actividades "\
-            "que ⚜Avalon⚜ ha decidido puntuar para poder premiar a sus integrantes, "\
+            messages.append("**_Eventos_**\n")
+            messages.append("\n")
+            messages.append("Los eventos corresponden a una lista con informacion de las actividades "\
+            "las cuales **⚜Avalon⚜** ha decidido puntuar, para poder recompensar a sus integrantes "\
             "por aporte y participacion, involucrando ataques, defensas, AVAs, entre otros.\n")
+            messages.append("\n")
+            messages.append("_Comandos de modificacion:_\n")
             messages.append(f"{Helpers.genMsg('addEvent [Nombre, Puntos, Descripción]', 'evento')}")
             messages.append(f"{Helpers.genMsg('updEvent:id [ID, Nombre, Puntos, Descripción]', 'evento')}")
             messages.append(f"{Helpers.genMsg('updEvent:name [Nombre, Puntos, Descripción]', 'evento')}")
             messages.append(f"{Helpers.genMsg('delEvent:id [ID]', 'evento')}")
             messages.append(f"{Helpers.genMsg('delEvent:name [Nombre]', 'evento')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta:_\n")
             messages.append(f"{Helpers.genMsg('listEvent', 'evento')}")
-            messages.append(f"{Helpers.genMsg('listEvent > e', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:id [ID]', 'evento')}")
-            messages.append(f"{Helpers.genMsg('listEvent:id [ID] > e', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre]', 'evento')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta con impresion en excel:_\n")
+            messages.append("Por defecto, los comandos de consulta imprimen los registros en el canal de discord, "\
+            "sin embargo, tambien pueden ser impresos dentro de una hoja de excel, si despues del comando "\
+            "se especifica el parametro **> e**.\n")
+            messages.append(f"{Helpers.genMsg('listEvent > e', 'evento')}")
+            messages.append(f"{Helpers.genMsg('listEvent:id [ID] > e', 'evento')}")
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre] > e', 'evento')}")
         elif msg.startswith("$help:member"):
             #----------------------------------Integrantes----------------------------------------
-            messages.append("**_Integrantes:_**\n")
+            messages.append("**_Integrantes_**\n")
+            messages.append("\n")
             messages.append("Los integrantes son una serie de registros en los cuales se encuentran "\
-            "listados y referenciados todos los miembros de la alianza ⚜Avalon⚜, junto con informacion "\
-            "complementaria tales como un rango asignado y la fecha de ingreso.\n")
+            "listados y referenciados todos los miembros de la alianza **⚜Avalon⚜**, junto con informacion "\
+            "complementaria tales como el rango asignado y la fecha de ingreso de cada miembro.\n")
+            messages.append("\n")
+            messages.append("_Comandos de modificacion:_\n")
             messages.append(f"{Helpers.genMsg('addMember [Nombre, Rango, Fecha]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('updMember:id [ID, Nombre, Rango, Fecha]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('updMember:name [Nombre, Rango, Fecha]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('delMember:id [ID]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('delMember:name [Nombre]', 'integrante')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta:_\n")
             messages.append(f"{Helpers.genMsg('listMember', 'integrante')}")
-            messages.append(f"{Helpers.genMsg('listMember > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:id [ID]', 'integrante')}")
-            messages.append(f"{Helpers.genMsg('listMember:id [ID] > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:name [Nombre]', 'integrante')}")
-            messages.append(f"{Helpers.genMsg('listMember:name [Nombre] > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:range [Rango]', 'integrante')}")
-            messages.append(f"{Helpers.genMsg('listMember:range [Rango] > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2]', 'integrante')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta con impresion en excel:_\n")
+            messages.append("Por defecto, los comandos de consulta imprimen los registros en el canal de discord, "\
+            "sin embargo, tambien pueden ser impresos dentro de una hoja de excel, si despues del comando "\
+            "se especifica el parametro **> e**.\n")
+            messages.append(f"{Helpers.genMsg('listMember > e', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:id [ID] > e', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:name [Nombre] > e', 'integrante')}")
+            messages.append(f"{Helpers.genMsg('listMember:range [Rango] > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2] > e', 'integrante')}")
         elif msg.startswith("$help:range"):
             #-------------------------------------Rangos----------------------------------------
-            messages.append("**_Rangos:_**\n")
+            messages.append("**_Rangos_**\n")
+            messages.append("\n")
             messages.append("Las rangos disponen registros con informacion de los diferentes "\
-            "rangos asignables a los integrante o miembros de la alianza ⚜Avalon⚜.\n")
+            "rangos asignables a los integrante o miembros de la alianza **⚜Avalon⚜**.\n")
+            messages.append("\n")
+            messages.append("_Comandos de modificacion:_\n")
             messages.append(f"{Helpers.genMsg('addRange [Nombre, Descripción]', 'rango')}")
             messages.append(f"{Helpers.genMsg('updRange:id [ID, Nombre, Descripción]', 'rango')}")
             messages.append(f"{Helpers.genMsg('updRange:name [Nombre, Descripción]', 'rango')}")
             messages.append(f"{Helpers.genMsg('delRange:id [ID]', 'rango')}")
             messages.append(f"{Helpers.genMsg('delRange:name [Nombre]', 'rango')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta:_\n")
             messages.append(f"{Helpers.genMsg('listRange', 'rango')}")
-            messages.append(f"{Helpers.genMsg('listRange > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
-            messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta con impresion en excel:_\n")
+            messages.append("Por defecto, los comandos de consulta imprimen los registros en el canal de discord, "\
+            "sin embargo, tambien pueden ser impresos dentro de una hoja de excel, si despues del comando "\
+            "se especifica el parametro **> e**.\n")
+            messages.append(f"{Helpers.genMsg('listRange > e', 'rango')}")
+            messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
         if messages:
             array = []
