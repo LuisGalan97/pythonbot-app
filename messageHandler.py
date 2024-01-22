@@ -20,31 +20,42 @@ class MessageHandler:
         #messages.append("**Lista de comandos**\n")
         if msg.startswith("$help:assist"):
          #---------------------------------Asistencias----------------------------------------
-            messages.append("**_Asistencias:_**\n")
-            messages.append("Las asistencias hacen referencia a una serie de registros de todas las participaciones, "\
-            "en las cuales los integrantes de ⚜Avalon⚜ han podido hacer parte, "\
-            "para actividades o eventos tales como ataques, defensas, AVAs, entre otros. Por tanto una asistencia "\
-            "por defecto contiene informacion de un integrante y evento asociado, junto con la fecha del suceso en cuestion\n")
+            messages.append("**___Asistencias___**\n")
+            messages.append("\n")
+            messages.append("Las ___asistencias___ hacen referencia a una serie de registros de todas las participaciones, "\
+            "en las cuales los integrantes de **⚜Avalon⚜** han podido hacer parte, "\
+            "para actividades o eventos tales como ataques, defensas, AVAs, entre otros. Una ___asistencia___ "\
+            "por defecto contiene informacion de un ___integrante___ y ___evento___ asociado, junto con la fecha del suceso en cuestion. "\
+            "Con lo anterior, se presentan una lista de todos los comandos que permiten interactuar con los registros de ___asistencias___.\n")
+            messages.append("\n")
+            messages.append("_Comandos de modificacion:_\n")
             messages.append(f"{Helpers.genMsg('addAssist [Integrante, Evento, Fecha]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('updAssist:id [ID, Integrante, Evento, Fecha]', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('delAssist:id [ID]', 'asistencia')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta:_\n")
             messages.append(f"{Helpers.genMsg('listAssist', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:id [ID]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:id [ID] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member [Integrante]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:member [Integrante] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:event [Evento]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:event [Evento] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member&event [Integrante, Evento]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:member&event [Integrante, Evento] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member&date [Integrante, Fecha 1, Fecha 2]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:member&date [Integrante, Fecha 1, Fecha 2] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:event&date [Evento, Fecha 1, Fecha 2]', 'asistencia')}")
-            messages.append(f"{Helpers.genMsg('listAssist:event&date [Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2]', 'asistencia')}")
+            messages.append("\n")
+            messages.append("_Comandos de consulta con impresion en excel:_\n")
+            messages.append("Por defecto, los comandos de consulta imprimen los registros en el canal de discord, "\
+            "sin embargo, tambien pueden ser impresos dentro de una hoja de excel, si despues del comando "\
+            "se especifica el parametro **> e**.\n")
+            messages.append(f"{Helpers.genMsg('listAssist > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:id [ID] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member [Integrante] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:event [Evento] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:date [Fecha 1, Fecha 2] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&event [Integrante, Evento] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:member&date [Integrante, Fecha 1, Fecha 2] > e', 'asistencia')}")
+            messages.append(f"{Helpers.genMsg('listAssist:event&date [Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
             messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
         elif msg.startswith("$help:event"):
              #-----------------------------------Eventos----------------------------------------
@@ -84,7 +95,7 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listMember:range [Rango] > e', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2]', 'integrante')}")
             messages.append(f"{Helpers.genMsg('listMember:date [Fecha 1, Fecha 2] > e', 'integrante')}")
-        elif msg.startswith("$help:range"): 
+        elif msg.startswith("$help:range"):
             #-------------------------------------Rangos----------------------------------------
             messages.append("**_Rangos:_**\n")
             messages.append("Las rangos disponen registros con informacion de los diferentes "\
@@ -99,8 +110,8 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listRange:id [ID]', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre]', 'rango')}")
-            messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")           
-        if array:
+            messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
+        if messages:
             array = []
             length = 0
             for i in range(len(messages)):
