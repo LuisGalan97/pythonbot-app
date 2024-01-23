@@ -34,7 +34,7 @@ class IntegranteController:
             return False
 
     def createIntegrante(self, name, rango_id, date):
-        rango = RangoModel(rango_id, None, None)
+        rango = RangoModel(rango_id, None, None, None)
         integrante = IntegranteModel(None, name, rango, date, None)
         result = self.__service.insert(integrante)
         if result:
@@ -43,7 +43,7 @@ class IntegranteController:
             return False
 
     def updateIntegrante(self, id, name, rango_id, date):
-        rango = RangoModel(rango_id, None, None)
+        rango = RangoModel(rango_id, None, None, None)
         integrante = IntegranteModel(id, name, rango, None, date)
         result = self.__service.update(integrante)
         if result:
