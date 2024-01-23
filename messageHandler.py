@@ -59,9 +59,9 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listAssist:member&event&date [Integrante, Evento, Fecha 1, Fecha 2] > e', 'asistencia')}")
         elif msg.startswith("$help:event"):
              #-----------------------------------Eventos----------------------------------------
-            messages.append("**_Eventos_**\n")
+            messages.append("**___Eventos___**\n")
             messages.append("\n")
-            messages.append("Los eventos corresponden a una lista con informacion de las actividades "\
+            messages.append("Los ___eventos___ corresponden a una lista con informacion de las actividades "\
             "las cuales **⚜Avalon⚜** ha decidido puntuar, para poder recompensar a sus integrantes "\
             "por aporte y participacion, involucrando ataques, defensas, AVAs, entre otros.\n")
             messages.append("\n")
@@ -86,11 +86,11 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listEvent:name [Nombre] > e', 'evento')}")
         elif msg.startswith("$help:member"):
             #----------------------------------Integrantes----------------------------------------
-            messages.append("**_Integrantes_**\n")
+            messages.append("**___Integrantes___**\n")
             messages.append("\n")
-            messages.append("Los integrantes son una serie de registros en los cuales se encuentran "\
+            messages.append("Los ___integrantes___ son una serie de registros en los cuales se encuentran "\
             "listados y referenciados todos los miembros de la alianza **⚜Avalon⚜**, junto con informacion "\
-            "complementaria tales como el rango asignado y la fecha de ingreso de cada miembro.\n")
+            "complementaria tales como el ___rango___ asignado y la fecha de ingreso de cada miembro.\n")
             messages.append("\n")
             messages.append("_Comandos de modificacion:_\n")
             messages.append(f"{Helpers.genMsg('addMember [Nombre, Rango, Fecha]', 'integrante')}")
@@ -119,7 +119,7 @@ class MessageHandler:
             #-------------------------------------Rangos----------------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
-            messages.append("Las rangos disponen registros con informacion de los diferentes "\
+            messages.append("Las ___rangos___ disponen registros con informacion de los diferentes "\
             "rangos asignables a los integrante o miembros de la alianza **⚜Avalon⚜**.\n")
             messages.append("\n")
             messages.append("_Comandos de modificacion:_\n")
@@ -141,6 +141,26 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listRange > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
+        elif msg.startswith("$help"):
+            messages.append("**___Guia de usuario de avalon-bot___**\n")
+            messages.append("\n")
+            messages.append("Bienvenido/a a la guia de usuario del bot de **⚜Avalon⚜** "\
+                            "para discord. En esta seccion realizaremos una breve introduccion, "\
+                            "de las funciones principales que posee **_avalon-bot_**, "\
+                            "como este estructura la informacion, y como podemos "\
+                            "implementarlo para obtener importantes beneficios, "\
+                            "en el manejo y gestion de los datos asociados con la alianza "\
+                            "**⚜Avalon⚜**\n")
+            messages.append("\n")
+            messages.append("**_¿Que es avalon-bot?_**\n")
+            messages.append("Avalon-bot es una herramienta pensada para facilitar al usuario la gestion "\
+                            "de los datos asociados con la alianza **⚜Avalon⚜**, mediante la comprension "\
+                            "de la estructura de la informacion planteada para este proposito, y el correcto"\
+                            "uso de los comandos dispuestos para poder acceder y manipular dicha informacion. "\
+                            "Dicho esto, con avalon-bot podras generar un seguimiento automatizado y estructurado, "\
+                            "de datos relacionados con los ___integrantes___, los ___rangos___, las ___asistencias___ "\
+                            "y los ___eventos___ establecidos en la alianza, en conjunto con la capacidad de generar "\
+                            "informes personalizados en , gracias a la capacidad de las bases de datos SQL.\n")
         if messages:
             array = []
             length = 0
