@@ -1,10 +1,12 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sys
 import discord
-sys.path.insert(1, './Config')
+sys.path.insert(1, f'{dir}/Config')
 from config import Config
 from appHandler import AppHandler
 from messageHandler import MessageHandler
-sys.path.insert(1, './Helpers')
+sys.path.insert(1, f'{dir}/Helpers')
 from helpers import Helpers
 
 app = AppHandler()
