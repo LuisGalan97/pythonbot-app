@@ -442,6 +442,8 @@ class Helpers:
                     value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
                 elif parameters[i] == "Fecha":
                     value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                elif parameters[i] == "Control":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico"
                 elif parameters[i] == "Descripción":
                     value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
                 else:
@@ -468,6 +470,8 @@ class Helpers:
                         value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
                     elif parameters[i] == "Fecha":
                         value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                    elif parameters[i] == "Control":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico"
                     elif parameters[i] == "Descripción":
                         value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
                     else:
@@ -491,6 +495,8 @@ class Helpers:
                         value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
                     elif parameters[i] == "Fecha":
                         value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                    elif parameters[i] == "Control":
+                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico"
                     elif parameters[i] == "Descripción":
                         value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
                     else:
