@@ -12,11 +12,11 @@ class RangoService:
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
-            data = self.__db.execute_query(self.__selectQuery)
+            data = self.__db.execute_query(f"{self.__selectQuery} ORDER BY control ASC")
         elif "id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ? ORDER BY control ASC", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
         elif "name" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE name = ? ORDER BY control ASC", (target["name"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE name = ?", (target["name"],))
         else:
             data = None
         self.__db.close_connection()
