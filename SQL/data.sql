@@ -301,6 +301,3 @@ INSERT INTO asistencias (integrante_id, evento_id, date) VALUES (47, 4, '2024-01
 INSERT INTO asistencias (integrante_id, evento_id, date) VALUES (47, 8, '2024-01-21');
 INSERT INTO asistencias (integrante_id, evento_id, date) VALUES (27, 5, '2024-01-22');
 INSERT INTO asistencias (integrante_id, evento_id, date) VALUES (22, 3, '2024-01-23');
-
-
-
