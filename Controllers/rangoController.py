@@ -1,9 +1,11 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sys
-sys.path.insert(1, './Models')
+sys.path.insert(1, f'{dir}/Models')
 from rangoModel import RangoModel
-sys.path.insert(1, './Services')
+sys.path.insert(1, f'{dir}/Services')
 from rangoService import RangoService
-sys.path.insert(1, './DB')
+sys.path.insert(1, f'{dir}/DB')
 from database import Database
 
 class RangoController:

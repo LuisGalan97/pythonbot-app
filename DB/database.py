@@ -1,13 +1,14 @@
 import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sqlite3 as sql
 
 class Database:
     def __init__(self, dbName, scriptStruct, scriptData):
         self.__conn = None
         self.__dbName = dbName
-        self.__exist = True if os.path.exists(f"./DB/{dbName}") else False
+        self.__exist = True if os.path.exists(f"{dir}/DB/{dbName}") else False
         self.__created = self.start_connection()
-        self.__loaded = self.load_data(f"./SQL/{scriptStruct}", f"./SQL/{scriptData}")
+        self.__loaded = self.load_data(f"{dir}/SQL/{scriptStruct}", f"{dir}/SQL/{scriptData}")
 
     def getExist(self):
         return self.__exist
@@ -31,7 +32,7 @@ class Database:
     def start_connection(self):
         try:
             if not self.check_connection():
-                self.__conn = sql.connect("./DB/"+self.__dbName)
+                self.__conn = sql.connect(f"{dir}/DB/"+self.__dbName)
                 self.__conn.execute("PRAGMA foreign_keys = ON")
                 self.__cursor = self.__conn.cursor()
                 print(f"-> La conexion con la base de datos '{self.__dbName}' fue inicializada con exito.")
@@ -92,7 +93,7 @@ class Database:
 
     def removeDB(self):
         try:
-            os.remove("./DB/"+self.__dbName)
+            os.remove(f"{dir}/DB/"+self.__dbName)
             print(f"-> La base de datos '{self.__dbName}' se ha eliminado correctamente.")
             return True
         except Exception as ex:

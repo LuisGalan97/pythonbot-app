@@ -1,8 +1,9 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import openpyxl
 from openpyxl.styles import Font
 from openpyxl.styles import Border, Side
 from openpyxl.utils import get_column_letter
-import os
 
 class DataFrame:
     def __init__(self, name, datas):
@@ -22,7 +23,7 @@ class DataFrame:
         self.__success = self.generateFrame()
 
     def getDirectory(self):
-        return f"./DF/{self.__name}.xlsx"
+        return f"{dir}/DF/{self.__name}.xlsx"
 
     def getSuccess(self):
         return self.__success
@@ -50,11 +51,11 @@ class DataFrame:
             self.__hoja.column_dimensions[get_column_letter(i+2)].width = adjusted_width
 
     def saveFrame(self):
-        self.__libro.save(f'./DF/{self.__name}.xlsx')
+        self.__libro.save(f'{dir}/DF/{self.__name}.xlsx')
 
     def deleteFrame(self):
         try:
-            os.remove(f"./DF/{self.__name}.xlsx")
+            os.remove(f"{dir}/DF/{self.__name}.xlsx")
             return True
         except Exception as ex:
             print(f"-> Ocurrio un error al intentar eliminar el dataframe: {str(ex)}.")

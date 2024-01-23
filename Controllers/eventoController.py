@@ -1,9 +1,11 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sys
-sys.path.insert(1, './Models')
+sys.path.insert(1, f'{dir}/Models')
 from eventoModel import EventoModel
-sys.path.insert(1, './Services')
+sys.path.insert(1, f'{dir}/Services')
 from eventoService import EventoService
-sys.path.insert(1, './DB')
+sys.path.insert(1, f'{dir}/DB')
 from database import Database
 
 class EventoController:

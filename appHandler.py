@@ -1,12 +1,14 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sys
-sys.path.insert(1, './DB')
+sys.path.insert(1, f'{dir}/DB')
 from database import Database
-sys.path.insert(1, './Controllers')
+sys.path.insert(1, f'{dir}/Controllers')
 from asistenciaController import AsistenciaController
 from eventoController import EventoController
 from integranteController import IntegranteController
 from rangoController import RangoController
-sys.path.insert(1, './Helpers')
+sys.path.insert(1, f'{dir}/Helpers')
 from helpers import Helpers
 
 class AppHandler:

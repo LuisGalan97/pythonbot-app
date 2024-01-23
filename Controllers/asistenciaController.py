@@ -1,11 +1,13 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sys
-sys.path.insert(1, './Models')
+sys.path.insert(1, f'{dir}/Models')
 from asistenciaModel import AsistenciaModel
 from eventoModel import EventoModel
 from integranteModel import IntegranteModel
-sys.path.insert(1, './Services')
+sys.path.insert(1, f'{dir}/Services')
 from asistenciaService import AsistenciaService
-sys.path.insert(1, './DB')
+sys.path.insert(1, f'{dir}/DB')
 from database import Database
 
 class AsistenciaController:

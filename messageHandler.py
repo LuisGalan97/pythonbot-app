@@ -1,8 +1,10 @@
+import os
+dir = os.path.dirname(os.path.abspath(__file__))
 import sys
 import discord
-sys.path.insert(1, './DF')
+sys.path.insert(1, f'{dir}/DF')
 from dataframe import DataFrame
-sys.path.insert(1, './Helpers')
+sys.path.insert(1, f'{dir}/Helpers')
 from helpers import Helpers
 
 class MessageHandler:
