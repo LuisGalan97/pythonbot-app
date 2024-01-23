@@ -34,7 +34,7 @@ class RangoService:
     def insert(self, rango : RangoModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "rangos (name, order, description) "\
+        "rangos (name, 'order', description) "\
         "VALUES (?, ?, ?)",
         (rango.getName(),
         rango.getOrder(),
@@ -45,7 +45,7 @@ class RangoService:
     def update(self, rango: RangoModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE rangos "\
-        "SET name = ?, order = ?, description = ? "\
+        "SET name = ?, 'order' = ?, description = ? "\
         "WHERE id = ?",
         (rango.getName(),
         rango.getOrder(),
