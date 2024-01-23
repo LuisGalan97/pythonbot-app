@@ -45,7 +45,7 @@ class RangoController:
             return False
 
     def deleteRango(self, id):
-        rango = RangoModel(id, None, None)
+        rango = RangoModel(id, None, None, None)
         result = self.__service.delete(rango)
         if result:
             return True

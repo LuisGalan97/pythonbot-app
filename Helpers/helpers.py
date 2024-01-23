@@ -175,7 +175,7 @@ class Helpers:
             }
         elif nameCtrl == "rango":
             structCtrl[nameCtrl] = {
-                "Id" : "id",
+                "ID" : "id",
                 "Nombre" : "name",
                 "Control" : "control",
                 "Descripción" : "description"
