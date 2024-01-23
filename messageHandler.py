@@ -173,23 +173,28 @@ class MessageHandler:
                             "pueden relacionarse o asociarse con la tabla asistencias, con el fin de registrar, que en una ___asistencia___ "\
                             "estuvo presente un ___integrante___ y fue con respecto a un ___evento___ especifico, registrado en su tabla de forma "\
                             "independiente. Con lo anterior se presenta un diagrama de la base de datos con las tablas y sus relaciones.\n")
+            messages.append({"file" : "./SQL/db_diagram.png"})
         if messages:
             array = []
             length = 0
             for i in range(len(messages)):
-                length = length + len(messages[i])
-                if length >= 2000:
-                    await self.__message.channel.send(''.join(array))
-                    array = []
-                    length = len(messages[i])
-                    array.append(messages[i])
-                    if i == len(messages) - 1:
-                        await self.__message.channel.send(''.join(array))
-                elif i == len(messages) - 1:
-                    array.append(messages[i])
-                    await self.__message.channel.send(''.join(array))
+                if isinstance(messages[i], list):
+                    discordFile = discord.File(messages[i]["file"])
+                    await self.__message.channel.send(file = discordFile)
                 else:
-                    array.append(messages[i])
+                    length = length + len(messages[i])
+                    if length >= 2000:
+                        await self.__message.channel.send(''.join(array))
+                        array = []
+                        length = len(messages[i])
+                        array.append(messages[i])
+                        if i == len(messages) - 1:
+                            await self.__message.channel.send(''.join(array))
+                    elif i == len(messages) - 1:
+                        array.append(messages[i])
+                        await self.__message.channel.send(''.join(array))
+                    else:
+                        array.append(messages[i])
 
     async def dFMsg(self, command, method, struct):
         msg = self.__message.content
