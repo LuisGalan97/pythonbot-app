@@ -7,16 +7,16 @@ from rangoModel import RangoModel
 class RangoService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = "SELECT * FROM rangos ORDER BY control ASC"
+        self.__selectQuery = "SELECT * FROM rangos"
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
             data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ? ORDER BY control ASC", (target["id"],))
         elif "name" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE name = ?", (target["name"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE name = ? ORDER BY control ASC", (target["name"],))
         else:
             data = None
         self.__db.close_connection()
