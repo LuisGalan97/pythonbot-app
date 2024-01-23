@@ -146,21 +146,33 @@ class MessageHandler:
             messages.append("\n")
             messages.append("Bienvenido/a a la guia de usuario del bot de **⚜Avalon⚜** "\
                             "para discord. En esta seccion realizaremos una breve introduccion, "\
-                            "de las funciones principales que posee **_avalon-bot_**, "\
+                            "de las funciones principales que dispone **_avalon-bot_**, "\
                             "como este estructura la informacion, y como podemos "\
-                            "implementarlo para obtener importantes beneficios, "\
-                            "en el manejo y gestion de los datos asociados con la alianza "\
-                            "**⚜Avalon⚜**\n")
+                            "utilizarlo para obtener importantes beneficios, "\
+                            "en el manejo y gestion de los datos asociados con la alianza.\n")
             messages.append("\n")
             messages.append("**_¿Que es avalon-bot?_**\n")
-            messages.append("Avalon-bot es una herramienta pensada para facilitar al usuario la gestion "\
+            messages.append("**_Avalon-bot_** es una herramienta pensada y diseñada para facilitar al usuario la gestion "\
                             "de los datos asociados con la alianza **⚜Avalon⚜**, mediante la comprension "\
-                            "de la estructura de la informacion planteada para este proposito, y el correcto"\
-                            "uso de los comandos dispuestos para poder acceder y manipular dicha informacion. "\
+                            "de la estructura de la informacion planteada para este proposito, y la correcta "\
+                            "utilizacion de los comandos dispuestos para poder acceder y manipular dicha informacion. "\
                             "Dicho esto, con avalon-bot podras generar un seguimiento automatizado y estructurado, "\
-                            "de datos relacionados con los ___integrantes___, los ___rangos___, las ___asistencias___ "\
+                            "de datos relacionados con los ___integrantes___, las ___asistencias___, los ___rangos___, "\
                             "y los ___eventos___ establecidos en la alianza, en conjunto con la capacidad de generar "\
-                            "informes personalizados en , gracias a la capacidad de las bases de datos SQL.\n")
+                            "informes personalizados en excel, gracias a la implementacion de bases de datos SQL.\n")
+            messages.append("\n")
+            messages.append("**_¿Como se encuentra estructurada la informacion?_**\n")
+            messages.append("Para la organizacion, gestion y guardado de la informacion, **_Avalon-bot_** tiene programada "\
+                            "la interaccion con una base de datos SQLite en lenguaje python, "\
+                            "teniendo acceso a un gestor de base de datos ligero, donde se encuentra cargada una estructura "\
+                            "de 4 tablas relacionadas entre si, pensadas para almacenar la informacion de 4 datos principales: "\
+                            "___integrantes___, ___asistencias___, ___rangos___ y ___eventos___, con el fin de permitir la disposicion "\
+                            "de por ejemplo una tabla de ___rangos___ de alianza, que posteriormente podra ser relacionada "\
+                            "a un ___integrante___ de la tabla de ___integrantes___, conservando la independencia de ambas tablas con sus datos propios y "\
+                            "facilitando de esta forma su manipulacion. De forma similar la tabla ___eventos___ e ___integrantes___ "\
+                            "pueden relacionarse o asociarse con la tabla asistencias, con el fin de registrar, que en una ___asistencia___ "\
+                            "estuvo presente un ___integrante___ y fue con respecto a un ___evento___ especifico, registrado en su tabla de forma "\
+                            "independiente. Con lo anterior se presenta un diagrama de la base de datos con las tablas y sus relaciones.\n")
         if messages:
             array = []
             length = 0
