@@ -62,6 +62,10 @@ class Helpers:
                                 return f"El dato '{datas[i]}' ingresado en el campo "\
                                 f"**_{alias.split(',')[i].strip()}_** es invalido."
                             if types[i] == str:
+                                if len(datas[i]) > 50:
+                                    return f"El dato '{datas[i]}' ingresado en el campo "\
+                                    f"**_{alias.split(',')[i].strip()}_** no debe exceder "\
+                                    "los 50 caracteres."
                                 if Helpers.checkTrueChar(datas[i][0]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
