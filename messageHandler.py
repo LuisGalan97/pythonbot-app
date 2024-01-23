@@ -295,8 +295,13 @@ class MessageHandler:
 
     async def contMsg(self, command, method, struct):
         msg = self.__message.content
-        msg = msg[:msg.find('[')].strip() if msg.find('[') != -1 else msg.strip()
-        if msg == f"${command}":
+        if msg.find(':') != -1 and command.find(':') != -1 and msg.startswith(f"${command}"):
+            msg = True
+        elif not msg.startswith(f"${command}:") and command.find(':') == -1 and msg.startswith(f"${command}"):
+            msg = True
+        else:
+            msg = False
+        if msg:
             request = self.__message.content.replace(f'${command}', '').strip()
             request = f"${command} {request}"
             result = method(request, struct)

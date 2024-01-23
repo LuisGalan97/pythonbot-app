@@ -12,7 +12,7 @@ class EventoService:
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
-            data = self.__db.execute_query(self.__selectQuery)
+            data = self.__db.execute_query(f"{self.__selectQuery} ORDER BY points DESC")
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} WHERE id = ?", (target["id"],))
         elif "name" in target:
