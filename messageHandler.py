@@ -141,13 +141,17 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listRange > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
+        elif msg.startswith("$help:diagram"):
+            await self.__message.channel.send(f"**___Diagrama de la estructura de los datos:___**")
+            discordFile = discord.File("./SQL/db_diagram.png")
+            await self.__message.channel.send(file = discordFile)
         elif msg.startswith("$help"):
             messages.append("**___Guia de usuario de avalon-bot___**\n")
             messages.append("\n")
             messages.append("Bienvenido/a a la guia de usuario del bot de **⚜Avalon⚜** "\
                             "para discord. En esta seccion realizaremos una breve introduccion, "\
                             "de las funciones principales que dispone **_avalon-bot_**, "\
-                            "como este estructura la informacion, y como podemos "\
+                            "la estructura de la informacion con la que trabaja, y como podemos "\
                             "utilizarlo para obtener importantes beneficios, "\
                             "en el manejo y gestion de los datos asociados con la alianza.\n")
             messages.append("\n")
@@ -162,7 +166,7 @@ class MessageHandler:
                             "informes personalizados en excel, gracias a la implementacion de bases de datos SQL.\n")
             messages.append("\n")
             messages.append("**_¿Como se encuentra estructurada la informacion?_**\n")
-            messages.append("Para la organizacion, gestion y guardado de la informacion, **_Avalon-bot_** tiene programada "\
+            messages.append("Para la organizacion, gestion y guardado de la informacion, **_avalon-bot_** tiene programada "\
                             "la interaccion con una base de datos SQLite en lenguaje python, "\
                             "teniendo acceso a un gestor de base de datos ligero, donde se encuentra cargada una estructura "\
                             "de 4 tablas relacionadas entre si, pensadas para almacenar la informacion de 4 datos principales: "\
@@ -172,29 +176,40 @@ class MessageHandler:
                             "facilitando de esta forma su manipulacion. De forma similar la tabla ___eventos___ e ___integrantes___ "\
                             "pueden relacionarse o asociarse con la tabla asistencias, con el fin de registrar, que en una ___asistencia___ "\
                             "estuvo presente un ___integrante___ y fue con respecto a un ___evento___ especifico, registrado en su tabla de forma "\
-                            "independiente. Con lo anterior se presenta un diagrama de la base de datos con las tablas y sus relaciones.\n")
-            messages.append({"file" : "./SQL/db_diagram.png"})
+                            "independiente.\n\n_Si desea visualizar el diagrama de la estructura de los datos, puede emplear el comando de ayuda:_\n"\
+                            "* **$help:diagram**\n")
+            messages.append("\n")
+            messages.append("**_¿Como puedo empezar a utilizar avalon-bot?_**\n")
+            messages.append("Para poder utilizar **_avalon-bot_**, debes emplear los comandos dispuestos por este mismo, "\
+                            "los cuales varian dependiendo de la tabla con la que deseas interactuar, y el tipo de solicitud "\
+                            "que deseas realizar (consulta, creacion, actualizacion o eliminacion). "\
+                            "Con lo anterior, dada la extension de los comandos, estos se han especificado y detallado en su propia seccion "\
+                            "asociada con cada tabla respectiva, siendo visibles mediante los comandos de ayuda que se presentan a continuacion.\n\n"\
+                            "_Comandos de_ ___asistencias___:\n"\
+                            "** * $help:assist**\n"\
+                            "_Comandos de_ ___eventos___: \n"\
+                            "** * $help:event**\n"\
+                            "_Comandos de_ ___integrantes___: \n"\
+                            "** * $help:member**\n"\
+                            "_Comandos de_ ___rangos___: \n"\
+                            "** * $help:range**")
         if messages:
             array = []
             length = 0
             for i in range(len(messages)):
-                if isinstance(messages[i], list):
-                    discordFile = discord.File(messages[i]["file"])
-                    await self.__message.channel.send(file = discordFile)
+                length = length + len(messages[i])
+                if length >= 2000:
+                    await self.__message.channel.send(''.join(array))
+                    array = []
+                    length = len(messages[i])
+                    array.append(messages[i])
+                    if i == len(messages) - 1:
+                        await self.__message.channel.send(''.join(array))
+                elif i == len(messages) - 1:
+                    array.append(messages[i])
+                    await self.__message.channel.send(''.join(array))
                 else:
-                    length = length + len(messages[i])
-                    if length >= 2000:
-                        await self.__message.channel.send(''.join(array))
-                        array = []
-                        length = len(messages[i])
-                        array.append(messages[i])
-                        if i == len(messages) - 1:
-                            await self.__message.channel.send(''.join(array))
-                    elif i == len(messages) - 1:
-                        array.append(messages[i])
-                        await self.__message.channel.send(''.join(array))
-                    else:
-                        array.append(messages[i])
+                    array.append(messages[i])
 
     async def dFMsg(self, command, method, struct):
         msg = self.__message.content
@@ -251,8 +266,8 @@ class MessageHandler:
                                                          f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
                 else:
                     array = []
-                    title = f"**_{list(struct['controller'].keys())[0].capitalize()}s_** "\
-                            f"**_encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:_**"
+                    title = f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
+                            f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**"
                     length = len(title)
                     array.append(title)
                     for i in range(len(result)):
