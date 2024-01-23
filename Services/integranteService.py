@@ -12,7 +12,7 @@ class IntegranteService:
         "SELECT "\
             "r.id AS rango_id, "\
             "r.name AS rango_name, "\
-            "r.order AS rango_order, "\
+            "r.control AS rango_control, "\
             "r.description AS rango_description, "\
             "i.id, "\
             "i.name, "\

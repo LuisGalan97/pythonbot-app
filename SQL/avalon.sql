@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     23/01/2024 1:46:00 a. m.                     */
+/* Created on:     23/01/2024 2:58:46 a. m.                     */
 /*==============================================================*/
 
 
@@ -48,7 +48,7 @@ create table rangos
 (
    id                   bigint not null auto_increment,
    name                 varchar(200) not null,
-   "order"              bigint not null,
+   control              bigint not null,
    description          varchar(1000) not null,
    primary key (id)
 );

@@ -24,7 +24,7 @@ class AsistenciaController:
                         "integrante_name" : asistencia.getIntegrante().getName(),
                         "integrante_rango_id" : asistencia.getIntegrante().getRango().getId(),
                         "integrante_rango_name" : asistencia.getIntegrante().getRango().getName(),
-                        "integrante_rango_order" : asistencia.getIntegrante().getRango().getOrder(),
+                        "integrante_rango_control" : asistencia.getIntegrante().getRango().getControl(),
                         "integrante_rango_description" : asistencia.getIntegrante().getRango().getDescription(),
                         "integrante_datecreate" : asistencia.getIntegrante().getDateCreate(),
                         "integrante_dateupdate" : asistencia.getIntegrante().getDateUpdate(),

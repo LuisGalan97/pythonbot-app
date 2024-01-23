@@ -1,8 +1,8 @@
 class RangoModel:
-    def __init__(self, id, name, order, description):
+    def __init__(self, id, name, control, description):
         self.__id = id
         self.__name = name
-        self.__order = order
+        self.__control = control
         self.__description = description
 
     def getId(self):
@@ -11,8 +11,8 @@ class RangoModel:
     def getName(self):
         return self.__name
 
-    def getOrder(self):
-        return self.__order
+    def getControl(self):
+        return self.__control
 
     def getDescription(self):
         return self.__description

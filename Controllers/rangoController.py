@@ -19,7 +19,7 @@ class RangoController:
                     {
                         "id" : rango.getId(),
                         "name" : rango.getName(),
-                        "order" : rango.getOrder(),
+                        "control" : rango.getControl(),
                         "description" : rango.getDescription()
                     })
             return data
@@ -28,16 +28,16 @@ class RangoController:
         else:
             return False
 
-    def createRango(self, name, order, description):
-        rango = RangoModel(None, name, order, description)
+    def createRango(self, name, control, description):
+        rango = RangoModel(None, name, control, description)
         result = self.__service.insert(rango)
         if result:
             return True
         else:
             return False
 
-    def updateRango(self, id, name, order, description):
-        rango = RangoModel(id, name, order, description)
+    def updateRango(self, id, name, control, description):
+        rango = RangoModel(id, name, control, description)
         result = self.__service.update(rango)
         if result:
             return True

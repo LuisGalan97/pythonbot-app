@@ -14,7 +14,7 @@ class AsistenciaService:
         "SELECT "\
             "r.id AS integrante_rango_id, "\
             "r.name AS integrante_rango_name, "\
-            "r.order AS integrante_rango_order, "\
+            "r.control AS integrante_rango_control, "\
             "r.description AS integrante_rango_description, "\
             "i.id as integrante_id, "\
             "i.name AS integrante_name, "\
