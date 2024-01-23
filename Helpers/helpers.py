@@ -41,10 +41,10 @@ class Helpers:
             references = f"{', '.join(map(str, list(struct.keys())))}"
             types = [value["type"] for value in struct.values()]
             alias = f"{', '.join(map(str, [value['alias'] for value in struct.values()]))}"
-            if content.startswith('['):
-                content = content.replace('[', '')
-                if content.find(']') != -1:
-                    content = content[: content.find(']')]
+            if content.find('[') == 0:
+                content = content.replace('[', '', 1)
+                if content.rfind(']') != -1:
+                    content = content[: content.rfind(']')]
                     datas = content.split(',')
                     if len(datas) == len(references.split(',')):
                         for i in range(len(datas)):
@@ -80,7 +80,8 @@ class Helpers:
                                 if Helpers.checkRepeatChar(datas[i]):
                                     return f"El dato '{datas[i]}' ingresado en el campo "\
                                     f"**_{alias.split(',')[i].strip()}_** no debe repetir "\
-                                    "mas de dos veces los caracteres **-** o **|**."
+                                    "mas de dos veces los caracteres **-** **|**, o mas de una vez "\
+                                    "los caracteres **[** **]**."
                         references = list(map(lambda x: x.strip(), references.split(',')))
                         datas = dict(zip(references, datas))
                         return datas
@@ -98,7 +99,7 @@ class Helpers:
     @staticmethod
     def checkChar(strValue):
         spechar = ['/', '\\', '\'', '!', '¡',
-        '?', '¿', '"', '´', '{', '}', '[', ']',
+        '?', '¿', '"', '´', '{', '}',
         '*', '+', '$', '%', '&', '=', '#', '@',
         '_', '||', '°', '¬', '.', ';', ':', '>',
         '<', '~', '¨', '^', '`', '--']
@@ -121,10 +122,14 @@ class Helpers:
 
     @staticmethod
     def checkRepeatChar(strValue):
-        repeat = ['-', '|']
+        repeat = ['-', '|','[', ']']
         for char in repeat:
-            if strValue.count(char) > 2:
-                return True
+            if char == '[' or char == ']':
+                if strValue.count(char) > 1:
+                    return True
+            else:
+                if strValue.count(char) > 2:
+                    return True
         return False
 
     @staticmethod
