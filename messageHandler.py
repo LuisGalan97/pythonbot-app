@@ -146,27 +146,27 @@ class MessageHandler:
             discordFile = discord.File("./SQL/db_diagram.png")
             await self.__message.channel.send(file = discordFile)
         elif msg.startswith("$help"):
-            messages.append("**___Guia de usuario de avalon-bot___**\n")
+            messages.append("**___Guia de usuario de Avalon-bot___**\n")
             messages.append("\n")
             messages.append("Bienvenido/a a la guia de usuario del bot de **⚜Avalon⚜** "\
                             "para discord. En esta seccion realizaremos una breve introduccion, "\
-                            "de las funciones principales que dispone **_avalon-bot_**, "\
+                            "de las funciones principales que dispone **_Avalon-bot_**, "\
                             "la estructura de la informacion con la que trabaja, y como podemos "\
                             "utilizarlo para obtener importantes beneficios, "\
                             "en el manejo y gestion de los datos asociados con la alianza.\n")
             messages.append("\n")
-            messages.append("**_¿Que es avalon-bot?_**\n")
+            messages.append("**_¿Que es Avalon-bot?_**\n")
             messages.append("**_Avalon-bot_** es una herramienta pensada y diseñada para facilitar al usuario la gestion "\
                             "de los datos asociados con la alianza **⚜Avalon⚜**, mediante la comprension "\
                             "de la estructura de la informacion planteada para este proposito, y la correcta "\
                             "utilizacion de los comandos dispuestos para poder acceder y manipular dicha informacion. "\
-                            "Dicho esto, con avalon-bot podras generar un seguimiento automatizado y estructurado, "\
+                            "Dicho esto, con Avalon-bot podras generar un seguimiento automatizado y estructurado, "\
                             "de datos relacionados con los ___integrantes___, las ___asistencias___, los ___rangos___, "\
                             "y los ___eventos___ establecidos en la alianza, en conjunto con la capacidad de generar "\
                             "informes personalizados en excel, gracias a la implementacion de bases de datos SQL.\n")
             messages.append("\n")
             messages.append("**_¿Como se encuentra estructurada la informacion?_**\n")
-            messages.append("Para la organizacion, gestion y guardado de la informacion, **_avalon-bot_** tiene programada "\
+            messages.append("Para la organizacion, gestion y guardado de la informacion, **_Avalon-bot_** tiene programada "\
                             "la interaccion con una base de datos SQLite en lenguaje python, "\
                             "teniendo acceso a un gestor de base de datos ligero, donde se encuentra cargada una estructura "\
                             "de 4 tablas relacionadas entre si, pensadas para almacenar la informacion de 4 datos principales: "\
@@ -179,8 +179,8 @@ class MessageHandler:
                             "independiente.\n\n_Si desea visualizar el diagrama de la estructura de los datos, puede emplear el comando de ayuda:_\n"\
                             "* **$help:diagram**\n")
             messages.append("\n")
-            messages.append("**_¿Como puedo empezar a utilizar avalon-bot?_**\n")
-            messages.append("Para poder utilizar **_avalon-bot_**, debes emplear los comandos dispuestos por este mismo, "\
+            messages.append("**_¿Como puedo empezar a utilizar Avalon-bot?_**\n")
+            messages.append("Para poder utilizar **_Avalon-bot_**, debes emplear los comandos dispuestos por este mismo, "\
                             "los cuales varian dependiendo de la tabla con la que deseas interactuar, y el tipo de solicitud "\
                             "que deseas realizar (consulta, creacion, actualizacion o eliminacion). "\
                             "Con lo anterior, dada la extension de los comandos, estos se han especificado y detallado en su propia seccion "\
