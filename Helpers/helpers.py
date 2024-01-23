@@ -145,7 +145,7 @@ class Helpers:
                 "Integrante" : "integrante_name",
                 #"Rango ID" : "integrante_rango_id",
                 #"Rango" : "integrante_rango_name",
-                #"Orden" : "integrante_rango_control",
+                #"Control" : "integrante_rango_control",
                 #"Descripción Rango" : "integrante_rango_description",
                 #"Fecha de creación Integrante" : "integrante_datecreate",
                 #"Fecha de modificación Integrante" : "integrante_dateupdate",
@@ -168,7 +168,7 @@ class Helpers:
                 "Nombre" : "name",
                 #"Rango ID" : "rango_id",
                 "Rango" : "rango_name",
-                #"Orden Rango" : "rango_control",
+                #"Control Rango" : "rango_control",
                 #"Descripción Rango" : "rango_description",
                 "Fecha de creación" : "datecreate",
                 "Fecha de modificación" : "dateupdate"
@@ -177,7 +177,7 @@ class Helpers:
             structCtrl[nameCtrl] = {
                 "Id" : "id",
                 "Nombre" : "name",
-                "Orden" : "control",
+                "Control" : "control",
                 "Descripción" : "description"
             }
         if targets:
@@ -225,7 +225,7 @@ class Helpers:
         elif nameCtrl == "rango":
             structCtrl[nameCtrl] = {"create" : "name"}
             structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
-            structTargets["control"] = {"type" : int, "fk" : False, "alias" : "Orden"}
+            structTargets["control"] = {"type" : int, "fk" : False, "alias" : "Control"}
             structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         return {"controller" : structCtrl, "targets" : structTargets}
 
@@ -268,13 +268,13 @@ class Helpers:
             if update == "name":
                 structCtrl[nameCtrl] = {"update" : update}
                 structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
-                structTargets["control"] = {"type" : int, "fk" : False, "alias" : "Orden"}
+                structTargets["control"] = {"type" : int, "fk" : False, "alias" : "Control"}
                 structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
             elif update == "id":
                 structCtrl[nameCtrl] = {"update" : update}
                 structTargets["id"] = {"type" : int, "fk" : False, "alias" : "ID"}
                 structTargets["name"] = {"type" : str, "fk" : False, "alias" : "Nombre"}
-                structTargets["control"] = {"type" : int, "fk" : False, "alias" : "Orden"}
+                structTargets["control"] = {"type" : int, "fk" : False, "alias" : "Control"}
                 structTargets["description"] = {"type" : str, "fk" : False, "alias" : "Descripción"}
         return {"controller" : structCtrl, "targets" : structTargets}
 
