@@ -249,8 +249,8 @@ class MessageHandler:
                         df = DataFrame(fileName, result)
                         if df.getSuccess():
                             discordFile = discord.File(df.getDirectory())
-                            await self.__message.channel.send(f"**_{list(struct['controller'].keys())[0].capitalize()}s_** "\
-                                                              f"**_encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:_**")
+                            await self.__message.channel.send(f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
+                                                              f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**")
                             await self.__message.channel.send(file=discordFile)
                             if not df.deleteFrame():
                                 await self.__message.channel.send("Error al intentar eliminar el excel, "\
