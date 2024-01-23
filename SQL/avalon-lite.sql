@@ -19,6 +19,7 @@ description          varchar(1000)        not null
 create table rangos (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name                 varchar(200)         not null,
+"order"              integer              not null,
 description          varchar(1000)        not null
 );
 

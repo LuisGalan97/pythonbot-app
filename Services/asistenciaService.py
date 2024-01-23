@@ -14,6 +14,7 @@ class AsistenciaService:
         "SELECT "\
             "r.id AS integrante_rango_id, "\
             "r.name AS integrante_rango_name, "\
+            "r.order AS integrante_rango_order, "\
             "r.description AS integrante_rango_description, "\
             "i.id as integrante_id, "\
             "i.name AS integrante_name, "\
@@ -41,7 +42,7 @@ class AsistenciaService:
             data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.date BETWEEN ? AND ? AND a.integrante_id = ? AND a.evento_id = ?",
                   (target["date_1"], target["date_2"], target["integrante_id"], target["evento_id"],))
         elif "integrante_id" in target and "evento_id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.integrante_id = ? AND a.evento_id = ?", 
+            data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.integrante_id = ? AND a.evento_id = ?",
                   (target["integrante_id"], target["evento_id"],))
         elif "integrante_id" in target and "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} WHERE a.date BETWEEN ? AND ? AND a.integrante_id = ?",
@@ -61,10 +62,10 @@ class AsistenciaService:
         if isinstance(data, list):
             asistencias = []
             for row in data:
-                rango = RangoModel(row[0], row[1], row[2])
-                integrante = IntegranteModel(row[3], row[4], rango, row[5], row[6])
-                evento = EventoModel(row[7], row[8], row[9], row[10])
-                asistencia = AsistenciaModel(row[11], integrante, evento, row[12])
+                rango = RangoModel(row[0], row[1], row[2], row[3])
+                integrante = IntegranteModel(row[4], row[5], rango, row[6], row[7])
+                evento = EventoModel(row[8], row[9], row[10], row[11])
+                asistencia = AsistenciaModel(row[12], integrante, evento, row[13])
                 asistencias.append(asistencia)
             return asistencias
         elif data:

@@ -12,6 +12,7 @@ class IntegranteService:
         "SELECT "\
             "r.id AS rango_id, "\
             "r.name AS rango_name, "\
+            "r.order AS rango_order, "\
             "r.description AS rango_description, "\
             "i.id, "\
             "i.name, "\
@@ -39,8 +40,8 @@ class IntegranteService:
         if isinstance(data, list):
             integrantes = []
             for row in data:
-                rango = RangoModel(row[0], row[1], row[2])
-                integrante = IntegranteModel(row[3], row[4], rango, row[5], row[6])
+                rango = RangoModel(row[0], row[1], row[2], row[3])
+                integrante = IntegranteModel(row[4], row[5], rango, row[6], row[7])
                 integrantes.append(integrante)
             return integrantes
         elif data:

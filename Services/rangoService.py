@@ -7,7 +7,7 @@ from rangoModel import RangoModel
 class RangoService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = "SELECT * FROM rangos"
+        self.__selectQuery = "SELECT * FROM rangos ORDER BY 'order' ASC"
 
     def select(self, target = None):
         self.__db.start_connection()
@@ -23,7 +23,7 @@ class RangoService:
         if isinstance(data, list):
             rangos = []
             for row in data:
-                rango = RangoModel(row[0], row[1], row[2])
+                rango = RangoModel(row[0], row[1], row[2], row[3])
                 rangos.append(rango)
             return rangos
         elif data:
@@ -34,9 +34,10 @@ class RangoService:
     def insert(self, rango : RangoModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "rangos (name, description) "\
-        "VALUES (?, ?)",
+        "rangos (name, order, description) "\
+        "VALUES (?, ?, ?)",
         (rango.getName(),
+        rango.getOrder(),
         rango.getDescription(),))
         self.__db.close_connection()
         return data
@@ -44,9 +45,10 @@ class RangoService:
     def update(self, rango: RangoModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE rangos "\
-        "SET name = ?, description = ? "\
+        "SET name = ?, order = ?, description = ? "\
         "WHERE id = ?",
         (rango.getName(),
+        rango.getOrder(),
         rango.getDescription(),
         rango.getId(),))
         self.__db.close_connection()
