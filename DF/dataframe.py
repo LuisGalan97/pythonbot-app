@@ -1,5 +1,6 @@
 import os
 dir = os.path.dirname(os.path.abspath(__file__))
+dir = os.path.dirname(dir)
 import openpyxl
 from openpyxl.styles import Font
 from openpyxl.styles import Border, Side

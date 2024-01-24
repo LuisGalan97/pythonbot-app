@@ -1,5 +1,6 @@
 import os
 dir = os.path.dirname(os.path.abspath(__file__))
+dir = os.path.dirname(dir)
 import sys
 sys.path.insert(1, f'{dir}/Models')
 from asistenciaModel import AsistenciaModel
