@@ -176,7 +176,7 @@ class MessageHandler:
                             "de por ejemplo una tabla de ___rangos___ de alianza, que posteriormente podra ser relacionada "\
                             "a un ___integrante___ de la tabla de ___integrantes___, conservando la independencia de ambas tablas con sus datos propios y "\
                             "facilitando de esta forma su manipulacion. De forma similar la tabla ___eventos___ e ___integrantes___ "\
-                            "pueden relacionarse o asociarse con la tabla asistencias, con el fin de registrar, que en una ___asistencia___ "\
+                            "pueden relacionarse o asociarse con la tabla de ___asistencias___, con el fin de registrar, que en una ___asistencia___ "\
                             "estuvo presente un ___integrante___ y fue con respecto a un ___evento___ especifico, registrado en su tabla de forma "\
                             "independiente.\n\n_Si desea visualizar el diagrama de la estructura de los datos, puede emplear el comando de ayuda:_\n"\
                             "* **$help:diagram**\n")
