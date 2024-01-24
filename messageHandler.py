@@ -145,7 +145,7 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
         elif msg.startswith("$help:diagram"):
             await self.__message.channel.send(f"**___Diagrama de la estructura de los datos:___**")
-            discordFile = discord.File("./SQL/db_diagram.png")
+            discordFile = discord.File(f"{dir}/SQL/db_diagram.png")
             await self.__message.channel.send(file = discordFile)
         elif msg.startswith("$help"):
             messages.append("**___Guia de usuario de Avalon-bot___**\n")
