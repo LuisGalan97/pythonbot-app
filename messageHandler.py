@@ -240,7 +240,7 @@ class MessageHandler:
             if isinstance(result, list):
                 if request.find('>') != -1:
                     excelreq = content.lower()
-                    excelreq = excelreq[excelreq.find(']')+1:]
+                    excelreq = excelreq[excelreq.rfind(']')+1:]
                     excelreq = excelreq[:excelreq.find('e')+2].replace(' ','')
                     if excelreq == ">e":
                         strContent = content[content.find('[')+1:content.find(']')].split(",")
