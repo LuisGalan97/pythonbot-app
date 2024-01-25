@@ -1,7 +1,42 @@
 from datetime import datetime
-import re
 
 class Helpers:
+    @staticmethod
+    def checkCommand(request, command):
+        if request.find(':') != -1 and command.find(':') != -1 and request.startswith(f"${command}"):
+            if request.find('&') != -1 and command.find('&') != -1 and request.startswith(f"${command}"):
+                requestpos = request.find('&') + 1
+                cmdpos = command.find('&') + 1
+                if request.find('&', requestpos) != -1 and command.find('&', cmdpos) != -1 and request.startswith(f"${command}"):
+                    return True
+                elif not request.startswith(f"${command}&") and command.find('&', cmdpos) == -1 and request.startswith(f"${command}"):
+                    return True
+                else:
+                    return False
+            elif not request.startswith(f"${command}&") and command.find('&') == -1 and request.startswith(f"${command}"):
+                return True
+            else:
+                return False
+        elif not request.startswith(f"${command}:") and command.find(':') == -1 and request.startswith(f"${command}"):
+            return True
+        else:
+            return False
+    
+    @staticmethod
+    def checkContent(command, content, reftarget):
+        if reftarget:
+            alias = f"{', '.join(map(str, [value['alias'] for value in reftarget.values()]))}"
+            if content.find('[') == 0 and content.rfind(']') != -1:
+                request = content.replace('[', '', 1)
+                request = request[: request.rfind(']')]
+                request = content.split(',')
+                return request
+            else:
+                return "El comando debe mantener la forma:\n"\
+                f"**{command} [_{alias}_]**"
+        else:
+            return []
+    
     @staticmethod
     def setTarget(self, request, struct):
         target = {}
@@ -35,70 +70,58 @@ class Helpers:
         return target
 
     @staticmethod
-    def checkRequest(request, struct):
-            command = request.split(' ')[0]
-            content = request.replace(command, '').strip()
-            references = f"{', '.join(map(str, list(struct.keys())))}"
-            types = [value["type"] for value in struct.values()]
-            alias = f"{', '.join(map(str, [value['alias'] for value in struct.values()]))}"
-            if content.find('[') == 0:
-                content = content.replace('[', '', 1)
-                if content.rfind(']') != -1:
-                    content = content[: content.rfind(']')]
-                    datas = content.split(',')
-                    if len(datas) == len(references.split(',')):
-                        for i in range(len(datas)):
-                            datas[i] = datas[i].strip()
-                            if not datas[i]:
-                                return "No fue ingresado ningun dato en el campo "\
-                                f"**_{alias.split(',')[i].strip()}_**"
-                            try:
-                                if types[i] == datetime:
-                                    datas[i] = datetime.strptime(datas[i], "%d-%m-%Y")
-                                    datas[i] = datas[i].strftime("%Y-%m-%d")
-                                else:
-                                    datas[i] = types[i](datas[i])
-                            except ValueError:
-                                return f"El dato '{datas[i]}' ingresado en el campo "\
-                                f"**_{alias.split(',')[i].strip()}_** es invalido."
-                            if types[i] == str:
-                                if len(datas[i]) > 50:
-                                    return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"**_{alias.split(',')[i].strip()}_** no debe exceder "\
+    def checkRequest(request, reftarget):
+            references = f"{', '.join(map(str, list(reftarget.keys())))}"
+            types = [value["type"] for value in reftarget.values()]
+            alias = f"{', '.join(map(str, [value['alias'] for value in reftarget.values()]))}"
+            datas = request
+            if isinstance(datas, list) and len(datas) == len(references.split(',')):
+                for i in range(len(datas)):
+                    datas[i] = datas[i].strip()
+                    if not datas[i]:
+                        return "No fue ingresado ningun dato en el campo "\
+                              f"**_{alias.split(',')[i].strip()}_**"
+                    try:
+                        if types[i] == datetime:
+                            datas[i] = datetime.strptime(datas[i], "%d-%m-%Y")
+                            datas[i] = datas[i].strftime("%Y-%m-%d")
+                        else:
+                            datas[i] = types[i](datas[i])
+                    except ValueError:
+                        return f"El dato '{datas[i]}' ingresado en el campo "\
+                               f"**_{alias.split(',')[i].strip()}_** es invalido."
+                    if types[i] == str:
+                        if len(datas[i]) > 50:
+                            return f"El dato '{datas[i]}' ingresado en el campo "\
+                                   f"**_{alias.split(',')[i].strip()}_** no debe exceder "\
                                     "los 50 caracteres."
-                                if Helpers.checkTrueChar(datas[i][0]):
-                                    return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
+                        if Helpers.checkTrueChar(datas[i][0]):
+                            return f"El dato '{datas[i]}' ingresado en el campo "\
+                                   f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
                                     "con valores numericos ni caracteres especiales."
-                                try:
-                                    int(datas[i][0])
-                                    return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
+                        try:
+                            int(datas[i][0])
+                            return f"El dato '{datas[i]}' ingresado en el campo "\
+                                   f"**_{alias.split(',')[i].strip()}_** no debe comenzar "\
                                     "con valores numericos ni caracteres especiales."
-                                except ValueError:
-                                    pass
-                                if Helpers.checkChar(datas[i]):
-                                    return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"**_{alias.split(',')[i].strip()}_** no debe contener "\
+                        except ValueError:
+                            pass
+                        if Helpers.checkChar(datas[i]):
+                            return f"El dato '{datas[i]}' ingresado en el campo "\
+                                   f"**_{alias.split(',')[i].strip()}_** no debe contener "\
                                     "caracteres especiales a excepcion de **-** o **|**."
-                                if Helpers.checkRepeatChar(datas[i]):
-                                    return f"El dato '{datas[i]}' ingresado en el campo "\
-                                    f"**_{alias.split(',')[i].strip()}_** no debe repetir "\
+                        if Helpers.checkRepeatChar(datas[i]):
+                            return f"El dato '{datas[i]}' ingresado en el campo "\
+                                   f"**_{alias.split(',')[i].strip()}_** no debe repetir "\
                                     "mas de dos veces los caracteres **-** **|**, o mas de una vez "\
                                     "los caracteres **[** **]**."
-                        references = list(map(lambda x: x.strip(), references.split(',')))
-                        datas = dict(zip(references, datas))
-                        return datas
-                    else:
-                        return "Datos ingresados invalidos, "\
-                        "recuerda que debes ingresar:\n"\
-                        f"**[_{alias}_]**"
-                else:
-                    return "El comando debe mantener la forma:\n"\
-                    f"**{command} [_{alias}_]**"
+                references = list(map(lambda x: x.strip(), references.split(',')))
+                datas = dict(zip(references, datas))
+                return datas
             else:
-                return "El comando debe mantener la forma:\n"\
-                f"**{command} [_{alias}_]**"
+                return "Datos ingresados invalidos, "\
+                       "recuerda que debes ingresar:\n"\
+                      f"**[_{alias}_]**"
 
     @staticmethod
     def checkChar(strValue):

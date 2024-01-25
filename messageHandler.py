@@ -213,102 +213,82 @@ class MessageHandler:
                 else:
                     array.append(messages[i])
 
-    async def dFMsg(self, command, method, struct):
-        msg = self.__message.content
-        if msg.find(':') != -1 and command.find(':') != -1 and msg.startswith(f"${command}"):
-            if msg.find('&') != -1 and command.find('&') != -1 and msg.startswith(f"${command}"):
-                msgpos = msg.find('&') + 1
-                cmdpos = command.find('&') + 1
-                if msg.find('&', msgpos) != -1 and command.find('&', cmdpos) != -1 and msg.startswith(f"${command}"):
-                    msg = True
-                elif not msg.startswith(f"${command}&") and command.find('&', cmdpos) == -1 and msg.startswith(f"${command}"):
-                    msg = True
-                else:
-                    msg = False
-            elif not msg.startswith(f"${command}&") and command.find('&') == -1 and msg.startswith(f"${command}"):
-                msg = True
-            else:
-                msg = False
-        elif not msg.startswith(f"${command}:") and command.find(':') == -1 and msg.startswith(f"${command}"):
-            msg = True
-        else:
-            msg = False
-        if msg:
+    async def dFMsg(self, command, method, struct):            
+        if Helpers.checkCommand(self.__message.content, command):
             content = self.__message.content.replace(f'${command}', '').strip()
-            request = f"${command} {content}"
-            result = method(request, struct)
-            if isinstance(result, list):
-                if request.find('>') != -1:
-                    excelreq = content.lower()
-                    excelreq = excelreq[excelreq.rfind(']')+1:]
-                    excelreq = excelreq[:excelreq.find('e')+2].replace(' ','')
-                    if excelreq == ">e":
-                        strContent = content[content.find('[')+1:content.find(']')].split(",")
-                        strContent = "_".join(data.strip() for data in strContent)
-                        if command.find(':') != -1:
-                            fileName = f"{command.split(':')[0]}{command.split(':')[1].capitalize()}{strContent}"
-                        else:
-                            fileName = f"{command}{strContent}"
-                        df = DataFrame(fileName, result)
-                        if df.getSuccess():
-                            discordFile = discord.File(df.getDirectory())
-                            await self.__message.channel.send(f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
-                                                              f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**")
-                            await self.__message.channel.send(file=discordFile)
-                            if not df.deleteFrame():
-                                await self.__message.channel.send("Error al intentar eliminar el excel, "\
-                                                                  "por favor consulte con el administrador.")
-                        else:
-                            await self.__message.channel.send("Error al intentar crear el excel, "\
+            request = Helpers.checkContent(command, content, struct["targets"])
+            if isinstance(request, list):
+                result = method(request, struct)
+                if isinstance(result, list):
+                    if content.find('>') != -1:
+                        excelreq = content.lower()
+                        excelreq = excelreq[excelreq.rfind(']')+1:]
+                        excelreq = excelreq[:excelreq.find('e')+2].replace(' ','')
+                        if excelreq == ">e":
+                            strContent = content[content.find('[')+1:content.find(']')].split(",")
+                            strContent = "_".join(data.strip() for data in strContent)
+                            if command.find(':') != -1:
+                                fileName = f"{command.split(':')[0]}{command.split(':')[1].capitalize()}{strContent}"
+                            else:
+                                fileName = f"{command}{strContent}"
+                            df = DataFrame(fileName, result)
+                            if df.getSuccess():
+                                discordFile = discord.File(df.getDirectory())
+                                await self.__message.channel.send(f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
+                                                                  f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**")
+                                await self.__message.channel.send(file=discordFile)
+                                if not df.deleteFrame():
+                                    await self.__message.channel.send("Error al intentar eliminar el excel, "\
+                                                                      "por favor consulte con el administrador.")
+                            else:
+                                await self.__message.channel.send("Error al intentar crear el excel, "\
                                                               "por favor consulte con el administrador.")
-                    else:
-                        parameters = f"**[**{content[content.find('[')+1:content.rfind(']')]}**]** "
-                        await self.__message.channel.send("Se ha detectado el uso del operador **>** despues del comando "\
-                                                          "inicial, si desea obtener los datos en un archivo de excel, "\
-                                                          "debe completar el comando ingresadolo de la siguiente forma:\n"\
-                                                         f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
-                else:
-                    array = []
-                    title = f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
-                            f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**"
-                    length = len(title)
-                    array.append(title)
-                    for i in range(len(result)):
-                        tempdict = f"* {', '.join([f'**_{key}_** : _{value}_' for key, value in result[i].items()])}"
-                        length = length + len(tempdict) + 1
-                        if length >= 2000:
-                            await self.__message.channel.send('\n'.join(array))
-                            array = []
-                            length = len(tempdict) + 1
-                            array.append(tempdict)
-                            if i == len(result) - 1:
-                                await self.__message.channel.send('\n'.join(array))
-                        elif i == len(result) - 1:
-                            array.append(tempdict)
-                            await self.__message.channel.send('\n'.join(array))
                         else:
-                            array.append(tempdict)
-
-            elif isinstance(result, str):
-                await self.__message.channel.send(result)
+                            parameters = f"**[**{content[content.find('[')+1:content.rfind(']')]}**]** "
+                            await self.__message.channel.send("Se ha detectado el uso del operador **>** despues del comando "\
+                                                              "inicial, si desea obtener los datos en un archivo de excel, "\
+                                                              "debe completar el comando ingresadolo de la siguiente forma:\n"\
+                                                             f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
+                    else:
+                        array = []
+                        title = f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
+                                f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**"
+                        length = len(title)
+                        array.append(title)
+                        for i in range(len(result)):
+                            tempdict = f"* {', '.join([f'**_{key}_** : _{value}_' for key, value in result[i].items()])}"
+                            length = length + len(tempdict) + 1
+                            if length >= 2000:
+                                await self.__message.channel.send('\n'.join(array))
+                                array = []
+                                length = len(tempdict) + 1
+                                array.append(tempdict)
+                                if i == len(result) - 1:
+                                    await self.__message.channel.send('\n'.join(array))
+                            elif i == len(result) - 1:
+                                array.append(tempdict)
+                                await self.__message.channel.send('\n'.join(array))
+                            else:
+                                array.append(tempdict)
+                elif isinstance(result, str):
+                    await self.__message.channel.send(result)
+                else:
+                    await self.__message.channel.send("Error en la base de datos, "\
+                                                      "por favor consulte con el administrador.")
             else:
-                await self.__message.channel.send("Error en la base de datos, "\
-                                                  "por favor consulte con el administrador.")
+                await self.__message.channel.send(request)
+            
 
     async def contMsg(self, command, method, struct):
-        msg = self.__message.content
-        if msg.find(':') != -1 and command.find(':') != -1 and msg.startswith(f"${command}"):
-            msg = True
-        elif not msg.startswith(f"${command}:") and command.find(':') == -1 and msg.startswith(f"${command}"):
-            msg = True
+        if Helpers.checkCommand(self.__message.content, command):
+            content = self.__message.content.replace(f'${command}', '').strip()
+            request = Helpers.checkContent(command, content, struct["targets"])
+            if isinstance(request, list):
+                result = method(request, struct)
+                if result:
+                    await self.__message.channel.send(result)
+                else:
+                    await self.__message.channel.send("Error en la base de datos, "\
+                                                      "por favor consulte con el administrador.")
         else:
-            msg = False
-        if msg:
-            request = self.__message.content.replace(f'${command}', '').strip()
-            request = f"${command} {request}"
-            result = method(request, struct)
-            if result:
-                await self.__message.channel.send(result)
-            else:
-                await self.__message.channel.send("Error en la base de datos, "\
-                                                  "por favor consulte con el administrador.")
+                await self.__message.channel.send(request)
