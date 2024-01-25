@@ -290,5 +290,5 @@ class MessageHandler:
                 else:
                     await self.__message.channel.send("Error en la base de datos, "\
                                                       "por favor consulte con el administrador.")
-        else:
+            else:
                 await self.__message.channel.send(request)
