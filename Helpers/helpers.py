@@ -29,7 +29,7 @@ class Helpers:
             if content.find('[') == 0 and content.rfind(']') != -1:
                 request = content.replace('[', '', 1)
                 request = request[: request.rfind(']')]
-                request = content.split(',')
+                request = request.split(',')
                 return request
             else:
                 return "El comando debe mantener la forma:\n"\
