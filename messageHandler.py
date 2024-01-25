@@ -17,6 +17,10 @@ class MessageHandler:
         if self.__message.author == self.__client.user:
             return
 
+    async def sendText(self):
+        if self.__message.content.startswith("$command"):
+            await self.__send(message = "hola mundo")
+
     async def helpMsg(self):
         msg = self.__message.content
         messages = []
