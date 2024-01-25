@@ -8,9 +8,10 @@ sys.path.insert(1, f'{dir}/Helpers')
 from helpers import Helpers
 
 class MessageHandler:
-    def __init__(self, message, client):
+    def __init__(self, message, client, test = False):
         self.__message = message
         self.__client = client
+        self.__send = self.defaultFunction if not test else self.testFunction
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
@@ -144,9 +145,9 @@ class MessageHandler:
             messages.append(f"{Helpers.genMsg('listRange:id [ID] > e', 'rango')}")
             messages.append(f"{Helpers.genMsg('listRange:name [Nombre] > e', 'rango')}")
         elif msg.startswith("$help:diagram"):
-            await self.__message.channel.send(f"**___Diagrama de la estructura de los datos:___**")
+            await self.__send(message = f"**___Diagrama de la estructura de los datos:___**")
             discordFile = discord.File(f"{dir}/SQL/db_diagram.png")
-            await self.__message.channel.send(file = discordFile)
+            await self.__send(file = discordFile)
         elif msg.startswith("$help"):
             messages.append("**___Guia de usuario de Avalon-bot___**\n")
             messages.append("\n")
@@ -201,15 +202,15 @@ class MessageHandler:
             for i in range(len(messages)):
                 length = length + len(messages[i])
                 if length >= 2000:
-                    await self.__message.channel.send(''.join(array))
+                    await self.__send(message = ''.join(array))
                     array = []
                     length = len(messages[i])
                     array.append(messages[i])
                     if i == len(messages) - 1:
-                        await self.__message.channel.send(''.join(array))
+                        await self.__send(message = ''.join(array))
                 elif i == len(messages) - 1:
                     array.append(messages[i])
-                    await self.__message.channel.send(''.join(array))
+                    await self.__send(message = ''.join(array))
                 else:
                     array.append(messages[i])
 
@@ -234,21 +235,21 @@ class MessageHandler:
                             df = DataFrame(fileName, result)
                             if df.getSuccess():
                                 discordFile = discord.File(df.getDirectory())
-                                await self.__message.channel.send(f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
-                                                                  f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**")
-                                await self.__message.channel.send(file=discordFile)
+                                await self.__send(message = f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
+                                                            f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**")
+                                await self.__send(file = discordFile)
                                 if not df.deleteFrame():
-                                    await self.__message.channel.send("Error al intentar eliminar el excel, "\
-                                                                      "por favor consulte con el administrador.")
+                                    await self.__send(message = "Error al intentar eliminar el excel, "\
+                                                                "por favor consulte con el administrador.")
                             else:
-                                await self.__message.channel.send("Error al intentar crear el excel, "\
-                                                              "por favor consulte con el administrador.")
+                                await self.__send(message = "Error al intentar crear el excel, "\
+                                                            "por favor consulte con el administrador.")
                         else:
                             parameters = f"**[**{content[content.find('[')+1:content.rfind(']')]}**]** "
-                            await self.__message.channel.send("Se ha detectado el uso del operador **>** despues del comando "\
-                                                              "inicial, si desea obtener los datos en un archivo de excel, "\
-                                                              "debe completar el comando ingresadolo de la siguiente forma:\n"\
-                                                             f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
+                            await self.__send(message = "Se ha detectado el uso del operador **>** despues del comando "\
+                                                        "inicial, si desea obtener los datos en un archivo de excel, "\
+                                                        "debe completar el comando ingresadolo de la siguiente forma:\n"\
+                                                        f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
                     else:
                         array = []
                         title = f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
@@ -259,24 +260,24 @@ class MessageHandler:
                             tempdict = f"* {', '.join([f'**_{key}_** : _{value}_' for key, value in result[i].items()])}"
                             length = length + len(tempdict) + 1
                             if length >= 2000:
-                                await self.__message.channel.send('\n'.join(array))
+                                await self.__send(message = '\n'.join(array))
                                 array = []
                                 length = len(tempdict) + 1
                                 array.append(tempdict)
                                 if i == len(result) - 1:
-                                    await self.__message.channel.send('\n'.join(array))
+                                    await self.__send(message = '\n'.join(array))
                             elif i == len(result) - 1:
                                 array.append(tempdict)
-                                await self.__message.channel.send('\n'.join(array))
+                                await self.__send(message = '\n'.join(array))
                             else:
                                 array.append(tempdict)
                 elif isinstance(result, str):
-                    await self.__message.channel.send(result)
+                    await self.__send(message = result)
                 else:
-                    await self.__message.channel.send("Error en la base de datos, "\
-                                                      "por favor consulte con el administrador.")
+                    await self.__send(message = "Error en la base de datos, "\
+                                                "por favor consulte con el administrador.")
             else:
-                await self.__message.channel.send(request)
+                await self.__send(message = request)
             
 
     async def contMsg(self, command, method, struct):
@@ -286,9 +287,21 @@ class MessageHandler:
             if isinstance(request, list):
                 result = method(request, struct)
                 if result:
-                    await self.__message.channel.send(result)
+                    await self.__send(message = result)
                 else:
-                    await self.__message.channel.send("Error en la base de datos, "\
-                                                      "por favor consulte con el administrador.")
+                    await self.__send(message = "Error en la base de datos, "\
+                                                "por favor consulte con el administrador.")
             else:
-                await self.__message.channel.send(request)
+                await self.__send(message = request)
+    
+    async def defaultFunction(self, message = None, file = None):
+        if message:
+            await self.__message.channel.send(message)
+        elif file:
+            await self.__message.channel.send(file=file)
+    
+    async def testFunction(self, message = None, file = None):
+        if message:
+            print(f"Enviando mensaje a Discord: {message}")
+        elif file:
+            print(f"Enviando archivo a Discord: {file}")
