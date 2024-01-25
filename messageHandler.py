@@ -262,7 +262,7 @@ class MessageHandler:
                             await self.__message.channel.send("Error al intentar crear el excel, "\
                                                               "por favor consulte con el administrador.")
                     else:
-                        parameters = f"**[**{content[content.find('[')+1:content.find(']')]}**]** "
+                        parameters = f"**[**{content[content.find('[')+1:content.rfind(']')]}**]** "
                         await self.__message.channel.send("Se ha detectado el uso del operador **>** despues del comando "\
                                                           "inicial, si desea obtener los datos en un archivo de excel, "\
                                                           "debe completar el comando ingresadolo de la siguiente forma:\n"\
