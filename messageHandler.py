@@ -1,6 +1,6 @@
 import os
 #dir = os.path.dirname(os.path.abspath(__file__))
-dir = '.'
+dir = os.getcwd()
 import discord
 from DF.dataframe import DataFrame
 from Helpers.helpers import Helpers
