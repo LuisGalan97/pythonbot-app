@@ -1,11 +1,5 @@
-import os
-dir = os.path.dirname(os.path.abspath(__file__))
-dir = os.path.dirname(dir)
-import sys
-sys.path.insert(1, f'{dir}/DB')
-from database import Database
-sys.path.insert(1, f'{dir}/Models')
-from rangoModel import RangoModel
+from DB.database import Database
+from Models.rangoModel import RangoModel
 
 class RangoService:
     def __init__(self, db : Database):
@@ -29,10 +23,8 @@ class RangoService:
                 rango = RangoModel(row[0], row[1], row[2], row[3])
                 rangos.append(rango)
             return rangos
-        elif data:
-            return True
         else:
-            return False
+            return data
 
     def insert(self, rango : RangoModel):
         self.__db.start_connection()
@@ -42,6 +34,8 @@ class RangoService:
         (rango.getName(),
         rango.getControl(),
         rango.getDescription(),))
+        if data:
+            data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 

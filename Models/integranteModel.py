@@ -1,4 +1,4 @@
-from rangoModel import RangoModel
+from .rangoModel import RangoModel
 
 class IntegranteModel:
     def __init__(self, id, name, rango : RangoModel, datecreate, dateupdate):

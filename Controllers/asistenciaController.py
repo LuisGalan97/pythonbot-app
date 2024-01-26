@@ -1,15 +1,8 @@
-import os
-dir = os.path.dirname(os.path.abspath(__file__))
-dir = os.path.dirname(dir)
-import sys
-sys.path.insert(1, f'{dir}/Models')
-from asistenciaModel import AsistenciaModel
-from eventoModel import EventoModel
-from integranteModel import IntegranteModel
-sys.path.insert(1, f'{dir}/Services')
-from asistenciaService import AsistenciaService
-sys.path.insert(1, f'{dir}/DB')
-from database import Database
+from DB.database import Database
+from Models.asistenciaModel import AsistenciaModel
+from Models.eventoModel import EventoModel
+from Models.integranteModel import IntegranteModel
+from Services.asistenciaService import AsistenciaService
 
 class AsistenciaController:
     def __init__(self, db : Database):
@@ -38,35 +31,24 @@ class AsistenciaController:
                         "date" : asistencia.getDate()
                     })
             return data
-        elif asistencias:
-            return True
         else:
-            return False
+            return asistencias
 
     def createAsistencia(self, integrante_id, evento_id, date):
         integrante = IntegranteModel(integrante_id, None, None, None, None)
         evento = EventoModel(evento_id, None, None, None)
         asistencia = AsistenciaModel(None, integrante, evento, date)
         result = self.__service.insert(asistencia)
-        if result:
-            return True
-        else:
-            return False
+        return result
 
     def updateAsistencia(self, id, integrante_id, evento_id, date):
         integrante = IntegranteModel(integrante_id, None, None, None, None)
         evento = EventoModel(evento_id, None, None, None)
         asistencia = AsistenciaModel(id, integrante, evento, date)
         result = self.__service.update(asistencia)
-        if result:
-            return True
-        else:
-            return False
+        return result
 
     def deleteAsistencia(self, id):
         asistencia = AsistenciaModel(id, None, None, None)
         result = self.__service.delete(asistencia)
-        if result:
-            return True
-        else:
-            return False
+        return result

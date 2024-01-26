@@ -1,15 +1,9 @@
-import os
-dir = os.path.dirname(os.path.abspath(__file__))
-import sys
-sys.path.insert(1, f'{dir}/DB')
-from database import Database
-sys.path.insert(1, f'{dir}/Controllers')
-from asistenciaController import AsistenciaController
-from eventoController import EventoController
-from integranteController import IntegranteController
-from rangoController import RangoController
-sys.path.insert(1, f'{dir}/Helpers')
-from helpers import Helpers
+from Controllers.asistenciaController import AsistenciaController
+from Controllers.eventoController import EventoController
+from Controllers.integranteController import IntegranteController
+from Controllers.rangoController import RangoController
+from DB.database import Database
+from Helpers.helpers import Helpers
 
 class AppHandler:
     def __init__(self):
@@ -68,7 +62,8 @@ class AppHandler:
                     method = f"create{nameCtrl.capitalize()}"
                     result = getattr(getattr(self, controller), method)(**target)
                 return (f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ ha sido "\
-                        f"cread{'a' if nameCtrl[0] == 'a' else 'o'} con exito." if result else False)
+                        f"cread{'a' if nameCtrl[0] == 'a' else 'o'} con exito sobre el **_ID_** '{result}'."\
+                        if result else False)
             else:
                 return target
         except Exception as ex:
@@ -95,7 +90,8 @@ class AppHandler:
                 else:
                     return False
                 return (f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ ha sido "\
-                        f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} con exito." if result else False)
+                        f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} con exito."\
+                        if result else False)
             else:
                 return target
         except Exception as ex:
@@ -123,7 +119,8 @@ class AppHandler:
                 else:
                     return False
                 return (f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ ha sido "\
-                        f"eliminad{'a' if nameCtrl[0] == 'a' else 'o'} con exito." if result else False)
+                        f"eliminad{'a' if nameCtrl[0] == 'a' else 'o'} con exito."\
+                        if result else False)
             else:
                 return target
         except Exception as ex:

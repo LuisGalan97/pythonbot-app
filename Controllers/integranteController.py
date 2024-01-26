@@ -1,14 +1,7 @@
-import os
-dir = os.path.dirname(os.path.abspath(__file__))
-dir = os.path.dirname(dir)
-import sys
-sys.path.insert(1, f'{dir}/Models')
-from integranteModel import IntegranteModel
-from rangoModel import RangoModel
-sys.path.insert(1, f'{dir}/Services')
-from integranteService import IntegranteService
-sys.path.insert(1, f'{dir}/DB')
-from database import Database
+from DB.database import Database
+from Models.integranteModel import IntegranteModel
+from Models.rangoModel import RangoModel
+from Services.integranteService import IntegranteService
 
 class IntegranteController:
     def __init__(self, db : Database):
@@ -31,33 +24,22 @@ class IntegranteController:
                         "dateupdate" : integrante.getDateUpdate()
                     })
             return data
-        elif integrantes:
-            return True
         else:
-            return False
+            return integrantes
 
     def createIntegrante(self, name, rango_id, date):
         rango = RangoModel(rango_id, None, None, None)
         integrante = IntegranteModel(None, name, rango, date, None)
         result = self.__service.insert(integrante)
-        if result:
-            return True
-        else:
-            return False
+        return result
 
     def updateIntegrante(self, id, name, rango_id, date):
         rango = RangoModel(rango_id, None, None, None)
         integrante = IntegranteModel(id, name, rango, None, date)
         result = self.__service.update(integrante)
-        if result:
-            return True
-        else:
-            return False
+        return result
 
     def deleteIntegrante(self, id):
         integrante = IntegranteModel(id, None, None, None, None)
         result = self.__service.delete(integrante)
-        if result:
-            return True
-        else:
-            return False
+        return result

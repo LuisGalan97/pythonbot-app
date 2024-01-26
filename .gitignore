@@ -6,3 +6,4 @@ DB/*
 !DB/database.py
 DF/*
 !DF/dataframe.py
+.coverage

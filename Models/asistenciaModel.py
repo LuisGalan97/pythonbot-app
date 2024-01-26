@@ -1,5 +1,5 @@
-from integranteModel import IntegranteModel
-from eventoModel import EventoModel
+from .integranteModel import IntegranteModel
+from .eventoModel import EventoModel
 
 class AsistenciaModel:
     def __init__(self, id, integrante : IntegranteModel, evento : EventoModel, date):

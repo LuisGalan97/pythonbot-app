@@ -1,12 +1,6 @@
-import os
-dir = os.path.dirname(os.path.abspath(__file__))
-dir = os.path.dirname(dir)
-import sys
-sys.path.insert(1, f'{dir}/DB')
-from database import Database
-sys.path.insert(1, f'{dir}/Models')
-from integranteModel import IntegranteModel
-from rangoModel import RangoModel
+from DB.database import Database
+from Models.integranteModel import IntegranteModel
+from Models.rangoModel import RangoModel
 
 class IntegranteService:
     def __init__(self, db : Database):
@@ -47,10 +41,8 @@ class IntegranteService:
                 integrante = IntegranteModel(row[4], row[5], rango, row[6], row[7])
                 integrantes.append(integrante)
             return integrantes
-        elif data:
-            return True
         else:
-            return False
+            return data
 
     def insert(self, integrante : IntegranteModel):
         self.__db.start_connection()
@@ -60,6 +52,8 @@ class IntegranteService:
         (integrante.getName(),
         integrante.getRango().getId(),
         integrante.getDateCreate(),))
+        if data:
+            data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 
