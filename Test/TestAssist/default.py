@@ -18,6 +18,7 @@ async def testAddAssist(capfd):
   await hdlr.inMsg()
   await hdlr.contMsg("addAssist", app.setData, Helpers.setStruct("asistencia"))
   out, _ = capfd.readouterr()
-  idTest = out[out.find("**_ID_** '"), :]
-  assert idTest in out
+  idTest = out[out.find("**_ID_** '"):]
+  idTest = idTest[idTest.find("'")+1:idTest.find("'.")]
+  assert f"**_ID_** '{idTest}'" in out
 
