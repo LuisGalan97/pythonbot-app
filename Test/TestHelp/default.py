@@ -7,7 +7,7 @@ Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
 
 @pytest.mark.asyncio
-async def testDefault(capfd):
+async def test_command(capfd):
   message = Message(author="test", content="$command")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
@@ -17,7 +17,7 @@ async def testDefault(capfd):
   assert "hola mundo" in out
 
 @pytest.mark.asyncio
-async def testHelp(capfd):
+async def test_help(capfd):
   message = Message(author="test", content="$help")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
@@ -28,17 +28,18 @@ async def testHelp(capfd):
   assert "$help:range" in out
 
 @pytest.mark.asyncio
-async def testHelpDiagram(capfd):
+async def test_helpDiagram(capfd):
   message = Message(author="test", content="$help:diagram")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
   await hdlr.helpMsg()
   out, _ = capfd.readouterr()
+  assert "Diagrama de la estructura de los datos" in out
   assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testHelpAssist(capfd):
+async def test_helpAssist(capfd):
   message = Message(author="test", content="$help:assist")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
@@ -49,7 +50,7 @@ async def testHelpAssist(capfd):
   assert "listAssist:member&event&date" in out
 
 @pytest.mark.asyncio
-async def testHelpEvent(capfd):
+async def test_helpEvent(capfd):
   message = Message(author="test", content="$help:event")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
@@ -60,7 +61,7 @@ async def testHelpEvent(capfd):
   assert "listEvent:name" in out
 
 @pytest.mark.asyncio
-async def testHelpMember(capfd):
+async def test_helpMember(capfd):
   message = Message(author="test", content="$help:member")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
@@ -71,7 +72,7 @@ async def testHelpMember(capfd):
   assert "listMember:date" in out
 
 @pytest.mark.asyncio
-async def testHelpRange(capfd):
+async def test_helpRange(capfd):
   message = Message(author="test", content="$help:range")
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
