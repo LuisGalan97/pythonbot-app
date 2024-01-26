@@ -22,6 +22,7 @@ async def testAddAssist(capfd):
   idTest = idTest[idTest.find("'")+1:idTest.find("'.")]
   assert f"**_ID_** '{idTest}'" in out
 
+@pytest.mark.asyncio
 async def testDelAssist(capfd):  
   message = Message(author="test", content=f"$delAssist:id [{idTest}]")
   client = Client(user="test")
