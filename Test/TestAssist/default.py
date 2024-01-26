@@ -8,6 +8,7 @@ from collections import namedtuple
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
 app = AppHandler()
+idTest = None
 
 @pytest.mark.asyncio
 async def testAddAssist(capfd):  
@@ -17,5 +18,6 @@ async def testAddAssist(capfd):
   await hdlr.inMsg()
   await hdlr.contMsg("addAssist", app.setData, Helpers.setStruct("asistencia"))
   out, _ = capfd.readouterr()
-  assert "La ___asistencia___ ha sido creada con exito" in out
+  idTest = out[out.find("**_ID_** '"), :]
+  assert idTest in out
 
