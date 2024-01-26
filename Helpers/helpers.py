@@ -21,7 +21,7 @@ class Helpers:
             return True
         else:
             return False
-    
+
     @staticmethod
     def checkContent(command, content, reftarget):
         if reftarget:
@@ -36,7 +36,7 @@ class Helpers:
                 f"**{command} [_{alias}_]**"
         else:
             return []
-    
+
     @staticmethod
     def setTarget(self, request, struct):
         target = {}
