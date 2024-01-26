@@ -4,13 +4,11 @@ import discord
 from DF.dataframe import DataFrame
 from Helpers.helpers import Helpers
 
-
 class MessageHandler:
     def __init__(self, message, client, test = False):
         self.__message = message
         self.__client = client
         self.__send = self.defaultFunction if not test else self.testFunction
-        print(dir)
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
@@ -217,7 +215,7 @@ class MessageHandler:
                 else:
                     array.append(messages[i])
 
-    async def dFMsg(self, command, method, struct):            
+    async def dFMsg(self, command, method, struct):
         if Helpers.checkCommand(self.__message.content, command):
             content = self.__message.content.replace(f'${command}', '').strip()
             request = Helpers.checkContent(command, content, struct["targets"])
@@ -281,7 +279,7 @@ class MessageHandler:
                                                 "por favor consulte con el administrador.")
             else:
                 await self.__send(message = request)
-            
+
 
     async def contMsg(self, command, method, struct):
         if Helpers.checkCommand(self.__message.content, command):
@@ -296,13 +294,13 @@ class MessageHandler:
                                                 "por favor consulte con el administrador.")
             else:
                 await self.__send(message = request)
-    
+
     async def defaultFunction(self, message = None, file = None):
         if message:
             await self.__message.channel.send(message)
         elif file:
             await self.__message.channel.send(file=file)
-    
+
     async def testFunction(self, message = None, file = None):
         if message:
             print(f"Enviando mensaje a Discord: {message}")
