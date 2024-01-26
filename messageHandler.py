@@ -1,6 +1,5 @@
 import os
-#dir = os.path.dirname(os.path.abspath(__file__))
-dir = os.getcwd()
+dir = os.path.dirname(os.path.abspath(__file__))
 import discord
 from DF.dataframe import DataFrame
 from Helpers.helpers import Helpers
@@ -11,6 +10,7 @@ class MessageHandler:
         self.__message = message
         self.__client = client
         self.__send = self.defaultFunction if not test else self.testFunction
+        print(dir)
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
