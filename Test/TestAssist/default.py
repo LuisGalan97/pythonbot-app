@@ -22,3 +22,13 @@ async def testAddAssist(capfd):
   idTest = idTest[idTest.find("'")+1:idTest.find("'.")]
   assert f"**_ID_** '{idTest}'" in out
 
+async def testDelAssist(capfd):  
+  message = Message(author="test", content=f"$delAssist:id [{idTest}]")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.inMsg()
+  await hdlr.contMsg("delAssist:id", app.deleteData, Helpers.delStruct("asistencia", "id"))
+  out, _ = capfd.readouterr()
+  assert "exito" in out
+
+
