@@ -1,5 +1,5 @@
-from messageHandler import MessageHandler
 import pytest
+from messageHandler import MessageHandler
 from io import StringIO
 from collections import namedtuple
 
