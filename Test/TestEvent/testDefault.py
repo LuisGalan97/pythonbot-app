@@ -25,7 +25,7 @@ async def test_addEvent(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("addEvent", app.setData, 
+  await hdlr.contMsg("addEvent", app.setData,
                      Helpers.setStruct("evento"))
   out, _ = capfd.readouterr()
   idTest = out[out.find("**_ID_** '"):]
@@ -39,14 +39,14 @@ async def test_listEventId_add(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:id", app.getDatas, 
+  await hdlr.dFMsg("listEvent:id", app.getDatas,
                    Helpers.getStruct("evento", ["id"]))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
   assert f"{testData['namecreate']}" in out
   assert f"{testData['pointcreate']}" in out
-  assert f"{testData['descreate'].replace('-','/')}" in out
+  assert f"{testData['descreate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEventName_add(capfd):
@@ -54,14 +54,14 @@ async def test_listEventName_add(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:name", app.getDatas, 
+  await hdlr.dFMsg("listEvent:name", app.getDatas,
                    Helpers.getStruct("evento", ["name"]))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
   assert f"{testData['namecreate']}" in out
   assert f"{testData['pointcreate']}" in out
-  assert f"{testData['descreate'].replace('-','/')}" in out
+  assert f"{testData['descreate']}" in out
 
 @pytest.mark.asyncio
 async def test_updEventId(capfd):
@@ -70,7 +70,7 @@ async def test_updEventId(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("updEvent:id", app.updateData, 
+  await hdlr.contMsg("updEvent:id", app.updateData,
                      Helpers.updStruct("evento", "id"))
   out, _ = capfd.readouterr()
   assert "El ___evento___ ha sido actualizado con exito." in out
@@ -82,7 +82,7 @@ async def test_updEventName(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("updEvent:name", app.updateData, 
+  await hdlr.contMsg("updEvent:name", app.updateData,
                      Helpers.updStruct("evento", "name"))
   out, _ = capfd.readouterr()
   assert "El ___evento___ ha sido actualizado con exito." in out
@@ -93,14 +93,14 @@ async def test_listEvent(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent", app.getDatas, 
+  await hdlr.dFMsg("listEvent", app.getDatas,
                    Helpers.getStruct("evento"))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
   assert f"{testData['nameupdate']}" in out
   assert f"{testData['pointupdate']}" in out
-  assert f"{testData['desupdate'].replace('-','/')}" in out
+  assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEventId(capfd):
@@ -108,14 +108,14 @@ async def test_listEventId(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:id", app.getDatas, 
+  await hdlr.dFMsg("listEvent:id", app.getDatas,
                    Helpers.getStruct("evento", ["id"]))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
   assert f"{testData['nameupdate']}" in out
   assert f"{testData['pointupdate']}" in out
-  assert f"{testData['desupdate'].replace('-','/')}" in out
+  assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEventName(capfd):
@@ -123,14 +123,14 @@ async def test_listEventName(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:name", app.getDatas, 
+  await hdlr.dFMsg("listEvent:name", app.getDatas,
                    Helpers.getStruct("evento", ["name"]))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
   assert f"{testData['nameupdate']}" in out
   assert f"{testData['pointupdate']}" in out
-  assert f"{testData['desupdate'].replace('-','/')}" in out
+  assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEvent_e(capfd):
@@ -138,7 +138,7 @@ async def test_listEvent_e(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent", app.getDatas, 
+  await hdlr.dFMsg("listEvent", app.getDatas,
                    Helpers.getStruct("evento"))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
@@ -150,7 +150,7 @@ async def test_listEventId_e(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:id", app.getDatas, 
+  await hdlr.dFMsg("listEvent:id", app.getDatas,
                    Helpers.getStruct("evento", ["id"]))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
@@ -162,7 +162,7 @@ async def test_listEventName_e(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:name", app.getDatas, 
+  await hdlr.dFMsg("listEvent:name", app.getDatas,
                    Helpers.getStruct("evento", ["name"]))
   out, _ = capfd.readouterr()
   assert "**___Eventos___** **___encontrados:___**" in out
@@ -174,7 +174,7 @@ async def test_delEventId(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("delEvent:id", app.deleteData, 
+  await hdlr.contMsg("delEvent:id", app.deleteData,
                      Helpers.delStruct("evento", "id"))
   out, _ = capfd.readouterr()
   assert "El ___evento___ ha sido eliminado con exito." in out
@@ -186,7 +186,7 @@ async def test_addEvent_DelName(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("addEvent", app.setData, 
+  await hdlr.contMsg("addEvent", app.setData,
                      Helpers.setStruct("evento"))
   out, _ = capfd.readouterr()
   idTest = out[out.find("**_ID_** '"):]
@@ -200,7 +200,7 @@ async def test_delEventName(capfd):
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("delEvent:name", app.deleteData, 
+  await hdlr.contMsg("delEvent:name", app.deleteData,
                      Helpers.delStruct("evento", "name"))
   out, _ = capfd.readouterr()
   assert "El ___evento___ ha sido eliminado con exito." in out

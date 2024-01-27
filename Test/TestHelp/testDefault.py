@@ -1,6 +1,5 @@
 import pytest
 from messageHandler import MessageHandler
-from io import StringIO
 from collections import namedtuple
 
 Message = namedtuple('Message', ['author', 'content'])
