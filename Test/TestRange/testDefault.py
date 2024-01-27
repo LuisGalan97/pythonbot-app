@@ -196,7 +196,7 @@ async def test_addRange_DelName(capfd):
 
 @pytest.mark.asyncio
 async def test_delRangeName(capfd):
-  command = f"$delRanges:name [{testData['namecreate']}]"
+  command = f"$delRange:name [{testData['namecreate']}]"
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
