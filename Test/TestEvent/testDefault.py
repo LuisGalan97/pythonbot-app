@@ -65,108 +65,156 @@ async def test_listEventName_add(capfd):
 
 @pytest.mark.asyncio
 async def test_updEventId(capfd):
-  command = f"$updEvent:id [{testData['id']}, {testData['nameupdate']}, "\
-            f"{testData['pointupdate']}, {testData['descreate']}]"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("updEvent:id", app.updateData,
-                     Helpers.updStruct("evento", "id"))
-  out, _ = capfd.readouterr()
-  assert "El ___evento___ ha sido actualizado con exito." in out
+  commands = [f"$updEvent:id[{testData['id']},{testData['nameupdate']},"\
+              f"{testData['pointupdate']},{testData['descreate']}]",
+              f"$updEvent:id [{testData['id']}, {testData['nameupdate']}, "\
+              f"{testData['pointupdate']}, {testData['descreate']}]",
+              f"$updEvent:id [ {testData['id']} , {testData['nameupdate']} , "\
+              f"{testData['pointupdate']} , {testData['descreate']} ] ",
+              f"$updEvent:id [ {testData['id']} , {testData['nameupdate']} , "\
+              f"{testData['pointupdate']} , {testData['descreate']} ]FILL",
+              f"$updEvent:id [ {testData['id']} , {testData['nameupdate']} , "\
+              f"{testData['pointupdate']} , {testData['descreate']} ] FILL "]
+  for command in commands:
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("updEvent:id", app.updateData,
+                       Helpers.updStruct("evento", "id"))
+    out, _ = capfd.readouterr()
+    assert "El ___evento___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
 async def test_updEventName(capfd):
-  command = f"$updEvent:name [{testData['nameupdate']}, "\
-            f"{testData['pointupdate']}, {testData['desupdate']}]"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.contMsg("updEvent:name", app.updateData,
-                     Helpers.updStruct("evento", "name"))
-  out, _ = capfd.readouterr()
-  assert "El ___evento___ ha sido actualizado con exito." in out
+  commands = [f"$updEvent:name[{testData['nameupdate']},"\
+              f"{testData['pointupdate']},{testData['desupdate']}]",
+              f"$updEvent:name [{testData['nameupdate']}, "\
+              f"{testData['pointupdate']}, {testData['desupdate']}]",
+              f"$updEvent:name [ {testData['nameupdate']} , "\
+              f"{testData['pointupdate']} , {testData['desupdate']} ] ",
+              f"$updEvent:name [ {testData['nameupdate']} , "\
+              f"{testData['pointupdate']} , {testData['desupdate']} ]FILL",
+              f"$updEvent:name [ {testData['nameupdate']} , "\
+              f"{testData['pointupdate']} , {testData['desupdate']} ] FILL "]
+  for command in commands:
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("updEvent:name", app.updateData,
+                       Helpers.updStruct("evento", "name"))
+    out, _ = capfd.readouterr()
+    assert "El ___evento___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
 async def test_listEvent(capfd):
-  command = "$listEvent"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent", app.getDatas,
-                   Helpers.getStruct("evento"))
-  out, _ = capfd.readouterr()
-  assert "**___Eventos___** **___encontrados:___**" in out
-  assert f"{testData['id']}" in out
-  assert f"{testData['nameupdate']}" in out
-  assert f"{testData['pointupdate']}" in out
-  assert f"{testData['desupdate']}" in out
+  commands = [f"$listEvent", 
+              f"$listEvent ",
+              f"$listEventFILL",
+              f"$listEvent FILL"]
+  for command in commands:
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.dFMsg("listEvent", app.getDatas,
+                     Helpers.getStruct("evento"))
+    out, _ = capfd.readouterr()
+    assert "**___Eventos___** **___encontrados:___**" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['pointupdate']}" in out
+    assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEventId(capfd):
-  command = f"$listEvent:id [{testData['id']}]"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:id", app.getDatas,
-                   Helpers.getStruct("evento", ["id"]))
-  out, _ = capfd.readouterr()
-  assert "**___Eventos___** **___encontrados:___**" in out
-  assert f"{testData['id']}" in out
-  assert f"{testData['nameupdate']}" in out
-  assert f"{testData['pointupdate']}" in out
-  assert f"{testData['desupdate']}" in out
+  commands = [f"$listEvent:id[{testData['id']}]", 
+              f"$listEvent:id [{testData['id']}]",
+              f"$listEvent:id [ {testData['id']} ] ",
+              f"$listEvent:id [ {testData['id']} ]FILL",
+              f"$listEvent:id [ {testData['id']} ] FILL"]
+  for command in commands:
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.dFMsg("listEvent:id", app.getDatas,
+                     Helpers.getStruct("evento", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Eventos___** **___encontrados:___**" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['pointupdate']}" in out
+    assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEventName(capfd):
-  command = f"$listEvent:name [{testData['nameupdate']}]"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:name", app.getDatas,
-                   Helpers.getStruct("evento", ["name"]))
-  out, _ = capfd.readouterr()
-  assert "**___Eventos___** **___encontrados:___**" in out
-  assert f"{testData['id']}" in out
-  assert f"{testData['nameupdate']}" in out
-  assert f"{testData['pointupdate']}" in out
-  assert f"{testData['desupdate']}" in out
+  commands = [f"$listEvent:name[{testData['nameupdate']}]", 
+              f"$listEvent:name [{testData['nameupdate']}]",
+              f"$listEvent:name [ {testData['nameupdate']} ] ",
+              f"$listEvent:name [ {testData['nameupdate']} ]FILL",
+              f"$listEvent:name [ {testData['nameupdate']} ] FILL"]
+  for command in commands:
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.dFMsg("listEvent:name", app.getDatas,
+                     Helpers.getStruct("evento", ["name"]))
+    out, _ = capfd.readouterr()
+    assert "**___Eventos___** **___encontrados:___**" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['pointupdate']}" in out
+    assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
 async def test_listEvent_e(capfd):
-  command = "$listEvent > e"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent", app.getDatas,
-                   Helpers.getStruct("evento"))
-  out, _ = capfd.readouterr()
-  assert "**___Eventos___** **___encontrados:___**" in out
-  assert "discord.file.File object" in out
+  commands = [f"$listEvent"]
+  eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+                ">E", " >E", " > E", " > E ", " > E FILL"]
+  for command in commands:
+    for eparam in eparams:
+      message = Message(author="test", content=f"{command}{eparam}")
+      client = Client(user="test")
+      hdlr = MessageHandler(message, client, True)
+      await hdlr.dFMsg("listEvent", app.getDatas,
+                       Helpers.getStruct("evento"))
+      out, _ = capfd.readouterr()
+      assert "**___Eventos___** **___encontrados:___**" in out
+      assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listEventId_e(capfd):
-  command = f"$listEvent:id [{testData['id']}] > e"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:id", app.getDatas,
-                   Helpers.getStruct("evento", ["id"]))
-  out, _ = capfd.readouterr()
-  assert "**___Eventos___** **___encontrados:___**" in out
-  assert "discord.file.File object" in out
+  commands = [f"$listEvent:id[{testData['id']}]", 
+              f"$listEvent:id [{testData['id']}]",
+              f"$listEvent:id [ {testData['id']} ]"]
+  eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+                ">E", " >E", " > E", " > E ", " > E FILL"]
+  for command in commands:
+    for eparam in eparams:
+      message = Message(author="test", content=f"{command}{eparam}")
+      client = Client(user="test")
+      hdlr = MessageHandler(message, client, True)
+      await hdlr.dFMsg("listEvent:id", app.getDatas,
+                       Helpers.getStruct("evento", ["id"]))
+      out, _ = capfd.readouterr()
+      assert "**___Eventos___** **___encontrados:___**" in out
+      assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listEventName_e(capfd):
-  command = f"$listEvent:name [{testData['nameupdate']}] > e"
-  message = Message(author="test", content=command)
-  client = Client(user="test")
-  hdlr = MessageHandler(message, client, True)
-  await hdlr.dFMsg("listEvent:name", app.getDatas,
-                   Helpers.getStruct("evento", ["name"]))
-  out, _ = capfd.readouterr()
-  assert "**___Eventos___** **___encontrados:___**" in out
-  assert "discord.file.File object" in out
+  commands = [f"$listEvent:name[{testData['nameupdate']}]", 
+              f"$listEvent:name [{testData['nameupdate']}]",
+              f"$listEvent:name [ {testData['nameupdate']} ]"]
+  eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+                ">E", " >E", " > E", " > E ", " > E FILL"]
+  for command in commands:
+    for eparam in eparams:
+      message = Message(author="test", content=f"{command}{eparam}")
+      client = Client(user="test")
+      hdlr = MessageHandler(message, client, True)
+      await hdlr.dFMsg("listEvent:name", app.getDatas,
+                       Helpers.getStruct("evento", ["name"]))
+      out, _ = capfd.readouterr()
+      assert "**___Eventos___** **___encontrados:___**" in out
+      assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_delEventId(capfd):
