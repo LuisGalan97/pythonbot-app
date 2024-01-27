@@ -73,7 +73,7 @@ async def test_updEventId(capfd):
   await hdlr.contMsg("updEvent:id", app.updateData, 
                      Helpers.updStruct("evento", "id"))
   out, _ = capfd.readouterr()
-  assert "El ___evento___ ha sido actualizado con exito" in out
+  assert "El ___evento___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
 async def test_updEventName(capfd):
@@ -85,7 +85,7 @@ async def test_updEventName(capfd):
   await hdlr.contMsg("updEvent:name", app.updateData, 
                      Helpers.updStruct("evento", "name"))
   out, _ = capfd.readouterr()
-  assert "El ___evento___ ha sido actualizado con exito" in out
+  assert "El ___evento___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
 async def test_listEvent(capfd):
@@ -177,7 +177,7 @@ async def test_delEventId(capfd):
   await hdlr.contMsg("delEvent:id", app.deleteData, 
                      Helpers.delStruct("evento", "id"))
   out, _ = capfd.readouterr()
-  assert "El ___evento___ ha sido eliminado con exito" in out
+  assert "El ___evento___ ha sido eliminado con exito." in out
 
 @pytest.mark.asyncio
 async def test_addEvent_DelName(capfd):
@@ -196,11 +196,11 @@ async def test_addEvent_DelName(capfd):
 
 @pytest.mark.asyncio
 async def test_delEventName(capfd):
-  command = f"$delEvent:Name [{testData['namecreate']}]"
+  command = f"$delEvent:name [{testData['namecreate']}]"
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.contMsg("delEvent:name", app.deleteData, 
                      Helpers.delStruct("evento", "name"))
   out, _ = capfd.readouterr()
-  assert "El ___evento___ ha sido eliminado con exito" in out
+  assert "El ___evento___ ha sido eliminado con exito." in out

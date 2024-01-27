@@ -58,7 +58,7 @@ async def test_updAssistId(capfd):
   await hdlr.contMsg("updAssist:id", app.updateData,
                      Helpers.updStruct("asistencia", "id"))
   out, _ = capfd.readouterr()
-  assert "La ___asistencia___ ha sido actualizada con exito" in out
+  assert "La ___asistencia___ ha sido actualizada con exito." in out
 
 @pytest.mark.asyncio
 async def test_listAssist(capfd):
@@ -318,4 +318,4 @@ async def test_delAssistId(capfd):
   await hdlr.contMsg("delAssist:id", app.deleteData,
                      Helpers.delStruct("asistencia", "id"))
   out, _ = capfd.readouterr()
-  assert "La ___asistencia___ ha sido eliminada con exito" in out
+  assert "La ___asistencia___ ha sido eliminada con exito." in out
