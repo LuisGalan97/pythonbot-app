@@ -6,8 +6,8 @@ from collections import namedtuple
 
 testData = {
   "id" : "",
-  "namecreate" : "TestRange",
-  "nameupdate" : "TestRangeUpd",
+  "namecreate" : "TestRangeCreated",
+  "nameupdate" : "TestRangeUpdated",
   "controlcreate" : 2,
   "controlupdate" : 3,
   "descreate" : "Descripción creada",

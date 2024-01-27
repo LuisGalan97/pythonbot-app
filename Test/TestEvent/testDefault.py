@@ -6,8 +6,8 @@ from collections import namedtuple
 
 testData = {
   "id" : "",
-  "namecreate" : "TestEvent",
-  "nameupdate" : "TestEventUpd",
+  "namecreate" : "TestEventCreated",
+  "nameupdate" : "TestEventUpdated",
   "pointcreate" : 5,
   "pointupdate" : 8,
   "descreate" : "Descripción creada",

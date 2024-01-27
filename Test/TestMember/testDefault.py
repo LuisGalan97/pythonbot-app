@@ -6,12 +6,12 @@ from collections import namedtuple
 
 testData = {
   "id" : "",
-  "namecreate" : "TestMember",
-  "nameupdate" : "TestMemberUpd",
+  "namecreate" : "TestMemberCreated",
+  "nameupdate" : "TestMemberUpdated",
   "rancreate" : "General de alianza",
   "ranupdate" : "General",
-  "datecreate" : "25-01-2020",
-  "dateupdate" : "26-01-2021"
+  "datecreate" : "25-01-2100",
+  "dateupdate" : "26-01-2100"
 }
 
 Message = namedtuple('Message', ['author', 'content'])
@@ -100,8 +100,8 @@ async def test_listMember(capfd):
   out, _ = capfd.readouterr()
   assert "**___Integrantes___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
-  assert f"{testData['namecreate']}" in out
-  assert f"{testData['rancreate']}" in out
+  assert f"{testData['nameupdate']}" in out
+  assert f"{testData['ranupdate']}" in out
   assert f"{testData['datecreate'].replace('-','/')}" in out
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
@@ -116,8 +116,8 @@ async def test_listMemberId(capfd):
   out, _ = capfd.readouterr()
   assert "**___Integrantes___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
-  assert f"{testData['namecreate']}" in out
-  assert f"{testData['rancreate']}" in out
+  assert f"{testData['nameupdate']}" in out
+  assert f"{testData['ranupdate']}" in out
   assert f"{testData['datecreate'].replace('-','/')}" in out
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
@@ -132,8 +132,8 @@ async def test_listMemberName(capfd):
   out, _ = capfd.readouterr()
   assert "**___Integrantes___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
-  assert f"{testData['namecreate']}" in out
-  assert f"{testData['rancreate']}" in out
+  assert f"{testData['nameupdate']}" in out
+  assert f"{testData['ranupdate']}" in out
   assert f"{testData['datecreate'].replace('-','/')}" in out
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
@@ -148,8 +148,8 @@ async def test_listMemberRange(capfd):
   out, _ = capfd.readouterr()
   assert "**___Integrantes___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
-  assert f"{testData['namecreate']}" in out
-  assert f"{testData['rancreate']}" in out
+  assert f"{testData['nameupdate']}" in out
+  assert f"{testData['ranupdate']}" in out
   assert f"{testData['datecreate'].replace('-','/')}" in out
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
@@ -165,8 +165,8 @@ async def test_listMemberDate(capfd):
   out, _ = capfd.readouterr()
   assert "**___Integrantes___** **___encontrados:___**" in out
   assert f"{testData['id']}" in out
-  assert f"{testData['namecreate']}" in out
-  assert f"{testData['rancreate']}" in out
+  assert f"{testData['nameupdate']}" in out
+  assert f"{testData['ranupdate']}" in out
   assert f"{testData['datecreate'].replace('-','/')}" in out
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
