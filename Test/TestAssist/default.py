@@ -133,6 +133,70 @@ async def test_listAssistDate(capfd):
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
+async def test_listAssistMemberEvent(capfd):  
+  message = Message(author="test", content=f"$listAssist:member&event "\
+                    f"[{testData['memupdate']}, {testData['evupdate']}]")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:member&event", app.getDatas, 
+                   Helpers.getStruct("asistencia", ["integrante", "evento"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert f"{testData['id']}" in out
+  assert f"{testData['memupdate']}" in out
+  assert f"{testData['evupdate']}" in out
+  assert f"{testData['dateupdate'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberDate(capfd):  
+  message = Message(author="test", content=f"$listAssist:member&date "\
+                    f"[{testData['memupdate']}, {testData['dateupdate']}, "\
+                    f"{testData['dateupdate']}]")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:member&date", app.getDatas, 
+                   Helpers.getStruct("asistencia", ["integrante", "date_1", "date_2"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert f"{testData['id']}" in out
+  assert f"{testData['memupdate']}" in out
+  assert f"{testData['evupdate']}" in out
+  assert f"{testData['dateupdate'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEventDate(capfd):  
+  message = Message(author="test", content=f"$listAssist:event&date "\
+                    f"[{testData['evupdate']}, {testData['dateupdate']}, "\
+                    f"{testData['dateupdate']}]")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:event&date", app.getDatas, 
+                    Helpers.getStruct("asistencia", ["evento", "date_1", "date_2"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert f"{testData['id']}" in out
+  assert f"{testData['memupdate']}" in out
+  assert f"{testData['evupdate']}" in out
+  assert f"{testData['dateupdate'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEventMemberDate(capfd):  
+  message = Message(author="test", content=f"$listAssist:member&event&date "\
+                    f"[{testData['memupdate']}, {testData['evupdate']}, "\
+                    f"{testData['dateupdate']}, {testData['dateupdate']}]")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:member&event&date", 
+                    app.getDatas, Helpers.getStruct("asistencia", 
+                    ["integrante", "evento", "date_1", "date_2"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert f"{testData['id']}" in out
+  assert f"{testData['memupdate']}" in out
+  assert f"{testData['evupdate']}" in out
+  assert f"{testData['dateupdate'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
 async def test_listAssist_e(capfd):  
   message = Message(author="test", content="$listAssist > e")
   client = Client(user="test")
@@ -175,6 +239,58 @@ async def test_listAssistEvent_e(capfd):
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:event", app.getDatas, 
                     Helpers.getStruct("asistencia", ["evento"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistDate_e(capfd):  
+  message = Message(author="test", content=f"$listAssist:date "\
+                    f"[{testData['dateupdate']}, {testData['dateupdate']}] > e")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:date", app.getDatas, 
+                   Helpers.getStruct("asistencia", ["date_1", "date_2"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberDate_e(capfd):  
+  message = Message(author="test", content=f"$listAssist:member&date "\
+                    f"[{testData['memupdate']}, {testData['dateupdate']}, "\
+                    f"{testData['dateupdate']}] > e")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:member&date", app.getDatas, 
+                   Helpers.getStruct("asistencia", ["integrante", "date_1", "date_2"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEventDate_e(capfd):  
+  message = Message(author="test", content=f"$listAssist:event&date "\
+                    f"[{testData['evupdate']}, {testData['dateupdate']}, "\
+                    f"{testData['dateupdate']}] > e")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:event&date", app.getDatas, 
+                    Helpers.getStruct("asistencia", ["evento", "date_1", "date_2"]))
+  out, _ = capfd.readouterr()
+  assert "**___Asistencias___** **___encontradas:___**" in out
+  assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEventMemberDate_e(capfd):  
+  message = Message(author="test", content=f"$listAssist:member&event&date "\
+                    f"[{testData['memupdate']}, {testData['evupdate']}, "\
+                    f"{testData['dateupdate']}, {testData['dateupdate']}] > e")
+  client = Client(user="test")
+  hdlr = MessageHandler(message, client, True)
+  await hdlr.dFMsg("listAssist:member&event&date", 
+                    app.getDatas, Helpers.getStruct("asistencia", 
+                    ["integrante", "evento", "date_1", "date_2"]))
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert "discord.file.File object" in out
