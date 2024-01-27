@@ -33,7 +33,7 @@ class Helpers:
                 return request
             else:
                 return "El comando debe mantener la forma:\n"\
-                f"**{command} [_{alias}_]**"
+                f"**${command} [_{alias}_]**"
         else:
             return []
 

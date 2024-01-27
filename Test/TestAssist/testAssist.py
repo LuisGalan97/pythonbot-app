@@ -1,2 +1,2 @@
 from .testDefault import *
-from .testInvalidCom import *
+from .testInvCom import *

@@ -25,7 +25,7 @@ async def test_addAssist_invalidStruct(capfd):
                             Helpers.setStruct("asistencia"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**addAssist [_Integrante, Evento, Fecha_]**" in out
+        assert "**$addAssist [_Integrante, Evento, Fecha_]**" in out
 
 @pytest.mark.asyncio
 async def test_updAssistId_invalidStruct(capfd):
@@ -44,7 +44,7 @@ async def test_updAssistId_invalidStruct(capfd):
                             Helpers.updStruct("asistencia", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**updAssist:id [_ID, Integrante, Evento, Fecha_]**" in out
+        assert "**$updAssist:id [_ID, Integrante, Evento, Fecha_]**" in out
 
 @pytest.mark.asyncio
 async def test_delAssistId_invalidStruct(capfd):
@@ -63,7 +63,7 @@ async def test_delAssistId_invalidStruct(capfd):
                             Helpers.delStruct("asistencia", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**delAssist:id [_ID_]**" in out
+        assert "**$delAssist:id [_ID_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId_invalidStruct(capfd):
@@ -82,7 +82,7 @@ async def test_listAssistId_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["id"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:id [_ID_]**" in out
+        assert "**$listAssist:id [_ID_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMember_invalidStruct(capfd):
@@ -101,7 +101,7 @@ async def test_listAssistMember_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["integrante"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:member [_Integrante_]**" in out
+        assert "**$listAssist:member [_Integrante_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistEvent_invalidStruct(capfd):
@@ -120,7 +120,7 @@ async def test_listAssistEvent_invalidStruct(capfd):
                          Helpers.getStruct("asistencia", ["evento"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:event [_Evento_]**" in out
+        assert "**$listAssist:event [_Evento_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistDate_invalidStruct(capfd):
@@ -139,7 +139,7 @@ async def test_listAssistDate_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:date [_Fecha 1, Fecha 2_]**" in out
+        assert "**$listAssist:date [_Fecha 1, Fecha 2_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberEvent_invalidStruct(capfd):
@@ -158,7 +158,7 @@ async def test_listAssistMemberEvent_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["integrante", "evento"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:member&event [_Integrante, Evento_]**" in out
+        assert "**$listAssist:member&event [_Integrante, Evento_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberDate_invalidStruct(capfd):
@@ -177,7 +177,7 @@ async def test_listAssistMemberDate_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["integrante", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:member&date [_Integrante, Fecha 1, Fecha 2_]**" in out
+        assert "**$listAssist:member&date [_Integrante, Fecha 1, Fecha 2_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistEventDate_invalidStruct(capfd):
@@ -196,7 +196,7 @@ async def test_listAssistEventDate_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["evento", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:event&date [_Evento, Fecha 1, Fecha 2_]**" in out
+        assert "**$listAssist:event&date [_Evento, Fecha 1, Fecha 2_]**" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberEventDate_invalidStruct(capfd):
@@ -215,4 +215,4 @@ async def test_listAssistMemberEventDate_invalidStruct(capfd):
                           Helpers.getStruct("asistencia", ["integrante", "evento", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
-        assert "**listAssist:member&event&date [_Integrante, Evento, Fecha 1, Fecha 2_]**" in out
+        assert "**$listAssist:member&event&date [_Integrante, Evento, Fecha 1, Fecha 2_]**" in out
