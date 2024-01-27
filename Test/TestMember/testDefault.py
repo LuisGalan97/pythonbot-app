@@ -156,7 +156,7 @@ async def test_listMemberRange(capfd):
 @pytest.mark.asyncio
 async def test_listMemberDate(capfd):
   command = f"$listMember:date [{testData['datecreate']}, "\
-            f"{'datecreate'}]"
+            f"{testData['datecreate']}]"
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
@@ -221,7 +221,7 @@ async def test_listMemberRange_e(capfd):
 @pytest.mark.asyncio
 async def test_listMemberDate_e(capfd):
   command = f"$listMember:date [{testData['datecreate']}, "\
-            f"{'datecreate'}] > e"
+            f"{testData['datecreate']}] > e"
   message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
