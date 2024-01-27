@@ -31,7 +31,7 @@ async def test_addAssist(capfd):
   out, _ = capfd.readouterr()
   idTest = out[out.find("**_ID_** '"):]
   testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-  assert "La ___asistencia___ ha creada con exito sobre el " in out
+  assert "La ___asistencia___ ha sido creada con exito sobre el " in out
   assert f"**_ID_** \'{testData['id']}\'." in out
 
 @pytest.mark.asyncio
