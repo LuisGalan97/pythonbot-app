@@ -20,7 +20,7 @@ app = AppHandler()
 
 @pytest.mark.asyncio
 async def test_addRange(capfd):
-  command = f"$addEvent [{testData['namecreate']}, "\
+  command = f"$addRange [{testData['namecreate']}, "\
             f"{testData['controlcreate']}, {testData['descreate']}]"
   message = Message(author="test", content=command)
   client = Client(user="test")
