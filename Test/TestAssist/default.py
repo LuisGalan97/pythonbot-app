@@ -36,8 +36,8 @@ async def test_addAssist(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistId_add(capfd):
-  message = Message(author="test", content=f"$listAssist:id "\
-                    f"[{testData['id']}]")
+  command = f"$listAssist:id [{testData['id']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -51,9 +51,9 @@ async def test_listAssistId_add(capfd):
 
 @pytest.mark.asyncio
 async def test_updAssistId(capfd):
-  message = Message(author="test", content="$updAssist:id "\
-                    f"[{testData['id']}, {testData['memupdate']}, "\
-                    f"{testData['evupdate']}, {testData['dateupdate']}]")
+  command = f"$updAssist:id [{testData['id']}, {testData['memupdate']}, "\
+            f"{testData['evupdate']}, {testData['dateupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.contMsg("updAssist:id", app.updateData,
@@ -63,7 +63,8 @@ async def test_updAssistId(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssist(capfd):
-  message = Message(author="test", content="$listAssist")
+  command = "$listAssist"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist", app.getDatas,
@@ -71,11 +72,14 @@ async def test_listAssist(capfd):
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert f"{testData['id']}" in out
+  assert f"{testData['memupdate']}" in out
+  assert f"{testData['evupdate']}" in out
+  assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId(capfd):
-  message = Message(author="test", content=f"$listAssist:id "\
-                    f"[{testData['id']}]")
+  command = f"$listAssist:id [{testData['id']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -89,8 +93,8 @@ async def test_listAssistId(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMember(capfd):
-  message = Message(author="test", content=f"$listAssist:member "\
-                    f"[{testData['memupdate']}]")
+  command = f"$listAssist:member [{testData['memupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -104,8 +108,8 @@ async def test_listAssistMember(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistEvent(capfd):
-  message = Message(author="test", content=f"$listAssist:event "\
-                    f"[{testData['evupdate']}]")
+  command = f"$listAssist:event [{testData['evupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -119,8 +123,9 @@ async def test_listAssistEvent(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistDate(capfd):
-  message = Message(author="test", content=f"$listAssist:date "\
-                    f"[{testData['dateupdate']}, {testData['dateupdate']}]")
+  command = f"$listAssist:date [{testData['dateupdate']}, "\
+            f"{testData['dateupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -134,8 +139,9 @@ async def test_listAssistDate(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMemberEvent(capfd):
-  message = Message(author="test", content=f"$listAssist:member&event "\
-                    f"[{testData['memupdate']}, {testData['evupdate']}]")
+  command = f"$listAssist:member&event [{testData['memupdate']}, "\
+            f"{testData['evupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member&event", app.getDatas,
@@ -149,13 +155,14 @@ async def test_listAssistMemberEvent(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMemberDate(capfd):
-  message = Message(author="test", content=f"$listAssist:member&date "\
-                    f"[{testData['memupdate']}, {testData['dateupdate']}, "\
-                    f"{testData['dateupdate']}]")
+  command =f"$listAssist:member&date [{testData['memupdate']}, "\
+           f"{testData['dateupdate']}, {testData['dateupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                   Helpers.getStruct("asistencia", ["integrante", "date_1", "date_2"]))
+                   Helpers.getStruct("asistencia",
+                                     ["integrante", "date_1", "date_2"]))
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert f"{testData['id']}" in out
@@ -165,13 +172,14 @@ async def test_listAssistMemberDate(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistEventDate(capfd):
-  message = Message(author="test", content=f"$listAssist:event&date "\
-                    f"[{testData['evupdate']}, {testData['dateupdate']}, "\
-                    f"{testData['dateupdate']}]")
+  command = f"$listAssist:event&date [{testData['evupdate']}, "\
+            f"{testData['dateupdate']}, {testData['dateupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                    Helpers.getStruct("asistencia", ["evento", "date_1", "date_2"]))
+                    Helpers.getStruct("asistencia",
+                                      ["evento", "date_1", "date_2"]))
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert f"{testData['id']}" in out
@@ -180,10 +188,11 @@ async def test_listAssistEventDate(capfd):
   assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventMemberDate(capfd):
-  message = Message(author="test", content=f"$listAssist:member&event&date "\
-                    f"[{testData['memupdate']}, {testData['evupdate']}, "\
-                    f"{testData['dateupdate']}, {testData['dateupdate']}]")
+async def test_listAssistMemberEventDate(capfd):
+  command = f"$listAssist:member&event&date [{testData['memupdate']}, "\
+            f"{testData['evupdate']}, {testData['dateupdate']}, "\
+            f"{testData['dateupdate']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member&event&date",
@@ -198,7 +207,8 @@ async def test_listAssistEventMemberDate(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssist_e(capfd):
-  message = Message(author="test", content="$listAssist > e")
+  command = "$listAssist > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist", app.getDatas,
@@ -209,8 +219,8 @@ async def test_listAssist_e(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistId_e(capfd):
-  message = Message(author="test", content=f"$listAssist:id "\
-                    f"[{testData['id']}] > e")
+  command = f"$listAssist:id [{testData['id']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -221,8 +231,8 @@ async def test_listAssistId_e(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMember_e(capfd):
-  message = Message(author="test", content=f"$listAssist:member "\
-                    f"[{testData['memupdate']}] > e")
+  command = f"$listAssist:member [{testData['memupdate']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -233,8 +243,8 @@ async def test_listAssistMember_e(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistEvent_e(capfd):
-  message = Message(author="test", content=f"$listAssist:event "\
-                    f"[{testData['evupdate']}] > e")
+  command = f"$listAssist:event [{testData['evupdate']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -245,8 +255,9 @@ async def test_listAssistEvent_e(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistDate_e(capfd):
-  message = Message(author="test", content=f"$listAssist:date "\
-                    f"[{testData['dateupdate']}, {testData['dateupdate']}] > e")
+  command = f"$listAssist:date [{testData['dateupdate']}, "\
+            f"{testData['dateupdate']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -257,48 +268,52 @@ async def test_listAssistDate_e(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMemberDate_e(capfd):
-  message = Message(author="test", content=f"$listAssist:member&date "\
-                    f"[{testData['memupdate']}, {testData['dateupdate']}, "\
-                    f"{testData['dateupdate']}] > e")
+  command = f"$listAssist:member&date [{testData['memupdate']}, "\
+            f"{testData['dateupdate']}, {testData['dateupdate']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                   Helpers.getStruct("asistencia", ["integrante", "date_1", "date_2"]))
+                   Helpers.getStruct("asistencia",
+                                     ["integrante", "date_1", "date_2"]))
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listAssistEventDate_e(capfd):
-  message = Message(author="test", content=f"$listAssist:event&date "\
-                    f"[{testData['evupdate']}, {testData['dateupdate']}, "\
-                    f"{testData['dateupdate']}] > e")
+  command = f"$listAssist:event&date [{testData['evupdate']}, "\
+            f"{testData['dateupdate']}, {testData['dateupdate']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                    Helpers.getStruct("asistencia", ["evento", "date_1", "date_2"]))
+                    Helpers.getStruct("asistencia",
+                                      ["evento", "date_1", "date_2"]))
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventMemberDate_e(capfd):
-  message = Message(author="test", content=f"$listAssist:member&event&date "\
-                    f"[{testData['memupdate']}, {testData['evupdate']}, "\
-                    f"{testData['dateupdate']}, {testData['dateupdate']}] > e")
+async def test_listAssistMemberEventDate_e(capfd):
+  command = f"$listAssist:member&event&date [{testData['memupdate']}, "\
+            f"{testData['evupdate']}, {testData['dateupdate']}, "\
+            f"{testData['dateupdate']}] > e"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.dFMsg("listAssist:member&event&date",
                     app.getDatas, Helpers.getStruct("asistencia",
-                    ["integrante", "evento", "date_1", "date_2"]))
+                                                    ["integrante", "evento",
+                                                     "date_1", "date_2"]))
   out, _ = capfd.readouterr()
   assert "**___Asistencias___** **___encontradas:___**" in out
   assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_delAssistId(capfd):
-  message = Message(author="test", content="$delAssist:id "\
-                    f"[{testData['id']}]")
+  command = f"$delAssist:id [{testData['id']}]"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.contMsg("delAssist:id", app.deleteData,

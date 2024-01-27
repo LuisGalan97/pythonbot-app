@@ -8,7 +8,8 @@ Client = namedtuple('Client', ['user'])
 
 @pytest.mark.asyncio
 async def test_command(capfd):
-  message = Message(author="test", content="$command")
+  command = "$command"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
@@ -18,7 +19,8 @@ async def test_command(capfd):
 
 @pytest.mark.asyncio
 async def test_help(capfd):
-  message = Message(author="test", content="$help")
+  command = "$help"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
@@ -29,7 +31,8 @@ async def test_help(capfd):
 
 @pytest.mark.asyncio
 async def test_helpDiagram(capfd):
-  message = Message(author="test", content="$help:diagram")
+  command = "$help:diagram"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
@@ -40,7 +43,8 @@ async def test_helpDiagram(capfd):
 
 @pytest.mark.asyncio
 async def test_helpAssist(capfd):
-  message = Message(author="test", content="$help:assist")
+  command = "$help:assist"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
@@ -51,7 +55,8 @@ async def test_helpAssist(capfd):
 
 @pytest.mark.asyncio
 async def test_helpEvent(capfd):
-  message = Message(author="test", content="$help:event")
+  command = "$help:event"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
@@ -62,7 +67,8 @@ async def test_helpEvent(capfd):
 
 @pytest.mark.asyncio
 async def test_helpMember(capfd):
-  message = Message(author="test", content="$help:member")
+  command = "$help:member"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()
@@ -73,7 +79,8 @@ async def test_helpMember(capfd):
 
 @pytest.mark.asyncio
 async def test_helpRange(capfd):
-  message = Message(author="test", content="$help:range")
+  command = "$help:range"
+  message = Message(author="test", content=command)
   client = Client(user="test")
   hdlr = MessageHandler(message, client, True)
   await hdlr.inMsg()

@@ -46,9 +46,12 @@ class DataFrame:
             max_length = 0
             for cell in list(self.__hoja.columns)[i+1]:
                 if cell.value:
-                    max_length = len(str(cell.value)) if len(str(cell.value)) > max_length else max_length
+                    max_length = (
+                        len(str(cell.value))
+                        if len(str(cell.value)) > max_length
+                        else max_length
+                    )
             adjusted_width = max_length+2
-
             self.__hoja.column_dimensions[get_column_letter(i+2)].width = adjusted_width
 
     def saveFrame(self):
