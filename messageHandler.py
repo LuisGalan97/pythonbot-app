@@ -280,7 +280,6 @@ class MessageHandler:
             else:
                 await self.__send(message = request)
 
-
     async def contMsg(self, command, method, struct):
         if Helpers.checkCommand(self.__message.content, command):
             content = self.__message.content.replace(f'${command}', '').strip()
