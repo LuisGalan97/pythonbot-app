@@ -225,12 +225,12 @@ async def test_helpAssist(capfd):
   assert "- **$listAssist > e**   ->   Lista "\
          "en una hoja de excel todas las "\
          "___asistencias___.\n" in out
-  assert "- **$listAssist:id [_ID_] **> e**   ->   Lista "\
+  assert "- **$listAssist:id [_ID_]** **> e**   ->   Lista "\
          "en una hoja de excel la "\
          "___asistencia___ asociada al parametro **_ID_** ingresado "\
          "dentro de los corchetes **[ ]**. Este parametro **_ID_** "\
          "deberá corresponder a un valor numerico.\n" in out
-  assert "- **$listAssist:member [_Integrante_] **> e**   ->   Lista "\
+  assert "- **$listAssist:member [_Integrante_]** **> e**   ->   Lista "\
          "en una hoja de excel "\
          "todas las ___asistencias___ asociadas al parametro "\
          "**_Integrante_** ingresado dentro de los corchetes "\
@@ -238,21 +238,21 @@ async def test_helpAssist(capfd):
          "presente en la ___asistencia___. Este parametro "\
          "**_Integrante_** deberá corresponder "\
          "a un valor de texto.\n" in out
-  assert "- **$listAssist:event [_Evento_] **> e**   ->   Lista "\
+  assert "- **$listAssist:event [_Evento_]** **> e**   ->   Lista "\
          "en una hoja de excel todas "\
          "las ___asistencias___ asociadas al parametro "\
          "**_Evento_** ingresado dentro de los corchetes **[ ]**, "\
          "en relacion al nombre del ___evento___ presente en la "\
          "___asistencia___. Este parametro **_Evento_** deberá "\
          "corresponder a un valor de texto.\n" in out
-  assert "- **$listAssist:date [_Fecha 1, Fecha 2_] > **e**   ->   "\
+  assert "- **$listAssist:date [_Fecha 1, Fecha 2_]** **> e**   ->   "\
          "Lista en una hoja de excel "\
          "todas las ___asistencias___ registradas entre "\
          "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
          "como parametros dentro de los corchetes **[ ]**. "\
          "Estos parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
          "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
-  assert "- **$listAssist:member&event [_Integrante, Evento_] **> e**   "\
+  assert "- **$listAssist:member&event [_Integrante, Evento_]** **> e**   "\
          "->   Lista en una hoja de excel "\
          "todas las ___asistencias___ asociadas a los "\
          "parametros **_Integrante_** y **_Evento_** ingresados "\
@@ -262,7 +262,7 @@ async def test_helpAssist(capfd):
          "**_Integrante_** y **_Evento_** deberán "\
          "corresponder a valores de texto.\n" in out
   assert "- **$listAssist:member&date [_Integrante, Fecha 1, "\
-         "Fecha 2_] **> e**   ->   Lista en una hoja de excel"\
+         "Fecha 2_]** **> e**   ->   Lista en una hoja de excel"\
          "todas las ___asistencias___ "\
          "asociadas al parametro **_Integrante_** en relacion "\
          "al nombre del ___integrante___ presente en la "\
@@ -274,7 +274,7 @@ async def test_helpAssist(capfd):
          "deberán corresponder a valores "\
          "de fecha en 'Día-Mes-Año'.\n" in out
   assert "- **$listAssist:event&date [_Evento, Fecha 1, "\
-         "Fecha 2_] **> e**   ->   Lista en una hoja de excel "\
+         "Fecha 2_]** **> e**   ->   Lista en una hoja de excel "\
          "todas las ___asistencias___ "\
          "asociadas al parametro **_Evento_** en relacion al "\
          "nombre del ___evento___ presente en la ___asistencia___, "\
@@ -285,7 +285,7 @@ async def test_helpAssist(capfd):
          "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
          "valores de fecha en 'Día-Mes-Año'.\n" in out
   assert "- **$listAssist:member&event&date [_Integrante, Evento, "\
-         "Fecha 1, Fecha 2_] **> e**   ->   Lista "\
+         "Fecha 1, Fecha 2_]** **> e**   ->   Lista "\
          "en una hoja de excel todas las "\
          "___asistencias___ asociadas a los parametros "\
          "**_Integrante_** y **_Evento_**, en relacion al nombre "\
