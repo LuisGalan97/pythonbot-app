@@ -591,18 +591,28 @@ class Helpers:
     @staticmethod
     def genMsg(command, controller):
         if command.find('[') != -1:
-            head = command[: command.find(':')] if command.find(':') != -1 else command[: command.find('[')].strip()
+            head = (command[: command.find(':')]
+                    if command.find(':') != -1
+                    else command[: command.find('[')].strip())
             upper = [i.isupper() for i in head]
             mode = head[:upper.index(True)]
-            target = command[command.find(':')+1 : command.find('[')].strip() if command.find(':') != -1 else ""
+            target = (command[command.find(':')+1 : command.find('[')].strip()
+                      if command.find(':') != -1
+                      else "")
             parameters = command[command.find('[')+1 : command.find(']')]
-            parameters = [parameter.strip() for parameter in parameters.split(',')]
+            parameters = [parameter.strip()
+                          for parameter
+                          in parameters.split(',')]
             excelrequest = True if command.find('>') != -1 else False
         else:
-            head = command[: command.find(':')] if command.find(':') != -1 else command.strip()
+            head = (command[: command.find(':')]
+                    if command.find(':') != -1
+                    else command.strip())
             upper = [i.isupper() for i in head]
             mode = head[:upper.index(True)]
-            target = command[command.find(':')+1 :].strip() if command.find(':') != -1 else ""
+            target = (command[command.find(':')+1 :].strip()
+                      if command.find(':') != -1
+                      else "")
             excelrequest = True if command.find('>') != -1 else False
         if mode == "list":
             if not target:
