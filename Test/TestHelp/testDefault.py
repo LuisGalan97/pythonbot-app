@@ -225,7 +225,7 @@ async def test_helpAssist(capfd):
   assert "- **$listAssist > e**   ->   Lista "\
          "en una hoja de excel todas las "\
          "___asistencias___.\n" in out
-  assert "- **$listAssist:id [_ID_] > e**   ->   Lista "\
+  assert "- **$listAssist:id [_ID_] **> e**   ->   Lista "\
          "en una hoja de excel la "\
          "___asistencia___ asociada al parametro **_ID_** ingresado "\
          "dentro de los corchetes **[ ]**. Este parametro **_ID_** "\
