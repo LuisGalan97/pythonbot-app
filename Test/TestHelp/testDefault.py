@@ -104,7 +104,7 @@ async def test_helpDiagram(capfd):
   await hdlr.inMsg()
   await hdlr.helpMsg()
   out, _ = capfd.readouterr()
-  assert "Diagrama de la estructura de los datos" in out
+  assert "**___Diagrama de la estructura de los datos:___**" in out
   assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -116,8 +116,26 @@ async def test_helpAssist(capfd):
   await hdlr.inMsg()
   await hdlr.helpMsg()
   out, _ = capfd.readouterr()
-  assert "Asistencias" in out
-  assert "listAssist:member&event&date" in out
+  assert "**___Asistencias___**\n" in out
+  assert "Las ___asistencias___ hacen referencia a una serie de "\
+         "registros de todas las participaciones, en las cuales "\
+         "los integrantes de **⚜Avalon⚜** han podido hacer parte, "\
+         "para actividades o eventos tales como ataques, defensas, "\
+         "AVAs, entre otros. Una ___asistencia___ por defecto "\
+         "contiene informacion de un ___integrante___ y "\
+         "___evento___ asociado, junto con la fecha del suceso "\
+         "en cuestion. Con lo anterior, se presentan una lista "\
+         "de todos los comandos que permiten interactuar con los "\
+         "registros de ___asistencias___.\n" in out
+  assert "_Comandos de modificacion:_\n" in out
+  assert "- **$addAssist [_Integrante, Evento, Fecha_]**   ->   "\
+         "Añade una nueva ___asistencia___, ingresando dentro "\
+         "de los corchetes **[ ]** un parametro **_Integrante_** "\
+         "como valor de texto asociado al nombre de un "\
+         "___integrante___, un parametro **_Evento_** como valor "\
+         "de texto asociado al nombre de un ___evento___ y un "\
+         "parametro **_Fecha_** como valor de fecha en "\
+         "'Día-Mes-Año'.\n" in out
 
 @pytest.mark.asyncio
 async def test_helpEvent(capfd):
