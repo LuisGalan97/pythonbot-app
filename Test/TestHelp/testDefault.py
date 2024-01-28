@@ -27,8 +27,8 @@ async def test_help(capfd):
   out, _ = capfd.readouterr()
   assert "**___Guia de usuario de Avalon-bot___**\n" in out
   assert "Bienvenido/a a la guia de usuario del "\
-         "bot de **⚜Avalon⚜** para discord.\n" in out
-  assert "En esta seccion realizaremos una breve introduccion, "\
+         "bot de **⚜Avalon⚜** para discord. "\
+         "En esta seccion realizaremos una breve introduccion, "\
          "de las funciones principales que dispone **_Avalon-bot_**, "\
          "la estructura de la informacion con la que trabaja, "\
          "y como podemos utilizarlo para obtener importantes beneficios, "\
