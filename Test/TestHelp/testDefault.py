@@ -379,8 +379,98 @@ async def test_helpMember(capfd):
   await hdlr.inMsg()
   await hdlr.helpMsg()
   out, _ = capfd.readouterr()
-  assert "Integrantes" in out
-  assert "listMember:date" in out
+  assert "**___Integrantes___**\n" in out
+  assert "Los ___integrantes___ son una serie de registros en los "\
+         "cuales se encuentran listados y referenciados todos "\
+         "los miembros de la alianza **⚜Avalon⚜**, junto con "\
+         "informacion complementaria tales como el ___rango___ "\
+         "asignado y la fecha de ingreso de cada miembro.\n" in out
+  assert "_Comandos de modificacion:_\n" in out
+  assert "- **$addMember [_Nombre, Rango, Fecha_]**   ->   Añade "\
+         "un nuevo ___integrante___, ingresando dentro de los "\
+         "corchetes **[ ]** un parametro **_Nombre_** como valor "\
+         "de texto, un parametro **_Rango_** como valor de texto "\
+         "asociado al nombre de un ___rango___ y un parametro "\
+         "**_Fecha_** como valor de fecha en 'Día-Mes-Año'.\n" in out
+  assert "- **$updMember:id [_ID, Nombre, Rango, Fecha_]**   ->   "\
+         "Actualiza los datos de un ___integrante___ apuntando "\
+         "a su identificador, ingresando dentro de los corchetes "\
+         "**[ ]** un parametro **_ID_** como valor numerico, un "\
+         "parametro **_Nombre_** como valor de texto, un parametro "\
+         "**_Rango_** como valor de texto asociado al nombre "\
+         "de un ___rango___ y un parametro **_Fecha_** como valor "\
+         "de fecha en 'Día-Mes-Año'.\n" in out
+  assert "- **$updMember:name [_Nombre, Rango, Fecha_]**   ->   "\
+         "Actualiza los datos de un ___integrante___ apuntando "\
+         "a su nombre, ingresando dentro de los corchetes **[ ]** "\
+         "un parametro **_Nombre_** como valor de texto, un "\
+         "parametro **_Rango_** como valor de texto asociado al "\
+         "nombre de un ___rango___ y un parametro **_Fecha_** "\
+         "como valor de fecha en 'Día-Mes-Año'.\n" in out
+  assert "- **$delMember:id [_ID_]**   ->   Elimina un "\
+         "___integrante___ apuntando a su identificador, ingresando "\
+         "dentro de los corchetes **[ ]** un parametro **_ID_** "\
+         "como valor numerico.\n" in out
+  assert "- **$delMember:name [_Nombre_]**   ->   Elimina un "\
+         "___integrante___ apuntando a su nombre, ingresando "\
+         "dentro de los corchetes **[ ]** un parametro **_Nombre_** "\
+         "como valor de texto.\n" in out
+  assert "_Comandos de consulta:_\n" in out
+  assert "- **$listMember**   ->   Lista todos los "\
+         "___integrantes___.\n" in out
+  assert "- **$listMember:id [_ID_]**    ->   Lista el "\
+         "___integrante___ asociado al parametro **_ID_** ingresado "\
+         "dentro de los corchetes **[ ]**. Este parametro **_ID_** "\
+         "deberá corresponder a un valor numerico.\n" in out
+  assert "- **$listMember:name [_Nombre_]**    ->   Lista el "\
+         "___integrante___ asociado al parametro **_Nombre_** "\
+         "ingresado dentro de los corchetes **[ ]**. Este parametro "\
+         "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
+  assert "- **$listMember:range [_Rango_]**    ->   Lista todos los "\
+         "___integrantes___ asociados al parametro **_Rango_** "\
+         "ingresado dentro de los corchetes **[ ]**, en relacion "\
+         "al nombre del ___rango___ presente en el ___integrante___. "\
+         "Este parametro **_Rango_** deberá corresponder "\
+         "a un valor de texto.\n" in out
+  assert "- **$listMember:date [_Fecha 1, Fecha 2_]**    ->   "\
+         "Lista todos los ___integrantes___ registrados entre "\
+         "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
+         "como parametros dentro de los corchetes **[ ]**. Estos "\
+         "parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
+         "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
+  assert "_Comandos de consulta con impresion en excel:_\n" in out
+  assert "Por defecto, los comandos de consulta imprimen los "\
+         "registros en el canal de discord, sin embargo, tambien "\
+         "pueden ser impresos dentro de una hoja de excel, "\
+         "si despues del comando se especifica "\
+         "el parametro **> e**.\n" in out
+  assert "- **$listMember > e**   ->   Lista "\
+         "en una hoja de excel todos los "\
+         "___integrantes___.\n" in out
+  assert "- **$listMember:id [_ID_]** **> e**   ->   Lista "\
+         "en una hoja de excel el "\
+         "___integrante___ asociado al parametro **_ID_** ingresado "\
+         "dentro de los corchetes **[ ]**. Este parametro **_ID_** "\
+         "deberá corresponder a un valor numerico.\n" in out
+  assert "- **$listMember:name [_Nombre_]** **> e**   ->   Lista "\
+         "en una hoja de excel el "\
+         "___integrante___ asociado al parametro **_Nombre_** "\
+         "ingresado dentro de los corchetes **[ ]**. Este parametro "\
+         "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
+  assert "- **$listMember:range [_Rango_]** **> e**   ->   Lista "\
+         "en una hoja de excel todos los "\
+         "___integrantes___ asociados al parametro **_Rango_** "\
+         "ingresado dentro de los corchetes **[ ]**, en relacion "\
+         "al nombre del ___rango___ presente en el ___integrante___. "\
+         "Este parametro **_Rango_** deberá corresponder "\
+         "a un valor de texto.\n" in out
+  assert "- **$listMember:date [_Fecha 1, Fecha 2_]** **> e**   ->   "\
+         "Lista en una hoja de excel "\
+         "todos los ___integrantes___ registrados entre "\
+         "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
+         "como parametros dentro de los corchetes **[ ]**. Estos "\
+         "parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
+         "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
 
 @pytest.mark.asyncio
 async def test_helpRange(capfd):
