@@ -664,9 +664,9 @@ class Helpers:
                        ('**> e**   ->   Lista en una hoja de excel ' 
                         if excelrequest 
                         else '   ->   Lista ') + \
-                       ('todas las'
+                       ('todas las '
                         if controller[0] == 'a' 
-                        else 'todos los') + \
+                        else 'todos los ') + \
                         f"___{controller}s___ "\
                         f"registrad" + \
                        ('a' 
@@ -707,9 +707,9 @@ class Helpers:
                         if parameters[1][0] == 'a' 
                         else 'l ') + \
                        f"___{parameters[1].lower()}___ presentes en " + \
-                       ('la' 
+                       ('la ' 
                         if controller[0] == 'a' 
-                        else 'el') + \
+                        else 'el ') + \
                        f"___{controller}___. "\
                        f"Ambos parametros **_{parameters[0]}_** "\
                        f"y **_{parameters[1]}_** "\
