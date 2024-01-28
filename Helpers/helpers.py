@@ -625,13 +625,21 @@ class Helpers:
                          else 'todos los ') + \
                         f"___{controller}s___.\n"
             elif target == "id":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
-                        f"{'la' if controller[0] == 'a' else 'el'} "\
-                        f"___{controller}___ "\
-                        f"asociad{'a' if controller[0] == 'a' else 'o'} al parametro **_{parameters[0]}_** "\
-                        "ingresado dentro de los corchetes **[ ]**. "\
-                        f"Este parametro **_{parameters[0]}_** deberá corresponder a un valor numerico.\n")
+                return f"- **${head}:{target} "\
+                       f"[_{', '.join(parameters)}_]** " + \
+                       ('**> e**   ->   Lista en una hoja de excel '
+                        if excelrequest
+                        else '   ->   Lista ') + \
+                       ('la '
+                        if controller[0] == 'a'
+                        else 'el ') + \
+                       f"___{controller}___ "\
+                       f"asociad" + \
+                       ('a ' if controller[0] == 'a' else 'o ') + \
+                       f"al parametro **_{parameters[0]}_** "\
+                       f"ingresado dentro de los corchetes **[ ]**. "\
+                       f"Este parametro **_{parameters[0]}_** deberá "\
+                        "corresponder a un valor numerico.\n"
             elif target == "name":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
                         f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
