@@ -642,7 +642,7 @@ class Helpers:
                         "corresponder a un valor numerico.\n"
             elif target == "name":
                 return f"- **${head}:{target} "\
-                       f"[_{', '.join(parameters)}_]** "\
+                       f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel ' 
                         if excelrequest 
                         else '   ->   Lista ') + \
