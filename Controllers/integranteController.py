@@ -19,7 +19,9 @@ class IntegranteController:
                         "rango_id" : integrante.getRango().getId(),
                         "rango_name" : integrante.getRango().getName(),
                         "rango_control" : integrante.getRango().getControl(),
-                        "rango_description" : integrante.getRango().getDescription(),
+                        "rango_description" : integrante.
+                                              getRango().
+                                              getDescription(),
                         "datecreate" : integrante.getDateCreate(),
                         "dateupdate" : integrante.getDateUpdate()
                     })

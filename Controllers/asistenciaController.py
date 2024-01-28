@@ -56,8 +56,7 @@ class AsistenciaController:
                         "evento_description" : asistencia.
                                                getEvento().
                                                getDescription(),
-                        "date" : asistencia.
-                                 getDate()
+                        "date" : asistencia.getDate()
                     })
             return data
         else:
