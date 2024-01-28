@@ -37,8 +37,8 @@ class Helpers:
     @staticmethod
     def checkContent(command, content, reftarget):
         if reftarget:
-            alias = f"{', '.join(map(str,\
-                    [value['alias'] for value in reftarget.values()]))}"
+            alias = ', '.join(map(str,\
+                    [value['alias'] for value in reftarget.values()]))
             if content.find('[') == 0 and content.rfind(']') != -1:
                 request = content.replace('[', '', 1)
                 request = request[: request.rfind(']')]
@@ -88,10 +88,10 @@ class Helpers:
 
     @staticmethod
     def checkRequest(request, reftarget):
-            references = f"{', '.join(map(str, list(reftarget.keys())))}"
+            references = ', '.join(map(str, list(reftarget.keys())))
             types = [value["type"] for value in reftarget.values()]
-            alias = f"{', '.join(map(str,\
-                    [value['alias'] for value in reftarget.values()]))}"
+            alias = ', '.join(map(str,
+                    [value['alias'] for value in reftarget.values()]))
             datas = request
             if (isinstance(datas, list) and
                 len(datas) == len(references.split(','))):
