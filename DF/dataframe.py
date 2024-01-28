@@ -1,6 +1,5 @@
 import os
 dir = os.path.dirname(os.path.abspath(__file__))
-dir = os.path.dirname(dir)
 import openpyxl
 from openpyxl.styles import Font
 from openpyxl.styles import Border, Side
@@ -24,7 +23,7 @@ class DataFrame:
         self.__success = self.generateFrame()
 
     def getDirectory(self):
-        return f"{dir}/DF/{self.__name}.xlsx"
+        return f"{dir}/{self.__name}.xlsx"
 
     def getSuccess(self):
         return self.__success
@@ -52,17 +51,20 @@ class DataFrame:
                         else max_length
                     )
             adjusted_width = max_length+2
-            self.__hoja.column_dimensions[get_column_letter(i+2)].width = adjusted_width
+            self.__hoja.\
+            column_dimensions[get_column_letter(i+2)].\
+            width = adjusted_width
 
     def saveFrame(self):
-        self.__libro.save(f'{dir}/DF/{self.__name}.xlsx')
+        self.__libro.save(f'{dir}/{self.__name}.xlsx')
 
     def deleteFrame(self):
         try:
-            os.remove(f"{dir}/DF/{self.__name}.xlsx")
+            os.remove(f"{dir}/{self.__name}.xlsx")
             return True
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar eliminar el dataframe: {str(ex)}.")
+            print( "-> Ocurrio un error al intentar "\
+                  f"eliminar el dataframe: {str(ex)}.")
             return False
 
     def generateFrame(self):
@@ -74,5 +76,6 @@ class DataFrame:
             self.saveFrame()
             return True
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar generar el dataframe: {str(ex)}.")
+            print( "-> Ocurrio un error al intentar "\
+                  f"generar el dataframe: {str(ex)}.")
             return False
