@@ -90,7 +90,7 @@ class Helpers:
     def checkRequest(request, reftarget):
             references = f"{', '.join(map(str, list(reftarget.keys())))}"
             types = [value["type"] for value in reftarget.values()]
-            alias = f"{', '.join(map(str,
+            alias = f"{', '.join(map(str,\
                     [value['alias'] for value in reftarget.values()]))}"
             datas = request
             if (isinstance(datas, list) and
