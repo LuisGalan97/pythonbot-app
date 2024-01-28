@@ -25,9 +25,10 @@ async def test_help(capfd):
   await hdlr.inMsg()
   await hdlr.helpMsg()
   out, _ = capfd.readouterr()
-  assert "Guia de usuario" in out
-  assert "$help:range" in out
-
+  assert "**___Guia de usuario de Avalon-bot___**" in out
+  assert "Bienvenido/a a la guia de usuario del "\
+         "bot de **⚜Avalon⚜** para discord. " in out
+  
 @pytest.mark.asyncio
 async def test_helpDiagram(capfd):
   command = "$help:diagram"
