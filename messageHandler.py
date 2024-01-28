@@ -191,11 +191,11 @@ class MessageHandler:
                             "asociada con cada tabla respectiva, siendo visibles mediante los comandos de ayuda que se presentan a continuacion.\n\n"\
                             "_Comandos de_ ___asistencias___:\n"\
                             "** * $help:assist**\n"\
-                            "_Comandos de_ ___eventos___: \n"\
+                            "_Comandos de_ ___eventos___:\n"\
                             "** * $help:event**\n"\
-                            "_Comandos de_ ___integrantes___: \n"\
+                            "_Comandos de_ ___integrantes___:\n"\
                             "** * $help:member**\n"\
-                            "_Comandos de_ ___rangos___: \n"\
+                            "_Comandos de_ ___rangos___:\n"\
                             "** * $help:range**")
         if messages:
             array = []
