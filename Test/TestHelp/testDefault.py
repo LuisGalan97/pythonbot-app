@@ -136,6 +136,26 @@ async def test_helpAssist(capfd):
          "de texto asociado al nombre de un ___evento___ y un "\
          "parametro **_Fecha_** como valor de fecha en "\
          "'Día-Mes-Año'.\n" in out
+  assert "- **$updAssist:id [_ID, Integrante, Evento, Fecha_]**   "\
+         "->   Actualiza los datos de una ___asistencia___ "\
+         "apuntando a su identificador, ingresando dentro de los "\
+         "corchetes **[ ]** un parametro **_ID_** como valor "\
+         "numerico, un parametro **_Integrante_** como valor de "\
+         "texto asociado al nombre de un ___integrante___, un "\
+         "parametro **_Evento_** como valor de texto asociado "\
+         "al nombre de un ___evento___ y un parametro **_Fecha_** "\
+         "como valor de fecha en 'Día-Mes-Año'.\n" in out
+  assert "- **$delAssist:id [_ID_]**   ->   Elimina una "\
+         "___asistencia___ apuntando a su identificador, "\
+         "ingresando dentro de los corchetes **[ ]** un parametro "\
+         "**_ID_** como valor numerico.\n" in out
+  assert "_Comandos de consulta:_\n" in out
+  assert "- **$listAssist**   ->   Lista todas las "\
+         "___asistencias___.\n" in out
+  assert "- **$listAssist:id [_ID_]**    ->   Lista la "\
+         "___asistencia___ asociada al parametro **_ID_** ingresado "\
+         "dentro de los corchetes **[ ]**. Este parametro **_ID_** "\
+         "deberá corresponder a un valor numerico.\n" in out
 
 @pytest.mark.asyncio
 async def test_helpEvent(capfd):
