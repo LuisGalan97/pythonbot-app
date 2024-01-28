@@ -32,7 +32,8 @@ async def test_help(capfd):
          "de las funciones principales que dispone **_Avalon-bot_**, "\
          "la estructura de la informacion con la que trabaja, "\
          "y como podemos utilizarlo para obtener importantes beneficios, "\
-         "en el manejo y gestion de los datos asociados con la alianza.\n"
+         "en el manejo y gestion de los datos asociados "\
+         "con la alianza.\n" in out
   assert "**_¿Que es Avalon-bot?_**\n" in out
   assert "**_Avalon-bot_** es una herramienta pensada y diseñada "\
          "para facilitar al usuario la gestion de los "\
@@ -71,7 +72,29 @@ async def test_help(capfd):
          "presente un ___integrante___ y fue con respecto a un "\
          "___evento___ especifico, los cuales tambien se "\
          "encuentran en sus respectivas tablas.\n" in out
-  
+  assert "_Si desea visualizar el diagrama de la estructura de "\
+         "los datos, puede emplear el comando de ayuda:_\n" in out
+  assert "* **$help:diagram**\n" in out
+  assert "**_¿Como puedo empezar a utilizar Avalon-bot?_**\n" in out
+  assert "Para poder utilizar **_Avalon-bot_**, debes emplear "\
+         "los comandos dispuestos por este mismo, los cuales "\
+         "varian dependiendo de la tabla con la que deseas "\
+         "interactuar, y el tipo de solicitud que deseas realizar "\
+         "(consulta, creacion, actualizacion o eliminacion). "\
+         "Con lo anterior, dada la extension de los comandos, "\
+         "estos se han especificado y detallado en su propia "\
+         "seccion asociada con cada tabla respectiva, siendo "\
+         "visibles mediante los comandos de ayuda que se "\
+         "presentan a continuacion.\n" in out
+  assert "_Comandos de_ ___asistencias___:\n" in out
+  assert "** * $help:assist**\n" in out
+  assert "_Comandos de_ ___eventos___:\n" in out
+  assert "** * $help:event**\n" in out
+  assert "_Comandos de_ ___integrantes___:\n" in out
+  assert "** * $help:member**\n" in out
+  assert "_Comandos de_ ___rangos___:\n" in out
+  assert "** * $help:range**\n" in out
+
 @pytest.mark.asyncio
 async def test_helpDiagram(capfd):
   command = "$help:diagram"
