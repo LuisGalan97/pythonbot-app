@@ -616,9 +616,14 @@ class Helpers:
             excelrequest = True if command.find('>') != -1 else False
         if mode == "list":
             if not target:
-                return (f"- **${head}**   ->   {'Lista en una hoja de excel' if excelrequest else 'Lista'} "\
-                        f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
-                        f"___{controller}s___.\n")
+                return f"- **${head}**   ->   " + \
+                        ('Lista en una hoja de excel '
+                         if excelrequest
+                         else 'Lista ') + \
+                        ('todas las '
+                         if controller[0] == 'a'
+                         else 'todos los ') + \
+                        f"___{controller}s___.\n"
             elif target == "id":
                 return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
                         f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
