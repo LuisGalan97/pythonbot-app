@@ -156,6 +156,44 @@ async def test_helpAssist(capfd):
          "___asistencia___ asociada al parametro **_ID_** ingresado "\
          "dentro de los corchetes **[ ]**. Este parametro **_ID_** "\
          "deberá corresponder a un valor numerico.\n" in out
+  assert "- **$listAssist:member [_Integrante_]**    ->   Lista "\
+         "todas las ___asistencias___ asociadas al parametro "\
+         "**_Integrante_** ingresado dentro de los corchetes "\
+         "**[ ]**, en relacion al nombre del ___integrante___ "\
+         "presente en la ___asistencia___. Este parametro "\
+         "**_Integrante_** deberá corresponder "\
+         "a un valor de texto.\n" in out
+  assert "- **$listAssist:event [_Evento_]**    ->   Lista todas "\
+         "las ___asistencias___ asociadas al parametro "\
+         "**_Evento_** ingresado dentro de los corchetes **[ ]**, "\
+         "en relacion al nombre del ___evento___ presente en la "\
+         "___asistencia___. Este parametro **_Evento_** deberá "\
+         "corresponder a un valor de texto.\n" in out
+  assert "- **$listAssist:date [_Fecha 1, Fecha 2_]**    ->   "\
+         "Lista todas las ___asistencias___ registradas entre "\
+         "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
+         "como parametros dentro de los corchetes **[ ]**. "\
+         "Estos parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
+         "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
+  assert "- **$listAssist:member&event [_Integrante, Evento_]**    "\
+         "->   Lista todas las ___asistencias___ asociadas a los "\
+         "parametros **_Integrante_** y **_Evento_** ingresados "\
+         "dentro de los corchetes **[ ]**, en relacion al nombre "\
+         "del ___integrante___ y al nombre del ___evento___ "\
+         "presentes en la ___asistencia___. Ambos parametros "\
+         "**_Integrante_** y **_Evento_** deberán "\
+         "corresponder a valores de texto.\n" in out
+  assert "- **$listAssist:member&date [_Integrante, Fecha 1, "\
+         "Fecha 2_]**    ->   Lista todas las ___asistencias___ "\
+         "asociadas al parametro **_Integrante_** en relacion "\
+         "al nombre del ___integrante___ presente en la "\
+         "___asistencia___, y registradas entre las fechas "\
+         "**_Fecha 1_** y **_Fecha 2_**, todos ingresados como "\
+         "parametros dentro de los corchetes **[ ]**. El parametro "\
+         "**_Integrante_** deberá corresponder a un valor de "\
+         "texto y los parametros **_Fecha 1_** y **_Fecha 2_** "\
+         "deberán corresponder a valores "\
+         "de fecha en 'Día-Mes-Año'.\n" in out
 
 @pytest.mark.asyncio
 async def test_helpEvent(capfd):
