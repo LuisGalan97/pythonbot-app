@@ -307,8 +307,68 @@ async def test_helpEvent(capfd):
   await hdlr.inMsg()
   await hdlr.helpMsg()
   out, _ = capfd.readouterr()
-  assert "Eventos" in out
-  assert "listEvent:name" in out
+  assert "**___Eventos___**\n" in out
+  assert "Los ___eventos___ corresponden a una lista con "\
+         "informacion de las actividades las cuales **⚜Avalon⚜** "\
+         "ha decidido puntuar, para poder recompensar a sus "\
+         "integrantes por aporte y participacion, involucrando "\
+         "ataques, defensas, AVAs, entre otros.\n" in out
+  assert "_Comandos de modificacion:_\n" in out
+  assert "- **$addEvent [_Nombre, Puntos, Descripción_]**   "\
+         "->   Añade un nuevo ___evento___, ingresando dentro "\
+         "de los corchetes **[ ]** un parametro **_Nombre_** "\
+         "como valor de texto, un parametro **_Puntos_** como "\
+         "valor numerico decimal y un parametro "\
+         "**_Descripción_** como valor de texto.\n" in out
+  assert "- **$updEvent:id [_ID, Nombre, Puntos, Descripción_]**   "\
+         "->   Actualiza los datos de un ___evento___ apuntando "\
+         "a su identificador, ingresando dentro de los corchetes "\
+         "**[ ]** un parametro **_ID_** como valor numerico, "\
+         "un parametro **_Nombre_** como valor de texto, un "\
+         "parametro **_Puntos_** como valor numerico decimal y un "\
+         "parametro **_Descripción_** como valor de texto.\n" in out
+  assert "- **$updEvent:name [_Nombre, Puntos, Descripción_]**   "\
+         "->   Actualiza los datos de un ___evento___ apuntando "\
+         "a su nombre, ingresando dentro de los corchetes **[ ]** "\
+         "un parametro **_Nombre_** como valor de texto, un "\
+         "parametro **_Puntos_** como valor numerico decimal y un "\
+         "parametro **_Descripción_** como valor de texto.\n" in out
+  assert "- **$delEvent:id [_ID_]**   ->   Elimina un ___evento___ "\
+         "apuntando a su identificador, ingresando dentro de los "\
+         "corchetes **[ ]** un parametro **_ID_** como valor "\
+         "numerico.\n" in out
+  assert "- **$delEvent:name [_Nombre_]**   ->   Elimina un "\
+         "___evento___ apuntando a su nombre, ingresando dentro "\
+         "de los corchetes **[ ]** un parametro **_Nombre_** "\
+         "como valor de texto.\n" in out
+  assert "_Comandos de consulta:_\n" in out
+  assert "- **$listEvent**   ->   Lista todos los ___eventos___.\n" in out
+  assert "- **$listEvent:id [_ID_]**    ->   Lista el ___evento___ "\
+         "asociado al parametro **_ID_** ingresado dentro de los "\
+         "corchetes **[ ]**. Este parametro **_ID_** deberá "\
+         "corresponder a un valor numerico.\n" in out
+  assert "- **$listEvent:name [_Nombre_]**    ->   Lista el "\
+         "___evento___ asociado al parametro **_Nombre_** ingresado "\
+         "dentro de los corchetes **[ ]**. Este parametro "\
+         "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
+  assert "_Comandos de consulta con impresion en excel:_\n" in out
+  assert "Por defecto, los comandos de consulta imprimen los "\
+         "registros en el canal de discord, sin embargo, tambien "\
+         "pueden ser impresos dentro de una hoja de excel, si "\
+         "despues del comando se especifica el parametro **> e**.\n" in out
+  assert "- **$listEvent > e**   ->   Lista en una hoja de excel "\
+         "todos los ___eventos___.\n" in out
+  assert "- **$listEvent:id [_ID_]** **> e**   ->   Lista "\
+         "en una hoja de excel el ___evento___ "\
+         "asociado al parametro **_ID_** ingresado dentro de los "\
+         "corchetes **[ ]**. Este parametro **_ID_** deberá "\
+         "corresponder a un valor numerico.\n" in out
+  assert "- **$listEvent:name [_Nombre_]** **> e**   ->   Lista "\
+         "en una hoja de excel el "\
+         "___evento___ asociado al parametro **_Nombre_** ingresado "\
+         "dentro de los corchetes **[ ]**. Este parametro "\
+         "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
+
 
 @pytest.mark.asyncio
 async def test_helpMember(capfd):
