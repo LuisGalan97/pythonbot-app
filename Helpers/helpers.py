@@ -37,7 +37,7 @@ class Helpers:
     @staticmethod
     def checkContent(command, content, reftarget):
         if reftarget:
-            alias = f"{', '.join(map(str,
+            alias = f"{', '.join(map(str,\
                     [value['alias'] for value in reftarget.values()]))}"
             if content.find('[') == 0 and content.rfind(']') != -1:
                 request = content.replace('[', '', 1)
