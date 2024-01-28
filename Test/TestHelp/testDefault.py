@@ -262,7 +262,7 @@ async def test_helpAssist(capfd):
          "**_Integrante_** y **_Evento_** deberán "\
          "corresponder a valores de texto.\n" in out
   assert "- **$listAssist:member&date [_Integrante, Fecha 1, "\
-         "Fecha 2_]** **> e**   ->   Lista en una hoja de excel"\
+         "Fecha 2_]** **> e**   ->   Lista en una hoja de excel "\
          "todas las ___asistencias___ "\
          "asociadas al parametro **_Integrante_** en relacion "\
          "al nombre del ___integrante___ presente en la "\
