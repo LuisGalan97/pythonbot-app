@@ -378,7 +378,7 @@ async def test_listAssistDate_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
-                             Helpers.getStruct("asistencia", 
+                             Helpers.getStruct("asistencia",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**" in out
