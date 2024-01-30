@@ -309,6 +309,25 @@ async def test_listAssist_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listAssist_e_incomplete(capfd):
+    commands = [f"$listAssist"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist", app.getDatas,
+                             Helpers.getStruct("asistencia"))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert "$**listAssist**  **> e**\n" in out
+
+@pytest.mark.asyncio
 async def test_listAssistId_e(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
