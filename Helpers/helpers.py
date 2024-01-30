@@ -860,7 +860,7 @@ class Helpers:
                        ('la '
                         if controller[0] == 'a'
                         else 'el ') + \
-                       f" ___{controller}___. "\
+                       f"___{controller}___. "\
                        f"Este parametro **_{parameters[0]}_** "\
                         "deberá corresponder a un valor de texto.\n"
         elif mode == "add":
