@@ -398,9 +398,9 @@ class MessageHandler:
                                                   "con el administrador.")
                         else:
                             parameters = "**[**" + \
-                                         ([i.strip() for i
+                                         (', '.join([i.strip() for i
                                            in content[content.find('[')+1:
-                                           content.rfind(']')]])+ \
+                                           content.rfind(']')]]))+ \
                                          "**]** "
                             await self.__send(message =
                                               "Se ha detectado el uso del "\
