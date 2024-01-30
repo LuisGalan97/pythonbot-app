@@ -472,6 +472,36 @@ async def test_listAssistDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listAssistDate_e_incomplete(capfd):
+    commands = [f"$listAssist:date[{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:date [{testData['dateupdate']}, "\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:date [ {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:date", app.getDatas,
+                             Helpers.getStruct("asistencia",
+                             ["date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listAssist:event** "\
+                   "**[**" + \
+                   testData['dateupdate'] + ", " + \
+                   testData['dateupdate'] + \
+                   "**]** "\
+                   "**> e**\n" in out
+
+@pytest.mark.asyncio
 async def test_listAssistMemberDate_e(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
