@@ -837,16 +837,32 @@ class Helpers:
                         "deberán corresponder a valores de fecha "\
                         "en 'Día-Mes-Año'.\n"
             else:
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]** "\
-                        f"{'**> e**   ->   Lista en una hoja de excel' if excelrequest else '   ->   Lista'} "\
-                        f"{'todas las'if controller[0] == 'a' else 'todos los'} "\
-                        f"___{controller}s___ "\
-                        f"asociad{'a' if controller[0] == 'a' else 'o'}s al parametro **_{parameters[0]}_** "\
+                return f"- **${head}:{target} "\
+                       f"[_{', '.join(parameters)}_]** " + \
+                       ('**> e**   ->   Lista en una hoja de excel '
+                        if excelrequest
+                        else '   ->   Lista ') + \
+                       ('todas las '
+                        if controller[0] == 'a'
+                        else 'todos los ') + \
+                       f"___{controller}s___ "\
+                        "asociad" + \
+                       ('a'
+                        if controller[0] == 'a'
+                        else 'o') + \
+                       f"s al parametro **_{parameters[0]}_** "\
                         "ingresado dentro de los corchetes **[ ]**, "\
-                        f"en relacion al nombre de{' la' if parameters[0][0] == 'a' else 'l'} "\
-                        f"___{parameters[0].lower()}___ presente en "\
-                        f"{'la' if controller[0] == 'a' else 'el'} ___{controller}___. "
-                        f"Este parametro **_{parameters[0]}_** deberá corresponder a un valor de texto.\n")
+                        "en relacion al nombre de" + \
+                       (' la '
+                        if parameters[0][0] == 'a'
+                        else 'l ') + \
+                       f"___{parameters[0].lower()}___ presente en " + \
+                       ('la '
+                        if controller[0] == 'a'
+                        else 'el ') + \
+                       f" ___{controller}___. "\
+                       f"Este parametro **_{parameters[0]}_** "\
+                        "deberá corresponder a un valor de texto.\n"
         elif mode == "add":
             value = (f"- **${head} [_{', '.join(parameters)}_]**   ->   Añade "\
                     f"{'una nueva'if controller[0] == 'a' else 'un nuevo'} "\
