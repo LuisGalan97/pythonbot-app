@@ -412,7 +412,7 @@ class MessageHandler:
                                               "ingresadolo de la "\
                                               "siguiente forma:\n"\
                                               f"**${command}** " + \
-                                              (f"{parameters} "
+                                              (parameters
                                                if command.find(':') != -1
                                                else '') + \
                                               "**> e**")
