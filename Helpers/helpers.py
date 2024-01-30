@@ -997,12 +997,26 @@ class Helpers:
                 return value
         elif mode == "del":
             if target == "id":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
-                        f"{'una'if controller[0] == 'a' else 'un'} ___{controller}___ "\
-                        f"apuntando a su identificador, ingresando dentro de los corchetes **[ ]** "\
-                        f"un parametro **_{parameters[0]}_** como valor numerico.\n")
+                return f"- **${head}:{target} "\
+                       f"[_{', '.join(parameters)}_]**   ->   "\
+                        "Elimina " + \
+                       ('una '
+                        if controller[0] == 'a'
+                        else 'un ') + \
+                       f"___{controller}___ "\
+                        "apuntando a su identificador, ingresando "\
+                        "dentro de los corchetes **[ ]** "\
+                       f"un parametro **_{parameters[0]}_** "\
+                        "como valor numerico.\n"
             elif target == "name":
-                return (f"- **${head}:{target} [_{', '.join(parameters)}_]**   ->   Elimina "\
-                        f"{'una 'if controller[0] == 'a' else 'un'} ___{controller}___ "\
-                        f"apuntando a su nombre, ingresando dentro de los corchetes **[ ]** "\
-                        f"un parametro **_{parameters[0]}_** como valor de texto.\n")
+                return f"- **${head}:{target} "\
+                       f"[_{', '.join(parameters)}_]**   ->   "\
+                        "Elimina " + \
+                       ('una '
+                        if controller[0] == 'a'
+                        else 'un ') + \
+                       f"___{controller}___ "\
+                        "apuntando a su nombre, ingresando "\
+                        "dentro de los corchetes **[ ]** "\
+                       f"un parametro **_{parameters[0]}_** "\
+                        "como valor de texto.\n"
