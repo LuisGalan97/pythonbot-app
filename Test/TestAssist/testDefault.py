@@ -325,7 +325,7 @@ async def test_listAssist_e_incomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert "$**listAssist**  **> e**\n" in out
+            assert "**$listAssist**  **> e**\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId_e(capfd):

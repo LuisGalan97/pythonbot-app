@@ -411,7 +411,7 @@ class MessageHandler:
                                               "debe completar el comando "\
                                               "ingresadolo de la "\
                                               "siguiente forma:\n"\
-                                              f"$**{command}** " + \
+                                              f"**${command}** " + \
                                               (parameters
                                                if command.find(':') != -1
                                                else '') + \
