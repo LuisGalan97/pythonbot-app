@@ -32,11 +32,13 @@ class AppHandler:
                     datas.append(data)
                 return datas
             elif items:
-                return f"No se encontraron ___{nameCtrl}s___ para la consulta realizada."
+                return f"No se encontraron ___{nameCtrl}s___ "\
+                        "para la consulta realizada."
             else:
                 return False
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar seleccionar en la base de datos: {str(ex)}.")
+            print(f"-> Ocurrio un error al intentar seleccionar "\
+                   "en la base de datos: {str(ex)}.")
             return False
 
     def setData(self, request, struct):
@@ -48,26 +50,34 @@ class AppHandler:
                 key = references["create"]
                 if references["create"]:
                     method = f"get{nameCtrl.capitalize()}s"
-                    exist = getattr(getattr(self, controller), method)({key : target[key]})
+                    exist = getattr(getattr(self, controller),
+                                    method)({key : target[key]})
                     if isinstance(exist, list):
-                        return f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ "\
-                           f"de **_{struct['targets'][key]['alias']}_** \'{target[key]}\' "\
-                            "ya se encuentra en la base de datos."
+                        return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
+                               f"___{nameCtrl}___ "\
+                               f"de **_{struct['targets'][key]['alias']}_** "\
+                               f"\'{target[key]}\' "\
+                                "ya se encuentra en la base de datos."
                     elif exist:
                         method = f"create{nameCtrl.capitalize()}"
-                        result = getattr(getattr(self, controller), method)(**target)
+                        result = getattr(getattr(self, controller),
+                                         method)(**target)
                     else:
                         return False
                 else:
                     method = f"create{nameCtrl.capitalize()}"
-                    result = getattr(getattr(self, controller), method)(**target)
-                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ ha sido "\
-                        f"cread{'a' if nameCtrl[0] == 'a' else 'o'} con exito sobre el **_ID_** '{result}'."\
+                    result = getattr(getattr(self, controller),
+                                     method)(**target)
+                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
+                        f"___{nameCtrl}___ ha sido "\
+                        f"cread{'a' if nameCtrl[0] == 'a' else 'o'} "\
+                        f"con exito sobre el **_ID_** '{result}'."\
                         if result else False)
             else:
                 return target
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar insertar en la base de datos: {str(ex)}.")
+            print( "-> Ocurrio un error al intentar insertar "\
+                  f"en la base de datos: {str(ex)}.")
             return False
 
     def updateData(self, request, struct):
@@ -78,24 +88,31 @@ class AppHandler:
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 key = references["update"]
                 method = f"get{nameCtrl.capitalize()}s"
-                exist = getattr(getattr(self, controller), method)({key : target[key]})
+                exist = getattr(getattr(self, controller),
+                                method)({key : target[key]})
                 if isinstance(exist, list):
                     method = f"update{nameCtrl.capitalize()}"
                     target["id"] = exist[0]["id"]
-                    result = getattr(getattr(self, controller), method)(**target)
+                    result = getattr(getattr(self, controller),
+                                     method)(**target)
                 elif exist:
-                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ "\
-                           f"de **_{struct['targets'][key]['alias']}_** \'{target[key]}\' "\
+                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
+                           f"___{nameCtrl}___ "\
+                           f"de **_{struct['targets'][key]['alias']}_** "\
+                           f"\'{target[key]}\' "\
                             "no se encuentra en la base de datos."
                 else:
                     return False
-                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ ha sido "\
-                        f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} con exito."\
+                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
+                        f"___{nameCtrl}___ ha sido "\
+                        f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} "\
+                         "con exito."\
                         if result else False)
             else:
                 return target
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar actualizar en la base de datos: {str(ex)}.")
+            print( "-> Ocurrio un error al intentar actualizar "\
+                  f"en la base de datos: {str(ex)}.")
             return False
 
     def deleteData(self, request, struct):
@@ -106,23 +123,30 @@ class AppHandler:
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 key = references["delete"]
                 method = f"get{nameCtrl.capitalize()}s"
-                exist = getattr(getattr(self, controller), method)({key : target[key]})
+                exist = getattr(getattr(self, controller),
+                                method)({key : target[key]})
                 if isinstance(exist, list):
                     method = f"delete{nameCtrl.capitalize()}"
                     target.pop(key)
                     target["id"] = exist[0]["id"]
-                    result = getattr(getattr(self, controller), method)(**target)
+                    result = getattr(getattr(self, controller),
+                                     method)(**target)
                 elif exist:
-                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ "\
-                           f"de **_{struct['targets'][key]['alias']}_** \'{target[key]}\' "\
+                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
+                           f"___{nameCtrl}___ "\
+                           f"de **_{struct['targets'][key]['alias']}_** "\
+                           f"\'{target[key]}\' "\
                             "no se encuentra en la base de datos."
                 else:
                     return False
-                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} ___{nameCtrl}___ ha sido "\
-                        f"eliminad{'a' if nameCtrl[0] == 'a' else 'o'} con exito."\
+                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
+                        f"___{nameCtrl}___ ha sido "\
+                        f"eliminad{'a' if nameCtrl[0] == 'a' else 'o'} "\
+                         "con exito."\
                         if result else False)
             else:
                 return target
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar eliminar en la base de datos: {str(ex)}.")
+            print( "-> Ocurrio un error al intentar eliminar "\
+                  f"en la base de datos: {str(ex)}.")
             return False
