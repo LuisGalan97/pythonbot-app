@@ -481,5 +481,58 @@ async def test_helpRange(capfd):
     await hdlr.inMsg()
     await hdlr.helpMsg()
     out, _ = capfd.readouterr()
-    assert "Rangos" in out
-    assert "listRange:name" in out
+    assert "**_Rangos_**\n" in out
+    assert "Los ___rangos___ disponen registros con informacion de "\
+           "los diferentes rangos asignables a los integrante o "\
+           "miembros de la alianza **⚜Avalon⚜**.\n" in out
+    assert "_Comandos de modificacion:_\n" in out
+    assert "- **$addRange [_Nombre, Control, Descripción_]**   ->   "\
+           "Añade un nuevo ___rango___, ingresando dentro de los "\
+           "corchetes **[ ]** un parametro **_Nombre_** como valor "\
+           "de texto, un parametro **_Control_** como valor numerico "\
+           "y un parametro **_Descripción_** como valor de texto.\n" in out
+    assert "- **$updRange:id [_ID, Nombre, Control, Descripción_]**   "\
+           "->   Actualiza los datos de un ___rango___ apuntando "\
+           "a su identificador, ingresando dentro de los corchetes "\
+           "**[ ]** un parametro **_ID_** como valor numerico, "\
+           "un parametro **_Nombre_** como valor de texto, un "\
+           "parametro **_Control_** como valor numerico y un parametro "\
+           "**_Descripción_** como valor de texto.\n" in out
+    assert "- **$updRange:name [_Nombre, Control, Descripción_]**   "\
+           "->   Actualiza los datos de un ___rango___ apuntando "\
+           "a su nombre, ingresando dentro de los corchetes **[ ]** "\
+           "un parametro **_Nombre_** como valor de texto, un "\
+           "parametro **_Control_** como valor numerico y un "\
+           "parametro **_Descripción_** como valor de texto.\n" in out
+    assert "- **$delRange:id [_ID_]**   ->   Elimina un ___rango___ "\
+           "apuntando a su identificador, ingresando dentro de los "\
+           "corchetes **[ ]** un parametro **_ID_** como valor "\
+           "numerico.\n" in out
+    assert "- **$delRange:name [_Nombre_]**   ->   Elimina un "\
+           "___rango___ apuntando a su nombre, ingresando dentro "\
+           "de los corchetes **[ ]** un parametro **_Nombre_** como "\
+           "valor de texto.\n" in out
+    assert "_Comandos de consulta:_\n" in out
+    assert "- **$listRange**   ->   Lista todos los ___rangos___.\n" in out
+    assert "- **$listRange:id [_ID_]**    ->   Lista el ___rango___ "\
+           "asociado al parametro **_ID_** ingresado dentro de los "\
+           "corchetes **[ ]**. Este parametro **_ID_** deberá "\
+           "corresponder a un valor numerico.\n" in out
+    assert "- **$listRange:name [_Nombre_]**    ->   Lista el "\
+           "___rango___ asociado al parametro **_Nombre_** ingresado "\
+           "dentro de los corchetes **[ ]**. Este parametro "\
+           "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
+    assert "_Comandos de consulta con impresion en excel:_\n" in out
+    assert "Por defecto, los comandos de consulta imprimen los "\
+           "registros en el canal de discord, sin embargo, tambien "\
+           "pueden ser impresos dentro de una hoja de excel, si "\
+           "despues del comando se especifica el parametro **> e**.\n" in out
+    assert "- **$listRange > e**   ->   Lista todos los ___rangos___.\n" in out
+    assert "- **$listRange:id [_ID_]** **> e**   ->   Lista el ___rango___ "\
+           "asociado al parametro **_ID_** ingresado dentro de los "\
+           "corchetes **[ ]**. Este parametro **_ID_** deberá "\
+           "corresponder a un valor numerico.\n" in out
+    assert "- **$listRange:name [_Nombre_]** **> e**   ->   Lista el "\
+           "___rango___ asociado al parametro **_Nombre_** ingresado "\
+           "dentro de los corchetes **[ ]**. Este parametro "\
+           "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
