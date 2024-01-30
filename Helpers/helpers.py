@@ -768,7 +768,7 @@ class Helpers:
                         if controller[0] == 'a'
                         else 'o') + \
                        f"s al parametro **_{parameters[0]}_** "\
-                        "en relacion al nombre de " + \
+                        "en relacion al nombre de" + \
                        (' la '
                         if parameters[0][0] == 'a'
                         else 'l ') + \
