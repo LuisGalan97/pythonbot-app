@@ -958,7 +958,7 @@ class Helpers:
                          "Actualiza los datos de " + \
                         ('una '
                          if controller[0] == 'a'
-                         else 'un') + \
+                         else 'un ') + \
                         f"___{controller}___ "\
                         f"apuntando a su nombre, "\
                          "ingresando dentro de los corchetes **[ ]** "
