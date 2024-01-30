@@ -527,12 +527,15 @@ async def test_helpRange(capfd):
            "registros en el canal de discord, sin embargo, tambien "\
            "pueden ser impresos dentro de una hoja de excel, si "\
            "despues del comando se especifica el parametro **> e**.\n" in out
-    assert "- **$listRange > e**    ->   Lista todos los ___rangos___.\n" in out
-    assert "- **$listRange:id [_ID_]** **> e**   ->   Lista el ___rango___ "\
+    assert "- **$listRange > e**   ->   Lista en una hoja de excel"\
+           "todos los ___rangos___.\n" in out
+    assert "- **$listRange:id [_ID_]** **> e**   ->   Lista "\
+           "en una hoja de excel el ___rango___ "\
            "asociado al parametro **_ID_** ingresado dentro de los "\
            "corchetes **[ ]**. Este parametro **_ID_** deberá "\
            "corresponder a un valor numerico.\n" in out
-    assert "- **$listRange:name [_Nombre_]** **> e**   ->   Lista el "\
+    assert "- **$listRange:name [_Nombre_]** **> e**   ->   Lista "\
+           "en una hoja de excel el "\
            "___rango___ asociado al parametro **_Nombre_** ingresado "\
            "dentro de los corchetes **[ ]**. Este parametro "\
            "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
