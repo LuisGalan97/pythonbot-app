@@ -309,6 +309,151 @@ async def test_listAssist_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listAssistId_e(capfd):
+    commands = [f"$listAssist:id[{testData['id']}]",
+                f"$listAssist:id [{testData['id']}]",
+                f"$listAssist:id [ {testData['id']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:id", app.getDatas,
+                             Helpers.getStruct("asistencia", ["id"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMember_e(capfd):
+    commands = [f"$listAssist:member[{testData['memupdate']}]",
+                f"$listAssist:member [{testData['memupdate']}]",
+                f"$listAssist:member [ {testData['memupdate']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member", app.getDatas,
+                             Helpers.getStruct("asistencia", ["integrante"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEvent_e(capfd):
+    commands = [f"$listAssist:event[{testData['evupdate']}]",
+                f"$listAssist:event [{testData['evupdate']}]",
+                f"$listAssist:event [ {testData['evupdate']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:event", app.getDatas,
+                             Helpers.getStruct("asistencia", ["evento"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistDate_e(capfd):
+    commands = [f"$listAssist:date[{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:date [{testData['dateupdate']}, "\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:date [ {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:date", app.getDatas,
+                             Helpers.getStruct("asistencia",
+                             ["date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberDate_e(capfd):
+    commands = [f"$listAssist:member&date[{testData['memupdate']},"\
+                f"{testData['dateupdate']},{testData['dateupdate']}]",
+                f"$listAssist:member&date [{testData['memupdate']}, "\
+                f"{testData['dateupdate']}, {testData['dateupdate']}]",
+                f"$listAssist:member&date [ {testData['memupdate']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member&date", app.getDatas,
+                             Helpers.getStruct("asistencia",
+                             ["integrante", "date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEventDate_e(capfd):
+    commands = [f"$listAssist:event&date[{testData['evupdate']},"\
+                f"{testData['dateupdate']},{testData['dateupdate']}]",
+                f"$listAssist:event&date [{testData['evupdate']}, "\
+                f"{testData['dateupdate']}, {testData['dateupdate']}]",
+                f"$listAssist:event&date [ {testData['evupdate']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:event&date", app.getDatas,
+                             Helpers.getStruct("asistencia",
+                             ["evento", "date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberEventDate_e(capfd):
+    commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
+                f"{testData['evupdate']},{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:member&event&date [{testData['memupdate']}, "\
+                f"{testData['evupdate']}, {testData['dateupdate']}, "\
+                f"{testData['dateupdate']} ]",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evupdate']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member&event&date",
+                             app.getDatas, Helpers.getStruct("asistencia",
+                             ["integrante", "evento", "date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
 async def test_listAssist_e_incomplete(capfd):
     commands = [f"$listAssist"]
     eparams = [">", " >", "> ", " > ", " > FILL",
@@ -326,24 +471,6 @@ async def test_listAssist_e_incomplete(capfd):
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
             assert "**$listAssist** **> e**\n" in out
-
-@pytest.mark.asyncio
-async def test_listAssistId_e(capfd):
-    commands = [f"$listAssist:id[{testData['id']}]",
-                f"$listAssist:id [{testData['id']}]",
-                f"$listAssist:id [ {testData['id']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:id", app.getDatas,
-                             Helpers.getStruct("asistencia", ["id"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId_e_incomplete(capfd):
@@ -366,24 +493,6 @@ async def test_listAssistId_e_incomplete(capfd):
                    "de la siguiente forma:\n" in out
             assert f"**$listAssist:id** **[**{testData['id']}**]** "\
                     "**> e**\n" in out
-
-@pytest.mark.asyncio
-async def test_listAssistMember_e(capfd):
-    commands = [f"$listAssist:member[{testData['memupdate']}]",
-                f"$listAssist:member [{testData['memupdate']}]",
-                f"$listAssist:member [ {testData['memupdate']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:member", app.getDatas,
-                             Helpers.getStruct("asistencia", ["integrante"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMember_e_incomplete(capfd):
@@ -409,24 +518,6 @@ async def test_listAssistMember_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent_e(capfd):
-    commands = [f"$listAssist:event[{testData['evupdate']}]",
-                f"$listAssist:event [{testData['evupdate']}]",
-                f"$listAssist:event [ {testData['evupdate']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:event", app.getDatas,
-                             Helpers.getStruct("asistencia", ["evento"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
-
-@pytest.mark.asyncio
 async def test_listAssistEvent_e_incomplete(capfd):
     commands = [f"$listAssist:event[{testData['evupdate']}]",
                 f"$listAssist:event [{testData['evupdate']}]",
@@ -448,28 +539,6 @@ async def test_listAssistEvent_e_incomplete(capfd):
             assert f"**$listAssist:event** "\
                    f"**[**{testData['evupdate']}**]** "\
                     "**> e**\n" in out
-
-@pytest.mark.asyncio
-async def test_listAssistDate_e(capfd):
-    commands = [f"$listAssist:date[{testData['dateupdate']},"\
-                f"{testData['dateupdate']}]",
-                f"$listAssist:date [{testData['dateupdate']}, "\
-                f"{testData['dateupdate']}]",
-                f"$listAssist:date [ {testData['dateupdate']} , "\
-                f"{testData['dateupdate']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["date_1", "date_2"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listAssistDate_e_incomplete(capfd):
@@ -500,28 +569,6 @@ async def test_listAssistDate_e_incomplete(capfd):
                    testData['dateupdate'] + \
                    "**]** "\
                    "**> e**\n" in out
-
-@pytest.mark.asyncio
-async def test_listAssistMemberDate_e(capfd):
-    commands = [f"$listAssist:member&date[{testData['memupdate']},"\
-                f"{testData['dateupdate']},{testData['dateupdate']}]",
-                f"$listAssist:member&date [{testData['memupdate']}, "\
-                f"{testData['dateupdate']}, {testData['dateupdate']}]",
-                f"$listAssist:member&date [ {testData['memupdate']} , "\
-                f"{testData['dateupdate']} , {testData['dateupdate']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["integrante", "date_1", "date_2"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberDate_e_incomplete(capfd):
@@ -555,28 +602,6 @@ async def test_listAssistMemberDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_e(capfd):
-    commands = [f"$listAssist:event&date[{testData['evupdate']},"\
-                f"{testData['dateupdate']},{testData['dateupdate']}]",
-                f"$listAssist:event&date [{testData['evupdate']}, "\
-                f"{testData['dateupdate']}, {testData['dateupdate']}]",
-                f"$listAssist:event&date [ {testData['evupdate']} , "\
-                f"{testData['dateupdate']} , {testData['dateupdate']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["evento", "date_1", "date_2"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
-
-@pytest.mark.asyncio
 async def test_listAssistEventDate_e_incomplete(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
@@ -606,31 +631,6 @@ async def test_listAssistEventDate_e_incomplete(capfd):
                    testData['dateupdate'] + \
                    "**]** "\
                    "**> e**\n" in out
-
-@pytest.mark.asyncio
-async def test_listAssistMemberEventDate_e(capfd):
-    commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
-                f"{testData['evupdate']},{testData['dateupdate']},"\
-                f"{testData['dateupdate']}]",
-                f"$listAssist:member&event&date [{testData['memupdate']}, "\
-                f"{testData['evupdate']}, {testData['dateupdate']}, "\
-                f"{testData['dateupdate']} ]",
-                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
-                f"{testData['evupdate']} , {testData['dateupdate']} , "\
-                f"{testData['dateupdate']} ]"]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
-    for command in commands:
-        for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listAssist:member&event&date",
-                             app.getDatas, Helpers.getStruct("asistencia",
-                             ["integrante", "evento", "date_1", "date_2"]))
-            out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
-            assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberEventDate_e_incomplete(capfd):
