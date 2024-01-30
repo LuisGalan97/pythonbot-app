@@ -321,7 +321,7 @@ async def test_listAssistId_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
-                            Helpers.getStruct("asistencia", ["id"]))
+                             Helpers.getStruct("asistencia", ["id"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**" in out
             assert "discord.file.File object" in out

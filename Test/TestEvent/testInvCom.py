@@ -22,7 +22,7 @@ async def test_addEvent_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                            Helpers.setStruct("evento"))
+                           Helpers.setStruct("evento"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$addEvent [_Nombre, Puntos, Descripción_]**" in out
@@ -41,7 +41,7 @@ async def test_updEventId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                            Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$updEvent:id [_ID, Nombre, Puntos, Descripción_]**" in out
@@ -60,7 +60,7 @@ async def test_updEventName_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                            Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("evento", "name"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$updEvent:name [_Nombre, Puntos, Descripción_]**" in out
@@ -79,7 +79,7 @@ async def test_delEventId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
-                            Helpers.delStruct("evento", "id"))
+                           Helpers.delStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$delEvent:id [_ID_]**" in out
@@ -98,7 +98,7 @@ async def test_delEventName_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
-                            Helpers.delStruct("evento", "name"))
+                           Helpers.delStruct("evento", "name"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$delEvent:name [_Nombre_]**" in out
@@ -117,7 +117,7 @@ async def test_listEventId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
-                          Helpers.getStruct("evento", ["id"]))
+                         Helpers.getStruct("evento", ["id"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$listEvent:id [_ID_]**" in out
@@ -136,7 +136,7 @@ async def test_listEventName_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
-                          Helpers.getStruct("evento", ["name"]))
+                         Helpers.getStruct("evento", ["name"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:" in out
         assert "**$listEvent:name [_Nombre_]**" in out
