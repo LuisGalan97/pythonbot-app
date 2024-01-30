@@ -494,7 +494,7 @@ async def test_listAssistDate_e_incomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert f"**$listAssist:event** "\
+            assert "**$listAssist:date** "\
                    "**[**" + \
                    testData['dateupdate'] + ", " + \
                    testData['dateupdate'] + \
