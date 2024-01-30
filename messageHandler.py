@@ -22,7 +22,7 @@ class MessageHandler:
         msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
-         #---------------------------------Asistencias-------------------------
+         #--------------------------Asistencias--------------------------------
             messages.append("**___Asistencias___**\n")
             messages.append("\n")
             messages.append("Las ___asistencias___ hacen referencia a "\
@@ -96,7 +96,7 @@ class MessageHandler:
                                             "Fecha 1, Fecha 2] > e",
                                             "asistencia"))
         elif msg.startswith("$help:event"):
-             #-----------------------------------Eventos-----------------------
+             #--------------------------Eventos--------------------------------
             messages.append("**___Eventos___**\n")
             messages.append("\n")
             messages.append("Los ___eventos___ corresponden a una lista "\
@@ -137,7 +137,7 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listEvent:name [Nombre] > e",
                                            "evento"))
         elif msg.startswith("$help:member"):
-            #----------------------------------Integrantes---------------------
+            #--------------------------Integrantes-----------------------------
             messages.append("**___Integrantes___**\n")
             messages.append("\n")
             messages.append("Los ___integrantes___ son una serie de "\
@@ -188,7 +188,7 @@ class MessageHandler:
                                            "[Fecha 1, Fecha 2] > e",
                                            "integrante"))
         elif msg.startswith("$help:range"):
-            #-------------------------------------Rangos-----------------------
+            #------------------------------Rangos------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
             messages.append("Los ___rangos___ disponen registros con "\
@@ -356,8 +356,8 @@ class MessageHandler:
                         excelreq = excelreq.replace(' ','')
                         if excelreq == ">e":
                             strContent = (content[content.find('[')+1:
-                                                  content.find(']')]
-                                                  .split(","))
+                                          content.find(']')]
+                                          .split(","))
                             strContent = "_".join(data.strip()
                                                   for data
                                                   in strContent)
@@ -385,25 +385,56 @@ class MessageHandler:
                                                   "s:___**")
                                 await self.__send(file = discordFile)
                                 if not df.deleteFrame():
-                                    await self.__send(message = "Error al intentar eliminar el excel, "\
-                                                                "por favor consulte con el administrador.")
+                                    await self.__send(message =
+                                                      "Error al intentar "\
+                                                      "eliminar el excel, "\
+                                                      "por favor consulte "\
+                                                      "con el administrador.")
                             else:
-                                await self.__send(message = "Error al intentar crear el excel, "\
-                                                            "por favor consulte con el administrador.")
+                                await self.__send(message =
+                                                  "Error al intentar "\
+                                                  "crear el excel, "\
+                                                  "por favor consulte "\
+                                                  "con el administrador.")
                         else:
-                            parameters = f"**[**{content[content.find('[')+1:content.rfind(']')]}**]** "
-                            await self.__send(message = "Se ha detectado el uso del operador **>** despues del comando "\
-                                                        "inicial, si desea obtener los datos en un archivo de excel, "\
-                                                        "debe completar el comando ingresadolo de la siguiente forma:\n"\
-                                                        f"$**{command}** {parameters if command.find(':') != -1 else ''} **> e**")
+                            parameters = "**[**" + \
+                                         (content[content.find('[')+1:
+                                          content.rfind(']')])+ \
+                                         "**]** "
+                            await self.__send(message =
+                                              "Se ha detectado el uso del "\
+                                              "operador **>** despues "\
+                                              "del comando "\
+                                              "inicial, si desea obtener "\
+                                              "los datos en un archivo "\
+                                              "de excel, "\
+                                              "debe completar el comando "\
+                                              "ingresadolo de la "\
+                                              "siguiente forma:\n"\
+                                              f"$**{command}** " + \
+                                              (parameters
+                                               if command.find(':') != -1
+                                               else '') + \
+                                              " **> e**")
                     else:
                         array = []
-                        title = f"**___{list(struct['controller'].keys())[0].capitalize()}s___** "\
-                                f"**___encontrad{'a' if list(struct['controller'].keys())[0][0] == 'a' else 'o'}s:___**"
+                        title = "**___" + \
+                                (list(struct['controller'].
+                                 keys())[0]
+                                 .capitalize()) + \
+                                "s___** "\
+                                "**___encontrad" + \
+                                ('a'
+                                 if list(struct['controller']
+                                    .keys())[0][0] == 'a'
+                                 else 'o') + \
+                                "s:___**"
                         length = len(title)
                         array.append(title)
                         for i in range(len(result)):
-                            tempdict = f"* {', '.join([f'**_{key}_** : _{value}_' for key, value in result[i].items()])}"
+                            tempdict = "* " + \
+                                       (', '.join([f'**_{key}_** : _{value}_'
+                                        for key, value in result[i].items()]))
                             length = length + len(tempdict) + 1
                             if length >= 2000:
                                 await self.__send(message = '\n'.join(array))
@@ -411,7 +442,8 @@ class MessageHandler:
                                 length = len(tempdict) + 1
                                 array.append(tempdict)
                                 if i == len(result) - 1:
-                                    await self.__send(message = '\n'.join(array))
+                                    await self.__send(message =
+                                                      '\n'.join(array))
                             elif i == len(result) - 1:
                                 array.append(tempdict)
                                 await self.__send(message = '\n'.join(array))
@@ -421,7 +453,8 @@ class MessageHandler:
                     await self.__send(message = result)
                 else:
                     await self.__send(message = "Error en la base de datos, "\
-                                                "por favor consulte con el administrador.")
+                                                "por favor consulte con el "\
+                                                "administrador.")
             else:
                 await self.__send(message = request)
 
@@ -435,7 +468,8 @@ class MessageHandler:
                     await self.__send(message = result)
                 else:
                     await self.__send(message = "Error en la base de datos, "\
-                                                "por favor consulte con el administrador.")
+                                                "por favor consulte con el "\
+                                                "administrador.")
             else:
                 await self.__send(message = request)
 
