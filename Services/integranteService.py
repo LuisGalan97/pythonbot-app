@@ -24,13 +24,23 @@ class IntegranteService:
         if not target:
             data = self.__db.execute_query(self.__selectQuery)
         elif "id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE i.id = ?", (target["id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE i.id = ?",
+                                           (target["id"],))
         elif "name" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE i.name = ?", (target["name"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE i.name = ?",
+                                           (target["name"],))
         elif "rango_id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE i.rango_id = ?", (target["rango_id"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE i.rango_id = ?",
+                                           (target["rango_id"],))
         elif "date_1" in target and "date_2" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} WHERE i.datecreate BETWEEN ? AND ?", (target["date_1"], target["date_2"],))
+            data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE i.datecreate BETWEEN "\
+                                            "? AND ?",
+                                           (target["date_1"],
+                                            target["date_2"],))
         else:
             data = None
         self.__db.close_connection()
@@ -38,7 +48,8 @@ class IntegranteService:
             integrantes = []
             for row in data:
                 rango = RangoModel(row[0], row[1], row[2], row[3])
-                integrante = IntegranteModel(row[4], row[5], rango, row[6], row[7])
+                integrante = IntegranteModel(row[4], row[5], rango, row[6],
+                                             row[7])
                 integrantes.append(integrante)
             return integrantes
         else:
