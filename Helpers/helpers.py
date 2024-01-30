@@ -867,24 +867,36 @@ class Helpers:
             value = f"- **${head} [_{', '.join(parameters)}_]**   ->   "\
                      "Añade " + \
                     ('una nueva '
-                     if controller[0] == 'a' 
+                     if controller[0] == 'a'
                      else 'un nuevo ') + \
                     f"___{controller}___, ingresando "\
                      "dentro de los corchetes **[ ]** "
             for i in range(len(parameters)):
                 if parameters[i] == "Nombre":
-                    value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                    value = value + "un parametro "\
+                            f"**_{parameters[i]}_** "\
+                            "como valor de texto"
                 elif parameters[i] == "Puntos":
-                    value = value + f"un parametro **_{parameters[i]}_** como valor numerico decimal"
+                    value = value + "un parametro "\
+                            f"**_{parameters[i]}_** "\
+                            "como valor numerico decimal"
                 elif parameters[i] == "Fecha":
-                    value = value + f"un parametro **_{parameters[i]}_** como valor de fecha en 'Día-Mes-Año'"
+                    value = value + "un parametro "\
+                            f"**_{parameters[i]}_** "\
+                            "como valor de fecha en 'Día-Mes-Año'"
                 elif parameters[i] == "Control":
-                        value = value + f"un parametro **_{parameters[i]}_** como valor numerico"
+                        value = value + "un parametro "\
+                                f"**_{parameters[i]}_** "\
+                                "como valor numerico"
                 elif parameters[i] == "Descripción":
-                    value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
+                    value = value + f"un parametro "\
+                            f"**_{parameters[i]}_** "\
+                            "como valor de texto"
                 else:
-                    value = value + (f"un parametro **_{parameters[i]}_** como valor de texto asociado al nombre "\
-                    f"de un ___{parameters[i].lower()}___")
+                    value = value + "un parametro "\
+                            f"**_{parameters[i]}_** "\
+                            "como valor de texto asociado al nombre "\
+                            f"de un ___{parameters[i].lower()}___"
                 if i == len(parameters) - 1:
                     value = value + ".\n"
                 elif i == len(parameters) - 2:
