@@ -20,7 +20,7 @@ async def on_message(message):
     hdlr = MessageHandler(message, client)
     await hdlr.inMsg()
     await hdlr.helpMsg()
-    #---------------------------------Asistencias------------------------------
+    #------------------------------Asistencias---------------------------------
     await hdlr.contMsg("addAssist", app.setData,
                        Helpers.setStruct("asistencia"))
     await hdlr.contMsg("updAssist:id", app.updateData,
@@ -49,7 +49,7 @@ async def on_message(message):
                      Helpers.getStruct("asistencia",
                                        ["integrante", "evento",
                                         "date_1", "date_2"]))
-    #-----------------------------------Eventos--------------------------------
+    #--------------------------------Eventos-----------------------------------
     await hdlr.contMsg("addEvent", app.setData,
                        Helpers.setStruct("evento"))
     await hdlr.contMsg("updEvent:id", app.updateData,
@@ -66,7 +66,7 @@ async def on_message(message):
                      Helpers.getStruct("evento", ["id"]))
     await hdlr.dFMsg("listEvent:name", app.getDatas,
                      Helpers.getStruct("evento", ["name"]))
-    #----------------------------------Integrantes-----------------------------
+    #-------------------------------Integrantes--------------------------------
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("integrante"))
     await hdlr.contMsg("updMember:id", app.updateData,
@@ -87,7 +87,7 @@ async def on_message(message):
                      Helpers.getStruct("integrante", ["rango"]))
     await hdlr.dFMsg("listMember:date", app.getDatas,
                      Helpers.getStruct("integrante", ["date_1", "date_2"]))
-    #-------------------------------------Rangos-------------------------------
+    #----------------------------------Rangos----------------------------------
     await hdlr.contMsg("addRange", app.setData,
                        Helpers.setStruct("rango"))
     await hdlr.contMsg("updRange:id", app.updateData,
