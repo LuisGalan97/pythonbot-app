@@ -221,6 +221,69 @@ async def test_listEventName_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listEvent_e_incomplete(capfd):
+    commands = [f"$listEvent"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listEvent", app.getDatas,
+                             Helpers.getStruct("evento"))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert "**$listEvent** **> e**\n" in out
+
+@pytest.mark.asyncio
+async def test_listEventId_e_incomplete(capfd):
+    commands = [f"$listEvent:id[{testData['id']}]",
+                f"$listEvent:id [{testData['id']}]",
+                f"$listEvent:id [ {testData['id']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listEvent:id", app.getDatas,
+                             Helpers.getStruct("evento", ["id"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listAssist:id** **[**{testData['id']}**]** "\
+                    "**> e**\n" in out
+
+@pytest.mark.asyncio
+async def test_listEventName_e_incomplete(capfd):
+    commands = [f"$listEvent:name[{testData['nameupdate']}]",
+                f"$listEvent:name [{testData['nameupdate']}]",
+                f"$listEvent:name [ {testData['nameupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listEvent:name", app.getDatas,
+                             Helpers.getStruct("evento", ["name"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listAssist:name** **[**{testData['nameupdate']}**]** "\
+                    "**> e**\n" in out
+
+@pytest.mark.asyncio
 async def test_delEventId(capfd):
     command = f"$delEvent:id [{testData['id']}]"
     message = Message(author="test", content=command)
