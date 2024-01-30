@@ -75,7 +75,7 @@ async def test_updMemberId(capfd):
                 f"{testData['nameupdate']} , "\
                 f"{testData['rancreate']} , {testData['dateupdate']} ] ",
                 f"$updMember:id [ {testData['id']} , "\
-                "{testData['nameupdate']} , "\
+                f"{testData['nameupdate']} , "\
                 f"{testData['rancreate']} , {testData['dateupdate']} ]FILL",
                 f"$updMember:id [ {testData['id']} , "\
                 f"{testData['nameupdate']} , "\
