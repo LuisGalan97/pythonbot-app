@@ -864,7 +864,7 @@ class Helpers:
                        f"Este parametro **_{parameters[0]}_** "\
                         "deberá corresponder a un valor de texto.\n"
         elif mode == "add":
-            value = f"- **${head} [_{', '.join(parameters)}_]**   ->"\
+            value = f"- **${head} [_{', '.join(parameters)}_]**   ->   "\
                      "Añade " + \
                     ('una nueva '
                      if controller[0] == 'a' 
