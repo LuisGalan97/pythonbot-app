@@ -258,7 +258,7 @@ async def test_listEventId_e_incomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert f"**$listAssist:id** **[**{testData['id']}**]** "\
+            assert f"**$listEvent:id** **[**{testData['id']}**]** "\
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
@@ -280,7 +280,7 @@ async def test_listEventName_e_incomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert f"**$listAssist:name** **[**{testData['nameupdate']}**]** "\
+            assert f"**$listEvent:name** **[**{testData['nameupdate']}**]** "\
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
