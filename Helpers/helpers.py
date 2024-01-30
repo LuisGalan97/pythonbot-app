@@ -755,7 +755,7 @@ class Helpers:
                         "fecha en 'Día-Mes-Año'.\n"
             elif target == "event&date":
                 return f"- **${head}:{target} "\
-                       f"[_{', '.join(parameters)}_]** "\
+                       f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
                         if excelrequest
                         else '   ->   Lista ') + \
