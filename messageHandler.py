@@ -415,7 +415,7 @@ class MessageHandler:
                                               (parameters
                                                if command.find(':') != -1
                                                else '') + \
-                                              " **> e**")
+                                              "**> e**")
                     else:
                         array = []
                         title = "**___" + \
