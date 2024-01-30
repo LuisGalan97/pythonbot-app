@@ -386,6 +386,29 @@ async def test_listAssistMember_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listAssistMember_e_incomplete(capfd):
+    commands = [f"$listAssist:member[{testData['memupdate']}]",
+                f"$listAssist:member [{testData['memupdate']}]",
+                f"$listAssist:member [ {testData['memupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member", app.getDatas,
+                             Helpers.getStruct("asistencia", ["integrante"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listAssist:member** "\
+                   f"**[**{testData['memupdate']}**]** "\
+                    "**> e**\n" in out
+
+@pytest.mark.asyncio
 async def test_listAssistEvent_e(capfd):
     commands = [f"$listAssist:event[{testData['evupdate']}]",
                 f"$listAssist:event [{testData['evupdate']}]",
