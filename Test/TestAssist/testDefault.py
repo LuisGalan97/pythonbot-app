@@ -546,7 +546,7 @@ async def test_listAssistMemberDate_e_incomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert "**$listAssist:date** "\
+            assert "**$listAssist:member&date** "\
                    "**[**" + \
                    testData['memupdate'] + ", " + \
                    testData['dateupdate'] + ", " + \
@@ -577,6 +577,37 @@ async def test_listAssistEventDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listAssistEventDate_e_incomplete(capfd):
+    commands = [f"$listAssist:event&date[{testData['evupdate']},"\
+                f"{testData['dateupdate']},{testData['dateupdate']}]",
+                f"$listAssist:event&date [{testData['evupdate']}, "\
+                f"{testData['dateupdate']}, {testData['dateupdate']}]",
+                f"$listAssist:event&date [ {testData['evupdate']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:event&date", app.getDatas,
+                             Helpers.getStruct("asistencia",
+                             ["evento", "date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert "**$listAssist:event&date** "\
+                   "**[**" + \
+                   testData['evupdate'] + ", " + \
+                   testData['dateupdate'] + ", " + \
+                   testData['dateupdate'] + \
+                   "**]** "\
+                   "**> e**\n" in out
+
+@pytest.mark.asyncio
 async def test_listAssistMemberEventDate_e(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
@@ -600,6 +631,41 @@ async def test_listAssistMemberEventDate_e(capfd):
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**" in out
             assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberEventDate_e_incomplete(capfd):
+    commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
+                f"{testData['evupdate']},{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:member&event&date [{testData['memupdate']}, "\
+                f"{testData['evupdate']}, {testData['dateupdate']}, "\
+                f"{testData['dateupdate']} ]",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evupdate']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member&event&date",
+                             app.getDatas, Helpers.getStruct("asistencia",
+                             ["integrante", "evento", "date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert "**$listAssist:member&event&date** "\
+                   "**[**" + \
+                   testData['memupdate'] + ", " + \
+                   testData['evupdate'] + ", " + \
+                   testData['dateupdate'] + ", " + \
+                   testData['dateupdate'] + \
+                   "**]** "\
+                   "**> e**\n" in out
 
 @pytest.mark.asyncio
 async def test_delAssistId(capfd):
