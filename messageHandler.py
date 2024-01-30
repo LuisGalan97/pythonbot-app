@@ -123,7 +123,7 @@ class MessageHandler:
             #-------------------------------------Rangos----------------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
-            messages.append("Las ___rangos___ disponen registros con informacion de los diferentes "\
+            messages.append("Los ___rangos___ disponen registros con informacion de los diferentes "\
             "rangos asignables a los integrante o miembros de la alianza **⚜Avalon⚜**.\n")
             messages.append("\n")
             messages.append("_Comandos de modificacion:_\n")
