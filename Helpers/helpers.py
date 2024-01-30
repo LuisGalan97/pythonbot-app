@@ -864,9 +864,13 @@ class Helpers:
                        f"Este parametro **_{parameters[0]}_** "\
                         "deberá corresponder a un valor de texto.\n"
         elif mode == "add":
-            value = (f"- **${head} [_{', '.join(parameters)}_]**   ->   Añade "\
-                    f"{'una nueva'if controller[0] == 'a' else 'un nuevo'} "\
-                    f"___{controller}___, ingresando dentro de los corchetes **[ ]** ")
+            value = f"- **${head} [_{', '.join(parameters)}_]**   ->"\
+                     "Añade " + \
+                    ('una nueva '
+                     if controller[0] == 'a' 
+                     else 'un nuevo ') + \
+                    f"___{controller}___, ingresando "\
+                     "dentro de los corchetes **[ ]** "
             for i in range(len(parameters)):
                 if parameters[i] == "Nombre":
                     value = value + f"un parametro **_{parameters[i]}_** como valor de texto"
