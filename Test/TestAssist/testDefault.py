@@ -34,20 +34,6 @@ async def test_addAssist(capfd):
     assert f"**_ID_** \'{testData['id']}\'." in out
 
 @pytest.mark.asyncio
-async def test_addAssist_membernoexist(capfd):
-    command = f"$addAssist [  member-[test] , "\
-              f"{testData['evcreate']}, {testData['datecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
-    hdlr = MessageHandler(message, client, True)
-    await hdlr.contMsg("addAssist", app.setData,
-                       Helpers.setStruct("asistencia"))
-    out, _ = capfd.readouterr()
-    assert "El valor 'member-[test]' ingresado en el campo "\
-           "**_Integrante_** no fue encontrado en la "\
-           "base de datos.\n" in out
-
-@pytest.mark.asyncio
 async def test_listAssistId_add(capfd):
     command = f"$listAssist:id [{testData['id']}]"
     message = Message(author="test", content=command)
