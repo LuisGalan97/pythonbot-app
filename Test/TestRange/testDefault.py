@@ -376,3 +376,88 @@ async def test_delRangeName(capfd):
                        Helpers.delStruct("rango", "name"))
     out, _ = capfd.readouterr()
     assert "El ___rango___ ha sido eliminado con exito." in out
+
+@pytest.mark.asyncio
+async def test_updRangeId_idnoexist(capfd):
+    commands = [f"$updRange:id[{testData['id']},{testData['nameupdate']},"\
+                f"{testData['controlupdate']},{testData['descreate']}]",
+                f"$updRange:id [{testData['id']}, {testData['nameupdate']}, "\
+                f"{testData['controlupdate']}, {testData['descreate']}]",
+                f"$updRange:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['controlupdate']} , {testData['descreate']} ] ",
+                f"$updRange:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['controlupdate']} , {testData['descreate']} ]FILL",
+                f"$updRange:id [ {testData['id']} ,"\
+                f"{testData['nameupdate']} , "\
+                f"{testData['controlupdate']} , "\
+                f"{testData['descreate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updRange:id", app.updateData,
+                           Helpers.updStruct("rango", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___rango___ de **_ID_** '{testData['id']}' "\
+                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_updRangeName_namenoexist(capfd):
+    commands = [f"$updRange:name[{testData['nameupdate']},"\
+                f"{testData['controlupdate']},{testData['desupdate']}]",
+                f"$updRange:name [{testData['nameupdate']}, "\
+                f"{testData['controlupdate']}, {testData['desupdate']}]",
+                f"$updRange:name [ {testData['nameupdate']} , "\
+                f"{testData['controlupdate']} , {testData['desupdate']} ] ",
+                f"$updRange:name [ {testData['nameupdate']} , "\
+                f"{testData['controlupdate']} , {testData['desupdate']} ]FILL",
+                f"$updRange:name [ {testData['nameupdate']} , "\
+                f"{testData['controlupdate']} , "\
+                f"{testData['desupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updRange:name", app.updateData,
+                           Helpers.updStruct("rango", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El ___rango___ de **_Nombre_** "\
+               f"'{testData['nameupdate']}' "\
+                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_delRangeId_idnoexist(capfd):
+    commands = [f"$delRange:id[{testData['id']}]",
+                f"$delRange:id [{testData['id']}]",
+                f"$delRange:id [ {testData['id']} ]",
+                f"$delRange:id [ {testData['id']} ]FILL",
+                f"$delRange:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delRange:id", app.deleteData,
+                           Helpers.delStruct("rango", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___rango___ de **_ID_** '{testData['id']}' "\
+                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_delRangeName_namenoexist(capfd):
+    commands = [f"$delRange:name[{testData['namecreate']}]",
+                f"$delRange:name [{testData['namecreate']}]",
+                f"$delRange:name [ {testData['namecreate']} ]",
+                f"$delRange:name [ {testData['namecreate']} ]FILL",
+                f"$delRange:name [ {testData['namecreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delRange:name", app.deleteData,
+                           Helpers.delStruct("rango", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El ___rango___ de **_Nombre_** "\
+               f"'{testData['nameupdate']}' "\
+                "no se encuentra en la base de datos.\n" in out
