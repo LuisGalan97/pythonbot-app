@@ -41,3 +41,28 @@ async def test_addAssist_membernoexist(capfd):
                 "ingresado en el campo "\
                 "**_Integrante_** no fue encontrado en la "\
                 "base de datos.\n" in out
+        
+@pytest.mark.asyncio
+async def test_addAssist_eventnoexist(capfd):
+    commands = [f"$addAssist [{testData['member']}, "\
+                f"{testData['evnoexist']}, {testData['date']}]",
+                f"$addAssist [  {testData['member']}  , "\
+                f"{testData['evnoexist']}, {testData['date']}]",
+                f"$addAssist [  {testData['member']}  , "\
+                f"{testData['evnoexist']}, {testData['date']}]",
+                f"$addAssist [  {testData['member']}  , "\
+                f"  {testData['evnoexist']}  , {testData['date']}]",
+                f"$addAssist [  {testData['member']}  , "\
+                f"  {testData['evnoexist']}  , {testData['date']}] "\
+                 "FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("addAssist", app.setData,
+                           Helpers.setStruct("asistencia"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evnoexist']}' "\
+                "ingresado en el campo "\
+                "**_Integrante_** no fue encontrado en la "\
+                "base de datos.\n" in out
