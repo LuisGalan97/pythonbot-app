@@ -312,6 +312,121 @@ async def test_listMemberDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
+async def test_listMember_e_incomplete(capfd):
+    commands = [f"$listMember"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember", app.getDatas,
+                             Helpers.getStruct("integrante"))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert "**$listMember** **> e**\n" in out
+
+@pytest.mark.asyncio
+async def test_listMemberId_e_incomplete(capfd):
+    commands = [f"$listMember:id[{testData['id']}]",
+                f"$listMember:id [{testData['id']}]",
+                f"$listMember:id [ {testData['id']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:id", app.getDatas,
+                             Helpers.getStruct("integrante", ["id"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listMember:id** **[**{testData['id']}**]** "\
+                    "**> e**\n" in out
+
+@pytest.mark.asyncio
+async def test_listMemberName_e_incomplete(capfd):
+    commands = [f"$listMember:name[{testData['nameupdate']}]",
+                f"$listMember:name [{testData['nameupdate']}]",
+                f"$listMember:name [ {testData['nameupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:name", app.getDatas,
+                             Helpers.getStruct("integrante", ["name"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listMember:name** **[**{testData['nameupdate']}**]** "\
+                    "**> e**\n" in out
+
+@pytest.mark.asyncio
+async def test_listMemberRange_e_incomplete(capfd):
+    commands = [f"$listMember:range[{testData['ranupdate']}]",
+                f"$listMember:range [{testData['ranupdate']}]",
+                f"$listMember:range [ {testData['ranupdate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:range", app.getDatas,
+                             Helpers.getStruct("integrante", ["rango"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listMember:range** **[**{testData['ranupdate']}**]** "\
+                    "**> e**\n" in out
+
+@pytest.mark.asyncio
+async def test_listMemberDate_e_incomplete(capfd):
+    commands = [f"$listMember:date[{testData['datecreate']},"\
+                f"{testData['datecreate']}]",
+                f"$listMember:date [{testData['datecreate']}, "\
+                f"{testData['datecreate']}]",
+                f"$listMember:date [ {testData['datecreate']} , "\
+                f"{testData['datecreate']} ]"]
+    eparams = [">", " >", "> ", " > ", " > FILL",
+               "FILL >", " FILL >", " FILL > FILL"]
+    for command in commands:
+        for eparam in eparams:
+            message = Message(author="test", content=f"{command}{eparam}")
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:date", app.getDatas,
+                             Helpers.getStruct("integrante",
+                             ["date_1", "date_2"]))
+            out, _ = capfd.readouterr()
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert "**$listMember:date** "\
+                   "**[**" + \
+                   testData['dateupdate'] + ", " + \
+                   testData['dateupdate'] + \
+                   "**]** "\
+                   "**> e**\n" in out
+
+@pytest.mark.asyncio
 async def test_delMemberId(capfd):
     command = f"$delMember:id [{testData['id']}]"
     message = Message(author="test", content=command)
