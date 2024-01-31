@@ -34,6 +34,21 @@ async def test_addEvent(capfd):
     assert f"**_ID_** \'{testData['id']}\'." in out
 
 @pytest.mark.asyncio
+async def test_addEvent_exist(capfd):
+    command = f"$addEvent [{testData['namecreate']}, "\
+              f"{testData['pointcreate']}, {testData['descreate']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addEvent", app.setData,
+                       Helpers.setStruct("evento"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert f"El ___evento___ de **_Nombre_** \'{testData['namecreate']}\' "\
+            "ya se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
 async def test_listEventId_add(capfd):
     command = f"$listEvent:id [{testData['id']}]"
     message = Message(author="test", content=command)
