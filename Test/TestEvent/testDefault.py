@@ -8,6 +8,7 @@ testData = {
     "id" : "",
     "namecreate" : "TestEventCreated",
     "nameupdate" : "TestEventUpdated",
+    "nameexist" : "avaconpelea",
     "pointcreate" : 5,
     "pointupdate" : 8,
     "descreate" : "Descripción creada",
@@ -100,6 +101,32 @@ async def test_updEventId(capfd):
                            Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert "El ___evento___ ha sido actualizado con exito." in out
+
+@pytest.mark.asyncio
+async def test_updEventId_exist(capfd):
+    commands = [f"$updEvent:id[{testData['id']},"\
+                f"{testData['nameexist']},"\
+                f"{testData['pointupdate']},{testData['descreate']}]",
+                f"$updEvent:id [{testData['id']}, {testData['nameupdate']}, "\
+                f"{testData['pointupdate']}, {testData['descreate']}]",
+                f"$updEvent:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['pointupdate']} , {testData['descreate']} ] ",
+                f"$updEvent:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['pointupdate']} , {testData['descreate']} ]FILL",
+                f"$updEvent:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['pointupdate']} , {testData['descreate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:id", app.updateData,
+                           Helpers.updStruct("evento", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___evento___ de **_Nombre_** \'{testData['nameexist']}\' "\
+            "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_updEventName(capfd):
