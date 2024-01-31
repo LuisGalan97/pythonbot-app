@@ -407,3 +407,27 @@ async def test_updEventName_namenoexist(capfd):
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_delEventId_idnoexist(capfd):
+    command = f"$delEvent:id [{testData['id']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delEvent:id", app.deleteData,
+                       Helpers.delStruct("evento", "id"))
+    out, _ = capfd.readouterr()
+    assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
+               "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_delEventName_namenoexist(capfd):
+    command = f"$delEvent:name [{testData['namecreate']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delEvent:name", app.deleteData,
+                       Helpers.delStruct("evento", "name"))
+    out, _ = capfd.readouterr()
+    assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
+               "no se encuentra en la base de datos.\n" in out
