@@ -966,3 +966,28 @@ async def test_listAssistMemberEvent_eventnoexist(capfd):
                 "ingresado en el campo "\
                 "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
+        
+@pytest.mark.asyncio
+async def test_listAssistMemberDate_membernoexist(capfd):
+    commands = [f"$listAssist:member&date[{testData['menoexist']},"\
+                f"{testData['dateupdate']},{testData['dateupdate']}]",
+                f"$listAssist:member&date [{testData['menoexist']}, "\
+                f"{testData['dateupdate']}, {testData['dateupdate']}]",
+                f"$listAssist:member&date [ {testData['menoexist']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ] ",
+                f"$listAssist:member&date [ {testData['menoexist']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ]FILL",
+                f"$listAssist:member&date [ {testData['menoexist']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["integrante", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['menoexist']}' "\
+                "ingresado en el campo "\
+                "**_Integrante_** no fue encontrado en la "\
+                "base de datos.\n" in out
