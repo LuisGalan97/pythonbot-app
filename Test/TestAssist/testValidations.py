@@ -28,8 +28,8 @@ async def test_addAssist_membernoexist(capfd):
                 f"$addAssist [  {testData['memnoexist']}  , "\
                 f"  {testData['evnoexist']}  , {testData['date']}]",
                 f"$addAssist [  {testData['memnoexist']}  , "\
-                f"  {testData['evnoexist']}  , {testData['date']}"\
-                 " FILL]"]
+                f"  {testData['evnoexist']}  , {testData['date']}] "\
+                 "FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
