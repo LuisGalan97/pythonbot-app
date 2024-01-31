@@ -1062,3 +1062,91 @@ async def test_listAssistEventDate_datenoexist(capfd):
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada." in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberEventDate_membernoexist(capfd):
+    commands = [f"$listAssist:member&event&date[{testData['menoexist']},"\
+                f"{testData['evupdate']},{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:member&event&date [{testData['menoexist']}, "\
+                f"{testData['evupdate']}, {testData['dateupdate']}, "\
+                f"{testData['dateupdate']} ]",
+                f"$listAssist:member&event&date [ {testData['menoexist']} , "\
+                f"{testData['evnoexist']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ] ",
+                f"$listAssist:member&event&date [ {testData['menoexist']} , "\
+                f"{testData['evnoexist']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]FILL",
+                f"$listAssist:member&event&date [ {testData['menoexist']} , "\
+                f"{testData['evnoexist']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&event&date",
+                         app.getDatas, Helpers.getStruct("asistencia",
+                         ["integrante", "evento", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['menoexist']}' "\
+                "ingresado en el campo "\
+                "**_Integrante_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberEventDate_eventnoexist(capfd):
+    commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
+                f"{testData['evnoexist']},{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:member&event&date [{testData['memupdate']}, "\
+                f"{testData['evnoexist']}, {testData['dateupdate']}, "\
+                f"{testData['dateupdate']} ]",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evnoexist']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ] ",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evnoexist']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]FILL",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evnoexist']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&event&date",
+                         app.getDatas, Helpers.getStruct("asistencia",
+                         ["integrante", "evento", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evnoexist']}' "\
+                "ingresado en el campo "\
+                "**_Evento_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMemberEventDate_datenoexist(capfd):
+    commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
+                f"{testData['evupdate']},{testData['dateupdate']},"\
+                f"{testData['dateupdate']}]",
+                f"$listAssist:member&event&date [{testData['memupdate']}, "\
+                f"{testData['evupdate']}, {testData['dateupdate']}, "\
+                f"{testData['dateupdate']} ]",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evupdate']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ] ",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evupdate']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ]FILL",
+                f"$listAssist:member&event&date [ {testData['memupdate']} , "\
+                f"{testData['evupdate']} , {testData['dateupdate']} , "\
+                f"{testData['dateupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&event&date",
+                         app.getDatas, Helpers.getStruct("asistencia",
+                         ["integrante", "evento", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___asistencias___ "\
+               "para la consulta realizada." in out
