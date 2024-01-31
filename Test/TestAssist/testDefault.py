@@ -1167,4 +1167,3 @@ async def test_listAssistMemberEventDate_datenoexist(capfd):
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada." in out
-

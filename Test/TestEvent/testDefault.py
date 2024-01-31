@@ -359,3 +359,51 @@ async def test_delEventName(capfd):
                        Helpers.delStruct("evento", "name"))
     out, _ = capfd.readouterr()
     assert "El ___evento___ ha sido eliminado con exito." in out
+
+@pytest.mark.asyncio
+async def test_updEventId_idnoexist(capfd):
+    commands = [f"$updEvent:id[{testData['id']},"\
+                f"{testData['nameupdate']},"\
+                f"{testData['pointupdate']},{testData['descreate']}]",
+                f"$updEvent:id [{testData['id']}, {testData['nameupdate']}, "\
+                f"{testData['pointupdate']}, {testData['descreate']}]",
+                f"$updEvent:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['pointupdate']} , {testData['descreate']} ] ",
+                f"$updEvent:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['pointupdate']} , {testData['descreate']} ]FILL",
+                f"$updEvent:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['pointupdate']} , {testData['descreate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:id", app.updateData,
+                           Helpers.updStruct("evento", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
+               "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_namenoexist(capfd):
+    commands = [f"$updEvent:name[{testData['nameupdate']},"\
+                f"{testData['pointupdate']},{testData['desupdate']}]",
+                f"$updEvent:name [{testData['nameupdate']}, "\
+                f"{testData['pointupdate']}, {testData['desupdate']}]",
+                f"$updEvent:name [ {testData['nameupdate']} , "\
+                f"{testData['pointupdate']} , {testData['desupdate']} ] ",
+                f"$updEvent:name [ {testData['nameupdate']} , "\
+                f"{testData['pointupdate']} , {testData['desupdate']} ]FILL",
+                f"$updEvent:name [ {testData['nameupdate']} , "\
+                f"{testData['pointupdate']} , {testData['desupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
+               "no se encuentra en la base de datos.\n" in out
