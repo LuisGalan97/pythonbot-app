@@ -88,30 +88,31 @@ class AppHandler:
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 key = references["update"]
                 method = f"get{nameCtrl.capitalize()}s"
-                exist = getattr(getattr(self, controller),
+                existUpd = getattr(getattr(self, controller),
                                 method)({key : target[key]})
-                if isinstance(exist, list):
+                if isinstance(existUpd, list):
                     key = references["create"]
                     if key:
-                        exist = getattr(getattr(self, controller),
+                        existSet = getattr(getattr(self, controller),
                                         method)({key : target[key]})
-                        if isinstance(exist, list):
+                        if (isinstance(existSet, list) and
+                            existSet[0]["id"] == existUpd[0]["id"]):
                             return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
                                    f"___{nameCtrl}___ "\
                                    f"de **_{struct['targets'][key]['alias']}_"\
                                     "** "\
                                    f"\'{target[key]}\' "\
                                     "ya se encuentra en la base de datos."
-                        elif exist:
+                        elif existSet:
                             method = f"update{nameCtrl.capitalize()}"
-                            target["id"] = exist[0]["id"]
+                            target["id"] = existUpd[0]["id"]
                             result = getattr(getattr(self, controller),
                                              method)(**target)
                         else:
                             return False
                     else:
                         method = f"update{nameCtrl.capitalize()}"
-                        target["id"] = exist[0]["id"]
+                        target["id"] = existUpd[0]["id"]
                         result = getattr(getattr(self, controller),
                                          method)(**target)
                     return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
@@ -119,7 +120,7 @@ class AppHandler:
                             f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} "\
                             "con exito."\
                             if result else False)
-                elif exist:
+                elif existUpd:
                     return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
                            f"___{nameCtrl}___ "\
                            f"de **_{struct['targets'][key]['alias']}_** "\
