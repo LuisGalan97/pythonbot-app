@@ -8,6 +8,7 @@ testData = {
     "id" : "",
     "namecreate" : "TestRangeCreated",
     "nameupdate" : "TestRangeUpdated",
+    "nameexist" : "General de alianza",
     "controlcreate" : 2,
     "controlupdate" : 3,
     "descreate" : "Descripción creada",
@@ -32,6 +33,33 @@ async def test_addRange(capfd):
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "El ___rango___ ha sido creado con exito sobre el " in out
     assert f"**_ID_** \'{testData['id']}\'." in out
+
+async def test_addRange_exist(capfd):
+    commands = [f"$addRange[{testData['namecreate']},"\
+               f"{testData['controlcreate']},"\
+               f"{testData['descreate']}]",
+               f"$addRange [{testData['namecreate']}, "\
+               f"{testData['controlcreate']}, "\
+               f"{testData['descreate']}]",
+               f"$addRange [ {testData['namecreate']} , "\
+               f" {testData['controlcreate']} , "\
+               f" {testData['descreate']} ]",
+               f"$addRange [ {testData['namecreate']} , "\
+               f" {testData['controlcreate']} , "\
+               f" {testData['descreate']} ]FILL ",
+               f"$addRange [ {testData['namecreate']} , "\
+               f" {testData['controlcreate']} , "\
+               f" {testData['descreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("addRange", app.setData,
+                           Helpers.setStruct("rango"))
+        out, _ = capfd.readouterr()
+        assert f"El ___rango___ de **_Nombre_** "\
+               f"\'{testData['namecreate']}\' "\
+                "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_listRangeId_add(capfd):
