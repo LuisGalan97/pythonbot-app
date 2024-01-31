@@ -817,7 +817,7 @@ async def test_updAssistId_eventnoexist(capfd):
                 f"{testData['evnoexist']}, "
                 f"{testData['dateupdate']}]",
                 f"$updAssist:id [ {testData['id']} , "
-                f"{testData['menupdate']} , "\
+                f"{testData['memupdate']} , "\
                 f"{testData['evnoexist']} , "
                 f"{testData['dateupdate']} ] ",
                 f"$updAssist:id [ {testData['id']} , "
