@@ -585,3 +585,50 @@ async def test_updMemberId_rangenoexist(capfd):
                 "ingresado en el campo "\
                 "**_Rango_** no fue encontrado en la "\
                 "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_updMemberName_namenoexist(capfd):
+    commands = [f"$updMember:name[{testData['nameupdate']},"\
+                f"{testData['ranupdate']},{testData['dateupdate']}]",
+                f"$updMember:name [{testData['nameupdate']}, "\
+                f"{testData['ranupdate']}, {testData['dateupdate']}]",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranupdate']} , {testData['dateupdate']} ] ",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranupdate']} , {testData['dateupdate']} ]FILL",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranupdate']} , {testData['dateupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El ___integrante___ de **_Nombre_** "\
+               f"'{testData['nameupdate']}' "\
+                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_updMemberName_rangenoexist(capfd):
+    commands = [f"$updMember:name[{testData['nameupdate']},"\
+                f"{testData['ranoexist']},{testData['dateupdate']}]",
+                f"$updMember:name [{testData['nameupdate']}, "\
+                f"{testData['ranoexist']}, {testData['dateupdate']}]",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ] ",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ]FILL",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['ranoexist']}' "\
+                "ingresado en el campo "\
+                "**_Rango_** no fue encontrado en la "\
+                "base de datos.\n" in out
