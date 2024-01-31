@@ -845,7 +845,7 @@ async def test_delAssistId_idnoexist(capfd):
     commands = [f"$delAssist:id[{testData['id']}]",
                 f"$delAssist:id [{testData['id']}]",
                 f"$delAssist:id [ {testData['id']} ]",
-                f"$delAssist:id [ {testData['id']} ]FILL"
+                f"$delAssist:id [ {testData['id']} ]FILL",
                 f"$delAssist:id [ {testData['id']} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
