@@ -667,3 +667,78 @@ async def test_delMemberName_namenoexist(capfd):
         assert f"El ___integrante___ de **_Nombre_** "\
                f"'{testData['namecreate']}' "\
                 "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listMemberId_idnoexist(capfd):
+    commands = [f"$listMember:id[{testData['id']}]",
+                f"$listMember:id [{testData['id']}]",
+                f"$listMember:id [ {testData['id']} ] ",
+                f"$listMember:id [ {testData['id']} ]FILL",
+                f"$listMember:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listMember:id", app.getDatas,
+                         Helpers.getStruct("integrante", ["id"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___integrantes___ "\
+               "para la consulta realizada." in out
+
+@pytest.mark.asyncio
+async def test_listMemberName_namenoexist(capfd):
+    commands = [f"$listMember:name[{testData['nameupdate']}]",
+                f"$listMember:name [{testData['nameupdate']}]",
+                f"$listMember:name [ {testData['nameupdate']} ] ",
+                f"$listMember:name [ {testData['nameupdate']} ]FILL",
+                f"$listMember:name [ {testData['nameupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listMember:name", app.getDatas,
+                         Helpers.getStruct("integrante", ["name"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___integrantes___ "\
+               "para la consulta realizada." in out
+
+@pytest.mark.asyncio
+async def test_listMemberRange_rangenoexist(capfd):
+    commands = [f"$listMember:range[{testData['ranoexist']}]",
+                f"$listMember:range [{testData['ranoexist']}]",
+                f"$listMember:range [ {testData['ranoexist']} ] ",
+                f"$listMember:range [ {testData['ranoexist']} ]FILL",
+                f"$listMember:range [ {testData['ranoexist']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listMember:range", app.getDatas,
+                         Helpers.getStruct("integrante", ["rango"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['ranoexist']}' "\
+                "ingresado en el campo "\
+                "**_Rango_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listMemberDate(capfd):
+    commands = [f"$listMember:date[{testData['datecreate']},"\
+                f"{testData['datecreate']}]",
+                f"$listMember:date [{testData['datecreate']}, "\
+                f"{testData['datecreate']}]",
+                f"$listMember:date [ {testData['datecreate']} , "\
+                f"{testData['datecreate']} ] ",
+                f"$listMember:date [ {testData['datecreate']} , "\
+                f"{testData['datecreate']} ]FILL",
+                f"$listMember:date [ {testData['datecreate']} , "\
+                f"{testData['datecreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listMember:date", app.getDatas,
+                         Helpers.getStruct("integrante", ["date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___integrantes___ "\
+               "para la consulta realizada." in out
