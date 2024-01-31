@@ -9,7 +9,7 @@ testData = {
     "member" : "Avalonicus",
     "memnoexist" : "Member-[noexist]",
     "event" : "defprismaganada",
-    "evnoexist" : "avaconpelea",
+    "evnoexist" : "Event-[noexist]",
     "date" : "25-01-2100",
 }
 
