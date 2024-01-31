@@ -421,8 +421,8 @@ async def test_listMemberDate_e_incomplete(capfd):
                    "de la siguiente forma:\n" in out
             assert "**$listMember:date** "\
                    "**[**" + \
-                   testData['dateupdate'] + ", " + \
-                   testData['dateupdate'] + \
+                   testData['datecreate'] + ", " + \
+                   testData['datecreate'] + \
                    "**]** "\
                    "**> e**\n" in out
 
