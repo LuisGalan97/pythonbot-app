@@ -8,12 +8,12 @@ testData = {
     "id" : "",
     "memcreate" : "Avalonicus",
     "memupdate" : "Ammy",
-    "menoexist" : "Member-[noexist]",
+    "menoexist" : "[No]-Member-[Exist]",
     "evcreate" : "defprismaganada",
     "evupdate" : "avaconpelea",
-    "evnoexist" : "Event-[noexist]",
-    "datecreate" : "25-01-2100",
-    "dateupdate" : "26-01-2100"
+    "evnoexist" : "[No]-Event-[Exist]",
+    "datecreate" : "25-01-2300",
+    "dateupdate" : "26-01-2300"
 }
 
 Message = namedtuple('Message', ['author', 'content'])
@@ -916,3 +916,28 @@ async def test_listAssistDate_datenoexist(capfd):
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada." in out
+        
+@pytest.mark.asyncio
+async def test_listAssistMemberEvent_membernoexist(capfd):
+    commands = [f"$listAssist:member&event[{testData['menoexist']},"\
+                f"{testData['evupdate']}]",
+                f"$listAssist:member&event [{testData['menoexist']}, "\
+                f"{testData['evupdate']}]",
+                f"$listAssist:member&event [ {testData['menoexist']} , "\
+                f"{testData['evnoexist']} ] ",
+                f"$listAssist:member&event [ {testData['menoexist']} , "\
+                f"{testData['evnoexist']} ]FILL",
+                f"$listAssist:member&event [ {testData['menoexist']} , "\
+                f"{testData['evnoexist']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&event", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["integrante", "evento"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['menoexist']}' "\
+                "ingresado en el campo "\
+                "**_Integrante_** no fue encontrado en la "\
+                "base de datos.\n" in out
