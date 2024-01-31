@@ -118,6 +118,33 @@ async def test_updRangeId(capfd):
         assert "El ___rango___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
+async def test_updRangeId_nameexist(capfd):
+    commands = [f"$updRange:id[{testData['id']},{testData['nameexist']},"\
+                f"{testData['controlupdate']},{testData['descreate']}]",
+                f"$updRange:id [{testData['id']}, {testData['nameexist']}, "\
+                f"{testData['controlupdate']}, {testData['descreate']}]",
+                f"$updRange:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['controlupdate']} , {testData['descreate']} ] ",
+                f"$updRange:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['controlupdate']} , {testData['descreate']} ]FILL",
+                f"$updRange:id [ {testData['id']} ,"\
+                f"{testData['nameexist']} , "\
+                f"{testData['controlupdate']} , "\
+                f"{testData['descreate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updRange:id", app.updateData,
+                           Helpers.updStruct("rango", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___rango___ de **_Nombre_** "\
+           f"\'{testData['nameexist']}\' "\
+            "ya se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
 async def test_updRangeName(capfd):
     commands = [f"$updRange:name[{testData['nameupdate']},"\
                 f"{testData['controlupdate']},{testData['desupdate']}]",
