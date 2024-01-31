@@ -107,7 +107,7 @@ async def test_updEventId_exist(capfd):
     commands = [f"$updEvent:id[{testData['id']},"\
                 f"{testData['nameexist']},"\
                 f"{testData['pointupdate']},{testData['descreate']}]",
-                f"$updEvent:id [{testData['id']}, {testData['nameupdate']}, "\
+                f"$updEvent:id [{testData['id']}, {testData['nameexist']}, "\
                 f"{testData['pointupdate']}, {testData['descreate']}]",
                 f"$updEvent:id [ {testData['id']} , "\
                 f"{testData['nameexist']} , "\
