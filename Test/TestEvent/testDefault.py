@@ -441,3 +441,37 @@ async def test_delEventName_namenoexist(capfd):
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** '{testData['namecreate']}' "\
                 "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listEventId_idnoexist(capfd):
+    commands = [f"$listEvent:id[{testData['id']}]",
+                f"$listEvent:id [{testData['id']}]",
+                f"$listEvent:id [ {testData['id']} ] ",
+                f"$listEvent:id [ {testData['id']} ]FILL",
+                f"$listEvent:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listEvent:id", app.getDatas,
+                         Helpers.getStruct("evento", ["id"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___eventos___ "\
+               "para la consulta realizada." in out
+
+@pytest.mark.asyncio
+async def test_listEventName_namenoexist(capfd):
+    commands = [f"$listEvent:name[{testData['nameupdate']}]",
+                f"$listEvent:name [{testData['nameupdate']}]",
+                f"$listEvent:name [ {testData['nameupdate']} ] ",
+                f"$listEvent:name [ {testData['nameupdate']} ]FILL",
+                f"$listEvent:name [ {testData['nameupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listEvent:name", app.getDatas,
+                         Helpers.getStruct("evento", ["name"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___eventos___ "\
+               "para la consulta realizada." in out
