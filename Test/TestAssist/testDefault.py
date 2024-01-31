@@ -839,3 +839,39 @@ async def test_updAssistId_eventnoexist(capfd):
                 "ingresado en el campo "\
                 "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistId_idnoexist(capfd):
+    commands = [f"$listAssist:id[{testData['id']}]",
+                f"$listAssist:id [{testData['id']}]",
+                f"$listAssist:id [ {testData['id']} ] ",
+                f"$listAssist:id [ {testData['id']} ]FILL",
+                f"$listAssist:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:id", app.getDatas,
+                         Helpers.getStruct("asistencia", ["id"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___asistencias___ "\
+               "para la consulta realizada." in out
+
+@pytest.mark.asyncio
+async def test_listAssistMember_membernoexist(capfd):
+    commands = [f"$listAssist:member[{testData['menoexist']}]",
+                f"$listAssist:member [{testData['menoexist']}]",
+                f"$listAssist:member [ {testData['menoexist']} ] ",
+                f"$listAssist:member [ {testData['menoexist']} ]FILL",
+                f"$listAssist:member [ {testData['menoexist']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member", app.getDatas,
+                         Helpers.getStruct("asistencia", ["integrante"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['menoexist']}' "\
+                "ingresado en el campo "\
+                "**_Integrante_** no fue encontrado en la "\
+                "base de datos.\n" in out
