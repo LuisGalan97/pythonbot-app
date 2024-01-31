@@ -8,10 +8,10 @@ testData = {
     "id" : "",
     "memcreate" : "Avalonicus",
     "memupdate" : "Ammy",
-    "menoexist" : "[No]-Member-[Exist]",
+    "menoexist" : "Member-[noexist]",
     "evcreate" : "defprismaganada",
     "evupdate" : "avaconpelea",
-    "evnoexist" : "[No]-Event-[Exist]",
+    "evnoexist" : "Event-[noexist]",
     "datecreate" : "25-01-2300",
     "dateupdate" : "26-01-2300"
 }
@@ -916,7 +916,7 @@ async def test_listAssistDate_datenoexist(capfd):
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada." in out
-        
+
 @pytest.mark.asyncio
 async def test_listAssistMemberEvent_membernoexist(capfd):
     commands = [f"$listAssist:member&event[{testData['menoexist']},"\
