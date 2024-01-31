@@ -126,7 +126,7 @@ async def test_updEventId_exist(capfd):
                            Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** \'{testData['nameexist']}\' "\
-            "ya se encuentra en la base de datos.\n" in out
+                "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_updEventName(capfd):
@@ -384,7 +384,7 @@ async def test_updEventId_idnoexist(capfd):
                            Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
-               "no se encuentra en la base de datos.\n" in out
+                "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_updEventName_namenoexist(capfd):
@@ -406,28 +406,38 @@ async def test_updEventName_namenoexist(capfd):
                            Helpers.updStruct("evento", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
-               "no se encuentra en la base de datos.\n" in out
+                "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_delEventId_idnoexist(capfd):
-    command = f"$delEvent:id [{testData['id']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
-    hdlr = MessageHandler(message, client, True)
-    await hdlr.contMsg("delEvent:id", app.deleteData,
-                       Helpers.delStruct("evento", "id"))
-    out, _ = capfd.readouterr()
-    assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
-               "no se encuentra en la base de datos.\n" in out
+    commands = [f"$delEvent:id[{testData['id']}]",
+               f"$delEvent:id [{testData['id']}]",
+               f"$delEvent:id [ {testData['id']} ]",
+               f"$delEvent:id [ {testData['id']} ]FILL",
+               f"$delEvent:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delEvent:id", app.deleteData,
+                           Helpers.delStruct("evento", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
+                "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_delEventName_namenoexist(capfd):
-    command = f"$delEvent:name [{testData['namecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
-    hdlr = MessageHandler(message, client, True)
-    await hdlr.contMsg("delEvent:name", app.deleteData,
-                       Helpers.delStruct("evento", "name"))
-    out, _ = capfd.readouterr()
-    assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
-               "no se encuentra en la base de datos.\n" in out
+    commands = [f"$delEvent:name[{testData['namecreate']}]",
+                f"$delEvent:name [{testData['namecreate']}]",
+                f"$delEvent:name [ {testData['namecreate']} ]",
+                f"$delEvent:name [ {testData['namecreate']} ]FILL",
+                f"$delEvent:name [ {testData['namecreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delEvent:name", app.deleteData,
+                           Helpers.delStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El ___evento___ de **_Nombre_** '{testData['namecreate']}' "\
+                "no se encuentra en la base de datos.\n" in out
