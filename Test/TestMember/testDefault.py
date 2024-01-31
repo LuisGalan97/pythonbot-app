@@ -8,8 +8,10 @@ testData = {
     "id" : "",
     "namecreate" : "TestMemberCreated",
     "nameupdate" : "TestMemberUpdated",
+    "nameexist" : "Avalonicus",
     "rancreate" : "General de alianza",
     "ranupdate" : "General",
+    "ranoexist" : "Range-[noexist]",
     "datecreate" : "25-01-2100",
     "dateupdate" : "26-01-2100"
 }
@@ -32,6 +34,22 @@ async def test_addMember(capfd):
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "El ___integrante___ ha sido creado con exito sobre el " in out
     assert f"**_ID_** \'{testData['id']}\'." in out
+
+@pytest.mark.asyncio
+async def test_addMember_exist(capfd):
+    command = f"$addMember [{testData['namecreate']}, "\
+              f"{testData['rancreate']}, {testData['datecreate']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addMember", app.setData,
+                       Helpers.setStruct("integrante"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert f"El ___integrante___ de **_Nombre_** "\
+           f"\'{testData['namecreate']}\' "\
+            "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberId_add(capfd):
