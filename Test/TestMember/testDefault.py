@@ -722,7 +722,7 @@ async def test_listMemberRange_rangenoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberDate(capfd):
+async def test_listMemberDate_datenoexist(capfd):
     commands = [f"$listMember:date[{testData['datecreate']},"\
                 f"{testData['datecreate']}]",
                 f"$listMember:date [{testData['datecreate']}, "\
