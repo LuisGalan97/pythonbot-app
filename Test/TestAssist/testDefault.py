@@ -43,8 +43,6 @@ async def test_addAssist_membernoexist(capfd):
     await hdlr.contMsg("addAssist", app.setData,
                        Helpers.setStruct("asistencia"))
     out, _ = capfd.readouterr()
-    idTest = out[out.find("**_ID_** '"):]
-    testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "El valor 'member-[test]' ingresado en el campo "\
            "**_Integrante_** no fue encontrado en la "\
            "base de datos.\n" in out
