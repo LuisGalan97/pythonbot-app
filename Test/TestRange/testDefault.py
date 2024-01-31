@@ -479,6 +479,7 @@ async def test_listRangeId_idnoexist(capfd):
         assert "No se encontraron ___rangos___ "\
                "para la consulta realizada." in out
 
+@pytest.mark.asyncio
 async def test_listRangeName_namenoexist(capfd):
     commands = [f"$listRange:name[{testData['nameupdate']}]",
                 f"$listRange:name [{testData['nameupdate']}]",
