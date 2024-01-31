@@ -45,8 +45,6 @@ async def test_addMember_exist(capfd):
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("integrante"))
     out, _ = capfd.readouterr()
-    idTest = out[out.find("**_ID_** '"):]
-    testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert f"El ___integrante___ de **_Nombre_** "\
            f"\'{testData['namecreate']}\' "\
             "ya se encuentra en la base de datos.\n" in out
