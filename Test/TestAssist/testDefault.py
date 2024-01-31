@@ -1039,3 +1039,26 @@ async def test_listAssistEventDate_eventnoexist(capfd):
                 "ingresado en el campo "\
                 "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEventDate_datenoexist(capfd):
+    commands = [f"$listAssist:event&date[{testData['evupdate']},"\
+                f"{testData['dateupdate']},{testData['dateupdate']}]",
+                f"$listAssist:event&date [{testData['evupdate']}, "\
+                f"{testData['dateupdate']}, {testData['dateupdate']}]",
+                f"$listAssist:event&date [ {testData['evupdate']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ] ",
+                f"$listAssist:event&date [ {testData['evupdate']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ]FILL",
+                f"$listAssist:event&date [ {testData['evupdate']} , "\
+                f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:event&date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["evento", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___asistencias___ "\
+               "para la consulta realizada." in out
