@@ -36,16 +36,30 @@ async def test_addEvent(capfd):
 
 @pytest.mark.asyncio
 async def test_addEvent_exist(capfd):
-    command = f"$addEvent [{testData['namecreate']}, "\
-              f"{testData['pointcreate']}, {testData['descreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
-    hdlr = MessageHandler(message, client, True)
-    await hdlr.contMsg("addEvent", app.setData,
-                       Helpers.setStruct("evento"))
-    out, _ = capfd.readouterr()
-    assert f"El ___evento___ de **_Nombre_** \'{testData['namecreate']}\' "\
-            "ya se encuentra en la base de datos.\n" in out
+    commands = [f"$addEvent[{testData['namecreate']},"\
+                f"{testData['pointcreate']},"\
+                f"{testData['descreate']}]",
+                f"$addEvent [{testData['namecreate']}, "\
+                f"{testData['pointcreate']}, "\
+                f"{testData['descreate']}]",
+                f"$addEvent [ {testData['namecreate']} , "\
+                f" {testData['pointcreate']} , "\
+                f" {testData['descreate']}] ",
+                f"$addEvent [ {testData['namecreate']} , "\
+                f" {testData['pointcreate']} , "\
+                f" {testData['descreate']} ]FILL",
+                f"$addEvent [ {testData['namecreate']} , "\
+                f" {testData['pointcreate']} , "\
+                f" {testData['descreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("addEvent", app.setData,
+                           Helpers.setStruct("evento"))
+        out, _ = capfd.readouterr()
+        assert f"El ___evento___ de **_Nombre_** \'{testData['namecreate']}\' "\
+                "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_listEventId_add(capfd):

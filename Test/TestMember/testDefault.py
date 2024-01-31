@@ -37,17 +37,31 @@ async def test_addMember(capfd):
 
 @pytest.mark.asyncio
 async def test_addMember_exist(capfd):
-    command = f"$addMember [{testData['namecreate']}, "\
-              f"{testData['rancreate']}, {testData['datecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
-    hdlr = MessageHandler(message, client, True)
-    await hdlr.contMsg("addMember", app.setData,
-                       Helpers.setStruct("integrante"))
-    out, _ = capfd.readouterr()
-    assert f"El ___integrante___ de **_Nombre_** "\
-           f"\'{testData['namecreate']}\' "\
-            "ya se encuentra en la base de datos.\n" in out
+    commands = [f"$addMember[{testData['namecreate']},"\
+                f"{testData['rancreate']},"\
+                f"{testData['datecreate']}]",
+                f"$addMember [{testData['namecreate']}, "\
+                f"{testData['rancreate']}, "\
+                f"{testData['datecreate']}]",
+                f"$addMember [ {testData['namecreate']} , "\
+                f" {testData['rancreate']} , "\
+                f" {testData['datecreate']} ]",
+                f"$addMember [ {testData['namecreate']} , "\
+                f" {testData['rancreate']} , "\
+                f" {testData['datecreate']} ]FILL",
+                f"$addMember [ {testData['namecreate']} , "\
+                f" {testData['rancreate']} , "\
+                f" {testData['datecreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("addMember", app.setData,
+                           Helpers.setStruct("integrante"))
+        out, _ = capfd.readouterr()
+        assert f"El ___integrante___ de **_Nombre_** "\
+               f"\'{testData['namecreate']}\' "\
+                "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberId_add(capfd):
@@ -106,7 +120,7 @@ async def test_updMemberId(capfd):
         assert "El ___integrante___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
-async def test_updMemberId_namexist(capfd):
+async def test_updMemberId_nameexist(capfd):
     commands = [f"$updMember:id[{testData['id']},{testData['nameexist']},"\
                 f"{testData['rancreate']},{testData['dateupdate']}]",
                 f"$updMember:id [{testData['id']}, {testData['nameexist']}, "\
@@ -504,3 +518,18 @@ async def test_delMemberName(capfd):
                        Helpers.delStruct("integrante", "name"))
     out, _ = capfd.readouterr()
     assert "El ___integrante___ ha sido eliminado con exito." in out
+
+@pytest.mark.asyncio
+async def test_addMember_rangenoexist(capfd):
+    command = f"$addMember [{testData['namecreate']}, "\
+              f"{testData['ranoexist']}, {testData['datecreate']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addMember", app.setData,
+                       Helpers.setStruct("integrante"))
+    out, _ = capfd.readouterr()
+    assert f"El valor '{testData['ranoexist']}' "\
+            "ingresado en el campo "\
+            "**_Rango_** no fue encontrado en la "\
+            "base de datos.\n" in out
