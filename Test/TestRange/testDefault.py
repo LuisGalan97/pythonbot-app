@@ -459,5 +459,38 @@ async def test_delRangeName_namenoexist(capfd):
                            Helpers.delStruct("rango", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_Nombre_** "\
-               f"'{testData['nameupdate']}' "\
+               f"'{testData['namecreate']}' "\
                 "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_listRangeId_idnoexist(capfd):
+    commands = [f"$listRange:id[{testData['id']}]",
+                f"$listRange:id [{testData['id']}]",
+                f"$listRange:id [ {testData['id']} ] ",
+                f"$listRange:id [ {testData['id']} ]FILL",
+                f"$listRange:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listRange:id", app.getDatas,
+                         Helpers.getStruct("rango", ["id"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___rangos___ "\
+               "para la consulta realizada." in out
+
+async def test_listRangeName_namenoexist(capfd):
+    commands = [f"$listRange:name[{testData['nameupdate']}]",
+                f"$listRange:name [{testData['nameupdate']}]",
+                f"$listRange:name [ {testData['nameupdate']} ] ",
+                f"$listRange:name [ {testData['nameupdate']} ]FILL",
+                f"$listRange:name [ {testData['nameupdate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listRange:name", app.getDatas,
+                         Helpers.getStruct("rango", ["name"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___rangos___ "\
+               "para la consulta realizada." in out
