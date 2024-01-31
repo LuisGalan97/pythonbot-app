@@ -386,7 +386,7 @@ class Helpers:
         structTargets = {}
         if nameCtrl == "asistencia":
              if update == "id":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : False}
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
@@ -409,7 +409,7 @@ class Helpers:
                 }
         elif nameCtrl == "evento":
             if update == "name":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : False}
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
@@ -426,7 +426,7 @@ class Helpers:
                     "alias" : "Descripción"
                 }
             elif update == "id":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : "name"}
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
@@ -449,7 +449,7 @@ class Helpers:
                 }
         elif nameCtrl == "integrante":
             if update == "name":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : False}
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
@@ -466,7 +466,7 @@ class Helpers:
                     "alias" : "Fecha"
                 }
             elif update == "id":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : "name"}
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
@@ -489,7 +489,7 @@ class Helpers:
                 }
         elif nameCtrl == "rango":
             if update == "name":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : False}
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
@@ -506,7 +506,7 @@ class Helpers:
                     "alias" : "Descripción"
                 }
             elif update == "id":
-                structCtrl[nameCtrl] = {"update" : update}
+                structCtrl[nameCtrl] = {"update" : update, "create" : "name"}
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
