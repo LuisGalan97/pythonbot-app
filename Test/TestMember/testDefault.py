@@ -106,6 +106,32 @@ async def test_updMemberId(capfd):
         assert "El ___integrante___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
+async def test_updMemberId_namexist(capfd):
+    commands = [f"$updMember:id[{testData['id']},{testData['nameexist']},"\
+                f"{testData['rancreate']},{testData['dateupdate']}]",
+                f"$updMember:id [{testData['id']}, {testData['nameexist']}, "\
+                f"{testData['rancreate']}, {testData['dateupdate']}]",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['rancreate']} , {testData['dateupdate']} ] ",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['rancreate']} , {testData['dateupdate']} ]FILL",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameexist']} , "\
+                f"{testData['rancreate']} , {testData['dateupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:id", app.updateData,
+                           Helpers.updStruct("integrante", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___integrante___ de **_Nombre_** "\
+           f"\'{testData['nameexist']}\' "\
+            "ya se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
 async def test_updMemberName(capfd):
     commands = [f"$updMember:name[{testData['nameupdate']},"\
                 f"{testData['ranupdate']},{testData['dateupdate']}]",

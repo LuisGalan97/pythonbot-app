@@ -103,7 +103,7 @@ async def test_updEventId(capfd):
         assert "El ___evento___ ha sido actualizado con exito." in out
 
 @pytest.mark.asyncio
-async def test_updEventId_exist(capfd):
+async def test_updEventId_nameexist(capfd):
     commands = [f"$updEvent:id[{testData['id']},"\
                 f"{testData['nameexist']},"\
                 f"{testData['pointupdate']},{testData['descreate']}]",
