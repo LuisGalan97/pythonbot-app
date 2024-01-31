@@ -632,3 +632,38 @@ async def test_updMemberName_rangenoexist(capfd):
                 "ingresado en el campo "\
                 "**_Rango_** no fue encontrado en la "\
                 "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_delMemberId_idnoexist(capfd):
+    commands = [f"$delMember:id[{testData['id']}]",
+                f"$delMember:id [{testData['id']}]",
+                f"$delMember:id [ {testData['id']} ]",
+                f"$delMember:id [ {testData['id']} ]FILL",
+                f"$delMember:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delMember:id", app.deleteData,
+                           Helpers.delStruct("integrante", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El ___integrante___ de **_ID_** '{testData['id']}' "\
+                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_delMemberName_namenoexist(capfd):
+    commands = [f"$delMember:name[{testData['namecreate']}]",
+                f"$delMember:name [{testData['namecreate']}]",
+                f"$delMember:name [ {testData['namecreate']} ]",
+                f"$delMember:name [ {testData['namecreate']} ]FILL",
+                f"$delMember:name [ {testData['namecreate']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delMember:name", app.deleteData,
+                           Helpers.delStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El ___integrante___ de **_Nombre_** "\
+               f"'{testData['namecreate']}' "\
+                "no se encuentra en la base de datos.\n" in out
