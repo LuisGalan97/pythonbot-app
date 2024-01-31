@@ -841,6 +841,23 @@ async def test_updAssistId_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
+async def test_delAssistId_idnoexist(capfd):
+    commands = [f"$delAssist:id[{testData['id']}]",
+                f"$delAssist:id [{testData['id']}]",
+                f"$delAssist:id [ {testData['id']} ]",
+                f"$delAssist:id [ {testData['id']} ]FILL"
+                f"$delAssist:id [ {testData['id']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("delAssist:id", app.deleteData,
+                           Helpers.delStruct("asistencia", "id"))
+        out, _ = capfd.readouterr()
+        assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
+               "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
 async def test_listAssistId_idnoexist(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
@@ -1150,3 +1167,4 @@ async def test_listAssistMemberEventDate_datenoexist(capfd):
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada." in out
+
