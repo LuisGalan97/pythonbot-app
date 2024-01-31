@@ -34,6 +34,7 @@ async def test_addRange(capfd):
     assert "El ___rango___ ha sido creado con exito sobre el " in out
     assert f"**_ID_** \'{testData['id']}\'." in out
 
+@pytest.mark.asyncio
 async def test_addRange_exist(capfd):
     commands = [f"$addRange[{testData['namecreate']},"\
                f"{testData['controlcreate']},"\
