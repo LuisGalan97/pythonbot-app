@@ -6,10 +6,13 @@ from collections import namedtuple
 
 testData = {
     "id" : "",
+    "idnoexist" : "999999999999",
     "memcreate" : "Avalonicus",
     "memupdate" : "Ammy",
+    "menoexist" : "Member-[noexist]",
     "evcreate" : "defprismaganada",
     "evupdate" : "avaconpelea",
+    "evnoexist" : "Event-[noexist]",
     "datecreate" : "25-01-2100",
     "dateupdate" : "26-01-2100"
 }
@@ -35,16 +38,21 @@ async def test_addAssist(capfd):
 
 @pytest.mark.asyncio
 async def test_addAssist_membernoexist(capfd):
-    commands = [f"$addAssist [Member-[noexist], "\
-                f"{testData['evcreate']}, {testData['datecreate']}]",
-                f"$addAssist [  Member-[noexist]  , "\
-                f"{testData['evcreate']}, {testData['datecreate']}]",
-                f"$addAssist [  Member-[noexist]  , "\
-                f"Event-[noexist], {testData['datecreate']}]",
-                f"$addAssist [  Member-[noexist]  , "\
-                f"  Event-[noexist]  , {testData['datecreate']}]",
-                f"$addAssist [  Member-[noexist]  , "\
-                f"  Event-[noexist]  , {testData['datecreate']}] "\
+    commands = [f"$addAssist [{testData['menoexist']}, "\
+                f"{testData['evcreate']}, "\
+                f"{testData['datecreate']}]",
+                f"$addAssist [  {testData['menoexist']}  , "\
+                f"{testData['evcreate']}, "\
+                f"{testData['datecreate']}]",
+                f"$addAssist [  {testData['menoexist']}  , "\
+                f"{testData['evnoexist']}, "\
+                f"{testData['datecreate']}]",
+                f"$addAssist [  {testData['menoexist']}  , "\
+                f"  {testData['evnoexist']}  , "\
+                f"{testData['datecreate']}]",
+                f"$addAssist [  {testData['menoexist']}  , "\
+                f"  {testData['evnoexist']}  , "\
+                f"{testData['datecreate']}] "\
                  "FILL"]
     for command in commands:
         message = Message(author="test", content=command)
@@ -53,23 +61,28 @@ async def test_addAssist_membernoexist(capfd):
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("asistencia"))
         out, _ = capfd.readouterr()
-        assert f"El valor 'Member-[noexist]' "\
+        assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
                 "**_Integrante_** no fue encontrado en la "\
                 "base de datos.\n" in out
-        
+
 @pytest.mark.asyncio
 async def test_addAssist_eventnoexist(capfd):
     commands = [f"$addAssist [{testData['memcreate']}, "\
-                f"Event-[noexist], {testData['datecreate']}]",
+                f"{testData['evnoexist']}, "\
+                f"{testData['datecreate']}]",
                 f"$addAssist [  {testData['memcreate']}  , "\
-                f"Event-[noexist], {testData['datecreate']}]",
+                f"{testData['evnoexist']}, "\
+                f"{testData['datecreate']}]",
                 f"$addAssist [  {testData['memcreate']}  , "\
-                f"Event-[noexist], {testData['datecreate']}]",
+                f"{testData['evnoexist']}, "\
+                f"{testData['datecreate']}]",
                 f"$addAssist [  {testData['memcreate']}  , "\
-                f"  Event-[noexist]  , {testData['datecreate']}]",
+                f"  {testData['evnoexist']}  , "\
+                f"{testData['datecreate']}]",
                 f"$addAssist [  {testData['memcreate']}  , "\
-                f"  Event-[noexist]  , {testData['datecreate']}] "\
+                f"  {testData['evnoexist']}  , "\
+                f"{testData['datecreate']}] "\
                  "FILL"]
     for command in commands:
         message = Message(author="test", content=command)
@@ -78,11 +91,11 @@ async def test_addAssist_eventnoexist(capfd):
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("asistencia"))
         out, _ = capfd.readouterr()
-        assert f"El valor 'Event-[noexist]' "\
+        assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
                 "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
-        
+
 @pytest.mark.asyncio
 async def test_listAssistId_add(capfd):
     command = f"$listAssist:id [{testData['id']}]"
@@ -117,6 +130,37 @@ async def test_updAssistId(capfd):
                 f"{testData['evupdate']} , "
                 f"{testData['dateupdate']} ]FILL",
                 f"$updAssist:id [ {testData['id']} , "
+                f"{testData['memupdate']} , "\
+                f"{testData['evupdate']} , "
+                f"{testData['dateupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updAssist:id", app.updateData,
+                           Helpers.updStruct("asistencia", "id"))
+        out, _ = capfd.readouterr()
+        assert "La ___asistencia___ ha sido actualizada con exito." in out
+
+@pytest.mark.asyncio
+async def test_updAssistId_idnoexist(capfd):
+    commands = [f"$updAssist:id[{testData['idnoexist']},"
+                f"{testData['memupdate']},"\
+                f"{testData['evupdate']},"
+                f"{testData['dateupdate']}]",
+                f"$updAssist:id [{testData['idnoexist']}, "
+                f"{testData['memupdate']}, "\
+                f"{testData['evupdate']}, "
+                f"{testData['dateupdate']}]",
+                f"$updAssist:id [ {testData['idnoexist']} , "
+                f"{testData['memupdate']} , "\
+                f"{testData['evupdate']} , "
+                f"{testData['dateupdate']} ] ",
+                f"$updAssist:id [ {testData['idnoexist']} , "
+                f"{testData['memupdate']} , "\
+                f"{testData['evupdate']} , "
+                f"{testData['dateupdate']} ]FILL",
+                f"$updAssist:id [ {testData['idnoexist']} , "
                 f"{testData['memupdate']} , "\
                 f"{testData['evupdate']} , "
                 f"{testData['dateupdate']} ] FILL "]
