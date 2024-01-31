@@ -64,5 +64,5 @@ async def test_addAssist_eventnoexist(capfd):
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
-                "**_Integrante_** no fue encontrado en la "\
+                "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
