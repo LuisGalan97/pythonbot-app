@@ -739,7 +739,7 @@ async def test_addAssist_eventnoexist(capfd):
                 "ingresado en el campo "\
                 "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
-        
+
 @pytest.mark.asyncio
 async def test_updAssistId_idnoexist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
@@ -771,3 +771,71 @@ async def test_updAssistId_idnoexist(capfd):
         out, _ = capfd.readouterr()
         assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
                "no se encuentra en la base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_updAssistId_membernoexist(capfd):
+    commands = [f"$updAssist:id[{testData['id']},"
+                f"{testData['menoexist']},"\
+                f"{testData['evupdate']},"
+                f"{testData['dateupdate']}]",
+                f"$updAssist:id [{testData['id']}, "
+                f"{testData['menoexist']}, "\
+                f"{testData['evupdate']}, "
+                f"{testData['dateupdate']}]",
+                f"$updAssist:id [ {testData['id']} , "
+                f"{testData['menoexist']} , "\
+                f"{testData['evnoexist']} , "
+                f"{testData['dateupdate']} ] ",
+                f"$updAssist:id [ {testData['id']} , "
+                f"{testData['menoexist']} , "\
+                f"{testData['evnoexist']} , "
+                f"{testData['dateupdate']} ]FILL",
+                f"$updAssist:id [ {testData['id']} , "
+                f"{testData['menoexist']} , "\
+                f"{testData['evnoexist']} , "
+                f"{testData['dateupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updAssist:id", app.updateData,
+                           Helpers.updStruct("asistencia", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['menoexist']}' "\
+                "ingresado en el campo "\
+                "**_Integrante_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def test_updAssistId_eventnoexist(capfd):
+    commands = [f"$updAssist:id[{testData['id']},"
+                f"{testData['memupdate']},"\
+                f"{testData['evnoexist']},"
+                f"{testData['dateupdate']}]",
+                f"$updAssist:id [{testData['id']}, "
+                f"{testData['memupdate']}, "\
+                f"{testData['evnoexist']}, "
+                f"{testData['dateupdate']}]",
+                f"$updAssist:id [ {testData['id']} , "
+                f"{testData['menupdate']} , "\
+                f"{testData['evnoexist']} , "
+                f"{testData['dateupdate']} ] ",
+                f"$updAssist:id [ {testData['id']} , "
+                f"{testData['memupdate']} , "\
+                f"{testData['evnoexist']} , "
+                f"{testData['dateupdate']} ]FILL",
+                f"$updAssist:id [ {testData['id']} , "
+                f"{testData['memupdate']} , "\
+                f"{testData['evnoexist']} , "
+                f"{testData['dateupdate']} ] FILL "]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updAssist:id", app.updateData,
+                           Helpers.updStruct("asistencia", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evnoexist']}' "\
+                "ingresado en el campo "\
+                "**_Evento_** no fue encontrado en la "\
+                "base de datos.\n" in out
