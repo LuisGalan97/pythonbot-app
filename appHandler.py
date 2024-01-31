@@ -96,7 +96,7 @@ class AppHandler:
                         existSet = getattr(getattr(self, controller),
                                         method)({key : target[key]})
                         if (isinstance(existSet, list) and
-                            existSet[0]["id"] == existUpd[0]["id"]):
+                            existSet[0]["id"] != existUpd[0]["id"]):
                             return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
                                    f"___{nameCtrl}___ "\
                                    f"de **_{struct['targets'][key]['alias']}_"\
