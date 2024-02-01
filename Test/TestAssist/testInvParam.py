@@ -9,11 +9,11 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addAssist_noparam(capfd):
+async def test_addAssist_invalidParams(capfd):
     commands = ["$addAssist[]", "$addAssist []",
                 "$addAssist[,,,,]", "$addAssist [,,,,]",
                 "$addAssist[,,,,]FILL", "$addAssist[,,,,] FILL",
-                "$addAssist[,,,,]]FILL", "$addAssists [,,,,]] FILL",
+                "$addAssist[,,,,]]FILL", "$addAssist [,,,,]] FILL",
                 "$addAssist[[,,,,]FILL", "$addAssist [[,,,,] FILL",
                 "$addAssist[[,,,,]]FILL", "$addAssist [[,,,,]] FILL"]
     for command in commands:
