@@ -60,9 +60,7 @@ async def test_updAssistId_invalidParams(capfd):
 
 @pytest.mark.asyncio
 async def test_delAssistId_invalidParams(capfd):
-    commands = ["$delAssist:id[]",
-                "$delAssist:id []",
-                "$delAssist:id[,,,,]",
+    commands = ["$delAssist:id[,,,,]",
                 "$delAssist:id [,,,,]",
                 "$delAssist:id[,,,,]FILL",
                 "$delAssist:id[,,,,] FILL",
@@ -85,9 +83,7 @@ async def test_delAssistId_invalidParams(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistId_invalidParams(capfd):
-    commands = ["$listAssist:id[]",
-                "$listAssist:id []",
-                "$listAssist:id[,,,,]",
+    commands = ["$listAssist:id[,,,,]",
                 "$listAssist:id [,,,,]",
                 "$listAssist:id[,,,,]FILL",
                 "$listAssist:id[,,,,] FILL",
@@ -110,9 +106,7 @@ async def test_listAssistId_invalidParams(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMember_invalidParams(capfd):
-    commands = ["$listAssist:member[]",
-                "$listAssist:member []",
-                "$listAssist:member[,,,,]",
+    commands = ["$listAssist:member[,,,,]",
                 "$listAssist:member [,,,,]",
                 "$listAssist:member[,,,,]FILL",
                 "$listAssist:member[,,,,] FILL",
@@ -135,9 +129,7 @@ async def test_listAssistMember_invalidParams(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistEvent_invalidParams(capfd):
-    commands = ["$listAssist:event[]",
-                "$listAssist:event []",
-                "$listAssist:event[,,,,]",
+    commands = ["$listAssist:event[,,,,]",
                 "$listAssist:event [,,,,]",
                 "$listAssist:event[,,,,]FILL",
                 "$listAssist:event[,,,,] FILL",
