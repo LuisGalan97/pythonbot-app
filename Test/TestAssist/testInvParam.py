@@ -13,7 +13,7 @@ async def test_addAssist_noparam(capfd):
     commands = ["$addAssist[]", "$addAssist []",
                 "$addAssist[,,,,]", "$addAssist [,,,,]",
                 "$addAssist[,,,,]FILL", "$addAssist[,,,,] FILL",
-                "$addAssist[,,,,]]FILL", "$addAssistFILL [,,,,]] FILL",
+                "$addAssist[,,,,]]FILL", "$addAssists [,,,,]] FILL",
                 "$addAssist[[,,,,]FILL", "$addAssist [[,,,,] FILL",
                 "$addAssist[[,,,,]]FILL", "$addAssist [[,,,,]] FILL"]
     for command in commands:
