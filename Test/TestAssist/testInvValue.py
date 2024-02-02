@@ -1169,7 +1169,7 @@ async def test_listAssistEvent_event_repeatchar(capfd):
 async def test_listAssistDate_date1_empty(capfd):
     value = ""
     commands = [f"$listAssist:date[{value},"\
-                f"{testData['date']}",
+                f"{testData['date']}]",
                 f"$listAssist:date [{value}, "\
                 f"{testData['date']} ]",
                 f"$listAssist:date [ {value} ,"\
@@ -1193,7 +1193,7 @@ async def test_listAssistDate_date1_empty(capfd):
 async def test_listAssistDate_date1_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:date[{value},"\
-                f"{testData['date']}",
+                f"{testData['date']}]",
                 f"$listAssist:date [{value}, "\
                 f"{testData['date']} ]",
                 f"$listAssist:date [ {value} ,"\
@@ -1210,8 +1210,9 @@ async def test_listAssistDate_date1_invalid(capfd):
                          Helpers.getStruct("asistencia",
                          ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "No fue ingresado ningun dato en el campo "\
-               "**_Fecha 1_**\n" in out
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha 1_** "\
+                "es invalido.\n" in out
 
 
 '''
