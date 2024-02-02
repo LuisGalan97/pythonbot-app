@@ -32,8 +32,8 @@ async def test_addAssist(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "La ___asistencia___ ha sido creada con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'.\n" in out
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId_add(capfd):
@@ -770,7 +770,7 @@ async def test_updAssistId_idnoexist(capfd):
                            Helpers.updStruct("asistencia", "id"))
         out, _ = capfd.readouterr()
         assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
-               "no se encuentra en la base de datos.\n" in out
+                "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_updAssistId_membernoexist(capfd):
@@ -855,7 +855,7 @@ async def test_delAssistId_idnoexist(capfd):
                            Helpers.delStruct("asistencia", "id"))
         out, _ = capfd.readouterr()
         assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
-               "no se encuentra en la base de datos.\n" in out
+                "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId_idnoexist(capfd):
