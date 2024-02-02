@@ -1214,6 +1214,56 @@ async def test_listAssistDate_date1_invalid(capfd):
                f"**_Fecha 1_** "\
                 "es invalido.\n" in out
 
+#----------------------Test $listAssist:date [*, Fecha 2]----------------------
+@pytest.mark.asyncio
+async def test_listAssistDate_date2_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:date[{testData['date']},"\
+                f"{value}]",
+                f"$listAssist:date [{testData['date']}, "\
+                f"{value} ]",
+                f"$listAssist:date [ {testData['date']} ,"\
+                f" {value} ]",
+                f"$listAssist:date [ {testData['date']} ,"\
+                f" {value} ]FILL",
+                f"$listAssist:date [ {testData['date']} ,"\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 2_**\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistDate_date2_invalid(capfd):
+    value = "test"
+    commands = [f"$listAssist:date[{testData['date']},"\
+                f"{value}]",
+                f"$listAssist:date [{testData['date']}, "\
+                f"{value} ]",
+                f"$listAssist:date [ {testData['date']} ,"\
+                f" {value} ]",
+                f"$listAssist:date [ {testData['date']} ,"\
+                f" {value} ]FILL",
+                f"$listAssist:date [ {testData['date']} ,"\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha 2_** "\
+                "es invalido.\n" in out
+
 
 '''
 #-----------------------------$listAssist:id [ID]------------------------------
