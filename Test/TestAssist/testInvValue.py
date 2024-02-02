@@ -2603,33 +2603,3 @@ async def test_listAssisMemberEventDate_date2_invalid(capfd):
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
                 "es invalido.\n" in out
-'''
-#-----------------------------$listAssist:id [ID]------------------------------
-
-
-@pytest.mark.asyncio
-async def test_listAssistMemberEventDate_invalidParams(capfd):
-    commands = ["$listAssist:member&event&date[]",
-                "$listAssist:member&event&date []",
-                "$listAssist:member&event&date[,,,,]",
-                "$listAssist:member&event&date [,,,,]",
-                "$listAssist:member&event&date[,,,,]FILL",
-                "$listAssist:member&event&date[,,,,] FILL",
-                "$listAssist:member&event&date[,,,,]]FILL",
-                "$listAssist:member&event&date [,,,,]] FILL",
-                "$listAssist:member&event&date[[,,,,]FILL",
-                "$listAssist:member&event&date [[,,,,] FILL",
-                "$listAssist:member&event&date[[,,,,]]FILL",
-                "$listAssist:member&event&date [[,,,,]] FILL"]
-    for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
-        hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "evento", "date_1", "date_2"]))
-        out, _ = capfd.readouterr()
-        assert "Datos ingresados invalidos, "\
-               "recuerda que debes ingresar:\n" in out
-        assert "**[_Integrante, Evento, Fecha 1, Fecha 2_]**\n" in out
-'''
