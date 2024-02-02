@@ -108,7 +108,7 @@ async def test_addAssist_member_startchar(capfd):
 
 @pytest.mark.asyncio
 async def test_addAssist_member_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\st",
+    values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
         commands = [f"$addAssist[{value},"\
@@ -263,7 +263,7 @@ async def test_addAssist_event_startchar(capfd):
 
 @pytest.mark.asyncio
 async def test_addAssist_event_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\st",
+    values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
         commands = [f"$addAssist[{testData['member']},"\
@@ -559,7 +559,7 @@ async def test_updAssistId_member_startchar(capfd):
 
 @pytest.mark.asyncio
 async def test_updAssistId_member_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\st",
+    values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
         commands = [f"$updAssist:id[{testData['id']},"\
@@ -739,7 +739,7 @@ async def test_updAssistId_event_startchar(capfd):
 
 @pytest.mark.asyncio
 async def test_updAssistId_event_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\st",
+    values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
         commands = [f"$updAssist:id[{testData['id']},"\
@@ -1017,7 +1017,7 @@ async def test_listAssistMember_member_startchar(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistMember_member_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\st",
+    values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
         commands = [f"$listAssist:member[{value}]",
@@ -1122,7 +1122,7 @@ async def test_listAssistEvent_event_startchar(capfd):
 
 @pytest.mark.asyncio
 async def test_listAssistEvent_event_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\st",
+    values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
         commands = [f"$listAssist:event[{value}]",
