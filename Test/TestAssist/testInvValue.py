@@ -44,7 +44,7 @@ async def test_addAssist_member_empty(capfd):
         assert "No fue ingresado ningun dato en el campo "\
                "**_Integrante_**\n" in out
 
-pytest.mark.asyncio
+@pytest.mark.asyncio
 async def test_addAssist_member_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
@@ -199,6 +199,7 @@ async def test_addAssist_event_empty(capfd):
         assert "No fue ingresado ningun dato en el campo "\
                "**_Evento_**\n" in out
 
+@pytest.mark.asyncio
 async def test_addAssist_event_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
@@ -972,7 +973,7 @@ async def test_listAssistMember_member_empty(capfd):
         assert "No fue ingresado ningun dato en el campo "\
                "**_Integrante_**\n" in out
 
-pytest.mark.asyncio
+@pytest.mark.asyncio
 async def test_listAssistMember_member_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
@@ -1077,7 +1078,7 @@ async def test_listAssistEvent_event_empty(capfd):
         assert "No fue ingresado ningun dato en el campo "\
                "**_Evento_**\n" in out
 
-pytest.mark.asyncio
+@pytest.mark.asyncio
 async def test_listAssistEvent_event_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
