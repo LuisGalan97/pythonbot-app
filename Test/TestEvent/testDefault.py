@@ -58,7 +58,8 @@ async def test_addEvent_exist(capfd):
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("evento"))
         out, _ = capfd.readouterr()
-        assert f"El ___evento___ de **_Nombre_** \'{testData['namecreate']}\' "\
+        assert f"El ___evento___ de **_Nombre_** "\
+                "\'{testData['namecreate']}\' "\
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio

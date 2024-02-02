@@ -31,8 +31,8 @@ async def test_addRange(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "El ___rango___ ha sido creado con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert "El ___rango___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_addRange_exist(capfd):
@@ -71,7 +71,7 @@ async def test_listRangeId_add(capfd):
     await hdlr.dFMsg("listRange:id", app.getDatas,
                      Helpers.getStruct("rango", ["id"]))
     out, _ = capfd.readouterr()
-    assert "**___Rangos___** **___encontrados:___**" in out
+    assert "**___Rangos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['controlcreate']}" in out
@@ -86,7 +86,7 @@ async def test_listRangeName_add(capfd):
     await hdlr.dFMsg("listRange:name", app.getDatas,
                      Helpers.getStruct("rango", ["name"]))
     out, _ = capfd.readouterr()
-    assert "**___Rangos___** **___encontrados:___**" in out
+    assert "**___Rangos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['controlcreate']}" in out
@@ -115,7 +115,7 @@ async def test_updRangeId(capfd):
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("rango", "id"))
         out, _ = capfd.readouterr()
-        assert "El ___rango___ ha sido actualizado con exito." in out
+        assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_updRangeId_nameexist(capfd):
@@ -141,8 +141,8 @@ async def test_updRangeId_nameexist(capfd):
                            Helpers.updStruct("rango", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_Nombre_** "\
-           f"\'{testData['nameexist']}\' "\
-            "ya se encuentra en la base de datos.\n" in out
+               f"\'{testData['nameexist']}\' "\
+                "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_updRangeName(capfd):
@@ -164,7 +164,7 @@ async def test_updRangeName(capfd):
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("rango", "name"))
         out, _ = capfd.readouterr()
-        assert "El ___rango___ ha sido actualizado con exito." in out
+        assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_listRange(capfd):
@@ -179,7 +179,7 @@ async def test_listRange(capfd):
         await hdlr.dFMsg("listRange", app.getDatas,
                          Helpers.getStruct("rango"))
         out, _ = capfd.readouterr()
-        assert "**___Rangos___** **___encontrados:___**" in out
+        assert "**___Rangos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['controlupdate']}" in out
@@ -199,7 +199,7 @@ async def test_listRangeId(capfd):
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("rango", ["id"]))
         out, _ = capfd.readouterr()
-        assert "**___Rangos___** **___encontrados:___**" in out
+        assert "**___Rangos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['controlupdate']}" in out
@@ -219,7 +219,7 @@ async def test_listRangeName(capfd):
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("rango", ["name"]))
         out, _ = capfd.readouterr()
-        assert "**___Rangos___** **___encontrados:___**" in out
+        assert "**___Rangos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['controlupdate']}" in out
@@ -238,7 +238,7 @@ async def test_listRange_e(capfd):
             await hdlr.dFMsg("listRange", app.getDatas,
                              Helpers.getStruct("rango"))
             out, _ = capfd.readouterr()
-            assert "**___Rangos___** **___encontrados:___**" in out
+            assert "**___Rangos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -256,7 +256,7 @@ async def test_listRangeId_e(capfd):
             await hdlr.dFMsg("listRange:id", app.getDatas,
                              Helpers.getStruct("rango", ["id"]))
             out, _ = capfd.readouterr()
-            assert "**___Rangos___** **___encontrados:___**" in out
+            assert "**___Rangos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -274,7 +274,7 @@ async def test_listRangeName_e(capfd):
             await hdlr.dFMsg("listRange:name", app.getDatas,
                              Helpers.getStruct("rango", ["name"]))
             out, _ = capfd.readouterr()
-            assert "**___Rangos___** **___encontrados:___**" in out
+            assert "**___Rangos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -349,7 +349,7 @@ async def test_delRangeId(capfd):
     await hdlr.contMsg("delRange:id", app.deleteData,
                        Helpers.delStruct("rango", "id"))
     out, _ = capfd.readouterr()
-    assert "El ___rango___ ha sido eliminado con exito." in out
+    assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_addRange_DelName(capfd):
@@ -363,8 +363,8 @@ async def test_addRange_DelName(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "El ___rango___ ha sido creado con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert "El ___rango___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_delRangeName(capfd):
@@ -375,7 +375,7 @@ async def test_delRangeName(capfd):
     await hdlr.contMsg("delRange:name", app.deleteData,
                        Helpers.delStruct("rango", "name"))
     out, _ = capfd.readouterr()
-    assert "El ___rango___ ha sido eliminado con exito." in out
+    assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_updRangeId_idnoexist(capfd):
@@ -477,7 +477,7 @@ async def test_listRangeId_idnoexist(capfd):
                          Helpers.getStruct("rango", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___rangos___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listRangeName_namenoexist(capfd):
@@ -494,4 +494,4 @@ async def test_listRangeName_namenoexist(capfd):
                          Helpers.getStruct("rango", ["name"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___rangos___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out

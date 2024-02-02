@@ -31,7 +31,7 @@ async def test_addMember_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_Nombre, Rango, Fecha_]**" in out
+        assert "**[_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_updMemberId_invalidParams(capfd):
@@ -56,7 +56,7 @@ async def test_updMemberId_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_ID, Nombre, Rango, Fecha_]**" in out
+        assert "**[_ID, Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_updMemberName_invalidParams(capfd):
@@ -81,7 +81,7 @@ async def test_updMemberName_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_Nombre, Rango, Fecha_]**" in out
+        assert "**[_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_delMemberId_invalidParams(capfd):
@@ -104,7 +104,7 @@ async def test_delMemberId_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_ID_]**" in out
+        assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_delMemberName_invalidParams(capfd):
@@ -127,7 +127,7 @@ async def test_delMemberName_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_Nombre_]**" in out
+        assert "**[_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberId_invalidParams(capfd):
@@ -150,7 +150,7 @@ async def test_listMemberId_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_ID_]**" in out
+        assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberName_invalidParams(capfd):
@@ -173,7 +173,7 @@ async def test_listMemberName_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_Nombre_]**" in out
+        assert "**[_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberRange_invalidParams(capfd):
@@ -196,7 +196,7 @@ async def test_listMemberRange_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_Rango_]**" in out
+        assert "**[_Rango_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberDate_invalidParams(capfd):
@@ -221,4 +221,4 @@ async def test_listMemberDate_invalidParams(capfd):
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
-        assert "**[_Fecha 1, Fecha 2_]**" in out
+        assert "**[_Fecha 1, Fecha 2_]**\n" in out

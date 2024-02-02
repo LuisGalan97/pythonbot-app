@@ -24,8 +24,8 @@ async def test_addMember_invalidStruct(capfd):
         await hdlr.contMsg("addMember", app.setData,
                            Helpers.setStruct("integrante"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$addMember [_Nombre, Rango, Fecha_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$addMember [_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_updMemberId_invalidStruct(capfd):
@@ -43,8 +43,8 @@ async def test_updMemberId_invalidStruct(capfd):
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("integrante", "id"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$updMember:id [_ID, Nombre, Rango, Fecha_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$updMember:id [_ID, Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_updMemberName_invalidStruct(capfd):
@@ -62,8 +62,8 @@ async def test_updMemberName_invalidStruct(capfd):
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("integrante", "name"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$updMember:name [_Nombre, Rango, Fecha_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$updMember:name [_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_delMemberId_invalidStruct(capfd):
@@ -81,8 +81,8 @@ async def test_delMemberId_invalidStruct(capfd):
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("integrante", "id"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$delMember:id [_ID_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$delMember:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_delMemberName_invalidStruct(capfd):
@@ -100,8 +100,8 @@ async def test_delMemberName_invalidStruct(capfd):
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("integrante", "name"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$delMember:name [_Nombre_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$delMember:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberId_invalidStruct(capfd):
@@ -119,8 +119,8 @@ async def test_listMemberId_invalidStruct(capfd):
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("integrante", ["id"]))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$listMember:id [_ID_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listMember:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberName_invalidStruct(capfd):
@@ -138,8 +138,8 @@ async def test_listMemberName_invalidStruct(capfd):
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("integrante", ["name"]))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$listMember:name [_Nombre_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listMember:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberRange_invalidStruct(capfd):
@@ -157,8 +157,8 @@ async def test_listMemberRange_invalidStruct(capfd):
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("integrante", ["rango"]))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$listMember:range [_Rango_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listMember:range [_Rango_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberDate_invalidStruct(capfd):
@@ -176,5 +176,5 @@ async def test_listMemberDate_invalidStruct(capfd):
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("integrante", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$listMember:date [_Fecha 1, Fecha 2_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listMember:date [_Fecha 1, Fecha 2_]**\n" in out

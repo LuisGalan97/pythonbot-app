@@ -32,8 +32,8 @@ async def test_addMember(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "El ___integrante___ ha sido creado con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert "El ___integrante___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_addMember_exist(capfd):
@@ -72,7 +72,7 @@ async def test_listMemberId_add(capfd):
     await hdlr.dFMsg("listMember:id", app.getDatas,
                      Helpers.getStruct("integrante", ["id"]))
     out, _ = capfd.readouterr()
-    assert "**___Integrantes___** **___encontrados:___**" in out
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['rancreate']}" in out
@@ -88,7 +88,7 @@ async def test_listMemberName_add(capfd):
     await hdlr.dFMsg("listMember:name", app.getDatas,
                      Helpers.getStruct("integrante", ["name"]))
     out, _ = capfd.readouterr()
-    assert "**___Integrantes___** **___encontrados:___**" in out
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['rancreate']}" in out
@@ -117,7 +117,7 @@ async def test_updMemberId(capfd):
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("integrante", "id"))
         out, _ = capfd.readouterr()
-        assert "El ___integrante___ ha sido actualizado con exito." in out
+        assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_updMemberId_nameexist(capfd):
@@ -142,8 +142,8 @@ async def test_updMemberId_nameexist(capfd):
                            Helpers.updStruct("integrante", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_Nombre_** "\
-           f"\'{testData['nameexist']}\' "\
-            "ya se encuentra en la base de datos.\n" in out
+               f"\'{testData['nameexist']}\' "\
+                "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def test_updMemberName(capfd):
@@ -164,7 +164,7 @@ async def test_updMemberName(capfd):
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("integrante", "name"))
         out, _ = capfd.readouterr()
-        assert "El ___integrante___ ha sido actualizado con exito." in out
+        assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_listMember(capfd):
@@ -179,7 +179,7 @@ async def test_listMember(capfd):
         await hdlr.dFMsg("listMember", app.getDatas,
                          Helpers.getStruct("integrante"))
         out, _ = capfd.readouterr()
-        assert "**___Integrantes___** **___encontrados:___**" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['ranupdate']}" in out
@@ -200,7 +200,7 @@ async def test_listMemberId(capfd):
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("integrante", ["id"]))
         out, _ = capfd.readouterr()
-        assert "**___Integrantes___** **___encontrados:___**" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['ranupdate']}" in out
@@ -221,7 +221,7 @@ async def test_listMemberName(capfd):
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("integrante", ["name"]))
         out, _ = capfd.readouterr()
-        assert "**___Integrantes___** **___encontrados:___**" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['ranupdate']}" in out
@@ -242,7 +242,7 @@ async def test_listMemberRange(capfd):
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("integrante", ["rango"]))
         out, _ = capfd.readouterr()
-        assert "**___Integrantes___** **___encontrados:___**" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['ranupdate']}" in out
@@ -268,7 +268,7 @@ async def test_listMemberDate(capfd):
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("integrante", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "**___Integrantes___** **___encontrados:___**" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['ranupdate']}" in out
@@ -288,7 +288,7 @@ async def test_listMember_e(capfd):
             await hdlr.dFMsg("listMember", app.getDatas,
                              Helpers.getStruct("integrante"))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**" in out
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -306,7 +306,7 @@ async def test_listMemberId_e(capfd):
             await hdlr.dFMsg("listMember:id", app.getDatas,
                              Helpers.getStruct("integrante", ["id"]))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**" in out
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -324,7 +324,7 @@ async def test_listMemberName_e(capfd):
             await hdlr.dFMsg("listMember:name", app.getDatas,
                              Helpers.getStruct("integrante", ["name"]))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**" in out
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -342,7 +342,7 @@ async def test_listMemberRange_e(capfd):
             await hdlr.dFMsg("listMember:range", app.getDatas,
                              Helpers.getStruct("integrante", ["rango"]))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**" in out
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -364,7 +364,7 @@ async def test_listMemberDate_e(capfd):
                              Helpers.getStruct("integrante",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**" in out
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -491,7 +491,7 @@ async def test_delMemberId(capfd):
     await hdlr.contMsg("delMember:id", app.deleteData,
                        Helpers.delStruct("integrante", "id"))
     out, _ = capfd.readouterr()
-    assert "El ___integrante___ ha sido eliminado con exito." in out
+    assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_addMember_DelName(capfd):
@@ -505,8 +505,8 @@ async def test_addMember_DelName(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "El ___integrante___ ha sido creado con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert "El ___integrante___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_delMemberName(capfd):
@@ -517,7 +517,7 @@ async def test_delMemberName(capfd):
     await hdlr.contMsg("delMember:name", app.deleteData,
                        Helpers.delStruct("integrante", "name"))
     out, _ = capfd.readouterr()
-    assert "El ___integrante___ ha sido eliminado con exito." in out
+    assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_addMember_rangenoexist(capfd):
@@ -683,7 +683,7 @@ async def test_listMemberId_idnoexist(capfd):
                          Helpers.getStruct("integrante", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberName_namenoexist(capfd):
@@ -700,7 +700,7 @@ async def test_listMemberName_namenoexist(capfd):
                          Helpers.getStruct("integrante", ["name"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listMemberRange_rangenoexist(capfd):
@@ -741,4 +741,4 @@ async def test_listMemberDate_datenoexist(capfd):
                          Helpers.getStruct("integrante", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out

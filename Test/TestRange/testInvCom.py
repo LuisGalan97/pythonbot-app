@@ -24,8 +24,8 @@ async def test_addRange_invalidStruct(capfd):
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("rango"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$addRange [_Nombre, Control, Descripción_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$addRange [_Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_updRangeId_invalidStruct(capfd):
@@ -43,8 +43,8 @@ async def test_updRangeId_invalidStruct(capfd):
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("rango", "id"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$updRange:id [_ID, Nombre, Control, Descripción_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$updRange:id [_ID, Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_updRangeName_invalidStruct(capfd):
@@ -62,8 +62,8 @@ async def test_updRangeName_invalidStruct(capfd):
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("rango", "name"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$updRange:name [_Nombre, Control, Descripción_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$updRange:name [_Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_delRangeId_invalidStruct(capfd):
@@ -81,8 +81,8 @@ async def test_delRangeId_invalidStruct(capfd):
         await hdlr.contMsg("delRange:id", app.deleteData,
                            Helpers.delStruct("rango", "id"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$delRange:id [_ID_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$delRange:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_delRangeName_invalidStruct(capfd):
@@ -100,8 +100,8 @@ async def test_delRangeName_invalidStruct(capfd):
         await hdlr.contMsg("delRange:name", app.deleteData,
                            Helpers.delStruct("rango", "name"))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$delRange:name [_Nombre_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$delRange:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listRangeId_invalidStruct(capfd):
@@ -119,8 +119,8 @@ async def test_listRangeId_invalidStruct(capfd):
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("rango", ["id"]))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$listRange:id [_ID_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listRange:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
 async def test_listRangeName_invalidStruct(capfd):
@@ -138,5 +138,5 @@ async def test_listRangeName_invalidStruct(capfd):
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("rango", ["name"]))
         out, _ = capfd.readouterr()
-        assert "El comando debe mantener la forma:" in out
-        assert "**$listRange:name [_Nombre_]**" in out
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listRange:name [_Nombre_]**\n" in out
