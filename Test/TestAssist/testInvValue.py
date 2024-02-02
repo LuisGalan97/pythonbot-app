@@ -914,21 +914,16 @@ async def test_delAssistId_id_invalid(capfd):
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
                 "es invalido.\n" in out
-'''
-#-----------------------------$listAssist:id [ID]------------------------------
 
+#------------------------------$listAssist:id [ID]-----------------------------
 @pytest.mark.asyncio
-async def test_listAssistId_invalidParams(capfd):
-    commands = ["$listAssist:id[,,,,]",
-                "$listAssist:id [,,,,]",
-                "$listAssist:id[,,,,]FILL",
-                "$listAssist:id[,,,,] FILL",
-                "$listAssist:id[,,,,]]FILL",
-                "$listAssist:id [,,,,]] FILL",
-                "$listAssist:id[[,,,,]FILL",
-                "$listAssist:id [[,,,,] FILL",
-                "$listAssist:id[[,,,,]]FILL",
-                "$listAssist:id [[,,,,]] FILL"]
+async def test_listAssistId_id_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:id[{value}],",
+                f"$listAssist:id [{value} ], ",
+                f"$listAssist:id [ {value} ], ",
+                f"$listAssist:id [ {value} ]FILL",
+                f"$listAssist:id [ {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
@@ -936,22 +931,37 @@ async def test_listAssistId_invalidParams(capfd):
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("asistencia", ["id"]))
         out, _ = capfd.readouterr()
-        assert "Datos ingresados invalidos, "\
-               "recuerda que debes ingresar:\n" in out
-        assert "**[_ID_]**\n" in out
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember_invalidParams(capfd):
-    commands = ["$listAssist:member[,,,,]",
-                "$listAssist:member [,,,,]",
-                "$listAssist:member[,,,,]FILL",
-                "$listAssist:member[,,,,] FILL",
-                "$listAssist:member[,,,,]]FILL",
-                "$listAssist:member [,,,,]] FILL",
-                "$listAssist:member[[,,,,]FILL",
-                "$listAssist:member [[,,,,] FILL",
-                "$listAssist:member[[,,,,]]FILL",
-                "$listAssist:member [[,,,,]] FILL"]
+async def test_listAssistId_id_invalid(capfd):
+    value = "test"
+    commands = [f"$listAssist:id[{value}],",
+                f"$listAssist:id [{value} ], ",
+                f"$listAssist:id [ {value} ], ",
+                f"$listAssist:id [ {value} ]FILL",
+                f"$listAssist:id [ {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:id", app.getDatas,
+                         Helpers.getStruct("asistencia", ["id"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_ID_** "\
+                "es invalido.\n" in out
+
+#---------------------Test $listAssist:member [Integrante]---------------------
+@pytest.mark.asyncio
+async def test_listAssistMember_member_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:member[{value}]",
+                f"$listAssist:member [{value} ]",
+                f"$listAssist:member [ {value} ]",
+                f"$listAssist:member [ {value} ]FILL",
+                f"$listAssist:member [ {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
@@ -959,9 +969,202 @@ async def test_listAssistMember_invalidParams(capfd):
         await hdlr.dFMsg("listAssist:member", app.getDatas,
                          Helpers.getStruct("asistencia", ["integrante"]))
         out, _ = capfd.readouterr()
-        assert "Datos ingresados invalidos, "\
-               "recuerda que debes ingresar:\n" in out
-        assert "**[_Integrante_]**\n" in out
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Integrante_**\n" in out
+
+pytest.mark.asyncio
+async def test_listAssistMember_member_long(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$listAssist:member[{value}]",
+                f"$listAssist:member [{value} ]",
+                f"$listAssist:member [ {value} ]",
+                f"$listAssist:member [ {value} ]FILL",
+                f"$listAssist:member [ {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member", app.getDatas,
+                         Helpers.getStruct("asistencia", ["integrante"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Integrante_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMember_member_startchar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$listAssist:member[{value}]",
+                    f"$listAssist:member [{value} ]",
+                    f"$listAssist:member [ {value} ]",
+                    f"$listAssist:member [ {value} ]FILL",
+                    f"$listAssist:member [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member", app.getDatas,
+                         Helpers.getStruct("asistencia", ["integrante"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Integrante_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMember_member_spechar(capfd):
+    values = ["test/", "test{", "te/st", "te|st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$listAssist:member[{value}]",
+                    f"$listAssist:member [{value} ]",
+                    f"$listAssist:member [ {value} ]",
+                    f"$listAssist:member [ {value} ]FILL",
+                    f"$listAssist:member [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member", app.getDatas,
+                         Helpers.getStruct("asistencia", ["integrante"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Integrante_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistMember_member_repeatchar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$listAssist:member[{value}]",
+                    f"$listAssist:member [{value} ]",
+                    f"$listAssist:member [ {value} ]",
+                    f"$listAssist:member [ {value} ]FILL",
+                    f"$listAssist:member [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:member", app.getDatas,
+                         Helpers.getStruct("asistencia", ["integrante"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Integrante_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#------------------------Test $listAssist:event [Evento]-----------------------
+@pytest.mark.asyncio
+async def test_listAssistEvent_event_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:event[{value}]",
+                f"$listAssist:event [{value} ]",
+                f"$listAssist:event [ {value} ]",
+                f"$listAssist:event [ {value} ]FILL",
+                f"$listAssist:event [ {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:event", app.getDatas,
+                         Helpers.getStruct("asistencia", ["evento"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Evento_**\n" in out
+
+pytest.mark.asyncio
+async def test_listAssistEvent_event_long(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$listAssist:event[{value}]",
+                f"$listAssist:event [{value} ]",
+                f"$listAssist:event [ {value} ]",
+                f"$listAssist:event [ {value} ]FILL",
+                f"$listAssist:event [ {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:event", app.getDatas,
+                         Helpers.getStruct("asistencia", ["evento"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Evento_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEvent_event_startchar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$listAssist:event[{value}]",
+                    f"$listAssist:event [{value} ]",
+                    f"$listAssist:event [ {value} ]",
+                    f"$listAssist:event [ {value} ]FILL",
+                    f"$listAssist:event [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:event", app.getDatas,
+                         Helpers.getStruct("asistencia", ["evento"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Evento_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEvent_event_spechar(capfd):
+    values = ["test/", "test{", "te/st", "te|st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$listAssist:event[{value}]",
+                    f"$listAssist:event [{value} ]",
+                    f"$listAssist:event [ {value} ]",
+                    f"$listAssist:event [ {value} ]FILL",
+                    f"$listAssist:event [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:event", app.getDatas,
+                         Helpers.getStruct("asistencia", ["evento"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Evento_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistEvent_event_repeatchar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$listAssist:event[{value}]",
+                    f"$listAssist:event [{value} ]",
+                    f"$listAssist:event [ {value} ]",
+                    f"$listAssist:event [ {value} ]FILL",
+                    f"$listAssist:event [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listAssist:event", app.getDatas,
+                         Helpers.getStruct("asistencia", ["evento"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Evento_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+'''
+#-----------------------------$listAssist:id [ID]------------------------------
+
 
 @pytest.mark.asyncio
 async def test_listAssistEvent_invalidParams(capfd):
