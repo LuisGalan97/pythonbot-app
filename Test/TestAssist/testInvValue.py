@@ -1694,6 +1694,126 @@ async def test_listAssisMemberDate_member_repeatchar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
+#-------------------Test $listAssist:member&date [*, Fecha 1, *]---------------
+@pytest.mark.asyncio
+async def test_listAssistMemberDate_date1_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:member&date[{testData['member']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$listAssist:member&date [{testData['member']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] ",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {value} , "\
+                f" {testData['date']} ]FILL",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["integrante", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 1_**\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssisMemberDate_date1_invalid(capfd):
+    value = "test"
+    commands = [f"$listAssist:member&date[{testData['member']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$listAssist:member&date [{testData['member']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] ",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {value} , "\
+                f" {testData['date']} ]FILL",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["integrante", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha 1_** "\
+                "es invalido.\n" in out
+
+#------------------Test $listAssist:member&date [*, *, Fecha 2]----------------
+@pytest.mark.asyncio
+async def test_listAssistMemberDate_date2_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:member&date[{testData['member']},"\
+                f"{testData['date']},"\
+                f"{value}]",
+                f"$listAssist:member&date [{testData['member']}, "\
+                f"{testData['date']}, "\
+                f"{value} ]",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {testData['date']} , "\
+                f" {value} ] ",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {testData['date']} , "\
+                f" {value} ]FILL",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {testData['date']} , "\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["integrante", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 2_**\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssisMemberDate_date2_invalid(capfd):
+    value = "test"
+    commands = [f"$listAssist:member&date[{testData['member']},"\
+                f"{testData['date']},"\
+                f"{value}]",
+                f"$listAssist:member&date [{testData['member']}, "\
+                f"{testData['date']}, "\
+                f"{value} ]",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {testData['date']} , "\
+                f" {value} ] ",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {testData['date']} , "\
+                f" {value} ]FILL",
+                f"$listAssist:member&date [ {testData['member']} , "\
+                f" {testData['date']} , "\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:member&date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["integrante", "date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha 2_** "\
+                "es invalido.\n" in out
+
 '''
 #-----------------------------$listAssist:id [ID]------------------------------
 
