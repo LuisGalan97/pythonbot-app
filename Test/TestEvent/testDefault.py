@@ -31,8 +31,8 @@ async def test_addEvent(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "El ___evento___ ha sido creado con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert "El ___evento___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_addEvent_exist(capfd):
@@ -70,7 +70,7 @@ async def test_listEventId_add(capfd):
     await hdlr.dFMsg("listEvent:id", app.getDatas,
                      Helpers.getStruct("evento", ["id"]))
     out, _ = capfd.readouterr()
-    assert "**___Eventos___** **___encontrados:___**" in out
+    assert "**___Eventos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['pointcreate']}" in out
@@ -85,7 +85,7 @@ async def test_listEventName_add(capfd):
     await hdlr.dFMsg("listEvent:name", app.getDatas,
                      Helpers.getStruct("evento", ["name"]))
     out, _ = capfd.readouterr()
-    assert "**___Eventos___** **___encontrados:___**" in out
+    assert "**___Eventos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['pointcreate']}" in out
@@ -114,7 +114,7 @@ async def test_updEventId(capfd):
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
-        assert "El ___evento___ ha sido actualizado con exito." in out
+        assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_updEventId_nameexist(capfd):
@@ -161,7 +161,7 @@ async def test_updEventName(capfd):
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("evento", "name"))
         out, _ = capfd.readouterr()
-        assert "El ___evento___ ha sido actualizado con exito." in out
+        assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_listEvent(capfd):
@@ -176,7 +176,7 @@ async def test_listEvent(capfd):
         await hdlr.dFMsg("listEvent", app.getDatas,
                          Helpers.getStruct("evento"))
         out, _ = capfd.readouterr()
-        assert "**___Eventos___** **___encontrados:___**" in out
+        assert "**___Eventos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['pointupdate']}" in out
@@ -196,7 +196,7 @@ async def test_listEventId(capfd):
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("evento", ["id"]))
         out, _ = capfd.readouterr()
-        assert "**___Eventos___** **___encontrados:___**" in out
+        assert "**___Eventos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['pointupdate']}" in out
@@ -216,7 +216,7 @@ async def test_listEventName(capfd):
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("evento", ["name"]))
         out, _ = capfd.readouterr()
-        assert "**___Eventos___** **___encontrados:___**" in out
+        assert "**___Eventos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['nameupdate']}" in out
         assert f"{testData['pointupdate']}" in out
@@ -235,7 +235,7 @@ async def test_listEvent_e(capfd):
             await hdlr.dFMsg("listEvent", app.getDatas,
                              Helpers.getStruct("evento"))
             out, _ = capfd.readouterr()
-            assert "**___Eventos___** **___encontrados:___**" in out
+            assert "**___Eventos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -253,7 +253,7 @@ async def test_listEventId_e(capfd):
             await hdlr.dFMsg("listEvent:id", app.getDatas,
                              Helpers.getStruct("evento", ["id"]))
             out, _ = capfd.readouterr()
-            assert "**___Eventos___** **___encontrados:___**" in out
+            assert "**___Eventos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -271,7 +271,7 @@ async def test_listEventName_e(capfd):
             await hdlr.dFMsg("listEvent:name", app.getDatas,
                              Helpers.getStruct("evento", ["name"]))
             out, _ = capfd.readouterr()
-            assert "**___Eventos___** **___encontrados:___**" in out
+            assert "**___Eventos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -346,7 +346,7 @@ async def test_delEventId(capfd):
     await hdlr.contMsg("delEvent:id", app.deleteData,
                        Helpers.delStruct("evento", "id"))
     out, _ = capfd.readouterr()
-    assert "El ___evento___ ha sido eliminado con exito." in out
+    assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_addEvent_DelName(capfd):
@@ -360,8 +360,8 @@ async def test_addEvent_DelName(capfd):
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
-    assert "El ___evento___ ha sido creado con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert "El ___evento___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_delEventName(capfd):
@@ -372,7 +372,7 @@ async def test_delEventName(capfd):
     await hdlr.contMsg("delEvent:name", app.deleteData,
                        Helpers.delStruct("evento", "name"))
     out, _ = capfd.readouterr()
-    assert "El ___evento___ ha sido eliminado con exito." in out
+    assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_updEventId_idnoexist(capfd):
@@ -471,7 +471,7 @@ async def test_listEventId_idnoexist(capfd):
                          Helpers.getStruct("evento", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___eventos___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listEventName_namenoexist(capfd):
@@ -488,4 +488,4 @@ async def test_listEventName_namenoexist(capfd):
                          Helpers.getStruct("evento", ["name"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___eventos___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
