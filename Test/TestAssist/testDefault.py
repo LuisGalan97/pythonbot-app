@@ -33,7 +33,7 @@ async def test_addAssist(capfd):
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "La ___asistencia___ ha sido creada con exito sobre el " in out
-    assert f"**_ID_** \'{testData['id']}\'." in out
+    assert f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistId_add(capfd):
@@ -44,7 +44,7 @@ async def test_listAssistId_add(capfd):
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("asistencia", ["id"]))
     out, _ = capfd.readouterr()
-    assert "**___Asistencias___** **___encontradas:___**" in out
+    assert "**___Asistencias___** **___encontradas:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['memcreate']}" in out
     assert f"{testData['evcreate']}" in out
@@ -79,7 +79,7 @@ async def test_updAssistId(capfd):
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("asistencia", "id"))
         out, _ = capfd.readouterr()
-        assert "La ___asistencia___ ha sido actualizada con exito." in out
+        assert "La ___asistencia___ ha sido actualizada con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssist(capfd):
@@ -94,7 +94,7 @@ async def test_listAssist(capfd):
         await hdlr.dFMsg("listAssist", app.getDatas,
                          Helpers.getStruct("asistencia"))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -114,7 +114,7 @@ async def test_listAssistId(capfd):
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("asistencia", ["id"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -134,7 +134,7 @@ async def test_listAssistMember(capfd):
         await hdlr.dFMsg("listAssist:member", app.getDatas,
                          Helpers.getStruct("asistencia", ["integrante"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -154,7 +154,7 @@ async def test_listAssistEvent(capfd):
         await hdlr.dFMsg("listAssist:event", app.getDatas,
                          Helpers.getStruct("asistencia", ["evento"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -179,7 +179,7 @@ async def test_listAssistDate(capfd):
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("asistencia", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -205,7 +205,7 @@ async def test_listAssistMemberEvent(capfd):
                          Helpers.getStruct("asistencia",
                          ["integrante", "evento"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -231,7 +231,7 @@ async def test_listAssistMemberDate(capfd):
                          Helpers.getStruct("asistencia",
                          ["integrante", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -257,7 +257,7 @@ async def test_listAssistEventDate(capfd):
                          Helpers.getStruct("asistencia",
                          ["evento", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -288,7 +288,7 @@ async def test_listAssistMemberEventDate(capfd):
                          app.getDatas, Helpers.getStruct("asistencia",
                          ["integrante", "evento", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "**___Asistencias___** **___encontradas:___**" in out
+        assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
         assert f"{testData['memupdate']}" in out
         assert f"{testData['evupdate']}" in out
@@ -307,7 +307,7 @@ async def test_listAssist_e(capfd):
             await hdlr.dFMsg("listAssist", app.getDatas,
                              Helpers.getStruct("asistencia"))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -325,7 +325,7 @@ async def test_listAssistId_e(capfd):
             await hdlr.dFMsg("listAssist:id", app.getDatas,
                              Helpers.getStruct("asistencia", ["id"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -343,7 +343,7 @@ async def test_listAssistMember_e(capfd):
             await hdlr.dFMsg("listAssist:member", app.getDatas,
                              Helpers.getStruct("asistencia", ["integrante"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -361,7 +361,7 @@ async def test_listAssistEvent_e(capfd):
             await hdlr.dFMsg("listAssist:event", app.getDatas,
                              Helpers.getStruct("asistencia", ["evento"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -383,7 +383,7 @@ async def test_listAssistDate_e(capfd):
                              Helpers.getStruct("asistencia",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -405,7 +405,7 @@ async def test_listAssistMemberDate_e(capfd):
                              Helpers.getStruct("asistencia",
                              ["integrante", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -427,7 +427,7 @@ async def test_listAssistEventDate_e(capfd):
                              Helpers.getStruct("asistencia",
                              ["evento", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -452,7 +452,7 @@ async def test_listAssistMemberEventDate_e(capfd):
                              app.getDatas, Helpers.getStruct("asistencia",
                              ["integrante", "evento", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Asistencias___** **___encontradas:___**" in out
+            assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
@@ -678,7 +678,7 @@ async def test_delAssistId(capfd):
     await hdlr.contMsg("delAssist:id", app.deleteData,
                        Helpers.delStruct("asistencia", "id"))
     out, _ = capfd.readouterr()
-    assert "La ___asistencia___ ha sido eliminada con exito." in out
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
 
 @pytest.mark.asyncio
 async def test_addAssist_membernoexist(capfd):
@@ -872,7 +872,7 @@ async def test_listAssistId_idnoexist(capfd):
                          Helpers.getStruct("asistencia", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMember_membernoexist(capfd):
@@ -932,7 +932,7 @@ async def test_listAssistDate_datenoexist(capfd):
                          Helpers.getStruct("asistencia", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberEvent_membernoexist(capfd):
@@ -1030,7 +1030,7 @@ async def test_listAssistMemberDate_datenoexist(capfd):
                          ["integrante", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistEventDate_eventnoexist(capfd):
@@ -1078,7 +1078,7 @@ async def test_listAssistEventDate_datenoexist(capfd):
                          ["evento", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
 async def test_listAssistMemberEventDate_membernoexist(capfd):
@@ -1166,4 +1166,4 @@ async def test_listAssistMemberEventDate_datenoexist(capfd):
                          ["integrante", "evento", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
-               "para la consulta realizada." in out
+               "para la consulta realizada.\n" in out
