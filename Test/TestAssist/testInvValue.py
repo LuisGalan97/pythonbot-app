@@ -1163,32 +1163,60 @@ async def test_listAssistEvent_event_repeatchar(capfd):
                     "no debe repetir mas de dos veces los "\
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
-'''
-#-----------------------------$listAssist:id [ID]------------------------------
 
-
+#----------------------Test $listAssist:date [Fecha 1, *]----------------------
 @pytest.mark.asyncio
-async def test_listAssistEvent_invalidParams(capfd):
-    commands = ["$listAssist:event[,,,,]",
-                "$listAssist:event [,,,,]",
-                "$listAssist:event[,,,,]FILL",
-                "$listAssist:event[,,,,] FILL",
-                "$listAssist:event[,,,,]]FILL",
-                "$listAssist:event [,,,,]] FILL",
-                "$listAssist:event[[,,,,]FILL",
-                "$listAssist:event [[,,,,] FILL",
-                "$listAssist:event[[,,,,]]FILL",
-                "$listAssist:event [[,,,,]] FILL"]
+async def test_listAssistDate_date1_empty(capfd):
+    value = ""
+    commands = [f"$listAssist:date[{value},"\
+                f"{testData['date']}",
+                f"$listAssist:date [{value}, "\
+                f"{testData['date']} ]",
+                f"$listAssist:date [ {value} ,"\
+                f" {testData['date']} ]",
+                f"$listAssist:date [ {value} ,"\
+                f" {testData['date']} ]FILL",
+                f"$listAssist:date [ {value} ,"\
+                f" {testData['date']} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listAssist:event", app.getDatas,
-                         Helpers.getStruct("asistencia", ["evento"]))
+        await hdlr.dFMsg("listAssist:date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
-        assert "Datos ingresados invalidos, "\
-               "recuerda que debes ingresar:\n" in out
-        assert "**[_Evento_]**\n" in out
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 1_**\n" in out
+
+@pytest.mark.asyncio
+async def test_listAssistDate_date1_invalid(capfd):
+    value = "test"
+    commands = [f"$listAssist:date[{value},"\
+                f"{testData['date']}",
+                f"$listAssist:date [{value}, "\
+                f"{testData['date']} ]",
+                f"$listAssist:date [ {value} ,"\
+                f" {testData['date']} ]",
+                f"$listAssist:date [ {value} ,"\
+                f" {testData['date']} ]FILL",
+                f"$listAssist:date [ {value} ,"\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listAssist:date", app.getDatas,
+                         Helpers.getStruct("asistencia",
+                         ["date_1", "date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 1_**\n" in out
+
+
+'''
+#-----------------------------$listAssist:id [ID]------------------------------
+
 
 @pytest.mark.asyncio
 async def test_listAssistDate_invalidParams(capfd):
