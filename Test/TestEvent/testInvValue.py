@@ -174,19 +174,19 @@ async def test_addEvent_name_repeatchar(capfd):
 @pytest.mark.asyncio
 async def test_addEvent_points_empty(capfd):
     value = ""
-    commands = [f"$addAssist[{testData['name']},"\
+    commands = [f"$addEvent[{testData['name']},"\
                 f"{value},"\
                 f"{testData['desc']}]",
-                f"$addAssist [{testData['name']}, "\
+                f"$addEvent [{testData['name']}, "\
                 f"{value}, "\
                 f"{testData['desc']} ]",
-                f"$addAssist [ {testData['name']} , "\
+                f"$addEvent [ {testData['name']} , "\
                 f" {value} , "\
                 f" {testData['desc']} ] ",
-                f"$addAssist [ {testData['name']} , "\
+                f"$addEvent [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ]FILL",
-                f"$addAssist [ {testData['name']} , "\
+                f"$addEvent [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
@@ -202,19 +202,19 @@ async def test_addEvent_points_empty(capfd):
 @pytest.mark.asyncio
 async def test_addEvent_points_invalid(capfd):
     value = "test"
-    commands = [f"$addAssist[{testData['name']},"\
+    commands = [f"$addEvent[{testData['name']},"\
                 f"{value},"\
                 f"{testData['desc']}]",
-                f"$addAssist [{testData['name']}, "\
+                f"$addEvent [{testData['name']}, "\
                 f"{value}, "\
                 f"{testData['desc']} ]",
-                f"$addAssist [ {testData['name']} , "\
+                f"$addEvent [ {testData['name']} , "\
                 f" {value} , "\
                 f" {testData['desc']} ] ",
-                f"$addAssist [ {testData['name']} , "\
+                f"$addEvent [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ]FILL",
-                f"$addAssist [ {testData['name']} , "\
+                f"$addEvent [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
