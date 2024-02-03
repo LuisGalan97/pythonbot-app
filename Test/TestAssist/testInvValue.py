@@ -170,7 +170,7 @@ async def test_addAssist_member_repeatchar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
-#-----------------------Test $addAssist [* ,Evento, *]-------------------------
+#-----------------------Test $addAssist [*, Evento, *]-------------------------
 @pytest.mark.asyncio
 async def test_addAssist_event_empty(capfd):
     value = ""

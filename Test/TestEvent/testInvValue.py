@@ -170,67 +170,65 @@ async def test_addEvent_name_repeatchar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
-'''
-#-----------------------Test $addAssist [* ,Evento, *]-------------------------
+#-----------------------Test $addEvent [*, Puntos, *]-------------------------
 @pytest.mark.asyncio
-async def test_addAssist_event_empty(capfd):
+async def test_addEvent_points_empty(capfd):
     value = ""
-    commands = [f"$addAssist[{testData['member']},"\
+    commands = [f"$addAssist[{testData['name']},"\
                 f"{value},"\
-                f"{testData['date']}]",
-                f"$addAssist [{testData['member']}, "\
+                f"{testData['desc']}]",
+                f"$addAssist [{testData['name']}, "\
                 f"{value}, "\
-                f"{testData['date']} ]",
-                f"$addAssist [ {testData['member']} , "\
+                f"{testData['desc']} ]",
+                f"$addAssist [ {testData['name']} , "\
                 f" {value} , "\
-                f" {testData['date']} ] ",
-                f"$addAssist [ {testData['member']} , "\
+                f" {testData['desc']} ] ",
+                f"$addAssist [ {testData['name']} , "\
                 f" {value}  , "\
-                f" {testData['date']} ]FILL",
-                f"$addAssist [ {testData['member']} , "\
+                f" {testData['desc']} ]FILL",
+                f"$addAssist [ {testData['name']} , "\
                 f" {value}  , "\
-                f" {testData['date']} ] FILL"]
+                f" {testData['desc']} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+        await hdlr.contMsg("addEvent", app.setData,
+                           Helpers.setStruct("evento"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
-               "**_Evento_**\n" in out
+               "**_Puntos_**\n" in out
 
 @pytest.mark.asyncio
-async def test_addAssist_event_long(capfd):
-    value = "abcdefghijklmnñopkrstuvwxyz"\
-            "abcdefghijklmnñopkrstuvwxyz"
-    commands = [f"$addAssist[{testData['member']},"\
+async def test_addEvent_points_invalid(capfd):
+    value = "test"
+    commands = [f"$addAssist[{testData['name']},"\
                 f"{value},"\
-                f"{testData['date']}]",
-                f"$addAssist [{testData['member']}, "\
+                f"{testData['desc']}]",
+                f"$addAssist [{testData['name']}, "\
                 f"{value}, "\
-                f"{testData['date']} ]",
-                f"$addAssist [ {testData['member']} , "\
+                f"{testData['desc']} ]",
+                f"$addAssist [ {testData['name']} , "\
                 f" {value} , "\
-                f" {testData['date']} ] ",
-                f"$addAssist [ {testData['member']} , "\
+                f" {testData['desc']} ] ",
+                f"$addAssist [ {testData['name']} , "\
                 f" {value}  , "\
-                f" {testData['date']} ]FILL",
-                f"$addAssist [ {testData['member']} , "\
+                f" {testData['desc']} ]FILL",
+                f"$addAssist [ {testData['name']} , "\
                 f" {value}  , "\
-                f" {testData['date']} ] FILL"]
+                f" {testData['desc']} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+        await hdlr.contMsg("addEvent", app.setData,
+                           Helpers.setStruct("evento"))
         out, _ = capfd.readouterr()
-        assert f"El dato '{value}' ingresado "\
-                "en el campo "\
-               f"**_Evento_** "\
-                "no debe exceder los 50 caracteres.\n" in out
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Puntos_** "\
+                "es invalido.\n" in out
 
+'''
 @pytest.mark.asyncio
 async def test_addAssist_event_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
