@@ -20,7 +20,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addRange(capfd):
+async def testDef_addRange(capfd):
     command = f"$addRange [{testData['namecreate']}, "\
               f"{testData['controlcreate']}, {testData['descreate']}]"
     message = Message(author="test", content=command)
@@ -35,7 +35,7 @@ async def test_addRange(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def test_addRange_exist(capfd):
+async def testDef_addRange_exist(capfd):
     commands = [f"$addRange[{testData['namecreate']},"\
                f"{testData['controlcreate']},"\
                f"{testData['descreate']}]",
@@ -63,7 +63,7 @@ async def test_addRange_exist(capfd):
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listRangeId_add(capfd):
+async def testDef_listRangeId_add(capfd):
     command = f"$listRange:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -78,7 +78,7 @@ async def test_listRangeId_add(capfd):
     assert f"{testData['descreate']}" in out
 
 @pytest.mark.asyncio
-async def test_listRangeName_add(capfd):
+async def testDef_listRangeName_add(capfd):
     command = f"$listRange:name [{testData['namecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -93,7 +93,7 @@ async def test_listRangeName_add(capfd):
     assert f"{testData['descreate']}" in out
 
 @pytest.mark.asyncio
-async def test_updRangeId(capfd):
+async def testDef_updRangeId(capfd):
     commands = [f"$updRange:id[{testData['id']},{testData['nameupdate']},"\
                 f"{testData['controlupdate']},{testData['descreate']}]",
                 f"$updRange:id [{testData['id']}, {testData['nameupdate']}, "\
@@ -118,7 +118,7 @@ async def test_updRangeId(capfd):
         assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def test_updRangeId_nameexist(capfd):
+async def testDef_updRangeId_nameexist(capfd):
     commands = [f"$updRange:id[{testData['id']},{testData['nameexist']},"\
                 f"{testData['controlupdate']},{testData['descreate']}]",
                 f"$updRange:id [{testData['id']}, {testData['nameexist']}, "\
@@ -145,7 +145,7 @@ async def test_updRangeId_nameexist(capfd):
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_updRangeName(capfd):
+async def testDef_updRangeName(capfd):
     commands = [f"$updRange:name[{testData['nameupdate']},"\
                 f"{testData['controlupdate']},{testData['desupdate']}]",
                 f"$updRange:name [{testData['nameupdate']}, "\
@@ -167,7 +167,7 @@ async def test_updRangeName(capfd):
         assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def test_listRange(capfd):
+async def testDef_listRange(capfd):
     commands = [f"$listRange",
                 f"$listRange ",
                 f"$listRangeFILL",
@@ -186,7 +186,7 @@ async def test_listRange(capfd):
         assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
-async def test_listRangeId(capfd):
+async def testDef_listRangeId(capfd):
     commands = [f"$listRange:id[{testData['id']}]",
                 f"$listRange:id [{testData['id']}]",
                 f"$listRange:id [ {testData['id']} ] ",
@@ -206,7 +206,7 @@ async def test_listRangeId(capfd):
         assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
-async def test_listRangeName(capfd):
+async def testDef_listRangeName(capfd):
     commands = [f"$listRange:name[{testData['nameupdate']}]",
                 f"$listRange:name [{testData['nameupdate']}]",
                 f"$listRange:name [ {testData['nameupdate']} ] ",
@@ -226,7 +226,7 @@ async def test_listRangeName(capfd):
         assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
-async def test_listRange_e(capfd):
+async def testDef_listRange_e(capfd):
     commands = [f"$listRange"]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
@@ -242,7 +242,7 @@ async def test_listRange_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listRangeId_e(capfd):
+async def testDef_listRangeId_e(capfd):
     commands = [f"$listRange:id[{testData['id']}]",
                 f"$listRange:id [{testData['id']}]",
                 f"$listRange:id [ {testData['id']} ]"]
@@ -260,7 +260,7 @@ async def test_listRangeId_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listRangeName_e(capfd):
+async def testDef_listRangeName_e(capfd):
     commands = [f"$listRange:name[{testData['nameupdate']}]",
                 f"$listRange:name [{testData['nameupdate']}]",
                 f"$listRange:name [ {testData['nameupdate']} ]"]
@@ -278,7 +278,7 @@ async def test_listRangeName_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listRange_e_incomplete(capfd):
+async def testDef_listRange_e_incomplete(capfd):
     commands = [f"$listRange"]
     eparams = [">", " >", "> ", " > ", " > FILL",
                "FILL >", " FILL >", " FILL > FILL"]
@@ -297,7 +297,7 @@ async def test_listRange_e_incomplete(capfd):
             assert "**$listRange** **> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listRangeId_e_incomplete(capfd):
+async def testDef_listRangeId_e_incomplete(capfd):
     commands = [f"$listRange:id[{testData['id']}]",
                 f"$listRange:id [{testData['id']}]",
                 f"$listRange:id [ {testData['id']} ]"]
@@ -319,7 +319,7 @@ async def test_listRangeId_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listRangeName_e_incomplete(capfd):
+async def testDef_listRangeName_e_incomplete(capfd):
     commands = [f"$listRange:name[{testData['nameupdate']}]",
                 f"$listRange:name [{testData['nameupdate']}]",
                 f"$listRange:name [ {testData['nameupdate']} ]"]
@@ -341,7 +341,7 @@ async def test_listRangeName_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_delRangeId(capfd):
+async def testDef_delRangeId(capfd):
     command = f"$delRange:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -352,7 +352,7 @@ async def test_delRangeId(capfd):
     assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def test_addRange_DelName(capfd):
+async def testDef_addRange_DelName(capfd):
     command = f"$addRange [{testData['namecreate']}, "\
               f"{testData['controlcreate']}, {testData['descreate']}]"
     message = Message(author="test", content=command)
@@ -367,7 +367,7 @@ async def test_addRange_DelName(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def test_delRangeName(capfd):
+async def testDef_delRangeName(capfd):
     command = f"$delRange:name [{testData['namecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -378,7 +378,7 @@ async def test_delRangeName(capfd):
     assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def test_updRangeId_idnoexist(capfd):
+async def testDef_updRangeId_idnoexist(capfd):
     commands = [f"$updRange:id[{testData['id']},{testData['nameupdate']},"\
                 f"{testData['controlupdate']},{testData['descreate']}]",
                 f"$updRange:id [{testData['id']}, {testData['nameupdate']}, "\
@@ -404,7 +404,7 @@ async def test_updRangeId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_updRangeName_namenoexist(capfd):
+async def testDef_updRangeName_namenoexist(capfd):
     commands = [f"$updRange:name[{testData['nameupdate']},"\
                 f"{testData['controlupdate']},{testData['desupdate']}]",
                 f"$updRange:name [{testData['nameupdate']}, "\
@@ -428,7 +428,7 @@ async def test_updRangeName_namenoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_delRangeId_idnoexist(capfd):
+async def testDef_delRangeId_idnoexist(capfd):
     commands = [f"$delRange:id[{testData['id']}]",
                 f"$delRange:id [{testData['id']}]",
                 f"$delRange:id [ {testData['id']} ]",
@@ -445,7 +445,7 @@ async def test_delRangeId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_delRangeName_namenoexist(capfd):
+async def testDef_delRangeName_namenoexist(capfd):
     commands = [f"$delRange:name[{testData['namecreate']}]",
                 f"$delRange:name [{testData['namecreate']}]",
                 f"$delRange:name [ {testData['namecreate']} ]",
@@ -463,7 +463,7 @@ async def test_delRangeName_namenoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listRangeId_idnoexist(capfd):
+async def testDef_listRangeId_idnoexist(capfd):
     commands = [f"$listRange:id[{testData['id']}]",
                 f"$listRange:id [{testData['id']}]",
                 f"$listRange:id [ {testData['id']} ] ",
@@ -480,7 +480,7 @@ async def test_listRangeId_idnoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def test_listRangeName_namenoexist(capfd):
+async def testDef_listRangeName_namenoexist(capfd):
     commands = [f"$listRange:name[{testData['nameupdate']}]",
                 f"$listRange:name [{testData['nameupdate']}]",
                 f"$listRange:name [ {testData['nameupdate']} ] ",

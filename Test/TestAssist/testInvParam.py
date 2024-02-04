@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addAssist_invalidParams(capfd):
+async def testParam_addAssist_invalidParams(capfd):
     commands = ["$addAssist[]",
                 "$addAssist []",
                 "$addAssist[,,,,]",
@@ -34,7 +34,7 @@ async def test_addAssist_invalidParams(capfd):
         assert "**[_Integrante, Evento, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId_invalidParams(capfd):
+async def testParam_updAssistId_invalidParams(capfd):
     commands = ["$updAssist:id[]",
                 "$updAssist:id []",
                 "$updAssist:id[,,,,]",
@@ -59,7 +59,7 @@ async def test_updAssistId_invalidParams(capfd):
         assert "**[_ID, Integrante, Evento, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delAssistId_invalidParams(capfd):
+async def testParam_delAssistId_invalidParams(capfd):
     commands = ["$delAssist:id[,,,,]",
                 "$delAssist:id [,,,,]",
                 "$delAssist:id[,,,,]FILL",
@@ -82,7 +82,7 @@ async def test_delAssistId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId_invalidParams(capfd):
+async def testParam_listAssistId_invalidParams(capfd):
     commands = ["$listAssist:id[,,,,]",
                 "$listAssist:id [,,,,]",
                 "$listAssist:id[,,,,]FILL",
@@ -105,7 +105,7 @@ async def test_listAssistId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember_invalidParams(capfd):
+async def testParam_listAssistMember_invalidParams(capfd):
     commands = ["$listAssist:member[,,,,]",
                 "$listAssist:member [,,,,]",
                 "$listAssist:member[,,,,]FILL",
@@ -128,7 +128,7 @@ async def test_listAssistMember_invalidParams(capfd):
         assert "**[_Integrante_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent_invalidParams(capfd):
+async def testParam_listAssistEvent_invalidParams(capfd):
     commands = ["$listAssist:event[,,,,]",
                 "$listAssist:event [,,,,]",
                 "$listAssist:event[,,,,]FILL",
@@ -151,7 +151,7 @@ async def test_listAssistEvent_invalidParams(capfd):
         assert "**[_Evento_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistDate_invalidParams(capfd):
+async def testParam_listAssistDate_invalidParams(capfd):
     commands = ["$listAssist:date[]",
                 "$listAssist:date []",
                 "$listAssist:date[,,,,]",
@@ -177,7 +177,7 @@ async def test_listAssistDate_invalidParams(capfd):
         assert "**[_Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEvent_invalidParams(capfd):
+async def testParam_listAssistMemberEvent_invalidParams(capfd):
     commands = ["$listAssist:member&event[]",
                 "$listAssist:member&event []",
                 "$listAssist:member&event[,,,,]",
@@ -203,7 +203,7 @@ async def test_listAssistMemberEvent_invalidParams(capfd):
         assert "**[_Integrante, Evento_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate_invalidParams(capfd):
+async def testParam_listAssistMemberDate_invalidParams(capfd):
     commands = ["$listAssist:member&date[]",
                 "$listAssist:member&date []",
                 "$listAssist:member&date[,,,,]",
@@ -229,7 +229,7 @@ async def test_listAssistMemberDate_invalidParams(capfd):
         assert "**[_Integrante, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_invalidParams(capfd):
+async def testParam_listAssistEventDate_invalidParams(capfd):
     commands = ["$listAssist:event&date[]",
                 "$listAssist:event&date []",
                 "$listAssist:event&date[,,,,]",
@@ -255,7 +255,7 @@ async def test_listAssistEventDate_invalidParams(capfd):
         assert "**[_Evento, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_invalidParams(capfd):
+async def testParam_listAssistMemberEventDate_invalidParams(capfd):
     commands = ["$listAssist:member&event&date[]",
                 "$listAssist:member&event&date []",
                 "$listAssist:member&event&date[,,,,]",

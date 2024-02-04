@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addMember_invalidParams(capfd):
+async def testParam_addMember_invalidParams(capfd):
     commands = ["$addMember[]",
                 "$addMember []",
                 "$addMember[,,,,]",
@@ -34,7 +34,7 @@ async def test_addMember_invalidParams(capfd):
         assert "**[_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updMemberId_invalidParams(capfd):
+async def testParam_updMemberId_invalidParams(capfd):
     commands = ["$updMember:id[]",
                 "$updMember:id []",
                 "$updMember:id[,,,,]",
@@ -59,7 +59,7 @@ async def test_updMemberId_invalidParams(capfd):
         assert "**[_ID, Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updMemberName_invalidParams(capfd):
+async def testParam_updMemberName_invalidParams(capfd):
     commands = ["$updMember:name[]",
                 "$updMember:name []",
                 "$updMember:name[,,,,]",
@@ -84,7 +84,7 @@ async def test_updMemberName_invalidParams(capfd):
         assert "**[_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delMemberId_invalidParams(capfd):
+async def testParam_delMemberId_invalidParams(capfd):
     commands = ["$delMember:id[,,,,]",
                 "$delMember:id [,,,,]",
                 "$delMember:id[,,,,]FILL",
@@ -107,7 +107,7 @@ async def test_delMemberId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delMemberName_invalidParams(capfd):
+async def testParam_delMemberName_invalidParams(capfd):
     commands = ["$delMember:name[,,,,]",
                 "$delMember:name [,,,,]",
                 "$delMember:name[,,,,]FILL",
@@ -130,7 +130,7 @@ async def test_delMemberName_invalidParams(capfd):
         assert "**[_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberId_invalidParams(capfd):
+async def testParam_listMemberId_invalidParams(capfd):
     commands = ["$listMember:id[,,,,]",
                 "$listMember:id [,,,,]",
                 "$listMember:id[,,,,]FILL",
@@ -153,7 +153,7 @@ async def test_listMemberId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberName_invalidParams(capfd):
+async def testParam_listMemberName_invalidParams(capfd):
     commands = ["$listMember:name[,,,,]",
                 "$listMember:name [,,,,]",
                 "$listMember:name[,,,,]FILL",
@@ -176,7 +176,7 @@ async def test_listMemberName_invalidParams(capfd):
         assert "**[_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberRange_invalidParams(capfd):
+async def testParam_listMemberRange_invalidParams(capfd):
     commands = ["$listMember:range[,,,,]",
                 "$listMember:range [,,,,]",
                 "$listMember:range[,,,,]FILL",
@@ -199,7 +199,7 @@ async def test_listMemberRange_invalidParams(capfd):
         assert "**[_Rango_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberDate_invalidParams(capfd):
+async def testParam_listMemberDate_invalidParams(capfd):
     commands = ["$listMember:date[]",
                 "$listMember:date []",
                 "$listMember:date[,,,,]",

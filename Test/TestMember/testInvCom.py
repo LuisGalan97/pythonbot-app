@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addMember_invalidStruct(capfd):
+async def testCom_addMember_invalidStruct(capfd):
     commands = ["$addMember", "$addMember ",
                 "$addMember[", "$addMember [",
                 "$addMemberFILL[", "$addMember]",
@@ -28,7 +28,7 @@ async def test_addMember_invalidStruct(capfd):
         assert "**$addMember [_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updMemberId_invalidStruct(capfd):
+async def testCom_updMemberId_invalidStruct(capfd):
     commands = ["$updMember:id", "$updMember:id ",
                 "$updMember:id[", "$updMember:id [",
                 "$updMember:idFILL[", "$updMember:id]",
@@ -47,7 +47,7 @@ async def test_updMemberId_invalidStruct(capfd):
         assert "**$updMember:id [_ID, Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updMemberName_invalidStruct(capfd):
+async def testCom_updMemberName_invalidStruct(capfd):
     commands = ["$updMember:name", "$updMember:name ",
                 "$updMember:name[", "$updMember:name [",
                 "$updMember:nameFILL[", "$updMember:name]",
@@ -66,7 +66,7 @@ async def test_updMemberName_invalidStruct(capfd):
         assert "**$updMember:name [_Nombre, Rango, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delMemberId_invalidStruct(capfd):
+async def testCom_delMemberId_invalidStruct(capfd):
     commands = ["$delMember:id", "$delMember:id ",
                 "$delMember:id[", "$delMember:id [",
                 "$delMember:idFILL[", "$delMember:id]",
@@ -85,7 +85,7 @@ async def test_delMemberId_invalidStruct(capfd):
         assert "**$delMember:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delMemberName_invalidStruct(capfd):
+async def testCom_delMemberName_invalidStruct(capfd):
     commands = ["$delMember:name", "$delMember:name ",
                 "$delMember:name[", "$delMember:name [",
                 "$delMember:nameFILL[", "$delMember:name]",
@@ -104,7 +104,7 @@ async def test_delMemberName_invalidStruct(capfd):
         assert "**$delMember:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberId_invalidStruct(capfd):
+async def testCom_listMemberId_invalidStruct(capfd):
     commands = ["$listMember:id", "$listMember:id ",
                 "$listMember:id[", "$listMember:id [",
                 "$listMember:idFILL[", "$listMember:id]",
@@ -123,7 +123,7 @@ async def test_listMemberId_invalidStruct(capfd):
         assert "**$listMember:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberName_invalidStruct(capfd):
+async def testCom_listMemberName_invalidStruct(capfd):
     commands = ["$listMember:name", "$listMember:name ",
                 "$listMember:name[", "$listMember:name [",
                 "$listMember:nameFILL[", "$listMember:name]",
@@ -142,7 +142,7 @@ async def test_listMemberName_invalidStruct(capfd):
         assert "**$listMember:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberRange_invalidStruct(capfd):
+async def testCom_listMemberRange_invalidStruct(capfd):
     commands = ["$listMember:range", "$listMember:range ",
                 "$listMember:range[", "$listMember:range [",
                 "$listMember:rangeFILL[", "$listMember:range]",
@@ -161,7 +161,7 @@ async def test_listMemberRange_invalidStruct(capfd):
         assert "**$listMember:range [_Rango_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listMemberDate_invalidStruct(capfd):
+async def testCom_listMemberDate_invalidStruct(capfd):
     commands = ["$listMember:date", "$listMember:date ",
                 "$listMember:date[", "$listMember:date [",
                 "$listMember:dateFILL[", "$listMember:date]",

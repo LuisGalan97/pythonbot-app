@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addEvent_invalidStruct(capfd):
+async def testCom_addEvent_invalidStruct(capfd):
     commands = ["$addEvent", "$addEvent ",
                 "$addEvent[", "$addEvent [",
                 "$addEventFILL[", "$addEvent]",
@@ -28,7 +28,7 @@ async def test_addEvent_invalidStruct(capfd):
         assert "**$addEvent [_Nombre, Puntos, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updEventId_invalidStruct(capfd):
+async def testCom_updEventId_invalidStruct(capfd):
     commands = ["$updEvent:id", "$updEvent:id ",
                 "$updEvent:id[", "$updEvent:id [",
                 "$updEvent:idFILL[", "$updEvent:id]",
@@ -47,7 +47,7 @@ async def test_updEventId_invalidStruct(capfd):
         assert "**$updEvent:id [_ID, Nombre, Puntos, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updEventName_invalidStruct(capfd):
+async def testCom_updEventName_invalidStruct(capfd):
     commands = ["$updEvent:name", "$updEvent:name ",
                 "$updEvent:name[", "$updEvent:name [",
                 "$updEvent:nameFILL[", "$updEvent:name]",
@@ -66,7 +66,7 @@ async def test_updEventName_invalidStruct(capfd):
         assert "**$updEvent:name [_Nombre, Puntos, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delEventId_invalidStruct(capfd):
+async def testCom_delEventId_invalidStruct(capfd):
     commands = ["$delEvent:id", "$delEvent:id ",
                 "$delEvent:id[", "$delEvent:id [",
                 "$delEvent:idFILL[", "$delEvent:id]",
@@ -85,7 +85,7 @@ async def test_delEventId_invalidStruct(capfd):
         assert "**$delEvent:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delEventName_invalidStruct(capfd):
+async def testCom_delEventName_invalidStruct(capfd):
     commands = ["$delEvent:name", "$delEvent:name ",
                 "$delEvent:name[", "$delEvent:name [",
                 "$delEvent:nameFILL[", "$delEvent:name]",
@@ -104,7 +104,7 @@ async def test_delEventName_invalidStruct(capfd):
         assert "**$delEvent:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listEventId_invalidStruct(capfd):
+async def testCom_listEventId_invalidStruct(capfd):
     commands = ["$listEvent:id", "$listEvent:id ",
                 "$listEvent:id[", "$listEvent:id [",
                 "$listEvent:idFILL[", "$listEvent:id]",
@@ -123,7 +123,7 @@ async def test_listEventId_invalidStruct(capfd):
         assert "**$listEvent:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listEventName_invalidStruct(capfd):
+async def testCom_listEventName_invalidStruct(capfd):
     commands = ["$listEvent:name", "$listEvent:name ",
                 "$listEvent:name[", "$listEvent:name [",
                 "$listEvent:nameFILL[", "$listEvent:name]",
