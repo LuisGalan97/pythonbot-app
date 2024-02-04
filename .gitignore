@@ -1,4 +1,3 @@
-Config/config.py
 __pycache__/
 DB/*
 !DB/database.py
