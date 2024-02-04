@@ -174,19 +174,19 @@ async def testValue_addMember_nameRepeatChar(capfd):
 @pytest.mark.asyncio
 async def testValue_addMember_rangeEmpty(capfd):
     value = ""
-    commands = [f"$addEvent[{testData['name']},"\
+    commands = [f"$addMember[{testData['name']},"\
                 f"{value},"\
                 f"{testData['date']}]",
-                f"$addEvent [{testData['name']}, "\
+                f"$addMember [{testData['name']}, "\
                 f"{value}, "\
                 f"{testData['date']} ]",
-                f"$addEvent [ {testData['name']} , "\
+                f"$addMember [ {testData['name']} , "\
                 f" {value} , "\
                 f" {testData['date']} ] ",
-                f"$addEvent [ {testData['name']} , "\
+                f"$addMember [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['date']} ]FILL",
-                f"$addEvent [ {testData['name']} , "\
+                f"$addMember [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
@@ -203,19 +203,19 @@ async def testValue_addMember_rangeEmpty(capfd):
 async def testValue_addMember_rangeLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
-    commands = [f"$addEvent[{testData['name']},"\
+    commands = [f"$addMember[{testData['name']},"\
                 f"{value},"\
                 f"{testData['date']}]",
-                f"$addEvent [{testData['name']}, "\
+                f"$addMember [{testData['name']}, "\
                 f"{value}, "\
                 f"{testData['date']} ]",
-                f"$addEvent [ {testData['name']} , "\
+                f"$addMember [ {testData['name']} , "\
                 f" {value} , "\
                 f" {testData['date']} ] ",
-                f"$addEvent [ {testData['name']} , "\
+                f"$addMember [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['date']} ]FILL",
-                f"$addEvent [ {testData['name']} , "\
+                f"$addMember [ {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
@@ -235,19 +235,19 @@ async def testValue_addMember_rangeStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
-        commands = [f"$addEvent[{testData['name']},"\
+        commands = [f"$addMember[{testData['name']},"\
                     f"{value},"\
                     f"{testData['date']}]",
-                    f"$addEvent [{testData['name']}, "\
+                    f"$addMember [{testData['name']}, "\
                     f"{value}, "\
                     f"{testData['date']} ]",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value} , "\
                     f" {testData['date']} ] ",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value}  , "\
                     f" {testData['date']} ]FILL",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
@@ -266,19 +266,19 @@ async def testValue_addMember_rangeSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
-        commands = [f"$addEvent[{testData['name']},"\
+        commands = [f"$addMember[{testData['name']},"\
                     f"{value},"\
                     f"{testData['date']}]",
-                    f"$addEvent [{testData['name']}, "\
+                    f"$addMember [{testData['name']}, "\
                     f"{value}, "\
                     f"{testData['date']} ]",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value} , "\
                     f" {testData['date']} ] ",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value}  , "\
                     f" {testData['date']} ]FILL",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
@@ -296,19 +296,19 @@ async def testValue_addMember_rangeSpeChar(capfd):
 async def testValue_addMember_rangeRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
-        commands = [f"$addEvent[{testData['name']},"\
+        commands = [f"$addMember[{testData['name']},"\
                     f"{value},"\
                     f"{testData['date']}]",
-                    f"$addEvent [{testData['name']}, "\
+                    f"$addMember [{testData['name']}, "\
                     f"{value}, "\
                     f"{testData['date']} ]",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value} , "\
                     f" {testData['date']} ] ",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value}  , "\
                     f" {testData['date']} ]FILL",
-                    f"$addEvent [ {testData['name']} , "\
+                    f"$addMember [ {testData['name']} , "\
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
