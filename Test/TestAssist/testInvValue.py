@@ -1565,7 +1565,7 @@ async def test_listAssistMemberDate_member_empty(capfd):
                "**_Integrante_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberDate_member_long(capfd):
+async def test_listAssistMemberDate_member_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listAssist:member&date[{value},"\
@@ -1597,7 +1597,7 @@ async def test_listAssisMemberDate_member_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberDate_member_startchar(capfd):
+async def test_listAssistMemberDate_member_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1629,7 +1629,7 @@ async def test_listAssisMemberDate_member_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberDate_member_spechar(capfd):
+async def test_listAssistMemberDate_member_spechar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1661,7 +1661,7 @@ async def test_listAssisMemberDate_member_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberDate_member_repeatchar(capfd):
+async def test_listAssistMemberDate_member_repeatchar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listAssist:member&date[{value},"\
@@ -1725,7 +1725,7 @@ async def test_listAssistMemberDate_date1_empty(capfd):
                "**_Fecha 1_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberDate_date1_invalid(capfd):
+async def test_listAssistMemberDate_date1_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:member&date[{testData['member']},"\
                 f"{value},"\
@@ -1785,7 +1785,7 @@ async def test_listAssistMemberDate_date2_empty(capfd):
                "**_Fecha 2_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberDate_date2_invalid(capfd):
+async def test_listAssistMemberDate_date2_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:member&date[{testData['member']},"\
                 f"{testData['date']},"\
@@ -1845,7 +1845,7 @@ async def test_listAssistEventDate_event_empty(capfd):
                "**_Evento_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisEventDate_event_long(capfd):
+async def test_listAssistEventDate_event_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listAssist:event&date[{value},"\
@@ -1877,7 +1877,7 @@ async def test_listAssisEventDate_event_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisEventDate_event_startchar(capfd):
+async def test_listAssistEventDate_event_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1909,7 +1909,7 @@ async def test_listAssisEventDate_event_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisEventDate_event_spechar(capfd):
+async def test_listAssistEventDate_event_spechar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1941,7 +1941,7 @@ async def test_listAssisEventDate_event_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisEventDate_event_repeatchar(capfd):
+async def test_listAssistEventDate_event_repeatchar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listAssist:event&date[{value},"\
@@ -2005,7 +2005,7 @@ async def test_listAssistEventDate_date1_empty(capfd):
                "**_Fecha 1_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisEventDate_date1_invalid(capfd):
+async def test_listAssistEventDate_date1_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:event&date[{testData['event']},"\
                 f"{value},"\
@@ -2065,7 +2065,7 @@ async def test_listAssistEventDate_date2_empty(capfd):
                "**_Fecha 2_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisEventDate_date2_invalid(capfd):
+async def test_listAssistEventDate_date2_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:event&date[{testData['event']},"\
                 f"{testData['date']},"\
@@ -2130,7 +2130,7 @@ async def test_listAssistMemberEventDate_member_empty(capfd):
                "**_Integrante_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_member_long(capfd):
+async def test_listAssistMemberEventDate_member_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listAssist:member&event&date[{value},"\
@@ -2167,7 +2167,7 @@ async def test_listAssisMemberEventDate_member_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_member_startchar(capfd):
+async def test_listAssistMemberEventDate_member_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -2204,7 +2204,7 @@ async def test_listAssisMemberEventDate_member_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_member_spechar(capfd):
+async def test_listAssistMemberEventDate_member_spechar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -2241,7 +2241,7 @@ async def test_listAssisMemberEventDate_member_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_member_repeatchar(capfd):
+async def test_listAssistMemberEventDate_member_repeatchar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listAssist:member&event&date[{value},"\
@@ -2315,7 +2315,7 @@ async def test_listAssistMemberEventDate_event_empty(capfd):
                "**_Evento_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_event_long(capfd):
+async def test_listAssistMemberEventDate_event_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listAssist:member&event&date[{testData['member']},"\
@@ -2352,7 +2352,7 @@ async def test_listAssisMemberEventDate_event_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_event_startchar(capfd):
+async def test_listAssistMemberEventDate_event_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -2389,7 +2389,7 @@ async def test_listAssisMemberEventDate_event_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_event_spechar(capfd):
+async def test_listAssistMemberEventDate_event_spechar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -2426,7 +2426,7 @@ async def test_listAssisMemberEventDate_event_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_event_repeatchar(capfd):
+async def test_listAssistMemberEventDate_event_repeatchar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listAssist:member&event&date[{testData['member']},"\
@@ -2500,7 +2500,7 @@ async def test_listAssistMemberEventDate_date1_empty(capfd):
                "**_Fecha 1_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_date1_invalid(capfd):
+async def test_listAssistMemberEventDate_date1_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:member&event&date[{testData['member']},"\
                 f"{testData['event']},"\
@@ -2570,7 +2570,7 @@ async def test_listAssistMemberEventDate_date2_empty(capfd):
                "**_Fecha 2_**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssisMemberEventDate_date2_invalid(capfd):
+async def test_listAssistMemberEventDate_date2_invalid(capfd):
     value = "test"
     commands = [f"$listAssist:member&event&date[{testData['member']},"\
                 f"{testData['event']},"\
