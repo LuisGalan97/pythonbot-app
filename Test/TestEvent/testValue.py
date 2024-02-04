@@ -17,7 +17,7 @@ app = AppHandler()
 
 #----------------------Test $addEvent [Nombre, *, *]----------------------
 @pytest.mark.asyncio
-async def testValue_addEvent_name_empty(capfd):
+async def testValue_addEvent_nameEmpty(capfd):
     value = ""
     commands = [f"$addEvent[{value},"\
                 f"{testData['points']},"\
@@ -45,7 +45,7 @@ async def testValue_addEvent_name_empty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_name_long(capfd):
+async def testValue_addEvent_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$addEvent[{value},"\
@@ -76,7 +76,7 @@ async def testValue_addEvent_name_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_name_startchar(capfd):
+async def testValue_addEvent_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -107,7 +107,7 @@ async def testValue_addEvent_name_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_name_spechar(capfd):
+async def testValue_addEvent_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -138,7 +138,7 @@ async def testValue_addEvent_name_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_name_repeatchar(capfd):
+async def testValue_addEvent_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$addEvent[{value},"\
@@ -172,7 +172,7 @@ async def testValue_addEvent_name_repeatchar(capfd):
 
 #-----------------------Test $addEvent [*, Puntos, *]-------------------------
 @pytest.mark.asyncio
-async def testValue_addEvent_points_empty(capfd):
+async def testValue_addEvent_pointsEmpty(capfd):
     value = ""
     commands = [f"$addEvent[{testData['name']},"\
                 f"{value},"\
@@ -200,7 +200,7 @@ async def testValue_addEvent_points_empty(capfd):
                "**_Puntos_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_points_invalid(capfd):
+async def testValue_addEvent_pointsInvalid(capfd):
     value = "test"
     commands = [f"$addEvent[{testData['name']},"\
                 f"{value},"\
@@ -230,7 +230,7 @@ async def testValue_addEvent_points_invalid(capfd):
 
 #----------------------Test $addEvent [*, *, Descripción]----------------------
 @pytest.mark.asyncio
-async def testValue_addEvent_description_empty(capfd):
+async def testValue_addEvent_descriptionEmpty(capfd):
     value = ""
     commands = [f"$addEvent[{testData['name']},"\
                 f"{testData['points']},"\
@@ -258,7 +258,7 @@ async def testValue_addEvent_description_empty(capfd):
                "**_Descripción_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_description_long(capfd):
+async def testValue_addEvent_descriptionLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$addEvent[{testData['name']},"\
@@ -289,7 +289,7 @@ async def testValue_addEvent_description_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_description_startchar(capfd):
+async def testValue_addEvent_descriptionStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -320,7 +320,7 @@ async def testValue_addEvent_description_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_description_spechar(capfd):
+async def testValue_addEvent_descriptionSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -351,7 +351,7 @@ async def testValue_addEvent_description_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addEvent_description_repeatchar(capfd):
+async def testValue_addEvent_descriptionRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$addEvent[{testData['name']},"\
@@ -385,7 +385,7 @@ async def testValue_addEvent_description_repeatchar(capfd):
 
 #------------------------Test $updEvent:id [ID, *, *, *]----------------------
 @pytest.mark.asyncio
-async def testValue_updEventId_id_empty(capfd):
+async def testValue_updEventId_idEmpty(capfd):
     value = ""
     commands = [f"$updEvent:id[{value},"\
                 f"{testData['name']},"\
@@ -418,7 +418,7 @@ async def testValue_updEventId_id_empty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_id_invalid(capfd):
+async def testValue_updEventId_idInvalid(capfd):
     value = "test"
     commands = [f"$updEvent:id[{value},"\
                 f"{testData['name']},"\
@@ -453,7 +453,7 @@ async def testValue_updEventId_id_invalid(capfd):
 
 #----------------------Test $updEvent:id [*, Nombre, *, *]---------------------
 @pytest.mark.asyncio
-async def testValue_updEventId_name_empty(capfd):
+async def testValue_updEventId_nameEmpty(capfd):
     value = ""
     commands = [f"$updEvent:id[{testData['id']},"
                 f"{value},"\
@@ -486,7 +486,7 @@ async def testValue_updEventId_name_empty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_name_long(capfd):
+async def testValue_updEventId_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updEvent:id[{testData['id']},"
@@ -522,7 +522,7 @@ async def testValue_updEventId_name_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_name_startchar(capfd):
+async def testValue_updEventId_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -558,7 +558,7 @@ async def testValue_updEventId_name_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_name_spechar(capfd):
+async def testValue_updEventId_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -594,7 +594,7 @@ async def testValue_updEventId_name_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_name_repeatchar(capfd):
+async def testValue_updEventId_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updEvent:id[{testData['id']},"
@@ -633,7 +633,7 @@ async def testValue_updEventId_name_repeatchar(capfd):
 
 #--------------------Test $updEvent:id [*, *, Puntos, *]-----------------------
 @pytest.mark.asyncio
-async def testValue_updEventId_points_empty(capfd):
+async def testValue_updEventId_pointsEmpty(capfd):
     value = ""
     commands = [f"$updEvent:id[{testData['id']},"
                 f"{testData['name']},"\
@@ -666,7 +666,7 @@ async def testValue_updEventId_points_empty(capfd):
                "**_Puntos_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_points_invalid(capfd):
+async def testValue_updEventId_pointsInvalid(capfd):
     value = "test"
     commands = [f"$updEvent:id[{testData['id']},"
                 f"{testData['name']},"\
@@ -701,7 +701,7 @@ async def testValue_updEventId_points_invalid(capfd):
 
 #-------------------Test $updEvent:id [*, *, *, Descripción]-------------------
 @pytest.mark.asyncio
-async def testValue_updEventId_description_empty(capfd):
+async def testValue_updEventId_descriptionEmpty(capfd):
     value = ""
     commands = [f"$updEvent:id[{testData['id']},"
                 f"{testData['name']},"\
@@ -734,7 +734,7 @@ async def testValue_updEventId_description_empty(capfd):
                "**_Descripción_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_description_long(capfd):
+async def testValue_updEventId_descriptionLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updEvent:id[{testData['id']},"
@@ -770,7 +770,7 @@ async def testValue_updEventId_description_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_description_startchar(capfd):
+async def testValue_updEventId_descriptionStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -806,7 +806,7 @@ async def testValue_updEventId_description_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_description_spechar(capfd):
+async def testValue_updEventId_descriptionSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -842,7 +842,7 @@ async def testValue_updEventId_description_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventId_description_repeatchar(capfd):
+async def testValue_updEventId_descriptionRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updEvent:id[{testData['id']},"
@@ -881,7 +881,7 @@ async def testValue_updEventId_description_repeatchar(capfd):
 
 #----------------------Test $updEvent:name [Nombre, *, *]----------------------
 @pytest.mark.asyncio
-async def testValue_updEventName_name_empty(capfd):
+async def testValue_updEventName_nameEmpty(capfd):
     value = ""
     commands = [f"$updEvent:name[{value},"\
                 f"{testData['points']},"\
@@ -909,7 +909,7 @@ async def testValue_updEventName_name_empty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_name_long(capfd):
+async def testValue_updEventName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updEvent:name[{value},"\
@@ -940,7 +940,7 @@ async def testValue_updEventName_name_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_name_startchar(capfd):
+async def testValue_updEventName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -971,7 +971,7 @@ async def testValue_updEventName_name_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_name_spechar(capfd):
+async def testValue_updEventName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1002,7 +1002,7 @@ async def testValue_updEventName_name_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_name_repeatchar(capfd):
+async def testValue_updEventName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updEvent:name[{value},"\
@@ -1036,7 +1036,7 @@ async def testValue_updEventName_name_repeatchar(capfd):
 
 #---------------------Test $updEvent:name [*, Puntos, *]-----------------------
 @pytest.mark.asyncio
-async def testValue_updEventName_points_empty(capfd):
+async def testValue_updEventName_pointsEmpty(capfd):
     value = ""
     commands = [f"$updEvent:name[{testData['name']},"\
                 f"{value},"\
@@ -1064,7 +1064,7 @@ async def testValue_updEventName_points_empty(capfd):
                "**_Puntos_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_points_invalid(capfd):
+async def testValue_updEventName_pointsInvalid(capfd):
     value = "test"
     commands = [f"$updEvent:name[{testData['name']},"\
                 f"{value},"\
@@ -1094,7 +1094,7 @@ async def testValue_updEventName_points_invalid(capfd):
 
 #-------------------Test $updEvent:name [*, *, Descripción]--------------------
 @pytest.mark.asyncio
-async def testValue_updEventName_description_empty(capfd):
+async def testValue_updEventName_descriptionEmpty(capfd):
     value = ""
     commands = [f"$updEvent:name[{testData['name']},"\
                 f"{testData['points']},"\
@@ -1122,7 +1122,7 @@ async def testValue_updEventName_description_empty(capfd):
                "**_Descripción_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_description_long(capfd):
+async def testValue_updEventName_descriptionLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updEvent:name[{testData['name']},"\
@@ -1153,7 +1153,7 @@ async def testValue_updEventName_description_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_description_startchar(capfd):
+async def testValue_updEventName_descriptionStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1184,7 +1184,7 @@ async def testValue_updEventName_description_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_description_spechar(capfd):
+async def testValue_updEventName_descriptionSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1215,7 +1215,7 @@ async def testValue_updEventName_description_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updEventName_description_repeatchar(capfd):
+async def testValue_updEventName_descriptionRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updEvent:name[{testData['name']},"\
@@ -1249,7 +1249,7 @@ async def testValue_updEventName_description_repeatchar(capfd):
 
 #-------------------------------$delEvent:id [ID]------------------------------
 @pytest.mark.asyncio
-async def testValue_delEventId_id_empty(capfd):
+async def testValue_delEventId_idEmpty(capfd):
     value = ""
     commands = [f"$delEvent:id[{value}],",
                 f"$delEvent:id [{value} ], ",
@@ -1267,7 +1267,7 @@ async def testValue_delEventId_id_empty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delEventId_id_invalid(capfd):
+async def testValue_delEventId_idInvalid(capfd):
     value = "test"
     commands = [f"$delEvent:id[{value}],",
                 f"$delEvent:id [{value} ], ",
@@ -1287,7 +1287,7 @@ async def testValue_delEventId_id_invalid(capfd):
 
 #-------------------------Test $delEvent:name [Nombre]-------------------------
 @pytest.mark.asyncio
-async def testValue_delEventName_name_empty(capfd):
+async def testValue_delEventName_nameEmpty(capfd):
     value = ""
     commands = [f"$delEvent:name[{value}]",
                 f"$delEvent:name [{value} ]",
@@ -1305,7 +1305,7 @@ async def testValue_delEventName_name_empty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delEventName_name_long(capfd):
+async def testValue_delEventName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$delEvent:name[{value}]",
@@ -1326,7 +1326,7 @@ async def testValue_delEventName_name_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delEventName_name_startchar(capfd):
+async def testValue_delEventName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1347,7 +1347,7 @@ async def testValue_delEventName_name_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delEventName_name_spechar(capfd):
+async def testValue_delEventName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1368,7 +1368,7 @@ async def testValue_delEventName_name_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delEventName_name_repeatchar(capfd):
+async def testValue_delEventName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$delEvent:name[{value}]",
@@ -1392,7 +1392,7 @@ async def testValue_delEventName_name_repeatchar(capfd):
 
 #------------------------------$listEvent:id [ID]------------------------------
 @pytest.mark.asyncio
-async def testValue_listEventId_id_empty(capfd):
+async def testValue_listEventId_idEmpty(capfd):
     value = ""
     commands = [f"$listEvent:id[{value}],",
                 f"$listEvent:id [{value} ], ",
@@ -1410,7 +1410,7 @@ async def testValue_listEventId_id_empty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventId_id_invalid(capfd):
+async def testValue_listEventId_idInvalid(capfd):
     value = "test"
     commands = [f"$listEvent:id[{value}],",
                 f"$listEvent:id [{value} ], ",
@@ -1430,7 +1430,7 @@ async def testValue_listEventId_id_invalid(capfd):
 
 #------------------------Test $listEvent:name [Nombre]-------------------------
 @pytest.mark.asyncio
-async def testValue_listEventName_name_empty(capfd):
+async def testValue_listEventName_nameEmpty(capfd):
     value = ""
     commands = [f"$listEvent:name[{value}]",
                 f"$listEvent:name [{value} ]",
@@ -1448,7 +1448,7 @@ async def testValue_listEventName_name_empty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_name_long(capfd):
+async def testValue_listEventName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listEvent:name[{value}]",
@@ -1469,7 +1469,7 @@ async def testValue_listEventName_name_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_name_startchar(capfd):
+async def testValue_listEventName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1490,7 +1490,7 @@ async def testValue_listEventName_name_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_name_spechar(capfd):
+async def testValue_listEventName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1511,7 +1511,7 @@ async def testValue_listEventName_name_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_name_repeatchar(capfd):
+async def testValue_listEventName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listEvent:name[{value}]",
