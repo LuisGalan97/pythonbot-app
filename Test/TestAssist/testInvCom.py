@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addAssist_invalidStruct(capfd):
+async def testCom_addAssist_invalidStruct(capfd):
     commands = ["$addAssist", "$addAssist ",
                 "$addAssist[", "$addAssist [",
                 "$addAssistFILL[", "$addAssist]",
@@ -28,7 +28,7 @@ async def test_addAssist_invalidStruct(capfd):
         assert "**$addAssist [_Integrante, Evento, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId_invalidStruct(capfd):
+async def testCom_updAssistId_invalidStruct(capfd):
     commands = ["$updAssist:id", "$updAssist:id ",
                 "$updAssist:id[", "$updAssist:id [",
                 "$updAssist:idFILL[", "$updAssist:id]",
@@ -47,7 +47,7 @@ async def test_updAssistId_invalidStruct(capfd):
         assert "**$updAssist:id [_ID, Integrante, Evento, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_delAssistId_invalidStruct(capfd):
+async def testCom_delAssistId_invalidStruct(capfd):
     commands = ["$delAssist:id", "$delAssist:id ",
                 "$delAssist:id[", "$delAssist:id [",
                 "$delAssist:idFILL[", "$delAssist:id]",
@@ -66,7 +66,7 @@ async def test_delAssistId_invalidStruct(capfd):
         assert "**$delAssist:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId_invalidStruct(capfd):
+async def testCom_listAssistId_invalidStruct(capfd):
     commands = ["$listAssist:id", "$listAssist:id ",
                 "$listAssist:id[", "$listAssist:id [",
                 "$listAssist:idFILL[", "$listAssist:id]",
@@ -85,7 +85,7 @@ async def test_listAssistId_invalidStruct(capfd):
         assert "**$listAssist:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember_invalidStruct(capfd):
+async def testCom_listAssistMember_invalidStruct(capfd):
     commands = ["$listAssist:member", "$listAssist:member ",
                 "$listAssist:member[", "$listAssist:member [",
                 "$listAssist:memberFILL[", "$listAssist:member]",
@@ -104,7 +104,7 @@ async def test_listAssistMember_invalidStruct(capfd):
         assert "**$listAssist:member [_Integrante_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent_invalidStruct(capfd):
+async def testCom_listAssistEvent_invalidStruct(capfd):
     commands = ["$listAssist:event", "$listAssist:event ",
                 "$listAssist:event[", "$listAssist:event [",
                 "$listAssist:eventFILL[", "$listAssist:event]",
@@ -123,7 +123,7 @@ async def test_listAssistEvent_invalidStruct(capfd):
         assert "**$listAssist:event [_Evento_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistDate_invalidStruct(capfd):
+async def testCom_listAssistDate_invalidStruct(capfd):
     commands = ["$listAssist:date", "$listAssist:date ",
                 "$listAssist:date[", "$listAssist:date [",
                 "$listAssist:dateFILL[", "$listAssist:date]",
@@ -143,7 +143,7 @@ async def test_listAssistDate_invalidStruct(capfd):
         assert "**$listAssist:date [_Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEvent_invalidStruct(capfd):
+async def testCom_listAssistMemberEvent_invalidStruct(capfd):
     commands = ["$listAssist:member&event", "$listAssist:member&event ",
                 "$listAssist:member&event[", "$listAssist:member&event [",
                 "$listAssist:member&eventFILL[", "$listAssist:member&event]",
@@ -167,7 +167,7 @@ async def test_listAssistMemberEvent_invalidStruct(capfd):
         assert "**$listAssist:member&event [_Integrante, Evento_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate_invalidStruct(capfd):
+async def testCom_listAssistMemberDate_invalidStruct(capfd):
     commands = ["$listAssist:member&date", "$listAssist:member&date ",
                 "$listAssist:member&date[", "$listAssist:member&date [",
                 "$listAssist:member&dateFILL[", "$listAssist:member&date]",
@@ -191,7 +191,7 @@ async def test_listAssistMemberDate_invalidStruct(capfd):
                "[_Integrante, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_invalidStruct(capfd):
+async def testCom_listAssistEventDate_invalidStruct(capfd):
     commands = ["$listAssist:event&date", "$listAssist:event&date ",
                 "$listAssist:event&date[", "$listAssist:event&date [",
                 "$listAssist:event&dateFILL[", "$listAssist:event&date]",
@@ -215,7 +215,7 @@ async def test_listAssistEventDate_invalidStruct(capfd):
                "[_Evento, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_invalidStruct(capfd):
+async def testCom_listAssistMemberEventDate_invalidStruct(capfd):
     commands = ["$listAssist:member&event&date",
                 "$listAssist:member&event&date ",
                 "$listAssist:member&event&date[",
