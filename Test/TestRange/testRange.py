@@ -1,3 +1,3 @@
 from .testDefault import *
-from .testInvCom import *
-from .testInvParam import *
+from .testStruct import *
+from .testParams import *
