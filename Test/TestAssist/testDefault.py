@@ -21,7 +21,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def test_addAssist(capfd):
+async def testDef_addAssist(capfd):
     command = f"$addAssist [{testData['memcreate']}, "\
               f"{testData['evcreate']}, {testData['datecreate']}]"
     message = Message(author="test", content=command)
@@ -36,7 +36,7 @@ async def test_addAssist(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId_add(capfd):
+async def testDef_listAssistId_add(capfd):
     command = f"$listAssist:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -51,7 +51,7 @@ async def test_listAssistId_add(capfd):
     assert f"{testData['datecreate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId(capfd):
+async def testDef_updAssistId(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['memupdate']},"\
                 f"{testData['evupdate']},"
@@ -82,7 +82,7 @@ async def test_updAssistId(capfd):
         assert "La ___asistencia___ ha sido actualizada con exito.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssist(capfd):
+async def testDef_listAssist(capfd):
     commands = [f"$listAssist",
                 f"$listAssist ",
                 f"$listAssistFILL",
@@ -101,7 +101,7 @@ async def test_listAssist(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId(capfd):
+async def testDef_listAssistId(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
                 f"$listAssist:id [ {testData['id']} ] ",
@@ -121,7 +121,7 @@ async def test_listAssistId(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember(capfd):
+async def testDef_listAssistMember(capfd):
     commands = [f"$listAssist:member[{testData['memupdate']}]",
                 f"$listAssist:member [{testData['memupdate']}]",
                 f"$listAssist:member [ {testData['memupdate']} ] ",
@@ -141,7 +141,7 @@ async def test_listAssistMember(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent(capfd):
+async def testDef_listAssistEvent(capfd):
     commands = [f"$listAssist:event[{testData['evupdate']}]",
                 f"$listAssist:event [{testData['evupdate']}]",
                 f"$listAssist:event [ {testData['evupdate']} ] ",
@@ -161,7 +161,7 @@ async def test_listAssistEvent(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistDate(capfd):
+async def testDef_listAssistDate(capfd):
     commands = [f"$listAssist:date[{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
                 f"$listAssist:date [{testData['dateupdate']}, "\
@@ -186,7 +186,7 @@ async def test_listAssistDate(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEvent(capfd):
+async def testDef_listAssistMemberEvent(capfd):
     commands = [f"$listAssist:member&event[{testData['memupdate']},"\
                 f"{testData['evupdate']}]",
                 f"$listAssist:member&event [{testData['memupdate']}, "\
@@ -212,7 +212,7 @@ async def test_listAssistMemberEvent(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate(capfd):
+async def testDef_listAssistMemberDate(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['memupdate']}, "\
@@ -238,7 +238,7 @@ async def test_listAssistMemberDate(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate(capfd):
+async def testDef_listAssistEventDate(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evupdate']}, "\
@@ -264,7 +264,7 @@ async def test_listAssistEventDate(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate(capfd):
+async def testDef_listAssistMemberEventDate(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -295,7 +295,7 @@ async def test_listAssistMemberEventDate(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def test_listAssist_e(capfd):
+async def testDef_listAssist_e(capfd):
     commands = [f"$listAssist"]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
@@ -311,7 +311,7 @@ async def test_listAssist_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId_e(capfd):
+async def testDef_listAssistId_e(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
                 f"$listAssist:id [ {testData['id']} ]"]
@@ -329,7 +329,7 @@ async def test_listAssistId_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember_e(capfd):
+async def testDef_listAssistMember_e(capfd):
     commands = [f"$listAssist:member[{testData['memupdate']}]",
                 f"$listAssist:member [{testData['memupdate']}]",
                 f"$listAssist:member [ {testData['memupdate']} ]"]
@@ -347,7 +347,7 @@ async def test_listAssistMember_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent_e(capfd):
+async def testDef_listAssistEvent_e(capfd):
     commands = [f"$listAssist:event[{testData['evupdate']}]",
                 f"$listAssist:event [{testData['evupdate']}]",
                 f"$listAssist:event [ {testData['evupdate']} ]"]
@@ -365,7 +365,7 @@ async def test_listAssistEvent_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistDate_e(capfd):
+async def testDef_listAssistDate_e(capfd):
     commands = [f"$listAssist:date[{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
                 f"$listAssist:date [{testData['dateupdate']}, "\
@@ -387,7 +387,7 @@ async def test_listAssistDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate_e(capfd):
+async def testDef_listAssistMemberDate_e(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['memupdate']}, "\
@@ -409,7 +409,7 @@ async def test_listAssistMemberDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_e(capfd):
+async def testDef_listAssistEventDate_e(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evupdate']}, "\
@@ -431,7 +431,7 @@ async def test_listAssistEventDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_e(capfd):
+async def testDef_listAssistMemberEventDate_e(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -456,7 +456,7 @@ async def test_listAssistMemberEventDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_listAssist_e_incomplete(capfd):
+async def testDef_listAssist_e_incomplete(capfd):
     commands = [f"$listAssist"]
     eparams = [">", " >", "> ", " > ", " > FILL",
                "FILL >", " FILL >", " FILL > FILL"]
@@ -475,7 +475,7 @@ async def test_listAssist_e_incomplete(capfd):
             assert "**$listAssist** **> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId_e_incomplete(capfd):
+async def testDef_listAssistId_e_incomplete(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
                 f"$listAssist:id [ {testData['id']} ]"]
@@ -497,7 +497,7 @@ async def test_listAssistId_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember_e_incomplete(capfd):
+async def testDef_listAssistMember_e_incomplete(capfd):
     commands = [f"$listAssist:member[{testData['memupdate']}]",
                 f"$listAssist:member [{testData['memupdate']}]",
                 f"$listAssist:member [ {testData['memupdate']} ]"]
@@ -520,7 +520,7 @@ async def test_listAssistMember_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent_e_incomplete(capfd):
+async def testDef_listAssistEvent_e_incomplete(capfd):
     commands = [f"$listAssist:event[{testData['evupdate']}]",
                 f"$listAssist:event [{testData['evupdate']}]",
                 f"$listAssist:event [ {testData['evupdate']} ]"]
@@ -543,7 +543,7 @@ async def test_listAssistEvent_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistDate_e_incomplete(capfd):
+async def testDef_listAssistDate_e_incomplete(capfd):
     commands = [f"$listAssist:date[{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
                 f"$listAssist:date [{testData['dateupdate']}, "\
@@ -573,7 +573,7 @@ async def test_listAssistDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate_e_incomplete(capfd):
+async def testDef_listAssistMemberDate_e_incomplete(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['memupdate']}, "\
@@ -604,7 +604,7 @@ async def test_listAssistMemberDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_e_incomplete(capfd):
+async def testDef_listAssistEventDate_e_incomplete(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evupdate']}, "\
@@ -635,7 +635,7 @@ async def test_listAssistEventDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_e_incomplete(capfd):
+async def testDef_listAssistMemberEventDate_e_incomplete(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -670,7 +670,7 @@ async def test_listAssistMemberEventDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def test_delAssistId(capfd):
+async def testDef_delAssistId(capfd):
     command = f"$delAssist:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -681,7 +681,7 @@ async def test_delAssistId(capfd):
     assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
 
 @pytest.mark.asyncio
-async def test_addAssist_membernoexist(capfd):
+async def testDef_addAssist_membernoexist(capfd):
     commands = [f"$addAssist [{testData['menoexist']}, "\
                 f"{testData['evcreate']}, "\
                 f"{testData['datecreate']}]",
@@ -711,7 +711,7 @@ async def test_addAssist_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_addAssist_eventnoexist(capfd):
+async def testDef_addAssist_eventnoexist(capfd):
     commands = [f"$addAssist [{testData['memcreate']}, "\
                 f"{testData['evnoexist']}, "\
                 f"{testData['datecreate']}]",
@@ -741,7 +741,7 @@ async def test_addAssist_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId_idnoexist(capfd):
+async def testDef_updAssistId_idnoexist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['memupdate']},"\
                 f"{testData['evupdate']},"
@@ -773,7 +773,7 @@ async def test_updAssistId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId_membernoexist(capfd):
+async def testDef_updAssistId_membernoexist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['menoexist']},"\
                 f"{testData['evupdate']},"
@@ -807,7 +807,7 @@ async def test_updAssistId_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId_eventnoexist(capfd):
+async def testDef_updAssistId_eventnoexist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['memupdate']},"\
                 f"{testData['evnoexist']},"
@@ -841,7 +841,7 @@ async def test_updAssistId_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_delAssistId_idnoexist(capfd):
+async def testDef_delAssistId_idnoexist(capfd):
     commands = [f"$delAssist:id[{testData['id']}]",
                 f"$delAssist:id [{testData['id']}]",
                 f"$delAssist:id [ {testData['id']} ]",
@@ -858,7 +858,7 @@ async def test_delAssistId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistId_idnoexist(capfd):
+async def testDef_listAssistId_idnoexist(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
                 f"$listAssist:id [ {testData['id']} ] ",
@@ -875,7 +875,7 @@ async def test_listAssistId_idnoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMember_membernoexist(capfd):
+async def testDef_listAssistMember_membernoexist(capfd):
     commands = [f"$listAssist:member[{testData['menoexist']}]",
                 f"$listAssist:member [{testData['menoexist']}]",
                 f"$listAssist:member [ {testData['menoexist']} ] ",
@@ -894,7 +894,7 @@ async def test_listAssistMember_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEvent_eventnoexist(capfd):
+async def testDef_listAssistEvent_eventnoexist(capfd):
     commands = [f"$listAssist:event[{testData['evnoexist']}]",
                 f"$listAssist:event [{testData['evnoexist']}]",
                 f"$listAssist:event [ {testData['evnoexist']} ] ",
@@ -913,7 +913,7 @@ async def test_listAssistEvent_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistDate_datenoexist(capfd):
+async def testDef_listAssistDate_datenoexist(capfd):
     commands = [f"$listAssist:date[{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
                 f"$listAssist:date [{testData['dateupdate']}, "\
@@ -935,7 +935,7 @@ async def test_listAssistDate_datenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEvent_membernoexist(capfd):
+async def testDef_listAssistMemberEvent_membernoexist(capfd):
     commands = [f"$listAssist:member&event[{testData['menoexist']},"\
                 f"{testData['evupdate']}]",
                 f"$listAssist:member&event [{testData['menoexist']}, "\
@@ -960,7 +960,7 @@ async def test_listAssistMemberEvent_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEvent_eventnoexist(capfd):
+async def testDef_listAssistMemberEvent_eventnoexist(capfd):
     commands = [f"$listAssist:member&event[{testData['memcreate']},"\
                 f"{testData['evnoexist']}]",
                 f"$listAssist:member&event [{testData['memcreate']}, "\
@@ -985,7 +985,7 @@ async def test_listAssistMemberEvent_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate_membernoexist(capfd):
+async def testDef_listAssistMemberDate_membernoexist(capfd):
     commands = [f"$listAssist:member&date[{testData['menoexist']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['menoexist']}, "\
@@ -1010,7 +1010,7 @@ async def test_listAssistMemberDate_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberDate_datenoexist(capfd):
+async def testDef_listAssistMemberDate_datenoexist(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['memupdate']}, "\
@@ -1033,7 +1033,7 @@ async def test_listAssistMemberDate_datenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_eventnoexist(capfd):
+async def testDef_listAssistEventDate_eventnoexist(capfd):
     commands = [f"$listAssist:event&date[{testData['evnoexist']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evnoexist']}, "\
@@ -1058,7 +1058,7 @@ async def test_listAssistEventDate_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistEventDate_datenoexist(capfd):
+async def testDef_listAssistEventDate_datenoexist(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evupdate']}, "\
@@ -1081,7 +1081,7 @@ async def test_listAssistEventDate_datenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_membernoexist(capfd):
+async def testDef_listAssistMemberEventDate_membernoexist(capfd):
     commands = [f"$listAssist:member&event&date[{testData['menoexist']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -1111,7 +1111,7 @@ async def test_listAssistMemberEventDate_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_eventnoexist(capfd):
+async def testDef_listAssistMemberEventDate_eventnoexist(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evnoexist']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -1141,7 +1141,7 @@ async def test_listAssistMemberEventDate_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def test_listAssistMemberEventDate_datenoexist(capfd):
+async def testDef_listAssistMemberEventDate_datenoexist(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
