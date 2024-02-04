@@ -17,7 +17,7 @@ app = AppHandler()
 
 #----------------------Test $addEvent [Nombre, *, *]----------------------
 @pytest.mark.asyncio
-async def test_addEvent_name_empty(capfd):
+async def test_updEventName_name_empty(capfd):
     value = ""
     commands = [f"$addEvent[{value},"\
                 f"{testData['points']},"\
@@ -45,7 +45,7 @@ async def test_addEvent_name_empty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_name_long(capfd):
+async def test_updEventName_name_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$addEvent[{value},"\
@@ -76,7 +76,7 @@ async def test_addEvent_name_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_name_startchar(capfd):
+async def test_updEventName_name_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -107,7 +107,7 @@ async def test_addEvent_name_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_name_spechar(capfd):
+async def test_updEventName_name_spechar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -138,7 +138,7 @@ async def test_addEvent_name_spechar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_name_repeatchar(capfd):
+async def test_updEventName_name_repeatchar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$addEvent[{value},"\
@@ -172,7 +172,7 @@ async def test_addEvent_name_repeatchar(capfd):
 
 #-----------------------Test $addEvent [*, Puntos, *]-------------------------
 @pytest.mark.asyncio
-async def test_addEvent_points_empty(capfd):
+async def test_updEventName_points_empty(capfd):
     value = ""
     commands = [f"$addEvent[{testData['name']},"\
                 f"{value},"\
@@ -200,7 +200,7 @@ async def test_addEvent_points_empty(capfd):
                "**_Puntos_**\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_points_invalid(capfd):
+async def test_updEventName_points_invalid(capfd):
     value = "test"
     commands = [f"$addEvent[{testData['name']},"\
                 f"{value},"\
@@ -230,7 +230,7 @@ async def test_addEvent_points_invalid(capfd):
 
 #----------------------Test $addEvent [*, *, Descripción]----------------------
 @pytest.mark.asyncio
-async def test_addEvent_description_empty(capfd):
+async def test_updEventName_description_empty(capfd):
     value = ""
     commands = [f"$addEvent[{testData['name']},"\
                 f"{testData['points']},"\
@@ -258,7 +258,7 @@ async def test_addEvent_description_empty(capfd):
                "**_Descripción_**\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_description_long(capfd):
+async def test_updEventName_description_long(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$addEvent[{testData['name']},"\
@@ -289,7 +289,7 @@ async def test_addEvent_description_long(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_description_startchar(capfd):
+async def test_updEventName_description_startchar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -320,7 +320,7 @@ async def test_addEvent_description_startchar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def test_addEvent_description_spechar(capfd):
+async def test_updEventName_description_spechar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -871,6 +871,374 @@ async def test_updEventId_description_repeatchar(capfd):
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("evento", "id"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Descripción_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#----------------------Test $updEvent:name [Nombre, *, *]----------------------
+@pytest.mark.asyncio
+async def test_updEventName_name_empty(capfd):
+    value = ""
+    commands = [f"$updEvent:name[{value},"\
+                f"{testData['points']},"\
+                f"{testData['desc']}]",
+                f"$updEvent:name [{value}, "\
+                f"{testData['points']}, "\
+                f"{testData['desc']} ]",
+                f"$updEvent:name [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] ",
+                f"$updEvent:name [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ]FILL",
+                f"$updEvent:name [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Nombre_**\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_name_long(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$updEvent:name[{value},"\
+                f"{testData['points']},"\
+                f"{testData['desc']}]",
+                f"$updEvent:name [{value}, "\
+                f"{testData['points']}, "\
+                f"{testData['desc']} ]",
+                f"$updEvent:name [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] ",
+                f"$updEvent:name [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ]FILL",
+                f"$updEvent:name [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Nombre_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_name_startchar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$updEvent:name[{value},"\
+                    f"{testData['points']},"\
+                    f"{testData['desc']}]",
+                    f"$updEvent:name [{value}, "\
+                    f"{testData['points']}, "\
+                    f"{testData['desc']} ]",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ] ",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ]FILL",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updEvent:name", app.updateData,
+                               Helpers.updStruct("evento", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Nombre_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_name_spechar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$updEvent:name[{value},"\
+                    f"{testData['points']},"\
+                    f"{testData['desc']}]",
+                    f"$updEvent:name [{value}, "\
+                    f"{testData['points']}, "\
+                    f"{testData['desc']} ]",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ] ",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ]FILL",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updEvent:name", app.updateData,
+                               Helpers.updStruct("evento", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Nombre_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_name_repeatchar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$updEvent:name[{value},"\
+                    f"{testData['points']},"\
+                    f"{testData['desc']}]",
+                    f"$updEvent:name [{value}, "\
+                    f"{testData['points']}, "\
+                    f"{testData['desc']} ]",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ] ",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ]FILL",
+                    f"$updEvent:name [ {value} , "\
+                    f" {testData['points']} , "\
+                    f" {testData['desc']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updEvent:name", app.updateData,
+                               Helpers.updStruct("evento", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Nombre_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#---------------------Test $updEvent:name [*, Puntos, *]-----------------------
+@pytest.mark.asyncio
+async def test_updEventName_points_empty(capfd):
+    value = ""
+    commands = [f"$updEvent:name[{testData['name']},"\
+                f"{value},"\
+                f"{testData['desc']}]",
+                f"$updEvent:name [{testData['name']}, "\
+                f"{value}, "\
+                f"{testData['desc']} ]",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {value} , "\
+                f" {testData['desc']} ] ",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['desc']} ]FILL",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['desc']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Puntos_**\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_points_invalid(capfd):
+    value = "test"
+    commands = [f"$updEvent:name[{testData['name']},"\
+                f"{value},"\
+                f"{testData['desc']}]",
+                f"$updEvent:name [{testData['name']}, "\
+                f"{value}, "\
+                f"{testData['desc']} ]",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {value} , "\
+                f" {testData['desc']} ] ",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['desc']} ]FILL",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['desc']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Puntos_** "\
+                "es invalido.\n" in out
+
+#-------------------Test $updEvent:name [*, *, Descripción]--------------------
+@pytest.mark.asyncio
+async def test_updEventName_description_empty(capfd):
+    value = ""
+    commands = [f"$updEvent:name[{testData['name']},"\
+                f"{testData['points']},"\
+                f"{value}]",
+                f"$updEvent:name [{testData['name']}, "\
+                f"{testData['points']}, "\
+                f"{value} ]",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {value} ] ",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {value} ]FILL",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Descripción_**\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_description_long(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$updEvent:name[{testData['name']},"\
+                f"{testData['points']},"\
+                f"{value}]",
+                f"$updEvent:name [{testData['name']}, "\
+                f"{testData['points']}, "\
+                f"{value} ]",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {value} ] ",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {value} ]FILL",
+                f"$updEvent:name [ {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updEvent:name", app.updateData,
+                           Helpers.updStruct("evento", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Descripción_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_description_startchar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$updEvent:name[{testData['name']},"\
+                    f"{testData['points']},"\
+                    f"{value}]",
+                    f"$updEvent:name [{testData['name']}, "\
+                    f"{testData['points']}, "\
+                    f"{value} ]",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ] ",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ]FILL",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updEvent:name", app.updateData,
+                               Helpers.updStruct("evento", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Descripción_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_description_spechar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$updEvent:name[{testData['name']},"\
+                    f"{testData['points']},"\
+                    f"{value}]",
+                    f"$updEvent:name [{testData['name']}, "\
+                    f"{testData['points']}, "\
+                    f"{value} ]",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ] ",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ]FILL",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updEvent:name", app.updateData,
+                               Helpers.updStruct("evento", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Descripción_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def test_updEventName_description_repeatchar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$updEvent:name[{testData['name']},"\
+                    f"{testData['points']},"\
+                    f"{value}]",
+                    f"$updEvent:name [{testData['name']}, "\
+                    f"{testData['points']}, "\
+                    f"{value} ]",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ] ",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ]FILL",
+                    f"$updEvent:name [ {testData['name']} , "\
+                    f" {testData['points']} , "\
+                    f" {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updEvent:name", app.updateData,
+                               Helpers.updStruct("evento", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
