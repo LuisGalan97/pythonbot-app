@@ -389,23 +389,23 @@ async def test_addEvent_description_repeatchar(capfd):
 async def test_updEventId_id_empty(capfd):
     value = ""
     commands = [f"$updEvent:id[{value},"\
-                f"{testData['member']},"\
+                f"{testData['name']},"\
                 f"{testData['points']},"\
                 f"{testData['desc']}]",
                 f"$updEvent:id [{value}, "\
-                f"{testData['member']}, "\
+                f"{testData['name']}, "\
                 f"{testData['points']}, "\
                 f"{testData['desc']} ]",
                 f"$updEvent:id [ {value} , "\
-                f" {testData['member']} , "\
+                f" {testData['name']} , "\
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] ",
                 f"$updEvent:id [ {value} , "\
-                f" {testData['member']} , "\
+                f" {testData['name']} , "\
                 f" {testData['points']} , "\
                 f" {testData['desc']} ]FILL",
                 f"$updEvent:id [ {value} , "\
-                f" {testData['member']} , "\
+                f" {testData['name']} , "\
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
