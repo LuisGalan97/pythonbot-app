@@ -228,160 +228,67 @@ async def test_addEvent_points_invalid(capfd):
                f"**_Puntos_** "\
                 "es invalido.\n" in out
 
-'''
+#----------------------Test $addEvent [*, *, Descripción]----------------------
 @pytest.mark.asyncio
-async def test_addAssist_event_startchar(capfd):
-    values = ["1test", "[test", "{test", "/test", "|test",
-             "@test", "*test"]
-    for value in values:
-        commands = [f"$addAssist[{testData['member']},"\
-                    f"{value},"\
-                    f"{testData['date']}]",
-                    f"$addAssist [{testData['member']}, "\
-                    f"{value}, "\
-                    f"{testData['date']} ]",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ] ",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ]FILL",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ] FILL"]
-        for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.contMsg("addAssist", app.setData,
-                               Helpers.setStruct("asistencia"))
-            out, _ = capfd.readouterr()
-            assert f"El dato '{value}' ingresado en el campo "\
-                    "**_Evento_** no debe comenzar con valores "\
-                    "numericos ni caracteres especiales.\n" in out
-
-@pytest.mark.asyncio
-async def test_addAssist_event_spechar(capfd):
-    values = ["test/", "test{", "te/st", "te\\st",
-              "tes@t", "tes*t", "tes--t", "tes||t"]
-    for value in values:
-        commands = [f"$addAssist[{testData['member']},"\
-                    f"{value},"\
-                    f"{testData['date']}]",
-                    f"$addAssist [{testData['member']}, "\
-                    f"{value}, "\
-                    f"{testData['date']} ]",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ] ",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ]FILL",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ] FILL"]
-        for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.contMsg("addAssist", app.setData,
-                               Helpers.setStruct("asistencia"))
-            out, _ = capfd.readouterr()
-            assert f"El dato '{value}' ingresado en el campo "\
-                    "**_Evento_** no debe contener caracteres "\
-                    "especiales a excepcion de **-** o **|**.\n" in out
-
-@pytest.mark.asyncio
-async def test_addAssist_event_repeatchar(capfd):
-    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
-    for value in values:
-        commands = [f"$addAssist[{testData['member']},"\
-                    f"{value},"\
-                    f"{testData['date']}]",
-                    f"$addAssist [{testData['member']}, "\
-                    f"{value}, "\
-                    f"{testData['date']} ]",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ] ",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ]FILL",
-                    f"$addAssist [ {testData['member']} , "\
-                    f" {value} , "\
-                    f" {testData['date']} ] FILL"]
-        for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.contMsg("addAssist", app.setData,
-                               Helpers.setStruct("asistencia"))
-            out, _ = capfd.readouterr()
-            assert f"El dato '{value}' ingresado "\
-                    "en el campo "\
-                   f"**_Evento_** "\
-                    "no debe repetir mas de dos veces los "\
-                    "caracteres **-** **|**, o mas de una "\
-                    "vez los caracteres **[** **]**.\n" in out
-
-#-------------------------Test $addAssist [*, *, Fecha]------------------------
-@pytest.mark.asyncio
-async def test_addAssist_date_empty(capfd):
+async def test_addEvent_description_empty(capfd):
     value = ""
-    commands = [f"$addAssist[{testData['member']},"\
-                f"{testData['event']},"\
+    commands = [f"$addEvent[{testData['name']},"\
+                f"{testData['points']},"\
                 f"{value}]",
-                f"$addAssist [{testData['member']}, "\
-                f"{testData['event']}, "\
+                f"$addEvent [{testData['name']}, "\
+                f"{testData['points']}, "\
                 f"{value} ]",
-                f"$addAssist [ {testData['member']} , "\
-                f" {testData['event']} , "\
+                f"$addEvent [ {testData['name']} , "\
+                f" {testData['points']} , "\
                 f" {value} ] ",
-                f"$addAssist [ {testData['member']} , "\
-                f" {testData['event']} , "\
+                f"$addEvent [ {testData['name']} , "\
+                f" {testData['points']} , "\
                 f" {value} ]FILL",
-                f"$addAssist [ {testData['member']} , "\
-                f" {testData['event']} , "\
+                f"$addEvent [ {testData['name']} , "\
+                f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+        await hdlr.contMsg("addEvent", app.setData,
+                           Helpers.setStruct("evento"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
-               "**_Fecha_**\n" in out
+               "**_Descripción_**\n" in out
 
 @pytest.mark.asyncio
-async def test_addAssist_date_invalid(capfd):
-    value = "test"
-    commands = [f"$addAssist[{testData['member']},"\
-                f"{testData['event']},"\
+async def test_addEvent_description_long(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$addEvent[{testData['name']},"\
+                f"{testData['points']},"\
                 f"{value}]",
-                f"$addAssist [{testData['member']}, "\
-                f"{testData['event']}, "\
+                f"$addEvent [{testData['name']}, "\
+                f"{testData['points']}, "\
                 f"{value} ]",
-                f"$addAssist [ {testData['member']} , "\
-                f" {testData['event']} , "\
+                f"$addEvent [ {testData['name']} , "\
+                f" {testData['points']} , "\
                 f" {value} ] ",
-                f"$addAssist [ {testData['member']} , "\
-                f" {testData['event']} , "\
+                f"$addEvent [ {testData['name']} , "\
+                f" {testData['points']} , "\
                 f" {value} ]FILL",
-                f"$addAssist [ {testData['member']} , "\
-                f" {testData['event']} , "\
+                f"$addEvent [ {testData['name']} , "\
+                f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+        await hdlr.contMsg("addEvent", app.setData,
+                           Helpers.setStruct("evento"))
         out, _ = capfd.readouterr()
-        assert f"El dato '{value}' ingresado en el campo "\
-               f"**_Fecha_** "\
-                "es invalido.\n" in out
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Descripción_** "\
+                "no debe exceder los 50 caracteres.\n" in out
 
+'''
 #------------------------Test $updAssist:id [ID, *, *, *]----------------------
 @pytest.mark.asyncio
 async def test_updAssistId_id_empty(capfd):
