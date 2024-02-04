@@ -383,75 +383,77 @@ async def test_addEvent_description_repeatchar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
-'''
-#------------------------Test $updAssist:id [ID, *, *, *]----------------------
+
+#------------------------Test $updEvent:id [ID, *, *, *]----------------------
 @pytest.mark.asyncio
-async def test_updAssistId_id_empty(capfd):
+async def test_updEventId_id_empty(capfd):
     value = ""
-    commands = [f"$updAssist:id[{value},"\
+    commands = [f"$updEvent:id[{value},"\
                 f"{testData['member']},"\
-                f"{testData['event']},"\
-                f"{testData['date']}]",
-                f"$updAssist:id [{value}, "\
+                f"{testData['points']},"\
+                f"{testData['desc']}]",
+                f"$updEvent:id [{value}, "\
                 f"{testData['member']}, "\
-                f"{testData['event']}, "\
-                f"{testData['date']} ]",
-                f"$updAssist:id [ {value} , "\
+                f"{testData['points']}, "\
+                f"{testData['desc']} ]",
+                f"$updEvent:id [ {value} , "\
                 f" {testData['member']} , "\
-                f" {testData['event']} , "\
-                f" {testData['date']} ] ",
-                f"$updAssist:id [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] ",
+                f"$updEvent:id [ {value} , "\
                 f" {testData['member']} , "\
-                f" {testData['event']} , "\
-                f" {testData['date']} ]FILL",
-                f"$updAssist:id [ {value} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ]FILL",
+                f"$updEvent:id [ {value} , "\
                 f" {testData['member']} , "\
-                f" {testData['event']} , "\
-                f" {testData['date']} ] FILL"]
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+        await hdlr.contMsg("updEvent:id", app.updateData,
+                           Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def test_updAssistId_id_invalid(capfd):
+async def test_updEventId_id_invalid(capfd):
     value = "test"
-    commands = [f"$updAssist:id[{value},"\
-                f"{testData['member']},"\
-                f"{testData['event']},"\
-                f"{testData['date']}]",
-                f"$updAssist:id [{value}, "\
-                f"{testData['member']}, "\
-                f"{testData['event']}, "\
-                f"{testData['date']} ]",
-                f"$updAssist:id [ {value} , "\
-                f" {testData['member']} , "\
-                f" {testData['event']} , "\
-                f" {testData['date']} ] ",
-                f"$updAssist:id [ {value} , "\
-                f" {testData['member']} , "\
-                f" {testData['event']} , "\
-                f" {testData['date']} ]FILL",
-                f"$updAssist:id [ {value} , "\
-                f" {testData['member']} , "\
-                f" {testData['event']} , "\
-                f" {testData['date']} ] FILL"]
+    commands = [f"$updEvent:id[{value},"\
+                f"{testData['name']},"\
+                f"{testData['points']},"\
+                f"{testData['desc']}]",
+                f"$updEvent:id [{value}, "\
+                f"{testData['name']}, "\
+                f"{testData['points']}, "\
+                f"{testData['desc']} ]",
+                f"$updEvent:id [ {value} , "\
+                f" {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] ",
+                f"$updEvent:id [ {value} , "\
+                f" {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ]FILL",
+                f"$updEvent:id [ {value} , "\
+                f" {testData['name']} , "\
+                f" {testData['points']} , "\
+                f" {testData['desc']} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+        await hdlr.contMsg("updEvent:id", app.updateData,
+                           Helpers.updStruct("evento", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
                 "es invalido.\n" in out
 
+
+'''
 #--------------------Test $updAssist:id [*, Integrante, *, *]------------------
 @pytest.mark.asyncio
 async def test_updAssistId_member_empty(capfd):
