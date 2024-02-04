@@ -21,7 +21,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def testDef_addMember(capfd):
+async def testDefault_addMember(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['rancreate']}, {testData['datecreate']}]"
     message = Message(author="test", content=command)
@@ -36,7 +36,7 @@ async def testDef_addMember(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_addMember_exist(capfd):
+async def testDefault_addMember_exist(capfd):
     commands = [f"$addMember[{testData['namecreate']},"\
                 f"{testData['rancreate']},"\
                 f"{testData['datecreate']}]",
@@ -64,7 +64,7 @@ async def testDef_addMember_exist(capfd):
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberId_add(capfd):
+async def testDefault_listMemberId_add(capfd):
     command = f"$listMember:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -80,7 +80,7 @@ async def testDef_listMemberId_add(capfd):
     assert "Ninguno" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberName_add(capfd):
+async def testDefault_listMemberName_add(capfd):
     command = f"$listMember:name [{testData['namecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -96,7 +96,7 @@ async def testDef_listMemberName_add(capfd):
     assert "Ninguno" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberId(capfd):
+async def testDefault_updMemberId(capfd):
     commands = [f"$updMember:id[{testData['id']},{testData['nameupdate']},"\
                 f"{testData['rancreate']},{testData['dateupdate']}]",
                 f"$updMember:id [{testData['id']}, {testData['nameupdate']}, "\
@@ -120,7 +120,7 @@ async def testDef_updMemberId(capfd):
         assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberId_nameexist(capfd):
+async def testDefault_updMemberId_nameExist(capfd):
     commands = [f"$updMember:id[{testData['id']},{testData['nameexist']},"\
                 f"{testData['rancreate']},{testData['dateupdate']}]",
                 f"$updMember:id [{testData['id']}, {testData['nameexist']}, "\
@@ -146,7 +146,7 @@ async def testDef_updMemberId_nameexist(capfd):
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberName(capfd):
+async def testDefault_updMemberName(capfd):
     commands = [f"$updMember:name[{testData['nameupdate']},"\
                 f"{testData['ranupdate']},{testData['dateupdate']}]",
                 f"$updMember:name [{testData['nameupdate']}, "\
@@ -167,7 +167,7 @@ async def testDef_updMemberName(capfd):
         assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMember(capfd):
+async def testDefault_listMember(capfd):
     commands = [f"$listMember",
                 f"$listMember ",
                 f"$listMemberFILL",
@@ -187,7 +187,7 @@ async def testDef_listMember(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberId(capfd):
+async def testDefault_listMemberId(capfd):
     commands = [f"$listMember:id[{testData['id']}]",
                 f"$listMember:id [{testData['id']}]",
                 f"$listMember:id [ {testData['id']} ] ",
@@ -208,7 +208,7 @@ async def testDef_listMemberId(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberName(capfd):
+async def testDefault_listMemberName(capfd):
     commands = [f"$listMember:name[{testData['nameupdate']}]",
                 f"$listMember:name [{testData['nameupdate']}]",
                 f"$listMember:name [ {testData['nameupdate']} ] ",
@@ -229,7 +229,7 @@ async def testDef_listMemberName(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberRange(capfd):
+async def testDefault_listMemberRange(capfd):
     commands = [f"$listMember:range[{testData['ranupdate']}]",
                 f"$listMember:range [{testData['ranupdate']}]",
                 f"$listMember:range [ {testData['ranupdate']} ] ",
@@ -250,7 +250,7 @@ async def testDef_listMemberRange(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberDate(capfd):
+async def testDefault_listMemberDate(capfd):
     commands = [f"$listMember:date[{testData['datecreate']},"\
                 f"{testData['datecreate']}]",
                 f"$listMember:date [{testData['datecreate']}, "\
@@ -276,7 +276,7 @@ async def testDef_listMemberDate(capfd):
         assert f"{testData['dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def testDef_listMember_e(capfd):
+async def testDefault_listMember_e(capfd):
     commands = [f"$listMember"]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
@@ -292,7 +292,7 @@ async def testDef_listMember_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberId_e(capfd):
+async def testDefault_listMemberId_e(capfd):
     commands = [f"$listMember:id[{testData['id']}]",
                 f"$listMember:id [{testData['id']}]",
                 f"$listMember:id [ {testData['id']} ]"]
@@ -310,7 +310,7 @@ async def testDef_listMemberId_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberName_e(capfd):
+async def testDefault_listMemberName_e(capfd):
     commands = [f"$listMember:name[{testData['nameupdate']}]",
                 f"$listMember:name [{testData['nameupdate']}]",
                 f"$listMember:name [ {testData['nameupdate']} ]"]
@@ -328,7 +328,7 @@ async def testDef_listMemberName_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberRange_e(capfd):
+async def testDefault_listMemberRange_e(capfd):
     commands = [f"$listMember:range[{testData['ranupdate']}]",
                 f"$listMember:range [{testData['ranupdate']}]",
                 f"$listMember:range [ {testData['ranupdate']} ]"]
@@ -346,7 +346,7 @@ async def testDef_listMemberRange_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberDate_e(capfd):
+async def testDefault_listMemberDate_e(capfd):
     commands = [f"$listMember:date[{testData['datecreate']},"\
                 f"{testData['datecreate']}]",
                 f"$listMember:date [{testData['datecreate']}, "\
@@ -368,7 +368,7 @@ async def testDef_listMemberDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDef_listMember_e_incomplete(capfd):
+async def testDefault_listMember_eIncomplete(capfd):
     commands = [f"$listMember"]
     eparams = [">", " >", "> ", " > ", " > FILL",
                "FILL >", " FILL >", " FILL > FILL"]
@@ -387,7 +387,7 @@ async def testDef_listMember_e_incomplete(capfd):
             assert "**$listMember** **> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberId_e_incomplete(capfd):
+async def testDefault_listMemberId_eIncomplete(capfd):
     commands = [f"$listMember:id[{testData['id']}]",
                 f"$listMember:id [{testData['id']}]",
                 f"$listMember:id [ {testData['id']} ]"]
@@ -409,7 +409,7 @@ async def testDef_listMemberId_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberName_e_incomplete(capfd):
+async def testDefault_listMemberName_eIncomplete(capfd):
     commands = [f"$listMember:name[{testData['nameupdate']}]",
                 f"$listMember:name [{testData['nameupdate']}]",
                 f"$listMember:name [ {testData['nameupdate']} ]"]
@@ -431,7 +431,7 @@ async def testDef_listMemberName_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberRange_e_incomplete(capfd):
+async def testDefault_listMemberRange_eIncomplete(capfd):
     commands = [f"$listMember:range[{testData['ranupdate']}]",
                 f"$listMember:range [{testData['ranupdate']}]",
                 f"$listMember:range [ {testData['ranupdate']} ]"]
@@ -453,7 +453,7 @@ async def testDef_listMemberRange_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberDate_e_incomplete(capfd):
+async def testDefault_listMemberDate_eIncomplete(capfd):
     commands = [f"$listMember:date[{testData['datecreate']},"\
                 f"{testData['datecreate']}]",
                 f"$listMember:date [{testData['datecreate']}, "\
@@ -483,7 +483,7 @@ async def testDef_listMemberDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDef_delMemberId(capfd):
+async def testDefault_delMemberId(capfd):
     command = f"$delMember:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -494,7 +494,7 @@ async def testDef_delMemberId(capfd):
     assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_addMember_DelName(capfd):
+async def testDefault_addMember_delName(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['rancreate']}, {testData['datecreate']}]"
     message = Message(author="test", content=command)
@@ -509,7 +509,7 @@ async def testDef_addMember_DelName(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_delMemberName(capfd):
+async def testDefault_delMemberName(capfd):
     command = f"$delMember:name [{testData['namecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -520,7 +520,7 @@ async def testDef_delMemberName(capfd):
     assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_addMember_rangenoexist(capfd):
+async def testDefault_addMember_rangeNoExist(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['ranoexist']}, {testData['datecreate']}]"
     message = Message(author="test", content=command)
@@ -535,7 +535,7 @@ async def testDef_addMember_rangenoexist(capfd):
             "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberId_idnoexist(capfd):
+async def testDefault_updMemberId_idNoExist(capfd):
     commands = [f"$updMember:id[{testData['id']},{testData['nameupdate']},"\
                 f"{testData['rancreate']},{testData['dateupdate']}]",
                 f"$updMember:id [{testData['id']}, {testData['nameupdate']}, "\
@@ -560,7 +560,7 @@ async def testDef_updMemberId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberId_rangenoexist(capfd):
+async def testDefault_updMemberId_rangeNoExist(capfd):
     commands = [f"$updMember:id[{testData['id']},{testData['nameupdate']},"\
                 f"{testData['ranoexist']},{testData['dateupdate']}]",
                 f"$updMember:id [{testData['id']}, {testData['nameupdate']}, "\
@@ -587,7 +587,7 @@ async def testDef_updMemberId_rangenoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberName_namenoexist(capfd):
+async def testDefault_updMemberName_nameNoExist(capfd):
     commands = [f"$updMember:name[{testData['nameupdate']},"\
                 f"{testData['ranupdate']},{testData['dateupdate']}]",
                 f"$updMember:name [{testData['nameupdate']}, "\
@@ -610,7 +610,7 @@ async def testDef_updMemberName_namenoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updMemberName_rangenoexist(capfd):
+async def testDefault_updMemberName_rangeNoExist(capfd):
     commands = [f"$updMember:name[{testData['nameupdate']},"\
                 f"{testData['ranoexist']},{testData['dateupdate']}]",
                 f"$updMember:name [{testData['nameupdate']}, "\
@@ -634,7 +634,7 @@ async def testDef_updMemberName_rangenoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_delMemberId_idnoexist(capfd):
+async def testDefault_delMemberId_idNoExist(capfd):
     commands = [f"$delMember:id[{testData['id']}]",
                 f"$delMember:id [{testData['id']}]",
                 f"$delMember:id [ {testData['id']} ]",
@@ -651,7 +651,7 @@ async def testDef_delMemberId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_delMemberName_namenoexist(capfd):
+async def testDefault_delMemberName_nameNoExist(capfd):
     commands = [f"$delMember:name[{testData['namecreate']}]",
                 f"$delMember:name [{testData['namecreate']}]",
                 f"$delMember:name [ {testData['namecreate']} ]",
@@ -669,7 +669,7 @@ async def testDef_delMemberName_namenoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberId_idnoexist(capfd):
+async def testDefault_listMemberId_idNoExist(capfd):
     commands = [f"$listMember:id[{testData['id']}]",
                 f"$listMember:id [{testData['id']}]",
                 f"$listMember:id [ {testData['id']} ] ",
@@ -686,7 +686,7 @@ async def testDef_listMemberId_idnoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberName_namenoexist(capfd):
+async def testDefault_listMemberName_nameNoExist(capfd):
     commands = [f"$listMember:name[{testData['nameupdate']}]",
                 f"$listMember:name [{testData['nameupdate']}]",
                 f"$listMember:name [ {testData['nameupdate']} ] ",
@@ -703,7 +703,7 @@ async def testDef_listMemberName_namenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberRange_rangenoexist(capfd):
+async def testDefault_listMemberRange_rangeNoExist(capfd):
     commands = [f"$listMember:range[{testData['ranoexist']}]",
                 f"$listMember:range [{testData['ranoexist']}]",
                 f"$listMember:range [ {testData['ranoexist']} ] ",
@@ -722,7 +722,7 @@ async def testDef_listMemberRange_rangenoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listMemberDate_datenoexist(capfd):
+async def testDefault_listMemberDate_dateNoExist(capfd):
     commands = [f"$listMember:date[{testData['datecreate']},"\
                 f"{testData['datecreate']}]",
                 f"$listMember:date [{testData['datecreate']}, "\
