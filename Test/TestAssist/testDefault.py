@@ -681,7 +681,7 @@ async def testDef_delAssistId(capfd):
     assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_addAssist_membernoexist(capfd):
+async def testDef_addAssist_memberNoExist(capfd):
     commands = [f"$addAssist [{testData['menoexist']}, "\
                 f"{testData['evcreate']}, "\
                 f"{testData['datecreate']}]",
@@ -711,7 +711,7 @@ async def testDef_addAssist_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_addAssist_eventnoexist(capfd):
+async def testDef_addAssist_eventNoExist(capfd):
     commands = [f"$addAssist [{testData['memcreate']}, "\
                 f"{testData['evnoexist']}, "\
                 f"{testData['datecreate']}]",
@@ -741,7 +741,7 @@ async def testDef_addAssist_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updAssistId_idnoexist(capfd):
+async def testDef_updAssistId_idNoExist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['memupdate']},"\
                 f"{testData['evupdate']},"
@@ -773,7 +773,7 @@ async def testDef_updAssistId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updAssistId_membernoexist(capfd):
+async def testDef_updAssistId_memberNoExist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['menoexist']},"\
                 f"{testData['evupdate']},"
@@ -807,7 +807,7 @@ async def testDef_updAssistId_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_updAssistId_eventnoexist(capfd):
+async def testDef_updAssistId_eventNoExist(capfd):
     commands = [f"$updAssist:id[{testData['id']},"
                 f"{testData['memupdate']},"\
                 f"{testData['evnoexist']},"
@@ -841,7 +841,7 @@ async def testDef_updAssistId_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_delAssistId_idnoexist(capfd):
+async def testDef_delAssistId_idNoExist(capfd):
     commands = [f"$delAssist:id[{testData['id']}]",
                 f"$delAssist:id [{testData['id']}]",
                 f"$delAssist:id [ {testData['id']} ]",
@@ -858,7 +858,7 @@ async def testDef_delAssistId_idnoexist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistId_idnoexist(capfd):
+async def testDef_listAssistId_idNoExist(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
                 f"$listAssist:id [ {testData['id']} ] ",
@@ -875,7 +875,7 @@ async def testDef_listAssistId_idnoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMember_membernoexist(capfd):
+async def testDef_listAssistMember_memberNoExist(capfd):
     commands = [f"$listAssist:member[{testData['menoexist']}]",
                 f"$listAssist:member [{testData['menoexist']}]",
                 f"$listAssist:member [ {testData['menoexist']} ] ",
@@ -894,7 +894,7 @@ async def testDef_listAssistMember_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistEvent_eventnoexist(capfd):
+async def testDef_listAssistEvent_eventNoExist(capfd):
     commands = [f"$listAssist:event[{testData['evnoexist']}]",
                 f"$listAssist:event [{testData['evnoexist']}]",
                 f"$listAssist:event [ {testData['evnoexist']} ] ",
@@ -913,7 +913,7 @@ async def testDef_listAssistEvent_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistDate_datenoexist(capfd):
+async def testDef_listAssistDate_dateNoExist(capfd):
     commands = [f"$listAssist:date[{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
                 f"$listAssist:date [{testData['dateupdate']}, "\
@@ -935,7 +935,7 @@ async def testDef_listAssistDate_datenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberEvent_membernoexist(capfd):
+async def testDef_listAssistMemberEvent_memberNoExist(capfd):
     commands = [f"$listAssist:member&event[{testData['menoexist']},"\
                 f"{testData['evupdate']}]",
                 f"$listAssist:member&event [{testData['menoexist']}, "\
@@ -960,7 +960,7 @@ async def testDef_listAssistMemberEvent_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberEvent_eventnoexist(capfd):
+async def testDef_listAssistMemberEvent_eventNoExist(capfd):
     commands = [f"$listAssist:member&event[{testData['memcreate']},"\
                 f"{testData['evnoexist']}]",
                 f"$listAssist:member&event [{testData['memcreate']}, "\
@@ -985,7 +985,7 @@ async def testDef_listAssistMemberEvent_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberDate_membernoexist(capfd):
+async def testDef_listAssistMemberDate_memberNoExist(capfd):
     commands = [f"$listAssist:member&date[{testData['menoexist']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['menoexist']}, "\
@@ -1010,7 +1010,7 @@ async def testDef_listAssistMemberDate_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberDate_datenoexist(capfd):
+async def testDef_listAssistMemberDate_dateNoExist(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['memupdate']}, "\
@@ -1033,7 +1033,7 @@ async def testDef_listAssistMemberDate_datenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistEventDate_eventnoexist(capfd):
+async def testDef_listAssistEventDate_eventNoExist(capfd):
     commands = [f"$listAssist:event&date[{testData['evnoexist']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evnoexist']}, "\
@@ -1058,7 +1058,7 @@ async def testDef_listAssistEventDate_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistEventDate_datenoexist(capfd):
+async def testDef_listAssistEventDate_dateNoExist(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evupdate']}, "\
@@ -1081,7 +1081,7 @@ async def testDef_listAssistEventDate_datenoexist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberEventDate_membernoexist(capfd):
+async def testDef_listAssistMemberEventDate_memberNoExist(capfd):
     commands = [f"$listAssist:member&event&date[{testData['menoexist']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -1111,7 +1111,7 @@ async def testDef_listAssistMemberEventDate_membernoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberEventDate_eventnoexist(capfd):
+async def testDef_listAssistMemberEventDate_eventNoExist(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evnoexist']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
@@ -1141,7 +1141,7 @@ async def testDef_listAssistMemberEventDate_eventnoexist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDef_listAssistMemberEventDate_datenoexist(capfd):
+async def testDef_listAssistMemberEventDate_dateNoExist(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
