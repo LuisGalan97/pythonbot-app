@@ -276,7 +276,7 @@ async def testDefault_listEventName_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEvent_e_incomplete(capfd):
+async def testDefault_listEvent_eIncomplete(capfd):
     commands = [f"$listEvent"]
     eparams = [">", " >", "> ", " > ", " > FILL",
                "FILL >", " FILL >", " FILL > FILL"]
@@ -295,7 +295,7 @@ async def testDefault_listEvent_e_incomplete(capfd):
             assert "**$listEvent** **> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventId_e_incomplete(capfd):
+async def testDefault_listEventId_eIncomplete(capfd):
     commands = [f"$listEvent:id[{testData['id']}]",
                 f"$listEvent:id [{testData['id']}]",
                 f"$listEvent:id [ {testData['id']} ]"]
@@ -317,7 +317,7 @@ async def testDefault_listEventId_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventName_e_incomplete(capfd):
+async def testDefault_listEventName_eIncomplete(capfd):
     commands = [f"$listEvent:name[{testData['nameupdate']}]",
                 f"$listEvent:name [{testData['nameupdate']}]",
                 f"$listEvent:name [ {testData['nameupdate']} ]"]

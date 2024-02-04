@@ -456,7 +456,7 @@ async def testDefault_listAssistMemberEventDate_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssist_e_incomplete(capfd):
+async def testDefault_listAssist_eIncomplete(capfd):
     commands = [f"$listAssist"]
     eparams = [">", " >", "> ", " > ", " > FILL",
                "FILL >", " FILL >", " FILL > FILL"]
@@ -475,7 +475,7 @@ async def testDefault_listAssist_e_incomplete(capfd):
             assert "**$listAssist** **> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistId_e_incomplete(capfd):
+async def testDefault_listAssistId_eIncomplete(capfd):
     commands = [f"$listAssist:id[{testData['id']}]",
                 f"$listAssist:id [{testData['id']}]",
                 f"$listAssist:id [ {testData['id']} ]"]
@@ -497,7 +497,7 @@ async def testDefault_listAssistId_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistMember_e_incomplete(capfd):
+async def testDefault_listAssistMember_eIncomplete(capfd):
     commands = [f"$listAssist:member[{testData['memupdate']}]",
                 f"$listAssist:member [{testData['memupdate']}]",
                 f"$listAssist:member [ {testData['memupdate']} ]"]
@@ -520,7 +520,7 @@ async def testDefault_listAssistMember_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistEvent_e_incomplete(capfd):
+async def testDefault_listAssistEvent_eIncomplete(capfd):
     commands = [f"$listAssist:event[{testData['evupdate']}]",
                 f"$listAssist:event [{testData['evupdate']}]",
                 f"$listAssist:event [ {testData['evupdate']} ]"]
@@ -543,7 +543,7 @@ async def testDefault_listAssistEvent_e_incomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistDate_e_incomplete(capfd):
+async def testDefault_listAssistDate_eIncomplete(capfd):
     commands = [f"$listAssist:date[{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
                 f"$listAssist:date [{testData['dateupdate']}, "\
@@ -573,7 +573,7 @@ async def testDefault_listAssistDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistMemberDate_e_incomplete(capfd):
+async def testDefault_listAssistMemberDate_eIncomplete(capfd):
     commands = [f"$listAssist:member&date[{testData['memupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:member&date [{testData['memupdate']}, "\
@@ -604,7 +604,7 @@ async def testDefault_listAssistMemberDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistEventDate_e_incomplete(capfd):
+async def testDefault_listAssistEventDate_eIncomplete(capfd):
     commands = [f"$listAssist:event&date[{testData['evupdate']},"\
                 f"{testData['dateupdate']},{testData['dateupdate']}]",
                 f"$listAssist:event&date [{testData['evupdate']}, "\
@@ -635,7 +635,7 @@ async def testDefault_listAssistEventDate_e_incomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listAssistMemberEventDate_e_incomplete(capfd):
+async def testDefault_listAssistMemberEventDate_eIncomplete(capfd):
     commands = [f"$listAssist:member&event&date[{testData['memupdate']},"\
                 f"{testData['evupdate']},{testData['dateupdate']},"\
                 f"{testData['dateupdate']}]",
