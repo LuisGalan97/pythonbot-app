@@ -631,24 +631,28 @@ async def test_updEventId_name_repeatchar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
-'''
-#-----------------------Test $updEvent:id [*, Puntos, *]-------------------------
+#--------------------Test $updEvent:id [*, *, Puntos, *]-----------------------
 @pytest.mark.asyncio
 async def test_updEventId_points_empty(capfd):
     value = ""
-    commands = [f"$updEvent:id[{testData['name']},"\
+    commands = [f"$updEvent:id[{testData['id']},"
+                f"{testData['name']},"\
                 f"{value},"\
                 f"{testData['desc']}]",
-                f"$updEvent:id [{testData['name']}, "\
+                f"$updEvent:id [{testData['id']}, "\
+                f"{testData['name']}, "\
                 f"{value}, "\
                 f"{testData['desc']} ]",
-                f"$updEvent:id [ {testData['name']} , "\
+                f"$updEvent:id [ {testData['id']} , "\
+                f" {testData['name']} , "\
                 f" {value} , "\
                 f" {testData['desc']} ] ",
-                f"$updEvent:id [ {testData['name']} , "\
+                f"$updEvent:id [ {testData['id']} , "\
+                f" {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ]FILL",
-                f"$updEvent:id [ {testData['name']} , "\
+                f"$updEvent:id [ {testData['id']} , "\
+                f" {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
@@ -664,19 +668,24 @@ async def test_updEventId_points_empty(capfd):
 @pytest.mark.asyncio
 async def test_updEventId_points_invalid(capfd):
     value = "test"
-    commands = [f"$updEvent:id[{testData['name']},"\
+    commands = [f"$updEvent:id[{testData['id']},"
+                f"{testData['name']},"\
                 f"{value},"\
                 f"{testData['desc']}]",
-                f"$updEvent:id [{testData['name']}, "\
+                f"$updEvent:id [{testData['id']}, "\
+                f"{testData['name']}, "\
                 f"{value}, "\
                 f"{testData['desc']} ]",
-                f"$updEvent:id [ {testData['name']} , "\
+                f"$updEvent:id [ {testData['id']} , "\
+                f" {testData['name']} , "\
                 f" {value} , "\
                 f" {testData['desc']} ] ",
-                f"$updEvent:id [ {testData['name']} , "\
+                f"$updEvent:id [ {testData['id']} , "\
+                f" {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ]FILL",
-                f"$updEvent:id [ {testData['name']} , "\
+                f"$updEvent:id [ {testData['id']} , "\
+                f" {testData['name']} , "\
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
@@ -690,6 +699,7 @@ async def test_updEventId_points_invalid(capfd):
                f"**_Puntos_** "\
                 "es invalido.\n" in out
 
+'''
 #----------------------Test $updEvent:id [*, *, Descripción]----------------------
 @pytest.mark.asyncio
 async def test_updEventId_description_empty(capfd):
