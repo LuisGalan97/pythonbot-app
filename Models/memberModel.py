@@ -1,10 +1,10 @@
 from .rangeModel import RangeModel
 
 class MemberModel:
-    def __init__(self, id, name, rango : RangeModel, datecreate, dateupdate):
+    def __init__(self, id, name, range : RangeModel, datecreate, dateupdate):
         self.__id = id
         self.__name = name
-        self.__rango = rango
+        self.__range = range
         self.__datecreate = datecreate
         self.__dateupdate = dateupdate
 
@@ -14,8 +14,8 @@ class MemberModel:
     def getName(self):
         return self.__name
 
-    def getRango(self):
-        return self.__rango
+    def getRange(self):
+        return self.__range
 
     def getDateCreate(self):
         return self.__datecreate

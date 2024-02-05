@@ -41,35 +41,35 @@ class EventService:
         else:
             return data
 
-    def insert(self, evento : EventModel):
+    def insert(self, event : EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "eventos (nombre, puntos, descripcion) "\
         "VALUES (?, ?, ?)",
-        (evento.getName(),
-        evento.getPoints(),
-        evento.getDescription(),))
+        (event.getName(),
+         event.getPoints(),
+         event.getDescription(),))
         if data:
             data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 
-    def update(self, evento: EventModel):
+    def update(self, event: EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE eventos "\
         "SET nombre = ?, puntos = ?, descripcion = ? "\
         "WHERE id = ?",
-        (evento.getName(),
-        evento.getPoints(),
-        evento.getDescription(),
-        evento.getId(),))
+        (event.getName(),
+         event.getPoints(),
+         event.getDescription(),
+         event.getId(),))
         self.__db.close_connection()
         return data
 
-    def delete(self, evento: EventModel):
+    def delete(self, event: EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM eventos "\
         "WHERE id = ?",
-        (evento.getId(),))
+        (event.getId(),))
         self.__db.close_connection()
         return data

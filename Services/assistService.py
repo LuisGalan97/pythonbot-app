@@ -113,35 +113,35 @@ class AssistService:
         else:
             return data
 
-    def insert(self, asistencia : AssistModel):
+    def insert(self, assist : AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "asistencias (integrante_id, evento_id, fecha) "\
         "VALUES (?, ?, ?)",
-        (asistencia.getIntegrante().getId(),
-        asistencia.getEvento().getId(),
-        asistencia.getDate(),))
+        (assist.getMember().getId(),
+         assist.getEvent().getId(),
+         assist.getDate(),))
         if data:
             data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 
-    def update(self, asistencia: AssistModel):
+    def update(self, assist: AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE asistencias "\
         "SET integrante_id = ?, evento_id = ?, fecha = ? "\
         "WHERE id = ?",
-        (asistencia.getIntegrante().getId(),
-        asistencia.getEvento().getId(),
-        asistencia.getDate(),
-        asistencia.getId(),))
+        (assist.getMember().getId(),
+         assist.getEvent().getId(),
+         assist.getDate(),
+         assist.getId(),))
         self.__db.close_connection()
         return data
 
-    def delete(self, asistencia: AssistModel):
+    def delete(self, assist: AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM asistencias "\
         "WHERE id = ?",
-        (asistencia.getId(),))
+        (assist.getId(),))
         self.__db.close_connection()
         return data

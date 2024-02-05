@@ -9,74 +9,74 @@ class AssistController:
         self.__service = AssistService(db)
 
     def getAsistencias(self, target = None):
-        asistencias = self.__service.select(target)
-        if isinstance(asistencias, list):
+        assists = self.__service.select(target)
+        if isinstance(assists, list):
             data = []
-            for asistencia in asistencias:
+            for assist in assists:
                 data.append(
                     {
-                        "id" : asistencia.getId(),
-                        "integrante_id" : asistencia.
-                                          getIntegrante().
+                        "id" : assist.getId(),
+                        "integrante_id" : assist.
+                                          getMember().
                                           getId(),
-                        "integrante_name" : asistencia.
-                                            getIntegrante().
+                        "integrante_name" : assist.
+                                            getMember().
                                             getName(),
-                        "integrante_rango_id" : asistencia.
-                                                getIntegrante().
-                                                getRango().
+                        "integrante_rango_id" : assist.
+                                                getMember().
+                                                getRange().
                                                 getId(),
-                        "integrante_rango_name" : asistencia.
-                                                  getIntegrante().
-                                                  getRango().
+                        "integrante_rango_name" : assist.
+                                                  getMember().
+                                                  getRange().
                                                   getName(),
-                        "integrante_rango_control" : asistencia.
-                                                     getIntegrante().
-                                                     getRango().
+                        "integrante_rango_control" : assist.
+                                                     getMember().
+                                                     getRange().
                                                      getControl(),
-                        "integrante_rango_description" : asistencia.
-                                                         getIntegrante().
-                                                         getRango().
+                        "integrante_rango_description" : assist.
+                                                         getMember().
+                                                         getRange().
                                                          getDescription(),
-                        "integrante_datecreate" : asistencia.
-                                                  getIntegrante().
+                        "integrante_datecreate" : assist.
+                                                  getMember().
                                                   getDateCreate(),
-                        "integrante_dateupdate" : asistencia.
-                                                  getIntegrante().
+                        "integrante_dateupdate" : assist.
+                                                  getMember().
                                                   getDateUpdate(),
-                        "evento_id" : asistencia.
-                                      getEvento().
+                        "evento_id" : assist.
+                                      getEvent().
                                       getId(),
-                        "evento_name" : asistencia.
-                                        getEvento().
+                        "evento_name" : assist.
+                                        getEvent().
                                         getName(),
-                        "evento_points" : asistencia.
-                                          getEvento().
+                        "evento_points" : assist.
+                                          getEvent().
                                           getPoints(),
-                        "evento_description" : asistencia.
-                                               getEvento().
+                        "evento_description" : assist.
+                                               getEvent().
                                                getDescription(),
-                        "date" : asistencia.getDate()
+                        "date" : assist.getDate()
                     })
             return data
         else:
-            return asistencias
+            return assists
 
-    def createAsistencia(self, integrante_id, evento_id, date):
-        integrante = MemberModel(integrante_id, None, None, None, None)
-        evento = EventModel(evento_id, None, None, None)
-        asistencia = AssistModel(None, integrante, evento, date)
-        result = self.__service.insert(asistencia)
+    def createAsistencia(self, member_id, event_id, date):
+        member = MemberModel(member_id, None, None, None, None)
+        event = EventModel(event_id, None, None, None)
+        assist = AssistModel(None, member, event, date)
+        result = self.__service.insert(assist)
         return result
 
-    def updateAsistencia(self, id, integrante_id, evento_id, date):
-        integrante = MemberModel(integrante_id, None, None, None, None)
-        evento = EventModel(evento_id, None, None, None)
-        asistencia = AssistModel(id, integrante, evento, date)
-        result = self.__service.update(asistencia)
+    def updateAsistencia(self, id, member_id, event_id, date):
+        member = MemberModel(member_id, None, None, None, None)
+        event = EventModel(event_id, None, None, None)
+        assist = AssistModel(id, member, event, date)
+        result = self.__service.update(assist)
         return result
 
     def deleteAsistencia(self, id):
-        asistencia = AssistModel(id, None, None, None)
-        result = self.__service.delete(asistencia)
+        assist = AssistModel(id, None, None, None)
+        result = self.__service.delete(assist)
         return result

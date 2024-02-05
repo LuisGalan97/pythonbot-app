@@ -2,21 +2,21 @@ from .memberModel import MemberModel
 from .eventModel import EventModel
 
 class AssistModel:
-    def __init__(self, id, integrante : MemberModel, 
-                 evento : EventModel, date):
+    def __init__(self, id, member : MemberModel,
+                 event : EventModel, date):
         self.__id = id
-        self.__integrante = integrante
-        self.__evento = evento
+        self.__member = member
+        self.__event = event
         self.__date = date
 
     def getId(self):
         return self.__id
 
-    def getIntegrante(self):
-        return self.__integrante
+    def getMember(self):
+        return self.__member
 
-    def getEvento(self):
-        return self.__evento
+    def getEvent(self):
+        return self.__event
 
     def getDate(self):
         return self.__date

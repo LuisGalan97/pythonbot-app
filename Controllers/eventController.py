@@ -7,32 +7,32 @@ class EventController:
         self.__service = EventService(db)
 
     def getEventos(self, target = None):
-        eventos = self.__service.select(target)
-        if isinstance(eventos, list):
+        events = self.__service.select(target)
+        if isinstance(events, list):
             data = []
-            for evento in eventos:
+            for event in events:
                 data.append(
                     {
-                        "id" : evento.getId(),
-                        "name" : evento.getName(),
-                        "points" : evento.getPoints(),
-                        "description" : evento.getDescription()
+                        "id" : event.getId(),
+                        "name" : event.getName(),
+                        "points" : event.getPoints(),
+                        "description" : event.getDescription()
                     })
             return data
         else:
-            return eventos
+            return events
 
     def createEvento(self, name, points, description):
-        evento = EventModel(None, name, points, description)
-        result = self.__service.insert(evento)
+        event = EventModel(None, name, points, description)
+        result = self.__service.insert(event)
         return result
 
     def updateEvento(self, id, name, points, description):
-        evento = EventModel(id, name, points, description)
-        result = self.__service.update(evento)
+        event = EventModel(id, name, points, description)
+        result = self.__service.update(event)
         return result
 
     def deleteEvento(self, id):
-        evento = EventModel(id, None, None, None)
-        result = self.__service.delete(evento)
+        event = EventModel(id, None, None, None)
+        result = self.__service.delete(event)
         return result

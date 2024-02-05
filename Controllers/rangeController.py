@@ -7,32 +7,32 @@ class RangeController:
         self.__service = RangeService(db)
 
     def getRangos(self, target = None):
-        rangos = self.__service.select(target)
-        if isinstance(rangos, list):
+        ranges = self.__service.select(target)
+        if isinstance(ranges, list):
             data = []
-            for rango in rangos:
+            for range in ranges:
                 data.append(
                     {
-                        "id" : rango.getId(),
-                        "name" : rango.getName(),
-                        "control" : rango.getControl(),
-                        "description" : rango.getDescription()
+                        "id" : range.getId(),
+                        "name" : range.getName(),
+                        "control" : range.getControl(),
+                        "description" : range.getDescription()
                     })
             return data
         else:
-            return rangos
+            return ranges
 
     def createRango(self, name, control, description):
-        rango = RangeModel(None, name, control, description)
-        result = self.__service.insert(rango)
+        range = RangeModel(None, name, control, description)
+        result = self.__service.insert(range)
         return result
 
     def updateRango(self, id, name, control, description):
-        rango = RangeModel(id, name, control, description)
-        result = self.__service.update(rango)
+        range = RangeModel(id, name, control, description)
+        result = self.__service.update(range)
         return result
 
     def deleteRango(self, id):
-        rango = RangeModel(id, None, None, None)
-        result = self.__service.delete(rango)
+        range = RangeModel(id, None, None, None)
+        result = self.__service.delete(range)
         return result

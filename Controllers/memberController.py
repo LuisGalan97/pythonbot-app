@@ -8,40 +8,40 @@ class MemberController:
         self.__service = MemberService(db)
 
     def getIntegrantes(self, target = None):
-        integrantes = self.__service.select(target)
-        if isinstance(integrantes, list):
+        members = self.__service.select(target)
+        if isinstance(members, list):
             data = []
-            for integrante in integrantes:
+            for member in members:
                 data.append(
                     {
-                        "id" : integrante.getId(),
-                        "name" : integrante.getName(),
-                        "rango_id" : integrante.getRango().getId(),
-                        "rango_name" : integrante.getRango().getName(),
-                        "rango_control" : integrante.getRango().getControl(),
-                        "rango_description" : integrante.
+                        "id" : member.getId(),
+                        "name" : member.getName(),
+                        "rango_id" : member.getRango().getId(),
+                        "rango_name" : member.getRango().getName(),
+                        "rango_control" : member.getRango().getControl(),
+                        "rango_description" : member.
                                               getRango().
                                               getDescription(),
-                        "datecreate" : integrante.getDateCreate(),
-                        "dateupdate" : integrante.getDateUpdate()
+                        "datecreate" : member.getDateCreate(),
+                        "dateupdate" : member.getDateUpdate()
                     })
             return data
         else:
-            return integrantes
+            return members
 
-    def createIntegrante(self, name, rango_id, date):
-        rango = RangeModel(rango_id, None, None, None)
-        integrante = MemberModel(None, name, rango, date, None)
-        result = self.__service.insert(integrante)
+    def createIntegrante(self, name, range_id, date):
+        range = RangeModel(range_id, None, None, None)
+        member = MemberModel(None, name, range, date, None)
+        result = self.__service.insert(member)
         return result
 
-    def updateIntegrante(self, id, name, rango_id, date):
-        rango = RangeModel(rango_id, None, None, None)
-        integrante = MemberModel(id, name, rango, None, date)
-        result = self.__service.update(integrante)
+    def updateIntegrante(self, id, name, range_id, date):
+        range = RangeModel(range_id, None, None, None)
+        member = MemberModel(id, name, range, None, date)
+        result = self.__service.update(member)
         return result
 
     def deleteIntegrante(self, id):
-        integrante = MemberModel(id, None, None, None, None)
-        result = self.__service.delete(integrante)
+        member = MemberModel(id, None, None, None, None)
+        result = self.__service.delete(member)
         return result

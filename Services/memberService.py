@@ -61,35 +61,35 @@ class MemberService:
         else:
             return data
 
-    def insert(self, integrante : MemberModel):
+    def insert(self, member : MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "integrantes (nombre, rango_id, fechacreacion) "\
         "VALUES (?, ?, ?)",
-        (integrante.getName(),
-        integrante.getRango().getId(),
-        integrante.getDateCreate(),))
+        (member.getName(),
+         member.getRange().getId(),
+         member.getDateCreate(),))
         if data:
             data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 
-    def update(self, integrante: MemberModel):
+    def update(self, member: MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE integrantes "\
         "SET nombre = ?, rango_id = ?, fechamodificacion = ? "\
         "WHERE id = ?",
-        (integrante.getName(),
-        integrante.getRango().getId(),
-        integrante.getDateUpdate(),
-        integrante.getId(),))
+        (member.getName(),
+         member.getRange().getId(),
+         member.getDateUpdate(),
+         member.getId(),))
         self.__db.close_connection()
         return data
 
-    def delete(self, integrante: MemberModel):
+    def delete(self, member: MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM integrantes "\
         "WHERE id = ?",
-        (integrante.getId(),))
+        (member.getId(),))
         self.__db.close_connection()
         return data

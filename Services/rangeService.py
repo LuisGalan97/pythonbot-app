@@ -41,35 +41,35 @@ class RangeService:
         else:
             return data
 
-    def insert(self, rango : RangeModel):
+    def insert(self, range : RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "rangos (nombre, control, descripcion) "\
         "VALUES (?, ?, ?)",
-        (rango.getName(),
-        rango.getControl(),
-        rango.getDescription(),))
+        (range.getName(),
+         range.getControl(),
+         range.getDescription(),))
         if data:
             data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 
-    def update(self, rango: RangeModel):
+    def update(self, range: RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE rangos "\
         "SET nombre = ?, control = ?, descripcion = ? "\
         "WHERE id = ?",
-        (rango.getName(),
-        rango.getControl(),
-        rango.getDescription(),
-        rango.getId(),))
+        (range.getName(),
+         range.getControl(),
+         range.getDescription(),
+         range.getId(),))
         self.__db.close_connection()
         return data
 
-    def delete(self, rango: RangeModel):
+    def delete(self, range: RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM rangos "\
         "WHERE id = ?",
-        (rango.getId(),))
+        (range.getId(),))
         self.__db.close_connection()
         return data
