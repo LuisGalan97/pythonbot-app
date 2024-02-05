@@ -30,11 +30,14 @@ class EventService:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
-            eventos = []
+            events = []
             for row in data:
-                evento = EventModel(row[0], row[1], row[2], row[3])
-                eventos.append(evento)
-            return eventos
+                event = EventModel(row['id'],
+                                   row['name'],
+                                   row['points'],
+                                   row['description'])
+                events.append(event)
+            return events
         else:
             return data
 
