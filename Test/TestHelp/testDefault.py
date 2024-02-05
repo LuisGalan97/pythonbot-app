@@ -6,7 +6,7 @@ Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
 
 @pytest.mark.asyncio
-async def testHelpDefault_command(capfd):
+async def test_command(capfd):
     command = "$command"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -14,7 +14,7 @@ async def testHelpDefault_command(capfd):
     await hdlr.inMsg()
     await hdlr.sendText()
     out, _ = capfd.readouterr()
-    assert "hola mundo" in out
+    assert "Hola! soy avalon-bot.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_help(capfd):

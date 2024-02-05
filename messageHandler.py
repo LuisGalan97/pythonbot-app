@@ -16,7 +16,7 @@ class MessageHandler:
 
     async def sendText(self):
         if self.__message.content.startswith("$command"):
-            await self.__send(message = "hola mundo")
+            await self.__send(message = "Hola! soy avalon-bot.\n")
 
     async def helpMsg(self):
         msg = self.__message.content
