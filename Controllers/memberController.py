@@ -1,6 +1,6 @@
 from DB.database import Database
-from Models.memberModel import IntegranteModel
-from Models.rangeModel import RangoModel
+from Models.memberModel import MemberModel
+from Models.rangeModel import RangeModel
 from Services.memberService import MemberService
 
 class IntegranteController:
@@ -30,18 +30,18 @@ class IntegranteController:
             return integrantes
 
     def createIntegrante(self, name, rango_id, date):
-        rango = RangoModel(rango_id, None, None, None)
-        integrante = IntegranteModel(None, name, rango, date, None)
+        rango = RangeModel(rango_id, None, None, None)
+        integrante = MemberModel(None, name, rango, date, None)
         result = self.__service.insert(integrante)
         return result
 
     def updateIntegrante(self, id, name, rango_id, date):
-        rango = RangoModel(rango_id, None, None, None)
-        integrante = IntegranteModel(id, name, rango, None, date)
+        rango = RangeModel(rango_id, None, None, None)
+        integrante = MemberModel(id, name, rango, None, date)
         result = self.__service.update(integrante)
         return result
 
     def deleteIntegrante(self, id):
-        integrante = IntegranteModel(id, None, None, None, None)
+        integrante = MemberModel(id, None, None, None, None)
         result = self.__service.delete(integrante)
         return result

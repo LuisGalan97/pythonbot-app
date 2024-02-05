@@ -1,9 +1,9 @@
-from .memberModel import IntegranteModel
-from .eventModel import EventoModel
+from .memberModel import MemberModel
+from .eventModel import EventModel
 
-class AsistenciaModel:
-    def __init__(self, id, integrante : IntegranteModel, 
-                 evento : EventoModel, date):
+class AssistModel:
+    def __init__(self, id, integrante : MemberModel, 
+                 evento : EventModel, date):
         self.__id = id
         self.__integrante = integrante
         self.__evento = evento

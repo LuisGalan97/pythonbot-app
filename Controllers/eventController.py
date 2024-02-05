@@ -1,5 +1,5 @@
 from DB.database import Database
-from Models.eventModel import EventoModel
+from Models.eventModel import EventModel
 from Services.eventService import EventService
 
 class EventoController:
@@ -23,16 +23,16 @@ class EventoController:
             return eventos
 
     def createEvento(self, name, points, description):
-        evento = EventoModel(None, name, points, description)
+        evento = EventModel(None, name, points, description)
         result = self.__service.insert(evento)
         return result
 
     def updateEvento(self, id, name, points, description):
-        evento = EventoModel(id, name, points, description)
+        evento = EventModel(id, name, points, description)
         result = self.__service.update(evento)
         return result
 
     def deleteEvento(self, id):
-        evento = EventoModel(id, None, None, None)
+        evento = EventModel(id, None, None, None)
         result = self.__service.delete(evento)
         return result

@@ -1,6 +1,6 @@
 from DB.database import Database
-from Models.memberModel import IntegranteModel
-from Models.rangeModel import RangoModel
+from Models.memberModel import MemberModel
+from Models.rangeModel import RangeModel
 
 class MemberService:
     def __init__(self, db : Database):
@@ -47,15 +47,15 @@ class MemberService:
         if isinstance(data, list):
             integrantes = []
             for row in data:
-                rango = RangoModel(row[0], row[1], row[2], row[3])
-                integrante = IntegranteModel(row[4], row[5], rango, row[6],
+                rango = RangeModel(row[0], row[1], row[2], row[3])
+                integrante = MemberModel(row[4], row[5], rango, row[6],
                                              row[7])
                 integrantes.append(integrante)
             return integrantes
         else:
             return data
 
-    def insert(self, integrante : IntegranteModel):
+    def insert(self, integrante : MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "integrantes (name, rango_id, datecreate) "\
@@ -68,7 +68,7 @@ class MemberService:
         self.__db.close_connection()
         return data
 
-    def update(self, integrante: IntegranteModel):
+    def update(self, integrante: MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE integrantes "\
         "SET name = ?, rango_id = ?, dateupdate = ? "\
@@ -80,7 +80,7 @@ class MemberService:
         self.__db.close_connection()
         return data
 
-    def delete(self, integrante: IntegranteModel):
+    def delete(self, integrante: MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM integrantes "\
         "WHERE id = ?",

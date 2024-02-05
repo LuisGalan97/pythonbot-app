@@ -1,5 +1,5 @@
 from DB.database import Database
-from Models.eventModel import EventoModel
+from Models.eventModel import EventModel
 
 class EventService:
     def __init__(self, db : Database):
@@ -25,13 +25,13 @@ class EventService:
         if isinstance(data, list):
             eventos = []
             for row in data:
-                evento = EventoModel(row[0], row[1], row[2], row[3])
+                evento = EventModel(row[0], row[1], row[2], row[3])
                 eventos.append(evento)
             return eventos
         else:
             return data
 
-    def insert(self, evento : EventoModel):
+    def insert(self, evento : EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "eventos (name, points, description) "\
@@ -44,7 +44,7 @@ class EventService:
         self.__db.close_connection()
         return data
 
-    def update(self, evento: EventoModel):
+    def update(self, evento: EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE eventos "\
         "SET name = ?, points = ?, description = ? "\
@@ -56,7 +56,7 @@ class EventService:
         self.__db.close_connection()
         return data
 
-    def delete(self, evento: EventoModel):
+    def delete(self, evento: EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM eventos "\
         "WHERE id = ?",

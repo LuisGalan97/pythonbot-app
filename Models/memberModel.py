@@ -1,7 +1,7 @@
-from .rangeModel import RangoModel
+from .rangeModel import RangeModel
 
-class IntegranteModel:
-    def __init__(self, id, name, rango : RangoModel, datecreate, dateupdate):
+class MemberModel:
+    def __init__(self, id, name, rango : RangeModel, datecreate, dateupdate):
         self.__id = id
         self.__name = name
         self.__rango = rango

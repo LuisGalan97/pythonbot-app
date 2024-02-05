@@ -1,4 +1,4 @@
-class EventoModel:
+class EventModel:
     def __init__(self, id, name, points, description):
         self.__id = id
         self.__name = name

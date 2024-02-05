@@ -1,5 +1,5 @@
 from DB.database import Database
-from Models.rangeModel import RangoModel
+from Models.rangeModel import RangeModel
 from Services.rangeService import RangeService
 
 class RangoController:
@@ -23,16 +23,16 @@ class RangoController:
             return rangos
 
     def createRango(self, name, control, description):
-        rango = RangoModel(None, name, control, description)
+        rango = RangeModel(None, name, control, description)
         result = self.__service.insert(rango)
         return result
 
     def updateRango(self, id, name, control, description):
-        rango = RangoModel(id, name, control, description)
+        rango = RangeModel(id, name, control, description)
         result = self.__service.update(rango)
         return result
 
     def deleteRango(self, id):
-        rango = RangoModel(id, None, None, None)
+        rango = RangeModel(id, None, None, None)
         result = self.__service.delete(rango)
         return result

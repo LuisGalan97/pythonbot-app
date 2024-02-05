@@ -1,4 +1,4 @@
-class RangoModel:
+class RangeModel:
     def __init__(self, id, name, control, description):
         self.__id = id
         self.__name = name

@@ -1,8 +1,8 @@
 from DB.database import Database
-from Models.assistModel import AsistenciaModel
-from Models.eventModel import EventoModel
-from Models.memberModel import IntegranteModel
-from Models.rangeModel import RangoModel
+from Models.assistModel import AssistModel
+from Models.eventModel import EventModel
+from Models.memberModel import MemberModel
+from Models.rangeModel import RangeModel
 
 class AssistService:
     def __init__(self, db : Database):
@@ -91,18 +91,18 @@ class AssistService:
         if isinstance(data, list):
             asistencias = []
             for row in data:
-                rango = RangoModel(row[0], row[1], row[2], row[3])
-                integrante = IntegranteModel(row[4], row[5], rango, row[6],
+                rango = RangeModel(row[0], row[1], row[2], row[3])
+                integrante = MemberModel(row[4], row[5], rango, row[6],
                                              row[7])
-                evento = EventoModel(row[8], row[9], row[10], row[11])
-                asistencia = AsistenciaModel(row[12], integrante, evento,
+                evento = EventModel(row[8], row[9], row[10], row[11])
+                asistencia = AssistModel(row[12], integrante, evento,
                                              row[13])
                 asistencias.append(asistencia)
             return asistencias
         else:
             return data
 
-    def insert(self, asistencia : AsistenciaModel):
+    def insert(self, asistencia : AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "asistencias (integrante_id, evento_id, date) "\
@@ -115,7 +115,7 @@ class AssistService:
         self.__db.close_connection()
         return data
 
-    def update(self, asistencia: AsistenciaModel):
+    def update(self, asistencia: AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE asistencias "\
         "SET integrante_id = ?, evento_id = ?, date = ? "\
@@ -127,7 +127,7 @@ class AssistService:
         self.__db.close_connection()
         return data
 
-    def delete(self, asistencia: AsistenciaModel):
+    def delete(self, asistencia: AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM asistencias "\
         "WHERE id = ?",

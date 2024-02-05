@@ -1,5 +1,5 @@
 from DB.database import Database
-from Models.rangeModel import RangoModel
+from Models.rangeModel import RangeModel
 
 class RangeService:
     def __init__(self, db : Database):
@@ -25,13 +25,13 @@ class RangeService:
         if isinstance(data, list):
             rangos = []
             for row in data:
-                rango = RangoModel(row[0], row[1], row[2], row[3])
+                rango = RangeModel(row[0], row[1], row[2], row[3])
                 rangos.append(rango)
             return rangos
         else:
             return data
 
-    def insert(self, rango : RangoModel):
+    def insert(self, rango : RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
         "rangos (name, control, description) "\
@@ -44,7 +44,7 @@ class RangeService:
         self.__db.close_connection()
         return data
 
-    def update(self, rango: RangoModel):
+    def update(self, rango: RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE rangos "\
         "SET name = ?, control = ?, description = ? "\
@@ -56,7 +56,7 @@ class RangeService:
         self.__db.close_connection()
         return data
 
-    def delete(self, rango: RangoModel):
+    def delete(self, rango: RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("DELETE FROM rangos "\
         "WHERE id = ?",

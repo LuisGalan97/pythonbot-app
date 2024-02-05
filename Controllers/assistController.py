@@ -1,7 +1,7 @@
 from DB.database import Database
-from Models.assistModel import AsistenciaModel
-from Models.eventModel import EventoModel
-from Models.memberModel import IntegranteModel
+from Models.assistModel import AssistModel
+from Models.eventModel import EventModel
+from Models.memberModel import MemberModel
 from Services.assistService import AssistService
 
 class AsistenciaController:
@@ -63,20 +63,20 @@ class AsistenciaController:
             return asistencias
 
     def createAsistencia(self, integrante_id, evento_id, date):
-        integrante = IntegranteModel(integrante_id, None, None, None, None)
-        evento = EventoModel(evento_id, None, None, None)
-        asistencia = AsistenciaModel(None, integrante, evento, date)
+        integrante = MemberModel(integrante_id, None, None, None, None)
+        evento = EventModel(evento_id, None, None, None)
+        asistencia = AssistModel(None, integrante, evento, date)
         result = self.__service.insert(asistencia)
         return result
 
     def updateAsistencia(self, id, integrante_id, evento_id, date):
-        integrante = IntegranteModel(integrante_id, None, None, None, None)
-        evento = EventoModel(evento_id, None, None, None)
-        asistencia = AsistenciaModel(id, integrante, evento, date)
+        integrante = MemberModel(integrante_id, None, None, None, None)
+        evento = EventModel(evento_id, None, None, None)
+        asistencia = AssistModel(id, integrante, evento, date)
         result = self.__service.update(asistencia)
         return result
 
     def deleteAsistencia(self, id):
-        asistencia = AsistenciaModel(id, None, None, None)
+        asistencia = AssistModel(id, None, None, None)
         result = self.__service.delete(asistencia)
         return result
