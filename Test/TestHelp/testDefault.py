@@ -6,7 +6,7 @@ Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
 
 @pytest.mark.asyncio
-async def test_command(capfd):
+async def testHelpDefault_command(capfd):
     command = "$command"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -17,7 +17,7 @@ async def test_command(capfd):
     assert "hola mundo" in out
 
 @pytest.mark.asyncio
-async def test_help(capfd):
+async def testHelpDefault_help(capfd):
     command = "$help"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -96,7 +96,7 @@ async def test_help(capfd):
     assert "** * $help:range**\n" in out
 
 @pytest.mark.asyncio
-async def test_helpDiagram(capfd):
+async def testHelpDefault_helpDiagram(capfd):
     command = "$help:diagram"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -108,7 +108,7 @@ async def test_helpDiagram(capfd):
     assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def test_helpAssist(capfd):
+async def testHelpDefault_helpAssist(capfd):
     command = "$help:assist"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -299,7 +299,7 @@ async def test_helpAssist(capfd):
            "valores de fecha en 'Día-Mes-Año'.\n" in out
 
 @pytest.mark.asyncio
-async def test_helpEvent(capfd):
+async def testHelpDefault_helpEvent(capfd):
     command = "$help:event"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -371,7 +371,7 @@ async def test_helpEvent(capfd):
 
 
 @pytest.mark.asyncio
-async def test_helpMember(capfd):
+async def testHelpDefault_helpMember(capfd):
     command = "$help:member"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -473,7 +473,7 @@ async def test_helpMember(capfd):
            "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
 
 @pytest.mark.asyncio
-async def test_helpRange(capfd):
+async def testHelpDefault_helpRange(capfd):
     command = "$help:range"
     message = Message(author="test", content=command)
     client = Client(user="test")
