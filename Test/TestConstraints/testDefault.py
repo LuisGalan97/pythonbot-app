@@ -13,14 +13,15 @@ testData = {
     "mem_id" : "",
     "mem_create" : "TestMemberCreated",
     "mem_update" : "TestMemberUpdated",
-    "mem_date" : "25-01-2100",
+    "mem_datecreate" : "25-01-2100",
+    "mem_dateupdate" : "26-01-2100",
     "ev_id" : "",
     "ev_create" : "TestEventCreated",
     "ev_update" : "TestEventUpdated",
     "ev_point" : 5,
     "ev_des" : "Descripción creada",
     "assist_id" : "",
-    "assist_date" : "26-01-2100"
+    "assist_date" : "27-01-2100"
 }
 
 Message = namedtuple('Message', ['author', 'content'])
@@ -46,7 +47,7 @@ async def testConstraintsDefault_addRange(capfd):
 async def testConstraintsDefault_addMember(capfd):
     command = f"$addMember [{testData['mem_create']}, "\
               f"{testData['ran_create']}, "\
-              f"{testData['mem_date']}]"
+              f"{testData['mem_datecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
@@ -116,7 +117,7 @@ async def testConstraintsDefault_listMemberId_checkUpdCascade(capfd):
     assert f"{testData['mem_id']}" in out
     assert f"{testData['mem_create']}" in out
     assert f"{testData['ran_update']}" in out
-    assert f"{testData['mem_date'].replace('-','/')}" in out
+    assert f"{testData['mem_datecreate'].replace('-','/')}" in out
     assert "Ninguno" in out
 
 @pytest.mark.asyncio
@@ -124,7 +125,7 @@ async def testConstraintsDefault_updMemberId(capfd):
     command = f"$updMember:id[{testData['mem_id']} ,"\
                f"{testData['mem_update']}, "\
                f"{testData['ran_update']}, "\
-               f"{testData['mem_date']}]"
+               f"{testData['mem_dateupdate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
@@ -185,6 +186,6 @@ async def testConstraintsDefault_listMemberId_checkDelNone(capfd):
     assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['mem_id']}" in out
     assert f"{testData['mem_update']}" in out
-    assert f"{testData['ran_update']}" in out
-    assert f"{testData['mem_date'].replace('-','/')}" in out
     assert "Ninguno" in out
+    assert f"{testData['mem_datecreate'].replace('-','/')}" in out
+    assert f"{testData['mem_dateupdate'].replace('-','/')}" in out
