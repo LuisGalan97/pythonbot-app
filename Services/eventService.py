@@ -4,20 +4,27 @@ from Models.eventModel import EventModel
 class EventService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = "SELECT * FROM eventos"
+        self.__selectQuery = (
+        "SELECT "\
+            "id, "\
+            "nombre AS name, "\
+            "puntos AS points, "\
+            "descripcion AS description "\
+        "FROM eventos"\
+        )
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "ORDER BY points DESC")
+                                            "ORDER BY puntos DESC")
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE id = ?",
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE name = ?",
+                                            "WHERE nombre = ?",
                                            (target["name"],))
         else:
             data = None
@@ -34,7 +41,7 @@ class EventService:
     def insert(self, evento : EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "eventos (name, points, description) "\
+        "eventos (nombre, puntos, descripcion) "\
         "VALUES (?, ?, ?)",
         (evento.getName(),
         evento.getPoints(),
@@ -47,7 +54,7 @@ class EventService:
     def update(self, evento: EventModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE eventos "\
-        "SET name = ?, points = ?, description = ? "\
+        "SET nombre = ?, puntos = ?, descripcion = ? "\
         "WHERE id = ?",
         (evento.getName(),
         evento.getPoints(),

@@ -4,7 +4,14 @@ from Models.rangeModel import RangeModel
 class RangeService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = "SELECT * FROM rangos"
+        self.__selectQuery = (
+        "SELECT "\
+            "id, "\
+            "nombre AS name, "\
+            "control, "\
+            "descripcion AS description "\
+        "FROM rangos"
+        )
 
     def select(self, target = None):
         self.__db.start_connection()
@@ -13,11 +20,11 @@ class RangeService:
                                             "ORDER BY control ASC")
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE id = ?", 
+                                            "WHERE id = ?",
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE name = ?", 
+                                            "WHERE nomhre = ?",
                                            (target["name"],))
         else:
             data = None
@@ -34,7 +41,7 @@ class RangeService:
     def insert(self, rango : RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "rangos (name, control, description) "\
+        "rangos (nombre, control, descripcion) "\
         "VALUES (?, ?, ?)",
         (rango.getName(),
         rango.getControl(),
@@ -47,7 +54,7 @@ class RangeService:
     def update(self, rango: RangeModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE rangos "\
-        "SET name = ?, control = ?, description = ? "\
+        "SET nombre = ?, control = ?, descripcion = ? "\
         "WHERE id = ?",
         (rango.getName(),
         rango.getControl(),

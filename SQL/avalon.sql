@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     23/01/2024 2:58:46 a. m.                     */
+/* Created on:     4/02/2024 10:39:34 p. m.                     */
 /*==============================================================*/
 
 
@@ -12,7 +12,7 @@ create table asistencias
    id                   bigint not null auto_increment,
    integrante_id        bigint not null,
    evento_id            bigint not null,
-   date                 date not null,
+   fecha                date not null,
    primary key (id)
 );
 
@@ -22,9 +22,9 @@ create table asistencias
 create table eventos
 (
    id                   bigint not null auto_increment,
-   name                 varchar(200) not null,
-   points               numeric(12,2) not null default 0,
-   description          varchar(1000) not null,
+   nombre               varchar(200) not null,
+   puntos               numeric(12,2) not null default 0,
+   descripcion          varchar(1000) not null,
    primary key (id)
 );
 
@@ -34,10 +34,10 @@ create table eventos
 create table integrantes
 (
    id                   bigint not null auto_increment,
-   name                 varchar(200) not null,
+   nombre               varchar(200) not null,
    rango_id             bigint not null,
-   datecreate           date not null,
-   dateupdate           date default null,
+   fechacreacion        date not null,
+   fechamodificacion    date default null,
    primary key (id)
 );
 
@@ -47,9 +47,9 @@ create table integrantes
 create table rangos
 (
    id                   bigint not null auto_increment,
-   name                 varchar(200) not null,
+   nombre               varchar(200) not null,
    control              bigint not null,
-   description          varchar(1000) not null,
+   descripcion          varchar(1000) not null,
    primary key (id)
 );
 

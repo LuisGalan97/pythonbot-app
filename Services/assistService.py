@@ -10,19 +10,19 @@ class AssistService:
         self.__selectQuery = (
         "SELECT "\
             "r.id AS integrante_rango_id, "\
-            "r.name AS integrante_rango_name, "\
+            "r.nombre AS integrante_rango_name, "\
             "r.control AS integrante_rango_control, "\
-            "r.description AS integrante_rango_description, "\
-            "i.id as integrante_id, "\
-            "i.name AS integrante_name, "\
-            "strftime('%d/%m/%Y', i.datecreate) AS integrante_datecreate, "\
-            "strftime('%d/%m/%Y', i.dateupdate) AS integrante_dateupdate, "\
+            "r.descripcion AS integrante_rango_description, "\
+            "i.id AS integrante_id, "\
+            "i.nombre AS integrante_name, "\
+            "strftime('%d/%m/%Y', i.fechacreacion) AS integrante_datecreate, "\
+            "strftime('%d/%m/%Y', i.fechamodificacion) AS integrante_dateupdate, "\
             "e.id AS evento_id, "\
-            "e.name AS evento_name, "\
-            "e.points AS evento_points, "\
-            "e.description AS evento_description, "\
+            "e.nombre AS evento_name, "\
+            "e.puntos AS evento_points, "\
+            "e.descripcion AS evento_description, "\
             "a.id, "\
-            "strftime('%d/%m/%Y', a.date) AS date "\
+            "strftime('%d/%m/%Y', a.fecha) AS date "\
         "FROM asistencias a "\
         "LEFT JOIN integrantes i ON i.id = a.integrante_id "\
         "LEFT JOIN eventos e ON e.id = a.evento_id "\
@@ -41,7 +41,7 @@ class AssistService:
               "date_1" in target and
               "date_2" in target):
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE a.date BETWEEN ? AND ? "\
+                                            "WHERE a.fecha BETWEEN ? AND ? "\
                                             "AND a.integrante_id = ? AND "\
                                             "a.evento_id = ?",
                                            (target["date_1"],
@@ -58,7 +58,7 @@ class AssistService:
               "date_1" in target and
               "date_2" in target):
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE a.date BETWEEN ? AND ? "\
+                                            "WHERE a.fecha BETWEEN ? AND ? "\
                                             "AND a.integrante_id = ?",
                                            (target["date_1"],
                                             target["date_2"],
@@ -71,7 +71,7 @@ class AssistService:
               "date_1" in target and
               "date_2" in target):
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE a.date BETWEEN ? AND ? "\
+                                            "WHERE a.fecha BETWEEN ? AND ? "\
                                             "AND a.evento_id = ?",
                                            (target["date_1"],
                                             target["date_2"],
@@ -82,7 +82,7 @@ class AssistService:
                                            (target["evento_id"],))
         elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE a.date BETWEEN ? AND ?",
+                                            "WHERE a.fecha BETWEEN ? AND ?",
                                            (target["date_1"],
                                             target["date_2"],))
         else:
@@ -105,7 +105,7 @@ class AssistService:
     def insert(self, asistencia : AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "asistencias (integrante_id, evento_id, date) "\
+        "asistencias (integrante_id, evento_id, fecha) "\
         "VALUES (?, ?, ?)",
         (asistencia.getIntegrante().getId(),
         asistencia.getEvento().getId(),
@@ -118,7 +118,7 @@ class AssistService:
     def update(self, asistencia: AssistModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE asistencias "\
-        "SET integrante_id = ?, evento_id = ?, date = ? "\
+        "SET integrante_id = ?, evento_id = ?, fecha = ? "\
         "WHERE id = ?",
         (asistencia.getIntegrante().getId(),
         asistencia.getEvento().getId(),

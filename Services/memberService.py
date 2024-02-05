@@ -8,13 +8,13 @@ class MemberService:
         self.__selectQuery = (
         "SELECT "\
             "r.id AS rango_id, "\
-            "r.name AS rango_name, "\
+            "r.nombre AS rango_name, "\
             "r.control AS rango_control, "\
-            "r.description AS rango_description, "\
+            "r.descripcion AS rango_description, "\
             "i.id, "\
-            "i.name, "\
-            "strftime('%d/%m/%Y', i.datecreate) AS datecreate, "\
-            "strftime('%d/%m/%Y', i.dateupdate) AS dateupdate "\
+            "i.nombre AS name, "\
+            "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
+            "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate "\
         "FROM integrantes i "\
         "LEFT JOIN rangos r ON r.id = i.rango_id"
         )
@@ -29,7 +29,7 @@ class MemberService:
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE i.name = ?",
+                                            "WHERE i.nombre = ?",
                                            (target["name"],))
         elif "rango_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
@@ -37,7 +37,7 @@ class MemberService:
                                            (target["rango_id"],))
         elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE i.datecreate BETWEEN "\
+                                            "WHERE i.fechacreacion BETWEEN "\
                                             "? AND ?",
                                            (target["date_1"],
                                             target["date_2"],))
@@ -58,7 +58,7 @@ class MemberService:
     def insert(self, integrante : MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "integrantes (name, rango_id, datecreate) "\
+        "integrantes (nombre, rango_id, fechacreacion) "\
         "VALUES (?, ?, ?)",
         (integrante.getName(),
         integrante.getRango().getId(),
@@ -71,7 +71,7 @@ class MemberService:
     def update(self, integrante: MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE integrantes "\
-        "SET name = ?, rango_id = ?, dateupdate = ? "\
+        "SET nombre = ?, rango_id = ?, fechamodificacion = ? "\
         "WHERE id = ?",
         (integrante.getName(),
         integrante.getRango().getId(),
