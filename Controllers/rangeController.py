@@ -2,7 +2,7 @@ from DB.database import Database
 from Models.rangeModel import RangeModel
 from Services.rangeService import RangeService
 
-class RangoController:
+class RangeController:
     def __init__(self, db : Database):
         self.__service = RangeService(db)
 

@@ -1,17 +1,17 @@
 from DB.database import Database
-from Controllers.assistController import AsistenciaController
-from Controllers.eventController import EventoController
-from Controllers.memberController import IntegranteController
-from Controllers.rangeController import RangoController
+from Controllers.assistController import AssistController
+from Controllers.eventController import EventController
+from Controllers.memberController import MemberController
+from Controllers.rangeController import RangeController
 from Helpers.helpers import Helpers
 
 class AppHandler:
     def __init__(self):
         self.__db = Database("avalon.db", "avalon-lite.sql", "data.sql")
-        self.__asistenciaController = AsistenciaController(self.__db)
-        self.__rangoController = RangoController(self.__db)
-        self.__eventoController = EventoController(self.__db)
-        self.__integranteController = IntegranteController(self.__db)
+        self.__asistenciaController = AssistController(self.__db)
+        self.__rangoController = RangeController(self.__db)
+        self.__eventoController = EventController(self.__db)
+        self.__integranteController = MemberController(self.__db)
 
     def getDatas(self, request, struct):
         try:

@@ -2,7 +2,7 @@ from DB.database import Database
 from Models.eventModel import EventModel
 from Services.eventService import EventService
 
-class EventoController:
+class EventController:
     def __init__(self, db : Database):
         self.__service = EventService(db)
 

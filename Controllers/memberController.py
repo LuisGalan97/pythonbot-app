@@ -3,7 +3,7 @@ from Models.memberModel import MemberModel
 from Models.rangeModel import RangeModel
 from Services.memberService import MemberService
 
-class IntegranteController:
+class MemberController:
     def __init__(self, db : Database):
         self.__service = MemberService(db)
 

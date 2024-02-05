@@ -4,7 +4,7 @@ from Models.eventModel import EventModel
 from Models.memberModel import MemberModel
 from Services.assistService import AssistService
 
-class AsistenciaController:
+class AssistController:
     def __init__(self, db : Database):
         self.__service = AssistService(db)
 
