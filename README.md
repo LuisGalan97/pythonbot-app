@@ -1,4 +1,4 @@
-<h1>**PROYECTO PYTHONBOT**</h1>
+<h3><b>Aplicacion pythonbot</b></h3>
 
 Repositorio asociado a aplicacion desarrollada en lenguaje python para implementacion de bot en discord, con el fin de permitir la gestion de informacion de usuarios y asistencia en eventos registrados, mediante implementacion de controlador, modelos y servicios, para el guardado de datos en base de datos SQLite, esto mediante la habilitacion de una lista de comandos
 de lectura y escritura destinados para ser usados en el chat de discord una vez se encuentre activo.
