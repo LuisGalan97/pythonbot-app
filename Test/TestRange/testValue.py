@@ -197,7 +197,7 @@ async def testRangeValue_addRange_controlEmpty(capfd):
                            Helpers.setStruct("rango"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
-               "**_Puntos_**\n" in out
+               "**_Control_**\n" in out
 
 @pytest.mark.asyncio
 async def testRangeValue_addRange_controlInvalid(capfd):
@@ -225,7 +225,7 @@ async def testRangeValue_addRange_controlInvalid(capfd):
                            Helpers.setStruct("rango"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
-               f"**_Puntos_** "\
+               f"**_Control_** "\
                 "es invalido.\n" in out
 
 #----------------------Test $addRange [*, *, Descripción]----------------------
@@ -663,7 +663,7 @@ async def testRangeValue_updRangeId_controlEmpty(capfd):
                            Helpers.updStruct("rango", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
-               "**_Puntos_**\n" in out
+               "**_Control_**\n" in out
 
 @pytest.mark.asyncio
 async def testRangeValue_updRangeId_controlInvalid(capfd):
@@ -696,7 +696,7 @@ async def testRangeValue_updRangeId_controlInvalid(capfd):
                            Helpers.updStruct("rango", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
-               f"**_Puntos_** "\
+               f"**_Control_** "\
                 "es invalido.\n" in out
 
 #-------------------Test $updRange:id [*, *, *, Descripción]-------------------
@@ -1061,7 +1061,7 @@ async def testRangeValue_updRangeName_controlEmpty(capfd):
                            Helpers.updStruct("rango", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
-               "**_Puntos_**\n" in out
+               "**_Control_**\n" in out
 
 @pytest.mark.asyncio
 async def testRangeValue_updRangeName_controlInvalid(capfd):
@@ -1089,7 +1089,7 @@ async def testRangeValue_updRangeName_controlInvalid(capfd):
                            Helpers.updStruct("rango", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
-               f"**_Puntos_** "\
+               f"**_Control_** "\
                 "es invalido.\n" in out
 
 #-------------------Test $updRange:name [*, *, Descripción]--------------------
