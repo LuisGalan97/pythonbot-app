@@ -16,11 +16,11 @@ class MemberController:
                     {
                         "id" : member.getId(),
                         "name" : member.getName(),
-                        "rango_id" : member.getRango().getId(),
-                        "rango_name" : member.getRango().getName(),
-                        "rango_control" : member.getRango().getControl(),
+                        "rango_id" : member.getRange().getId(),
+                        "rango_name" : member.getRange().getName(),
+                        "rango_control" : member.getRange().getControl(),
                         "rango_description" : member.
-                                              getRango().
+                                              getRange().
                                               getDescription(),
                         "datecreate" : member.getDateCreate(),
                         "dateupdate" : member.getDateUpdate()
