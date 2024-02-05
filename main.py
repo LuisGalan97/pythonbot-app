@@ -19,6 +19,7 @@ async def on_ready():
 async def on_message(message):
     hdlr = MessageHandler(message, client)
     await hdlr.inMsg()
+    await hdlr.sendText()
     await hdlr.helpMsg()
     #------------------------------Asistencias---------------------------------
     await hdlr.contMsg("addAssist", app.setData,
