@@ -13,7 +13,8 @@ testData = {
     "mem_id" : "",
     "mem_create" : "TestMemberCreated",
     "mem_update" : "TestMemberUpdated",
-    "mem_date" : "25-01-2100",
+    "mem_datecreate" : "25-01-2100",
+    "mem_dateupdate" : "26-01-2100",
 }
 
 Message = namedtuple('Message', ['author', 'content'])
@@ -53,7 +54,8 @@ async def testConstraintsDefault_listRangeId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_addMember(capfd):
     command = f"$addMember [{testData['mem_create']}, "\
-              f"{testData['ran_create']}, {testData['date']}]"
+              f"{testData['ran_create']}, "\
+              f"{testData['mem_datecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
@@ -109,4 +111,5 @@ async def testConstraintsDefault_listMemberId_checkUpdCascade(capfd):
     assert f"{testData['mem_id']}" in out
     assert f"{testData['mem_create']}" in out
     assert f"{testData['ran_update']}" in out
-    assert f"{testData['date'].replace('-','/')}" in out
+    assert f"{testData['mem_datecreate'].replace('-','/')}" in out
+    assert "Ninguno" in out
