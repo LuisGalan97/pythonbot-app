@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def testStruct_addRange_invalidStruct(capfd):
+async def testRangeStruct_addRange_invalidStruct(capfd):
     commands = ["$addRange", "$addRange ",
                 "$addRange[", "$addRange [",
                 "$addRangeFILL[", "$addRange]",
@@ -28,7 +28,7 @@ async def testStruct_addRange_invalidStruct(capfd):
         assert "**$addRange [_Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testStruct_updRangeId_invalidStruct(capfd):
+async def testRangeStruct_updRangeId_invalidStruct(capfd):
     commands = ["$updRange:id", "$updRange:id ",
                 "$updRange:id[", "$updRange:id [",
                 "$updRange:idFILL[", "$updRange:id]",
@@ -47,7 +47,7 @@ async def testStruct_updRangeId_invalidStruct(capfd):
         assert "**$updRange:id [_ID, Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testStruct_updRangeName_invalidStruct(capfd):
+async def testRangeStruct_updRangeName_invalidStruct(capfd):
     commands = ["$updRange:name", "$updRange:name ",
                 "$updRange:name[", "$updRange:name [",
                 "$updRange:nameFILL[", "$updRange:name]",
@@ -66,7 +66,7 @@ async def testStruct_updRangeName_invalidStruct(capfd):
         assert "**$updRange:name [_Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testStruct_delRangeId_invalidStruct(capfd):
+async def testRangeStruct_delRangeId_invalidStruct(capfd):
     commands = ["$delRange:id", "$delRange:id ",
                 "$delRange:id[", "$delRange:id [",
                 "$delRange:idFILL[", "$delRange:id]",
@@ -85,7 +85,7 @@ async def testStruct_delRangeId_invalidStruct(capfd):
         assert "**$delRange:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def testStruct_delRangeName_invalidStruct(capfd):
+async def testRangeStruct_delRangeName_invalidStruct(capfd):
     commands = ["$delRange:name", "$delRange:name ",
                 "$delRange:name[", "$delRange:name [",
                 "$delRange:nameFILL[", "$delRange:name]",
@@ -104,7 +104,7 @@ async def testStruct_delRangeName_invalidStruct(capfd):
         assert "**$delRange:name [_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def testStruct_listRangeId_invalidStruct(capfd):
+async def testRangeStruct_listRangeId_invalidStruct(capfd):
     commands = ["$listRange:id", "$listRange:id ",
                 "$listRange:id[", "$listRange:id [",
                 "$listRange:idFILL[", "$listRange:id]",
@@ -123,7 +123,7 @@ async def testStruct_listRangeId_invalidStruct(capfd):
         assert "**$listRange:id [_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def testStruct_listRangeName_invalidStruct(capfd):
+async def testRangeStruct_listRangeName_invalidStruct(capfd):
     commands = ["$listRange:name", "$listRange:name ",
                 "$listRange:name[", "$listRange:name [",
                 "$listRange:nameFILL[", "$listRange:name]",

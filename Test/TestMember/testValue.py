@@ -17,7 +17,7 @@ app = AppHandler()
 
 #----------------------Test $addMember [Nombre, *, *]----------------------
 @pytest.mark.asyncio
-async def testValue_addMember_nameEmpty(capfd):
+async def testMemberValue_addMember_nameEmpty(capfd):
     value = ""
     commands = [f"$addMember[{value},"\
                 f"{testData['range']},"\
@@ -45,7 +45,7 @@ async def testValue_addMember_nameEmpty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_nameLong(capfd):
+async def testMemberValue_addMember_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$addMember[{value},"\
@@ -76,7 +76,7 @@ async def testValue_addMember_nameLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_nameStartChar(capfd):
+async def testMemberValue_addMember_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -107,7 +107,7 @@ async def testValue_addMember_nameStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_nameSpeChar(capfd):
+async def testMemberValue_addMember_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -138,7 +138,7 @@ async def testValue_addMember_nameSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_nameRepeatChar(capfd):
+async def testMemberValue_addMember_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$addMember[{value},"\
@@ -172,7 +172,7 @@ async def testValue_addMember_nameRepeatChar(capfd):
 
 #-----------------------Test $addMember [*, Rango, *]-------------------------
 @pytest.mark.asyncio
-async def testValue_addMember_rangeEmpty(capfd):
+async def testMemberValue_addMember_rangeEmpty(capfd):
     value = ""
     commands = [f"$addMember[{testData['name']},"\
                 f"{value},"\
@@ -200,7 +200,7 @@ async def testValue_addMember_rangeEmpty(capfd):
                "**_Rango_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_rangeLong(capfd):
+async def testMemberValue_addMember_rangeLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$addMember[{testData['name']},"\
@@ -231,7 +231,7 @@ async def testValue_addMember_rangeLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_rangeStartChar(capfd):
+async def testMemberValue_addMember_rangeStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -262,7 +262,7 @@ async def testValue_addMember_rangeStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_rangeSpeChar(capfd):
+async def testMemberValue_addMember_rangeSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -293,7 +293,7 @@ async def testValue_addMember_rangeSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_rangeRepeatChar(capfd):
+async def testMemberValue_addMember_rangeRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$addMember[{testData['name']},"\
@@ -327,7 +327,7 @@ async def testValue_addMember_rangeRepeatChar(capfd):
 
 #----------------------Test $addMember [*, *, Fecha]----------------------
 @pytest.mark.asyncio
-async def testValue_addMember_dateEmpty(capfd):
+async def testMemberValue_addMember_dateEmpty(capfd):
     value = ""
     commands = [f"$addMember[{testData['name']},"\
                 f"{testData['range']},"\
@@ -355,7 +355,7 @@ async def testValue_addMember_dateEmpty(capfd):
                "**_Fecha_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_addMember_dateInvalid(capfd):
+async def testMemberValue_addMember_dateInvalid(capfd):
     value = "test"
     commands = [f"$addMember[{testData['name']},"\
                 f"{testData['range']},"\
@@ -385,7 +385,7 @@ async def testValue_addMember_dateInvalid(capfd):
 
 #------------------------Test $updMember:id [ID, *, *, *]----------------------
 @pytest.mark.asyncio
-async def testValue_updMemberId_idEmpty(capfd):
+async def testMemberValue_updMemberId_idEmpty(capfd):
     value = ""
     commands = [f"$updMember:id[{value},"\
                 f"{testData['name']},"\
@@ -418,7 +418,7 @@ async def testValue_updMemberId_idEmpty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_idInvalid(capfd):
+async def testMemberValue_updMemberId_idInvalid(capfd):
     value = "test"
     commands = [f"$updMember:id[{value},"\
                 f"{testData['name']},"\
@@ -453,7 +453,7 @@ async def testValue_updMemberId_idInvalid(capfd):
 
 #---------------------Test $updMember:id [*, Nombre, *, *]---------------------
 @pytest.mark.asyncio
-async def testValue_updMemberId_nameEmpty(capfd):
+async def testMemberValue_updMemberId_nameEmpty(capfd):
     value = ""
     commands = [f"$updMember:id[{testData['id']},"
                 f"{value},"\
@@ -486,7 +486,7 @@ async def testValue_updMemberId_nameEmpty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_nameLong(capfd):
+async def testMemberValue_updMemberId_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updMember:id[{testData['id']},"
@@ -522,7 +522,7 @@ async def testValue_updMemberId_nameLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_nameStartChar(capfd):
+async def testMemberValue_updMemberId_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -558,7 +558,7 @@ async def testValue_updMemberId_nameStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_nameSpeChar(capfd):
+async def testMemberValue_updMemberId_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -594,7 +594,7 @@ async def testValue_updMemberId_nameSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_nameRepeatChar(capfd):
+async def testMemberValue_updMemberId_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updMember:id[{testData['id']},"
@@ -633,7 +633,7 @@ async def testValue_updMemberId_nameRepeatChar(capfd):
 
 #--------------------Test $updMember:id [*, *, Rango, *]-----------------------
 @pytest.mark.asyncio
-async def testValue_updMemberId_rangeEmpty(capfd):
+async def testMemberValue_updMemberId_rangeEmpty(capfd):
     value = ""
     commands = [f"$updMember:id[{testData['id']},"
                 f"{testData['name']},"\
@@ -666,7 +666,7 @@ async def testValue_updMemberId_rangeEmpty(capfd):
                "**_Rango_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_rangeLong(capfd):
+async def testMemberValue_updMemberId_rangeLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updMember:id[{testData['id']},"
@@ -702,7 +702,7 @@ async def testValue_updMemberId_rangeLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_rangeStartChar(capfd):
+async def testMemberValue_updMemberId_rangeStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -738,7 +738,7 @@ async def testValue_updMemberId_rangeStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_rangeSpeChar(capfd):
+async def testMemberValue_updMemberId_rangeSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -774,7 +774,7 @@ async def testValue_updMemberId_rangeSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_rangeRepeatChar(capfd):
+async def testMemberValue_updMemberId_rangeRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updMember:id[{testData['id']},"
@@ -813,7 +813,7 @@ async def testValue_updMemberId_rangeRepeatChar(capfd):
 
 #---------------------Test $updMember:id [*, *, *, Fecha]----------------------
 @pytest.mark.asyncio
-async def testValue_updMemberId_dateEmpty(capfd):
+async def testMemberValue_updMemberId_dateEmpty(capfd):
     value = ""
     commands = [f"$updMember:id[{testData['id']},"
                 f"{testData['name']},"\
@@ -846,7 +846,7 @@ async def testValue_updMemberId_dateEmpty(capfd):
                "**_Fecha_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberId_dateInvalid(capfd):
+async def testMemberValue_updMemberId_dateInvalid(capfd):
     value = "test"
     commands = [f"$updMember:id[{testData['id']},"
                 f"{testData['name']},"\
@@ -881,7 +881,7 @@ async def testValue_updMemberId_dateInvalid(capfd):
 
 #---------------------Test $updMember:name [Nombre, *, *]----------------------
 @pytest.mark.asyncio
-async def testValue_updMemberName_nameEmpty(capfd):
+async def testMemberValue_updMemberName_nameEmpty(capfd):
     value = ""
     commands = [f"$updMember:name[{value},"\
                 f"{testData['range']},"\
@@ -909,7 +909,7 @@ async def testValue_updMemberName_nameEmpty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_nameLong(capfd):
+async def testMemberValue_updMemberName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updMember:name[{value},"\
@@ -940,7 +940,7 @@ async def testValue_updMemberName_nameLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_nameStartChar(capfd):
+async def testMemberValue_updMemberName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -971,7 +971,7 @@ async def testValue_updMemberName_nameStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_nameSpeChar(capfd):
+async def testMemberValue_updMemberName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1002,7 +1002,7 @@ async def testValue_updMemberName_nameSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_nameRepeatChar(capfd):
+async def testMemberValue_updMemberName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updMember:name[{value},"\
@@ -1036,7 +1036,7 @@ async def testValue_updMemberName_nameRepeatChar(capfd):
 
 #----------------------Test $updMember:name [*, Rango, *]----------------------
 @pytest.mark.asyncio
-async def testValue_updMemberName_rangeEmpty(capfd):
+async def testMemberValue_updMemberName_rangeEmpty(capfd):
     value = ""
     commands = [f"$updMember:name[{testData['name']},"\
                 f"{value},"\
@@ -1064,7 +1064,7 @@ async def testValue_updMemberName_rangeEmpty(capfd):
                "**_Rango_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_rangeLong(capfd):
+async def testMemberValue_updMemberName_rangeLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$updMember:name[{testData['name']},"\
@@ -1095,7 +1095,7 @@ async def testValue_updMemberName_rangeLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_rangeStartChar(capfd):
+async def testMemberValue_updMemberName_rangeStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1126,7 +1126,7 @@ async def testValue_updMemberName_rangeStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_rangeSpeChar(capfd):
+async def testMemberValue_updMemberName_rangeSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1157,7 +1157,7 @@ async def testValue_updMemberName_rangeSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_rangeRepeatChar(capfd):
+async def testMemberValue_updMemberName_rangeRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$updMember:name[{testData['name']},"\
@@ -1191,7 +1191,7 @@ async def testValue_updMemberName_rangeRepeatChar(capfd):
 
 #----------------------Test $updMember:name [*, *, Fecha]----------------------
 @pytest.mark.asyncio
-async def testValue_updMemberName_dateEmpty(capfd):
+async def testMemberValue_updMemberName_dateEmpty(capfd):
     value = ""
     commands = [f"$updMember:name[{testData['name']},"\
                 f"{testData['range']},"\
@@ -1219,7 +1219,7 @@ async def testValue_updMemberName_dateEmpty(capfd):
                "**_Fecha_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_updMemberName_dateInvalid(capfd):
+async def testMemberValue_updMemberName_dateInvalid(capfd):
     value = "test"
     commands = [f"$updMember:name[{testData['name']},"\
                 f"{testData['range']},"\
@@ -1249,7 +1249,7 @@ async def testValue_updMemberName_dateInvalid(capfd):
 
 #------------------------------$delMember:id [ID]------------------------------
 @pytest.mark.asyncio
-async def testValue_delMemberId_idEmpty(capfd):
+async def testMemberValue_delMemberId_idEmpty(capfd):
     value = ""
     commands = [f"$delMember:id[{value}],",
                 f"$delMember:id [{value} ], ",
@@ -1267,7 +1267,7 @@ async def testValue_delMemberId_idEmpty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delMemberId_idInvalid(capfd):
+async def testMemberValue_delMemberId_idInvalid(capfd):
     value = "test"
     commands = [f"$delMember:id[{value}],",
                 f"$delMember:id [{value} ], ",
@@ -1287,7 +1287,7 @@ async def testValue_delMemberId_idInvalid(capfd):
 
 #------------------------Test $delMember:name [Nombre]-------------------------
 @pytest.mark.asyncio
-async def testValue_delMemberName_nameEmpty(capfd):
+async def testMemberValue_delMemberName_nameEmpty(capfd):
     value = ""
     commands = [f"$delMember:name[{value}]",
                 f"$delMember:name [{value} ]",
@@ -1305,7 +1305,7 @@ async def testValue_delMemberName_nameEmpty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delMemberName_nameLong(capfd):
+async def testMemberValue_delMemberName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$delMember:name[{value}]",
@@ -1326,7 +1326,7 @@ async def testValue_delMemberName_nameLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delMemberName_nameStartChar(capfd):
+async def testMemberValue_delMemberName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1347,7 +1347,7 @@ async def testValue_delMemberName_nameStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delMemberName_nameSpeChar(capfd):
+async def testMemberValue_delMemberName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1368,7 +1368,7 @@ async def testValue_delMemberName_nameSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_delMemberName_nameRepeatChar(capfd):
+async def testMemberValue_delMemberName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$delMember:name[{value}]",
@@ -1392,7 +1392,7 @@ async def testValue_delMemberName_nameRepeatChar(capfd):
 
 #-----------------------------$listMember:id [ID]------------------------------
 @pytest.mark.asyncio
-async def testValue_listMemberId_idEmpty(capfd):
+async def testMemberValue_listMemberId_idEmpty(capfd):
     value = ""
     commands = [f"$listMember:id[{value}],",
                 f"$listMember:id [{value} ], ",
@@ -1410,7 +1410,7 @@ async def testValue_listMemberId_idEmpty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberId_idInvalid(capfd):
+async def testMemberValue_listMemberId_idInvalid(capfd):
     value = "test"
     commands = [f"$listMember:id[{value}],",
                 f"$listMember:id [{value} ], ",
@@ -1430,7 +1430,7 @@ async def testValue_listMemberId_idInvalid(capfd):
 
 #-----------------------Test $listMember:name [Nombre]-------------------------
 @pytest.mark.asyncio
-async def testValue_listMemberName_nameEmpty(capfd):
+async def testMemberValue_listMemberName_nameEmpty(capfd):
     value = ""
     commands = [f"$listMember:name[{value}]",
                 f"$listMember:name [{value} ]",
@@ -1448,7 +1448,7 @@ async def testValue_listMemberName_nameEmpty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberName_nameLong(capfd):
+async def testMemberValue_listMemberName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listMember:name[{value}]",
@@ -1469,7 +1469,7 @@ async def testValue_listMemberName_nameLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberName_nameStartChar(capfd):
+async def testMemberValue_listMemberName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1490,7 +1490,7 @@ async def testValue_listMemberName_nameStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberName_nameSpeChar(capfd):
+async def testMemberValue_listMemberName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1511,7 +1511,7 @@ async def testValue_listMemberName_nameSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberName_nameRepeatChar(capfd):
+async def testMemberValue_listMemberName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listMember:name[{value}]",
@@ -1535,7 +1535,7 @@ async def testValue_listMemberName_nameRepeatChar(capfd):
 
 #---------------------Test $listMember:range [Rango]---------------------
 @pytest.mark.asyncio
-async def testValue_listMemberRange_memberEmpty(capfd):
+async def testMemberValue_listMemberRange_memberEmpty(capfd):
     value = ""
     commands = [f"$listMember:range[{value}]",
                 f"$listMember:range [{value} ]",
@@ -1553,7 +1553,7 @@ async def testValue_listMemberRange_memberEmpty(capfd):
                "**_Rango_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberRange_memberLong(capfd):
+async def testMemberValue_listMemberRange_memberLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listMember:range[{value}]",
@@ -1574,7 +1574,7 @@ async def testValue_listMemberRange_memberLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberRange_memberStartChar(capfd):
+async def testMemberValue_listMemberRange_memberStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1595,7 +1595,7 @@ async def testValue_listMemberRange_memberStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberRange_memberSpeChar(capfd):
+async def testMemberValue_listMemberRange_memberSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1616,7 +1616,7 @@ async def testValue_listMemberRange_memberSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listMemberRange_memberRepeatChar(capfd):
+async def testMemberValue_listMemberRange_memberRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listMember:range[{value}]",

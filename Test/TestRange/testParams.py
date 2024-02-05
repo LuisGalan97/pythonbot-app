@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def testParams_addRange_invalidParams(capfd):
+async def testRangeParams_addRange_invalidParams(capfd):
     commands = ["$addRange[]",
                 "$addRange []",
                 "$addRange[,,,,]",
@@ -34,7 +34,7 @@ async def testParams_addRange_invalidParams(capfd):
         assert "**[_Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_updRangeId_invalidParams(capfd):
+async def testRangeParams_updRangeId_invalidParams(capfd):
     commands = ["$updRange:id[]",
                 "$updRange:id []",
                 "$updRange:id[,,,,]",
@@ -59,7 +59,7 @@ async def testParams_updRangeId_invalidParams(capfd):
         assert "**[_ID, Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_updRangeName_invalidParams(capfd):
+async def testRangeParams_updRangeName_invalidParams(capfd):
     commands = ["$updRange:name[]",
                 "$updRange:name []",
                 "$updRange:name[,,,,]",
@@ -84,7 +84,7 @@ async def testParams_updRangeName_invalidParams(capfd):
         assert "**[_Nombre, Control, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_delRangeId_invalidParams(capfd):
+async def testRangeParams_delRangeId_invalidParams(capfd):
     commands = ["$delRange:id[,,,,]",
                 "$delRange:id [,,,,]",
                 "$delRange:id[,,,,]FILL",
@@ -107,7 +107,7 @@ async def testParams_delRangeId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_delRangeName_invalidParams(capfd):
+async def testRangeParams_delRangeName_invalidParams(capfd):
     commands = ["$delRange:name[,,,,]",
                 "$delRange:name [,,,,]",
                 "$delRange:name[,,,,]FILL",
@@ -130,7 +130,7 @@ async def testParams_delRangeName_invalidParams(capfd):
         assert "**[_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_listRangeId_invalidParams(capfd):
+async def testRangeParams_listRangeId_invalidParams(capfd):
     commands = ["$listRange:id[,,,,]",
                 "$listRange:id [,,,,]",
                 "$listRange:id[,,,,]FILL",
@@ -153,7 +153,7 @@ async def testParams_listRangeId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_listRangeName_invalidParams(capfd):
+async def testRangeParams_listRangeName_invalidParams(capfd):
     commands = ["$listRange:name[,,,,]",
                 "$listRange:name [,,,,]",
                 "$listRange:name[,,,,]FILL",

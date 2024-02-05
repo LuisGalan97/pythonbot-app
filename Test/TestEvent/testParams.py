@@ -9,7 +9,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def testParams_addEvent_invalidParams(capfd):
+async def testEventParams_addEvent_invalidParams(capfd):
     commands = ["$addEvent[]",
                 "$addEvent []",
                 "$addEvent[,,,,]",
@@ -34,7 +34,7 @@ async def testParams_addEvent_invalidParams(capfd):
         assert "**[_Nombre, Puntos, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_updEventId_invalidParams(capfd):
+async def testEventParams_updEventId_invalidParams(capfd):
     commands = ["$updEvent:id[]",
                 "$updEvent:id []",
                 "$updEvent:id[,,,,]",
@@ -59,7 +59,7 @@ async def testParams_updEventId_invalidParams(capfd):
         assert "**[_ID, Nombre, Puntos, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_updEventName_invalidParams(capfd):
+async def testEventParams_updEventName_invalidParams(capfd):
     commands = ["$updEvent:name[]",
                 "$updEvent:name []",
                 "$updEvent:name[,,,,]",
@@ -84,7 +84,7 @@ async def testParams_updEventName_invalidParams(capfd):
         assert "**[_Nombre, Puntos, Descripción_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_delEventId_invalidParams(capfd):
+async def testEventParams_delEventId_invalidParams(capfd):
     commands = ["$delEvent:id[,,,,]",
                 "$delEvent:id [,,,,]",
                 "$delEvent:id[,,,,]FILL",
@@ -107,7 +107,7 @@ async def testParams_delEventId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_delEventName_invalidParams(capfd):
+async def testEventParams_delEventName_invalidParams(capfd):
     commands = ["$delEvent:name[,,,,]",
                 "$delEvent:name [,,,,]",
                 "$delEvent:name[,,,,]FILL",
@@ -130,7 +130,7 @@ async def testParams_delEventName_invalidParams(capfd):
         assert "**[_Nombre_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_listEventId_invalidParams(capfd):
+async def testEventParams_listEventId_invalidParams(capfd):
     commands = ["$listEvent:id[,,,,]",
                 "$listEvent:id [,,,,]",
                 "$listEvent:id[,,,,]FILL",
@@ -153,7 +153,7 @@ async def testParams_listEventId_invalidParams(capfd):
         assert "**[_ID_]**\n" in out
 
 @pytest.mark.asyncio
-async def testParams_listEventName_invalidParams(capfd):
+async def testEventParams_listEventName_invalidParams(capfd):
     commands = ["$listEvent:name[,,,,]",
                 "$listEvent:name [,,,,]",
                 "$listEvent:name[,,,,]FILL",

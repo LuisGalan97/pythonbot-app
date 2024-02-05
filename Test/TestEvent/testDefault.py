@@ -20,7 +20,7 @@ Client = namedtuple('Client', ['user'])
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def testDefault_addEvent(capfd):
+async def testEventDefault_addEvent(capfd):
     command = f"$addEvent [{testData['namecreate']}, "\
               f"{testData['pointcreate']}, {testData['descreate']}]"
     message = Message(author="test", content=command)
@@ -35,7 +35,7 @@ async def testDefault_addEvent(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_addEvent_exist(capfd):
+async def testEventDefault_addEvent_exist(capfd):
     commands = [f"$addEvent[{testData['namecreate']},"\
                 f"{testData['pointcreate']},"\
                 f"{testData['descreate']}]",
@@ -63,7 +63,7 @@ async def testDefault_addEvent_exist(capfd):
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventId_add(capfd):
+async def testEventDefault_listEventId_add(capfd):
     command = f"$listEvent:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -78,7 +78,7 @@ async def testDefault_listEventId_add(capfd):
     assert f"{testData['descreate']}" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventName_add(capfd):
+async def testEventDefault_listEventName_add(capfd):
     command = f"$listEvent:name [{testData['namecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -93,7 +93,7 @@ async def testDefault_listEventName_add(capfd):
     assert f"{testData['descreate']}" in out
 
 @pytest.mark.asyncio
-async def testDefault_updEventId(capfd):
+async def testEventDefault_updEventId(capfd):
     commands = [f"$updEvent:id[{testData['id']},"\
                 f"{testData['nameupdate']},"\
                 f"{testData['pointupdate']},{testData['descreate']}]",
@@ -118,7 +118,7 @@ async def testDefault_updEventId(capfd):
         assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_updEventId_nameExist(capfd):
+async def testEventDefault_updEventId_nameExist(capfd):
     commands = [f"$updEvent:id[{testData['id']},"\
                 f"{testData['nameexist']},"\
                 f"{testData['pointupdate']},{testData['descreate']}]",
@@ -144,7 +144,7 @@ async def testDefault_updEventId_nameExist(capfd):
                 "ya se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_updEventName(capfd):
+async def testEventDefault_updEventName(capfd):
     commands = [f"$updEvent:name[{testData['nameupdate']},"\
                 f"{testData['pointupdate']},{testData['desupdate']}]",
                 f"$updEvent:name [{testData['nameupdate']}, "\
@@ -165,7 +165,7 @@ async def testDefault_updEventName(capfd):
         assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEvent(capfd):
+async def testEventDefault_listEvent(capfd):
     commands = [f"$listEvent",
                 f"$listEvent ",
                 f"$listEventFILL",
@@ -184,7 +184,7 @@ async def testDefault_listEvent(capfd):
         assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventId(capfd):
+async def testEventDefault_listEventId(capfd):
     commands = [f"$listEvent:id[{testData['id']}]",
                 f"$listEvent:id [{testData['id']}]",
                 f"$listEvent:id [ {testData['id']} ] ",
@@ -204,7 +204,7 @@ async def testDefault_listEventId(capfd):
         assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventName(capfd):
+async def testEventDefault_listEventName(capfd):
     commands = [f"$listEvent:name[{testData['nameupdate']}]",
                 f"$listEvent:name [{testData['nameupdate']}]",
                 f"$listEvent:name [ {testData['nameupdate']} ] ",
@@ -224,7 +224,7 @@ async def testDefault_listEventName(capfd):
         assert f"{testData['desupdate']}" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEvent_e(capfd):
+async def testEventDefault_listEvent_e(capfd):
     commands = [f"$listEvent"]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
@@ -240,7 +240,7 @@ async def testDefault_listEvent_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventId_e(capfd):
+async def testEventDefault_listEventId_e(capfd):
     commands = [f"$listEvent:id[{testData['id']}]",
                 f"$listEvent:id [{testData['id']}]",
                 f"$listEvent:id [ {testData['id']} ]"]
@@ -258,7 +258,7 @@ async def testDefault_listEventId_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventName_e(capfd):
+async def testEventDefault_listEventName_e(capfd):
     commands = [f"$listEvent:name[{testData['nameupdate']}]",
                 f"$listEvent:name [{testData['nameupdate']}]",
                 f"$listEvent:name [ {testData['nameupdate']} ]"]
@@ -276,7 +276,7 @@ async def testDefault_listEventName_e(capfd):
             assert "discord.file.File object" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEvent_eIncomplete(capfd):
+async def testEventDefault_listEvent_eIncomplete(capfd):
     commands = [f"$listEvent"]
     eparams = [">", " >", "> ", " > ", " > FILL",
                "FILL >", " FILL >", " FILL > FILL"]
@@ -295,7 +295,7 @@ async def testDefault_listEvent_eIncomplete(capfd):
             assert "**$listEvent** **> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventId_eIncomplete(capfd):
+async def testEventDefault_listEventId_eIncomplete(capfd):
     commands = [f"$listEvent:id[{testData['id']}]",
                 f"$listEvent:id [{testData['id']}]",
                 f"$listEvent:id [ {testData['id']} ]"]
@@ -317,7 +317,7 @@ async def testDefault_listEventId_eIncomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventName_eIncomplete(capfd):
+async def testEventDefault_listEventName_eIncomplete(capfd):
     commands = [f"$listEvent:name[{testData['nameupdate']}]",
                 f"$listEvent:name [{testData['nameupdate']}]",
                 f"$listEvent:name [ {testData['nameupdate']} ]"]
@@ -339,7 +339,7 @@ async def testDefault_listEventName_eIncomplete(capfd):
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_delEventId(capfd):
+async def testEventDefault_delEventId(capfd):
     command = f"$delEvent:id [{testData['id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -350,7 +350,7 @@ async def testDefault_delEventId(capfd):
     assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_addEvent_delName(capfd):
+async def testEventDefault_addEvent_delName(capfd):
     command = f"$addEvent [{testData['namecreate']}, "\
               f"{testData['pointcreate']}, {testData['descreate']}]"
     message = Message(author="test", content=command)
@@ -365,7 +365,7 @@ async def testDefault_addEvent_delName(capfd):
           f"**_ID_** \'{testData['id']}\'.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_delEventName(capfd):
+async def testEventDefault_delEventName(capfd):
     command = f"$delEvent:name [{testData['namecreate']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -376,7 +376,7 @@ async def testDefault_delEventName(capfd):
     assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_updEventId_idNoExist(capfd):
+async def testEventDefault_updEventId_idNoExist(capfd):
     commands = [f"$updEvent:id[{testData['id']},"\
                 f"{testData['nameupdate']},"\
                 f"{testData['pointupdate']},{testData['descreate']}]",
@@ -402,7 +402,7 @@ async def testDefault_updEventId_idNoExist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_updEventName_nameNoExist(capfd):
+async def testEventDefault_updEventName_nameNoExist(capfd):
     commands = [f"$updEvent:name[{testData['nameupdate']},"\
                 f"{testData['pointupdate']},{testData['desupdate']}]",
                 f"$updEvent:name [{testData['nameupdate']}, "\
@@ -424,7 +424,7 @@ async def testDefault_updEventName_nameNoExist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_delEventId_idNoExist(capfd):
+async def testEventDefault_delEventId_idNoExist(capfd):
     commands = [f"$delEvent:id[{testData['id']}]",
                f"$delEvent:id [{testData['id']}]",
                f"$delEvent:id [ {testData['id']} ]",
@@ -441,7 +441,7 @@ async def testDefault_delEventId_idNoExist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_delEventName_nameNoExist(capfd):
+async def testEventDefault_delEventName_nameNoExist(capfd):
     commands = [f"$delEvent:name[{testData['namecreate']}]",
                 f"$delEvent:name [{testData['namecreate']}]",
                 f"$delEvent:name [ {testData['namecreate']} ]",
@@ -458,7 +458,7 @@ async def testDefault_delEventName_nameNoExist(capfd):
                 "no se encuentra en la base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventId_idNoExist(capfd):
+async def testEventDefault_listEventId_idNoExist(capfd):
     commands = [f"$listEvent:id[{testData['id']}]",
                 f"$listEvent:id [{testData['id']}]",
                 f"$listEvent:id [ {testData['id']} ] ",
@@ -475,7 +475,7 @@ async def testDefault_listEventId_idNoExist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testDefault_listEventName_nameNoExist(capfd):
+async def testEventDefault_listEventName_nameNoExist(capfd):
     commands = [f"$listEvent:name[{testData['nameupdate']}]",
                 f"$listEvent:name [{testData['nameupdate']}]",
                 f"$listEvent:name [ {testData['nameupdate']} ] ",
