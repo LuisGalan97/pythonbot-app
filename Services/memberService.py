@@ -45,13 +45,19 @@ class MemberService:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
-            integrantes = []
+            members = []
             for row in data:
-                rango = RangeModel(row[0], row[1], row[2], row[3])
-                integrante = MemberModel(row[4], row[5], rango, row[6],
-                                             row[7])
-                integrantes.append(integrante)
-            return integrantes
+                range = RangeModel(row['range_id'],
+                                   row['range_name'],
+                                   row['range_control'],
+                                   row['range_description'])
+                member = MemberModel(row['id'],
+                                     row['name'],
+                                     range,
+                                     row['datecreate'],
+                                     row['dateupdate'])
+                members.append(member)
+            return members
         else:
             return data
 

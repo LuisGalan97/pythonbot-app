@@ -30,11 +30,14 @@ class RangeService:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
-            rangos = []
+            ranges = []
             for row in data:
-                rango = RangeModel(row[0], row[1], row[2], row[3])
-                rangos.append(rango)
-            return rangos
+                range = RangeModel(row['id'],
+                                   row['name'],
+                                   row['control'],
+                                   row['description'])
+                ranges.append(range)
+            return ranges
         else:
             return data
 

@@ -96,18 +96,18 @@ class AssistService:
                                    row['member_range_control'],
                                    row['member_range_description'])
                 member = MemberModel(row['member_id'],
-                                         row['member_name'],
-                                         range,
-                                         row['member_datecreate'],
-                                         row['member_dateupdate'])
+                                     row['member_name'],
+                                     range,
+                                     row['member_datecreate'],
+                                     row['member_dateupdate'])
                 event = EventModel(row['event_id'],
-                                    row['event_name'],
-                                    row['event_points'],
-                                    row['event_description'])
+                                   row['event_name'],
+                                   row['event_points'],
+                                   row['event_description'])
                 assist = AssistModel(row['id'],
-                                         member,
-                                         event,
-                                         row['date'])
+                                     member,
+                                     event,
+                                     row['date'])
                 assists.append(assist)
             return assists
         else:
