@@ -17,45 +17,45 @@ class AssistController:
                     {
                         "id" : assist.getId(),
                         "member_id" : assist.
-                                          getMember().
-                                          getId(),
+                                      getMember().
+                                      getId(),
                         "member_name" : assist.
-                                            getMember().
-                                            getName(),
+                                        getMember().
+                                        getName(),
                         "member_range_id" : assist.
-                                                getMember().
-                                                getRange().
-                                                getId(),
+                                            getMember().
+                                            getRange().
+                                            getId(),
                         "member_range_name" : assist.
-                                                  getMember().
-                                                  getRange().
-                                                  getName(),
+                                              getMember().
+                                              getRange().
+                                              getName(),
                         "member_range_control" : assist.
+                                                 getMember().
+                                                 getRange().
+                                                 getControl(),
+                        "member_range_description" : assist.
                                                      getMember().
                                                      getRange().
-                                                     getControl(),
-                        "member_range_description" : assist.
-                                                         getMember().
-                                                         getRange().
-                                                         getDescription(),
+                                                     getDescription(),
                         "member_datecreate" : assist.
-                                                  getMember().
-                                                  getDateCreate(),
+                                              getMember().
+                                              getDateCreate(),
                         "member_dateupdate" : assist.
-                                                  getMember().
-                                                  getDateUpdate(),
+                                              getMember().
+                                              getDateUpdate(),
                         "event_id" : assist.
-                                      getEvent().
-                                      getId(),
+                                     getEvent().
+                                     getId(),
                         "event_name" : assist.
-                                        getEvent().
-                                        getName(),
+                                       getEvent().
+                                       getName(),
                         "event_points" : assist.
-                                          getEvent().
-                                          getPoints(),
+                                         getEvent().
+                                         getPoints(),
                         "event_description" : assist.
-                                               getEvent().
-                                               getDescription(),
+                                              getEvent().
+                                              getDescription(),
                         "date" : assist.getDate()
                     })
             return data

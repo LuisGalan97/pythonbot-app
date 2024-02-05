@@ -22,7 +22,7 @@ class MessageHandler:
         msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
-         #--------------------------Asistencias--------------------------------
+        #---------------------------Asistencias--------------------------------
             messages.append("**___Asistencias___**\n")
             messages.append("\n")
             messages.append("Las ___asistencias___ hacen referencia a "\
@@ -96,7 +96,7 @@ class MessageHandler:
                                             "Fecha 1, Fecha 2] > e",
                                             "asistencia"))
         elif msg.startswith("$help:event"):
-             #--------------------------Eventos--------------------------------
+        #-----------------------------Eventos----------------------------------
             messages.append("**___Eventos___**\n")
             messages.append("\n")
             messages.append("Los ___eventos___ corresponden a una lista "\
@@ -137,7 +137,7 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listEvent:name [Nombre] > e",
                                            "evento"))
         elif msg.startswith("$help:member"):
-            #--------------------------Integrantes-----------------------------
+        #----------------------------Integrantes-------------------------------
             messages.append("**___Integrantes___**\n")
             messages.append("\n")
             messages.append("Los ___integrantes___ son una serie de "\
@@ -188,7 +188,7 @@ class MessageHandler:
                                            "[Fecha 1, Fecha 2] > e",
                                            "integrante"))
         elif msg.startswith("$help:range"):
-            #------------------------------Rangos------------------------------
+        #--------------------------------Rangos--------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
             messages.append("Los ___rangos___ disponen registros con "\
