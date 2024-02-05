@@ -77,7 +77,7 @@ async def testConstraintsDefault_addEvent(capfd):
 async def testConstraintsDefault_addAssist(capfd):
     command = f"$addAssist [{testData['mem_create']}, "\
               f"{testData['ev_create']}, "\
-              f"{testData['asist_date']}]"
+              f"{testData['assist_date']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
