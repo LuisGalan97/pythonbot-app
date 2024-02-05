@@ -8,10 +8,10 @@ from Helpers.helpers import Helpers
 class AppHandler:
     def __init__(self):
         self.__db = Database("avalon.db", "avalon-lite.sql", "data.sql")
-        self.__asistenciaController = AssistController(self.__db)
-        self.__rangoController = RangeController(self.__db)
-        self.__eventoController = EventController(self.__db)
-        self.__integranteController = MemberController(self.__db)
+        self.__assistController = AssistController(self.__db)
+        self.__rangeController = RangeController(self.__db)
+        self.__eventController = EventController(self.__db)
+        self.__memberController = MemberController(self.__db)
 
     def getDatas(self, request, struct):
         try:
