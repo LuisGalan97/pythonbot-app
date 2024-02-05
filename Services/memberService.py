@@ -31,10 +31,10 @@ class MemberService:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.nombre = ?",
                                            (target["name"],))
-        elif "rango_id" in target:
+        elif "range_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.rango_id = ?",
-                                           (target["rango_id"],))
+                                           (target["range_id"],))
         elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.fechacreacion BETWEEN "\

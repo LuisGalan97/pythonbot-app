@@ -36,8 +36,8 @@ class AssistService:
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE a.id = ?", (target["id"],))
-        elif ("integrante_id" in target and
-              "evento_id" in target and
+        elif ("member_id" in target and
+              "event_id" in target and
               "date_1" in target and
               "date_2" in target):
             data = self.__db.execute_query(f"{self.__selectQuery} "\
@@ -46,15 +46,15 @@ class AssistService:
                                             "a.evento_id = ?",
                                            (target["date_1"],
                                             target["date_2"],
-                                            target["integrante_id"],
-                                            target["evento_id"],))
-        elif "integrante_id" in target and "evento_id" in target:
+                                            target["member_id"],
+                                            target["event_id"],))
+        elif "member_id" in target and "event_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE a.integrante_id = ? "\
                                             "AND a.evento_id = ?",
-                                           (target["integrante_id"],
-                                            target["evento_id"],))
-        elif ("integrante_id" in target and
+                                           (target["member_id"],
+                                            target["event_id"],))
+        elif ("member_id" in target and
               "date_1" in target and
               "date_2" in target):
             data = self.__db.execute_query(f"{self.__selectQuery} "\
@@ -62,12 +62,12 @@ class AssistService:
                                             "AND a.integrante_id = ?",
                                            (target["date_1"],
                                             target["date_2"],
-                                            target["integrante_id"],))
-        elif "integrante_id" in target:
+                                            target["member_id"],))
+        elif "member_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE a.integrante_id = ?",
-                                           (target["integrante_id"],))
-        elif ("evento_id" in target and
+                                           (target["member_id"],))
+        elif ("event_id" in target and
               "date_1" in target and
               "date_2" in target):
             data = self.__db.execute_query(f"{self.__selectQuery} "\
@@ -75,11 +75,11 @@ class AssistService:
                                             "AND a.evento_id = ?",
                                            (target["date_1"],
                                             target["date_2"],
-                                            target["evento_id"],))
-        elif "evento_id" in target:
+                                            target["event_id"],))
+        elif "event_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE a.evento_id = ?",
-                                           (target["evento_id"],))
+                                           (target["event_id"],))
         elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE a.fecha BETWEEN ? AND ?",
