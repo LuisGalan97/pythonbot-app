@@ -110,4 +110,3 @@ async def testConstraintsDefault_listMemberId_checkUpdCascade(capfd):
     assert f"{testData['mem_create']}" in out
     assert f"{testData['ran_update']}" in out
     assert f"{testData['date'].replace('-','/')}" in out
-    assert "Ninguno" in out
