@@ -91,7 +91,7 @@ class AssistService:
         if isinstance(data, list):
             asistencias = []
             for row in data:
-                rango = RangeModel(row[0], row[1], row[2], row[3])
+                rango = RangeModel(row['member_range_id'], row[1], row[2], row[3])
                 integrante = MemberModel(row[4], row[5], rango, row[6],
                                              row[7])
                 evento = EventModel(row[8], row[9], row[10], row[11])
