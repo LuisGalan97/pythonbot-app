@@ -80,7 +80,7 @@ async def testConstraintsDefault_listMemberId(capfd):
     assert f"{testData['mem_id']}" in out
     assert f"{testData['mem_create']}" in out
     assert f"{testData['ran_create']}" in out
-    assert f"{testData['date'].replace('-','/')}" in out
+    assert f"{testData['mem_datecreate'].replace('-','/')}" in out
     assert "Ninguno" in out
 
 @pytest.mark.asyncio
