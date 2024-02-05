@@ -19,5 +19,5 @@ Repositorio asociado a aplicacion desarrollada en lenguaje python para implement
 - _El archivo .coveragerc posee indicaciones de los directorios que coverage debe ignorar en su reporte._
 
 Por: 
-Ing. Luis Miguel Galán Salazar <br \>
+Ing. Luis Miguel Galán Salazar <br />
 Ingeniero Mecatronico.
