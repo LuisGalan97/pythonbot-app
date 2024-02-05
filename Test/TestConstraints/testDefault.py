@@ -213,5 +213,5 @@ async def testConstraintsDefault_listAssistId_checkDelNone(capfd):
     assert "**___Asistencias___** **___encontradas:___**\n" in out
     assert f"{testData['assist_id']}" in out
     assert f"{testData['mem_update']}" in out
-    assert f"{testData['ev_update']}" in out
+    assert "Ninguno" in out
     assert f"{testData['assist_date'].replace('-','/')}" in out
