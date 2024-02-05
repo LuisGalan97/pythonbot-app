@@ -22,7 +22,7 @@ async def testRangeStruct_addRange_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$addRange [_Nombre, Control, Descripción_]**\n" in out
@@ -41,7 +41,7 @@ async def testRangeStruct_updRangeId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$updRange:id [_ID, Nombre, Control, Descripción_]**\n" in out
@@ -60,7 +60,7 @@ async def testRangeStruct_updRangeName_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$updRange:name [_Nombre, Control, Descripción_]**\n" in out
@@ -79,7 +79,7 @@ async def testRangeStruct_delRangeId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
-                           Helpers.delStruct("rango", "id"))
+                           Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$delRange:id [_ID_]**\n" in out
@@ -98,7 +98,7 @@ async def testRangeStruct_delRangeName_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
-                           Helpers.delStruct("rango", "name"))
+                           Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$delRange:name [_Nombre_]**\n" in out
@@ -117,7 +117,7 @@ async def testRangeStruct_listRangeId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
-                         Helpers.getStruct("rango", ["id"]))
+                         Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listRange:id [_ID_]**\n" in out
@@ -136,7 +136,7 @@ async def testRangeStruct_listRangeName_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
-                         Helpers.getStruct("rango", ["name"]))
+                         Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listRange:name [_Nombre_]**\n" in out

@@ -27,7 +27,7 @@ async def testRangeParams_addRange_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -52,7 +52,7 @@ async def testRangeParams_updRangeId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -77,7 +77,7 @@ async def testRangeParams_updRangeName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -100,7 +100,7 @@ async def testRangeParams_delRangeId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
-                           Helpers.delStruct("rango", "id"))
+                           Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -123,7 +123,7 @@ async def testRangeParams_delRangeName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
-                           Helpers.delStruct("rango", "name"))
+                           Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -146,7 +146,7 @@ async def testRangeParams_listRangeId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
-                         Helpers.getStruct("rango", ["id"]))
+                         Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -169,7 +169,7 @@ async def testRangeParams_listRangeName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
-                         Helpers.getStruct("rango", ["name"]))
+                         Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out

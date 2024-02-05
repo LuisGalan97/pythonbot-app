@@ -27,7 +27,7 @@ async def testEventDefault_addEvent(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addEvent", app.setData,
-                       Helpers.setStruct("evento"))
+                       Helpers.setStruct("event"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -56,7 +56,7 @@ async def testEventDefault_addEvent_exist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** "\
                f"\'{testData['namecreate']}\' "\
@@ -69,7 +69,7 @@ async def testEventDefault_listEventId_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listEvent:id", app.getDatas,
-                     Helpers.getStruct("evento", ["id"]))
+                     Helpers.getStruct("event", ["id"]))
     out, _ = capfd.readouterr()
     assert "**___Eventos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
@@ -84,7 +84,7 @@ async def testEventDefault_listEventName_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listEvent:name", app.getDatas,
-                     Helpers.getStruct("evento", ["name"]))
+                     Helpers.getStruct("event", ["name"]))
     out, _ = capfd.readouterr()
     assert "**___Eventos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
@@ -113,7 +113,7 @@ async def testEventDefault_updEventId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
@@ -138,7 +138,7 @@ async def testEventDefault_updEventId_nameExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** \'{testData['nameexist']}\' "\
                 "ya se encuentra en la base de datos.\n" in out
@@ -160,7 +160,7 @@ async def testEventDefault_updEventName(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
@@ -175,7 +175,7 @@ async def testEventDefault_listEvent(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent", app.getDatas,
-                         Helpers.getStruct("evento"))
+                         Helpers.getStruct("event"))
         out, _ = capfd.readouterr()
         assert "**___Eventos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -195,7 +195,7 @@ async def testEventDefault_listEventId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+                         Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
         assert "**___Eventos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -215,7 +215,7 @@ async def testEventDefault_listEventName(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+                         Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
         assert "**___Eventos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -234,7 +234,7 @@ async def testEventDefault_listEvent_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent", app.getDatas,
-                             Helpers.getStruct("evento"))
+                             Helpers.getStruct("event"))
             out, _ = capfd.readouterr()
             assert "**___Eventos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -252,7 +252,7 @@ async def testEventDefault_listEventId_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:id", app.getDatas,
-                             Helpers.getStruct("evento", ["id"]))
+                             Helpers.getStruct("event", ["id"]))
             out, _ = capfd.readouterr()
             assert "**___Eventos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -270,7 +270,7 @@ async def testEventDefault_listEventName_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+                             Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
             assert "**___Eventos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -286,7 +286,7 @@ async def testEventDefault_listEvent_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent", app.getDatas,
-                             Helpers.getStruct("evento"))
+                             Helpers.getStruct("event"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -307,7 +307,7 @@ async def testEventDefault_listEventId_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:id", app.getDatas,
-                             Helpers.getStruct("evento", ["id"]))
+                             Helpers.getStruct("event", ["id"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -329,7 +329,7 @@ async def testEventDefault_listEventName_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+                             Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -345,7 +345,7 @@ async def testEventDefault_delEventId(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delEvent:id", app.deleteData,
-                       Helpers.delStruct("evento", "id"))
+                       Helpers.delStruct("event", "id"))
     out, _ = capfd.readouterr()
     assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
@@ -357,7 +357,7 @@ async def testEventDefault_addEvent_delName(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addEvent", app.setData,
-                       Helpers.setStruct("evento"))
+                       Helpers.setStruct("event"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -371,7 +371,7 @@ async def testEventDefault_delEventName(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delEvent:name", app.deleteData,
-                       Helpers.delStruct("evento", "name"))
+                       Helpers.delStruct("event", "name"))
     out, _ = capfd.readouterr()
     assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
@@ -396,7 +396,7 @@ async def testEventDefault_updEventId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -418,7 +418,7 @@ async def testEventDefault_updEventName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -435,7 +435,7 @@ async def testEventDefault_delEventId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
-                           Helpers.delStruct("evento", "id"))
+                           Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -452,7 +452,7 @@ async def testEventDefault_delEventName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
-                           Helpers.delStruct("evento", "name"))
+                           Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___evento___ de **_Nombre_** '{testData['namecreate']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -469,7 +469,7 @@ async def testEventDefault_listEventId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+                         Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___eventos___ "\
                "para la consulta realizada.\n" in out
@@ -486,7 +486,7 @@ async def testEventDefault_listEventName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+                         Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___eventos___ "\
                "para la consulta realizada.\n" in out

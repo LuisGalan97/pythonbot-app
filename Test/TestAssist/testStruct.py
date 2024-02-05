@@ -22,7 +22,7 @@ async def testAssistStruct_addAssist_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+                           Helpers.setStruct("assist"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$addAssist [_Integrante, Evento, Fecha_]**\n" in out
@@ -41,7 +41,7 @@ async def testAssistStruct_updAssistId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+                           Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$updAssist:id [_ID, Integrante, Evento, Fecha_]**\n" in out
@@ -60,7 +60,7 @@ async def testAssistStruct_delAssistId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
-                           Helpers.delStruct("asistencia", "id"))
+                           Helpers.delStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$delAssist:id [_ID_]**\n" in out
@@ -79,7 +79,7 @@ async def testAssistStruct_listAssistId_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
-                         Helpers.getStruct("asistencia", ["id"]))
+                         Helpers.getStruct("assist", ["id"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:id [_ID_]**\n" in out
@@ -98,7 +98,7 @@ async def testAssistStruct_listAssistMember_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
-                         Helpers.getStruct("asistencia", ["integrante"]))
+                         Helpers.getStruct("assist", ["member"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:member [_Integrante_]**\n" in out
@@ -117,7 +117,7 @@ async def testAssistStruct_listAssistEvent_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
-                         Helpers.getStruct("asistencia", ["evento"]))
+                         Helpers.getStruct("assist", ["event"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:event [_Evento_]**\n" in out
@@ -136,7 +136,7 @@ async def testAssistStruct_listAssistDate_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
-                         Helpers.getStruct("asistencia",
+                         Helpers.getStruct("assist",
                          ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
@@ -160,8 +160,8 @@ async def testAssistStruct_listAssistMemberEvent_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "evento"]))
+                         Helpers.getStruct("assist",
+                         ["member", "event"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:member&event [_Integrante, Evento_]**\n" in out
@@ -183,8 +183,8 @@ async def testAssistStruct_listAssistMemberDate_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["member", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:member&date "\
@@ -207,8 +207,8 @@ async def testAssistStruct_listAssistEventDate_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["evento", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:event&date "\
@@ -235,8 +235,8 @@ async def testAssistStruct_listAssistMemberEventDate_invalidStruct(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "evento", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["member", "event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listAssist:member&event&date "\

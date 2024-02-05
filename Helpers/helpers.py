@@ -200,47 +200,59 @@ class Helpers:
     def getStruct(nameCtrl, targets = None):
         structCtrl = {}
         structTargets = {}
-        if nameCtrl == "asistencia":
+        if nameCtrl == "assist":
             structCtrl[nameCtrl] = {
-                "ID" : "id",
-                #"Integrante ID" : "integrante_id",
-                "Integrante" : "integrante_name",
-                #"Rango ID" : "integrante_rango_id",
-                #"Rango" : "integrante_rango_name",
-                #"Control" : "integrante_rango_control",
-                #"Descripción Rango" : "integrante_rango_description",
-                #"Fecha de creación Integrante" : "integrante_datecreate",
-                #"Fecha de modificación Integrante" : "integrante_dateupdate",
-                #"Evento ID" : "evento_id",
-                "Evento" : "evento_name",
-                "Puntos" : "evento_points",
-                #"Descripción Evento" : "evento_description",
-                "Fecha" : "date"
+                "alias" : "asistencia",
+                "ref" : {
+                    "ID" : "id",
+                    #"Integrante ID" : "member_id",
+                    "Integrante" : "member_name",
+                    #"Rango ID" : "member_range_id",
+                    #"Rango" : "member_range_name",
+                    #"Control" : "member_range_control",
+                    #"Descripción Rango" : "member_range_description",
+                    #"Fecha de creación Integrante" : "member_datecreate",
+                    #"Fecha de modificación Integrante" : "member_dateupdate",
+                    #"Evento ID" : "event_id",
+                    "Evento" : "event_name",
+                    "Puntos" : "event_points",
+                    #"Descripción Evento" : "event_description",
+                    "Fecha" : "date"
+                }
             }
-        elif nameCtrl == "evento":
+        elif nameCtrl == "event":
             structCtrl[nameCtrl] = {
-                "ID" : "id",
-                "Nombre" : "name",
-                "Puntos" : "points",
-                "Descripción" : "description"
+                "alias" : "evento",
+                "ref" : {
+                    "ID" : "id",
+                    "Nombre" : "name",
+                    "Puntos" : "points",
+                    "Descripción" : "description"
+                }
             }
-        elif nameCtrl == "integrante":
+        elif nameCtrl == "member":
             structCtrl[nameCtrl] = {
-                "ID" : "id",
-                "Nombre" : "name",
-                #"Rango ID" : "rango_id",
-                "Rango" : "rango_name",
-                #"Control Rango" : "rango_control",
-                #"Descripción Rango" : "rango_description",
-                "Fecha de creación" : "datecreate",
-                "Fecha de modificación" : "dateupdate"
+                "alias" : "Integrante",
+                "ref" : {
+                    "ID" : "id",
+                    "Nombre" : "name",
+                    #"Rango ID" : "range_id",
+                    "Rango" : "range_name",
+                    #"Control Rango" : "range_control",
+                    #"Descripción Rango" : "range_description",
+                    "Fecha de creación" : "datecreate",
+                    "Fecha de modificación" : "dateupdate"
+                }
             }
-        elif nameCtrl == "rango":
+        elif nameCtrl == "range":
             structCtrl[nameCtrl] = {
-                "ID" : "id",
-                "Nombre" : "name",
-                "Control" : "control",
-                "Descripción" : "description"
+                "alias" : "rango",
+                "ref" : {
+                    "ID" : "id",
+                    "Nombre" : "name",
+                    "Control" : "control",
+                    "Descripción" : "description"
+                }
             }
         if targets:
             if "id" in targets:
@@ -255,41 +267,41 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Nombre"
                 }
-            if "rango" in targets:
-                structTargets["rango"] = {
+            if "range" in targets:
+                structTargets["range"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Rango"
                 }
-            if "rango_id" in targets:
-                structTargets["rango_id"] = {
+            if "range_id" in targets:
+                structTargets["range_id"] = {
                     "type" : int,
                     "fk" : False,
                     "alias" : "Rango ID"
                 }
-            if "integrante" in targets:
-                structTargets["integrante"] = {
+            if "member" in targets:
+                structTargets["member"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Integrante"
                 }
-            if "integrante_id" in targets:
-                structTargets["integrante_id"] = {
+            if "member_id" in targets:
+                structTargets["member_id"] = {
                     "type" : int,
                     "fk" : False,
                     "alias" : "Integrante ID"
                 }
-            if "evento" in targets:
-                structTargets["evento"] = {
+            if "event" in targets:
+                structTargets["event"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Evento"
                 }
-            if "evento_id" in targets:
-                structTargets["evento_id"] = {
+            if "event_id" in targets:
+                structTargets["event_id"] = {
                     "type" : int,
                     "fk" : False,
-                    "alias" : "Evento ID"
+                    "alias" : "Event ID"
                 }
             if "date_1" in targets:
                 structTargets["date_1"] = {
@@ -309,14 +321,17 @@ class Helpers:
     def setStruct(nameCtrl):
         structCtrl = {}
         structTargets = {}
-        if nameCtrl == "asistencia":
-            structCtrl[nameCtrl] = {"create" : False}
-            structTargets["integrante"] = {
+        if nameCtrl == "assist":
+            structCtrl[nameCtrl] = {
+                "create" : False,
+                "alias" : "asistencia"
+            }
+            structTargets["member"] = {
                 "type" : str,
                 "fk" : True,
                 "alias" : "Integrante"
             }
-            structTargets["evento"] = {
+            structTargets["event"] = {
                 "type" : str,
                 "fk" : True,
                 "alias" : "Evento"
@@ -326,8 +341,11 @@ class Helpers:
                 "fk" : False,
                 "alias" : "Fecha"
             }
-        elif nameCtrl == "evento":
-            structCtrl[nameCtrl] = {"create" : "name"}
+        elif nameCtrl == "event":
+            structCtrl[nameCtrl] = {
+                "create" : "name",
+                "alias" : "evento"
+            }
             structTargets["name"] = {
                 "type" : str,
                 "fk" : False,
@@ -343,14 +361,17 @@ class Helpers:
                 "fk" : False,
                 "alias" : "Descripción"
             }
-        elif nameCtrl == "integrante":
-            structCtrl[nameCtrl] = {"create" : "name"}
+        elif nameCtrl == "member":
+            structCtrl[nameCtrl] = {
+                "create" : "name",
+                "alias" : "integrante"
+            }
             structTargets["name"] = {
                 "type" : str,
                 "fk" : False,
                 "alias" : "Nombre"
             }
-            structTargets["rango"] = {
+            structTargets["range"] = {
                 "type" : str,
                 "fk" : True,
                 "alias" : "Rango"
@@ -360,8 +381,11 @@ class Helpers:
                 "fk" : False,
                 "alias" : "Fecha"
             }
-        elif nameCtrl == "rango":
-            structCtrl[nameCtrl] = {"create" : "name"}
+        elif nameCtrl == "range":
+            structCtrl[nameCtrl] = {
+                "create" : "name",
+                "alias" : "rango"
+            }
             structTargets["name"] = {
                 "type" : str,
                 "fk" : False,
@@ -375,8 +399,7 @@ class Helpers:
             structTargets["description"] = {
                 "type" : str,
                 "fk" : False,
-                "alias" :
-                "Descripción"
+                "alias" : "Descripción"
             }
         return {"controller" : structCtrl, "targets" : structTargets}
 
@@ -384,20 +407,24 @@ class Helpers:
     def updStruct(nameCtrl, update):
         structCtrl = {}
         structTargets = {}
-        if nameCtrl == "asistencia":
+        if nameCtrl == "assist":
              if update == "id":
-                structCtrl[nameCtrl] = {"update" : update, "create" : False}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : False,
+                    "alias" : "asistencia"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
                     "alias" : "ID"
                 }
-                structTargets["integrante"] = {
+                structTargets["member"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Integrante"
                 }
-                structTargets["evento"] = {
+                structTargets["event"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Evento"
@@ -407,9 +434,13 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Fecha"
                 }
-        elif nameCtrl == "evento":
+        elif nameCtrl == "event":
             if update == "name":
-                structCtrl[nameCtrl] = {"update" : update, "create" : False}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : False,
+                    "alias" : "evento"
+                }
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
@@ -426,7 +457,11 @@ class Helpers:
                     "alias" : "Descripción"
                 }
             elif update == "id":
-                structCtrl[nameCtrl] = {"update" : update, "create" : "name"}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : "name",
+                    "alias" : "evento"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
@@ -447,15 +482,19 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Descripción"
                 }
-        elif nameCtrl == "integrante":
+        elif nameCtrl == "member":
             if update == "name":
-                structCtrl[nameCtrl] = {"update" : update, "create" : False}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : False,
+                    "alias" : "integrante"
+                }
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
                     "alias" : "Nombre"
                 }
-                structTargets["rango"] = {
+                structTargets["range"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Rango"
@@ -466,7 +505,11 @@ class Helpers:
                     "alias" : "Fecha"
                 }
             elif update == "id":
-                structCtrl[nameCtrl] = {"update" : update, "create" : "name"}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : "name",
+                    "alias" : "integrante"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
@@ -477,7 +520,7 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Nombre"
                 }
-                structTargets["rango"] = {
+                structTargets["range"] = {
                     "type" : str,
                     "fk" : True,
                     "alias" : "Rango"
@@ -487,9 +530,13 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Fecha"
                 }
-        elif nameCtrl == "rango":
+        elif nameCtrl == "range":
             if update == "name":
-                structCtrl[nameCtrl] = {"update" : update, "create" : False}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : False,
+                    "alias" : "rango"
+                }
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
@@ -506,7 +553,11 @@ class Helpers:
                     "alias" : "Descripción"
                 }
             elif update == "id":
-                structCtrl[nameCtrl] = {"update" : update, "create" : "name"}
+                structCtrl[nameCtrl] = {
+                    "update" : update,
+                    "create" : "name",
+                    "alias" : "rango"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
@@ -533,54 +584,75 @@ class Helpers:
     def delStruct(nameCtrl, delete):
         structCtrl = {}
         structTargets = {}
-        if nameCtrl == "asistencia":
+        if nameCtrl == "assist":
              if delete == "id":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "asistencia"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
                     "alias" : "ID"
                 }
-        elif nameCtrl == "evento":
+        elif nameCtrl == "event":
             if delete == "name":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "evento"
+                }
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
                     "alias" : "Nombre"
                 }
             elif delete == "id":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "evento"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
                     "alias" : "ID"
                 }
-        elif nameCtrl == "integrante":
+        elif nameCtrl == "member":
             if delete == "name":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "integrante"
+                }
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
                     "alias" : "Nombre"
                 }
             elif delete == "id":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "integrante"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,
                     "alias" : "ID"
                 }
-        elif nameCtrl == "rango":
+        elif nameCtrl == "range":
             if delete == "name":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "rango"
+                }
                 structTargets["name"] = {
                     "type" : str,
                     "fk" : False,
                     "alias" : "Nombre"
                 }
             elif delete == "id":
-                structCtrl[nameCtrl] = {"delete" : delete}
+                structCtrl[nameCtrl] = {
+                    "delete" : delete,
+                    "alias" : "rango"
+                }
                 structTargets["id"] = {
                     "type" : int,
                     "fk" : False,

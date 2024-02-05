@@ -16,7 +16,9 @@ class AppHandler:
     def getDatas(self, request, struct):
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
-            nameCtrl, references = dict(struct["controller"]).popitem()
+            nameCtrl, structRef = dict(struct["controller"]).popitem()
+            aliasCtrl = structRef["alias"]
+            references = structRef["ref"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 method = f"get{nameCtrl.capitalize()}s"
@@ -32,7 +34,7 @@ class AppHandler:
                     datas.append(data)
                 return datas
             elif items:
-                return f"No se encontraron ___{nameCtrl}s___ "\
+                return f"No se encontraron ___{aliasCtrl}s___ "\
                         "para la consulta realizada."
             else:
                 return False
@@ -45,6 +47,7 @@ class AppHandler:
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
             nameCtrl, references = struct["controller"].popitem()
+            aliasCtrl = references["alias"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 key = references["create"]
@@ -53,8 +56,8 @@ class AppHandler:
                     exist = getattr(getattr(self, controller),
                                     method)({key : target[key]})
                     if isinstance(exist, list):
-                        return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                               f"___{nameCtrl}___ "\
+                        return f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                               f"___{aliasCtrl}___ "\
                                f"de **_{struct['targets'][key]['alias']}_** "\
                                f"\'{target[key]}\' "\
                                 "ya se encuentra en la base de datos."
@@ -68,9 +71,9 @@ class AppHandler:
                     method = f"create{nameCtrl.capitalize()}"
                     result = getattr(getattr(self, controller),
                                      method)(**target)
-                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                        f"___{nameCtrl}___ ha sido "\
-                        f"cread{'a' if nameCtrl[0] == 'a' else 'o'} "\
+                return (f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                        f"___{aliasCtrl}___ ha sido "\
+                        f"cread{'a' if aliasCtrl[0] == 'a' else 'o'} "\
                         f"con exito sobre el **_ID_** '{result}'."\
                         if result else False)
             else:
@@ -84,6 +87,7 @@ class AppHandler:
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
             nameCtrl, references = struct["controller"].popitem()
+            aliasCtrl = references["alias"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 key = references["update"]
@@ -97,8 +101,8 @@ class AppHandler:
                                         method)({key : target[key]})
                         if (isinstance(existSet, list) and
                             existSet[0]["id"] != existUpd[0]["id"]):
-                            return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                                   f"___{nameCtrl}___ "\
+                            return f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                                   f"___{aliasCtrl}___ "\
                                    f"de **_{struct['targets'][key]['alias']}_"\
                                     "** "\
                                    f"\'{target[key]}\' "\
@@ -115,14 +119,14 @@ class AppHandler:
                         target["id"] = existUpd[0]["id"]
                         result = getattr(getattr(self, controller),
                                          method)(**target)
-                    return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                            f"___{nameCtrl}___ ha sido "\
-                            f"actualizad{'a' if nameCtrl[0] == 'a' else 'o'} "\
+                    return (f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                            f"___{aliasCtrl}___ ha sido "\
+                            f"actualizad{'a' if aliasCtrl[0] == 'a' else 'o'} "\
                             "con exito."\
                             if result else False)
                 elif existUpd:
-                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                           f"___{nameCtrl}___ "\
+                    return f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                           f"___{aliasCtrl}___ "\
                            f"de **_{struct['targets'][key]['alias']}_** "\
                            f"\'{target[key]}\' "\
                             "no se encuentra en la base de datos."
@@ -139,6 +143,7 @@ class AppHandler:
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
             nameCtrl, references = struct["controller"].popitem()
+            aliasCtrl = references["alias"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 key = references["delete"]
@@ -152,16 +157,16 @@ class AppHandler:
                     result = getattr(getattr(self, controller),
                                      method)(**target)
                 elif exist:
-                    return f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                           f"___{nameCtrl}___ "\
+                    return f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                           f"___{aliasCtrl}___ "\
                            f"de **_{struct['targets'][key]['alias']}_** "\
                            f"\'{target[key]}\' "\
                             "no se encuentra en la base de datos."
                 else:
                     return False
-                return (f"{'La' if nameCtrl[0] == 'a' else 'El'} "\
-                        f"___{nameCtrl}___ ha sido "\
-                        f"eliminad{'a' if nameCtrl[0] == 'a' else 'o'} "\
+                return (f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
+                        f"___{aliasCtrl}___ ha sido "\
+                        f"eliminad{'a' if aliasCtrl[0] == 'a' else 'o'} "\
                          "con exito."\
                         if result else False)
             else:

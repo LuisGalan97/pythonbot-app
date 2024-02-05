@@ -28,7 +28,7 @@ async def testAssistDefault_addAssist(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addAssist", app.setData,
-                       Helpers.setStruct("asistencia"))
+                       Helpers.setStruct("assist"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -42,7 +42,7 @@ async def testAssistDefault_listAssistId_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
-                     Helpers.getStruct("asistencia", ["id"]))
+                     Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()
     assert "**___Asistencias___** **___encontradas:___**\n" in out
     assert f"{testData['id']}" in out
@@ -77,7 +77,7 @@ async def testAssistDefault_updAssistId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+                           Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert "La ___asistencia___ ha sido actualizada con exito.\n" in out
 
@@ -92,7 +92,7 @@ async def testAssistDefault_listAssist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist", app.getDatas,
-                         Helpers.getStruct("asistencia"))
+                         Helpers.getStruct("assist"))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -112,7 +112,7 @@ async def testAssistDefault_listAssistId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
-                         Helpers.getStruct("asistencia", ["id"]))
+                         Helpers.getStruct("assist", ["id"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -132,7 +132,7 @@ async def testAssistDefault_listAssistMember(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
-                         Helpers.getStruct("asistencia", ["integrante"]))
+                         Helpers.getStruct("assist", ["member"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -152,7 +152,7 @@ async def testAssistDefault_listAssistEvent(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
-                         Helpers.getStruct("asistencia", ["evento"]))
+                         Helpers.getStruct("assist", ["event"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -177,7 +177,7 @@ async def testAssistDefault_listAssistDate(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
-                         Helpers.getStruct("asistencia", ["date_1", "date_2"]))
+                         Helpers.getStruct("assist", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -202,8 +202,8 @@ async def testAssistDefault_listAssistMemberEvent(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "evento"]))
+                         Helpers.getStruct("assist",
+                         ["member", "event"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -228,8 +228,8 @@ async def testAssistDefault_listAssistMemberDate(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["member", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -254,8 +254,8 @@ async def testAssistDefault_listAssistEventDate(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["evento", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -285,8 +285,8 @@ async def testAssistDefault_listAssistMemberEventDate(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
-                         app.getDatas, Helpers.getStruct("asistencia",
-                         ["integrante", "evento", "date_1", "date_2"]))
+                         app.getDatas, Helpers.getStruct("assist",
+                         ["member", "event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Asistencias___** **___encontradas:___**\n" in out
         assert f"{testData['id']}" in out
@@ -305,7 +305,7 @@ async def testAssistDefault_listAssist_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist", app.getDatas,
-                             Helpers.getStruct("asistencia"))
+                             Helpers.getStruct("assist"))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -323,7 +323,7 @@ async def testAssistDefault_listAssistId_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
-                             Helpers.getStruct("asistencia", ["id"]))
+                             Helpers.getStruct("assist", ["id"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -341,7 +341,7 @@ async def testAssistDefault_listAssistMember_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
-                             Helpers.getStruct("asistencia", ["integrante"]))
+                             Helpers.getStruct("assist", ["member"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -359,7 +359,7 @@ async def testAssistDefault_listAssistEvent_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
-                             Helpers.getStruct("asistencia", ["evento"]))
+                             Helpers.getStruct("assist", ["event"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -380,7 +380,7 @@ async def testAssistDefault_listAssistDate_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
-                             Helpers.getStruct("asistencia",
+                             Helpers.getStruct("assist",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
@@ -402,8 +402,8 @@ async def testAssistDefault_listAssistMemberDate_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["integrante", "date_1", "date_2"]))
+                             Helpers.getStruct("assist",
+                             ["member", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -424,8 +424,8 @@ async def testAssistDefault_listAssistEventDate_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["evento", "date_1", "date_2"]))
+                             Helpers.getStruct("assist",
+                             ["event", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -449,8 +449,8 @@ async def testAssistDefault_listAssistMemberEventDate_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date",
-                             app.getDatas, Helpers.getStruct("asistencia",
-                             ["integrante", "evento", "date_1", "date_2"]))
+                             app.getDatas, Helpers.getStruct("assist",
+                             ["member", "event", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "**___Asistencias___** **___encontradas:___**\n" in out
             assert "discord.file.File object" in out
@@ -466,7 +466,7 @@ async def testAssistDefault_listAssist_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist", app.getDatas,
-                             Helpers.getStruct("asistencia"))
+                             Helpers.getStruct("assist"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -487,7 +487,7 @@ async def testAssistDefault_listAssistId_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
-                             Helpers.getStruct("asistencia", ["id"]))
+                             Helpers.getStruct("assist", ["id"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -509,7 +509,7 @@ async def testAssistDefault_listAssistMember_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
-                             Helpers.getStruct("asistencia", ["integrante"]))
+                             Helpers.getStruct("assist", ["member"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -532,7 +532,7 @@ async def testAssistDefault_listAssistEvent_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
-                             Helpers.getStruct("asistencia", ["evento"]))
+                             Helpers.getStruct("assist", ["event"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -558,7 +558,7 @@ async def testAssistDefault_listAssistDate_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
-                             Helpers.getStruct("asistencia",
+                             Helpers.getStruct("assist",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
@@ -588,8 +588,8 @@ async def testAssistDefault_listAssistMemberDate_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["integrante", "date_1", "date_2"]))
+                             Helpers.getStruct("assist",
+                             ["member", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -619,8 +619,8 @@ async def testAssistDefault_listAssistEventDate_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                             Helpers.getStruct("asistencia",
-                             ["evento", "date_1", "date_2"]))
+                             Helpers.getStruct("assist",
+                             ["event", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -653,8 +653,8 @@ async def testAssistDefault_listAssistMemberEventDate_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date",
-                             app.getDatas, Helpers.getStruct("asistencia",
-                             ["integrante", "evento", "date_1", "date_2"]))
+                             app.getDatas, Helpers.getStruct("assist",
+                             ["member", "event", "date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -676,7 +676,7 @@ async def testAssistDefault_delAssistId(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delAssist:id", app.deleteData,
-                       Helpers.delStruct("asistencia", "id"))
+                       Helpers.delStruct("assist", "id"))
     out, _ = capfd.readouterr()
     assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
 
@@ -703,7 +703,7 @@ async def testAssistDefault_addAssist_memberNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+                           Helpers.setStruct("assist"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
@@ -733,7 +733,7 @@ async def testAssistDefault_addAssist_eventNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
-                           Helpers.setStruct("asistencia"))
+                           Helpers.setStruct("assist"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
@@ -767,7 +767,7 @@ async def testAssistDefault_updAssistId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+                           Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -799,7 +799,7 @@ async def testAssistDefault_updAssistId_memberNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+                           Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
@@ -833,7 +833,7 @@ async def testAssistDefault_updAssistId_eventNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
-                           Helpers.updStruct("asistencia", "id"))
+                           Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
@@ -852,7 +852,7 @@ async def testAssistDefault_delAssistId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
-                           Helpers.delStruct("asistencia", "id"))
+                           Helpers.delStruct("assist", "id"))
         out, _ = capfd.readouterr()
         assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -869,7 +869,7 @@ async def testAssistDefault_listAssistId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
-                         Helpers.getStruct("asistencia", ["id"]))
+                         Helpers.getStruct("assist", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada.\n" in out
@@ -886,7 +886,7 @@ async def testAssistDefault_listAssistMember_memberNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
-                         Helpers.getStruct("asistencia", ["integrante"]))
+                         Helpers.getStruct("assist", ["member"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
@@ -905,7 +905,7 @@ async def testAssistDefault_listAssistEvent_eventNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
-                         Helpers.getStruct("asistencia", ["evento"]))
+                         Helpers.getStruct("assist", ["event"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
@@ -929,7 +929,7 @@ async def testAssistDefault_listAssistDate_dateNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
-                         Helpers.getStruct("asistencia", ["date_1", "date_2"]))
+                         Helpers.getStruct("assist", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada.\n" in out
@@ -951,8 +951,8 @@ async def testAssistDefault_listAssistMemberEvent_memberNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "evento"]))
+                         Helpers.getStruct("assist",
+                         ["member", "event"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
@@ -976,8 +976,8 @@ async def testAssistDefault_listAssistMemberEvent_eventNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "evento"]))
+                         Helpers.getStruct("assist",
+                         ["member", "event"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
@@ -1001,8 +1001,8 @@ async def testAssistDefault_listAssistMemberDate_memberNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["member", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
@@ -1026,8 +1026,8 @@ async def testAssistDefault_listAssistMemberDate_dateNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["integrante", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["member", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada.\n" in out
@@ -1049,8 +1049,8 @@ async def testAssistDefault_listAssistEventDate_eventNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["evento", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
@@ -1074,8 +1074,8 @@ async def testAssistDefault_listAssistEventDate_dateNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
-                         Helpers.getStruct("asistencia",
-                         ["evento", "date_1", "date_2"]))
+                         Helpers.getStruct("assist",
+                         ["event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada.\n" in out
@@ -1102,8 +1102,8 @@ async def testAssistDefault_listAssistMemberEventDate_memberNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
-                         app.getDatas, Helpers.getStruct("asistencia",
-                         ["integrante", "evento", "date_1", "date_2"]))
+                         app.getDatas, Helpers.getStruct("assist",
+                         ["member", "event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['menoexist']}' "\
                 "ingresado en el campo "\
@@ -1132,8 +1132,8 @@ async def testAssistDefault_listAssistMemberEventDate_eventNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
-                         app.getDatas, Helpers.getStruct("asistencia",
-                         ["integrante", "evento", "date_1", "date_2"]))
+                         app.getDatas, Helpers.getStruct("assist",
+                         ["member", "event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evnoexist']}' "\
                 "ingresado en el campo "\
@@ -1162,8 +1162,8 @@ async def testAssistDefault_listAssistMemberEventDate_dateNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
-                         app.getDatas, Helpers.getStruct("asistencia",
-                         ["integrante", "evento", "date_1", "date_2"]))
+                         app.getDatas, Helpers.getStruct("assist",
+                         ["member", "event", "date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___asistencias___ "\
                "para la consulta realizada.\n" in out

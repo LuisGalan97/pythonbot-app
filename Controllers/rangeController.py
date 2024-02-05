@@ -6,7 +6,7 @@ class RangeController:
     def __init__(self, db : Database):
         self.__service = RangeService(db)
 
-    def getRangos(self, target = None):
+    def getRanges(self, target = None):
         ranges = self.__service.select(target)
         if isinstance(ranges, list):
             data = []
@@ -22,17 +22,17 @@ class RangeController:
         else:
             return ranges
 
-    def createRango(self, name, control, description):
+    def createRange(self, name, control, description):
         range = RangeModel(None, name, control, description)
         result = self.__service.insert(range)
         return result
 
-    def updateRango(self, id, name, control, description):
+    def updateRange(self, id, name, control, description):
         range = RangeModel(id, name, control, description)
         result = self.__service.update(range)
         return result
 
-    def deleteRango(self, id):
+    def deleteRange(self, id):
         range = RangeModel(id, None, None, None)
         result = self.__service.delete(range)
         return result

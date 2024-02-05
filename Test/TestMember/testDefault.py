@@ -28,7 +28,7 @@ async def testMemberDefault_addMember(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
-                       Helpers.setStruct("integrante"))
+                       Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -57,7 +57,7 @@ async def testMemberDefault_addMember_exist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
-                           Helpers.setStruct("integrante"))
+                           Helpers.setStruct("member"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_Nombre_** "\
                f"\'{testData['namecreate']}\' "\
@@ -70,7 +70,7 @@ async def testMemberDefault_listMemberId_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
-                     Helpers.getStruct("integrante", ["id"]))
+                     Helpers.getStruct("member", ["id"]))
     out, _ = capfd.readouterr()
     assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
@@ -86,7 +86,7 @@ async def testMemberDefault_listMemberName_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listMember:name", app.getDatas,
-                     Helpers.getStruct("integrante", ["name"]))
+                     Helpers.getStruct("member", ["name"]))
     out, _ = capfd.readouterr()
     assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
@@ -115,7 +115,7 @@ async def testMemberDefault_updMemberId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
-                           Helpers.updStruct("integrante", "id"))
+                           Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
@@ -139,7 +139,7 @@ async def testMemberDefault_updMemberId_nameExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
-                           Helpers.updStruct("integrante", "id"))
+                           Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_Nombre_** "\
                f"\'{testData['nameexist']}\' "\
@@ -162,7 +162,7 @@ async def testMemberDefault_updMemberName(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
-                           Helpers.updStruct("integrante", "name"))
+                           Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
@@ -177,7 +177,7 @@ async def testMemberDefault_listMember(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember", app.getDatas,
-                         Helpers.getStruct("integrante"))
+                         Helpers.getStruct("member"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -198,7 +198,7 @@ async def testMemberDefault_listMemberId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
-                         Helpers.getStruct("integrante", ["id"]))
+                         Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -219,7 +219,7 @@ async def testMemberDefault_listMemberName(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
-                         Helpers.getStruct("integrante", ["name"]))
+                         Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -240,7 +240,7 @@ async def testMemberDefault_listMemberRange(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
-                         Helpers.getStruct("integrante", ["rango"]))
+                         Helpers.getStruct("member", ["range"]))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -266,7 +266,7 @@ async def testMemberDefault_listMemberDate(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
-                         Helpers.getStruct("integrante", ["date_1", "date_2"]))
+                         Helpers.getStruct("member", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -286,7 +286,7 @@ async def testMemberDefault_listMember_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember", app.getDatas,
-                             Helpers.getStruct("integrante"))
+                             Helpers.getStruct("member"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -304,7 +304,7 @@ async def testMemberDefault_listMemberId_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:id", app.getDatas,
-                             Helpers.getStruct("integrante", ["id"]))
+                             Helpers.getStruct("member", ["id"]))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -322,7 +322,7 @@ async def testMemberDefault_listMemberName_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
-                             Helpers.getStruct("integrante", ["name"]))
+                             Helpers.getStruct("member", ["name"]))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -340,7 +340,7 @@ async def testMemberDefault_listMemberRange_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
-                             Helpers.getStruct("integrante", ["rango"]))
+                             Helpers.getStruct("member", ["range"]))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -361,7 +361,7 @@ async def testMemberDefault_listMemberDate_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:date", app.getDatas,
-                             Helpers.getStruct("integrante",
+                             Helpers.getStruct("member",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
@@ -378,7 +378,7 @@ async def testMemberDefault_listMember_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember", app.getDatas,
-                             Helpers.getStruct("integrante"))
+                             Helpers.getStruct("member"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -399,7 +399,7 @@ async def testMemberDefault_listMemberId_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:id", app.getDatas,
-                             Helpers.getStruct("integrante", ["id"]))
+                             Helpers.getStruct("member", ["id"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -421,7 +421,7 @@ async def testMemberDefault_listMemberName_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
-                             Helpers.getStruct("integrante", ["name"]))
+                             Helpers.getStruct("member", ["name"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -443,7 +443,7 @@ async def testMemberDefault_listMemberRange_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
-                             Helpers.getStruct("integrante", ["rango"]))
+                             Helpers.getStruct("member", ["range"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -468,7 +468,7 @@ async def testMemberDefault_listMemberDate_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:date", app.getDatas,
-                             Helpers.getStruct("integrante",
+                             Helpers.getStruct("member",
                              ["date_1", "date_2"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
@@ -489,7 +489,7 @@ async def testMemberDefault_delMemberId(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delMember:id", app.deleteData,
-                       Helpers.delStruct("integrante", "id"))
+                       Helpers.delStruct("member", "id"))
     out, _ = capfd.readouterr()
     assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
@@ -501,7 +501,7 @@ async def testMemberDefault_addMember_delName(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
-                       Helpers.setStruct("integrante"))
+                       Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -515,7 +515,7 @@ async def testMemberDefault_delMemberName(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delMember:name", app.deleteData,
-                       Helpers.delStruct("integrante", "name"))
+                       Helpers.delStruct("member", "name"))
     out, _ = capfd.readouterr()
     assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
@@ -527,7 +527,7 @@ async def testMemberDefault_addMember_rangeNoExist(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
-                       Helpers.setStruct("integrante"))
+                       Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
     assert f"El valor '{testData['ranoexist']}' "\
             "ingresado en el campo "\
@@ -554,7 +554,7 @@ async def testMemberDefault_updMemberId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
-                           Helpers.updStruct("integrante", "id"))
+                           Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -579,7 +579,7 @@ async def testMemberDefault_updMemberId_rangeNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
-                           Helpers.updStruct("integrante", "id"))
+                           Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['ranoexist']}' "\
                 "ingresado en el campo "\
@@ -603,7 +603,7 @@ async def testMemberDefault_updMemberName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
-                           Helpers.updStruct("integrante", "name"))
+                           Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_Nombre_** "\
                f"'{testData['nameupdate']}' "\
@@ -626,7 +626,7 @@ async def testMemberDefault_updMemberName_rangeNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
-                           Helpers.updStruct("integrante", "name"))
+                           Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['ranoexist']}' "\
                 "ingresado en el campo "\
@@ -645,7 +645,7 @@ async def testMemberDefault_delMemberId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
-                           Helpers.delStruct("integrante", "id"))
+                           Helpers.delStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -662,7 +662,7 @@ async def testMemberDefault_delMemberName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
-                           Helpers.delStruct("integrante", "name"))
+                           Helpers.delStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___integrante___ de **_Nombre_** "\
                f"'{testData['namecreate']}' "\
@@ -680,7 +680,7 @@ async def testMemberDefault_listMemberId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
-                         Helpers.getStruct("integrante", ["id"]))
+                         Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -697,7 +697,7 @@ async def testMemberDefault_listMemberName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
-                         Helpers.getStruct("integrante", ["name"]))
+                         Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -714,7 +714,7 @@ async def testMemberDefault_listMemberRange_rangeNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
-                         Helpers.getStruct("integrante", ["rango"]))
+                         Helpers.getStruct("member", ["range"]))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['ranoexist']}' "\
                 "ingresado en el campo "\
@@ -738,7 +738,7 @@ async def testMemberDefault_listMemberDate_dateNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
-                         Helpers.getStruct("integrante", ["date_1", "date_2"]))
+                         Helpers.getStruct("member", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out

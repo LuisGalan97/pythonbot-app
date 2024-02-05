@@ -39,7 +39,7 @@ async def testRangeValue_addRange_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -68,7 +68,7 @@ async def testRangeValue_addRange_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -100,7 +100,7 @@ async def testRangeValue_addRange_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addRange", app.setData,
-                               Helpers.setStruct("rango"))
+                               Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -131,7 +131,7 @@ async def testRangeValue_addRange_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addRange", app.setData,
-                               Helpers.setStruct("rango"))
+                               Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -161,7 +161,7 @@ async def testRangeValue_addRange_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addRange", app.setData,
-                               Helpers.setStruct("rango"))
+                               Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -194,7 +194,7 @@ async def testRangeValue_addRange_controlEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Control_**\n" in out
@@ -222,7 +222,7 @@ async def testRangeValue_addRange_controlInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Control_** "\
@@ -252,7 +252,7 @@ async def testRangeValue_addRange_descriptionEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Descripción_**\n" in out
@@ -281,7 +281,7 @@ async def testRangeValue_addRange_descriptionLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -313,7 +313,7 @@ async def testRangeValue_addRange_descriptionStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addRange", app.setData,
-                               Helpers.setStruct("rango"))
+                               Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe comenzar con valores "\
@@ -344,7 +344,7 @@ async def testRangeValue_addRange_descriptionSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addRange", app.setData,
-                               Helpers.setStruct("rango"))
+                               Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe contener caracteres "\
@@ -374,7 +374,7 @@ async def testRangeValue_addRange_descriptionRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addRange", app.setData,
-                               Helpers.setStruct("rango"))
+                               Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -412,7 +412,7 @@ async def testRangeValue_updRangeId_idEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -445,7 +445,7 @@ async def testRangeValue_updRangeId_idInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -480,7 +480,7 @@ async def testRangeValue_updRangeId_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -514,7 +514,7 @@ async def testRangeValue_updRangeId_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -551,7 +551,7 @@ async def testRangeValue_updRangeId_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:id", app.updateData,
-                               Helpers.updStruct("rango", "id"))
+                               Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -587,7 +587,7 @@ async def testRangeValue_updRangeId_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:id", app.updateData,
-                               Helpers.updStruct("rango", "id"))
+                               Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -622,7 +622,7 @@ async def testRangeValue_updRangeId_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:id", app.updateData,
-                               Helpers.updStruct("rango", "id"))
+                               Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -660,7 +660,7 @@ async def testRangeValue_updRangeId_controlEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Control_**\n" in out
@@ -693,7 +693,7 @@ async def testRangeValue_updRangeId_controlInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Control_** "\
@@ -728,7 +728,7 @@ async def testRangeValue_updRangeId_descriptionEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Descripción_**\n" in out
@@ -762,7 +762,7 @@ async def testRangeValue_updRangeId_descriptionLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -799,7 +799,7 @@ async def testRangeValue_updRangeId_descriptionStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:id", app.updateData,
-                               Helpers.updStruct("rango", "id"))
+                               Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe comenzar con valores "\
@@ -835,7 +835,7 @@ async def testRangeValue_updRangeId_descriptionSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:id", app.updateData,
-                               Helpers.updStruct("rango", "id"))
+                               Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe contener caracteres "\
@@ -870,7 +870,7 @@ async def testRangeValue_updRangeId_descriptionRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:id", app.updateData,
-                               Helpers.updStruct("rango", "id"))
+                               Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -903,7 +903,7 @@ async def testRangeValue_updRangeName_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -932,7 +932,7 @@ async def testRangeValue_updRangeName_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -964,7 +964,7 @@ async def testRangeValue_updRangeName_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:name", app.updateData,
-                               Helpers.updStruct("rango", "name"))
+                               Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -995,7 +995,7 @@ async def testRangeValue_updRangeName_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:name", app.updateData,
-                               Helpers.updStruct("rango", "name"))
+                               Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1025,7 +1025,7 @@ async def testRangeValue_updRangeName_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:name", app.updateData,
-                               Helpers.updStruct("rango", "name"))
+                               Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1058,7 +1058,7 @@ async def testRangeValue_updRangeName_controlEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Control_**\n" in out
@@ -1086,7 +1086,7 @@ async def testRangeValue_updRangeName_controlInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Control_** "\
@@ -1116,7 +1116,7 @@ async def testRangeValue_updRangeName_descriptionEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Descripción_**\n" in out
@@ -1145,7 +1145,7 @@ async def testRangeValue_updRangeName_descriptionLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1177,7 +1177,7 @@ async def testRangeValue_updRangeName_descriptionStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:name", app.updateData,
-                               Helpers.updStruct("rango", "name"))
+                               Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe comenzar con valores "\
@@ -1208,7 +1208,7 @@ async def testRangeValue_updRangeName_descriptionSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:name", app.updateData,
-                               Helpers.updStruct("rango", "name"))
+                               Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe contener caracteres "\
@@ -1238,7 +1238,7 @@ async def testRangeValue_updRangeName_descriptionRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updRange:name", app.updateData,
-                               Helpers.updStruct("rango", "name"))
+                               Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1261,7 +1261,7 @@ async def testRangeValue_delRangeId_idEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
-                           Helpers.delStruct("rango", "id"))
+                           Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -1279,7 +1279,7 @@ async def testRangeValue_delRangeId_idInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
-                           Helpers.delStruct("rango", "id"))
+                           Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -1299,7 +1299,7 @@ async def testRangeValue_delRangeName_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
-                           Helpers.delStruct("rango", "name"))
+                           Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -1318,7 +1318,7 @@ async def testRangeValue_delRangeName_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
-                           Helpers.delStruct("rango", "name"))
+                           Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1340,7 +1340,7 @@ async def testRangeValue_delRangeName_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delRange:name", app.deleteData,
-                               Helpers.delStruct("rango", "name"))
+                               Helpers.delStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -1361,7 +1361,7 @@ async def testRangeValue_delRangeName_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delRange:name", app.deleteData,
-                               Helpers.delStruct("rango", "name"))
+                               Helpers.delStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1381,7 +1381,7 @@ async def testRangeValue_delRangeName_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delRange:name", app.deleteData,
-                               Helpers.delStruct("rango", "name"))
+                               Helpers.delStruct("range", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1404,7 +1404,7 @@ async def testRangeValue_listRangeId_idEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
-                         Helpers.getStruct("rango", ["id"]))
+                         Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -1422,7 +1422,7 @@ async def testRangeValue_listRangeId_idInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
-                         Helpers.getStruct("rango", ["id"]))
+                         Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -1442,7 +1442,7 @@ async def testRangeValue_listRangeName_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
-                         Helpers.getStruct("rango", ["name"]))
+                         Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -1461,7 +1461,7 @@ async def testRangeValue_listRangeName_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
-                         Helpers.getStruct("rango", ["name"]))
+                         Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1483,7 +1483,7 @@ async def testRangeValue_listRangeName_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
-                             Helpers.getStruct("rango", ["name"]))
+                             Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -1504,7 +1504,7 @@ async def testRangeValue_listRangeName_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
-                             Helpers.getStruct("rango", ["name"]))
+                             Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1524,7 +1524,7 @@ async def testRangeValue_listRangeName_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
-                             Helpers.getStruct("rango", ["name"]))
+                             Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\

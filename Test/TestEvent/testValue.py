@@ -39,7 +39,7 @@ async def testEventValue_addEvent_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -68,7 +68,7 @@ async def testEventValue_addEvent_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -100,7 +100,7 @@ async def testEventValue_addEvent_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
-                               Helpers.setStruct("evento"))
+                               Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -131,7 +131,7 @@ async def testEventValue_addEvent_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
-                               Helpers.setStruct("evento"))
+                               Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -161,7 +161,7 @@ async def testEventValue_addEvent_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
-                               Helpers.setStruct("evento"))
+                               Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -194,7 +194,7 @@ async def testEventValue_addEvent_pointsEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Puntos_**\n" in out
@@ -222,7 +222,7 @@ async def testEventValue_addEvent_pointsInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Puntos_** "\
@@ -252,7 +252,7 @@ async def testEventValue_addEvent_descriptionEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Descripción_**\n" in out
@@ -281,7 +281,7 @@ async def testEventValue_addEvent_descriptionLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -313,7 +313,7 @@ async def testEventValue_addEvent_descriptionStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
-                               Helpers.setStruct("evento"))
+                               Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe comenzar con valores "\
@@ -344,7 +344,7 @@ async def testEventValue_addEvent_descriptionSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
-                               Helpers.setStruct("evento"))
+                               Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe contener caracteres "\
@@ -374,7 +374,7 @@ async def testEventValue_addEvent_descriptionRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
-                               Helpers.setStruct("evento"))
+                               Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -412,7 +412,7 @@ async def testEventValue_updEventId_idEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -445,7 +445,7 @@ async def testEventValue_updEventId_idInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -480,7 +480,7 @@ async def testEventValue_updEventId_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -514,7 +514,7 @@ async def testEventValue_updEventId_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -551,7 +551,7 @@ async def testEventValue_updEventId_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
-                               Helpers.updStruct("evento", "id"))
+                               Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -587,7 +587,7 @@ async def testEventValue_updEventId_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
-                               Helpers.updStruct("evento", "id"))
+                               Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -622,7 +622,7 @@ async def testEventValue_updEventId_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
-                               Helpers.updStruct("evento", "id"))
+                               Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -660,7 +660,7 @@ async def testEventValue_updEventId_pointsEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Puntos_**\n" in out
@@ -693,7 +693,7 @@ async def testEventValue_updEventId_pointsInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Puntos_** "\
@@ -728,7 +728,7 @@ async def testEventValue_updEventId_descriptionEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Descripción_**\n" in out
@@ -762,7 +762,7 @@ async def testEventValue_updEventId_descriptionLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -799,7 +799,7 @@ async def testEventValue_updEventId_descriptionStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
-                               Helpers.updStruct("evento", "id"))
+                               Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe comenzar con valores "\
@@ -835,7 +835,7 @@ async def testEventValue_updEventId_descriptionSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
-                               Helpers.updStruct("evento", "id"))
+                               Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe contener caracteres "\
@@ -870,7 +870,7 @@ async def testEventValue_updEventId_descriptionRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
-                               Helpers.updStruct("evento", "id"))
+                               Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -903,7 +903,7 @@ async def testEventValue_updEventName_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -932,7 +932,7 @@ async def testEventValue_updEventName_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -964,7 +964,7 @@ async def testEventValue_updEventName_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
-                               Helpers.updStruct("evento", "name"))
+                               Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -995,7 +995,7 @@ async def testEventValue_updEventName_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
-                               Helpers.updStruct("evento", "name"))
+                               Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1025,7 +1025,7 @@ async def testEventValue_updEventName_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
-                               Helpers.updStruct("evento", "name"))
+                               Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1058,7 +1058,7 @@ async def testEventValue_updEventName_pointsEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Puntos_**\n" in out
@@ -1086,7 +1086,7 @@ async def testEventValue_updEventName_pointsInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Puntos_** "\
@@ -1116,7 +1116,7 @@ async def testEventValue_updEventName_descriptionEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Descripción_**\n" in out
@@ -1145,7 +1145,7 @@ async def testEventValue_updEventName_descriptionLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1177,7 +1177,7 @@ async def testEventValue_updEventName_descriptionStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
-                               Helpers.updStruct("evento", "name"))
+                               Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe comenzar con valores "\
@@ -1208,7 +1208,7 @@ async def testEventValue_updEventName_descriptionSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
-                               Helpers.updStruct("evento", "name"))
+                               Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Descripción_** no debe contener caracteres "\
@@ -1238,7 +1238,7 @@ async def testEventValue_updEventName_descriptionRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
-                               Helpers.updStruct("evento", "name"))
+                               Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1261,7 +1261,7 @@ async def testEventValue_delEventId_idEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
-                           Helpers.delStruct("evento", "id"))
+                           Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -1279,7 +1279,7 @@ async def testEventValue_delEventId_idInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
-                           Helpers.delStruct("evento", "id"))
+                           Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -1299,7 +1299,7 @@ async def testEventValue_delEventName_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
-                           Helpers.delStruct("evento", "name"))
+                           Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -1318,7 +1318,7 @@ async def testEventValue_delEventName_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
-                           Helpers.delStruct("evento", "name"))
+                           Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1340,7 +1340,7 @@ async def testEventValue_delEventName_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
-                               Helpers.delStruct("evento", "name"))
+                               Helpers.delStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -1361,7 +1361,7 @@ async def testEventValue_delEventName_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
-                               Helpers.delStruct("evento", "name"))
+                               Helpers.delStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1381,7 +1381,7 @@ async def testEventValue_delEventName_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
-                               Helpers.delStruct("evento", "name"))
+                               Helpers.delStruct("event", "name"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1404,7 +1404,7 @@ async def testEventValue_listEventId_idEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+                         Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -1422,7 +1422,7 @@ async def testEventValue_listEventId_idInvalid(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+                         Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -1442,7 +1442,7 @@ async def testEventValue_listEventName_nameEmpty(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+                         Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -1461,7 +1461,7 @@ async def testEventValue_listEventName_nameLong(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+                         Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1483,7 +1483,7 @@ async def testEventValue_listEventName_nameStartChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+                             Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -1504,7 +1504,7 @@ async def testEventValue_listEventName_nameSpeChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+                             Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1524,7 +1524,7 @@ async def testEventValue_listEventName_nameRepeatChar(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+                             Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\

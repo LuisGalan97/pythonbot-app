@@ -27,7 +27,7 @@ async def testEventParams_addEvent_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
-                           Helpers.setStruct("evento"))
+                           Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -52,7 +52,7 @@ async def testEventParams_updEventId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
-                           Helpers.updStruct("evento", "id"))
+                           Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -77,7 +77,7 @@ async def testEventParams_updEventName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
-                           Helpers.updStruct("evento", "name"))
+                           Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -100,7 +100,7 @@ async def testEventParams_delEventId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
-                           Helpers.delStruct("evento", "id"))
+                           Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -123,7 +123,7 @@ async def testEventParams_delEventName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
-                           Helpers.delStruct("evento", "name"))
+                           Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -146,7 +146,7 @@ async def testEventParams_listEventId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+                         Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -169,7 +169,7 @@ async def testEventParams_listEventName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+                         Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out

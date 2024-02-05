@@ -27,7 +27,7 @@ async def testRangeDefault_addRange(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addRange", app.setData,
-                       Helpers.setStruct("rango"))
+                       Helpers.setStruct("range"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -56,7 +56,7 @@ async def testRangeDefault_addRange_exist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
-                           Helpers.setStruct("rango"))
+                           Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_Nombre_** "\
                f"\'{testData['namecreate']}\' "\
@@ -69,7 +69,7 @@ async def testRangeDefault_listRangeId_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listRange:id", app.getDatas,
-                     Helpers.getStruct("rango", ["id"]))
+                     Helpers.getStruct("range", ["id"]))
     out, _ = capfd.readouterr()
     assert "**___Rangos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
@@ -84,7 +84,7 @@ async def testRangeDefault_listRangeName_add(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listRange:name", app.getDatas,
-                     Helpers.getStruct("rango", ["name"]))
+                     Helpers.getStruct("range", ["name"]))
     out, _ = capfd.readouterr()
     assert "**___Rangos___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
@@ -113,7 +113,7 @@ async def testRangeDefault_updRangeId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
@@ -138,7 +138,7 @@ async def testRangeDefault_updRangeId_nameExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_Nombre_** "\
                f"\'{testData['nameexist']}\' "\
@@ -162,7 +162,7 @@ async def testRangeDefault_updRangeName(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
@@ -177,7 +177,7 @@ async def testRangeDefault_listRange(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange", app.getDatas,
-                         Helpers.getStruct("rango"))
+                         Helpers.getStruct("range"))
         out, _ = capfd.readouterr()
         assert "**___Rangos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -197,7 +197,7 @@ async def testRangeDefault_listRangeId(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
-                         Helpers.getStruct("rango", ["id"]))
+                         Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
         assert "**___Rangos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -217,7 +217,7 @@ async def testRangeDefault_listRangeName(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
-                         Helpers.getStruct("rango", ["name"]))
+                         Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
         assert "**___Rangos___** **___encontrados:___**\n" in out
         assert f"{testData['id']}" in out
@@ -236,7 +236,7 @@ async def testRangeDefault_listRange_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange", app.getDatas,
-                             Helpers.getStruct("rango"))
+                             Helpers.getStruct("range"))
             out, _ = capfd.readouterr()
             assert "**___Rangos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -254,7 +254,7 @@ async def testRangeDefault_listRangeId_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:id", app.getDatas,
-                             Helpers.getStruct("rango", ["id"]))
+                             Helpers.getStruct("range", ["id"]))
             out, _ = capfd.readouterr()
             assert "**___Rangos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -272,7 +272,7 @@ async def testRangeDefault_listRangeName_e(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
-                             Helpers.getStruct("rango", ["name"]))
+                             Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
             assert "**___Rangos___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -288,7 +288,7 @@ async def testRangeDefault_listRange_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange", app.getDatas,
-                             Helpers.getStruct("rango"))
+                             Helpers.getStruct("range"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -309,7 +309,7 @@ async def testRangeDefault_listRangeId_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:id", app.getDatas,
-                             Helpers.getStruct("rango", ["id"]))
+                             Helpers.getStruct("range", ["id"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -331,7 +331,7 @@ async def testRangeDefault_listRangeName_eIncomplete(capfd):
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
-                             Helpers.getStruct("rango", ["name"]))
+                             Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -347,7 +347,7 @@ async def testRangeDefault_delRangeId(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delRange:id", app.deleteData,
-                       Helpers.delStruct("rango", "id"))
+                       Helpers.delStruct("range", "id"))
     out, _ = capfd.readouterr()
     assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
@@ -359,7 +359,7 @@ async def testRangeDefault_addRange_delName(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addRange", app.setData,
-                       Helpers.setStruct("rango"))
+                       Helpers.setStruct("range"))
     out, _ = capfd.readouterr()
     idTest = out[out.find("**_ID_** '"):]
     testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
@@ -373,7 +373,7 @@ async def testRangeDefault_delRangeName(capfd):
     client = Client(user="test")
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delRange:name", app.deleteData,
-                       Helpers.delStruct("rango", "name"))
+                       Helpers.delStruct("range", "name"))
     out, _ = capfd.readouterr()
     assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
@@ -398,7 +398,7 @@ async def testRangeDefault_updRangeId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
-                           Helpers.updStruct("rango", "id"))
+                           Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -421,7 +421,7 @@ async def testRangeDefault_updRangeName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
-                           Helpers.updStruct("rango", "name"))
+                           Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_Nombre_** "\
                f"'{testData['nameupdate']}' "\
@@ -439,7 +439,7 @@ async def testRangeDefault_delRangeId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
-                           Helpers.delStruct("rango", "id"))
+                           Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_ID_** '{testData['id']}' "\
                 "no se encuentra en la base de datos.\n" in out
@@ -456,7 +456,7 @@ async def testRangeDefault_delRangeName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
-                           Helpers.delStruct("rango", "name"))
+                           Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
         assert f"El ___rango___ de **_Nombre_** "\
                f"'{testData['namecreate']}' "\
@@ -474,7 +474,7 @@ async def testRangeDefault_listRangeId_idNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
-                         Helpers.getStruct("rango", ["id"]))
+                         Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___rangos___ "\
                "para la consulta realizada.\n" in out
@@ -491,7 +491,7 @@ async def testRangeDefault_listRangeName_nameNoExist(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
-                         Helpers.getStruct("rango", ["name"]))
+                         Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___rangos___ "\
                "para la consulta realizada.\n" in out

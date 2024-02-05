@@ -27,7 +27,7 @@ async def testMemberParams_addMember_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
-                           Helpers.setStruct("integrante"))
+                           Helpers.setStruct("member"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -52,7 +52,7 @@ async def testMemberParams_updMemberId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
-                           Helpers.updStruct("integrante", "id"))
+                           Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -77,7 +77,7 @@ async def testMemberParams_updMemberName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
-                           Helpers.updStruct("integrante", "name"))
+                           Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -100,7 +100,7 @@ async def testMemberParams_delMemberId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
-                           Helpers.delStruct("integrante", "id"))
+                           Helpers.delStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -123,7 +123,7 @@ async def testMemberParams_delMemberName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
-                           Helpers.delStruct("integrante", "name"))
+                           Helpers.delStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -146,7 +146,7 @@ async def testMemberParams_listMemberId_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
-                         Helpers.getStruct("integrante", ["id"]))
+                         Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -169,7 +169,7 @@ async def testMemberParams_listMemberName_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
-                         Helpers.getStruct("integrante", ["name"]))
+                         Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -192,7 +192,7 @@ async def testMemberParams_listMemberRange_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
-                         Helpers.getStruct("integrante", ["rango"]))
+                         Helpers.getStruct("member", ["range"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -217,7 +217,7 @@ async def testMemberParams_listMemberDate_invalidParams(capfd):
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
-                         Helpers.getStruct("integrante", ["date_1", "date_2"]))
+                         Helpers.getStruct("member", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out

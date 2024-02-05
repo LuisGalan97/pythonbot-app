@@ -373,8 +373,10 @@ class MessageHandler:
                                 discordFile = discord.File(df.getDirectory())
                                 await self.__send(message =
                                                   "**___" + \
-                                                  (list(struct['controller']
-                                                   .keys())[0]
+                                                  ([value['alias'] for
+                                                    value in
+                                                    struct['controller']
+                                                    .values()][0]
                                                    .capitalize()) + \
                                                   "s___** "\
                                                   "**___encontrad" + \
@@ -421,14 +423,18 @@ class MessageHandler:
                     else:
                         array = []
                         title = "**___" + \
-                                (list(struct['controller'].
-                                 keys())[0]
-                                 .capitalize()) + \
+                                ([value['alias'] for
+                                  value in
+                                  struct['controller']
+                                  .values()][0]
+                                  .capitalize())  + \
                                 "s___** "\
                                 "**___encontrad" + \
                                 ('a'
-                                 if list(struct['controller']
-                                    .keys())[0][0] == 'a'
+                                 if [value['alias'] for
+                                     value in
+                                     struct['controller']
+                                     .values()][0][0] == 'a'
                                  else 'o') + \
                                 "s:___**"
                         length = len(title)
