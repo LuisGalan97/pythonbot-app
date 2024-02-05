@@ -1,7 +1,7 @@
 from DB.database import Database
 from Models.rangeModel import RangoModel
 
-class RangoService:
+class RangeService:
     def __init__(self, db : Database):
         self.__db = db
         self.__selectQuery = "SELECT * FROM rangos"

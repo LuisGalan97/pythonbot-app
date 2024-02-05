@@ -2,11 +2,11 @@ from DB.database import Database
 from Models.assistModel import AsistenciaModel
 from Models.eventModel import EventoModel
 from Models.memberModel import IntegranteModel
-from Services.assistService import AsistenciaService
+from Services.assistService import AssistService
 
 class AsistenciaController:
     def __init__(self, db : Database):
-        self.__service = AsistenciaService(db)
+        self.__service = AssistService(db)
 
     def getAsistencias(self, target = None):
         asistencias = self.__service.select(target)

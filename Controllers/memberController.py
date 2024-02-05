@@ -1,11 +1,11 @@
 from DB.database import Database
 from Models.memberModel import IntegranteModel
 from Models.rangeModel import RangoModel
-from Services.memberService import IntegranteService
+from Services.memberService import MemberService
 
 class IntegranteController:
     def __init__(self, db : Database):
-        self.__service = IntegranteService(db)
+        self.__service = MemberService(db)
 
     def getIntegrantes(self, target = None):
         integrantes = self.__service.select(target)

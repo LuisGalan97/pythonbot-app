@@ -1,7 +1,7 @@
 from DB.database import Database
 from Models.eventModel import EventoModel
 
-class EventoService:
+class EventService:
     def __init__(self, db : Database):
         self.__db = db
         self.__selectQuery = "SELECT * FROM eventos"

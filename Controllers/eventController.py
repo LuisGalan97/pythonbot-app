@@ -1,10 +1,10 @@
 from DB.database import Database
 from Models.eventModel import EventoModel
-from Services.eventService import EventoService
+from Services.eventService import EventService
 
 class EventoController:
     def __init__(self, db : Database):
-        self.__service = EventoService(db)
+        self.__service = EventService(db)
 
     def getEventos(self, target = None):
         eventos = self.__service.select(target)

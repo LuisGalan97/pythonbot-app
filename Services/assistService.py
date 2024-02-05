@@ -4,7 +4,7 @@ from Models.eventModel import EventoModel
 from Models.memberModel import IntegranteModel
 from Models.rangeModel import RangoModel
 
-class AsistenciaService:
+class AssistService:
     def __init__(self, db : Database):
         self.__db = db
         self.__selectQuery = (

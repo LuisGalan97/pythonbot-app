@@ -1,10 +1,10 @@
 from DB.database import Database
 from Models.rangeModel import RangoModel
-from Services.rangeService import RangoService
+from Services.rangeService import RangeService
 
 class RangoController:
     def __init__(self, db : Database):
-        self.__service = RangoService(db)
+        self.__service = RangeService(db)
 
     def getRangos(self, target = None):
         rangos = self.__service.select(target)

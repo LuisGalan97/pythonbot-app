@@ -2,7 +2,7 @@ from DB.database import Database
 from Models.memberModel import IntegranteModel
 from Models.rangeModel import RangoModel
 
-class IntegranteService:
+class MemberService:
     def __init__(self, db : Database):
         self.__db = db
         self.__selectQuery = (
