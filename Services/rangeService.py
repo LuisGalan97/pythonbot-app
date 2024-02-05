@@ -24,7 +24,7 @@ class RangeService:
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE nomhre = ?",
+                                            "WHERE nombre = ?",
                                            (target["name"],))
         else:
             data = None
