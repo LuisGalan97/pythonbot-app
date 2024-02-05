@@ -879,6 +879,373 @@ async def testValue_updMemberId_dateInvalid(capfd):
                f"**_Fecha_** "\
                 "es invalido.\n" in out
 
+#---------------------Test $updMember:name [Nombre, *, *]----------------------
+@pytest.mark.asyncio
+async def testValue_updMemberName_nameEmpty(capfd):
+    value = ""
+    commands = [f"$updMember:name[{value},"\
+                f"{testData['range']},"\
+                f"{testData['date']}]",
+                f"$updMember:name [{value}, "\
+                f"{testData['range']}, "\
+                f"{testData['date']} ]",
+                f"$updMember:name [ {value} , "\
+                f" {testData['range']} , "\
+                f" {testData['date']} ] ",
+                f"$updMember:name [ {value} , "\
+                f" {testData['range']} , "\
+                f" {testData['date']} ]FILL",
+                f"$updMember:name [ {value} , "\
+                f" {testData['range']} , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Nombre_**\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_nameLong(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$updMember:name[{value},"\
+                f"{testData['range']},"\
+                f"{testData['date']}]",
+                f"$updMember:name [{value}, "\
+                f"{testData['range']}, "\
+                f"{testData['date']} ]",
+                f"$updMember:name [ {value} , "\
+                f" {testData['range']} , "\
+                f" {testData['date']} ] ",
+                f"$updMember:name [ {value} , "\
+                f" {testData['range']} , "\
+                f" {testData['date']} ]FILL",
+                f"$updMember:name [ {value} , "\
+                f" {testData['range']} , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Nombre_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_nameStartChar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$updMember:name[{value},"\
+                    f"{testData['range']},"\
+                    f"{testData['date']}]",
+                    f"$updMember:name [{value}, "\
+                    f"{testData['range']}, "\
+                    f"{testData['date']} ]",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ] ",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ]FILL",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updMember:name", app.updateData,
+                               Helpers.updStruct("integrante", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Nombre_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_nameSpeChar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$updMember:name[{value},"\
+                    f"{testData['range']},"\
+                    f"{testData['date']}]",
+                    f"$updMember:name [{value}, "\
+                    f"{testData['range']}, "\
+                    f"{testData['date']} ]",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ] ",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ]FILL",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Nombre_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_nameRepeatChar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$updMember:name[{value},"\
+                    f"{testData['range']},"\
+                    f"{testData['date']}]",
+                    f"$updMember:name [{value}, "\
+                    f"{testData['range']}, "\
+                    f"{testData['date']} ]",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ] ",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ]FILL",
+                    f"$updMember:name [ {value} , "\
+                    f" {testData['range']} , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updMember:name", app.updateData,
+                               Helpers.updStruct("integrante", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Nombre_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#----------------------Test $updMember:name [*, Rango, *]----------------------
+@pytest.mark.asyncio
+async def testValue_updMemberName_rangeEmpty(capfd):
+    value = ""
+    commands = [f"$updMember:name[{testData['name']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$updMember:name [{testData['name']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] ",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['date']} ]FILL",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Rango_**\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_rangeLong(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$updMember:name[{testData['name']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$updMember:name [{testData['name']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] ",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['date']} ]FILL",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {value}  , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Rango_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_rangeStartChar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$updMember:name[{testData['name']},"\
+                    f"{value},"\
+                    f"{testData['date']}]",
+                    f"$updMember:name [{testData['name']}, "\
+                    f"{value}, "\
+                    f"{testData['date']} ]",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value} , "\
+                    f" {testData['date']} ] ",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ]FILL",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updMember:name", app.updateData,
+                               Helpers.updStruct("integrante", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Rango_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_rangeSpeChar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$updMember:name[{testData['name']},"\
+                    f"{value},"\
+                    f"{testData['date']}]",
+                    f"$updMember:name [{testData['name']}, "\
+                    f"{value}, "\
+                    f"{testData['date']} ]",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value} , "\
+                    f" {testData['date']} ] ",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ]FILL",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updMember:name", app.updateData,
+                               Helpers.updStruct("integrante", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Rango_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_rangeRepeatChar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$updMember:name[{testData['name']},"\
+                    f"{value},"\
+                    f"{testData['date']}]",
+                    f"$updMember:name [{testData['name']}, "\
+                    f"{value}, "\
+                    f"{testData['date']} ]",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value} , "\
+                    f" {testData['date']} ] ",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ]FILL",
+                    f"$updMember:name [ {testData['name']} , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.contMsg("updMember:name", app.updateData,
+                               Helpers.updStruct("integrante", "name"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Rango_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#----------------------Test $updMember:name [*, *, Fecha]----------------------
+@pytest.mark.asyncio
+async def testValue_updMemberName_dateEmpty(capfd):
+    value = ""
+    commands = [f"$updMember:name[{testData['name']},"\
+                f"{testData['range']},"\
+                f"{value}]",
+                f"$updMember:name [{testData['name']}, "\
+                f"{testData['range']}, "\
+                f"{value} ]",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} ] ",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} ]FILL",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha_**\n" in out
+
+@pytest.mark.asyncio
+async def testValue_updMemberName_dateInvalid(capfd):
+    value = "test"
+    commands = [f"$updMember:name[{testData['name']},"\
+                f"{testData['range']},"\
+                f"{value}]",
+                f"$updMember:name [{testData['name']}, "\
+                f"{testData['range']}, "\
+                f"{value} ]",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} ] ",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} ]FILL",
+                f"$updMember:name [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("integrante", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha_** "\
+                "es invalido.\n" in out
 '''
 #----------------------Test $updEvent:name [Nombre, *, *]----------------------
 @pytest.mark.asyncio
