@@ -89,27 +89,27 @@ class AssistService:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
-            asistencias = []
+            assists = []
             for row in data:
-                rango = RangeModel(row['member_range_id'],
+                range = RangeModel(row['member_range_id'],
                                    row['member_range_name'],
                                    row['member_range_control'],
                                    row['member_range_description'])
-                integrante = MemberModel(row['member_id'],
+                member = MemberModel(row['member_id'],
                                          row['member_name'],
-                                         rango,
+                                         range,
                                          row['member_datecreate'],
                                          row['member_dateupdate'])
-                evento = EventModel(row['event_id'],
+                event = EventModel(row['event_id'],
                                     row['event_name'],
                                     row['event_points'],
                                     row['event_description'])
-                asistencia = AssistModel(row['id'],
-                                         integrante,
-                                         evento,
+                assist = AssistModel(row['id'],
+                                         member,
+                                         event,
                                          row['date'])
-                asistencias.append(asistencia)
-            return asistencias
+                assists.append(assist)
+            return assists
         else:
             return data
 
