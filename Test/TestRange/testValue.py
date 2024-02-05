@@ -631,7 +631,7 @@ async def testRangeValue_updRangeId_nameRepeatChar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
-#--------------------Test $updRange:id [*, *, Control, *]-----------------------
+#-------------------Test $updRange:id [*, *, Control, *]-----------------------
 @pytest.mark.asyncio
 async def testRangeValue_updRangeId_controlEmpty(capfd):
     value = ""
@@ -1034,7 +1034,7 @@ async def testRangeValue_updRangeName_nameRepeatChar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
-#---------------------Test $updRange:name [*, Control, *]-----------------------
+#--------------------Test $updRange:name [*, Control, *]-----------------------
 @pytest.mark.asyncio
 async def testRangeValue_updRangeName_controlEmpty(capfd):
     value = ""
