@@ -135,6 +135,21 @@ async def testConstraintsDefault_updMemberId(capfd):
     assert "El ___integrante___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
+async def testConstraintsDefault_listAssistId_checkUpdMemberCascade(capfd):
+    command = f"$listAssist:id [{testData['assist_id']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.dFMsg("listAssist:id", app.getDatas,
+                     Helpers.getStruct("assist", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Asistencias___** **___encontradas:___**\n" in out
+    assert f"{testData['assist_id']}" in out
+    assert f"{testData['mem_update']}" in out
+    assert f"{testData['ev_create']}" in out
+    assert f"{testData['assist_date'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
 async def testConstraintsDefault_updEventId(capfd):
     command = f"$updEvent:id[{testData['ev_id']}, "\
                f"{testData['ev_update']}, "\
@@ -149,7 +164,7 @@ async def testConstraintsDefault_updEventId(capfd):
     assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testConstraintsDefault_listAssistId_checkUpdMemberCascade(capfd):
+async def testConstraintsDefault_listAssistId_checkUpdEventCascade(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
