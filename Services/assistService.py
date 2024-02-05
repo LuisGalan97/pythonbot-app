@@ -17,10 +17,10 @@ class AssistService:
             "i.nombre AS member_name, "\
             "strftime('%d/%m/%Y', i.fechacreacion) AS member_datecreate, "\
             "strftime('%d/%m/%Y', i.fechamodificacion) AS member_dateupdate, "\
-            "e.id AS evento_id, "\
-            "e.nombre AS evento_name, "\
-            "e.puntos AS evento_points, "\
-            "e.descripcion AS evento_description, "\
+            "e.id AS event_id, "\
+            "e.nombre AS event_name, "\
+            "e.puntos AS event_points, "\
+            "e.descripcion AS event_description, "\
             "a.id, "\
             "strftime('%d/%m/%Y', a.fecha) AS date "\
         "FROM asistencias a "\
@@ -91,12 +91,23 @@ class AssistService:
         if isinstance(data, list):
             asistencias = []
             for row in data:
-                rango = RangeModel(row['member_range_id'], row[1], row[2], row[3])
-                integrante = MemberModel(row[4], row[5], rango, row[6],
-                                             row[7])
-                evento = EventModel(row[8], row[9], row[10], row[11])
-                asistencia = AssistModel(row[12], integrante, evento,
-                                             row[13])
+                rango = RangeModel(row['member_range_id'],
+                                   row['member_range_name'],
+                                   row['member_range_control'],
+                                   row['member_range_description'])
+                integrante = MemberModel(row['member_id'],
+                                         row['member_name'],
+                                         rango,
+                                         row['member_datecreate'],
+                                         row['member_dateupdate'])
+                evento = EventModel(row['event_id'],
+                                    row['event_name'],
+                                    row['event_points'],
+                                    row['event_description'])
+                asistencia = AssistModel(row['id'],
+                                         integrante,
+                                         evento,
+                                         row['date'])
                 asistencias.append(asistencia)
             return asistencias
         else:
