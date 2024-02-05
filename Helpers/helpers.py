@@ -232,7 +232,7 @@ class Helpers:
             }
         elif nameCtrl == "member":
             structCtrl[nameCtrl] = {
-                "alias" : "Integrante",
+                "alias" : "integrante",
                 "ref" : {
                     "ID" : "id",
                     "Nombre" : "name",
