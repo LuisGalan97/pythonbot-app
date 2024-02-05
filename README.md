@@ -1,11 +1,11 @@
-<h3><b>Aplicacion pythonbot</b></h3>
+<h2><b>Aplicacion pythonbot</b></h2>
 
 Repositorio asociado a aplicacion desarrollada en lenguaje python para implementacion de bot en discord, con el fin de permitir la gestion de informacion de usuarios y asistencia en eventos registrados, mediante implementacion de controlador, modelos y servicios, para el guardado de datos en base de datos SQLite, esto mediante la habilitacion de una lista de comandos
 de lectura y escritura destinados para ser usados en el chat de discord una vez se encuentre activo.
 
 **Consideraciones:**
 
-- _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento para posteriormente en discord emplear el comando._<br />`$help` <- _Con esto encontraremos toda la informacion asociada a su modo de uso._
+- _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento para posteriormente en discord emplear el comando._<br />`$help` <- Al emplear este comando podremos encontrar toda la informacion asociada a su modo de uso._
 
 - _Para el funcionamiento de la aplicacion se recomienda importar el token del bot de discord, como variable de entorno bajo el nombre "TOKEN"._
 
