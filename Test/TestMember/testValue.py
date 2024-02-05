@@ -1389,22 +1389,22 @@ async def testValue_delMemberName_nameRepeatChar(capfd):
                     "no debe repetir mas de dos veces los "\
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
-'''
-#------------------------------$listEvent:id [ID]------------------------------
+
+#-----------------------------$listMember:id [ID]------------------------------
 @pytest.mark.asyncio
 async def testValue_listEventId_idEmpty(capfd):
     value = ""
-    commands = [f"$listEvent:id[{value}],",
-                f"$listEvent:id [{value} ], ",
-                f"$listEvent:id [ {value} ], ",
-                f"$listEvent:id [ {value} ]FILL",
-                f"$listEvent:id [ {value} ] FILL"]
+    commands = [f"$listMember:id[{value}],",
+                f"$listMember:id [{value} ], ",
+                f"$listMember:id [ {value} ], ",
+                f"$listMember:id [ {value} ]FILL",
+                f"$listMember:id [ {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+        await hdlr.dFMsg("listMember:id", app.getDatas,
+                         Helpers.getStruct("integrante", ["id"]))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -1412,37 +1412,37 @@ async def testValue_listEventId_idEmpty(capfd):
 @pytest.mark.asyncio
 async def testValue_listEventId_idInvalid(capfd):
     value = "test"
-    commands = [f"$listEvent:id[{value}],",
-                f"$listEvent:id [{value} ], ",
-                f"$listEvent:id [ {value} ], ",
-                f"$listEvent:id [ {value} ]FILL",
-                f"$listEvent:id [ {value} ] FILL"]
+    commands = [f"$listMember:id[{value}],",
+                f"$listMember:id [{value} ], ",
+                f"$listMember:id [ {value} ], ",
+                f"$listMember:id [ {value} ]FILL",
+                f"$listMember:id [ {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listEvent:id", app.getDatas,
-                         Helpers.getStruct("evento", ["id"]))
+        await hdlr.dFMsg("listMember:id", app.getDatas,
+                         Helpers.getStruct("integrante", ["id"]))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
                 "es invalido.\n" in out
 
-#------------------------Test $listEvent:name [Nombre]-------------------------
+#-----------------------Test $listMember:name [Nombre]-------------------------
 @pytest.mark.asyncio
 async def testValue_listEventName_nameEmpty(capfd):
     value = ""
-    commands = [f"$listEvent:name[{value}]",
-                f"$listEvent:name [{value} ]",
-                f"$listEvent:name [ {value} ]",
-                f"$listEvent:name [ {value} ]FILL",
-                f"$listEvent:name [ {value} ] FILL"]
+    commands = [f"$listMember:name[{value}]",
+                f"$listMember:name [{value} ]",
+                f"$listMember:name [ {value} ]",
+                f"$listMember:name [ {value} ]FILL",
+                f"$listMember:name [ {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+        await hdlr.dFMsg("listMember:name", app.getDatas,
+                         Helpers.getStruct("integrante", ["name"]))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -1451,17 +1451,17 @@ async def testValue_listEventName_nameEmpty(capfd):
 async def testValue_listEventName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
-    commands = [f"$listEvent:name[{value}]",
-                f"$listEvent:name [{value} ]",
-                f"$listEvent:name [ {value} ]",
-                f"$listEvent:name [ {value} ]FILL",
-                f"$listEvent:name [ {value} ] FILL"]
+    commands = [f"$listMember:name[{value}]",
+                f"$listMember:name [{value} ]",
+                f"$listMember:name [ {value} ]",
+                f"$listMember:name [ {value} ]FILL",
+                f"$listMember:name [ {value} ] FILL"]
     for command in commands:
         message = Message(author="test", content=command)
         client = Client(user="test")
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listEvent:name", app.getDatas,
-                         Helpers.getStruct("evento", ["name"]))
+        await hdlr.dFMsg("listMember:name", app.getDatas,
+                         Helpers.getStruct("integrante", ["name"]))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1473,17 +1473,17 @@ async def testValue_listEventName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
-        commands = [f"$listEvent:name[{value}]",
-                    f"$listEvent:name [{value} ]",
-                    f"$listEvent:name [ {value} ]",
-                    f"$listEvent:name [ {value} ]FILL",
-                    f"$listEvent:name [ {value} ] FILL"]
+        commands = [f"$listMember:name[{value}]",
+                    f"$listMember:name [{value} ]",
+                    f"$listMember:name [ {value} ]",
+                    f"$listMember:name [ {value} ]FILL",
+                    f"$listMember:name [ {value} ] FILL"]
         for command in commands:
             message = Message(author="test", content=command)
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+            await hdlr.dFMsg("listMember:name", app.getDatas,
+                             Helpers.getStruct("integrante", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -1494,17 +1494,17 @@ async def testValue_listEventName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
-        commands = [f"$listEvent:name[{value}]",
-                    f"$listEvent:name [{value} ]",
-                    f"$listEvent:name [ {value} ]",
-                    f"$listEvent:name [ {value} ]FILL",
-                    f"$listEvent:name [ {value} ] FILL"]
+        commands = [f"$listMember:name[{value}]",
+                    f"$listMember:name [{value} ]",
+                    f"$listMember:name [ {value} ]",
+                    f"$listMember:name [ {value} ]FILL",
+                    f"$listMember:name [ {value} ] FILL"]
         for command in commands:
             message = Message(author="test", content=command)
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+            await hdlr.dFMsg("listMember:name", app.getDatas,
+                             Helpers.getStruct("integrante", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1514,17 +1514,17 @@ async def testValue_listEventName_nameSpeChar(capfd):
 async def testValue_listEventName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
-        commands = [f"$listEvent:name[{value}]",
-                    f"$listEvent:name [{value} ]",
-                    f"$listEvent:name [ {value} ]",
-                    f"$listEvent:name [ {value} ]FILL",
-                    f"$listEvent:name [ {value} ] FILL"]
+        commands = [f"$listMember:name[{value}]",
+                    f"$listMember:name [{value} ]",
+                    f"$listMember:name [ {value} ]",
+                    f"$listMember:name [ {value} ]FILL",
+                    f"$listMember:name [ {value} ] FILL"]
         for command in commands:
             message = Message(author="test", content=command)
             client = Client(user="test")
             hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listEvent:name", app.getDatas,
-                             Helpers.getStruct("evento", ["name"]))
+            await hdlr.dFMsg("listMember:name", app.getDatas,
+                             Helpers.getStruct("integrante", ["name"]))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1532,4 +1532,3 @@ async def testValue_listEventName_nameRepeatChar(capfd):
                     "no debe repetir mas de dos veces los "\
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
-'''
