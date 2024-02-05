@@ -121,8 +121,9 @@ class AppHandler:
                                          method)(**target)
                     return (f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
                             f"___{aliasCtrl}___ ha sido "\
-                            f"actualizad{'a' if aliasCtrl[0] == 'a' else 'o'} "\
-                            "con exito."\
+                             "actualizad"\
+                            f"{'a' if aliasCtrl[0] == 'a' else 'o'} "\
+                             "con exito."\
                             if result else False)
                 elif existUpd:
                     return f"{'La' if aliasCtrl[0] == 'a' else 'El'} "\
