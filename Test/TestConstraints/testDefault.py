@@ -189,3 +189,29 @@ async def testConstraintsDefault_listMemberId_checkDelNone(capfd):
     assert "Ninguno" in out
     assert f"{testData['mem_datecreate'].replace('-','/')}" in out
     assert f"{testData['mem_dateupdate'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
+async def testEventDefault_delEventId(capfd):
+    command = f"$delEvent:id [{testData['ev_id']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delEvent:id", app.deleteData,
+                       Helpers.delStruct("event", "id"))
+    out, _ = capfd.readouterr()
+    assert "El ___evento___ ha sido eliminado con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testConstraintsDefault_listAssistId_checkDelNone(capfd):
+    command = f"$listAssist:id [{testData['assist_id']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.dFMsg("listAssist:id", app.getDatas,
+                     Helpers.getStruct("assist", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Asistencias___** **___encontradas:___**\n" in out
+    assert f"{testData['assist_id']}" in out
+    assert f"{testData['mem_update']}" in out
+    assert f"{testData['ev_update']}" in out
+    assert f"{testData['assist_date'].replace('-','/')}" in out
