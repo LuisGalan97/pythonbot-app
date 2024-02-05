@@ -4,7 +4,7 @@ Repositorio asociado a aplicacion desarrollada en lenguaje python para implement
 
 **Consideraciones:**
 
-- _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento para posteriormente en el chat del servidor habilitado, emplear el comando._<br />`$help` <- Al hacerlo podremos encontrar toda la informacion asociada a su modo de uso._
+- _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento para posteriormente en el chat del servidor habilitado, emplear el comando_:<br />`$help` <- Al hacerlo podremos encontrar toda la informacion asociada a su modo de uso._
 
 - _Para el funcionamiento de la aplicacion se recomienda importar el token del bot de discord, como variable de entorno bajo el nombre "TOKEN"._
 
@@ -20,3 +20,4 @@ Repositorio asociado a aplicacion desarrollada en lenguaje python para implement
 
 Por: 
 Ing. Luis Miguel Galán Salazar
+Ingeniero Mecatronico.
