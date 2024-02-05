@@ -9,14 +9,14 @@ class AssistService:
         self.__db = db
         self.__selectQuery = (
         "SELECT "\
-            "r.id AS integrante_rango_id, "\
-            "r.nombre AS integrante_rango_name, "\
-            "r.control AS integrante_rango_control, "\
-            "r.descripcion AS integrante_rango_description, "\
-            "i.id AS integrante_id, "\
-            "i.nombre AS integrante_name, "\
-            "strftime('%d/%m/%Y', i.fechacreacion) AS integrante_datecreate, "\
-            "strftime('%d/%m/%Y', i.fechamodificacion) AS integrante_dateupdate, "\
+            "r.id AS member_range_id, "\
+            "r.nombre AS member_range_name, "\
+            "r.control AS member_range_control, "\
+            "r.descripcion AS member_range_description, "\
+            "i.id AS member_id, "\
+            "i.nombre AS member_name, "\
+            "strftime('%d/%m/%Y', i.fechacreacion) AS member_datecreate, "\
+            "strftime('%d/%m/%Y', i.fechamodificacion) AS member_dateupdate, "\
             "e.id AS evento_id, "\
             "e.nombre AS evento_name, "\
             "e.puntos AS evento_points, "\

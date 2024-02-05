@@ -7,10 +7,10 @@ class MemberService:
         self.__db = db
         self.__selectQuery = (
         "SELECT "\
-            "r.id AS rango_id, "\
-            "r.nombre AS rango_name, "\
-            "r.control AS rango_control, "\
-            "r.descripcion AS rango_description, "\
+            "r.id AS range_id, "\
+            "r.nombre AS range_name, "\
+            "r.control AS range_control, "\
+            "r.descripcion AS range_description, "\
             "i.id, "\
             "i.nombre AS name, "\
             "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\

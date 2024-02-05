@@ -36,6 +36,7 @@ class Database:
             if not self.check_connection():
                 self.__conn = sql.connect(f"{dir}/DB/"+self.__dbName)
                 self.__conn.execute("PRAGMA foreign_keys = ON")
+                self.__conn.row_factory = sql.Row
                 self.__cursor = self.__conn.cursor()
                 print( "-> La conexion con la base de datos "\
                       f"'{self.__dbName}' fue inicializada con exito.")
