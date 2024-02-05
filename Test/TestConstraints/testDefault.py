@@ -105,7 +105,7 @@ async def testConstraintsDefault_updRangeId(capfd):
     assert "El ___rango___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testConstraintsDefault_listMemberId_checkUpdCascade(capfd):
+async def testConstraintsDefault_listMemberId_checkUpdRangeCascade(capfd):
     command = f"$listMember:id [{testData['mem_id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -149,7 +149,7 @@ async def testConstraintsDefault_updEventId(capfd):
     assert "El ___evento___ ha sido actualizado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testConstraintsDefault_listAssistId_checkUpdCascade(capfd):
+async def testConstraintsDefault_listAssistId_checkUpdMemberCascade(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -175,7 +175,7 @@ async def testConstraintsDefault_delRangeId(capfd):
     assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testConstraintsDefault_listMemberId_checkDelNone(capfd):
+async def testConstraintsDefault_listMemberId_checkDelRangeNone(capfd):
     command = f"$listMember:id [{testData['mem_id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
@@ -202,7 +202,33 @@ async def testConstraintsDefault_delEventId(capfd):
     assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
-async def testConstraintsDefault_listAssistId_checkDelNone(capfd):
+async def testConstraintsDefault_listAssistId_checkDelEventNone(capfd):
+    command = f"$listAssist:id [{testData['assist_id']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.dFMsg("listAssist:id", app.getDatas,
+                     Helpers.getStruct("assist", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Asistencias___** **___encontradas:___**\n" in out
+    assert f"{testData['assist_id']}" in out
+    assert f"{testData['mem_update']}" in out
+    assert "Ninguno" in out
+    assert f"{testData['assist_date'].replace('-','/')}" in out
+
+@pytest.mark.asyncio
+async def testConstraintsDefault_delMemberId(capfd):
+    command = f"$delMember:id [{testData['mem_id']}]"
+    message = Message(author="test", content=command)
+    client = Client(user="test")
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delMember:id", app.deleteData,
+                       Helpers.delStruct("member", "id"))
+    out, _ = capfd.readouterr()
+    assert "El ___integrante___ ha sido eliminado con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testConstraintsDefault_listAssistId_checkDelMemberCascade(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
