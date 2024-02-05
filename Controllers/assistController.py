@@ -62,16 +62,16 @@ class AssistController:
         else:
             return assists
 
-    def createAsistencia(self, member_id, event_id, date):
-        member = MemberModel(member_id, None, None, None, None)
-        event = EventModel(event_id, None, None, None)
+    def createAsistencia(self, integrante_id, evento_id, date):
+        member = MemberModel(integrante_id, None, None, None, None)
+        event = EventModel(evento_id, None, None, None)
         assist = AssistModel(None, member, event, date)
         result = self.__service.insert(assist)
         return result
 
-    def updateAsistencia(self, id, member_id, event_id, date):
-        member = MemberModel(member_id, None, None, None, None)
-        event = EventModel(event_id, None, None, None)
+    def updateAsistencia(self, id, integrante_id, evento_id, date):
+        member = MemberModel(integrante_id, None, None, None, None)
+        event = EventModel(evento_id, None, None, None)
         assist = AssistModel(id, member, event, date)
         result = self.__service.update(assist)
         return result

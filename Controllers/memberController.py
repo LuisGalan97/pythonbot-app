@@ -29,14 +29,14 @@ class MemberController:
         else:
             return members
 
-    def createIntegrante(self, name, range_id, date):
-        range = RangeModel(range_id, None, None, None)
+    def createIntegrante(self, name, rango_id, date):
+        range = RangeModel(rango_id, None, None, None)
         member = MemberModel(None, name, range, date, None)
         result = self.__service.insert(member)
         return result
 
-    def updateIntegrante(self, id, name, range_id, date):
-        range = RangeModel(range_id, None, None, None)
+    def updateIntegrante(self, id, name, rango_id, date):
+        range = RangeModel(rango_id, None, None, None)
         member = MemberModel(id, name, range, None, date)
         result = self.__service.update(member)
         return result
