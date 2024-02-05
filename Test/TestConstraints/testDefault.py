@@ -184,7 +184,7 @@ async def testConstraintsDefault_listMemberId_checkDelNone(capfd):
     out, _ = capfd.readouterr()
     assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['mem_id']}" in out
-    assert f"{testData['mem_create']}" in out
+    assert f"{testData['mem_update']}" in out
     assert f"{testData['ran_update']}" in out
     assert f"{testData['mem_date'].replace('-','/')}" in out
     assert "Ninguno" in out
