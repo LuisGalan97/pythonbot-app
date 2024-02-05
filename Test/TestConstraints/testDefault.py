@@ -191,7 +191,7 @@ async def testConstraintsDefault_listMemberId_checkDelNone(capfd):
     assert f"{testData['mem_dateupdate'].replace('-','/')}" in out
 
 @pytest.mark.asyncio
-async def testEventDefault_delEventId(capfd):
+async def testConstraintsDefault_delEventId(capfd):
     command = f"$delEvent:id [{testData['ev_id']}]"
     message = Message(author="test", content=command)
     client = Client(user="test")
