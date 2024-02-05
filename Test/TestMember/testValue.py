@@ -1392,7 +1392,7 @@ async def testValue_delMemberName_nameRepeatChar(capfd):
 
 #-----------------------------$listMember:id [ID]------------------------------
 @pytest.mark.asyncio
-async def testValue_listEventId_idEmpty(capfd):
+async def testValue_listMemberId_idEmpty(capfd):
     value = ""
     commands = [f"$listMember:id[{value}],",
                 f"$listMember:id [{value} ], ",
@@ -1410,7 +1410,7 @@ async def testValue_listEventId_idEmpty(capfd):
                "**_ID_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventId_idInvalid(capfd):
+async def testValue_listMemberId_idInvalid(capfd):
     value = "test"
     commands = [f"$listMember:id[{value}],",
                 f"$listMember:id [{value} ], ",
@@ -1430,7 +1430,7 @@ async def testValue_listEventId_idInvalid(capfd):
 
 #-----------------------Test $listMember:name [Nombre]-------------------------
 @pytest.mark.asyncio
-async def testValue_listEventName_nameEmpty(capfd):
+async def testValue_listMemberName_nameEmpty(capfd):
     value = ""
     commands = [f"$listMember:name[{value}]",
                 f"$listMember:name [{value} ]",
@@ -1448,7 +1448,7 @@ async def testValue_listEventName_nameEmpty(capfd):
                "**_Nombre_**\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_nameLong(capfd):
+async def testValue_listMemberName_nameLong(capfd):
     value = "abcdefghijklmnñopkrstuvwxyz"\
             "abcdefghijklmnñopkrstuvwxyz"
     commands = [f"$listMember:name[{value}]",
@@ -1469,7 +1469,7 @@ async def testValue_listEventName_nameLong(capfd):
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_nameStartChar(capfd):
+async def testValue_listMemberName_nameStartChar(capfd):
     values = ["1test", "[test", "{test", "/test", "|test",
              "@test", "*test"]
     for value in values:
@@ -1490,7 +1490,7 @@ async def testValue_listEventName_nameStartChar(capfd):
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_nameSpeChar(capfd):
+async def testValue_listMemberName_nameSpeChar(capfd):
     values = ["test/", "test{", "te/st", "te\\st",
               "tes@t", "tes*t", "tes--t", "tes||t"]
     for value in values:
@@ -1511,7 +1511,7 @@ async def testValue_listEventName_nameSpeChar(capfd):
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
-async def testValue_listEventName_nameRepeatChar(capfd):
+async def testValue_listMemberName_nameRepeatChar(capfd):
     values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
     for value in values:
         commands = [f"$listMember:name[{value}]",
@@ -1529,6 +1529,111 @@ async def testValue_listEventName_nameRepeatChar(capfd):
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
                    f"**_Nombre_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#---------------------Test $listMember:range [Rango]---------------------
+@pytest.mark.asyncio
+async def testValue_listMemberRange_memberEmpty(capfd):
+    value = ""
+    commands = [f"$listMember:range[{value}]",
+                f"$listMember:range [{value} ]",
+                f"$listMember:range [ {value} ]",
+                f"$listMember:range [ {value} ]FILL",
+                f"$listMember:range [ {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listMember:range", app.getDatas,
+                         Helpers.getStruct("integrante", ["rango"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Rango_**\n" in out
+
+@pytest.mark.asyncio
+async def testValue_listMemberRange_memberLong(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$listMember:range[{value}]",
+                f"$listMember:range [{value} ]",
+                f"$listMember:range [ {value} ]",
+                f"$listMember:range [ {value} ]FILL",
+                f"$listMember:range [ {value} ] FILL"]
+    for command in commands:
+        message = Message(author="test", content=command)
+        client = Client(user="test")
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listMember:range", app.getDatas,
+                         Helpers.getStruct("integrante", ["rango"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Rango_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_listMemberRange_memberStartChar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$listMember:range[{value}]",
+                    f"$listMember:range [{value} ]",
+                    f"$listMember:range [ {value} ]",
+                    f"$listMember:range [ {value} ]FILL",
+                    f"$listMember:range [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:range", app.getDatas,
+                             Helpers.getStruct("integrante", ["rango"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Rango_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_listMemberRange_memberSpeChar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$listMember:range[{value}]",
+                    f"$listMember:range [{value} ]",
+                    f"$listMember:range [ {value} ]",
+                    f"$listMember:range [ {value} ]FILL",
+                    f"$listMember:range [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:range", app.getDatas,
+                             Helpers.getStruct("integrante", ["rango"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Rango_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def testValue_listMemberRange_memberRepeatChar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$listMember:range[{value}]",
+                    f"$listMember:range [{value} ]",
+                    f"$listMember:range [ {value} ]",
+                    f"$listMember:range [ {value} ]FILL",
+                    f"$listMember:range [ {value} ] FILL"]
+        for command in commands:
+            message = Message(author="test", content=command)
+            client = Client(user="test")
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listMember:range", app.getDatas,
+                             Helpers.getStruct("integrante", ["rango"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Rango_** "\
                     "no debe repetir mas de dos veces los "\
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
