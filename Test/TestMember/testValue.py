@@ -876,7 +876,7 @@ async def testValue_updMemberId_dateInvalid(capfd):
                            Helpers.updStruct("integrante", "id"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
-               f"**_ID_** "\
+               f"**_Fecha_** "\
                 "es invalido.\n" in out
 
 '''
