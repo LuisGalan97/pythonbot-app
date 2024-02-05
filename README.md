@@ -3,7 +3,7 @@ de lectura y escritura destinados para ser usados en el chat de discord una vez 
 
 **Consideraciones:**
 
-- _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento y en discord emplear el comando.\n_`$help` <- _Encontraremos toda la informacion necesaria con este comando._
+- _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento y en discord emplear el comando.<br />`$help` <- _Encontraremos toda la informacion necesaria con este comando._
 
 Para el funcionamiento de la aplicacion se recomienda importar el token del bot de discord, como variable de entorno bajo el nombre "TOKEN".
 
