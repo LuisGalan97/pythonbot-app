@@ -1,6 +1,6 @@
 from DB.database import Database
-from Models.eventoModel import EventoModel
-from Services.eventoService import EventoService
+from Models.eventModel import EventoModel
+from Services.eventService import EventoService
 
 class EventoController:
     def __init__(self, db : Database):

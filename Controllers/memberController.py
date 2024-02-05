@@ -1,7 +1,7 @@
 from DB.database import Database
-from Models.integranteModel import IntegranteModel
-from Models.rangoModel import RangoModel
-from Services.integranteService import IntegranteService
+from Models.memberModel import IntegranteModel
+from Models.rangeModel import RangoModel
+from Services.memberService import IntegranteService
 
 class IntegranteController:
     def __init__(self, db : Database):

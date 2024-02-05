@@ -1,6 +1,6 @@
 from DB.database import Database
-from Models.rangoModel import RangoModel
-from Services.rangoService import RangoService
+from Models.rangeModel import RangoModel
+from Services.rangeService import RangoService
 
 class RangoController:
     def __init__(self, db : Database):

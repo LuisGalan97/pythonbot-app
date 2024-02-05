@@ -1,8 +1,8 @@
 from DB.database import Database
-from Controllers.asistenciaController import AsistenciaController
-from Controllers.eventoController import EventoController
-from Controllers.integranteController import IntegranteController
-from Controllers.rangoController import RangoController
+from Controllers.assistController import AsistenciaController
+from Controllers.eventController import EventoController
+from Controllers.memberController import IntegranteController
+from Controllers.rangeController import RangoController
 from Helpers.helpers import Helpers
 
 class AppHandler:

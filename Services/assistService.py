@@ -1,8 +1,8 @@
 from DB.database import Database
-from Models.asistenciaModel import AsistenciaModel
-from Models.eventoModel import EventoModel
-from Models.integranteModel import IntegranteModel
-from Models.rangoModel import RangoModel
+from Models.assistModel import AsistenciaModel
+from Models.eventModel import EventoModel
+from Models.memberModel import IntegranteModel
+from Models.rangeModel import RangoModel
 
 class AsistenciaService:
     def __init__(self, db : Database):

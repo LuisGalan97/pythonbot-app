@@ -1,8 +1,8 @@
 from DB.database import Database
-from Models.asistenciaModel import AsistenciaModel
-from Models.eventoModel import EventoModel
-from Models.integranteModel import IntegranteModel
-from Services.asistenciaService import AsistenciaService
+from Models.assistModel import AsistenciaModel
+from Models.eventModel import EventoModel
+from Models.memberModel import IntegranteModel
+from Services.assistService import AsistenciaService
 
 class AsistenciaController:
     def __init__(self, db : Database):

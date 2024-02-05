@@ -1,65 +1,65 @@
 from DB.database import Database
-from Models.eventoModel import EventoModel
+from Models.rangeModel import RangoModel
 
-class EventoService:
+class RangoService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = "SELECT * FROM eventos"
+        self.__selectQuery = "SELECT * FROM rangos"
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "ORDER BY points DESC")
+                                            "ORDER BY control ASC")
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE id = ?",
+                                            "WHERE id = ?", 
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE name = ?",
+                                            "WHERE name = ?", 
                                            (target["name"],))
         else:
             data = None
         self.__db.close_connection()
         if isinstance(data, list):
-            eventos = []
+            rangos = []
             for row in data:
-                evento = EventoModel(row[0], row[1], row[2], row[3])
-                eventos.append(evento)
-            return eventos
+                rango = RangoModel(row[0], row[1], row[2], row[3])
+                rangos.append(rango)
+            return rangos
         else:
             return data
 
-    def insert(self, evento : EventoModel):
+    def insert(self, rango : RangoModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "eventos (name, points, description) "\
+        "rangos (name, control, description) "\
         "VALUES (?, ?, ?)",
-        (evento.getName(),
-        evento.getPoints(),
-        evento.getDescription(),))
+        (rango.getName(),
+        rango.getControl(),
+        rango.getDescription(),))
         if data:
             data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
         self.__db.close_connection()
         return data
 
-    def update(self, evento: EventoModel):
+    def update(self, rango: RangoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("UPDATE eventos "\
-        "SET name = ?, points = ?, description = ? "\
+        data = self.__db.execute_query("UPDATE rangos "\
+        "SET name = ?, control = ?, description = ? "\
         "WHERE id = ?",
-        (evento.getName(),
-        evento.getPoints(),
-        evento.getDescription(),
-        evento.getId(),))
+        (rango.getName(),
+        rango.getControl(),
+        rango.getDescription(),
+        rango.getId(),))
         self.__db.close_connection()
         return data
 
-    def delete(self, evento: EventoModel):
+    def delete(self, rango: RangoModel):
         self.__db.start_connection()
-        data = self.__db.execute_query("DELETE FROM eventos "\
+        data = self.__db.execute_query("DELETE FROM rangos "\
         "WHERE id = ?",
-        (evento.getId(),))
+        (rango.getId(),))
         self.__db.close_connection()
         return data

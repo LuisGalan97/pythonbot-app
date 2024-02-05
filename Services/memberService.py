@@ -1,6 +1,6 @@
 from DB.database import Database
-from Models.integranteModel import IntegranteModel
-from Models.rangoModel import RangoModel
+from Models.memberModel import IntegranteModel
+from Models.rangeModel import RangoModel
 
 class IntegranteService:
     def __init__(self, db : Database):
