@@ -9,20 +9,28 @@ class MessageHandler:
         self.__message = message
         self.__client = client
         self.__send = self.defaultFunction if not test else self.testFunction
+        self.__adminUser = ["omegaxis_", "test"]
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
             return
 
     async def sendText(self):
-        if self.__message.content.startswith("$command"):
+        author = self.__message.author
+        msg = ""
+        if author in self.__adminUser:
+            msg = self.__message.content
+        if msg.content.startswith("$command"):
             await self.__send(message = f"Hola **{self.__message.author}**!, "\
                                          "soy **Avalon-bot** identificado "\
                                          "bajo la cuenta "\
                                         f"**{self.__client.user}**.\n")
 
     async def helpMsg(self):
-        msg = self.__message.content
+        author = self.__message.author
+        msg = ""
+        if author in self.__adminUser:
+            msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
         #---------------------------Asistencias--------------------------------
@@ -346,8 +354,12 @@ class MessageHandler:
                     array.append(messages[i])
 
     async def dFMsg(self, command, method, struct):
-        if Helpers.checkCommand(self.__message.content, command):
-            content = self.__message.content.replace(f'${command}', '').strip()
+        author = self.__message.author
+        msg = ""
+        if author in self.__adminUser:
+            msg = self.__message.content
+        if Helpers.checkCommand(msg, command):
+            content = msg.replace(f'${command}', '').strip()
             request = Helpers.checkContent(command, content, struct["targets"])
             if isinstance(request, list):
                 result = method(request, struct)
@@ -470,8 +482,12 @@ class MessageHandler:
                 await self.__send(message = request)
 
     async def contMsg(self, command, method, struct):
-        if Helpers.checkCommand(self.__message.content, command):
-            content = self.__message.content.replace(f'${command}', '').strip()
+        author = self.__message.author
+        msg = ""
+        if author in self.__adminUser:
+            msg = self.__message.content
+        if Helpers.checkCommand(msg, command):
+            content = msg.replace(f'${command}', '').strip()
             request = Helpers.checkContent(command, content, struct["targets"])
             if isinstance(request, list):
                 result = method(request, struct)
