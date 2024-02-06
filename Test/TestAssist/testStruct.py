@@ -22,7 +22,8 @@ async def testAssistStruct_addAssist_invalidStruct(capfd):
                 "$addAssist[FILL", "$addAssist [ FILL",
                 "$addAssist FILL]", "$addAssist FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
@@ -41,7 +42,8 @@ async def testAssistStruct_updAssistId_invalidStruct(capfd):
                 "$updAssist:id[FILL", "$updAssist:id [ FILL",
                 "$updAssist:id FILL]", "$updAssist:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
@@ -60,7 +62,8 @@ async def testAssistStruct_delAssistId_invalidStruct(capfd):
                 "$delAssist:id[FILL", "$delAssist:id [ FILL",
                 "$delAssist:id FILL]", "$delAssist:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
@@ -79,7 +82,8 @@ async def testAssistStruct_listAssistId_invalidStruct(capfd):
                 "$listAssist:id[FILL", "$listAssist:id [ FILL",
                 "$listAssist:id FILL]", "$listAssist:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -98,7 +102,8 @@ async def testAssistStruct_listAssistMember_invalidStruct(capfd):
                 "$listAssist:member[FILL", "$listAssist:member [ FILL",
                 "$listAssist:member FILL]", "$listAssist:member FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -117,7 +122,8 @@ async def testAssistStruct_listAssistEvent_invalidStruct(capfd):
                 "$listAssist:event[FILL", "$listAssist:event [ FILL",
                 "$listAssist:event FILL]", "$listAssist:event FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -136,7 +142,8 @@ async def testAssistStruct_listAssistDate_invalidStruct(capfd):
                 "$listAssist:date[FILL", "$listAssist:date [ FILL",
                 "$listAssist:date FILL]", "$listAssist:date FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -160,7 +167,8 @@ async def testAssistStruct_listAssistMemberEvent_invalidStruct(capfd):
                 "$listAssist:member&event FILL]",
                 "$listAssist:member&event FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
@@ -183,7 +191,8 @@ async def testAssistStruct_listAssistMemberDate_invalidStruct(capfd):
                 "$listAssist:member&date FILL]",
                 "$listAssist:member&date FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -207,7 +216,8 @@ async def testAssistStruct_listAssistEventDate_invalidStruct(capfd):
                 "$listAssist:event&date FILL]",
                 "$listAssist:event&date FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -235,7 +245,8 @@ async def testAssistStruct_listAssistMemberEventDate_invalidStruct(capfd):
                 "$listAssist:member&event&date FILL]",
                 "$listAssist:member&event&date FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,

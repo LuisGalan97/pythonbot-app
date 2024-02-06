@@ -27,7 +27,8 @@ async def testAssistParams_addAssist_invalidParams(capfd):
                 "$addAssist[[,,,,]]FILL",
                 "$addAssist [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
@@ -52,7 +53,8 @@ async def testAssistParams_updAssistId_invalidParams(capfd):
                 "$updAssist:id[[,,,,]]FILL",
                 "$updAssist:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
@@ -75,7 +77,8 @@ async def testAssistParams_delAssistId_invalidParams(capfd):
                 "$delAssist:id[[,,,,]]FILL",
                 "$delAssist:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
@@ -98,7 +101,8 @@ async def testAssistParams_listAssistId_invalidParams(capfd):
                 "$listAssist:id[[,,,,]]FILL",
                 "$listAssist:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -121,7 +125,8 @@ async def testAssistParams_listAssistMember_invalidParams(capfd):
                 "$listAssist:member[[,,,,]]FILL",
                 "$listAssist:member [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -144,7 +149,8 @@ async def testAssistParams_listAssistEvent_invalidParams(capfd):
                 "$listAssist:event[[,,,,]]FILL",
                 "$listAssist:event [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -169,7 +175,8 @@ async def testAssistParams_listAssistDate_invalidParams(capfd):
                 "$listAssist:date[[,,,,]]FILL",
                 "$listAssist:date [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -195,7 +202,8 @@ async def testAssistParams_listAssistMemberEvent_invalidParams(capfd):
                 "$listAssist:member&event[[,,,,]]FILL",
                 "$listAssist:member&event [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
@@ -221,7 +229,8 @@ async def testAssistParams_listAssistMemberDate_invalidParams(capfd):
                 "$listAssist:member&date[[,,,,]]FILL",
                 "$listAssist:member&date [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -247,7 +256,8 @@ async def testAssistParams_listAssistEventDate_invalidParams(capfd):
                 "$listAssist:event&date[[,,,,]]FILL",
                 "$listAssist:event&date [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -273,7 +283,8 @@ async def testAssistParams_listAssistMemberEventDate_invalidParams(capfd):
                 "$listAssist:member&event&date[[,,,,]]FILL",
                 "$listAssist:member&event&date [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
