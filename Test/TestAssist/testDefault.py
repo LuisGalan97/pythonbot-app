@@ -16,8 +16,10 @@ testData = {
     "dateupdate" : "26/01/2300"
 }
 
-Message = namedtuple('Message', ['author', 'content'])
+Message = namedtuple('Message', ['author', 'content', 'channel'])
+Channel = namedtuple('Channel', ['name'])
 Client = namedtuple('Client', ['user'])
+name = 'test'
 author = "test"
 user = "test"
 app = AppHandler()
@@ -26,7 +28,8 @@ app = AppHandler()
 async def testAssistDefault_addAssist(capfd):
     command = f"$addAssist [{testData['memcreate']}, "\
               f"{testData['evcreate']}, {testData['datecreate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addAssist", app.setData,
@@ -40,7 +43,8 @@ async def testAssistDefault_addAssist(capfd):
 @pytest.mark.asyncio
 async def testAssistDefault_listAssistId_add(capfd):
     command = f"$listAssist:id [{testData['id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -75,7 +79,8 @@ async def testAssistDefault_updAssistId(capfd):
                 f"{testData['evupdate']} , "
                 f"{testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
@@ -90,7 +95,8 @@ async def testAssistDefault_listAssist(capfd):
                 f"$listAssistFILL",
                 f"$listAssist FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist", app.getDatas,
@@ -110,7 +116,8 @@ async def testAssistDefault_listAssistId(capfd):
                 f"$listAssist:id [ {testData['id']} ]FILL",
                 f"$listAssist:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -130,7 +137,8 @@ async def testAssistDefault_listAssistMember(capfd):
                 f"$listAssist:member [ {testData['memupdate']} ]FILL",
                 f"$listAssist:member [ {testData['memupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -150,7 +158,8 @@ async def testAssistDefault_listAssistEvent(capfd):
                 f"$listAssist:event [ {testData['evupdate']} ]FILL",
                 f"$listAssist:event [ {testData['evupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -175,7 +184,8 @@ async def testAssistDefault_listAssistDate(capfd):
                 f"$listAssist:date [ {testData['dateupdate']} , "\
                 f"{testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -200,7 +210,8 @@ async def testAssistDefault_listAssistMemberEvent(capfd):
                 f"$listAssist:member&event [ {testData['memupdate']} , "\
                 f"{testData['evupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
@@ -226,7 +237,8 @@ async def testAssistDefault_listAssistMemberDate(capfd):
                 f"$listAssist:member&date [ {testData['memupdate']} , "\
                 f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -252,7 +264,8 @@ async def testAssistDefault_listAssistEventDate(capfd):
                 f"$listAssist:event&date [ {testData['evupdate']} , "\
                 f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -283,7 +296,8 @@ async def testAssistDefault_listAssistMemberEventDate(capfd):
                 f"{testData['evupdate']} , {testData['dateupdate']} , "\
                 f"{testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
@@ -303,7 +317,9 @@ async def testAssistDefault_listAssist_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist", app.getDatas,
@@ -321,7 +337,9 @@ async def testAssistDefault_listAssistId_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -339,7 +357,9 @@ async def testAssistDefault_listAssistMember_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -357,7 +377,9 @@ async def testAssistDefault_listAssistEvent_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -378,7 +400,9 @@ async def testAssistDefault_listAssistDate_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -400,7 +424,9 @@ async def testAssistDefault_listAssistMemberDate_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -422,7 +448,9 @@ async def testAssistDefault_listAssistEventDate_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -447,7 +475,9 @@ async def testAssistDefault_listAssistMemberEventDate_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date",
@@ -464,7 +494,9 @@ async def testAssistDefault_listAssist_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist", app.getDatas,
@@ -485,7 +517,9 @@ async def testAssistDefault_listAssistId_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -507,7 +541,9 @@ async def testAssistDefault_listAssistMember_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -530,7 +566,9 @@ async def testAssistDefault_listAssistEvent_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -556,7 +594,9 @@ async def testAssistDefault_listAssistDate_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -586,7 +626,9 @@ async def testAssistDefault_listAssistMemberDate_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -617,7 +659,9 @@ async def testAssistDefault_listAssistEventDate_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -651,7 +695,9 @@ async def testAssistDefault_listAssistMemberEventDate_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date",
@@ -674,7 +720,8 @@ async def testAssistDefault_listAssistMemberEventDate_eIncomplete(capfd):
 @pytest.mark.asyncio
 async def testAssistDefault_delAssistId(capfd):
     command = f"$delAssist:id [{testData['id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delAssist:id", app.deleteData,
@@ -701,7 +748,8 @@ async def testAssistDefault_addAssist_memberNoExist(capfd):
                 f"{testData['datecreate']}] "\
                  "FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
@@ -731,7 +779,8 @@ async def testAssistDefault_addAssist_eventNoExist(capfd):
                 f"{testData['datecreate']}] "\
                  "FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
@@ -765,7 +814,8 @@ async def testAssistDefault_updAssistId_idNoExist(capfd):
                 f"{testData['evupdate']} , "
                 f"{testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
@@ -797,7 +847,8 @@ async def testAssistDefault_updAssistId_memberNoExist(capfd):
                 f"{testData['evnoexist']} , "
                 f"{testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
@@ -831,7 +882,8 @@ async def testAssistDefault_updAssistId_eventNoExist(capfd):
                 f"{testData['evnoexist']} , "
                 f"{testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
@@ -850,7 +902,8 @@ async def testAssistDefault_delAssistId_idNoExist(capfd):
                 f"$delAssist:id [ {testData['id']} ]FILL",
                 f"$delAssist:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
@@ -867,7 +920,8 @@ async def testAssistDefault_listAssistId_idNoExist(capfd):
                 f"$listAssist:id [ {testData['id']} ]FILL",
                 f"$listAssist:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -884,7 +938,8 @@ async def testAssistDefault_listAssistMember_memberNoExist(capfd):
                 f"$listAssist:member [ {testData['menoexist']} ]FILL",
                 f"$listAssist:member [ {testData['menoexist']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
@@ -903,7 +958,8 @@ async def testAssistDefault_listAssistEvent_eventNoExist(capfd):
                 f"$listAssist:event [ {testData['evnoexist']} ]FILL",
                 f"$listAssist:event [ {testData['evnoexist']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
@@ -927,7 +983,8 @@ async def testAssistDefault_listAssistDate_dateNoExist(capfd):
                 f"$listAssist:date [ {testData['dateupdate']} , "\
                 f"{testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
@@ -949,7 +1006,8 @@ async def testAssistDefault_listAssistMemberEvent_memberNoExist(capfd):
                 f"$listAssist:member&event [ {testData['menoexist']} , "\
                 f"{testData['evnoexist']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
@@ -974,7 +1032,8 @@ async def testAssistDefault_listAssistMemberEvent_eventNoExist(capfd):
                 f"$listAssist:member&event [ {testData['memcreate']} , "\
                 f"{testData['evnoexist']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
@@ -999,7 +1058,8 @@ async def testAssistDefault_listAssistMemberDate_memberNoExist(capfd):
                 f"$listAssist:member&date [ {testData['menoexist']} , "\
                 f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -1024,7 +1084,8 @@ async def testAssistDefault_listAssistMemberDate_dateNoExist(capfd):
                 f"$listAssist:member&date [ {testData['memupdate']} , "\
                 f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
@@ -1047,7 +1108,8 @@ async def testAssistDefault_listAssistEventDate_eventNoExist(capfd):
                 f"$listAssist:event&date [ {testData['evnoexist']} , "\
                 f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -1072,7 +1134,8 @@ async def testAssistDefault_listAssistEventDate_dateNoExist(capfd):
                 f"$listAssist:event&date [ {testData['evupdate']} , "\
                 f"{testData['dateupdate']} , {testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
@@ -1100,7 +1163,8 @@ async def testAssistDefault_listAssistMemberEventDate_memberNoExist(capfd):
                 f"{testData['evnoexist']} , {testData['dateupdate']} , "\
                 f"{testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
@@ -1130,7 +1194,8 @@ async def testAssistDefault_listAssistMemberEventDate_eventNoExist(capfd):
                 f"{testData['evnoexist']} , {testData['dateupdate']} , "\
                 f"{testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",
@@ -1160,7 +1225,8 @@ async def testAssistDefault_listAssistMemberEventDate_dateNoExist(capfd):
                 f"{testData['evupdate']} , {testData['dateupdate']} , "\
                 f"{testData['dateupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date",

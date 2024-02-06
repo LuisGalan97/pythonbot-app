@@ -10,7 +10,7 @@ author = "test"
 user = "test"
 
 @pytest.mark.asyncio
-async def test_command(capfd):
+async def test_hello(capfd):
     command = "$hello"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)

@@ -4,8 +4,10 @@ from appHandler import AppHandler
 from Helpers.helpers import Helpers
 from collections import namedtuple
 
-Message = namedtuple('Message', ['author', 'content'])
+Message = namedtuple('Message', ['author', 'content', 'channel'])
+Channel = namedtuple('Channel', ['name'])
 Client = namedtuple('Client', ['user'])
+name = 'test'
 author = "test"
 user = "test"
 app = AppHandler()

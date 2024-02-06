@@ -24,8 +24,10 @@ testData = {
     "assist_date" : "27/01/2100"
 }
 
-Message = namedtuple('Message', ['author', 'content'])
+Message = namedtuple('Message', ['author', 'content', 'channel'])
+Channel = namedtuple('Channel', ['name'])
 Client = namedtuple('Client', ['user'])
+name = 'test'
 author = "test"
 user = "test"
 app = AppHandler()
