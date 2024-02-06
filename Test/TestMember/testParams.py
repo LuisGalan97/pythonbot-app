@@ -6,6 +6,8 @@ from collections import namedtuple
 
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
+author = "test"
+user = "test"
 app = AppHandler()
 
 @pytest.mark.asyncio
@@ -23,8 +25,8 @@ async def testMemberParams_addMember_invalidParams(capfd):
                 "$addMember[[,,,,]]FILL",
                 "$addMember [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
                            Helpers.setStruct("member"))
@@ -48,8 +50,8 @@ async def testMemberParams_updMemberId_invalidParams(capfd):
                 "$updMember:id[[,,,,]]FILL",
                 "$updMember:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
@@ -73,8 +75,8 @@ async def testMemberParams_updMemberName_invalidParams(capfd):
                 "$updMember:name[[,,,,]]FILL",
                 "$updMember:name [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
@@ -96,8 +98,8 @@ async def testMemberParams_delMemberId_invalidParams(capfd):
                 "$delMember:id[[,,,,]]FILL",
                 "$delMember:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("member", "id"))
@@ -119,8 +121,8 @@ async def testMemberParams_delMemberName_invalidParams(capfd):
                 "$delMember:name[[,,,,]]FILL",
                 "$delMember:name [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("member", "name"))
@@ -142,8 +144,8 @@ async def testMemberParams_listMemberId_invalidParams(capfd):
                 "$listMember:id[[,,,,]]FILL",
                 "$listMember:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
@@ -165,8 +167,8 @@ async def testMemberParams_listMemberName_invalidParams(capfd):
                 "$listMember:name[[,,,,]]FILL",
                 "$listMember:name [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
@@ -188,8 +190,8 @@ async def testMemberParams_listMemberRange_invalidParams(capfd):
                 "$listMember:range[[,,,,]]FILL",
                 "$listMember:range [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
@@ -213,8 +215,8 @@ async def testMemberParams_listMemberDate_invalidParams(capfd):
                 "$listMember:date[[,,,,]]FILL",
                 "$listMember:date [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))

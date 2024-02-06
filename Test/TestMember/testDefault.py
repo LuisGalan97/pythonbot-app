@@ -18,14 +18,16 @@ testData = {
 
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
+author = "test"
+user = "test"
 app = AppHandler()
 
 @pytest.mark.asyncio
 async def testMemberDefault_addMember(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['rancreate']}, {testData['datecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
@@ -53,8 +55,8 @@ async def testMemberDefault_addMember_exist(capfd):
                 f" {testData['rancreate']} , "\
                 f" {testData['datecreate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
                            Helpers.setStruct("member"))
@@ -66,8 +68,8 @@ async def testMemberDefault_addMember_exist(capfd):
 @pytest.mark.asyncio
 async def testMemberDefault_listMemberId_add(capfd):
     command = f"$listMember:id [{testData['id']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
                      Helpers.getStruct("member", ["id"]))
@@ -82,8 +84,8 @@ async def testMemberDefault_listMemberId_add(capfd):
 @pytest.mark.asyncio
 async def testMemberDefault_listMemberName_add(capfd):
     command = f"$listMember:name [{testData['namecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listMember:name", app.getDatas,
                      Helpers.getStruct("member", ["name"]))
@@ -111,8 +113,8 @@ async def testMemberDefault_updMemberId(capfd):
                 f"{testData['nameupdate']} , "\
                 f"{testData['rancreate']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
@@ -135,8 +137,8 @@ async def testMemberDefault_updMemberId_nameExist(capfd):
                 f"{testData['nameexist']} , "\
                 f"{testData['rancreate']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
@@ -158,8 +160,8 @@ async def testMemberDefault_updMemberName(capfd):
                 f"$updMember:name [ {testData['nameupdate']} , "\
                 f"{testData['ranupdate']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
@@ -173,8 +175,8 @@ async def testMemberDefault_listMember(capfd):
                 f"$listMemberFILL",
                 f"$listMember FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember", app.getDatas,
                          Helpers.getStruct("member"))
@@ -194,8 +196,8 @@ async def testMemberDefault_listMemberId(capfd):
                 f"$listMember:id [ {testData['id']} ]FILL",
                 f"$listMember:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
@@ -215,8 +217,8 @@ async def testMemberDefault_listMemberName(capfd):
                 f"$listMember:name [ {testData['nameupdate']} ]FILL",
                 f"$listMember:name [ {testData['nameupdate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
@@ -236,8 +238,8 @@ async def testMemberDefault_listMemberRange(capfd):
                 f"$listMember:range [ {testData['ranupdate']} ]FILL",
                 f"$listMember:range [ {testData['ranupdate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
@@ -262,8 +264,8 @@ async def testMemberDefault_listMemberDate(capfd):
                 f"$listMember:date [ {testData['datecreate']} , "\
                 f"{testData['datecreate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))
@@ -282,8 +284,8 @@ async def testMemberDefault_listMember_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember", app.getDatas,
                              Helpers.getStruct("member"))
@@ -300,8 +302,8 @@ async def testMemberDefault_listMemberId_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:id", app.getDatas,
                              Helpers.getStruct("member", ["id"]))
@@ -318,8 +320,8 @@ async def testMemberDefault_listMemberName_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
                              Helpers.getStruct("member", ["name"]))
@@ -336,8 +338,8 @@ async def testMemberDefault_listMemberRange_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
                              Helpers.getStruct("member", ["range"]))
@@ -357,8 +359,8 @@ async def testMemberDefault_listMemberDate_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:date", app.getDatas,
                              Helpers.getStruct("member",
@@ -374,8 +376,8 @@ async def testMemberDefault_listMember_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember", app.getDatas,
                              Helpers.getStruct("member"))
@@ -395,8 +397,8 @@ async def testMemberDefault_listMemberId_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:id", app.getDatas,
                              Helpers.getStruct("member", ["id"]))
@@ -417,8 +419,8 @@ async def testMemberDefault_listMemberName_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
                              Helpers.getStruct("member", ["name"]))
@@ -439,8 +441,8 @@ async def testMemberDefault_listMemberRange_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
                              Helpers.getStruct("member", ["range"]))
@@ -464,8 +466,8 @@ async def testMemberDefault_listMemberDate_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author="test", content=f"{command}{eparam}")
-            client = Client(user="test")
+            message = Message(author=author, content=f"{command}{eparam}")
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:date", app.getDatas,
                              Helpers.getStruct("member",
@@ -485,8 +487,8 @@ async def testMemberDefault_listMemberDate_eIncomplete(capfd):
 @pytest.mark.asyncio
 async def testMemberDefault_delMemberId(capfd):
     command = f"$delMember:id [{testData['id']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delMember:id", app.deleteData,
                        Helpers.delStruct("member", "id"))
@@ -497,8 +499,8 @@ async def testMemberDefault_delMemberId(capfd):
 async def testMemberDefault_addMember_delName(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['rancreate']}, {testData['datecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
@@ -511,8 +513,8 @@ async def testMemberDefault_addMember_delName(capfd):
 @pytest.mark.asyncio
 async def testMemberDefault_delMemberName(capfd):
     command = f"$delMember:name [{testData['namecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delMember:name", app.deleteData,
                        Helpers.delStruct("member", "name"))
@@ -523,8 +525,8 @@ async def testMemberDefault_delMemberName(capfd):
 async def testMemberDefault_addMember_rangeNoExist(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['ranoexist']}, {testData['datecreate']}]"
-    message = Message(author="test", content=command)
-    client = Client(user="test")
+    message = Message(author=author, content=command)
+    client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
@@ -550,8 +552,8 @@ async def testMemberDefault_updMemberId_idNoExist(capfd):
                 f"{testData['nameupdate']} , "\
                 f"{testData['rancreate']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
@@ -575,8 +577,8 @@ async def testMemberDefault_updMemberId_rangeNoExist(capfd):
                 f"{testData['nameupdate']} , "\
                 f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
@@ -599,8 +601,8 @@ async def testMemberDefault_updMemberName_nameNoExist(capfd):
                 f"$updMember:name [ {testData['nameupdate']} , "\
                 f"{testData['ranupdate']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
@@ -622,8 +624,8 @@ async def testMemberDefault_updMemberName_rangeNoExist(capfd):
                 f"$updMember:name [ {testData['nameupdate']} , "\
                 f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
@@ -641,8 +643,8 @@ async def testMemberDefault_delMemberId_idNoExist(capfd):
                 f"$delMember:id [ {testData['id']} ]FILL",
                 f"$delMember:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("member", "id"))
@@ -658,8 +660,8 @@ async def testMemberDefault_delMemberName_nameNoExist(capfd):
                 f"$delMember:name [ {testData['namecreate']} ]FILL",
                 f"$delMember:name [ {testData['namecreate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("member", "name"))
@@ -676,8 +678,8 @@ async def testMemberDefault_listMemberId_idNoExist(capfd):
                 f"$listMember:id [ {testData['id']} ]FILL",
                 f"$listMember:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
@@ -693,8 +695,8 @@ async def testMemberDefault_listMemberName_nameNoExist(capfd):
                 f"$listMember:name [ {testData['nameupdate']} ]FILL",
                 f"$listMember:name [ {testData['nameupdate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
@@ -710,8 +712,8 @@ async def testMemberDefault_listMemberRange_rangeNoExist(capfd):
                 f"$listMember:range [ {testData['ranoexist']} ]FILL",
                 f"$listMember:range [ {testData['ranoexist']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
@@ -734,8 +736,8 @@ async def testMemberDefault_listMemberDate_dateNoExist(capfd):
                 f"$listMember:date [ {testData['datecreate']} , "\
                 f"{testData['datecreate']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))

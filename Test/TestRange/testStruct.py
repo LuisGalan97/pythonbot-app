@@ -6,6 +6,8 @@ from collections import namedtuple
 
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
+author = "test"
+user = "test"
 app = AppHandler()
 
 @pytest.mark.asyncio
@@ -18,8 +20,8 @@ async def testRangeStruct_addRange_invalidStruct(capfd):
                 "$addRange[FILL", "$addRange [ FILL",
                 "$addRange FILL]", "$addRange FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
@@ -37,8 +39,8 @@ async def testRangeStruct_updRangeId_invalidStruct(capfd):
                 "$updRange:id[FILL", "$updRange:id [ FILL",
                 "$updRange:id FILL]", "$updRange:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
@@ -56,8 +58,8 @@ async def testRangeStruct_updRangeName_invalidStruct(capfd):
                 "$updRange:name[FILL", "$updRange:name [ FILL",
                 "$updRange:name FILL]", "$updRange:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
@@ -75,8 +77,8 @@ async def testRangeStruct_delRangeId_invalidStruct(capfd):
                 "$delRange:id[FILL", "$delRange:id [ FILL",
                 "$delRange:id FILL]", "$delRange:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
                            Helpers.delStruct("range", "id"))
@@ -94,8 +96,8 @@ async def testRangeStruct_delRangeName_invalidStruct(capfd):
                 "$delRange:name[FILL", "$delRange:name [ FILL",
                 "$delRange:name FILL]", "$delRange:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
                            Helpers.delStruct("range", "name"))
@@ -113,8 +115,8 @@ async def testRangeStruct_listRangeId_invalidStruct(capfd):
                 "$listRange:id[FILL", "$listRange:id [ FILL",
                 "$listRange:id FILL]", "$listRange:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("range", ["id"]))
@@ -132,8 +134,8 @@ async def testRangeStruct_listRangeName_invalidStruct(capfd):
                 "$listRange:name[FILL", "$listRange:name [ FILL",
                 "$listRange:name FILL]", "$listRange:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("range", ["name"]))

@@ -6,6 +6,8 @@ from collections import namedtuple
 
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
+author = "test"
+user = "test"
 app = AppHandler()
 
 @pytest.mark.asyncio
@@ -18,8 +20,8 @@ async def testEventStruct_addEvent_invalidStruct(capfd):
                 "$addEvent[FILL", "$addEvent [ FILL",
                 "$addEvent FILL]", "$addEvent FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
@@ -37,8 +39,8 @@ async def testEventStruct_updEventId_invalidStruct(capfd):
                 "$updEvent:id[FILL", "$updEvent:id [ FILL",
                 "$updEvent:id FILL]", "$updEvent:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
@@ -56,8 +58,8 @@ async def testEventStruct_updEventName_invalidStruct(capfd):
                 "$updEvent:name[FILL", "$updEvent:name [ FILL",
                 "$updEvent:name FILL]", "$updEvent:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
@@ -75,8 +77,8 @@ async def testEventStruct_delEventId_invalidStruct(capfd):
                 "$delEvent:id[FILL", "$delEvent:id [ FILL",
                 "$delEvent:id FILL]", "$delEvent:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
@@ -94,8 +96,8 @@ async def testEventStruct_delEventName_invalidStruct(capfd):
                 "$delEvent:name[FILL", "$delEvent:name [ FILL",
                 "$delEvent:name FILL]", "$delEvent:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
@@ -113,8 +115,8 @@ async def testEventStruct_listEventId_invalidStruct(capfd):
                 "$listEvent:id[FILL", "$listEvent:id [ FILL",
                 "$listEvent:id FILL]", "$listEvent:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
@@ -132,8 +134,8 @@ async def testEventStruct_listEventName_invalidStruct(capfd):
                 "$listEvent:name[FILL", "$listEvent:name [ FILL",
                 "$listEvent:name FILL]", "$listEvent:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))

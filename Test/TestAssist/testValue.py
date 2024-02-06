@@ -13,6 +13,8 @@ testData = {
 
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
+author = "test"
+user = "test"
 app = AppHandler()
 
 #----------------------Test $addAssist [Integrante, *, *]----------------------
@@ -35,8 +37,8 @@ async def testAssistValue_addAssist_memberEmpty(capfd):
                 f" {testData['event']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
@@ -64,8 +66,8 @@ async def testAssistValue_addAssist_memberLong(capfd):
                 f" {testData['event']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
@@ -96,8 +98,8 @@ async def testAssistValue_addAssist_memberStartChar(capfd):
                     f" {testData['event']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addAssist", app.setData,
                                Helpers.setStruct("assist"))
@@ -127,8 +129,8 @@ async def testAssistValue_addAssist_memberSpeChar(capfd):
                     f" {testData['event']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addAssist", app.setData,
                                Helpers.setStruct("assist"))
@@ -157,8 +159,8 @@ async def testAssistValue_addAssist_memberRepeatChar(capfd):
                     f" {testData['event']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addAssist", app.setData,
                                Helpers.setStruct("assist"))
@@ -190,8 +192,8 @@ async def testAssistValue_addAssist_eventEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
@@ -219,8 +221,8 @@ async def testAssistValue_addAssist_eventLong(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
@@ -251,8 +253,8 @@ async def testAssistValue_addAssist_eventStartChar(capfd):
                     f" {value} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addAssist", app.setData,
                                Helpers.setStruct("assist"))
@@ -282,8 +284,8 @@ async def testAssistValue_addAssist_eventSpeChar(capfd):
                     f" {value} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addAssist", app.setData,
                                Helpers.setStruct("assist"))
@@ -312,8 +314,8 @@ async def testAssistValue_addAssist_eventRepeatChar(capfd):
                     f" {value} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addAssist", app.setData,
                                Helpers.setStruct("assist"))
@@ -345,8 +347,8 @@ async def testAssistValue_addAssist_dateEmpty(capfd):
                 f" {testData['event']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
@@ -373,8 +375,8 @@ async def testAssistValue_addAssist_dateInvalid(capfd):
                 f" {testData['event']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
@@ -408,8 +410,8 @@ async def testAssistValue_updAssistId_idEmpty(capfd):
                 f" {testData['event']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -441,8 +443,8 @@ async def testAssistValue_updAssistId_idInvalid(capfd):
                 f" {testData['event']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -476,8 +478,8 @@ async def testAssistValue_updAssistId_memberEmpty(capfd):
                 f" {testData['event']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -510,8 +512,8 @@ async def testAssistValue_updAssistId_memberLong(capfd):
                 f" {testData['event']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -547,8 +549,8 @@ async def testAssistValue_updAssistId_memberStartChar(capfd):
                     f" {testData['event']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updAssist:id", app.updateData,
                                Helpers.updStruct("assist", "id"))
@@ -583,8 +585,8 @@ async def testAssistValue_updAssistId_memberSpeChar(capfd):
                     f" {testData['event']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updAssist:id", app.updateData,
                                Helpers.updStruct("assist", "id"))
@@ -618,8 +620,8 @@ async def testAssistValue_updAssistId_memberRepeatChar(capfd):
                     f" {testData['event']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updAssist:id", app.updateData,
                                Helpers.updStruct("assist", "id"))
@@ -656,8 +658,8 @@ async def testAssistValue_updAssistId_eventEmpty(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -690,8 +692,8 @@ async def testAssistValue_updAssistId_eventLong(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -727,8 +729,8 @@ async def testAssistValue_updAssistId_eventStartChar(capfd):
                     f" {value} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updAssist:id", app.updateData,
                                Helpers.updStruct("assist", "id"))
@@ -763,8 +765,8 @@ async def testAssistValue_updAssistId_eventSpeChar(capfd):
                     f" {value} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updAssist:id", app.updateData,
                                Helpers.updStruct("assist", "id"))
@@ -798,8 +800,8 @@ async def testAssistValue_updAssistId_eventRepeatChar(capfd):
                     f" {value} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updAssist:id", app.updateData,
                                Helpers.updStruct("assist", "id"))
@@ -836,8 +838,8 @@ async def testAssistValue_updAssistId_dateEmpty(capfd):
                 f" {testData['event']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -869,8 +871,8 @@ async def testAssistValue_updAssistId_dateInvalid(capfd):
                 f" {testData['event']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
@@ -888,8 +890,8 @@ async def testAssistValue_delAssistId_idEmpty(capfd):
                 f"$delAssist:id [ {value} ]FILL",
                 f"$delAssist:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
                            Helpers.delStruct("assist", "id"))
@@ -906,8 +908,8 @@ async def testAssistValue_delAssistId_idInvalid(capfd):
                 f"$delAssist:id [ {value} ]FILL",
                 f"$delAssist:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
                            Helpers.delStruct("assist", "id"))
@@ -926,8 +928,8 @@ async def testAssistValue_listAssistId_idEmpty(capfd):
                 f"$listAssist:id [ {value} ]FILL",
                 f"$listAssist:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("assist", ["id"]))
@@ -944,8 +946,8 @@ async def testAssistValue_listAssistId_idInvalid(capfd):
                 f"$listAssist:id [ {value} ]FILL",
                 f"$listAssist:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("assist", ["id"]))
@@ -964,8 +966,8 @@ async def testAssistValue_listAssistMember_memberEmpty(capfd):
                 f"$listAssist:member [ {value} ]FILL",
                 f"$listAssist:member [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
                          Helpers.getStruct("assist", ["member"]))
@@ -983,8 +985,8 @@ async def testAssistValue_listAssistMember_memberLong(capfd):
                 f"$listAssist:member [ {value} ]FILL",
                 f"$listAssist:member [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
                          Helpers.getStruct("assist", ["member"]))
@@ -1005,8 +1007,8 @@ async def testAssistValue_listAssistMember_memberStartChar(capfd):
                     f"$listAssist:member [ {value} ]FILL",
                     f"$listAssist:member [ {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
                              Helpers.getStruct("assist", ["member"]))
@@ -1026,8 +1028,8 @@ async def testAssistValue_listAssistMember_memberSpeChar(capfd):
                     f"$listAssist:member [ {value} ]FILL",
                     f"$listAssist:member [ {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
                              Helpers.getStruct("assist", ["member"]))
@@ -1046,8 +1048,8 @@ async def testAssistValue_listAssistMember_memberRepeatChar(capfd):
                     f"$listAssist:member [ {value} ]FILL",
                     f"$listAssist:member [ {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
                              Helpers.getStruct("assist", ["member"]))
@@ -1069,8 +1071,8 @@ async def testAssistValue_listAssistEvent_eventEmpty(capfd):
                 f"$listAssist:event [ {value} ]FILL",
                 f"$listAssist:event [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
                          Helpers.getStruct("assist", ["event"]))
@@ -1088,8 +1090,8 @@ async def testAssistValue_listAssistEvent_eventLong(capfd):
                 f"$listAssist:event [ {value} ]FILL",
                 f"$listAssist:event [ {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
                          Helpers.getStruct("assist", ["event"]))
@@ -1110,8 +1112,8 @@ async def testAssistValue_listAssistEvent_eventStartChar(capfd):
                     f"$listAssist:event [ {value} ]FILL",
                     f"$listAssist:event [ {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
                              Helpers.getStruct("assist", ["event"]))
@@ -1131,8 +1133,8 @@ async def testAssistValue_listAssistEvent_eventSpeChar(capfd):
                     f"$listAssist:event [ {value} ]FILL",
                     f"$listAssist:event [ {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
                              Helpers.getStruct("assist", ["event"]))
@@ -1151,8 +1153,8 @@ async def testAssistValue_listAssistEvent_eventRepeatChar(capfd):
                     f"$listAssist:event [ {value} ]FILL",
                     f"$listAssist:event [ {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
                              Helpers.getStruct("assist", ["event"]))
@@ -1179,8 +1181,8 @@ async def testAssistValue_listAssistDate_date1Empty(capfd):
                 f"$listAssist:date [ {value} ,"\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1203,8 +1205,8 @@ async def testAssistValue_listAssistDate_date1Invalid(capfd):
                 f"$listAssist:date [ {value} ,"\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1229,8 +1231,8 @@ async def testAssistValue_listAssistDate_date2Empty(capfd):
                 f"$listAssist:date [ {testData['date']} ,"\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1253,8 +1255,8 @@ async def testAssistValue_listAssistDate_date2Invalid(capfd):
                 f"$listAssist:date [ {testData['date']} ,"\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1279,8 +1281,8 @@ async def testAssistValue_listAssistMemberEvent_memberEmpty(capfd):
                 f"$listAssist:member&event [ {value} , "\
                 f" {testData['event']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1304,8 +1306,8 @@ async def testAssistValue_listAssistMemberEvent_memberLong(capfd):
                 f"$listAssist:member&event [ {value} , "\
                 f" {testData['event']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1332,8 +1334,8 @@ async def testAssistValue_listAssistMemberEvent_memberStartChar(capfd):
                     f"$listAssist:member&event [ {value} , "\
                     f" {testData['event']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1359,8 +1361,8 @@ async def testAssistValue_listAssistMemberEvent_memberSpeChar(capfd):
                     f"$listAssist:member&event [ {value} , "\
                     f" {testData['event']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1385,8 +1387,8 @@ async def testAssistValue_listAssistMemberEvent_memberRepeatChar(capfd):
                     f"$listAssist:member&event [ {value} , "\
                     f" {testData['event']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1414,8 +1416,8 @@ async def testAssistValue_listAssistMemberEvent_eventEmpty(capfd):
                 f"$listAssist:member&event [ {testData['member']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1439,8 +1441,8 @@ async def testAssistValue_listAssistMemberEvent_eventLong(capfd):
                 f"$listAssist:member&event [ {testData['member']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1467,8 +1469,8 @@ async def testAssistValue_listAssistMemberEvent_eventStartChar(capfd):
                     f"$listAssist:member&event [ {testData['member']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1494,8 +1496,8 @@ async def testAssistValue_listAssistMemberEvent_eventSpeChar(capfd):
                     f"$listAssist:member&event [ {testData['member']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1520,8 +1522,8 @@ async def testAssistValue_listAssistMemberEvent_eventRepeatChar(capfd):
                     f"$listAssist:member&event [ {testData['member']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1554,8 +1556,8 @@ async def testAssistValue_listAssistMemberDate_memberEmpty(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1584,8 +1586,8 @@ async def testAssistValue_listAssistMemberDate_memberLong(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1617,8 +1619,8 @@ async def testAssistValue_listAssistMemberDate_memberStartChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1649,8 +1651,8 @@ async def testAssistValue_listAssistMemberDate_memberSpeChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1680,8 +1682,8 @@ async def testAssistValue_listAssistMemberDate_memberRepeatChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1714,8 +1716,8 @@ async def testAssistValue_listAssistMemberDate_date1Empty(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1743,8 +1745,8 @@ async def testAssistValue_listAssistMemberDate_date1Invalid(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1774,8 +1776,8 @@ async def testAssistValue_listAssistMemberDate_date2Empty(capfd):
                 f" {testData['date']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1803,8 +1805,8 @@ async def testAssistValue_listAssistMemberDate_date2Invalid(capfd):
                 f" {testData['date']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1834,8 +1836,8 @@ async def testAssistValue_listAssistEventDate_eventEmpty(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1864,8 +1866,8 @@ async def testAssistValue_listAssistEventDate_eventLong(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -1897,8 +1899,8 @@ async def testAssistValue_listAssistEventDate_eventStartChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1929,8 +1931,8 @@ async def testAssistValue_listAssistEventDate_eventSpeChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1960,8 +1962,8 @@ async def testAssistValue_listAssistEventDate_eventRepeatChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -1994,8 +1996,8 @@ async def testAssistValue_listAssistEventDate_date1Empty(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2023,8 +2025,8 @@ async def testAssistValue_listAssistEventDate_date1Invalid(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2054,8 +2056,8 @@ async def testAssistValue_listAssistEventDate_date2Empty(capfd):
                 f" {testData['date']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2083,8 +2085,8 @@ async def testAssistValue_listAssistEventDate_date2Invalid(capfd):
                 f" {testData['date']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2119,8 +2121,8 @@ async def testAssistValue_listAssistMemberEventDate_memberEmpty(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2154,8 +2156,8 @@ async def testAssistValue_listAssistMemberEventDate_memberLong(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2192,8 +2194,8 @@ async def testAssistValue_listAssistMemberEventDate_memberStartChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -2229,8 +2231,8 @@ async def testAssistValue_listAssistMemberEventDate_memberSpeChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -2265,8 +2267,8 @@ async def testAssistValue_listAssistMemberEventDate_memberRepeatChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -2304,8 +2306,8 @@ async def testAssistValue_listAssistMemberEventDate_eventEmpty(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2339,8 +2341,8 @@ async def testAssistValue_listAssistMemberEventDate_eventLong(capfd):
                 f" {testData['date']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2377,8 +2379,8 @@ async def testAssistValue_listAssistMemberEventDate_eventStartChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -2414,8 +2416,8 @@ async def testAssistValue_listAssistMemberEventDate_eventSpeChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -2450,8 +2452,8 @@ async def testAssistValue_listAssistMemberEventDate_eventRepeatChar(capfd):
                     f" {testData['date']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author="test", content=command)
-            client = Client(user="test")
+            message = Message(author=author, content=command)
+            client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                              Helpers.getStruct("assist",
@@ -2489,8 +2491,8 @@ async def testAssistValue_listAssistMemberEventDate_date1Empty(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2523,8 +2525,8 @@ async def testAssistValue_listAssistMemberEventDate_date1Invalid(capfd):
                 f" {value} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2559,8 +2561,8 @@ async def testAssistValue_listAssistMemberEventDate_date2Empty(capfd):
                 f" {testData['date']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",
@@ -2593,8 +2595,8 @@ async def testAssistValue_listAssistMemberEventDate_date2Invalid(capfd):
                 f" {testData['date']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listAssist:member&event&date", app.getDatas,
                          Helpers.getStruct("assist",

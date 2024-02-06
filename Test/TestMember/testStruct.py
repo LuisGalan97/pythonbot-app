@@ -6,6 +6,8 @@ from collections import namedtuple
 
 Message = namedtuple('Message', ['author', 'content'])
 Client = namedtuple('Client', ['user'])
+author = "test"
+user = "test"
 app = AppHandler()
 
 @pytest.mark.asyncio
@@ -18,8 +20,8 @@ async def testMemberStruct_addMember_invalidStruct(capfd):
                 "$addMember[FILL", "$addMember [ FILL",
                 "$addMember FILL]", "$addMember FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
                            Helpers.setStruct("member"))
@@ -37,8 +39,8 @@ async def testMemberStruct_updMemberId_invalidStruct(capfd):
                 "$updMember:id[FILL", "$updMember:id [ FILL",
                 "$updMember:id FILL]", "$updMember:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
@@ -56,8 +58,8 @@ async def testMemberStruct_updMemberName_invalidStruct(capfd):
                 "$updMember:name[FILL", "$updMember:name [ FILL",
                 "$updMember:name FILL]", "$updMember:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
@@ -75,8 +77,8 @@ async def testMemberStruct_delMemberId_invalidStruct(capfd):
                 "$delMember:id[FILL", "$delMember:id [ FILL",
                 "$delMember:id FILL]", "$delMember:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("member", "id"))
@@ -94,8 +96,8 @@ async def testMemberStruct_delMemberName_invalidStruct(capfd):
                 "$delMember:name[FILL", "$delMember:name [ FILL",
                 "$delMember:name FILL]", "$delMember:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("member", "name"))
@@ -113,8 +115,8 @@ async def testMemberStruct_listMemberId_invalidStruct(capfd):
                 "$listMember:id[FILL", "$listMember:id [ FILL",
                 "$listMember:id FILL]", "$listMember:id FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
@@ -132,8 +134,8 @@ async def testMemberStruct_listMemberName_invalidStruct(capfd):
                 "$listMember:name[FILL", "$listMember:name [ FILL",
                 "$listMember:name FILL]", "$listMember:name FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
@@ -151,8 +153,8 @@ async def testMemberStruct_listMemberRange_invalidStruct(capfd):
                 "$listMember:range[FILL", "$listMember:range [ FILL",
                 "$listMember:range FILL]", "$listMember:range FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
@@ -170,8 +172,8 @@ async def testMemberStruct_listMemberDate_invalidStruct(capfd):
                 "$listMember:date[FILL", "$listMember:date [ FILL",
                 "$listMember:date FILL]", "$listMember:date FILL ] "]
     for command in commands:
-        message = Message(author="test", content=command)
-        client = Client(user="test")
+        message = Message(author=author, content=command)
+        client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))
