@@ -2,7 +2,9 @@ from datetime import datetime
 
 class Helpers:
     @staticmethod
-    def checkAccess(command, user, channel):
+    def checkAccess(command, author, nameChannel):
+        user = str(author)
+        channel = str(nameChannel)
         adminUser = ["omegaxis_", "test"]
         adminChannel = ["general", "test"]
         access = {}

@@ -15,22 +15,22 @@ class MessageHandler:
             return
 
     async def sendText(self):
-        user = self.__message.author
-        channel = self.__message.channel.name
+        author = self.__message.author
+        nameChannel = self.__message.channel.name
         msg = ""
-        if Helpers.checkAccess("hello", user, channel):
+        if Helpers.checkAccess("hello", author, nameChannel):
             msg = self.__message.content
         if msg.startswith("$hello"):
-            await self.__send(message = f"Hola **{self.__message.author}**!, "\
+            await self.__send(message = f"Hola **{author}**!, "\
                                          "soy **Avalon-bot** identificado "\
                                          "bajo la cuenta "\
                                         f"**{self.__client.user}**.\n")
 
     async def helpMsg(self):
-        user = self.__message.author
-        channel = self.__message.channel.name
+        author = self.__message.author
+        nameChannel = self.__message.channel.name
         msg = ""
-        if Helpers.checkAccess("help", user, channel):
+        if Helpers.checkAccess("help", author, nameChannel):
             msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
@@ -355,10 +355,10 @@ class MessageHandler:
                     array.append(messages[i])
 
     async def dFMsg(self, command, method, struct):
-        user = self.__message.author
-        channel = self.__message.channel.name
+        author = self.__message.author
+        nameChannel = self.__message.channel.name
         msg = ""
-        if Helpers.checkAccess(command, user, channel):
+        if Helpers.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if Helpers.checkCommand(msg, command):
             content = msg.replace(f'${command}', '').strip()
@@ -484,10 +484,10 @@ class MessageHandler:
                 await self.__send(message = request)
 
     async def contMsg(self, command, method, struct):
-        user = self.__message.author
-        channel = self.__message.channel.name
+        author = self.__message.author
+        nameChannel = self.__message.channel.name
         msg = ""
-        if Helpers.checkAccess(command, user, channel):
+        if Helpers.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if Helpers.checkCommand(msg, command):
             content = msg.replace(f'${command}', '').strip()
