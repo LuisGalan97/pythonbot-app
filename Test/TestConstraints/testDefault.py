@@ -21,7 +21,7 @@ testData = {
     "ev_point" : 5,
     "ev_des" : "Descripción creada",
     "assist_id" : "",
-    "assist_date" : "27-01-2100"
+    "assist_date" : "27/01/2100"
 }
 
 Message = namedtuple('Message', ['author', 'content'])

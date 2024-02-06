@@ -12,8 +12,8 @@ testData = {
     "evcreate" : "defprismaganada",
     "evupdate" : "avaconpelea",
     "evnoexist" : "Event-[noexist]",
-    "datecreate" : "25-01-2300",
-    "dateupdate" : "26-01-2300"
+    "datecreate" : "25/01/2300",
+    "dateupdate" : "26/01/2300"
 }
 
 Message = namedtuple('Message', ['author', 'content'])

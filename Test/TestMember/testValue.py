@@ -8,7 +8,7 @@ testData = {
     "id" : "1",
     "name" : "TestMember",
     "range" : "General de alianza",
-    "date" : "25-01-2100"
+    "date" : "25/01/2100"
 }
 
 Message = namedtuple('Message', ['author', 'content'])

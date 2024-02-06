@@ -12,8 +12,8 @@ testData = {
     "rancreate" : "General de alianza",
     "ranupdate" : "General",
     "ranoexist" : "Range-[noexist]",
-    "datecreate" : "25-01-2100",
-    "dateupdate" : "26-01-2100"
+    "datecreate" : "25/01/2100",
+    "dateupdate" : "26/01/2100"
 }
 
 Message = namedtuple('Message', ['author', 'content'])

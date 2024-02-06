@@ -102,7 +102,7 @@ class Helpers:
                               f"**_{alias.split(',')[i].strip()}_**"
                     try:
                         if types[i] == datetime:
-                            datas[i] = datetime.strptime(datas[i], "%d-%m-%Y")
+                            datas[i] = datetime.strptime(datas[i], "%d/%m/%Y")
                             datas[i] = datas[i].strftime("%Y-%m-%d")
                         else:
                             datas[i] = types[i](datas[i])
@@ -751,7 +751,7 @@ class Helpers:
                        f"Estos parametros **_{parameters[0]}_** "\
                        f"y **_{parameters[1]}_** "\
                         "deberán corresponder a valores de fecha "\
-                        "en 'Día-Mes-Año'.\n"
+                        "en 'Día/Mes/Año'.\n"
             elif target == "member&event":
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
@@ -824,7 +824,7 @@ class Helpers:
                        f"y los parametros **_{parameters[1]}_** "\
                        f"y **_{parameters[2]}_** "\
                         "deberán corresponder a valores de "\
-                        "fecha en 'Día-Mes-Año'.\n"
+                        "fecha en 'Día/Mes/Año'.\n"
             elif target == "event&date":
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
@@ -862,7 +862,7 @@ class Helpers:
                        f"y los parametros **_{parameters[1]}_** "\
                        f"y **_{parameters[2]}_** "\
                         "deberán corresponder a valores de fecha "\
-                        "en 'Día-Mes-Año'.\n"
+                        "en 'Día/Mes/Año'.\n"
             elif target == "member&event&date":
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
@@ -907,7 +907,7 @@ class Helpers:
                        f"y los parametros **_{parameters[2]}_** "\
                        f"y **_{parameters[3]}_** "\
                         "deberán corresponder a valores de fecha "\
-                        "en 'Día-Mes-Año'.\n"
+                        "en 'Día/Mes/Año'.\n"
             else:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
@@ -955,7 +955,7 @@ class Helpers:
                 elif parameters[i] == "Fecha":
                     value = value + "un parametro "\
                             f"**_{parameters[i]}_** "\
-                            "como valor de fecha en 'Día-Mes-Año'"
+                            "como valor de fecha en 'Día/Mes/Año'"
                 elif parameters[i] == "Control":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
@@ -1003,7 +1003,7 @@ class Helpers:
                     elif parameters[i] == "Fecha":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
-                                "como valor de fecha en 'Día-Mes-Año'"
+                                "como valor de fecha en 'Día/Mes/Año'"
                     elif parameters[i] == "Control":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
@@ -1046,7 +1046,7 @@ class Helpers:
                     elif parameters[i] == "Fecha":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
-                                "como valor de fecha en 'Día-Mes-Año'"
+                                "como valor de fecha en 'Día/Mes/Año'"
                     elif parameters[i] == "Control":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\

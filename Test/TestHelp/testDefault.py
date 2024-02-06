@@ -135,7 +135,7 @@ async def testHelpDefault_helpAssist(capfd):
            "___integrante___, un parametro **_Evento_** como valor "\
            "de texto asociado al nombre de un ___evento___ y un "\
            "parametro **_Fecha_** como valor de fecha en "\
-           "'Día-Mes-Año'.\n" in out
+           "'Día/Mes/Año'.\n" in out
     assert "- **$updAssist:id [_ID, Integrante, Evento, Fecha_]**   "\
            "->   Actualiza los datos de una ___asistencia___ "\
            "apuntando a su identificador, ingresando dentro de los "\
@@ -144,7 +144,7 @@ async def testHelpDefault_helpAssist(capfd):
            "texto asociado al nombre de un ___integrante___, un "\
            "parametro **_Evento_** como valor de texto asociado "\
            "al nombre de un ___evento___ y un parametro **_Fecha_** "\
-           "como valor de fecha en 'Día-Mes-Año'.\n" in out
+           "como valor de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$delAssist:id [_ID_]**   ->   Elimina una "\
            "___asistencia___ apuntando a su identificador, "\
            "ingresando dentro de los corchetes **[ ]** un parametro "\
@@ -174,7 +174,7 @@ async def testHelpDefault_helpAssist(capfd):
            "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
            "como parametros dentro de los corchetes **[ ]**. "\
            "Estos parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
-           "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
+           "corresponder a valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listAssist:member&event [_Integrante, Evento_]**    "\
            "->   Lista todas las ___asistencias___ asociadas a los "\
            "parametros **_Integrante_** y **_Evento_** ingresados "\
@@ -193,7 +193,7 @@ async def testHelpDefault_helpAssist(capfd):
            "**_Integrante_** deberá corresponder a un valor de "\
            "texto y los parametros **_Fecha 1_** y **_Fecha 2_** "\
            "deberán corresponder a valores "\
-           "de fecha en 'Día-Mes-Año'.\n" in out
+           "de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listAssist:event&date [_Evento, Fecha 1, "\
            "Fecha 2_]**    ->   Lista todas las ___asistencias___ "\
            "asociadas al parametro **_Evento_** en relacion al "\
@@ -203,7 +203,7 @@ async def testHelpDefault_helpAssist(capfd):
            "de los corchetes **[ ]**. El parametro **_Evento_** "\
            "deberá corresponder a un valor de texto y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
-           "valores de fecha en 'Día-Mes-Año'.\n" in out
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listAssist:member&event&date [_Integrante, Evento, "\
            "Fecha 1, Fecha 2_]**    ->   Lista todas las "\
            "___asistencias___ asociadas a los parametros "\
@@ -215,7 +215,7 @@ async def testHelpDefault_helpAssist(capfd):
            "**[ ]**. Los parametros **_Integrante_** y **_Evento_** "\
            "deberán corresponder a valores de texto, y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
-           "valores de fecha en 'Día-Mes-Año'.\n" in out
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "_Comandos de consulta con impresion en excel:_\n" in out
     assert "Por defecto, los comandos de consulta imprimen los "\
            "registros en el canal de discord, sin embargo, tambien "\
@@ -251,7 +251,7 @@ async def testHelpDefault_helpAssist(capfd):
            "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
            "como parametros dentro de los corchetes **[ ]**. "\
            "Estos parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
-           "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
+           "corresponder a valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listAssist:member&event [_Integrante, Evento_]** **> e**   "\
            "->   Lista en una hoja de excel "\
            "todas las ___asistencias___ asociadas a los "\
@@ -272,7 +272,7 @@ async def testHelpDefault_helpAssist(capfd):
            "**_Integrante_** deberá corresponder a un valor de "\
            "texto y los parametros **_Fecha 1_** y **_Fecha 2_** "\
            "deberán corresponder a valores "\
-           "de fecha en 'Día-Mes-Año'.\n" in out
+           "de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listAssist:event&date [_Evento, Fecha 1, "\
            "Fecha 2_]** **> e**   ->   Lista en una hoja de excel "\
            "todas las ___asistencias___ "\
@@ -283,7 +283,7 @@ async def testHelpDefault_helpAssist(capfd):
            "de los corchetes **[ ]**. El parametro **_Evento_** "\
            "deberá corresponder a un valor de texto y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
-           "valores de fecha en 'Día-Mes-Año'.\n" in out
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listAssist:member&event&date [_Integrante, Evento, "\
            "Fecha 1, Fecha 2_]** **> e**   ->   Lista "\
            "en una hoja de excel todas las "\
@@ -296,7 +296,7 @@ async def testHelpDefault_helpAssist(capfd):
            "**[ ]**. Los parametros **_Integrante_** y **_Evento_** "\
            "deberán corresponder a valores de texto, y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
-           "valores de fecha en 'Día-Mes-Año'.\n" in out
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_helpEvent(capfd):
@@ -391,7 +391,7 @@ async def testHelpDefault_helpMember(capfd):
            "corchetes **[ ]** un parametro **_Nombre_** como valor "\
            "de texto, un parametro **_Rango_** como valor de texto "\
            "asociado al nombre de un ___rango___ y un parametro "\
-           "**_Fecha_** como valor de fecha en 'Día-Mes-Año'.\n" in out
+           "**_Fecha_** como valor de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$updMember:id [_ID, Nombre, Rango, Fecha_]**   ->   "\
            "Actualiza los datos de un ___integrante___ apuntando "\
            "a su identificador, ingresando dentro de los corchetes "\
@@ -399,14 +399,14 @@ async def testHelpDefault_helpMember(capfd):
            "parametro **_Nombre_** como valor de texto, un parametro "\
            "**_Rango_** como valor de texto asociado al nombre "\
            "de un ___rango___ y un parametro **_Fecha_** como valor "\
-           "de fecha en 'Día-Mes-Año'.\n" in out
+           "de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$updMember:name [_Nombre, Rango, Fecha_]**   ->   "\
            "Actualiza los datos de un ___integrante___ apuntando "\
            "a su nombre, ingresando dentro de los corchetes **[ ]** "\
            "un parametro **_Nombre_** como valor de texto, un "\
            "parametro **_Rango_** como valor de texto asociado al "\
            "nombre de un ___rango___ y un parametro **_Fecha_** "\
-           "como valor de fecha en 'Día-Mes-Año'.\n" in out
+           "como valor de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$delMember:id [_ID_]**   ->   Elimina un "\
            "___integrante___ apuntando a su identificador, ingresando "\
            "dentro de los corchetes **[ ]** un parametro **_ID_** "\
@@ -437,7 +437,7 @@ async def testHelpDefault_helpMember(capfd):
            "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
            "como parametros dentro de los corchetes **[ ]**. Estos "\
            "parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
-           "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
+           "corresponder a valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "_Comandos de consulta con impresion en excel:_\n" in out
     assert "Por defecto, los comandos de consulta imprimen los "\
            "registros en el canal de discord, sin embargo, tambien "\
@@ -470,7 +470,7 @@ async def testHelpDefault_helpMember(capfd):
            "las fechas **_Fecha 1_** y **_Fecha 2_**, ingresadas "\
            "como parametros dentro de los corchetes **[ ]**. Estos "\
            "parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
-           "corresponder a valores de fecha en 'Día-Mes-Año'.\n" in out
+           "corresponder a valores de fecha en 'Día/Mes/Año'.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_helpRange(capfd):
