@@ -501,13 +501,17 @@ class MessageHandler:
                 await self.__send(message = request)
 
     async def defaultFunction(self, message = None, file = None):
-        try:
+        channel = self.__message.channel
+        permissions = channel.permissions_for(channel.guild.me)
+        if permissions.send_messages:
             if message:
-                await self.__message.channel.send(message)
+                await channel.send(message)
             elif file:
-                await self.__message.channel.send(file=file)
-        except Exception as ex:
-            print( f"-> Ocurrio un error: {str(ex)}.")
+                await channel.send(file=file)
+        else:
+            print( "-> Avalon-bot no cuenta con permisos para enviar "\
+                  f"mensajes por el canal {channel.name}.")
+
     async def testFunction(self, message = None, file = None):
         if message:
             print(f"Enviando mensaje a Discord: {message}")
