@@ -16,18 +16,18 @@ class MessageHandler:
             return
 
     async def sendText(self):
-        author = self.__message.author
+        author = str(self.__message.author)
         msg = ""
         if author in self.__adminUser:
             msg = self.__message.content
         if msg.startswith("$command"):
-            await self.__send(message = f"Hola **{self.__message.author}**!, "\
+            await self.__send(message = f"Hola **{author}**!, "\
                                          "soy **Avalon-bot** identificado "\
                                          "bajo la cuenta "\
                                         f"**{self.__client.user}**.\n")
 
     async def helpMsg(self):
-        author = self.__message.author
+        author = str(self.__message.author)
         msg = ""
         if author in self.__adminUser:
             msg = self.__message.content
@@ -354,7 +354,7 @@ class MessageHandler:
                     array.append(messages[i])
 
     async def dFMsg(self, command, method, struct):
-        author = self.__message.author
+        author = str(self.__message.author)
         msg = ""
         if author in self.__adminUser:
             msg = self.__message.content
@@ -482,7 +482,7 @@ class MessageHandler:
                 await self.__send(message = request)
 
     async def contMsg(self, command, method, struct):
-        author = self.__message.author
+        author = str(self.__message.author)
         msg = ""
         if author in self.__adminUser:
             msg = self.__message.content
