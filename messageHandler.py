@@ -501,11 +501,13 @@ class MessageHandler:
                 await self.__send(message = request)
 
     async def defaultFunction(self, message = None, file = None):
-        if message:
-            await self.__message.channel.send(message)
-        elif file:
-            await self.__message.channel.send(file=file)
-
+        try:
+            if message:
+                await self.__message.channel.send(message)
+            elif file:
+                await self.__message.channel.send(file=file)
+        except Exception as ex:
+            print( f"-> Ocurrio un error: {str(ex)}.")
     async def testFunction(self, message = None, file = None):
         if message:
             print(f"Enviando mensaje a Discord: {message}")
