@@ -22,7 +22,8 @@ async def testEventStruct_addEvent_invalidStruct(capfd):
                 "$addEvent[FILL", "$addEvent [ FILL",
                 "$addEvent FILL]", "$addEvent FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -41,7 +42,8 @@ async def testEventStruct_updEventId_invalidStruct(capfd):
                 "$updEvent:id[FILL", "$updEvent:id [ FILL",
                 "$updEvent:id FILL]", "$updEvent:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -60,7 +62,8 @@ async def testEventStruct_updEventName_invalidStruct(capfd):
                 "$updEvent:name[FILL", "$updEvent:name [ FILL",
                 "$updEvent:name FILL]", "$updEvent:name FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -79,7 +82,8 @@ async def testEventStruct_delEventId_invalidStruct(capfd):
                 "$delEvent:id[FILL", "$delEvent:id [ FILL",
                 "$delEvent:id FILL]", "$delEvent:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
@@ -98,7 +102,8 @@ async def testEventStruct_delEventName_invalidStruct(capfd):
                 "$delEvent:name[FILL", "$delEvent:name [ FILL",
                 "$delEvent:name FILL]", "$delEvent:name FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
@@ -117,7 +122,8 @@ async def testEventStruct_listEventId_invalidStruct(capfd):
                 "$listEvent:id[FILL", "$listEvent:id [ FILL",
                 "$listEvent:id FILL]", "$listEvent:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
@@ -136,7 +142,8 @@ async def testEventStruct_listEventName_invalidStruct(capfd):
                 "$listEvent:name[FILL", "$listEvent:name [ FILL",
                 "$listEvent:name FILL]", "$listEvent:name FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,

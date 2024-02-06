@@ -39,7 +39,8 @@ async def testMemberValue_addMember_nameEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
@@ -68,7 +69,8 @@ async def testMemberValue_addMember_nameLong(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
@@ -100,7 +102,8 @@ async def testMemberValue_addMember_nameStartChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addMember", app.setData,
@@ -131,7 +134,8 @@ async def testMemberValue_addMember_nameSpeChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addMember", app.setData,
@@ -161,7 +165,8 @@ async def testMemberValue_addMember_nameRepeatChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addMember", app.setData,
@@ -194,7 +199,8 @@ async def testMemberValue_addMember_rangeEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
@@ -223,7 +229,8 @@ async def testMemberValue_addMember_rangeLong(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
@@ -255,7 +262,8 @@ async def testMemberValue_addMember_rangeStartChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addMember", app.setData,
@@ -286,7 +294,8 @@ async def testMemberValue_addMember_rangeSpeChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addMember", app.setData,
@@ -316,7 +325,8 @@ async def testMemberValue_addMember_rangeRepeatChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addMember", app.setData,
@@ -349,7 +359,8 @@ async def testMemberValue_addMember_dateEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
@@ -377,7 +388,8 @@ async def testMemberValue_addMember_dateInvalid(capfd):
                 f" {testData['range']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addMember", app.setData,
@@ -412,7 +424,8 @@ async def testMemberValue_updMemberId_idEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -445,7 +458,8 @@ async def testMemberValue_updMemberId_idInvalid(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -480,7 +494,8 @@ async def testMemberValue_updMemberId_nameEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -514,7 +529,8 @@ async def testMemberValue_updMemberId_nameLong(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -551,7 +567,8 @@ async def testMemberValue_updMemberId_nameStartChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:id", app.updateData,
@@ -587,7 +604,8 @@ async def testMemberValue_updMemberId_nameSpeChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:id", app.updateData,
@@ -622,7 +640,8 @@ async def testMemberValue_updMemberId_nameRepeatChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:id", app.updateData,
@@ -660,7 +679,8 @@ async def testMemberValue_updMemberId_rangeEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -694,7 +714,8 @@ async def testMemberValue_updMemberId_rangeLong(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -731,7 +752,8 @@ async def testMemberValue_updMemberId_rangeStartChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:id", app.updateData,
@@ -767,7 +789,8 @@ async def testMemberValue_updMemberId_rangeSpeChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:id", app.updateData,
@@ -802,7 +825,8 @@ async def testMemberValue_updMemberId_rangeRepeatChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:id", app.updateData,
@@ -840,7 +864,8 @@ async def testMemberValue_updMemberId_dateEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -873,7 +898,8 @@ async def testMemberValue_updMemberId_dateInvalid(capfd):
                 f" {testData['range']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:id", app.updateData,
@@ -903,7 +929,8 @@ async def testMemberValue_updMemberName_nameEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
@@ -932,7 +959,8 @@ async def testMemberValue_updMemberName_nameLong(capfd):
                 f" {testData['range']} , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
@@ -964,7 +992,8 @@ async def testMemberValue_updMemberName_nameStartChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:name", app.updateData,
@@ -995,7 +1024,8 @@ async def testMemberValue_updMemberName_nameSpeChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:name", app.updateData,
@@ -1025,7 +1055,8 @@ async def testMemberValue_updMemberName_nameRepeatChar(capfd):
                     f" {testData['range']} , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:name", app.updateData,
@@ -1058,7 +1089,8 @@ async def testMemberValue_updMemberName_rangeEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
@@ -1087,7 +1119,8 @@ async def testMemberValue_updMemberName_rangeLong(capfd):
                 f" {value}  , "\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
@@ -1119,7 +1152,8 @@ async def testMemberValue_updMemberName_rangeStartChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:name", app.updateData,
@@ -1150,7 +1184,8 @@ async def testMemberValue_updMemberName_rangeSpeChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:name", app.updateData,
@@ -1180,7 +1215,8 @@ async def testMemberValue_updMemberName_rangeRepeatChar(capfd):
                     f" {value}  , "\
                     f" {testData['date']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updMember:name", app.updateData,
@@ -1213,7 +1249,8 @@ async def testMemberValue_updMemberName_dateEmpty(capfd):
                 f" {testData['range']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
@@ -1241,7 +1278,8 @@ async def testMemberValue_updMemberName_dateInvalid(capfd):
                 f" {testData['range']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updMember:name", app.updateData,
@@ -1261,7 +1299,8 @@ async def testMemberValue_delMemberId_idEmpty(capfd):
                 f"$delMember:id [ {value} ]FILL",
                 f"$delMember:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
@@ -1279,7 +1318,8 @@ async def testMemberValue_delMemberId_idInvalid(capfd):
                 f"$delMember:id [ {value} ]FILL",
                 f"$delMember:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
@@ -1299,7 +1339,8 @@ async def testMemberValue_delMemberName_nameEmpty(capfd):
                 f"$delMember:name [ {value} ]FILL",
                 f"$delMember:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
@@ -1318,7 +1359,8 @@ async def testMemberValue_delMemberName_nameLong(capfd):
                 f"$delMember:name [ {value} ]FILL",
                 f"$delMember:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
@@ -1340,7 +1382,8 @@ async def testMemberValue_delMemberName_nameStartChar(capfd):
                     f"$delMember:name [ {value} ]FILL",
                     f"$delMember:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delMember:name", app.deleteData,
@@ -1361,7 +1404,8 @@ async def testMemberValue_delMemberName_nameSpeChar(capfd):
                     f"$delMember:name [ {value} ]FILL",
                     f"$delMember:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delMember:name", app.deleteData,
@@ -1381,7 +1425,8 @@ async def testMemberValue_delMemberName_nameRepeatChar(capfd):
                     f"$delMember:name [ {value} ]FILL",
                     f"$delMember:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delMember:name", app.deleteData,
@@ -1404,7 +1449,8 @@ async def testMemberValue_listMemberId_idEmpty(capfd):
                 f"$listMember:id [ {value} ]FILL",
                 f"$listMember:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
@@ -1422,7 +1468,8 @@ async def testMemberValue_listMemberId_idInvalid(capfd):
                 f"$listMember:id [ {value} ]FILL",
                 f"$listMember:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
@@ -1442,7 +1489,8 @@ async def testMemberValue_listMemberName_nameEmpty(capfd):
                 f"$listMember:name [ {value} ]FILL",
                 f"$listMember:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
@@ -1461,7 +1509,8 @@ async def testMemberValue_listMemberName_nameLong(capfd):
                 f"$listMember:name [ {value} ]FILL",
                 f"$listMember:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
@@ -1483,7 +1532,8 @@ async def testMemberValue_listMemberName_nameStartChar(capfd):
                     f"$listMember:name [ {value} ]FILL",
                     f"$listMember:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
@@ -1504,7 +1554,8 @@ async def testMemberValue_listMemberName_nameSpeChar(capfd):
                     f"$listMember:name [ {value} ]FILL",
                     f"$listMember:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
@@ -1524,7 +1575,8 @@ async def testMemberValue_listMemberName_nameRepeatChar(capfd):
                     f"$listMember:name [ {value} ]FILL",
                     f"$listMember:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
@@ -1547,7 +1599,8 @@ async def testMemberValue_listMemberRange_rangeEmpty(capfd):
                 f"$listMember:range [ {value} ]FILL",
                 f"$listMember:range [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
@@ -1566,7 +1619,8 @@ async def testMemberValue_listMemberRange_rangeLong(capfd):
                 f"$listMember:range [ {value} ]FILL",
                 f"$listMember:range [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
@@ -1588,7 +1642,8 @@ async def testMemberValue_listMemberRange_rangeStartChar(capfd):
                     f"$listMember:range [ {value} ]FILL",
                     f"$listMember:range [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
@@ -1609,7 +1664,8 @@ async def testMemberValue_listMemberRange_rangeSpeChar(capfd):
                     f"$listMember:range [ {value} ]FILL",
                     f"$listMember:range [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
@@ -1629,7 +1685,8 @@ async def testMemberValue_listMemberRange_rangeRepeatChar(capfd):
                     f"$listMember:range [ {value} ]FILL",
                     f"$listMember:range [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
@@ -1657,7 +1714,8 @@ async def testMemberValue_listMemberDate_date1Empty(capfd):
                 f"$listMember:date [ {value} ,"\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
@@ -1680,7 +1738,8 @@ async def testMemberValue_listMemberDate_date1Invalid(capfd):
                 f"$listMember:date [ {value} ,"\
                 f" {testData['date']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
@@ -1705,7 +1764,8 @@ async def testMemberValue_listMemberDate_date2Empty(capfd):
                 f"$listMember:date [ {testData['date']} ,"\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
@@ -1728,7 +1788,8 @@ async def testMemberValue_listMemberDate_date2Invalid(capfd):
                 f"$listMember:date [ {testData['date']} ,"\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,

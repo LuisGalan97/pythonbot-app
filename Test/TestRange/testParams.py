@@ -27,7 +27,8 @@ async def testRangeParams_addRange_invalidParams(capfd):
                 "$addRange[[,,,,]]FILL",
                 "$addRange [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
@@ -52,7 +53,8 @@ async def testRangeParams_updRangeId_invalidParams(capfd):
                 "$updRange:id[[,,,,]]FILL",
                 "$updRange:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
@@ -77,7 +79,8 @@ async def testRangeParams_updRangeName_invalidParams(capfd):
                 "$updRange:name[[,,,,]]FILL",
                 "$updRange:name [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
@@ -100,7 +103,8 @@ async def testRangeParams_delRangeId_invalidParams(capfd):
                 "$delRange:id[[,,,,]]FILL",
                 "$delRange:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
@@ -123,7 +127,8 @@ async def testRangeParams_delRangeName_invalidParams(capfd):
                 "$delRange:name[[,,,,]]FILL",
                 "$delRange:name [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
@@ -146,7 +151,8 @@ async def testRangeParams_listRangeId_invalidParams(capfd):
                 "$listRange:id[[,,,,]]FILL",
                 "$listRange:id [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -169,7 +175,8 @@ async def testRangeParams_listRangeName_invalidParams(capfd):
                 "$listRange:name[[,,,,]]FILL",
                 "$listRange:name [[,,,,]] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,

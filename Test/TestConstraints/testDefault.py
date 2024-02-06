@@ -36,7 +36,8 @@ app = AppHandler()
 async def testConstraintsDefault_addRange(capfd):
     command = f"$addRange [{testData['ran_create']}, "\
               f"{testData['ran_control']}, {testData['ran_des']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addRange", app.setData,
@@ -52,7 +53,8 @@ async def testConstraintsDefault_addMember(capfd):
     command = f"$addMember [{testData['mem_create']}, "\
               f"{testData['ran_create']}, "\
               f"{testData['mem_datecreate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addMember", app.setData,
@@ -67,7 +69,8 @@ async def testConstraintsDefault_addMember(capfd):
 async def testConstraintsDefault_addEvent(capfd):
     command = f"$addEvent [{testData['ev_create']}, "\
               f"{testData['ev_point']}, {testData['ev_des']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addEvent", app.setData,
@@ -83,7 +86,8 @@ async def testConstraintsDefault_addAssist(capfd):
     command = f"$addAssist [{testData['mem_create']}, "\
               f"{testData['ev_create']}, "\
               f"{testData['assist_date']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addAssist", app.setData,
@@ -100,7 +104,8 @@ async def testConstraintsDefault_updRangeId(capfd):
                f"{testData['ran_update']}, "\
                f"{testData['ran_control']}, "\
                f"{testData['ran_des']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("updRange:id", app.updateData,
@@ -111,7 +116,8 @@ async def testConstraintsDefault_updRangeId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_listMemberId_checkUpdRangeCascade(capfd):
     command = f"$listMember:id [{testData['mem_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
@@ -130,7 +136,8 @@ async def testConstraintsDefault_updMemberId(capfd):
                f"{testData['mem_update']}, "\
                f"{testData['ran_update']}, "\
                f"{testData['mem_dateupdate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("updMember:id", app.updateData,
@@ -141,7 +148,8 @@ async def testConstraintsDefault_updMemberId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_listAssistId_checkUpdMemberCascade(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -159,7 +167,8 @@ async def testConstraintsDefault_updEventId(capfd):
                f"{testData['ev_update']}, "\
                f"{testData['ev_point']}, "\
                f"{testData['ev_des']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("updEvent:id", app.updateData,
@@ -170,7 +179,8 @@ async def testConstraintsDefault_updEventId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_listAssistId_checkUpdEventCascade(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -185,7 +195,8 @@ async def testConstraintsDefault_listAssistId_checkUpdEventCascade(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_delRangeId(capfd):
     command = f"$delRange:id [{testData['ran_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delRange:id", app.deleteData,
@@ -196,7 +207,8 @@ async def testConstraintsDefault_delRangeId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_listMemberId_checkDelRangeNone(capfd):
     command = f"$listMember:id [{testData['mem_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
@@ -212,7 +224,8 @@ async def testConstraintsDefault_listMemberId_checkDelRangeNone(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_delEventId(capfd):
     command = f"$delEvent:id [{testData['ev_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delEvent:id", app.deleteData,
@@ -223,7 +236,8 @@ async def testConstraintsDefault_delEventId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_listAssistId_checkDelEventNone(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
@@ -238,7 +252,8 @@ async def testConstraintsDefault_listAssistId_checkDelEventNone(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_delMemberId(capfd):
     command = f"$delMember:id [{testData['mem_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delMember:id", app.deleteData,
@@ -249,7 +264,8 @@ async def testConstraintsDefault_delMemberId(capfd):
 @pytest.mark.asyncio
 async def testConstraintsDefault_listAssistId_checkDelMemberCascade(capfd):
     command = f"$listAssist:id [{testData['assist_id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,

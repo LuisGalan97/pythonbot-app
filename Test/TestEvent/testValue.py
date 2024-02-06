@@ -39,7 +39,8 @@ async def testEventValue_addEvent_nameEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -68,7 +69,8 @@ async def testEventValue_addEvent_nameLong(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -100,7 +102,8 @@ async def testEventValue_addEvent_nameStartChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
@@ -131,7 +134,8 @@ async def testEventValue_addEvent_nameSpeChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
@@ -161,7 +165,8 @@ async def testEventValue_addEvent_nameRepeatChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
@@ -194,7 +199,8 @@ async def testEventValue_addEvent_pointsEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -222,7 +228,8 @@ async def testEventValue_addEvent_pointsInvalid(capfd):
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -252,7 +259,8 @@ async def testEventValue_addEvent_descriptionEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -281,7 +289,8 @@ async def testEventValue_addEvent_descriptionLong(capfd):
                 f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addEvent", app.setData,
@@ -313,7 +322,8 @@ async def testEventValue_addEvent_descriptionStartChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
@@ -344,7 +354,8 @@ async def testEventValue_addEvent_descriptionSpeChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
@@ -374,7 +385,8 @@ async def testEventValue_addEvent_descriptionRepeatChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("addEvent", app.setData,
@@ -412,7 +424,8 @@ async def testEventValue_updEventId_idEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -445,7 +458,8 @@ async def testEventValue_updEventId_idInvalid(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -480,7 +494,8 @@ async def testEventValue_updEventId_nameEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -514,7 +529,8 @@ async def testEventValue_updEventId_nameLong(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -551,7 +567,8 @@ async def testEventValue_updEventId_nameStartChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
@@ -587,7 +604,8 @@ async def testEventValue_updEventId_nameSpeChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
@@ -622,7 +640,8 @@ async def testEventValue_updEventId_nameRepeatChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
@@ -660,7 +679,8 @@ async def testEventValue_updEventId_pointsEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -693,7 +713,8 @@ async def testEventValue_updEventId_pointsInvalid(capfd):
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -728,7 +749,8 @@ async def testEventValue_updEventId_descriptionEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -762,7 +784,8 @@ async def testEventValue_updEventId_descriptionLong(capfd):
                 f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
@@ -799,7 +822,8 @@ async def testEventValue_updEventId_descriptionStartChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
@@ -835,7 +859,8 @@ async def testEventValue_updEventId_descriptionSpeChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
@@ -870,7 +895,8 @@ async def testEventValue_updEventId_descriptionRepeatChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
@@ -903,7 +929,8 @@ async def testEventValue_updEventName_nameEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -932,7 +959,8 @@ async def testEventValue_updEventName_nameLong(capfd):
                 f" {testData['points']} , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -964,7 +992,8 @@ async def testEventValue_updEventName_nameStartChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
@@ -995,7 +1024,8 @@ async def testEventValue_updEventName_nameSpeChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1025,7 +1055,8 @@ async def testEventValue_updEventName_nameRepeatChar(capfd):
                     f" {testData['points']} , "\
                     f" {testData['desc']} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1058,7 +1089,8 @@ async def testEventValue_updEventName_pointsEmpty(capfd):
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1086,7 +1118,8 @@ async def testEventValue_updEventName_pointsInvalid(capfd):
                 f" {value}  , "\
                 f" {testData['desc']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1116,7 +1149,8 @@ async def testEventValue_updEventName_descriptionEmpty(capfd):
                 f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1145,7 +1179,8 @@ async def testEventValue_updEventName_descriptionLong(capfd):
                 f" {testData['points']} , "\
                 f" {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1177,7 +1212,8 @@ async def testEventValue_updEventName_descriptionStartChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1208,7 +1244,8 @@ async def testEventValue_updEventName_descriptionSpeChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1238,7 +1275,8 @@ async def testEventValue_updEventName_descriptionRepeatChar(capfd):
                     f" {testData['points']} , "\
                     f" {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
@@ -1261,7 +1299,8 @@ async def testEventValue_delEventId_idEmpty(capfd):
                 f"$delEvent:id [ {value} ]FILL",
                 f"$delEvent:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
@@ -1279,7 +1318,8 @@ async def testEventValue_delEventId_idInvalid(capfd):
                 f"$delEvent:id [ {value} ]FILL",
                 f"$delEvent:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
@@ -1299,7 +1339,8 @@ async def testEventValue_delEventName_nameEmpty(capfd):
                 f"$delEvent:name [ {value} ]FILL",
                 f"$delEvent:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
@@ -1318,7 +1359,8 @@ async def testEventValue_delEventName_nameLong(capfd):
                 f"$delEvent:name [ {value} ]FILL",
                 f"$delEvent:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
@@ -1340,7 +1382,8 @@ async def testEventValue_delEventName_nameStartChar(capfd):
                     f"$delEvent:name [ {value} ]FILL",
                     f"$delEvent:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
@@ -1361,7 +1404,8 @@ async def testEventValue_delEventName_nameSpeChar(capfd):
                     f"$delEvent:name [ {value} ]FILL",
                     f"$delEvent:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
@@ -1381,7 +1425,8 @@ async def testEventValue_delEventName_nameRepeatChar(capfd):
                     f"$delEvent:name [ {value} ]FILL",
                     f"$delEvent:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
@@ -1404,7 +1449,8 @@ async def testEventValue_listEventId_idEmpty(capfd):
                 f"$listEvent:id [ {value} ]FILL",
                 f"$listEvent:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
@@ -1422,7 +1468,8 @@ async def testEventValue_listEventId_idInvalid(capfd):
                 f"$listEvent:id [ {value} ]FILL",
                 f"$listEvent:id [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
@@ -1442,7 +1489,8 @@ async def testEventValue_listEventName_nameEmpty(capfd):
                 f"$listEvent:name [ {value} ]FILL",
                 f"$listEvent:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
@@ -1461,7 +1509,8 @@ async def testEventValue_listEventName_nameLong(capfd):
                 f"$listEvent:name [ {value} ]FILL",
                 f"$listEvent:name [ {value} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
@@ -1483,7 +1532,8 @@ async def testEventValue_listEventName_nameStartChar(capfd):
                     f"$listEvent:name [ {value} ]FILL",
                     f"$listEvent:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
@@ -1504,7 +1554,8 @@ async def testEventValue_listEventName_nameSpeChar(capfd):
                     f"$listEvent:name [ {value} ]FILL",
                     f"$listEvent:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
@@ -1524,7 +1575,8 @@ async def testEventValue_listEventName_nameRepeatChar(capfd):
                     f"$listEvent:name [ {value} ]FILL",
                     f"$listEvent:name [ {value} ] FILL"]
         for command in commands:
-            message = Message(author=author, content=command)
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,

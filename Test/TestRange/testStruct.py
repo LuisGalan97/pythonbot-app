@@ -22,7 +22,8 @@ async def testRangeStruct_addRange_invalidStruct(capfd):
                 "$addRange[FILL", "$addRange [ FILL",
                 "$addRange FILL]", "$addRange FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
@@ -41,7 +42,8 @@ async def testRangeStruct_updRangeId_invalidStruct(capfd):
                 "$updRange:id[FILL", "$updRange:id [ FILL",
                 "$updRange:id FILL]", "$updRange:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
@@ -60,7 +62,8 @@ async def testRangeStruct_updRangeName_invalidStruct(capfd):
                 "$updRange:name[FILL", "$updRange:name [ FILL",
                 "$updRange:name FILL]", "$updRange:name FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
@@ -79,7 +82,8 @@ async def testRangeStruct_delRangeId_invalidStruct(capfd):
                 "$delRange:id[FILL", "$delRange:id [ FILL",
                 "$delRange:id FILL]", "$delRange:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
@@ -98,7 +102,8 @@ async def testRangeStruct_delRangeName_invalidStruct(capfd):
                 "$delRange:name[FILL", "$delRange:name [ FILL",
                 "$delRange:name FILL]", "$delRange:name FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
@@ -117,7 +122,8 @@ async def testRangeStruct_listRangeId_invalidStruct(capfd):
                 "$listRange:id[FILL", "$listRange:id [ FILL",
                 "$listRange:id FILL]", "$listRange:id FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -136,7 +142,8 @@ async def testRangeStruct_listRangeName_invalidStruct(capfd):
                 "$listRange:name[FILL", "$listRange:name [ FILL",
                 "$listRange:name FILL]", "$listRange:name FILL ] "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
