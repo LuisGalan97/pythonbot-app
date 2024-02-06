@@ -2,15 +2,18 @@ import pytest
 from messageHandler import MessageHandler
 from collections import namedtuple
 
-Message = namedtuple('Message', ['author', 'content'])
+Message = namedtuple('Message', ['author', 'content', 'channel'])
+Channel = namedtuple('Channel', ['name'])
 Client = namedtuple('Client', ['user'])
+name = 'test'
 author = "test"
 user = "test"
 
 @pytest.mark.asyncio
 async def test_command(capfd):
     command = "$hello"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
@@ -22,7 +25,8 @@ async def test_command(capfd):
 @pytest.mark.asyncio
 async def testHelpDefault_help(capfd):
     command = "$help"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
@@ -101,7 +105,8 @@ async def testHelpDefault_help(capfd):
 @pytest.mark.asyncio
 async def testHelpDefault_helpDiagram(capfd):
     command = "$help:diagram"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
@@ -113,7 +118,8 @@ async def testHelpDefault_helpDiagram(capfd):
 @pytest.mark.asyncio
 async def testHelpDefault_helpAssist(capfd):
     command = "$help:assist"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
@@ -304,7 +310,8 @@ async def testHelpDefault_helpAssist(capfd):
 @pytest.mark.asyncio
 async def testHelpDefault_helpEvent(capfd):
     command = "$help:event"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
@@ -376,7 +383,8 @@ async def testHelpDefault_helpEvent(capfd):
 @pytest.mark.asyncio
 async def testHelpDefault_helpMember(capfd):
     command = "$help:member"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
@@ -478,7 +486,8 @@ async def testHelpDefault_helpMember(capfd):
 @pytest.mark.asyncio
 async def testHelpDefault_helpRange(capfd):
     command = "$help:range"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.inMsg()
