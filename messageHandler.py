@@ -9,27 +9,28 @@ class MessageHandler:
         self.__message = message
         self.__client = client
         self.__send = self.defaultFunction if not test else self.testFunction
-        self.__adminUser = ["omegaxis_", "test"]
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
             return
 
     async def sendText(self):
-        author = str(self.__message.author)
+        user = self.__message.author
+        channel = self.__message.channel.name
         msg = ""
-        if author in self.__adminUser:
+        if Helpers.checkAccess("hello", user, channel):
             msg = self.__message.content
         if msg.startswith("$hello"):
-            await self.__send(message = f"Hola **{author}**!, "\
+            await self.__send(message = f"Hola **{self.__message.author}**!, "\
                                          "soy **Avalon-bot** identificado "\
                                          "bajo la cuenta "\
                                         f"**{self.__client.user}**.\n")
 
     async def helpMsg(self):
-        author = str(self.__message.author)
+        user = self.__message.author
+        channel = self.__message.channel.name
         msg = ""
-        if author in self.__adminUser:
+        if Helpers.checkAccess("help", user, channel):
             msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
@@ -354,9 +355,10 @@ class MessageHandler:
                     array.append(messages[i])
 
     async def dFMsg(self, command, method, struct):
-        author = str(self.__message.author)
+        user = self.__message.author
+        channel = self.__message.channel.name
         msg = ""
-        if author in self.__adminUser:
+        if Helpers.checkAccess(command, user, channel):
             msg = self.__message.content
         if Helpers.checkCommand(msg, command):
             content = msg.replace(f'${command}', '').strip()
@@ -482,9 +484,10 @@ class MessageHandler:
                 await self.__send(message = request)
 
     async def contMsg(self, command, method, struct):
-        author = str(self.__message.author)
+        user = self.__message.author
+        channel = self.__message.channel.name
         msg = ""
-        if author in self.__adminUser:
+        if Helpers.checkAccess(command, user, channel):
             msg = self.__message.content
         if Helpers.checkCommand(msg, command):
             content = msg.replace(f'${command}', '').strip()

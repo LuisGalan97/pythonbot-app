@@ -2,6 +2,184 @@ from datetime import datetime
 
 class Helpers:
     @staticmethod
+    def checkAccess(command, user, channel):
+        adminUser = ["omegaxis_", "test"]
+        adminChannel = ["general", "test"]
+        access = {}
+        access['hello'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['help'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        #-------------------Asistencias-------------------------
+        access['addAssist'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updAssist:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delAssist:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:member'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:date'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:member&event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:member&date'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:event&date'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAssist:member&event&date'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        #-----------------------Eventos-------------------------
+        access['addEvent'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updEvent:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updEvent:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delEvent:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delEvent:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listEvent'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listEvent:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listEvent:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        #--------------------Integrantes--------------------------
+        access['addMember'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updMember:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updMember:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delMember:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delMember:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listMember'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listMember:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listMember:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listMember:range'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listMember:date'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        #--------------------------Rangos-----------------------------
+        access['addRange'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updRange:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['updRange:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delRange:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['delRange:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listRange'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listRange:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listRange:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        if command in list(access.keys()):
+            if (user in access[command]["user"] and
+                channel in access[command]["channel"]):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    @staticmethod
     def checkCommand(request, command):
         if (request.find(':') != -1 and
             command.find(':') != -1 and
