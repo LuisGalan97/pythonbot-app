@@ -509,8 +509,8 @@ class MessageHandler:
             elif file:
                 await channel.send(file=file)
         else:
-            print( "-> Avalon-bot no cuenta con permisos para enviar "\
-                  f"mensajes por el canal {channel.name}.")
+            print( "-> Avalon-bot no dispone de permisos para enviar "\
+                  f"mensajes por el canal '{channel.name}'.")
 
     async def testFunction(self, message = None, file = None):
         if message:
