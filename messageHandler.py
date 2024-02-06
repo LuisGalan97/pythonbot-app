@@ -20,7 +20,7 @@ class MessageHandler:
         msg = ""
         if author in self.__adminUser:
             msg = self.__message.content
-        if msg.startswith("$command"):
+        if msg.startswith("$hello"):
             await self.__send(message = f"Hola **{author}**!, "\
                                          "soy **Avalon-bot** identificado "\
                                          "bajo la cuenta "\

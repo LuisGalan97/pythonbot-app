@@ -9,7 +9,7 @@ user = "test"
 
 @pytest.mark.asyncio
 async def test_command(capfd):
-    command = "$command"
+    command = "$hello"
     message = Message(author=author, content=command)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
