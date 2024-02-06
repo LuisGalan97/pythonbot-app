@@ -17,7 +17,7 @@ class DataFrame:
         )
         self.__bold = Font(bold=True)
         self.__row = 3
-        self.__name = name
+        self.__name = name.replace('/','-')
         self.__datas = datas
         self.__length = len(list(datas[0].keys()))
         self.__success = self.generateFrame()
