@@ -27,7 +27,8 @@ app = AppHandler()
 async def testRangeDefault_addRange(capfd):
     command = f"$addRange [{testData['namecreate']}, "\
               f"{testData['controlcreate']}, {testData['descreate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addRange", app.setData,
@@ -56,7 +57,8 @@ async def testRangeDefault_addRange_exist(capfd):
                f" {testData['controlcreate']} , "\
                f" {testData['descreate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("addRange", app.setData,
@@ -69,7 +71,8 @@ async def testRangeDefault_addRange_exist(capfd):
 @pytest.mark.asyncio
 async def testRangeDefault_listRangeId_add(capfd):
     command = f"$listRange:id [{testData['id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -84,7 +87,8 @@ async def testRangeDefault_listRangeId_add(capfd):
 @pytest.mark.asyncio
 async def testRangeDefault_listRangeName_add(capfd):
     command = f"$listRange:name [{testData['namecreate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.dFMsg("listRange:name", app.getDatas,
@@ -113,7 +117,8 @@ async def testRangeDefault_updRangeId(capfd):
                 f"{testData['controlupdate']} , "\
                 f"{testData['descreate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
@@ -138,7 +143,8 @@ async def testRangeDefault_updRangeId_nameExist(capfd):
                 f"{testData['controlupdate']} , "\
                 f"{testData['descreate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
@@ -162,7 +168,8 @@ async def testRangeDefault_updRangeName(capfd):
                 f"{testData['controlupdate']} , "\
                 f"{testData['desupdate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
@@ -177,7 +184,8 @@ async def testRangeDefault_listRange(capfd):
                 f"$listRangeFILL",
                 f"$listRange FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange", app.getDatas,
@@ -197,7 +205,8 @@ async def testRangeDefault_listRangeId(capfd):
                 f"$listRange:id [ {testData['id']} ]FILL",
                 f"$listRange:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -217,7 +226,8 @@ async def testRangeDefault_listRangeName(capfd):
                 f"$listRange:name [ {testData['nameupdate']} ]FILL",
                 f"$listRange:name [ {testData['nameupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
@@ -236,7 +246,9 @@ async def testRangeDefault_listRange_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange", app.getDatas,
@@ -254,7 +266,9 @@ async def testRangeDefault_listRangeId_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -272,7 +286,9 @@ async def testRangeDefault_listRangeName_e(capfd):
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
@@ -288,7 +304,9 @@ async def testRangeDefault_listRange_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange", app.getDatas,
@@ -309,7 +327,9 @@ async def testRangeDefault_listRangeId_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -331,7 +351,9 @@ async def testRangeDefault_listRangeName_eIncomplete(capfd):
                "FILL >", " FILL >", " FILL > FILL"]
     for command in commands:
         for eparam in eparams:
-            message = Message(author=author, content=f"{command}{eparam}")
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
             client = Client(user=user)
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
@@ -347,7 +369,8 @@ async def testRangeDefault_listRangeName_eIncomplete(capfd):
 @pytest.mark.asyncio
 async def testRangeDefault_delRangeId(capfd):
     command = f"$delRange:id [{testData['id']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delRange:id", app.deleteData,
@@ -359,7 +382,8 @@ async def testRangeDefault_delRangeId(capfd):
 async def testRangeDefault_addRange_delName(capfd):
     command = f"$addRange [{testData['namecreate']}, "\
               f"{testData['controlcreate']}, {testData['descreate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("addRange", app.setData,
@@ -373,7 +397,8 @@ async def testRangeDefault_addRange_delName(capfd):
 @pytest.mark.asyncio
 async def testRangeDefault_delRangeName(capfd):
     command = f"$delRange:name [{testData['namecreate']}]"
-    message = Message(author=author, content=command)
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
     hdlr = MessageHandler(message, client, True)
     await hdlr.contMsg("delRange:name", app.deleteData,
@@ -398,7 +423,8 @@ async def testRangeDefault_updRangeId_idNoExist(capfd):
                 f"{testData['controlupdate']} , "\
                 f"{testData['descreate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:id", app.updateData,
@@ -421,7 +447,8 @@ async def testRangeDefault_updRangeName_nameNoExist(capfd):
                 f"{testData['controlupdate']} , "\
                 f"{testData['desupdate']} ] FILL "]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("updRange:name", app.updateData,
@@ -439,7 +466,8 @@ async def testRangeDefault_delRangeId_idNoExist(capfd):
                 f"$delRange:id [ {testData['id']} ]FILL",
                 f"$delRange:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
@@ -456,7 +484,8 @@ async def testRangeDefault_delRangeName_nameNoExist(capfd):
                 f"$delRange:name [ {testData['namecreate']} ]FILL",
                 f"$delRange:name [ {testData['namecreate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
@@ -474,7 +503,8 @@ async def testRangeDefault_listRangeId_idNoExist(capfd):
                 f"$listRange:id [ {testData['id']} ]FILL",
                 f"$listRange:id [ {testData['id']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
@@ -491,7 +521,8 @@ async def testRangeDefault_listRangeName_nameNoExist(capfd):
                 f"$listRange:name [ {testData['nameupdate']} ]FILL",
                 f"$listRange:name [ {testData['nameupdate']} ] FILL"]
     for command in commands:
-        message = Message(author=author, content=command)
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
