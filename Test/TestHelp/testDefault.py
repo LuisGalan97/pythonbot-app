@@ -14,7 +14,8 @@ async def test_command(capfd):
     await hdlr.inMsg()
     await hdlr.sendText()
     out, _ = capfd.readouterr()
-    assert "Hola! soy avalon-bot.\n" in out
+    assert "Hola **test**! soy **Avalon-bot** "\
+           "identificado bajo la cuenta **test**.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_help(capfd):
