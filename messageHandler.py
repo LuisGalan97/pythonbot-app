@@ -55,9 +55,9 @@ class MessageHandler:
                             "mensajes presentes en el canal donde es "\
                             "invocado el comando. Para todos los mensajes "\
                             "que posean exclusivamente la reaccion ⚜️, "\
-                            "se intentaran validar para la creacion de "\
+                            "se intentarán validar para la creacion de "\
                             "nuevas ___asistencias___. "\
-                            "El mensaje debera contener "\
+                            "El mensaje deberá contener "\
                             "un ___evento___ y los ___integrantes___ "\
                             "que hicieron parte de este mismo, todos "\
                             "separados "\
@@ -67,15 +67,15 @@ class MessageHandler:
                             "seran revisadas por **Avalon-bot**. "\
                             "Si el mensaje es "\
                             "valido y las creaciones son exitosas, "\
-                            "este sera marcado con un ✅. "\
+                            "este será marcado con un ✅. "\
                             "Por otro lado si el mensaje es valido pero "\
                             "ocurre un error "\
                             "durante la creacion de las ___asistencias___, "\
-                            "este sera marcado con un ⚠️. "\
+                            "este será marcado con un ⚠️. "\
                             "Por ultimo, si el mensaje es invalido "\
                             "sea por sintaxis o por ingresar "\
                             "___integrantes___ o ___eventos___ que no estan "\
-                            "presentes en la base de datos, este sera "\
+                            "presentes en la base de datos, este será "\
                             "marcado con un ❌. Este comando esta pensado "\
                             "para ser utilizado en un canal dedicado donde "\
                             "los ___integrantes___ de la alianza "\
