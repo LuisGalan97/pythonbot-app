@@ -523,10 +523,10 @@ class MessageHandler:
                             sendMsg = await channel.send("$addAssist ["\
                                                 f"{message.content}]")
                             def check(m):
-                                print(m.content)
                                 return m.author == self.__client.user
-                            await self.__client.wait_for('message', 
-                                                         check=check)
+                            ansMsg = await self.__client.wait_for('message',
+                                                                  check=check)
+                            print(ansMsg.content)
                             #await sendMsg.delete()
                         await asyncio.sleep(1)
                 else:
