@@ -60,9 +60,9 @@ class MessageHandler:
                             "El mensaje debera contener "\
                             "un ___Evento___ y los ___integrantes___ "\
                             "que hicieron parte de este, todos separados por "\
-                            "comas '**_Evento_**, **_Integrante 1_**, "\
-                            "**_Integrante 2_**, ... **_Integrante N_**'. "\
-                            ". Se pueden añadir imagenes pero no "\
+                            "comas **_Evento, _Integrante 1_, "\
+                            "_Integrante 2_, ... _Integrante N_**. "\
+                            "Se pueden añadir imagenes pero no "\
                             "seran revisadas por **Avalon-bot**. "\
                             "Si el mensaje es "\
                             "valido y las creaciones son exitosas, "\
