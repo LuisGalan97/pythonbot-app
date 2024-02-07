@@ -536,7 +536,7 @@ class MessageHandler:
                                     sendMsg = (
                                     await channel.send("$listMember"\
                                     f":name [{member}]"))
-                                    await sendMsg.delete()
+                                    #await sendMsg.delete()
                                     def check(m):
                                         return (m.author ==
                                     self.__client.user)
