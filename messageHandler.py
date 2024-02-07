@@ -520,9 +520,9 @@ class MessageHandler:
                             f"{message.content}")
                         if any(str(reaction) == '✅' for
                                reaction in message.reactions):
-                            await self.__send("$addAssist ["\
+                            sendMsg = await self.__send("$addAssist ["\
                                                 f"{message.content}]")
-                            #await message.delete()
+                            await sendMsg.delete()
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
