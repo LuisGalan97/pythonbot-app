@@ -531,11 +531,13 @@ class MessageHandler:
                             newMsg = message.content + f"\n{ansMsg.content}"
                             if message.attachments:
                                 for attachment in message.attachments:
-                                    await channel.send(content=newMsg,
+                                    finalMsg = await channel.send(
+                                               content=newMsg,
                                                file = await attachment.
                                                to_file())
                             else:
-                                await channel.send(newMsg)
+                                finalMsg = await channel.send(newMsg)
+                        await finalMsg.addReaction('❌')
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
