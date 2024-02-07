@@ -522,11 +522,14 @@ class MessageHandler:
                                reaction in message.reactions):
                             sendMsg = await channel.send("$addAssist ["\
                                                 f"{message.content}]")
+                            await sendMsg.delete()
                             def check(m):
                                 return m.author == self.__client.user
                             ansMsg = await self.__client.wait_for('message',
                                                                   check=check)
-                            print(ansMsg.content)
+                            await message.edit(content = message.content +
+                                               f"\n{ansMsg.content}")
+                            await ansMsg.delete()
                             #await sendMsg.delete()
                         await asyncio.sleep(1)
                 else:
