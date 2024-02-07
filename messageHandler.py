@@ -537,7 +537,7 @@ class MessageHandler:
                                     await self.__client.wait_for('message',
                                                                  check=check))
                             else:
-                                message.remove_reaction('✅')
+                                message.remove_reaction('✅', 'omegaxis_')
                                 message.add_reaction('❌')
                             #await ansMsg.delete()
                         await asyncio.sleep(1)
