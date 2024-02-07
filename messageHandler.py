@@ -67,22 +67,23 @@ class MessageHandler:
                             "seran revisadas por **Avalon-bot**. "\
                             "Si el mensaje es "\
                             "valido y las creaciones son exitosas, "\
-                            "este sera marcados con un ✅. "\
-                            "Si el mensaje es valido pero ocurren un error "\
+                            "este sera marcado con un ✅. "\
+                            "Por otro lado si el mensaje es valido pero "\
+                            "ocurre un error "\
                             "durante la creacion de las ___asistencias___, "\
                             "este sera marcado con un ⚠️. "\
-                            "Si el mensaje es invalido, "\
+                            "Por ultimo, si el mensaje es invalido "\
                             "sea por sintaxis o por ingresar "\
                             "___integrantes___ o ___eventos___ que no estan "\
                             "presentes en la base de datos, este sera "\
                             "marcado con un ❌. Este comando esta pensado "\
                             "para ser utilizado en un canal dedicado donde "\
                             "los ___integrantes___ de la alianza "\
-                            "**⚜Avalon⚜** puedan subir sus ___asistencias___ "\
+                            "**⚜Avalon⚜** puedan subir sus ___asistencias___"\
                             ", para que posteriormente los moderadores, "\
                             "puedan revisar de forma preliminar las "\
-                            "solicitudes y validarlas con un ⚜️, para "\
-                            "posteriormente invocar el comando en cuestion.\n")
+                            "solicitudes y validarlas con un ⚜️, para por "\
+                            "ultimo invocar el comando en cuestion.\n")
             messages.append("\n")
             messages.append("_Comandos de modificacion:_\n")
             messages.append(Helpers.genMsg("addAssist [Integrante, "\
