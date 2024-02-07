@@ -534,8 +534,8 @@ class MessageHandler:
                                                        await attachment.
                                                        to_file())
                             await channel.send(f"\n{ansMsg.content}")
-                            await ansMsg.delete()
-                            await sendMsg.delete()
+                            #await ansMsg.delete()
+                            #await sendMsg.delete()
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
