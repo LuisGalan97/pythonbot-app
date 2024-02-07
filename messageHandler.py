@@ -622,7 +622,10 @@ class MessageHandler:
                         else:
                             await channel.send("* No se realizó "\
                                       "el registro de la solicitud "\
-                                     f"**_{message.content[:100]}..._**, "\
+                                     f"**_{message.content[:100]}" + \
+                                      ('_** ' if
+                                       len(message.content) < 100 else 
+                                      '..._** ') + \
                                       "ya que existen errores "\
                                       "en los valores ingresados. "\
                                       "Una ❌ ha sido añadida a la "\
