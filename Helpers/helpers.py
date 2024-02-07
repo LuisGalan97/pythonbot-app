@@ -5,7 +5,7 @@ class Helpers:
     def checkAccess(command, author, nameChannel):
         user = str(author)
         channel = str(nameChannel)
-        adminUser = ["omegaxis_", "test"]
+        adminUser = ["omegaxis_", "test", "Avalon-bot#2866"]
         adminChannel = ["general", "test"]
         access = {}
         access['hello'] = {
@@ -18,7 +18,7 @@ class Helpers:
         }
         #-------------------Asistencias-------------------------
         access['addAssist'] = {
-            "user" : adminUser + ["Avalon-bot#2866"],
+            "user" : adminUser + [],
             "channel" : adminChannel + []
         }
         access['updAssist:id'] = {
