@@ -1,7 +1,6 @@
 import os
 dir = os.path.dirname(os.path.abspath(__file__))
 import discord
-import asyncio
 from DF.dataframe import DataFrame
 from Helpers.helpers import Helpers
 from datetime import datetime
@@ -553,7 +552,7 @@ class MessageHandler:
                                     if not "exito" in result:
                                         success = False
                                 if success:
-                                    await channel.send("La solicitud "\
+                                    await channel.send("* La solicitud "\
                                           f"**_{message.content}_** "\
                                            "fue registrada con exito. "\
                                            "Un ✅ ha sido añadido a la "\
@@ -561,7 +560,7 @@ class MessageHandler:
                                     await message.clear_reactions()
                                     await message.add_reaction('✅')
                                 else:
-                                    await channel.send("Ocurrio "\
+                                    await channel.send("* Ocurrio "\
                                           "un error al intentar "\
                                           "registrar la solicitud "\
                                          f"**_{message.content}_**, "\
@@ -569,27 +568,27 @@ class MessageHandler:
                                           "no se hayan realizado todos "\
                                           "los registros, por favor "\
                                           "informe al administrador. "\
-                                          "Un ⚠️ ha sido añadido a la "\
+                                          "Una ⚠️ ha sido añadida a la "\
                                           "solicitud en cuestion.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('⚠️')
                             else:
-                                await channel.send("No se realizó "\
+                                await channel.send("* No se realizó "\
                                       "el registro de la solicitud "\
                                      f"**_{message.content}_**, "\
                                       "ya que existen errores de "\
                                       "en los valores ingresados. "\
-                                      "Un ❌ ha sido añadido a la "\
+                                      "Una ❌ ha sido añadida a la "\
                                       "solicitud en cuestion.\n")
                                 await message.clear_reactions()
                                 await message.add_reaction('❌')
                         else:
-                            await channel.send("No se realizó "\
+                            await channel.send("* No se realizó "\
                                       "el registro de la solicitud "\
                                      f"**_{message.content}_**, "\
                                       "ya que existen errores de "\
                                       "en los valores ingresados. "\
-                                      "Un ❌ ha sido añadido a la "\
+                                      "Una ❌ ha sido añadida a la "\
                                       "solicitud en cuestion.\n")
                             await message.clear_reactions()
                             await message.add_reaction('❌')
