@@ -527,7 +527,7 @@ class MessageHandler:
                                 return m.author == self.__client.user
                             ansMsg = await self.__client.wait_for('message',
                                                                   check=check)
-                            await message.edit(content = message.content +
+                            await channel.send(content = message.content +
                                                f"\n{ansMsg.content}")
                             await ansMsg.delete()
                             #await sendMsg.delete()
