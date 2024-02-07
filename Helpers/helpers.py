@@ -18,7 +18,7 @@ class Helpers:
         }
         #-------------------Asistencias-------------------------
         access['addAssist'] = {
-            "user" : adminUser + [],
+            "user" : adminUser + ["Avalon-bot#2866"],
             "channel" : adminChannel + []
         }
         access['updAssist:id'] = {
