@@ -505,7 +505,7 @@ class MessageHandler:
             else:
                 await self.__send(message = request)
 
-    async def scan(self, command, app):
+    async def checkAssist(self, command, app):
         author = self.__message.author
         channel = self.__message.channel
         permissions = channel.permissions_for(channel.guild.me)
@@ -514,87 +514,98 @@ class MessageHandler:
         if Helpers.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if msg.startswith(f"${command}"):
-            if permissions.send_messages:
-                if permissions.manage_messages:
-                    async for message in channel.history(limit=None):
-                        print("Mensaje escaneado "\
-                            f"{message.content}")
-                        if (len(message.reactions) == 1 and
-                            str(message.reactions[0]) == '⚜️'):
-                            targets = message.content.split(',')
-                            targets = [target.strip() for
-                                       target in
-                                       targets]
-                            if len(targets) > 1:
-                                event = targets[0].split()
-                                members = targets[1:]
-                                members = [member.capitalize() for
-                                           member in members]
-                                date = datetime.now()
-                                date = date.strftime('%d/%m/%Y')
-                                notfound = False
-                                result = app.getDatas(event,
-                                             Helpers.getStruct("event",
-                                             ["name"]))
+            if (permissions.send_messages and
+                permissions.manage_messages and
+                permissions.add_reactions):
+                async for message in channel.history(limit=None):
+                    if (len(message.reactions) == 1 and
+                        str(message.reactions[0]) == '⚜️'):
+                        targets = message.content.split(',')
+                        targets = [target.strip() for
+                                   target in
+                                   targets]
+                        if len(targets) > 1:
+                            event = targets[0].split()
+                            members = targets[1:]
+                            members = [member.capitalize() for
+                                       member in members]
+                            date = datetime.now()
+                            date = date.strftime('%d/%m/%Y')
+                            notfound = False
+                            result = app.getDatas(event,
+                                     Helpers.getStruct("event",
+                                                       ["name"]))
+                            if not isinstance(result, list):
+                                notfound = True
+                            for member in members:
+                                member = member.split()
+                                result = app.getDatas(member,
+                                         Helpers.getStruct("member",
+                                                           ["name"]))
                                 if not isinstance(result, list):
                                     notfound = True
+                            if not notfound:
+                                success = True
                                 for member in members:
-                                    member = member.split()
-                                    result = app.getDatas(member,
-                                             Helpers.getStruct("member",
-                                             ["name"]))
-                                    if not isinstance(result, list):
-                                        notfound = True
-                                if not notfound:
-                                    success = True
-                                    for member in members:
-                                        assist = [member, event[0], date]
-                                        result = app.setData(assist,
-                                                 Helpers.setStruct("assist"))
-                                        if not "exito" in result:
-                                            success = False
-                                    if success:
-                                        await channel.send("La solicitud "\
-                                              f"**_{message.content}_** "\
-                                               "fue registrada con exito. "\
-                                               "Un ✅ ha sido añadido a la "\
-                                               "solicitud en cuestion.\n")
-                                        await message.clear_reactions()
-                                        await message.add_reaction('✅')
-                                    else:
-                                        await channel.send("Ocurrio "\
-                                              "un error al intentar "\
-                                              "registrar la solicitud "\
-                                             f"**_{message.content}_**, "\
-                                              "por lo que puede que no se "\
-                                              "no se hayan realizado todos "\
-                                              "los registros, por favor "\
-                                              "informe al administrador. "\
-                                              "Un ⚠️ ha sido añadido a la "\
-                                              "solicitud en cuestion.\n")
-                                        await message.clear_reactions()
-                                        await message.add_reaction('⚠️')
-                                else:
-                                    await channel.send("No se realizó "\
-                                              "el registro de la solicitud "\
-                                             f"**_{message.content}_**, "\
-                                              "ya que existen errores de "\
-                                              "en los valores ingresados. "\
-                                              "Un ❌ ha sido añadido a la "\
-                                              "solicitud en cuestion.\n")
+                                    assist = [member, event[0], date]
+                                    result = app.setData(assist,
+                                             Helpers.setStruct("assist"))
+                                    if not "exito" in result:
+                                        success = False
+                                if success:
+                                    await channel.send("La solicitud "\
+                                          f"**_{message.content}_** "\
+                                           "fue registrada con exito. "\
+                                           "Un ✅ ha sido añadido a la "\
+                                            "solicitud en cuestion.\n")
                                     await message.clear_reactions()
-                                    await message.add_reaction('❌')
+                                    await message.add_reaction('✅')
+                                else:
+                                    await channel.send("Ocurrio "\
+                                          "un error al intentar "\
+                                          "registrar la solicitud "\
+                                         f"**_{message.content}_**, "\
+                                          "por lo que puede que no se "\
+                                          "no se hayan realizado todos "\
+                                          "los registros, por favor "\
+                                          "informe al administrador. "\
+                                          "Un ⚠️ ha sido añadido a la "\
+                                          "solicitud en cuestion.\n")
+                                    await message.clear_reactions()
+                                    await message.add_reaction('⚠️')
                             else:
+                                await channel.send("No se realizó "\
+                                      "el registro de la solicitud "\
+                                     f"**_{message.content}_**, "\
+                                      "ya que existen errores de "\
+                                      "en los valores ingresados. "\
+                                      "Un ❌ ha sido añadido a la "\
+                                      "solicitud en cuestion.\n")
                                 await message.clear_reactions()
                                 await message.add_reaction('❌')
-                else:
-                    await channel.send( "**Avalon-bot** no dispone de "\
-                                        "permisos para "\
-                                        "gestionar mensajes por el canal "\
-                                       f"**{channel.name}**.")
+                        else:
+                            await channel.send("No se realizó "\
+                                      "el registro de la solicitud "\
+                                     f"**_{message.content}_**, "\
+                                      "ya que existen errores de "\
+                                      "en los valores ingresados. "\
+                                      "Un ❌ ha sido añadido a la "\
+                                      "solicitud en cuestion.\n")
+                            await message.clear_reactions()
+                            await message.add_reaction('❌')
             else:
-                print( "-> Avalon-bot no dispone de permisos para "\
-                      f"enviar mensajes por el canal '{channel.name}'.")
+                if permissions.send_messages:
+                    await channel.send("Avalon-bot no dispone de "\
+                    "los permisos necesarios para eliminar o reaccionar "\
+                   f"a mensajes por el canal '{channel.name}'. "\
+                    "Por favor activelos "\
+                    "para acceder a todas las funcionalidades.\n")
+                else:
+                    print( "-> Avalon-bot no dispone de los permisos "\
+                           "necesarios para enviar mensajes "\
+                          f"por el canal '{channel.name}'. Por favor "\
+                           "activelos para acceder a todas "\
+                           "las funcionalidades.\n")
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel

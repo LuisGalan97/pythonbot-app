@@ -65,7 +65,7 @@ class Helpers:
             "user" : adminUser + [],
             "channel" : adminChannel + []
         }
-        access['scan'] = {
+        access['checkAssist'] = {
             "user" : adminUser + [],
             "channel" : adminChannel + []
         }
