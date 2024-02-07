@@ -65,6 +65,10 @@ class Helpers:
             "user" : adminUser + [],
             "channel" : adminChannel + []
         }
+        access['scan'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
         #-----------------------Eventos-------------------------
         access['addEvent'] = {
             "user" : adminUser + [],
