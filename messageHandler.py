@@ -522,6 +522,9 @@ class MessageHandler:
                         if any(str(reaction) == '✅' for
                                reaction in message.reactions):
                             targets = message.content.split(',')
+                            targets = [target.strip() for
+                                       target in
+                                       targets]
                             if len(targets) > 1:
                                 event = targets[0]
                                 members = targets[1:]
