@@ -595,9 +595,9 @@ class MessageHandler:
                             await message.add_reaction('❌')
             else:
                 if permissions.send_messages:
-                    await channel.send("Avalon-bot no dispone de "\
+                    await channel.send("**Avalon-bot** no dispone de "\
                     "los permisos necesarios para eliminar o reaccionar "\
-                   f"a mensajes por el canal '{channel.name}'. "\
+                   f"a mensajes por el canal **{channel.name}**. "\
                     "Por favor activelos "\
                     "para acceder a todas las funcionalidades.\n")
                 else:
