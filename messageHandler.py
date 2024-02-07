@@ -527,10 +527,15 @@ class MessageHandler:
                                 return m.author == self.__client.user
                             ansMsg = await self.__client.wait_for('message',
                                                                   check=check)
-                            await channel.send(content = message.content +
-                                               f"\n{ansMsg.content}")
+                            await channel.send(message.content)
+                            if message.attachments:
+                                for attachment in message.attachments:
+                                    await channel.send(file=
+                                                       await attachment.
+                                                       to_file())
+                            await channel.send(f"\n{ansMsg.content}")
                             await ansMsg.delete()
-                            #await sendMsg.delete()
+                            await sendMsg.delete()
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
