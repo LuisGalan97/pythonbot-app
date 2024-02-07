@@ -527,22 +527,41 @@ class MessageHandler:
                                 members = targets[1:]
                                 date = datetime.now()
                                 date = date.strftime('%d/%m/%Y')
+                                notfound = False
+                                sendMsg = await channel.send("$listEvent"\
+                                                       f":name [{event}]")
+                                if not event in sendMsg.content:
+                                    notfound = True
                                 for member in members:
-                                    sendMsg = await channel.send("$addAssist "\
-                                              f"[{member}, {event}, {date}]")
+                                    sendMsg = (
+                                    await channel.send("$listMember"\
+                                    f":name [{member}]"))
                                     await sendMsg.delete()
                                     def check(m):
-                                        return m.author == self.__client.user
+                                        return (m.author ==
+                                    self.__client.user)
                                     ansMsg = (
                                     await self.__client.wait_for('message',
-                                                                 check=check))
+                                    check=check))
+                                    if not member in ansMsg.content:
+                                        notfound = True
+                                if not notfound:
+                                    for member in members:
+                                        sendMsg = (
+                                        await channel.send("$addAssist"\
+                                        f"[{member}, {event}, {date}]"))
+                                        await sendMsg.delete()
+                                        def check(m):
+                                            return (m.author ==
+                                        self.__client.user)
+                                        ansMsg = (
+                                        await self.__client.wait_for('message',
+                                        check=check))
+                                else:
+                                    await message.clear_reactions()
+                                    await message.add_reaction('❌')
                             else:
-                                for reaction in message.reactions:
-                                    async for user in reaction.users():
-                                        member = (
-                                        message.guild.get_member(user.id))
-                                        await message.remove_reaction('✅', 
-                                                              member)
+                                await message.clear_reactions()
                                 await message.add_reaction('❌')
                             #await ansMsg.delete()
                         await asyncio.sleep(1)
