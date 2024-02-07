@@ -518,7 +518,7 @@ class MessageHandler:
                     async for message in channel.history(limit=None):
                         print("Mensaje escaneado "\
                             f"{message.content}")
-                        if any(reaction == '❌' for
+                        if any(str(reaction) == '❌' for
                                reaction in message.reactions):
                             await message.delete()
                             await asyncio.sleep(1)
