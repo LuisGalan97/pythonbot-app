@@ -559,7 +559,8 @@ class MessageHandler:
                         targets = [target.strip() for
                                    target in
                                    targets]
-                        if len(targets) > 1:
+                        if (len(targets) > 1 and
+                            len(message.content) < 100):
                             event = targets[0].split()
                             members = targets[1:]
                             members = [member.capitalize() for
