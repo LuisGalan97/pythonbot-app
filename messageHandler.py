@@ -519,8 +519,8 @@ class MessageHandler:
                     async for message in channel.history(limit=None):
                         print("Mensaje escaneado "\
                             f"{message.content}")
-                        if any(str(reaction) == '✅' for
-                               reaction in message.reactions):
+                        if (len(message.reactions) == 1 and
+                            str(message.reactions[0]) == '⚜️'):
                             targets = message.content.split(',')
                             targets = [target.strip() for
                                        target in
@@ -536,7 +536,6 @@ class MessageHandler:
                                 result = app.getDatas(event,
                                              Helpers.getStruct("event",
                                              ["name"]))
-                                print(result)
                                 if not isinstance(result, list):
                                     notfound = True
                                 for member in members:
@@ -544,31 +543,55 @@ class MessageHandler:
                                     result = app.getDatas(member,
                                              Helpers.getStruct("member",
                                              ["name"]))
-                                    print(result)
                                     if not isinstance(result, list):
                                         notfound = True
                                 if not notfound:
+                                    success = True
                                     for member in members:
                                         assist = [member, event[0], date]
                                         result = app.setData(assist,
                                                  Helpers.setStruct("assist"))
-                                        print(result)
-
-
-
-                                #else:
-                                #    await message.clear_reactions()
-                                #    await message.add_reaction('❌')
+                                        if not "exito" in result:
+                                            success = False
+                                    if success:
+                                        await channel.send("La solicitud "\
+                                              f"**_{message.content}_** "\
+                                               "fue registrada con exito. "\
+                                               "Un ✅ ha sido añadido a la "\
+                                               "solicitud en cuestion.\n")
+                                        await message.clear_reactions()
+                                        await message.add_reaction('✅')
+                                    else:
+                                        await channel.send("Ocurrio "\
+                                              "un error al intentar "\
+                                              "registrar la solicitud "\
+                                             f"**_{message.content}_**, "\
+                                              "por lo que puede que no se "\
+                                              "no se hayan realizado todos "\
+                                              "los registros, por favor "\
+                                              "informe al administrador. "\
+                                              "Un ⚠️ ha sido añadido a la "\
+                                              "solicitud en cuestion.\n")
+                                        await message.clear_reactions()
+                                        await message.add_reaction('⚠️')
+                                else:
+                                    await channel.send("No se realizó "\
+                                              "el registro de la solicitud "\
+                                             f"**_{message.content}_**, "\
+                                              "ya que existen errores de "\
+                                              "en los valores ingresados. "\
+                                              "Un ❌ ha sido añadido a la "\
+                                              "solicitud en cuestion.\n")
+                                    await message.clear_reactions()
+                                    await message.add_reaction('❌')
                             else:
                                 await message.clear_reactions()
                                 await message.add_reaction('❌')
-                            #await ansMsg.delete()
-                        await asyncio.sleep(1)
                 else:
-                    await self.__send( "**Avalon-bot** no dispone de "\
-                                       "permisos para "\
-                                       "gestionar mensajes por el canal "\
-                                      f"**{channel.name}**.")
+                    await channel.send( "**Avalon-bot** no dispone de "\
+                                        "permisos para "\
+                                        "gestionar mensajes por el canal "\
+                                       f"**{channel.name}**.")
             else:
                 print( "-> Avalon-bot no dispone de permisos para "\
                       f"enviar mensajes por el canal '{channel.name}'.")
