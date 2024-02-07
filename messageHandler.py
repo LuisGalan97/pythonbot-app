@@ -4,6 +4,7 @@ import discord
 import asyncio
 from DF.dataframe import DataFrame
 from Helpers.helpers import Helpers
+from datetime import datetime
 
 class MessageHandler:
     def __init__(self, message, client, test = False):
@@ -520,25 +521,21 @@ class MessageHandler:
                             f"{message.content}")
                         if any(str(reaction) == '✅' for
                                reaction in message.reactions):
-                            sendMsg = await channel.send("$addAssist ["\
-                                                f"{message.content}]")
-                            await sendMsg.delete()
-                            def check(m):
-                                return m.author == self.__client.user
-                            ansMsg = await self.__client.wait_for('message',
-                                                                  check=check)
-                            await ansMsg.delete()
-                            newMsg = message.content + f"\n{ansMsg.content}"
-                            if message.attachments:
-                                for attachment in message.attachments:
-                                    finalMsg = (
-                                    await channel.send(content=newMsg,
-                                          file=await attachment.to_file()))
-                                    await finalMsg.add_reaction('❌')
-                            else:
-                                finalMsg = await channel.send(newMsg)
-                                await finalMsg.add_reaction('❌')
-                        
+                            targets = message.content.split(',')
+                            event = targets[0]
+                            members = targets[1:]
+                            date = datetime.now()
+                            date = date.strftime('%d/%m/%Y')
+                            for member in members:
+                                sendMsg = await channel.send("$addAssist "\
+                                          f"[{member}, {event}, {date}]")
+                                await sendMsg.delete()
+                                def check(m):
+                                    return m.author == self.__client.user
+                                ansMsg = (
+                                await self.__client.wait_for('message',
+                                                             check=check))
+                            #await ansMsg.delete()
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
