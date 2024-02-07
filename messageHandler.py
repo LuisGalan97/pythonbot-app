@@ -528,7 +528,7 @@ class MessageHandler:
                             if len(targets) > 1:
                                 event = targets[0]
                                 members = targets[1:]
-                                members = [members.capitalize() for
+                                members = [member.capitalize() for
                                            member in members]
                                 date = datetime.now()
                                 date = date.strftime('%d/%m/%Y')
