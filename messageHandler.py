@@ -518,10 +518,12 @@ class MessageHandler:
                     async for message in channel.history(limit=None):
                         print("Mensaje escaneado "\
                             f"{message.content}")
-                        if any(reaction.emoji.name == ':x:' for
-                               reaction in message.reactions):
-                            await message.delete()
-                            await asyncio.sleep(1)
+                        #if any(reaction.emoji.name == ':x:' for
+                        #       reaction in message.reactions):
+                        for reaction in message.reactions:
+                            print(reaction)
+                        await message.delete()
+                        await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
                                        "permisos para "\
