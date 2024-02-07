@@ -518,10 +518,12 @@ class MessageHandler:
                     async for message in channel.history(limit=None):
                         print("Mensaje escaneado "\
                             f"{message.content}")
-                        if any(str(reaction) == '❌' for
+                        if any(str(reaction) == '✅' for
                                reaction in message.reactions):
-                            await message.delete()
-                            await asyncio.sleep(1)
+                            await self.__send("$addAssist ["\
+                                                f"{message.content}]")
+                            #await message.delete()
+                        await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
                                        "permisos para "\
