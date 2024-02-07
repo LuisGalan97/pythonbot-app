@@ -522,7 +522,7 @@ class MessageHandler:
                                reaction in message.reactions):
                             sendMsg = await channel.send("$addAssist ["\
                                                 f"{message.content}]")
-                            await sendMsg.delete
+                            await sendMsg.delete()
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
