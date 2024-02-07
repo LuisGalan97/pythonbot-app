@@ -531,14 +531,13 @@ class MessageHandler:
                             newMsg = message.content + f"\n{ansMsg.content}"
                             if message.attachments:
                                 for attachment in message.attachments:
-                                    finalMsg = await channel.send(
-                                               content=newMsg,
-                                               file = await attachment.
-                                               to_file())
-                                    await finalMsg.addReaction('❌')
+                                    finalMsg = (
+                                    await channel.send(content=newMsg,
+                                          file=await attachment.to_file()))
+                                    await finalMsg.add_reaction('❌')
                             else:
                                 finalMsg = await channel.send(newMsg)
-                                await finalMsg.addReaction('❌')
+                                await finalMsg.add_reaction('❌')
                         
                         await asyncio.sleep(1)
                 else:
