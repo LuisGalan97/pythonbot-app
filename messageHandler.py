@@ -537,8 +537,12 @@ class MessageHandler:
                                     await self.__client.wait_for('message',
                                                                  check=check))
                             else:
-                                await message.remove_reaction('✅', 
-                                                              'Omega-Xis97')
+                                for reaction in message.reactions:
+                                    async for user in reaction.users():
+                                        member = (
+                                        message.guild.get_member(user.id))
+                                        await message.remove_reaction('✅', 
+                                                              member)
                                 await message.add_reaction('❌')
                             #await ansMsg.delete()
                         await asyncio.sleep(1)
