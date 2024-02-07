@@ -50,7 +50,7 @@ async def on_message(message):
                      Helpers.getStruct("assist",
                                        ["member", "event",
                                         "date_1", "date_2"]))
-    await hdlr.scan("scan")
+    await hdlr.scan("scan", app)
     #--------------------------------Eventos-----------------------------------
     await hdlr.contMsg("addEvent", app.setData,
                        Helpers.setStruct("event"))

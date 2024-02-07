@@ -505,7 +505,7 @@ class MessageHandler:
             else:
                 await self.__send(message = request)
 
-    async def scan(self, command):
+    async def scan(self, command, app):
         author = self.__message.author
         channel = self.__message.channel
         permissions = channel.permissions_for(channel.guild.me)
@@ -533,47 +533,42 @@ class MessageHandler:
                                 date = datetime.now()
                                 date = date.strftime('%d/%m/%Y')
                                 notfound = False
-                                sendMsg = await channel.send("$listEvent"\
-                                                       f":name [{event}]")
-                                await sendMsg.delete()
-                                def check(m):
-                                        return (m.author ==
-                                    self.__client.user)
-                                ansMsg = (
-                                    await self.__client.wait_for('message',
-                                    check=check))
-                                await ansMsg.delete()
-                                if not event in ansMsg.content:
-                                    notfound = True
-                                for member in members:
-                                    sendMsg = (
-                                    await channel.send("$listMember"\
-                                    f":name [{member}]"))
-                                    await sendMsg.delete()
-                                    def check(m):
-                                        return (m.author ==
-                                    self.__client.user)
-                                    ansMsg = (
-                                    await self.__client.wait_for('message',
-                                    check=check))
-                                    await ansMsg.delete()
-                                    if not member in ansMsg.content:
-                                        notfound = True
-                                if not notfound:
-                                    for member in members:
-                                        sendMsg = (
-                                        await channel.send("$addAssist"\
-                                        f"[{member}, {event}, {date}]"))
-                                        #await sendMsg.delete()
-                                        def check(m):
-                                            return (m.author ==
-                                        self.__client.user)
-                                        ansMsg = (
-                                        await self.__client.wait_for('message',
-                                        check=check))
-                                else:
-                                    await message.clear_reactions()
-                                    await message.add_reaction('❌')
+                                eventExist = app.getDatas(event, 
+                                             Helpers.getStruct("event", 
+                                             ["name"]))
+                                print(eventExist)
+                                
+                                #if not event in ansMsg.content:
+                                #    notfound = True
+                                #for member in members:
+                                #    sendMsg = (
+                                #    await channel.send("$listMember"\
+                                #    f":name [{member}]"))
+                                #    await sendMsg.delete()
+                                #    def check(m):
+                                #        return (m.author ==
+                                #    self.__client.user)
+                                #    ansMsg = (
+                                #    await self.__client.wait_for('message',
+                                #    check=check))
+                                #    await ansMsg.delete()
+                                #    if not member in ansMsg.content:
+                                #        notfound = True
+                                #if not notfound:
+                                #    for member in members:
+                                #        sendMsg = (
+                                #        await channel.send("$addAssist"\
+                                #        f"[{member}, {event}, {date}]"))
+                                #        #await sendMsg.delete()
+                                #        def check(m):
+                                 #           return (m.author ==
+                                 #       self.__client.user)
+                                 #       ansMsg = (
+                                 #       await self.__client.wait_for('message',
+                                 #       check=check))
+                                #else:
+                                #    await message.clear_reactions()
+                                #    await message.add_reaction('❌')
                             else:
                                 await message.clear_reactions()
                                 await message.add_reaction('❌')
