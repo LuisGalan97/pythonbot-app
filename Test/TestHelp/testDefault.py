@@ -136,6 +136,30 @@ async def testHelpDefault_helpAssist(capfd):
            "en cuestion. Con lo anterior, se presentan una lista "\
            "de todos los comandos que permiten interactuar con los "\
            "registros de ___asistencias___.\n" in out
+    assert "_Comandos de escaneo:_\n" in out
+    assert "- **$checkAssist**   ->    Realiza un escaneo de todos "\
+           "los mensajes presentes en el canal donde es invocado "\
+           "el comando. Para todos los mensajes que posean "\
+           "exclusivamente la reaccion ⚜️, se intentarán validar "\
+           "para la creacion de nuevas ___asistencias___. El mensaje "\
+           "deberá contener un ___evento___ y los ___integrantes___ "\
+           "que hicieron parte de este mismo, todos separados por "\
+           "comas: **_Evento_, _Integrante 1_, _Integrante 2_, ... "\
+           "_Integrante N_**. Se pueden añadir imagenes pero no "\
+           "serán revisadas por **Avalon-bot**. Si el mensaje es "\
+           "valido y las creaciones son exitosas, este será marcado "\
+           "con un ✅. Por otro lado si el mensaje es valido pero "\
+           "ocurre un error durante la creacion de las "\
+           "___asistencias___, este será marcado con un ⚠️. "\
+           "Por ultimo, si el mensaje es invalido sea por sintaxis "\
+           "o por ingresar ___integrantes___ o ___eventos___ que no "\
+           "estan presentes en la base de datos, este será marcado "\
+           "con un ❌. Este comando esta pensado para ser utilizado "\
+           "en un canal dedicado donde los ___integrantes___ de la "\
+           "alianza **⚜Avalon⚜** puedan subir sus ___asistencias___, "\
+           "para que posteriormente los moderadores, puedan revisar "\
+           "de forma preliminar las solicitudes y validarlas con un "\
+           "⚜️, para por ultimo invocar el comando en cuestion.\n" in out
     assert "_Comandos de modificacion:_\n" in out
     assert "- **$addAssist [_Integrante, Evento, Fecha_]**   ->   "\
            "Añade una nueva ___asistencia___, ingresando dentro "\
