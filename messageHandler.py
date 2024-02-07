@@ -61,7 +61,7 @@ class MessageHandler:
                             "un ___evento___ y los ___integrantes___ "\
                             "que hicieron parte de este, todos separados por "\
                             "comas ','. Se pueden añadir imagenes pero no "\
-                            "seran revisadas por **Avalon-bot**. "\ 
+                            "seran revisadas por **Avalon-bot**. "\
                             "Si el mensaje es "\
                             "valido y las creaciones son exitosas, "\
                             "este sera marcados con un ✅. "\
