@@ -522,19 +522,23 @@ class MessageHandler:
                         if any(str(reaction) == '✅' for
                                reaction in message.reactions):
                             targets = message.content.split(',')
-                            event = targets[0]
-                            members = targets[1:]
-                            date = datetime.now()
-                            date = date.strftime('%d/%m/%Y')
-                            for member in members:
-                                sendMsg = await channel.send("$addAssist "\
-                                          f"[{member}, {event}, {date}]")
-                                await sendMsg.delete()
-                                def check(m):
-                                    return m.author == self.__client.user
-                                ansMsg = (
-                                await self.__client.wait_for('message',
-                                                             check=check))
+                            if len(targets) > 1:
+                                event = targets[0]
+                                members = targets[1:]
+                                date = datetime.now()
+                                date = date.strftime('%d/%m/%Y')
+                                for member in members:
+                                    sendMsg = await channel.send("$addAssist "\
+                                              f"[{member}, {event}, {date}]")
+                                    await sendMsg.delete()
+                                    def check(m):
+                                        return m.author == self.__client.user
+                                    ansMsg = (
+                                    await self.__client.wait_for('message',
+                                                                 check=check))
+                            else:
+                                message.remove_reaction('✅')
+                                message.add_reaction('❌')
                             #await ansMsg.delete()
                         await asyncio.sleep(1)
                 else:
