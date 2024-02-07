@@ -526,24 +526,25 @@ class MessageHandler:
                                        target in
                                        targets]
                             if len(targets) > 1:
-                                event = targets[0]
+                                event = targets[0].split()
                                 members = targets[1:]
                                 members = [member.capitalize() for
                                            member in members]
                                 date = datetime.now()
                                 date = date.strftime('%d/%m/%Y')
                                 notfound = False
-                                eventExist = app.getDatas(event, 
+                                result = app.getDatas(event, 
                                              Helpers.getStruct("event", 
                                              ["name"]))
-                                print(eventExist)
-                                
-                                #if not event in ansMsg.content:
-                                #    notfound = True
-                                #for member in members:
-                                #    sendMsg = (
-                                #    await channel.send("$listMember"\
-                                #    f":name [{member}]"))
+                                print(result)                   
+                                if isinstance(result, list):
+                                    notfound = True
+                                for member in members:
+                                    member = member.split()
+                                    result = app.getDatas(member, 
+                                             Helpers.getStruct("member", 
+                                             ["name"]))
+                                    print(result) 
                                 #    await sendMsg.delete()
                                 #    def check(m):
                                 #        return (m.author ==
