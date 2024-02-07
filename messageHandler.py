@@ -528,30 +528,35 @@ class MessageHandler:
                             if len(targets) > 1:
                                 event = targets[0]
                                 members = targets[1:]
+                                members = [members.capitalize() for
+                                           member in members]
                                 date = datetime.now()
                                 date = date.strftime('%d/%m/%Y')
                                 notfound = False
                                 sendMsg = await channel.send("$listEvent"\
                                                        f":name [{event}]")
+                                await sendMsg.delete()
                                 def check(m):
                                         return (m.author ==
                                     self.__client.user)
                                 ansMsg = (
                                     await self.__client.wait_for('message',
                                     check=check))
+                                await ansMsg.delete()
                                 if not event in ansMsg.content:
                                     notfound = True
                                 for member in members:
                                     sendMsg = (
                                     await channel.send("$listMember"\
                                     f":name [{member}]"))
-                                    #await sendMsg.delete()
+                                    await sendMsg.delete()
                                     def check(m):
                                         return (m.author ==
                                     self.__client.user)
                                     ansMsg = (
                                     await self.__client.wait_for('message',
                                     check=check))
+                                    await ansMsg.delete()
                                     if not member in ansMsg.content:
                                         notfound = True
                                 if not notfound:
@@ -559,7 +564,7 @@ class MessageHandler:
                                         sendMsg = (
                                         await channel.send("$addAssist"\
                                         f"[{member}, {event}, {date}]"))
-                                        await sendMsg.delete()
+                                        #await sendMsg.delete()
                                         def check(m):
                                             return (m.author ==
                                         self.__client.user)
