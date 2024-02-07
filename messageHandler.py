@@ -535,9 +535,11 @@ class MessageHandler:
                                                content=newMsg,
                                                file = await attachment.
                                                to_file())
+                                    await finalMsg.addReaction('❌')
                             else:
                                 finalMsg = await channel.send(newMsg)
-                        await finalMsg.addReaction('❌')
+                                await finalMsg.addReaction('❌')
+                        
                         await asyncio.sleep(1)
                 else:
                     await self.__send( "**Avalon-bot** no dispone de "\
