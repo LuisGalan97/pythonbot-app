@@ -530,7 +530,13 @@ class MessageHandler:
                                 notfound = False
                                 sendMsg = await channel.send("$listEvent"\
                                                        f":name [{event}]")
-                                if not event in sendMsg.content:
+                                def check(m):
+                                        return (m.author ==
+                                    self.__client.user)
+                                ansMsg = (
+                                    await self.__client.wait_for('message',
+                                    check=check))
+                                if not event in ansMsg.content:
                                     notfound = True
                                 for member in members:
                                     sendMsg = (
