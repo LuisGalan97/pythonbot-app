@@ -502,7 +502,7 @@ class MessageHandler:
                                                 "administrador.")
             else:
                 await self.__send(message = request)
-    
+
     async def scan(self, command):
         author = self.__message.author
         channel = self.__message.channel
@@ -512,10 +512,14 @@ class MessageHandler:
         if Helpers.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if msg.startswith(f"${command}"):
-            async for message in channel.history(limit=None):
-                print("Mensaje escaneado "\
-                     f"{message.content}")
-                await message.delete()
+            if permissions.manage_messages:
+                async for message in channel.history(limit=None):
+                    print("Mensaje escaneado "\
+                         f"{message.content}")
+                    await message.delete()
+            else:
+                self.__send( "-> Avalon-bot no dispone de permisos para "\
+                            f"eliminar mensajes por el canal '{channel.name}'.")
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel
