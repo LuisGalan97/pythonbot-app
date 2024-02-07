@@ -521,7 +521,7 @@ class MessageHandler:
                         #if any(reaction.emoji.name == ':x:' for
                         #       reaction in message.reactions):
                         for reaction in message.reactions:
-                            print(reaction)
+                            print(type(reaction))
                         await message.delete()
                         await asyncio.sleep(1)
                 else:
