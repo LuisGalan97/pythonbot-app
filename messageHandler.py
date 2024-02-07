@@ -549,7 +549,7 @@ class MessageHandler:
                                         notfound = True
                                 if not notfound:
                                     for member in members:
-                                        assist = [member, event, date]
+                                        assist = [member, event[0], date]
                                         result = app.setData(assist,
                                                  Helpers.setStruct("assist"))
                                         print(result)
