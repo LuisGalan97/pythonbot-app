@@ -26,19 +26,6 @@ class MessageHandler:
                                          "bajo la cuenta "\
                                         f"**{self.__client.user}**.\n")
 
-    async def scan(self, command):
-        author = self.__message.author
-        channel = self.__message.channel
-        nameChannel = channel.name
-        msg = ""
-        if Helpers.checkAccess(command, author, nameChannel):
-            msg = self.__message.content
-        if msg.startswith(f"${command}"):
-            async for message in channel.history(limit=None):
-                print("Mensaje escaneado "\
-                     f"{message.content}")
-
-
     async def helpMsg(self):
         author = self.__message.author
         nameChannel = self.__message.channel.name
@@ -515,6 +502,20 @@ class MessageHandler:
                                                 "administrador.")
             else:
                 await self.__send(message = request)
+    
+    async def scan(self, command):
+        author = self.__message.author
+        channel = self.__message.channel
+        permissions = channel.permissions_for(channel.guild.me)
+        nameChannel = channel.name
+        msg = ""
+        if Helpers.checkAccess(command, author, nameChannel):
+            msg = self.__message.content
+        if msg.startswith(f"${command}"):
+            async for message in channel.history(limit=None):
+                print("Mensaje escaneado "\
+                     f"{message.content}")
+                await message.delete()
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel
