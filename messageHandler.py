@@ -518,8 +518,10 @@ class MessageHandler:
                          f"{message.content}")
                     await message.delete()
             else:
-                self.__send( "-> Avalon-bot no dispone de permisos para "\
-                            f"eliminar mensajes por el canal '{channel.name}'.")
+                await self.__send( "-> Avalon-bot no dispone de "\
+                                   "permisos para "\
+                                   "eliminar mensajes por el canal "\
+                                  f"'{channel.name}'.")
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel
