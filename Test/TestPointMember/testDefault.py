@@ -21,7 +21,31 @@ testData = {
     "idevent_3" : "",
     "evname_3" : "TestEventName3",
     "evpoints_3" : 11,
-    "evdes" : "TestEventDescription"
+    "evdes" : "TestEventDescription",
+    "idassist_1" : "",
+    "assistdate_1" : "01/06/2100",
+    "idassist_2" : "",
+    "assistdate_2" : "01/07/2100",
+    "idassist_3" : "",
+    "assistdate_3" : "01/08/2100",
+    "idassist_4" : "",
+    "assistdate_4" : "01/09/2100",
+    "idassist_5" : "",
+    "assistdate_5" : "01/10/2100",
+    "idassist_6" : "",
+    "assistdate_6" : "01/11/2100",
+    "idassist_7" : "",
+    "assistdate_7" : "01/12/2100",
+    "idassist_8" : "",
+    "assistdate_8" : "01/01/2101",
+    "idassist_9" : "",
+    "assistdate_9" : "01/02/2101",
+    "idassist_10" : "",
+    "assistdate_10" : "01/03/2101",
+    "idassist_11" : "",
+    "assistdate_11" : "01/04/2101",
+    "idassist_12" : "",
+    "assistdate_12" : "01/05/2101"
 }
 
 Message = namedtuple('Message', ['author', 'content', 'channel'])
@@ -111,6 +135,342 @@ async def testPointMemberDefault_addEvent_3(capfd):
     testData["idevent_3"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "El ___evento___ ha sido creado con exito sobre el "\
           f"**_ID_** \'{testData['idevent_3']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_1(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_1']}, {testData['assistdate_1']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_1"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_1']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_2(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_2']}, {testData['assistdate_2']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_2"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_2']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_3(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_3']}, {testData['assistdate_3']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_3"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_3']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_4(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_4']}, {testData['assistdate_4']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_4"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_4']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_5(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_5']}, {testData['assistdate_5']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_5"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_5']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_6(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_6']}, {testData['assistdate_6']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_6"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_6']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_7(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_7']}, {testData['assistdate_7']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_7"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_7']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_8(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_8']}, {testData['assistdate_8']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_8"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_8']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_9(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_9']}, {testData['assistdate_9']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_9"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_9']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_10(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_10']}, {testData['assistdate_10']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_10"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_10']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_11(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_11']}, {testData['assistdate_11']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_11"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_11']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addAssist_12(capfd):
+    command = f"$addAssist [{testData['memname']}, "\
+              f"{testData['evname_12']}, {testData['assistdate_12']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addAssist", app.setData,
+                       Helpers.setStruct("assist"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idassist_12"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "La ___asistencia___ ha sido creada con exito sobre el "\
+          f"**_ID_** \'{testData['idassist_12']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_1(capfd):
+    command = f"$delAssist:id [{testData['idassist_1']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_2(capfd):
+    command = f"$delAssist:id [{testData['idassist_2']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_3(capfd):
+    command = f"$delAssist:id [{testData['idassist_3']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_4(capfd):
+    command = f"$delAssist:id [{testData['idassist_4']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_5(capfd):
+    command = f"$delAssist:id [{testData['idassist_5']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_6(capfd):
+    command = f"$delAssist:id [{testData['idassist_6']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_7(capfd):
+    command = f"$delAssist:id [{testData['idassist_7']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_8(capfd):
+    command = f"$delAssist:id [{testData['idassist_8']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_9(capfd):
+    command = f"$delAssist:id [{testData['idassist_9']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_10(capfd):
+    command = f"$delAssist:id [{testData['idassist_10']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_11(capfd):
+    command = f"$delAssist:id [{testData['idassist_11']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delAssistId_12(capfd):
+    command = f"$delAssist:id [{testData['idassist_12']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delAssist:id", app.deleteData,
+                       Helpers.delStruct("assist", "id"))
+    out, _ = capfd.readouterr()
+    assert "La ___asistencia___ ha sido eliminada con exito.\n" in out
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_delEventId_1(capfd):
