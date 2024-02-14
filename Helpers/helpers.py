@@ -377,7 +377,7 @@ class Helpers:
 
     @staticmethod
     def checkValue(value):
-        if value:
+        if value is not None:
             return value
         else:
             return "Ninguno"
