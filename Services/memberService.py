@@ -37,7 +37,7 @@ class MemberService:
                                             "AND i.id = ? "\
                                             "AND a.evento_id = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["id"],
@@ -52,7 +52,7 @@ class MemberService:
                                             "AND i.nombre = ? "\
                                             "AND a.evento_id = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["name"],
@@ -67,7 +67,7 @@ class MemberService:
                                             "AND i.rango_id = ? "\
                                             "AND a.evento_id = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["range_id"],
@@ -80,7 +80,7 @@ class MemberService:
                                             "? AND ? "\
                                             "AND i.id = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["id"],))
@@ -92,7 +92,7 @@ class MemberService:
                                             "? AND ? "\
                                             "AND i.nombre = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["name"],))
@@ -104,7 +104,7 @@ class MemberService:
                                             "? AND ? "\
                                             "AND i.rango_id = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["range_id"],))
@@ -116,7 +116,7 @@ class MemberService:
                                             "? AND ? "\
                                             "AND a.evento_id = ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],
                                             target["event_id"],))
@@ -125,7 +125,7 @@ class MemberService:
                                             "WHERE a.fecha BETWEEN "\
                                             "? AND ? "\
                                             "GROUP BY i.id "\
-                                            "ORDER BY totalpoints",
+                                            "ORDER BY totalpoints DESC",
                                            (target["assist_date_1"],
                                             target["assist_date_2"],))
         elif "id" in target:
