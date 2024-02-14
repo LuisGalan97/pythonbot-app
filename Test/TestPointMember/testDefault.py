@@ -359,7 +359,7 @@ async def testPointMemberDefault_listPointMember(capfd):
         totalPoints = (4*testData['evpoints_1'] +
                        4*testData['evpoints_2'] +
                        4*testData['evpoints_3'])
-        assert totalPoints in out
+        assert str(totalPoints) in out
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_delAssistId_1(capfd):
