@@ -6,18 +6,20 @@ from collections import namedtuple
 
 testData = {
     "idrange" : "",
-    "membername" : "TestMemberName",
     "ranname" : "TestRangeName",
     "rancontrol" : 5,
     "randes" : "TestRangeDescription",
+    "idmember" : "",
+    "memname" : "TestMemberName",
+    "memdate" : "25/01/2100",
     "event_1" : "TestEventCreate_1",
     "event_2" : "TestEventCreate_2",
     "event_3" : "TestEventCreate_2",
     "points_1" : 5,
     "points_2" : 8,
     "points_3" : 11,
-    "eventdes" : "TestEventDescription",
-    "memberdate" : "25/01/2100"
+    "eventdes" : "TestEventDescription"
+
 
 }
 
@@ -44,6 +46,22 @@ async def testPointMemberDefault_addRange(capfd):
     testData["idrange"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "El ___rango___ ha sido creado con exito sobre el "\
           f"**_ID_** \'{testData['idrange']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addMember(capfd):
+    command = f"$addMember [{testData['memname']}, "\
+              f"{testData['ranname']}, {testData['memdate']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addMember", app.setData,
+                       Helpers.setStruct("member"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idmember"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "El ___integrante___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['idmember']}\'.\n" in out
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_delRangeId(capfd):
