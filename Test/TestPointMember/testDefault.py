@@ -187,7 +187,7 @@ async def testPointMemberDefault_addAssist_3(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_4(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_4']}, {testData['assistdate_4']}]"
+              f"{testData['evname_1']}, {testData['assistdate_4']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -203,7 +203,7 @@ async def testPointMemberDefault_addAssist_4(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_5(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_5']}, {testData['assistdate_5']}]"
+              f"{testData['evname_2']}, {testData['assistdate_5']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -219,7 +219,7 @@ async def testPointMemberDefault_addAssist_5(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_6(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_6']}, {testData['assistdate_6']}]"
+              f"{testData['evname_3']}, {testData['assistdate_6']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -235,7 +235,7 @@ async def testPointMemberDefault_addAssist_6(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_7(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_7']}, {testData['assistdate_7']}]"
+              f"{testData['evname_1']}, {testData['assistdate_7']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -251,7 +251,7 @@ async def testPointMemberDefault_addAssist_7(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_8(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_8']}, {testData['assistdate_8']}]"
+              f"{testData['evname_2']}, {testData['assistdate_8']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -267,7 +267,7 @@ async def testPointMemberDefault_addAssist_8(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_9(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_9']}, {testData['assistdate_9']}]"
+              f"{testData['evname_3']}, {testData['assistdate_9']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -283,7 +283,7 @@ async def testPointMemberDefault_addAssist_9(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_10(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_10']}, {testData['assistdate_10']}]"
+              f"{testData['evname_1']}, {testData['assistdate_10']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -299,7 +299,7 @@ async def testPointMemberDefault_addAssist_10(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_11(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_11']}, {testData['assistdate_11']}]"
+              f"{testData['evname_2']}, {testData['assistdate_11']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
@@ -315,7 +315,7 @@ async def testPointMemberDefault_addAssist_11(capfd):
 @pytest.mark.asyncio
 async def testPointMemberDefault_addAssist_12(capfd):
     command = f"$addAssist [{testData['memname']}, "\
-              f"{testData['evname_12']}, {testData['assistdate_12']}]"
+              f"{testData['evname_3']}, {testData['assistdate_12']}]"
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
