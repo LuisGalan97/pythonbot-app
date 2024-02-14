@@ -426,9 +426,9 @@ class Helpers:
                     "Rango" : "range_name",
                     #"Control Rango" : "range_control",
                     #"Descripción Rango" : "range_description",
-                    "Puntos" : "totalpoints",
                     "Fecha de creación" : "datecreate",
-                    "Fecha de modificación" : "dateupdate"
+                    "Fecha de modificación" : "dateupdate",
+                    "Puntos acumulados" : "totalpoints"
                 }
             }
         elif nameCtrl == "range":
