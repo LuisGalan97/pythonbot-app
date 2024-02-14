@@ -26,32 +26,27 @@ class MemberService:
         self.__db.start_connection()
         if not target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "GROUP BY i.id "\
-                                            "ORDER BY totalpoints DESC")
+                                            "GROUP BY i.id")
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.id = ? "\
-                                            "GROUP BY i.id "\
-                                            "ORDER BY totalpoints DESC",
+                                            "GROUP BY i.id",
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.nombre = ? "\
-                                            "GROUP BY i.id "\
-                                            "ORDER BY totalpoints DESC",
+                                            "GROUP BY i.id",
                                            (target["name"],))
         elif "range_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.rango_id = ? "\
-                                            "GROUP BY i.id "\
-                                            "ORDER BY totalpoints DESC",
+                                            "GROUP BY i.id",
                                            (target["range_id"],))
         elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.fechacreacion BETWEEN "\
                                             "? AND ? "\
-                                            "GROUP BY i.id "\
-                                            "ORDER BY totalpoints DESC",
+                                            "GROUP BY i.id",
                                            (target["date_1"],
                                             target["date_2"],))
         else:
