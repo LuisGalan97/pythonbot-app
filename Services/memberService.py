@@ -15,7 +15,7 @@ class MemberService:
             "i.nombre AS name, "\
             "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
             "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate, "\
-            "COALESCE(SUM(e.puntos), 0) AS totalpoints"\
+            "COALESCE(SUM(e.puntos), 0) AS totalpoints "\
         "FROM integrantes i "\
         "LEFT JOIN rangos r ON r.id = i.rango_id "\
         "LEFT JOIN asistencias a ON a.integrante_id = i.id "\
