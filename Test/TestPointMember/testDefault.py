@@ -64,6 +64,18 @@ async def testPointMemberDefault_addMember(capfd):
           f"**_ID_** \'{testData['idmember']}\'.\n" in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_delMemberId(capfd):
+    command = f"$delMember:id [{testData['idmember']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delMember:id", app.deleteData,
+                       Helpers.delStruct("member", "id"))
+    out, _ = capfd.readouterr()
+    assert "El ___integrante___ ha sido eliminado con exito.\n" in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_delRangeId(capfd):
     command = f"$delRange:id [{testData['idrange']}]"
     channel = Channel(name=name)
