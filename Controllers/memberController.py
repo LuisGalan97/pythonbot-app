@@ -23,7 +23,8 @@ class MemberController:
                                               getRange().
                                               getDescription(),
                         "datecreate" : member.getDateCreate(),
-                        "dateupdate" : member.getDateUpdate()
+                        "dateupdate" : member.getDateUpdate(),
+                        "totalpoints" : member.getTotalPoints()
                     })
             return data
         else:
@@ -31,17 +32,17 @@ class MemberController:
 
     def createMember(self, name, range_id, date):
         range = RangeModel(range_id, None, None, None)
-        member = MemberModel(None, name, range, date, None)
+        member = MemberModel(None, name, range, date, None, None)
         result = self.__service.insert(member)
         return result
 
     def updateMember(self, id, name, range_id, date):
         range = RangeModel(range_id, None, None, None)
-        member = MemberModel(id, name, range, None, date)
+        member = MemberModel(id, name, range, None, date, None)
         result = self.__service.update(member)
         return result
 
     def deleteMember(self, id):
-        member = MemberModel(id, None, None, None, None)
+        member = MemberModel(id, None, None, None, None, None)
         result = self.__service.delete(member)
         return result

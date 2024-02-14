@@ -14,31 +14,44 @@ class MemberService:
             "i.id, "\
             "i.nombre AS name, "\
             "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
-            "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate "\
+            "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate, "\
+            "COALESCE(SUM(e.puntos), 0) AS totalpoints"\
         "FROM integrantes i "\
-        "LEFT JOIN rangos r ON r.id = i.rango_id"
+        "LEFT JOIN rangos r ON r.id = i.rango_id "\
+        "LEFT JOIN asistencias a ON a.integrante_id = i.id "\
+        "LEFT JOIN eventos e ON e.id = a.evento_id"
         )
 
     def select(self, target = None):
         self.__db.start_connection()
         if not target:
-            data = self.__db.execute_query(self.__selectQuery)
+            data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints DESC")
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE i.id = ?",
+                                            "WHERE i.id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints DESC",
                                            (target["id"],))
         elif "name" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE i.nombre = ?",
+                                            "WHERE i.nombre = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints DESC",
                                            (target["name"],))
         elif "range_id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE i.rango_id = ?",
+                                            "WHERE i.rango_id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints DESC",
                                            (target["range_id"],))
         elif "date_1" in target and "date_2" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.fechacreacion BETWEEN "\
-                                            "? AND ?",
+                                            "? AND ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints DESC",
                                            (target["date_1"],
                                             target["date_2"],))
         else:
@@ -55,7 +68,8 @@ class MemberService:
                                      row['name'],
                                      range,
                                      row['datecreate'],
-                                     row['dateupdate'])
+                                     row['dateupdate'],
+                                     row['totalpoints'])
                 members.append(member)
             return members
         else:

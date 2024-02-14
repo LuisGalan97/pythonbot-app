@@ -63,14 +63,14 @@ class AssistController:
             return assists
 
     def createAssist(self, member_id, event_id, date):
-        member = MemberModel(member_id, None, None, None, None)
+        member = MemberModel(member_id, None, None, None, None, None)
         event = EventModel(event_id, None, None, None)
         assist = AssistModel(None, member, event, date)
         result = self.__service.insert(assist)
         return result
 
     def updateAssist(self, id, member_id, event_id, date):
-        member = MemberModel(member_id, None, None, None, None)
+        member = MemberModel(member_id, None, None, None, None, None)
         event = EventModel(event_id, None, None, None)
         assist = AssistModel(id, member, event, date)
         result = self.__service.update(assist)

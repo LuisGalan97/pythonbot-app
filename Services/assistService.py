@@ -99,7 +99,8 @@ class AssistService:
                                      row['member_name'],
                                      range,
                                      row['member_datecreate'],
-                                     row['member_dateupdate'])
+                                     row['member_dateupdate'],
+                                     None)
                 event = EventModel(row['event_id'],
                                    row['event_name'],
                                    row['event_points'],

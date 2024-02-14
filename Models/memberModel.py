@@ -1,12 +1,14 @@
 from .rangeModel import RangeModel
 
 class MemberModel:
-    def __init__(self, id, name, range : RangeModel, datecreate, dateupdate):
+    def __init__(self, id, name, range : RangeModel,
+                 datecreate, dateupdate, totalpoints):
         self.__id = id
         self.__name = name
         self.__range = range
         self.__datecreate = datecreate
         self.__dateupdate = dateupdate
+        self.__totalpoints = totalpoints
 
     def getId(self):
         return self.__id
@@ -22,3 +24,6 @@ class MemberModel:
 
     def getDateUpdate(self):
         return self.__dateupdate
+
+    def getTotalPoints(self):
+        return self.__totalpoints
