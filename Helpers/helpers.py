@@ -5,7 +5,8 @@ class Helpers:
     def checkAccess(command, author, nameChannel):
         user = str(author)
         channel = str(nameChannel)
-        adminUser = ["omegaxis_", "test", "Avalon-bot#2866", "lia7624"]
+        adminUser = ["omegaxis_", "test", 
+                     "Avalon-bot#2866", "lia7624"]
         adminChannel = ["general", "test"]
         access = {}
         access['hello'] = {
@@ -140,6 +141,38 @@ class Helpers:
             "channel" : adminChannel + []
         }
         access['listMember:date'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:range'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:id&event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:name&event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listPointMember:range&event'] = {
             "user" : adminUser + [],
             "channel" : adminChannel + []
         }

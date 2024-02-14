@@ -57,6 +57,21 @@ class MemberService:
                                             target["assist_date_2"],
                                             target["name"],
                                             target["event_id"],))
+        elif ("range_id" in target and
+              "event_id" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND i.rango_id = ? "\
+                                            "AND a.evento_id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["range_id"],
+                                            target["event_id"],))
         elif ("id" in target and
               "assist_date_1" in target and
               "assist_date_2" in target):
