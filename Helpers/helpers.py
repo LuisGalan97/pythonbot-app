@@ -502,6 +502,18 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Fecha 2"
                 }
+            if "assist_date_1" in targets:
+                structTargets["assist_date_1"] = {
+                    "type" : datetime,
+                    "fk" : False,
+                    "alias" : "Fecha 1"
+                }
+            if "assist_date_2" in targets:
+                structTargets["assist_date_2"] = {
+                    "type" : datetime,
+                    "fk" : False,
+                    "alias" : "Fecha 2"
+                }
         return {"controller" : structCtrl, "targets" : structTargets}
 
     @staticmethod

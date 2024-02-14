@@ -27,6 +27,92 @@ class MemberService:
         if not target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "GROUP BY i.id")
+        elif ("id" in target and
+              "event_id" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND i.id = ? "\
+                                            "AND a.evento_id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["id"],
+                                            target["event_id"],))
+        elif ("name" in target and
+              "event_id" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND i.nombre = ? "\
+                                            "AND a.evento_id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["name"],
+                                            target["event_id"],))
+        elif ("id" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND i.id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["id"],))
+        elif ("name" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND i.nombre = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["name"],))
+        elif ("range_id" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND i.rango_id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["range_id"],))
+        elif ("event_id" in target and
+              "assist_date_1" in target and
+              "assist_date_2" in target):
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "AND a.evento_id = ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],
+                                            target["event_id"],))
+        elif "assist_date_1" in target and "assist_date_2" in target:
+             data = self.__db.execute_query(f"{self.__selectQuery} "\
+                                            "WHERE a.fecha BETWEEN "\
+                                            "? AND ? "\
+                                            "GROUP BY i.id "\
+                                            "ORDER BY totalpoints",
+                                           (target["assist_date_1"],
+                                            target["assist_date_2"],))
         elif "id" in target:
             data = self.__db.execute_query(f"{self.__selectQuery} "\
                                             "WHERE i.id = ? "\
