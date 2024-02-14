@@ -416,9 +416,10 @@ async def testPointMemberDefault_listPointMemberId_partial(capfd):
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listPointMember", app.getDatas,
+        await hdlr.dFMsg("listPointMember:id", app.getDatas,
                      Helpers.getStruct("member",
-                                       ["assist_date_1",
+                                       ["id",
+                                        "assist_date_1",
                                         "assist_date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
@@ -454,9 +455,10 @@ async def testPointMemberDefault_listPointMemberId_total(capfd):
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listPointMember", app.getDatas,
+        await hdlr.dFMsg("listPointMember:id", app.getDatas,
                      Helpers.getStruct("member",
-                                       ["assist_date_1",
+                                       ["id",
+                                        "assist_date_1",
                                         "assist_date_2"]))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
