@@ -12,15 +12,16 @@ testData = {
     "idmember" : "",
     "memname" : "TestMemberName",
     "memdate" : "25/01/2100",
-    "event_1" : "TestEventCreate_1",
-    "event_2" : "TestEventCreate_2",
-    "event_3" : "TestEventCreate_2",
-    "points_1" : 5,
-    "points_2" : 8,
-    "points_3" : 11,
-    "eventdes" : "TestEventDescription"
-
-
+    "idevent_1" : "",
+    "evname_1" : "TestEventName_1",
+    "evpoints_1" : 5,
+    "idevent_2" : "",
+    "evname_2" : "TestEventName_2",
+    "evpoints_2" : 8,
+    "idevent_3" : "",
+    "evname_3" : "TestEventName_3",
+    "evpoints_3" : 11,
+    "evdes" : "TestEventDescription"
 }
 
 Message = namedtuple('Message', ['author', 'content', 'channel'])
@@ -62,6 +63,34 @@ async def testPointMemberDefault_addMember(capfd):
     testData["idmember"] = idTest[idTest.find("'")+1:idTest.find("'.")]
     assert "El ___integrante___ ha sido creado con exito sobre el "\
           f"**_ID_** \'{testData['idmember']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_addEvent_1(capfd):
+    command = f"$addEvent [{testData['evname_1']}, "\
+              f"{testData['evpoints_1']}, {testData['evdes']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("addEvent", app.setData,
+                       Helpers.setStruct("event"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["idevent_1"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "El ___evento___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['idevent_1']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_delEventId_1(capfd):
+    command = f"$delEvent:id [{testData['idevent_1']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, True)
+    await hdlr.contMsg("delEvent:id", app.deleteData,
+                       Helpers.delStruct("event", "id"))
+    out, _ = capfd.readouterr()
+    assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_delMemberId(capfd):
