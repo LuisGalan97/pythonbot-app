@@ -13,13 +13,13 @@ testData = {
     "memname" : "TestMemberName",
     "memdate" : "25/01/2100",
     "idevent_1" : "",
-    "evname_1" : "TestEventName_1",
+    "evname_1" : "TestEventName1",
     "evpoints_1" : 5,
     "idevent_2" : "",
-    "evname_2" : "TestEventName_2",
+    "evname_2" : "TestEventName2",
     "evpoints_2" : 8,
     "idevent_3" : "",
-    "evname_3" : "TestEventName_3",
+    "evname_3" : "TestEventName3",
     "evpoints_3" : 11,
     "evdes" : "TestEventDescription"
 }
