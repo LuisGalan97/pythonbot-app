@@ -512,6 +512,84 @@ async def testPointMemberDefault_listPointMemberName_partial(capfd):
         assert str(totalPoints) in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRange_total(capfd):
+    commands = [f"$listPointMember:range[{testData['ranname']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range [{testData['ranname']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range [ {testData['ranname']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range [ {testData['ranname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range [ {testData['ranname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = (4*testData['evpoints_1'] +
+                       4*testData['evpoints_2'] +
+                       4*testData['evpoints_3'])
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRange_partial(capfd):
+    commands = [f"$listPointMember:range[{testData['ranname']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range [{testData['ranname']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range [ {testData['ranname']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] ",
+                f"$listPointMember:range [ {testData['ranname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ]FILL",
+                f"$listPointMember:range [ {testData['ranname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = (2*testData['evpoints_1'] +
+                       2*testData['evpoints_2'] +
+                       2*testData['evpoints_3'])
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberName_total(capfd):
     commands = [f"$listPointMember:name[{testData['memname']},"\
                 f"{testData['assistdate_1']},"\
@@ -533,9 +611,9 @@ async def testPointMemberDefault_listPointMemberName_total(capfd):
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listPointMember:name", app.getDatas,
+        await hdlr.dFMsg("listPointMember:range", app.getDatas,
                      Helpers.getStruct("member",
-                                       ["name",
+                                       ["range",
                                         "assist_date_1",
                                         "assist_date_2"]))
         out, _ = capfd.readouterr()
