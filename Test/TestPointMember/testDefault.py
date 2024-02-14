@@ -395,6 +395,82 @@ async def testPointMemberDefault_listPointMember_total(capfd):
         assert str(totalPoints) in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberId_partial(capfd):
+    commands = [f"$listPointMember:id[{testData['idmember']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:id [{testData['idmember']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:id [ {testData['idmember']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] ",
+                f"$listPointMember:id [ {testData['idmember']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ]FILL",
+                f"$listPointMember:id [ {testData['idmember']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = (2*testData['evpoints_1'] +
+                       2*testData['evpoints_2'] +
+                       2*testData['evpoints_3'])
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberId_total(capfd):
+    commands = [f"$listPointMember:id[{testData['idmember']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id [{testData['idmember']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id [ {testData['idmember']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id [ {testData['idmember']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id [ {testData['idmember']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = (4*testData['evpoints_1'] +
+                       4*testData['evpoints_2'] +
+                       4*testData['evpoints_3'])
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_delAssistId_1(capfd):
     command = f"$delAssist:id [{testData['idassist_1']}]"
     channel = Channel(name=name)
