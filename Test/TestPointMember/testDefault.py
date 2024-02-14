@@ -629,6 +629,80 @@ async def testPointMemberDefault_listPointMemberRange_total(capfd):
         assert str(totalPoints) in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberEvent1_partial(capfd):
+    commands = [f"$listPointMember:event[{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:event [{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:event [ {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] ",
+                f"$listPointMember:event [ {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ]FILL",
+                f"$listPointMember:event [ {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 2*testData['evpoints_1']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberEvent1_total(capfd):
+    commands = [f"$listPointMember:event[{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:event [{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:event [ {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:event [ {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:event [ {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 4*testData['evpoints_1']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_delAssistId_1(capfd):
     command = f"$delAssist:id [{testData['idassist_1']}]"
     channel = Channel(name=name)
