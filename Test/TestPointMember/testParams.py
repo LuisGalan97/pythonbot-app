@@ -13,7 +13,7 @@ user = "test"
 app = AppHandler()
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMember_invalidParams(capfd):
+async def testPointMemberParams_listPointMember_invalidParams(capfd):
     commands = ["$listPointMember[]",
                 "$listPointMember []",
                 "$listPointMember[,,,,]",
@@ -41,7 +41,7 @@ async def testPointMemberStruct_listPointMember_invalidParams(capfd):
         assert "**[_Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberId_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberId_invalidParams(capfd):
     commands = ["$listPointMember:id[]",
                 "$listPointMember:id []",
                 "$listPointMember:id[,,,,]",
@@ -70,7 +70,7 @@ async def testPointMemberStruct_listPointMemberId_invalidParams(capfd):
         assert "**[_ID, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberName_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberName_invalidParams(capfd):
     commands = ["$listPointMember:name[]",
                 "$listPointMember:name []",
                 "$listPointMember:name[,,,,]",
@@ -99,7 +99,7 @@ async def testPointMemberStruct_listPointMemberName_invalidParams(capfd):
         assert "**[_Nombre, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberRange_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberRange_invalidParams(capfd):
     commands = ["$listPointMember:range[]",
                 "$listPointMember:range []",
                 "$listPointMember:range[,,,,]",
@@ -128,7 +128,7 @@ async def testPointMemberStruct_listPointMemberRange_invalidParams(capfd):
         assert "**[_Rango, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberEvent_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberEvent_invalidParams(capfd):
     commands = ["$listPointMember:event[]",
                 "$listPointMember:event []",
                 "$listPointMember:event[,,,,]",
@@ -157,7 +157,7 @@ async def testPointMemberStruct_listPointMemberEvent_invalidParams(capfd):
         assert "**[_Evento, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberIdEvent_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberIdEvent_invalidParams(capfd):
     commands = ["$listPointMember:id&event[]",
                 "$listPointMember:id&event []",
                 "$listPointMember:id&event[,,,,]",
@@ -187,7 +187,7 @@ async def testPointMemberStruct_listPointMemberIdEvent_invalidParams(capfd):
         assert "**[_ID, Evento, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberNameEvent_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberNameEvent_invalidParams(capfd):
     commands = ["$listPointMember:name&event[]",
                 "$listPointMember:name&event []",
                 "$listPointMember:name&event[,,,,]",
@@ -217,7 +217,7 @@ async def testPointMemberStruct_listPointMemberNameEvent_invalidParams(capfd):
         assert "**[_Nombre, Evento, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberStruct_listPointMemberRangeEvent_invalidParams(capfd):
+async def testPointMemberParams_listPointMemberRangeEvent_invalidParams(capfd):
     commands = ["$listPointMember:range&event[]",
                 "$listPointMember:range&event []",
                 "$listPointMember:range&event[,,,,]",
