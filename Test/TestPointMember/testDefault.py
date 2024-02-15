@@ -2450,6 +2450,117 @@ async def testPointMemberDefault_listPointMemberEvent_AssistNoExist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberIdEvent_AssistNoExist(capfd):
+    commands = [f"$listPointMember:id&event[{testData['idmember']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [{testData['idmember']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["id",
+                                            "event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___integrantes___ "\
+               "para la consulta realizada.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberNameEvent_AssistNoExist(capfd):
+    commands = [f"$listPointMember:id&event[{testData['memname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [{testData['memname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["name",
+                                            "event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___integrantes___ "\
+               "para la consulta realizada.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent_AssistNoExist(capfd):
+    commands = [f"$listPointMember:id&event[{testData['ranname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [{testData['ranname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["range",
+                                            "event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No se encontraron ___integrantes___ "\
+               "para la consulta realizada.\n" in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_delEventId_1(capfd):
     command = f"$delEvent:id [{testData['idevent_1']}]"
     channel = Channel(name=name)
