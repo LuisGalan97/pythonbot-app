@@ -917,6 +917,7 @@ class Helpers:
             target = (command[command.find(':')+1 :].strip()
                       if command.find(':') != -1
                       else "")
+            parameters = None
             excelrequest = True if command.find('>') != -1 else False
         if mode == "list":
             if not target and not parameters:
