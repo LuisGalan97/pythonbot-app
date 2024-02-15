@@ -2509,7 +2509,7 @@ async def testPointMemberDefault_delRangeId(capfd):
     out, _ = capfd.readouterr()
     assert "El ___rango___ ha sido eliminado con exito.\n" in out
 
-'''
+
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberRange_RangeNoExist(capfd):
     commands = [f"$listPointMember:range[{testData['ranname']},"\
@@ -2520,7 +2520,13 @@ async def testPointMemberDefault_listPointMemberRange_RangeNoExist(capfd):
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember:range [ {testData['ranname']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] "]
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range [ {testData['ranname']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range [ {testData['ranname']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
     for command in commands:
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
@@ -2532,7 +2538,7 @@ async def testPointMemberDefault_listPointMemberRange_RangeNoExist(capfd):
                                             "assist_date_1",
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
-        assert f"El valor '{testData['ranoexist']}' "\
+        assert f"El valor '{testData['ranname']}' "\
                 "ingresado en el campo "\
                 "**_Rango_** no fue encontrado en la "\
                 "base de datos.\n" in out
@@ -2547,25 +2553,30 @@ async def testPointMemberDefault_listPointMemberEvent_EventNoExist(capfd):
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember:event [ {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] "]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:event [ {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:event [ {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
     for command in commands:
-        for eparam in eparams:
-            channel = Channel(name=name)
-            message = Message(author=author, content=f"{command}{eparam}",
-                              channel=channel)
-            client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listPointMember:event", app.getDatas,
-                             Helpers.getStruct("member",
-                                               ["event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
-            out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**\n" in out
-            assert "discord.file.File object" in out
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evname_1']}' "\
+                "ingresado en el campo "\
+                "**_Evento_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
+'''
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberIdEvent_EventNoExist(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
@@ -2580,8 +2591,6 @@ async def testPointMemberDefault_listPointMemberIdEvent_EventNoExist(capfd):
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ] "]
-    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
-               ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
         for eparam in eparams:
             channel = Channel(name=name)
