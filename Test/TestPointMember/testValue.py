@@ -1318,7 +1318,7 @@ async def testPointMemberValue_listPointMemberIdEvent_idInvalid(capfd):
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "event"
+                                            "event",
                                             "assist_date_1",
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
