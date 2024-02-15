@@ -2109,7 +2109,7 @@ async def testPointMemberDefault_listPointMemberNameEvent_eIncomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert  "**$listPointMember:id&event** "\
+            assert  "**$listPointMember:name&event** "\
                    f"**[**{testData['memname']}, "\
                    f"{testData['evname_1']}, "\
                    f"{testData['assistdate_1']}, "\
@@ -2150,7 +2150,7 @@ async def testPointMemberDefault_listPointMemberRangeEvent_eIncomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert  "**$listPointMember:id&event** "\
+            assert  "**$listPointMember:range&event** "\
                    f"**[**{testData['ranname']}, "\
                    f"{testData['evname_1']}, "\
                    f"{testData['assistdate_1']}, "\
