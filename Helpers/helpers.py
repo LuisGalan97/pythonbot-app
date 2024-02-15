@@ -416,13 +416,12 @@ class Helpers:
             return "Ninguno"
 
     @staticmethod
-    def getStruct(nameCtrl, targets = None):
+    def getStruct(nameCtrl, targets = None, options = None):
         structCtrl = {}
         structTargets = {}
         if nameCtrl == "assist":
-            structCtrl[nameCtrl] = {
-                "alias" : "asistencia",
-                "ref" : {
+            if options is None:
+                reference = {
                     "ID" : "id",
                     #"Integrante ID" : "member_id",
                     "Integrante" : "member_name",
@@ -438,21 +437,29 @@ class Helpers:
                     #"Descripción Evento" : "event_description",
                     "Fecha" : "date"
                 }
+            else:
+                reference = {}
+            structCtrl[nameCtrl] = {
+                "alias" : "asistencia",
+                "ref" : reference
             }
         elif nameCtrl == "event":
-            structCtrl[nameCtrl] = {
-                "alias" : "evento",
-                "ref" : {
+            if options is None:
+                reference = {
                     "ID" : "id",
                     "Nombre" : "name",
                     "Puntos" : "points",
                     "Descripción" : "description"
                 }
+            else:
+                reference = {}
+            structCtrl[nameCtrl] = {
+                "alias" : "evento",
+                "ref" : reference
             }
         elif nameCtrl == "member":
-            structCtrl[nameCtrl] = {
-                "alias" : "integrante",
-                "ref" : {
+            if options is None:
+                reference = {
                     "ID" : "id",
                     "Nombre" : "name",
                     #"Rango ID" : "range_id",
@@ -463,16 +470,25 @@ class Helpers:
                     "Fecha de modificación" : "dateupdate",
                     "Puntos acumulados" : "totalpoints"
                 }
+            else:
+                reference = {}
+            structCtrl[nameCtrl] = {
+                "alias" : "integrante",
+                "ref" : reference
             }
         elif nameCtrl == "range":
-            structCtrl[nameCtrl] = {
-                "alias" : "rango",
-                "ref" : {
+            if options is None:
+                reference = {
                     "ID" : "id",
                     "Nombre" : "name",
                     "Control" : "control",
                     "Descripción" : "description"
                 }
+            else:
+                reference = {}
+            structCtrl[nameCtrl] = {
+                "alias" : "rango",
+                "ref" : reference
             }
         if targets:
             if "id" in targets:
@@ -929,8 +945,15 @@ class Helpers:
                          if controller[0] == 'a'
                          else 'todos los ') + \
                        f"___{controller}s___.\n"
-            elif not target == "id" and len(parameters) == 2:
-                pass
+            elif not target and len(parameters) == 2:
+                return f"- **${head}**   ->   " + \
+                       ('Lista en una hoja de excel '
+                         if excelrequest
+                         else 'Lista ') + \
+                       ('todas las '
+                         if controller[0] == 'a'
+                         else 'todos los ') + \
+                       f"___{controller}s___.\n"
             elif target == "id" and len(parameters) == 1:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
