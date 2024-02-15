@@ -2488,23 +2488,23 @@ async def testPointMemberDefault_listPointMemberIdEvent_AssistNoExist(capfd):
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberNameEvent_AssistNoExist(capfd):
-    commands = [f"$listPointMember:id&event[{testData['memname']},"\
+    commands = [f"$listPointMember:name&event[{testData['memname']},"\
                 f"{testData['evname_1']},"\
                 f"{testData['assistdate_1']},"\
                 f"{testData['assistdate_12']}]",
-                f"$listPointMember:id&event [{testData['memname']}, "
+                f"$listPointMember:name&event [{testData['memname']}, "
                 f"{testData['evname_1']}, "\
                 f"{testData['assistdate_1']}, "\
                 f"{testData['assistdate_12']}]",
-                f"$listPointMember:id&event [ {testData['memname']} ,"\
+                f"$listPointMember:name&event [ {testData['memname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:id&event [ {testData['memname']} ,"\
+                f"$listPointMember:name&event [ {testData['memname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:id&event [ {testData['memname']} ,"\
+                f"$listPointMember:name&event [ {testData['memname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ] FILL"]
@@ -2525,23 +2525,23 @@ async def testPointMemberDefault_listPointMemberNameEvent_AssistNoExist(capfd):
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberRangeEvent_AssistNoExist(capfd):
-    commands = [f"$listPointMember:id&event[{testData['ranname']},"\
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
                 f"{testData['evname_1']},"\
                 f"{testData['assistdate_1']},"\
                 f"{testData['assistdate_12']}]",
-                f"$listPointMember:id&event [{testData['ranname']}, "
+                f"$listPointMember:range&event [{testData['ranname']}, "
                 f"{testData['evname_1']}, "\
                 f"{testData['assistdate_1']}, "\
                 f"{testData['assistdate_12']}]",
-                f"$listPointMember:id&event [ {testData['ranname']} ,"\
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:id&event [ {testData['ranname']} ,"\
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:id&event [ {testData['ranname']} ,"\
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
                 f"{testData['assistdate_12']} ] FILL"]
