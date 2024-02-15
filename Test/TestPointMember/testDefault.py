@@ -1021,7 +1021,7 @@ async def testPointMemberDefault_listPointMemberIdEvent2_total(capfd):
         assert "Ninguno" in out
         totalPoints = 4*testData['evpoints_2']
         assert str(totalPoints) in out
-git
+
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberIdEvent3_partial(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
