@@ -1625,6 +1625,298 @@ async def testPointMemberDefault_listPointMemberRangeEvent3_total(capfd):
         assert str(totalPoints) in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_listPointMember_e(capfd):
+    commands = [f"$listPointMember[{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember [{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember [ {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember [ {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember [ {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberId_e(capfd):
+    commands = [f"$listPointMember:id[{testData['idmember']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id [{testData['idmember']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id [ {testData['idmember']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id [ {testData['idmember']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id [ {testData['idmember']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                          channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:id", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["id",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberName_e(capfd):
+    commands = [f"$listPointMember:name[{testData['memname']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:name [{testData['memname']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:name [ {testData['memname']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:name [ {testData['memname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:name [ {testData['memname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                          channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:name", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["name",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRange_e(capfd):
+    commands = [f"$listPointMember:range[{testData['ranname']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range [{testData['ranname']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range [ {testData['ranname']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range [ {testData['ranname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range [ {testData['ranname']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                          channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:range", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["range",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberEvent_e(capfd):
+    commands = [f"$listPointMember:event[{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:event [{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:event [ {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:event [ {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:event [ {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberIdEvent_e(capfd):
+    commands = [f"$listPointMember:id&event[{testData['idmember']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [{testData['idmember']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["id",
+                                                "event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberNameEvent_e(capfd):
+    commands = [f"$listPointMember:name&event[{testData['memname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:name&event [{testData['memname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:name&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:name&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:name&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["name",
+                                                "event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert "**___Integrantes___** **___encontrados:___**\n" in out
+            assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent_e(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    eparams = [">e", " >e", " > e", " > e ", " > e FILL"
+               ">E", " >E", " > E", " > E ", " > E FILL"]
+    for command in commands:
+        for eparam in eparams:
+            channel = Channel(name=name)
+            message = Message(author=author, content=f"{command}{eparam}",
+                              channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["range",
+                                                "event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert "discord.file.File object" in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_delAssistId_1(capfd):
     command = f"$delAssist:id [{testData['idassist_1']}]"
     channel = Channel(name=name)
