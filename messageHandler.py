@@ -219,6 +219,33 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listMember:date "\
                                            "[Fecha 1, Fecha 2]",
                                            "integrante"))
+            messages.append(Helpers.genMsg("listPointMember "\
+                                           "[Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:id "\
+                                           "[ID, Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:name "\
+                                           "[Nombre, Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:range "\
+                                           "[Rango, Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:event "\
+                                           "[Evento, Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:id&event "\
+                                           "[ID, Evento, "\
+                                           "Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:name&event "\
+                                           "[Nombre, Evento, "\
+                                           "Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:range&event "\
+                                           "[Rango, Evento, Fecha 1, Fecha 2]",
+                                           "integrante"))
+
             messages.append("\n")
             messages.append("_Comandos de consulta con impresion en excel:_\n")
             messages.append("Por defecto, los comandos de consulta "\
@@ -235,6 +262,33 @@ class MessageHandler:
                                            "integrante"))
             messages.append(Helpers.genMsg("listMember:date "\
                                            "[Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember "\
+                                           "[Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:id "\
+                                           "[ID, Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:name "\
+                                           "[Nombre, Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:range "\
+                                           "[Rango, Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:event "\
+                                           "[Evento, Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:id&event "\
+                                           "[ID, Evento, "\
+                                           "Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:name&event "\
+                                           "[Nombre, Evento, "\
+                                           "Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:range&event "\
+                                           "[Rango, Evento, "\
+                                           "Fecha 1, Fecha 2] > e",
                                            "integrante"))
         elif msg.startswith("$help:range"):
         #--------------------------------Rangos--------------------------------

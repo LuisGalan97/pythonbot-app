@@ -5,7 +5,7 @@ class Helpers:
     def checkAccess(command, author, nameChannel):
         user = str(author)
         channel = str(nameChannel)
-        adminUser = ["omegaxis_", "test", 
+        adminUser = ["omegaxis_", "test",
                      "Avalon-bot#2866", "lia7624"]
         adminChannel = ["general", "test"]
         access = {}
@@ -919,7 +919,7 @@ class Helpers:
                       else "")
             excelrequest = True if command.find('>') != -1 else False
         if mode == "list":
-            if not target:
+            if not target and not parameters:
                 return f"- **${head}**   ->   " + \
                        ('Lista en una hoja de excel '
                          if excelrequest
@@ -928,7 +928,9 @@ class Helpers:
                          if controller[0] == 'a'
                          else 'todos los ') + \
                        f"___{controller}s___.\n"
-            elif target == "id":
+            elif not target == "id" and len(parameters) == 2:
+                pass
+            elif target == "id" and len(parameters) == 1:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -944,7 +946,9 @@ class Helpers:
                         "ingresado dentro de los corchetes **[ ]**. "\
                        f"Este parametro **_{parameters[0]}_** deberá "\
                         "corresponder a un valor numerico.\n"
-            elif target == "name":
+            elif target == "id" and len(parameters) == 3:
+                pass
+            elif target == "name" and len(parameters) == 1:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -962,7 +966,9 @@ class Helpers:
                         "ingresado dentro de los corchetes **[ ]**. "\
                        f"Este parametro **_{parameters[0]}_** deberá "\
                         "corresponder a un valor de texto.\n"
-            elif target == "date":
+            elif target == "name" and len(parameters) == 3:
+                pass
+            elif target == "date" and len(parameters) == 2:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -984,7 +990,13 @@ class Helpers:
                        f"y **_{parameters[1]}_** "\
                         "deberán corresponder a valores de fecha "\
                         "en 'Día/Mes/Año'.\n"
-            elif target == "member&event":
+            elif target == "id&event" and len(parameters) == 4:
+                pass
+            elif target == "name&event" and len(parameters) == 4:
+                pass
+            elif target == "range&event" and len(parameters) == 4:
+                pass
+            elif target == "member&event" and len(parameters) == 2:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -1018,7 +1030,7 @@ class Helpers:
                        f"Ambos parametros **_{parameters[0]}_** "\
                        f"y **_{parameters[1]}_** "\
                         "deberán corresponder a valores de texto.\n"
-            elif target == "member&date":
+            elif target == "member&date" and len(parameters) == 3:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -1057,7 +1069,7 @@ class Helpers:
                        f"y **_{parameters[2]}_** "\
                         "deberán corresponder a valores de "\
                         "fecha en 'Día/Mes/Año'.\n"
-            elif target == "event&date":
+            elif target == "event&date" and len(parameters) == 3:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -1095,7 +1107,7 @@ class Helpers:
                        f"y **_{parameters[2]}_** "\
                         "deberán corresponder a valores de fecha "\
                         "en 'Día/Mes/Año'.\n"
-            elif target == "member&event&date":
+            elif target == "member&event&date" and len(parameters) == 4:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
                        ('**> e**   ->   Lista en una hoja de excel '
@@ -1140,6 +1152,8 @@ class Helpers:
                        f"y **_{parameters[3]}_** "\
                         "deberán corresponder a valores de fecha "\
                         "en 'Día/Mes/Año'.\n"
+            elif len(parameters) == 3:
+                pass
             else:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
