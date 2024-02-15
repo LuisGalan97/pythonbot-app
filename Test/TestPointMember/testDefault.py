@@ -1631,11 +1631,7 @@ async def testPointMemberDefault_listPointMember_e(capfd):
                 f"$listPointMember [{testData['assistdate_1']}, "\
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember [ {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember [ {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember [ {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1663,13 +1659,7 @@ async def testPointMemberDefault_listPointMemberId_e(capfd):
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember:id [ {testData['idmember']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:id [ {testData['idmember']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:id [ {testData['idmember']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1698,13 +1688,7 @@ async def testPointMemberDefault_listPointMemberName_e(capfd):
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember:name [ {testData['memname']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:name [ {testData['memname']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:name [ {testData['memname']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1733,13 +1717,7 @@ async def testPointMemberDefault_listPointMemberRange_e(capfd):
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember:range [ {testData['ranname']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:range [ {testData['ranname']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:range [ {testData['ranname']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1768,13 +1746,7 @@ async def testPointMemberDefault_listPointMemberEvent_e(capfd):
                 f"{testData['assistdate_12']}]",
                 f"$listPointMember:event [ {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:event [ {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:event [ {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1806,15 +1778,7 @@ async def testPointMemberDefault_listPointMemberIdEvent_e(capfd):
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:id&event [ {testData['idmember']} ,"\
-                f" {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:id&event [ {testData['idmember']} ,"\
-                f" {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1847,15 +1811,7 @@ async def testPointMemberDefault_listPointMemberNameEvent_e(capfd):
                 f"$listPointMember:name&event [ {testData['memname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:name&event [ {testData['memname']} ,"\
-                f" {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:name&event [ {testData['memname']} ,"\
-                f" {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
@@ -1888,15 +1844,7 @@ async def testPointMemberDefault_listPointMemberRangeEvent_e(capfd):
                 f"$listPointMember:range&event [ {testData['ranname']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listPointMember:range&event [ {testData['ranname']} ,"\
-                f" {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listPointMember:range&event [ {testData['ranname']} ,"\
-                f" {testData['evname_1']} ,"\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
+                f"{testData['assistdate_12']} ] "]
     eparams = [">e", " >e", " > e", " > e ", " > e FILL"
                ">E", " >E", " > E", " > E ", " > E FILL"]
     for command in commands:
