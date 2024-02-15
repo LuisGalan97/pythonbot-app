@@ -78,7 +78,7 @@ async def testPointMemberStruct_listPointMemberName_invalidStruct(capfd):
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
-        assert "**$listPointMember:name"\
+        assert "**$listPointMember:name "\
                "[_Nombre, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
@@ -90,7 +90,7 @@ async def testPointMemberStruct_listPointMemberRange_invalidStruct(capfd):
                 "$listPointMember:rangeFILL[",
                 "$listPointMember:range]",
                 "$listPointMember:range ]",
-                "$listPointMember:nameFILL []",
+                "$listPointMember:rangeFILL []",
                 "$listPointMember:range FILL []",
                 "$listPointMember:range [FILL",
                 "$listPointMember:range[FILL",
@@ -109,7 +109,7 @@ async def testPointMemberStruct_listPointMemberRange_invalidStruct(capfd):
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
-        assert "**$listPointMember:range"\
+        assert "**$listPointMember:range "\
                "[_Rango, Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
@@ -121,7 +121,7 @@ async def testPointMemberStruct_listPointMemberEvent_invalidStruct(capfd):
                 "$listPointMember:eventFILL[",
                 "$listPointMember:event]",
                 "$listPointMember:event ]",
-                "$listPointMember:nameFILL []",
+                "$listPointMember:eventFILL []",
                 "$listPointMember:event FILL []",
                 "$listPointMember:event [FILL",
                 "$listPointMember:event[FILL",
@@ -140,7 +140,7 @@ async def testPointMemberStruct_listPointMemberEvent_invalidStruct(capfd):
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
-        assert "**$listPointMember:event"\
+        assert "**$listPointMember:event "\
                "[_Evento, Fecha 1, Fecha 2_]**\n" in out
 
 '''

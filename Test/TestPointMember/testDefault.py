@@ -2525,7 +2525,8 @@ async def testPointMemberDefault_listPointMemberNameEvent_AssistNoExist(capfd):
                "para la consulta realizada.\n" in out
 
 @pytest.mark.asyncio
-async def testPointMemberDefault_listPointMemberRangeEvent_AssistNoExist(capfd):
+async def testPointMemberDefault_listPointMemberRangeEvent_AssistNoExist(
+    capfd):
     commands = [f"$listPointMember:range&event[{testData['ranname']},"\
                 f"{testData['evname_1']},"\
                 f"{testData['assistdate_1']},"\
