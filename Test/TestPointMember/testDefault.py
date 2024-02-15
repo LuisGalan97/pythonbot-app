@@ -2576,7 +2576,6 @@ async def testPointMemberDefault_listPointMemberEvent_EventNoExist(capfd):
                 "**_Evento_** no fue encontrado en la "\
                 "base de datos.\n" in out
 
-'''
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberIdEvent_EventNoExist(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
@@ -2590,24 +2589,33 @@ async def testPointMemberDefault_listPointMemberIdEvent_EventNoExist(capfd):
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] "]
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
     for command in commands:
-        for eparam in eparams:
-            channel = Channel(name=name)
-            message = Message(author=author, content=f"{command}{eparam}",
-                              channel=channel)
-            client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
-            await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
-                             Helpers.getStruct("member",
-                                               ["id",
-                                                "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
-            out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**\n" in out
-            assert "discord.file.File object" in out
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["id",
+                                            "event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evname_1']}' "\
+                "ingresado en el campo "\
+                "**_Evento_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
+'''
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberNameEvent_EventNoExist(capfd):
     commands = [f"$listPointMember:name&event[{testData['memname']},"\
