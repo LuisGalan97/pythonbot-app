@@ -1925,7 +1925,7 @@ async def testPointMemberDefault_listPointMemberId_eIncomplete(capfd):
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
             assert f"**$listPointMember:id** **[**{testData['idmember']}, "\
-                   f"{testData['assistdate_1']}**]**, "\
+                   f"{testData['assistdate_1']}, "\
                    f"{testData['assistdate_12']}**]** "\
                     "**> e**\n" in out
 
@@ -1960,7 +1960,7 @@ async def testPointMemberDefault_listPointMemberName_eIncomplete(capfd):
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
             assert f"**$listPointMember:name** **[**{testData['memname']}, "\
-                   f"{testData['assistdate_1']}**]**, "\
+                   f"{testData['assistdate_1']}, "\
                    f"{testData['assistdate_12']}**]** "\
                     "**> e**\n" in out
 
