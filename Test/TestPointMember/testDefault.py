@@ -898,23 +898,23 @@ async def testPointMemberDefault_listPointMemberIdEvent1_total(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
                 f"{testData['evname_1']},"\
                 f"{testData['assistdate_1']},"\
-                f"{testData['assistdate_6']}]",
+                f"{testData['assistdate_12']}]",
                 f"$listPointMember:id&event [{testData['idmember']}, "
                 f"{testData['evname_1']}, "\
                 f"{testData['assistdate_1']}, "\
-                f"{testData['assistdate_6']}]",
+                f"{testData['assistdate_12']}]",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_1']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ] ",
+                f"{testData['assistdate_12']} ] ",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_1']} ,"\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ]FILL",
+                f"{testData['assistdate_12']} ]FILL",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_1']} ,"\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ] FILL"]
+                f"{testData['assistdate_12']} ] FILL"]
     for command in commands:
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
@@ -984,23 +984,23 @@ async def testPointMemberDefault_listPointMemberIdEvent2_total(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
                 f"{testData['evname_2']},"\
                 f"{testData['assistdate_1']},"\
-                f"{testData['assistdate_6']}]",
+                f"{testData['assistdate_12']}]",
                 f"$listPointMember:id&event [{testData['idmember']}, "
                 f"{testData['evname_2']}, "\
                 f"{testData['assistdate_1']}, "\
-                f"{testData['assistdate_6']}]",
+                f"{testData['assistdate_12']}]",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_2']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ] ",
+                f"{testData['assistdate_12']} ] ",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_2']} ,"\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ]FILL",
+                f"{testData['assistdate_12']} ]FILL",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_2']} ,"\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ] FILL"]
+                f"{testData['assistdate_12']} ] FILL"]
     for command in commands:
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
@@ -1021,7 +1021,7 @@ async def testPointMemberDefault_listPointMemberIdEvent2_total(capfd):
         assert "Ninguno" in out
         totalPoints = 4*testData['evpoints_2']
         assert str(totalPoints) in out
-
+git
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberIdEvent3_partial(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
@@ -1070,23 +1070,23 @@ async def testPointMemberDefault_listPointMemberIdEvent3_total(capfd):
     commands = [f"$listPointMember:id&event[{testData['idmember']},"\
                 f"{testData['evname_3']},"\
                 f"{testData['assistdate_1']},"\
-                f"{testData['assistdate_6']}]",
+                f"{testData['assistdate_12']}]",
                 f"$listPointMember:id&event [{testData['idmember']}, "
                 f"{testData['evname_3']}, "\
                 f"{testData['assistdate_1']}, "\
-                f"{testData['assistdate_6']}]",
+                f"{testData['assistdate_12']}]",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_3']}, "\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ] ",
+                f"{testData['assistdate_12']} ] ",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_3']} ,"\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ]FILL",
+                f"{testData['assistdate_12']} ]FILL",
                 f"$listPointMember:id&event [ {testData['idmember']} ,"\
                 f" {testData['evname_3']} ,"\
                 f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_6']} ] FILL"]
+                f"{testData['assistdate_12']} ] FILL"]
     for command in commands:
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
