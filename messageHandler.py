@@ -471,7 +471,7 @@ class MessageHandler:
                                               "siguiente forma:\n"\
                                               f"**${command}** " + \
                                               (parameters
-                                               if command.find(':') != -1
+                                               if request
                                                else '') + \
                                               "**> e**")
                     else:
@@ -624,7 +624,7 @@ class MessageHandler:
                                       "el registro de la solicitud "\
                                      f"**_{message.content[:100]}" + \
                                       ('_** ' if
-                                       len(message.content) < 100 else 
+                                       len(message.content) < 100 else
                                       '..._** ') + \
                                       "ya que existen errores "\
                                       "en los valores ingresados. "\
