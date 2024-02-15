@@ -35,7 +35,7 @@ async def testPointMemberStruct_listPointMember_invalidStruct(capfd):
         assert "**$listPointMember [_Fecha 1, Fecha 2_]**\n" in out
 
 @pytest.mark.asyncio
-async def testMemberStruct_listPointMemberId_invalidStruct(capfd):
+async def testPointMemberStruct_listPointMemberId_invalidStruct(capfd):
     commands = ["$listPointMember:id", "$listPointMember:id ",
                 "$listPointMember:id[", "$listPointMember:id [",
                 "$listPointMember:idFILL[", "$listPointMember:id]",
@@ -49,13 +49,99 @@ async def testMemberStruct_listPointMemberId_invalidStruct(capfd):
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
-                         Helpers.getStruct("member", 
+                         Helpers.getStruct("member",
                                            ["id",
                                             "assist_date_1",
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:id [_ID, Fecha 1, Fecha 2_]**\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberStruct_listPointMemberName_invalidStruct(capfd):
+    commands = ["$listPointMember:name", "$listPointMember:name ",
+                "$listPointMember:name[", "$listPointMember:name [",
+                "$listPointMember:nameFILL[", "$listPointMember:name]",
+                "$listPointMember:name ]", "$listPointMember:nameFILL []",
+                "$listPointMember:name FILL []", "$listPointMember:name [FILL",
+                "$listPointMember:name[FILL", "$listPointMember:name [ FILL",
+                "$listPointMember:name FILL]", "$listPointMember:name FILL ] "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:name", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["name",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listPointMember:name"\
+               "[_Nombre, Fecha 1, Fecha 2_]**\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberStruct_listPointMemberRange_invalidStruct(capfd):
+    commands = ["$listPointMember:range",
+                "$listPointMember:range ",
+                "$listPointMember:range[",
+                "$listPointMember:range [",
+                "$listPointMember:rangeFILL[",
+                "$listPointMember:range]",
+                "$listPointMember:range ]",
+                "$listPointMember:nameFILL []",
+                "$listPointMember:range FILL []",
+                "$listPointMember:range [FILL",
+                "$listPointMember:range[FILL",
+                "$listPointMember:range [ FILL",
+                "$listPointMember:range FILL]",
+                "$listPointMember:range FILL ] "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["range",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listPointMember:range"\
+               "[_Rango, Fecha 1, Fecha 2_]**\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberStruct_listPointMemberEvent_invalidStruct(capfd):
+    commands = ["$listPointMember:event",
+                "$listPointMember:event ",
+                "$listPointMember:event[",
+                "$listPointMember:event [",
+                "$listPointMember:eventFILL[",
+                "$listPointMember:event]",
+                "$listPointMember:event ]",
+                "$listPointMember:nameFILL []",
+                "$listPointMember:event FILL []",
+                "$listPointMember:event [FILL",
+                "$listPointMember:event[FILL",
+                "$listPointMember:event [ FILL",
+                "$listPointMember:event FILL]",
+                "$listPointMember:event FILL ] "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "El comando debe mantener la forma:\n" in out
+        assert "**$listPointMember:event"\
+               "[_Evento, Fecha 1, Fecha 2_]**\n" in out
 
 '''
 @pytest.mark.asyncio
