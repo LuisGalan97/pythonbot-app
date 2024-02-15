@@ -1367,6 +1367,264 @@ async def testPointMemberDefault_listPointMemberNameEvent3_total(capfd):
         assert str(totalPoints) in out
 
 @pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent1_partial(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 2*testData['evpoints_1']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent1_total(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_1']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 4*testData['evpoints_1']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent2_partial(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_2']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_2']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_2']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_2']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_2']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 2*testData['evpoints_2']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent2_total(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_2']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_2']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_2']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_2']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_2']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 4*testData['evpoints_2']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent3_partial(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_3']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_3']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_6']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_3']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_3']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_3']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_6']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 2*testData['evpoints_3']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
+async def testPointMemberDefault_listPointMemberRangeEvent3_total(capfd):
+    commands = [f"$listPointMember:range&event[{testData['ranname']},"\
+                f"{testData['evname_3']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [{testData['ranname']}, "
+                f"{testData['evname_3']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_3']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_3']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listPointMember:range&event [ {testData['ranname']} ,"\
+                f" {testData['evname_3']} ,"\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "assist_date_1",
+                                        "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        totalPoints = 4*testData['evpoints_3']
+        assert str(totalPoints) in out
+
+@pytest.mark.asyncio
 async def testPointMemberDefault_delAssistId_1(capfd):
     command = f"$delAssist:id [{testData['idassist_1']}]"
     channel = Channel(name=name)
