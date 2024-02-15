@@ -1891,7 +1891,7 @@ async def testPointMemberDefault_listPointMember_eIncomplete(capfd):
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
             assert f"**$listPointMember:** **[**{testData['assistdate_1']}, "\
-                   f"{testData['assistdate_2']}**]** "\
+                   f"{testData['assistdate_12']}**]** "\
                     "**> e**\n" in out
 
 @pytest.mark.asyncio
