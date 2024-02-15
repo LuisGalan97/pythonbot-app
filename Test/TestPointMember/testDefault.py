@@ -1890,7 +1890,7 @@ async def testPointMemberDefault_listPointMember_eIncomplete(capfd):
                    "comando inicial, si desea obtener los datos en un "\
                    "archivo de excel, debe completar el comando ingresadolo "\
                    "de la siguiente forma:\n" in out
-            assert f"**$listPointMember:** **[**{testData['assistdate_1']}, "\
+            assert f"**$listPointMember** **[**{testData['assistdate_1']}, "\
                    f"{testData['assistdate_12']}**]** "\
                     "**> e**\n" in out
 
