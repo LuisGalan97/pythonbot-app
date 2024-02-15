@@ -1920,8 +1920,14 @@ async def testPointMemberDefault_listPointMemberId_eIncomplete(capfd):
                                                 "assist_date_1",
                                                 "assist_date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**\n" in out
-            assert "discord.file.File object" in out
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listPointMember:id** **[**{testData['idmember']}, "\
+                   f"{testData['assistdate_1']}**]** "\
+                   f"{testData['assistdate_12']}**]** "\
+                    "**> e**\n" in out
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberName_eIncomplete(capfd):
@@ -1949,8 +1955,14 @@ async def testPointMemberDefault_listPointMemberName_eIncomplete(capfd):
                                                 "assist_date_1",
                                                 "assist_date_2"]))
             out, _ = capfd.readouterr()
-            assert "**___Integrantes___** **___encontrados:___**\n" in out
-            assert "discord.file.File object" in out
+            assert "Se ha detectado el uso del operador **>** despues del "\
+                   "comando inicial, si desea obtener los datos en un "\
+                   "archivo de excel, debe completar el comando ingresadolo "\
+                   "de la siguiente forma:\n" in out
+            assert f"**$listPointMember:name** **[**{testData['memname']}, "\
+                   f"{testData['assistdate_1']}**]** "\
+                   f"{testData['assistdate_12']}**]** "\
+                    "**> e**\n" in out
 
 @pytest.mark.asyncio
 async def testPointMemberDefault_listPointMemberRange_eIncomplete(capfd):
