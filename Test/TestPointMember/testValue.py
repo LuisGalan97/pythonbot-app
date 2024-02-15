@@ -623,9 +623,9 @@ async def testPointMemberValue_listPointMemberName_date2Invalid(capfd):
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
         hdlr = MessageHandler(message, client, True)
-        await hdlr.dFMsg("listPointMember:range", app.getDatas,
+        await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["range",
+                                           ["name",
                                             "assist_date_1",
                                             "assist_date_2"]))
         out, _ = capfd.readouterr()
