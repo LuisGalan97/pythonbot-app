@@ -8,6 +8,7 @@ testData = {
     "id" : "1",
     "name" : "TestMember",
     "range" : "General de alianza",
+    "event" : "defprismaganada",
     "date" : "25/01/2100"
 }
 
@@ -940,6 +941,312 @@ async def testPointMemberValue_listPointMemberRange_date2Invalid(capfd):
                f"**_Fecha 2_** "\
                 "es invalido.\n" in out
 
+#-------------------Test $listPointMember:event [Evento, *, *]-----------------
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_eventEmpty(capfd):
+    value = ""
+    commands = [f"$listPointMember:event[{value},"\
+                f"{testData['date']},"\
+                f"{testData['date']}]",
+                f"$listPointMember:event [{value}, "\
+                f"{testData['date']}, "\
+                f"{testData['date']} ]",
+                f"$listPointMember:event [ {value} ,"\
+                f" {testData['date']} ,"\
+                f" {testData['date']} ]",
+                f"$listPointMember:event [ {value} ,"\
+                f" {testData['date']} ,"\
+                f" {testData['date']} ]FILL",
+                f"$listPointMember:event [ {value} ,"\
+                f" {testData['date']} ,"\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Evento_**\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_eventLong(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$listPointMember:event[{value},"\
+                f"{testData['date']},"\
+                f"{testData['date']}]",
+                f"$listPointMember:event [{value}, "\
+                f"{testData['date']}, "\
+                f"{testData['date']} ]",
+                f"$listPointMember:event [ {value} ,"\
+                f" {testData['date']} ,"\
+                f" {testData['date']} ]",
+                f"$listPointMember:event [ {value} ,"\
+                f" {testData['date']} ,"\
+                f" {testData['date']} ]FILL",
+                f"$listPointMember:event [ {value} ,"\
+                f" {testData['date']} ,"\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Evento_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_eventStartChar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$listPointMember:event[{value},"\
+                    f"{testData['date']},"\
+                    f"{testData['date']}]",
+                    f"$listPointMember:event [{value}, "\
+                    f"{testData['date']}, "\
+                    f"{testData['date']} ]",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ]",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ]FILL",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Evento_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_eventSpeChar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$listPointMember:event[{value},"\
+                    f"{testData['date']},"\
+                    f"{testData['date']}]",
+                    f"$listPointMember:event [{value}, "\
+                    f"{testData['date']}, "\
+                    f"{testData['date']} ]",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ]",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ]FILL",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Evento_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_eventRepeatChar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$listPointMember:event[{value},"\
+                    f"{testData['date']},"\
+                    f"{testData['date']}]",
+                    f"$listPointMember:event [{value}, "\
+                    f"{testData['date']}, "\
+                    f"{testData['date']} ]",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ]",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ]FILL",
+                    f"$listPointMember:event [ {value} ,"\
+                    f" {testData['date']} ,"\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, True)
+            await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                             Helpers.getStruct("member",
+                                               ["event",
+                                                "assist_date_1",
+                                                "assist_date_2"]))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Evento_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+
+#----------------Test $listPointMember:event [*, Fecha 1, *]-------------------
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_date1Empty(capfd):
+    value = ""
+    commands = [f"$listPointMember:event[{testData['event']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$listPointMember:event [{testData['event']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {value} ,"\
+                f" {testData['date']} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {value} ,"\
+                f" {testData['date']} ]FILL",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {value} ,"\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 1_**\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_date1Invalid(capfd):
+    value = "test"
+    commands = [f"$listPointMember:event[{testData['event']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$listPointMember:event [{testData['event']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {value} ,"\
+                f" {testData['date']} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {value} ,"\
+                f" {testData['date']} ]FILL",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {value} ,"\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha 1_** "\
+                "es invalido.\n" in out
+
+#----------------Test $listPointMember:event [*, *, Fecha 2]-------------------
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_date2Empty(capfd):
+    value = ""
+    commands = [f"$listPointMember:event[{testData['event']},"\
+                f"{testData['date']},"\
+                f"{value}]",
+                f"$listPointMember:event [{testData['event']}, "\
+                f"{testData['date']}, "\
+                f"{value} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {testData['date']} ,"\
+                f" {value} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {testData['date']} ,"\
+                f" {value} ]FILL",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {testData['date']} ,"\
+                f" {value} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Fecha 2_**\n" in out
+
+@pytest.mark.asyncio
+async def testPointMemberValue_listPointMemberEvent_date2Invalid(capfd):
+    value = "test"
+    commands = [f"$listPointMember:event[{testData['event']},"\
+                f"{testData['date']},"\
+                f"{value}]",
+                f"$listPointMember:event [{testData['event']}, "\
+                f"{testData['date']}, "\
+                f"{value} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {testData['date']} ,"\
+                f" {value} ]",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {testData['date']} ,"\
+                f" {value} ]FILL",
+                f"$listPointMember:event [ {testData['event']} ,"\
+                f" {testData['date']} ,"\
+                f" {value} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, True)
+        await hdlr.dFMsg("listPointMember:event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["event",
+                                            "assist_date_1",
+                                            "assist_date_2"]))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado en el campo "\
+               f"**_Fecha 2_** "\
+                "es invalido.\n" in out
 '''
 #-----------------------------$listMember:id [ID]------------------------------
 @pytest.mark.asyncio
