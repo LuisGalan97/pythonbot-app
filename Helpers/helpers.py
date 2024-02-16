@@ -987,11 +987,7 @@ class Helpers:
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
                             "corchetes **[ ]**. "\
-                           f"Estos parametros **_{parameters[0]}_** "\
-                           f"y **_{parameters[1]}_** "\
-                            "deberán corresponder a valores de fecha "\
-                            "en 'Día/Mes/Año'. "\
-                            "En esta lista se habilita una "\
+                            "En esta se habilita una nueva "\
                             "columna denominada **Puntos acumulados**, "\
                             "asociada al total de "\
                             "puntos de todas las ___asistencias___ "\
@@ -1000,8 +996,11 @@ class Helpers:
                             "mostrando de esta forma solo los "\
                            f" ___{controller}s___ que posean puntos, "\
                             "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion.\n"
-
+                           f"menor dependiendo de su puntuacion."\
+                           f"Los parametros **_{parameters[0]}_** "\
+                           f"y **_{parameters[1]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'.\n"
             elif target == "id" and len(parameters) == 1:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
