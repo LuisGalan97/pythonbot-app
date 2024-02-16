@@ -988,7 +988,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "registradas entre las fechas en cuestion. "\
+                            "registradas dentro de las fechas en cuestion. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1050,7 +1050,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "registradas entre las fechas en cuestion. "\
+                            "registradas dentro de las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor numerico y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1122,7 +1122,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "registradas entre las fechas en cuestion. "\
+                            "registradas dentro de las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1209,7 +1209,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "vinculadas al "\
                            f"___{parameters[1].lower()}___ "\
-                            "y registradas entre las fechas en cuestion. "\
+                            "y registradas dentro de las fechas en cuestion. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
@@ -1425,7 +1425,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "registradas entre las fechas en cuestion. "\
+                            "registradas dentro de las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1492,7 +1492,7 @@ class Helpers:
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
                            f"vinculadas al ___{parameters[0].lower()}___ "\
-                            "y registradas entre las fechas en cuestion. "\
+                            "y registradas dentro de las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
