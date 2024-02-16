@@ -991,9 +991,9 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente cada ___{controller}___ "\
-                            "entre las fechas en cuestion, "\
+                            "para las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"Los parametros **_{parameters[0]}_** "\
@@ -1014,7 +1014,7 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente cada ___{controller}___, "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
@@ -1066,9 +1066,9 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente el ___{controller}___ "\
-                            "entre las fechas en cuestion, "\
+                            "para las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
@@ -1094,8 +1094,8 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
-                           f"presente el ___{controller}___ "\
+                            "en las que esta "\
+                           f"presente el ___{controller}___, "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1150,9 +1150,9 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente el ___{controller}___ "\
-                            "entre las fechas en cuestion, "\
+                            "para las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
@@ -1178,8 +1178,8 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
-                           f"presente el ___{controller}___ "\
+                            "en las que esta "\
+                           f"presente el ___{controller}___, "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1246,10 +1246,10 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
-                           f"presente en el ___{controller}___ "\
+                            "en las que esta "\
+                           f"presente el ___{controller}___ "\
                            f"para el ___{parameters[1].lower()}___ "\
-                            "y entre las fechas en cuestion, "\
+                            "y las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
@@ -1275,8 +1275,8 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
-                           f"el ___{controller}___, "\
+                            "en las que esta "\
+                           f"presente el ___{controller}___, "\
                             "vinculadas al parametro "\
                            f"**_{parameters[1]}_**, "\
                             "en relacion al nombre de" + \
@@ -1491,9 +1491,9 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente cada ___{controller}___ "\
-                            "entre las fechas en cuestion, "\
+                            "para las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
@@ -1528,8 +1528,8 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
-                           f"presente cada ___{controller}___ "\
+                            "en las que esta "\
+                           f"presente cada ___{controller}___, "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1571,10 +1571,10 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente cada ___{controller}___ "\
                            f"para el ___{parameters[0].lower()}___ "\
-                            "y entre las fechas en cuestion, "\
+                            "y las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
@@ -1597,7 +1597,7 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté "\
+                            "en las que esta "\
                            f"presente cada ___{controller}___, "\
                             "vinculadas al parametro "\
                            f"**_{parameters[0]}_**, "\
