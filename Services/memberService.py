@@ -17,9 +17,9 @@ class MemberService:
                 "i.id, "\
                 "i.nombre AS name, "\
                 "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
-                "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate, "\
+                "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate "\
             "FROM integrantes i "\
-            "LEFT JOIN rangos r ON r.id = i.rango_id "\
+            "LEFT JOIN rangos r ON r.id = i.rango_id"\
             )
             self.__db.start_connection()
             if not target:
