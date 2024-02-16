@@ -1191,8 +1191,7 @@ class Helpers:
                            "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                           "que posea ___asistencias___ registradas "\
-                           "vinculadas "\
+                           "que posea ___asistencias___ vinculadas "\
                            f"al parametro **_{parameters[1]}_**, "\
                            "en relacion al nombre de" + \
                            (' la '
