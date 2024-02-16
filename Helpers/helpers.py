@@ -988,7 +988,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "en cuestion. "\
+                           f"en cuestion para cada ___{controller}___. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1048,9 +1048,9 @@ class Helpers:
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "mostrando de mayor a menor el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
-                            "en cuestion. "\
+                           f"en cuestion para el ___{controller}___. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor numerico y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1120,9 +1120,9 @@ class Helpers:
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "mostrando de mayor a menor el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
-                            "en cuestion. "\
+                           f"en cuestion para el ___{controller}___. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1204,11 +1204,9 @@ class Helpers:
                            f"y **_{parameters[3]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "mostrando de mayor a menor el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
-                            "vinculadas al "\
-                           f"___{parameters[1].lower()}___ "\
-                            "en cuestion. "\
+                           f"en cuestion para el ___{controller}___. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
@@ -1424,7 +1422,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "en cuestion. "\
+                           f"en cuestion para cada ___{controller}___. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1489,7 +1487,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"en cuestion. "\
+                           f"en cuestion para cada ___{controller}___. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
