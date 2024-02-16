@@ -988,7 +988,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "para las fechas en cuestion. "\
+                            "registradas entre las fechas en cuestion. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1004,7 +1004,7 @@ class Helpers:
                             else 'todos los ') + \
                            f"___{controller}s___, "\
                             "mostrando de mayor a  menor el total de "\
-                            "puntos de las ___asistencias___ "\
+                            "puntos de las ___asistencias___ registradas "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
@@ -1050,7 +1050,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "para las fechas en cuestion. "\
+                            "registradas entre las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor numerico y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1072,7 +1072,8 @@ class Helpers:
                            f"al parametro **_{parameters[0]}_**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"entre las fechas **_{parameters[1]}_** "\
+                            "registradas entre las fechas "\
+                           f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**. "\
@@ -1121,7 +1122,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "para las fechas en cuestion. "\
+                            "registradas entre las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1143,7 +1144,8 @@ class Helpers:
                            f"al parametro **_{parameters[0]}_**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"entre las fechas **_{parameters[1]}_** "\
+                            "registradas entre las fechas "\
+                           f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**. "\
@@ -1205,8 +1207,9 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"para el ___{parameters[1].lower()}___ "\
-                            "y las fechas en cuestion. "\
+                            "vinculadas al "\
+                           f"___{parameters[1].lower()}___ "\
+                            "y registradas entre las fechas en cuestion. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
@@ -1422,7 +1425,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                            "para las fechas en cuestion. "\
+                            "registradas entre las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1450,7 +1453,8 @@ class Helpers:
                            f"cada ___{controller}___, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"entre las fechas **_{parameters[1]}_** "\
+                            "registradas entre las fechas "\
+                           f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**. "\
@@ -1487,8 +1491,8 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"para el ___{parameters[0].lower()}___ "\
-                            "y las fechas en cuestion. "\
+                           f"vinculadas al ___{parameters[0].lower()}___ "\
+                            "y registradas entre las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
