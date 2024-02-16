@@ -1491,7 +1491,8 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
                            f"presente cada ___{controller}___ "\
-                            "entre las fechas en cuestion, "\
+                           f"para el ___{parameters[0].lower()}___ "\
+                            "y entre las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
