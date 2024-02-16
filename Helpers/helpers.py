@@ -986,12 +986,10 @@ class Helpers:
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente cada ___{controller}___ "\
+                           f"cada ___{controller}___ "\
                             "para las fechas en cuestion. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
@@ -1007,12 +1005,10 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente cada ___{controller}___, "\
+                           f"cada ___{controller}___, "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
@@ -1056,12 +1052,10 @@ class Helpers:
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente el ___{controller}___ "\
+                           f"el ___{controller}___ "\
                             "para las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor numerico y "\
@@ -1082,12 +1076,10 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente el ___{controller}___, "\
+                           f"el ___{controller}___, "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1135,12 +1127,10 @@ class Helpers:
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente el ___{controller}___ "\
+                           f"el ___{controller}___ "\
                             "para las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
@@ -1161,12 +1151,10 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente el ___{controller}___, "\
+                           f"el ___{controller}___, "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1227,12 +1215,10 @@ class Helpers:
                            f"y **_{parameters[3]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente el ___{controller}___ "\
+                           f"el ___{controller}___ "\
                            f"para el ___{parameters[1].lower()}___ "\
                             "y las fechas en cuestion. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
@@ -1254,12 +1240,10 @@ class Helpers:
                             "asociad" + \
                             ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente el ___{controller}___, "\
+                           f"el ___{controller}___, "\
                             "vinculadas al parametro "\
                            f"**_{parameters[1]}_**, "\
                             "en relacion al nombre de" + \
@@ -1452,12 +1436,10 @@ class Helpers:
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente cada ___{controller}___ "\
+                           f"cada ___{controller}___ "\
                             "para las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
@@ -1484,12 +1466,10 @@ class Helpers:
                             else 'l ') + \
                            f"___{parameters[0].lower()}___ presente en "\
                            f"cada ___{controller}___, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente cada ___{controller}___, "\
+                           f"cada ___{controller}___, "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1525,12 +1505,10 @@ class Helpers:
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente cada ___{controller}___ "\
+                           f"cada ___{controller}___ "\
                            f"para el ___{parameters[0].lower()}___ "\
                             "y las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
@@ -1549,12 +1527,10 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___, "\
-                            "habilitando la "\
-                            "columna **Puntos acumulados**, "\
-                            "la cual contiene el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
-                           f"presente cada ___{controller}___, "\
+                           f"cada ___{controller}___, "\
                             "vinculadas al parametro "\
                            f"**_{parameters[0]}_**, "\
                             "en relacion al nombre de" + \
