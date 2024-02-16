@@ -1070,7 +1070,7 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando de mayor a menor el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "registradas entre las fechas "\
                            f"**_{parameters[1]}_** "\
@@ -1142,7 +1142,7 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando de mayor a menor el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "registradas entre las fechas "\
                            f"**_{parameters[1]}_** "\
@@ -1226,7 +1226,7 @@ class Helpers:
                             "asociad" + \
                             ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando de mayor a menor el total de "\
+                            "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                             "vinculadas al parametro "\
                            f"**_{parameters[1]}_**, "\
