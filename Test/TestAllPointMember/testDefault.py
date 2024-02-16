@@ -2386,8 +2386,13 @@ async def testAllPointMemberDefault_listAllPointMember_AssistNoExist(capfd):
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberId_AssistNoExist(capfd):
@@ -2418,8 +2423,14 @@ async def testAllPointMemberDefault_listAllPointMemberId_AssistNoExist(capfd):
                                              "date_2"],
                                              "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
+
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberName_AssistNoExist(
     capfd):
@@ -2450,8 +2461,13 @@ async def testAllPointMemberDefault_listAllPointMemberName_AssistNoExist(
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberRange_AssistNoExist(
@@ -2483,8 +2499,13 @@ async def testAllPointMemberDefault_listAllPointMemberRange_AssistNoExist(
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberEvent_AssistNoExist(
@@ -2516,8 +2537,13 @@ async def testAllPointMemberDefault_listAllPointMemberEvent_AssistNoExist(
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberIdEvent_AssistNoExist(
@@ -2555,8 +2581,13 @@ async def testAllPointMemberDefault_listAllPointMemberIdEvent_AssistNoExist(
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberNameEvent_AssistNoExist(
@@ -2594,8 +2625,13 @@ async def testAllPointMemberDefault_listAllPointMemberNameEvent_AssistNoExist(
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_listAllPointMemberRangeEvent_AssistNoExist(
@@ -2633,8 +2669,13 @@ async def testAllPointMemberDefault_listAllPointMemberRangeEvent_AssistNoExist(
                                             "date_2"],
                                             "atpoints"))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert "**___Integrantes___** **___encontrados:___**\n" in out
+        assert f"{testData['idmember']}" in out
+        assert f"{testData['memname']}" in out
+        assert f"{testData['ranname']}" in out
+        assert f"{testData['memdate'].replace('-','/')}" in out
+        assert "Ninguno" in out
+        assert "0" in out
 
 @pytest.mark.asyncio
 async def testAllPointMemberDefault_delEventId_1(capfd):
