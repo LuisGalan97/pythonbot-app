@@ -8,7 +8,7 @@ class AssistController:
     def __init__(self, db : Database):
         self.__service = AssistService(db)
 
-    def getAssists(self, target, option):
+    def getAssists(self, target = None, option = None):
         assists = self.__service.select(target, option)
         if isinstance(assists, list):
             data = []

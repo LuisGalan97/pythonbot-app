@@ -6,7 +6,7 @@ class RangeController:
     def __init__(self, db : Database):
         self.__service = RangeService(db)
 
-    def getRanges(self, target, option):
+    def getRanges(self, target = None, option = None):
         ranges = self.__service.select(target, option)
         if isinstance(ranges, list):
             data = []

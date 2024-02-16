@@ -6,7 +6,7 @@ class EventController:
     def __init__(self, db : Database):
         self.__service = EventService(db)
 
-    def getEvents(self, target, option):
+    def getEvents(self, target = None, option = None):
         events = self.__service.select(target, option)
         if isinstance(events, list):
             data = []

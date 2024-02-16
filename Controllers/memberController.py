@@ -7,7 +7,7 @@ class MemberController:
     def __init__(self, db : Database):
         self.__service = MemberService(db)
 
-    def getMembers(self, target, option):
+    def getMembers(self, target = None, option = None):
         members = self.__service.select(target, option)
         if isinstance(members, list):
             data = []
