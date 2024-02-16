@@ -1220,8 +1220,8 @@ class Helpers:
                            (' la '
                             if parameters[1][0] == 'a'
                             else 'l ') + \
-                           f"___{parameters[1].lower()}___ presente en la "\
-                           f"___asistencia___, "\
+                           f"___{parameters[1].lower()}___ presente en "\
+                           f"cada ___asistencia___, "\
                             "y registradas "\
                            f"entre las fechas **_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_**, "\
@@ -1266,8 +1266,8 @@ class Helpers:
                            (' la '
                             if parameters[1][0] == 'a'
                             else 'l ') + \
-                           f"___{parameters[1].lower()}___ presente en la "\
-                           f"___asistencia___, "\
+                           f"___{parameters[1].lower()}___ presente en "\
+                           f"cada ___asistencia___, "\
                             "y registradas entre las fechas "\
                            f"**_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_**, "\
@@ -1309,11 +1309,8 @@ class Helpers:
                        (' la '
                         if parameters[1][0] == 'a'
                         else 'l ') + \
-                       f"___{parameters[1].lower()}___ presentes en " + \
-                       ('la '
-                        if controller[0] == 'a'
-                        else 'el ') + \
-                       f"___{controller}___. "\
+                       f"___{parameters[1].lower()}___ presentes en "\
+                       f"cada ___{controller}___. "\
                        f"Ambos parametros **_{parameters[0]}_** "\
                        f"y **_{parameters[1]}_** "\
                         "deberán corresponder a valores de texto.\n"
@@ -1336,11 +1333,8 @@ class Helpers:
                        (' la '
                         if parameters[0][0] == 'a'
                         else 'l ') + \
-                       f"___{parameters[0].lower()}___ presente en " + \
-                       ('la '
-                        if controller[0] == 'a'
-                        else 'el ') + \
-                       f"___{controller}___, "\
+                       f"___{parameters[0].lower()}___ presente en "\
+                       f"cada ___{controller}___, "\
                         "y registrad" + \
                        ('a'if
                         controller[0] == 'a'
@@ -1375,11 +1369,8 @@ class Helpers:
                        (' la '
                         if parameters[0][0] == 'a'
                         else 'l ') + \
-                       f"___{parameters[0].lower()}___ presente en " + \
-                       ('la '
-                        if controller[0] == 'a'
-                        else 'el ') + \
-                       f"___{controller}___, "\
+                       f"___{parameters[0].lower()}___ presente en "\
+                       f"cada ___{controller}___, "\
                         "y registrad" + \
                        ('a'
                         if controller[0] == 'a'
@@ -1419,11 +1410,8 @@ class Helpers:
                        (' la '
                         if parameters[1][0] == 'a'
                         else 'l ') + \
-                       f"___{parameters[1].lower()}___ presentes en " + \
-                       ('la '
-                        if controller[0] == 'a'
-                        else 'el ') + \
-                       f"___{controller}___, "\
+                       f"___{parameters[1].lower()}___ presentes en "\
+                       f"cada ___{controller}___, "\
                         "y registrad" + \
                        ('a'
                         if controller[0] == 'a'
@@ -1494,11 +1482,8 @@ class Helpers:
                            (' la '
                             if parameters[0][0] == 'a'
                             else 'l ') + \
-                           f"___{parameters[0].lower()}___ presente en " + \
-                           ('la '
-                            if controller[0] == 'a'
-                            else 'el ') + \
-                           f"___{controller}___, "\
+                           f"___{parameters[0].lower()}___ presente en "\
+                           f"cada ___{controller}___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
                             "la cual contiene el total de "\
@@ -1533,8 +1518,8 @@ class Helpers:
                            (' la '
                             if parameters[0][0] == 'a'
                             else 'l ') + \
-                           f"___{parameters[0].lower()}___ presente en la "\
-                           f"___asistencia___, "\
+                           f"___{parameters[0].lower()}___ presente en "\
+                           f"cada ___asistencia___, "\
                             "y registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
@@ -1576,8 +1561,8 @@ class Helpers:
                            (' la '
                             if parameters[0][0] == 'a'
                             else 'l ') + \
-                           f"___{parameters[0].lower()}___ presente en la "\
-                           f"___asistencia___, "\
+                           f"___{parameters[0].lower()}___ presente en "\
+                           f"cada ___asistencia___, "\
                             "y registradas entre las fechas "\
                            f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
