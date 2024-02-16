@@ -1376,7 +1376,7 @@ class Helpers:
                        f"y **_{parameters[3]}_** "\
                         "deberán corresponder a valores de fecha "\
                         "en 'Día/Mes/Año'.\n"
-            elif len(parameters) == 3:
+            elif target == "range" and len(parameters) == 3:
                 if head == "listPointMember":
                     return f"- **${head}:{target} "\
                            f"[_{', '.join(parameters)}_]** " + \
@@ -1399,7 +1399,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'el ') + \
                             f"___{controller}___, "\
-                            "que posea ___asistencias___ "\
+                            "que posean ___asistencias___ "\
                             "registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
@@ -1410,7 +1410,7 @@ class Helpers:
                             "asociada a la suma total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
-                           f"presente el ___{controller}___ "\
+                           f"presente cada ___{controller}___ "\
                             "entre las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
@@ -1447,7 +1447,7 @@ class Helpers:
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
-                           f"presente el ___{controller}___ "\
+                           f"presente cada ___{controller}___ "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
