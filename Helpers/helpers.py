@@ -1229,7 +1229,7 @@ class Helpers:
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
                            "que posea ___asistencias___ "\
-                           "asociadas "\
+                           "vinculadas "\
                            f"al parametro **_{parameters[1]}_**, "\
                            "en relacion al nombre de" + \
                            (' la '
@@ -1277,7 +1277,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
                            f"el ___{controller}___, "\
-                            "asociadas al parametro "\
+                            "vinculadas al parametro "\
                            f"**_{parameters[1]}_**, "\
                             "en relacion al nombre de" + \
                            (' la '
@@ -1554,7 +1554,7 @@ class Helpers:
                             else 'todos los ') + \
                            f"___{controller}s___ "\
                            "que posean ___asistencias___ "\
-                           "asociadas "\
+                           "vinculadas "\
                            f"al parametro **_{parameters[0]}_**, "\
                            "en relacion al nombre de" + \
                            (' la '
@@ -1599,7 +1599,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
                            f"presente cada ___{controller}___, "\
-                            "asociadas al parametro "\
+                            "vinculadas al parametro "\
                            f"**_{parameters[0]}_**, "\
                             "en relacion al nombre de" + \
                            (' la '
