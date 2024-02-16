@@ -987,14 +987,12 @@ class Helpers:
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "habilitando una nueva "\
-                            "columna denominada **Puntos acumulados**, "\
+                            "habilitando la "\
+                            "columna **Puntos acumulados**, "\
                             "asociada al total de "\
                             "puntos de todas las ___asistencias___ "\
                             "en las que "\
                            f"se encuentre cada ___{controller}___, "\
-                            "mostrando de esta forma solo los "\
-                           f" ___{controller}s___ que posean puntos, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"Los parametros **_{parameters[0]}_** "\
@@ -1010,13 +1008,13 @@ class Helpers:
                            ('todas las '
                             if controller[0] == 'a'
                             else 'todos los ') + \
-                           f"___{controller}s___, "\
-                            "habilitando una nueva "\
-                            "columna denominada **Puntos acumulados**, "\
+                           f"___{controller}s___ "\
+                            "habilitando la "\
+                            "columna **Puntos acumulados**, "\
                             "asociada al total de "\
                             "puntos de todas las ___asistencias___ "\
                             "en las que "\
-                           f"se encuentre cada ___{controller}___, "\
+                           f"se encuentre cada ___{controller}___ "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
