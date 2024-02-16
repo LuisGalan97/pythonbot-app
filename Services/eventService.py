@@ -25,7 +25,7 @@ class EventService:
                        f"{selectQuery} "\
                         "WHERE id = ?",
                         (target["id"],))
-            elif target.keys() == "name":
+            elif target.keys() == {"name"}:
                 data = self.__db.execute_query(
                        f"{selectQuery} "\
                         "WHERE nombre = ?",
