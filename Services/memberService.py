@@ -307,7 +307,7 @@ class MemberService:
             elif target.keys() == {"range_id", "event_id", "date_1", "date_2"}:
                 data = self.__db.execute_query(
                        f"{selectQuery} "\
-                        "WHERE a.fecha BETWEEN "\
+                        "AND a.fecha BETWEEN "\
                         "? AND ? "\
                         "LEFT JOIN eventos e ON e.id = a.evento_id "\
                         "AND a.evento_id = ? "\
