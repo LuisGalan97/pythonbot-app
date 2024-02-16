@@ -993,7 +993,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esté"\
                            f"presente cada ___{controller}___ "\
-                            "para las fechas en cuestion, "\
+                            "entre las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"Los parametros **_{parameters[0]}_** "\
@@ -1012,7 +1012,7 @@ class Helpers:
                            f"___{controller}s___ "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "asociada al total de "\
+                            "asociada a la suma total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esté"\
                            f"presente cada ___{controller}___, "\
@@ -1068,7 +1068,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
                            f"presente el ___{controller}___ "\
-                            "para las fechas en cuestion, "\
+                            "entre las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
@@ -1092,7 +1092,7 @@ class Helpers:
                            f"al parametro **_{parameters[0]}_**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente al total de "\
+                            "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
                            f"presente el ___{controller}___ "\
