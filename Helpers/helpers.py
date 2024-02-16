@@ -176,6 +176,38 @@ class Helpers:
             "user" : adminUser + [],
             "channel" : adminChannel + []
         }
+        access['listAllPointMember'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:id'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:name'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:range'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:id&event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:name&event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
+        access['listAllPointMember:range&event'] = {
+            "user" : adminUser + [],
+            "channel" : adminChannel + []
+        }
         #--------------------------Rangos-----------------------------
         access['addRange'] = {
             "user" : adminUser + [],

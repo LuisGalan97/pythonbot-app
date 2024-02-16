@@ -9,4 +9,5 @@ from TestEvent.testEvent import *
 from TestMember.testMember import *
 from TestRange.testRange import *
 from TestPointMember.testPointMember import *
+from TestAllPointMember.testAllPointMember import *
 from TestConstraints.testConstraints import *

@@ -139,6 +139,56 @@ async def on_message(message):
                                         "date_1",
                                         "date_2"],
                                         "rtpoints"))
+    await hdlr.dFMsg("listAllPointMember", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:id", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["id",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:name", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["name",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:range", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["event",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:id&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["id",
+                                        "event",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:name&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["name",
+                                        "event",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
+    await hdlr.dFMsg("listAllPointMember:range&event", app.getDatas,
+                     Helpers.getStruct("member",
+                                       ["range",
+                                        "event",
+                                        "date_1",
+                                        "date_2"],
+                                        "atpoints"))
     #----------------------------------Rangos----------------------------------
     await hdlr.contMsg("addRange", app.setData,
                        Helpers.setStruct("range"))
