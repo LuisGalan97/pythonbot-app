@@ -1003,8 +1003,9 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___, "\
-                            "mostrando de mayor a  menor el total de "\
-                            "puntos de las ___asistencias___ registradas "\
+                            "mostrando para cada integrante "\
+                            "de mayor a  menor el total de "\
+                            "puntos de sus ___asistencias___ registradas "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
@@ -1070,8 +1071,9 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando el total de "\
-                            "puntos de las ___asistencias___ "\
+                            "mostrando para el integrante "\
+                           f"el total de "\
+                            "puntos de sus ___asistencias___ "\
                             "registradas entre las fechas "\
                            f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
@@ -1142,8 +1144,9 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando el total de "\
-                            "puntos de las ___asistencias___ "\
+                            "mostrando para el integrante "\
+                            "el total de "\
+                            "puntos de sus ___asistencias___ "\
                             "registradas entre las fechas "\
                            f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
@@ -1226,8 +1229,9 @@ class Helpers:
                             "asociad" + \
                             ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando el total de "\
-                            "puntos de las ___asistencias___ "\
+                            "mostrando para el integrante "\
+                            "el total de "\
+                            "puntos de sus ___asistencias___ "\
                             "vinculadas al parametro "\
                            f"**_{parameters[1]}_**, "\
                             "en relacion al nombre de" + \
@@ -1448,8 +1452,9 @@ class Helpers:
                             else 'l ') + \
                            f"___{parameters[0].lower()}___ presente en "\
                            f"cada ___{controller}___, "\
-                            "mostrando de mayor a menor el total de "\
-                            "puntos de las ___asistencias___ "\
+                            "mostrando para cada integrante "\
+                            "de mayor a menor el total de "\
+                            "puntos de sus ___asistencias___ "\
                             "registradas entre las fechas "\
                            f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
@@ -1504,8 +1509,9 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___, "\
-                            "mostrando de mayor a menor el total de "\
-                            "puntos de las ___asistencias___ "\
+                            "mostrando para cada integrante "\
+                            "de mayor a menor el total de "\
+                            "puntos de sus ___asistencias___ "\
                             "vinculadas al parametro "\
                            f"**_{parameters[0]}_**, "\
                             "en relacion al nombre de" + \
