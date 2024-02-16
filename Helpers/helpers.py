@@ -5,7 +5,7 @@ class Helpers:
     def checkAccess(command, author, nameChannel):
         user = str(author)
         channel = str(nameChannel)
-        adminUser = ["test", 
+        adminUser = ["omegaxis_", "test", 
                      "lia7624"]
         adminChannel = ["test"]
         access = {}
@@ -242,10 +242,10 @@ class Helpers:
             "channel" : adminChannel + []
         }
         if command in list(access.keys()):
-            if (user in access[command]["user"] or
-                '*' in access[command]["user"] and
-                channel in access[command]["channel"] or
-                '*' in access[command]["channel"]):
+            if ((user in access[command]["user"] or
+                '*' in access[command]["user"]) and
+                (channel in access[command]["channel"] or
+                '*' in access[command]["channel"])):
                 return True
             else:
                 return False
