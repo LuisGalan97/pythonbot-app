@@ -986,8 +986,8 @@ class Helpers:
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
-                            "corchetes **[ ]**. "\
-                            "En esta se habilita una nueva "\
+                            "corchetes **[ ]**, "\
+                            "habilitando una nueva "\
                             "columna denominada **Puntos acumulados**, "\
                             "asociada al total de "\
                             "puntos de todas las ___asistencias___ "\
@@ -996,7 +996,33 @@ class Helpers:
                             "mostrando de esta forma solo los "\
                            f" ___{controller}s___ que posean puntos, "\
                             "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion."\
+                           f"menor dependiendo de su puntuacion. "\
+                           f"Los parametros **_{parameters[0]}_** "\
+                           f"y **_{parameters[1]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'.\n"
+                elif head == "listAllPointMember":
+                    return f"- **${head} "\
+                           f"[_{', '.join(parameters)}_]** " + \
+                           ('**> e**   ->   Lista en una hoja de excel '
+                            if excelrequest
+                            else '   ->   Lista ') + \
+                           ('todas las '
+                            if controller[0] == 'a'
+                            else 'todos los ') + \
+                           f"___{controller}s___, "\
+                            "habilitando una nueva "\
+                            "columna denominada **Puntos acumulados**, "\
+                            "asociada al total de "\
+                            "puntos de todas las ___asistencias___ "\
+                            "en las que "\
+                           f"se encuentre cada ___{controller}___, "\
+                           f"entre las fechas **_{parameters[0]}_** "\
+                           f"y **_{parameters[1]}_**, "\
+                            "ingresadas como parametros dentro de los "\
+                            "corchetes **[ ]**, "\
+                            "siendo organizados de mayor a "\
+                           f"menor dependiendo de su puntuacion. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
