@@ -981,7 +981,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___ "\
-                            "que posean asistencias "\
+                            "que posean ___asistencias___ "\
                             "registradas "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
@@ -991,15 +991,15 @@ class Helpers:
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
                             "en 'Día/Mes/Año'. "\
-                            "En la lista se habilita una nueva "\
-                            "columna denominada 'Puntos acumulados'"\
-                            "correspondiente al total de "\
-                            "puntos para todas  asistencia en la que "\
-                           f"se encuentra cada ___{controller}___ dentro de "\
-                            "las fechas especificadas, "\
-                            "para la cual solo se mostraran los "\
-                           f" ___{controller}s___ que dispongan de puntos "\
-                            "y estarán organizados de mayor a "\
+                            "En esta lista se habilita una "\
+                            "columna denominada **Puntos acumulados** "\
+                            "asociada al total de "\
+                            "puntos de todas las ___asistencias___ "\
+                            "en las que "\
+                           f"se encuentre cada ___{controller}___, "\
+                            "mostrando solo los "\
+                           f" ___{controller}s___ que posean puntos "\
+                            "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion.\n"
 
             elif target == "id" and len(parameters) == 1:
