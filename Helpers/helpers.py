@@ -1516,7 +1516,7 @@ class Helpers:
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
-                           f"presente cada ___{controller}___ "\
+                           f"presente cada ___{controller}___, "\
                             "asociadas al parametro "\
                            f"**_{parameters[0]}_**, "\
                             "en relacion al nombre de" + \
