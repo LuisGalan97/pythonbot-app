@@ -1472,14 +1472,13 @@ class Helpers:
                             else 'todos los ') + \
                            f"___{controller}s___ "\
                            "que posean ___asistencias___ "\
-                           "asociad" + \
-                           ('as ' if controller[0] == 'a' else 'os ') + \
+                           "asociadas"\
                            f"al parametro **_{parameters[0]}_**, "\
                            "en relacion al nombre de" + \
                            (' la '
                             if parameters[0][0] == 'a'
                             else 'l ') + \
-                           f"___{parameters[0].lower()}___ presente en la"\
+                           f"___{parameters[0].lower()}___ presente en la "\
                            f"___asistencia___, "\
                             "y registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
