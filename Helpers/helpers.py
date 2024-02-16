@@ -1474,8 +1474,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___ "\
-                           "que posean ___asistencias___ registradas "\
-                           "vinculadas "\
+                           "que posean ___asistencias___ vinculadas "\
                            f"al parametro **_{parameters[0]}_**, "\
                            "en relacion al nombre de" + \
                            (' la '
