@@ -237,9 +237,12 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listAllPointMember:name "\
                                            "[Nombre, Fecha 1, Fecha 2]",
                                            "integrante"))
-            #messages.append(Helpers.genMsg("listPointMember:range "\
-            #                               "[Rango, Fecha 1, Fecha 2]",
-            #                               "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:range "\
+                                           "[Rango, Fecha 1, Fecha 2]",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listAllPointMember:range "\
+                                           "[Rango, Fecha 1, Fecha 2]",
+                                           "integrante"))
             #messages.append(Helpers.genMsg("listPointMember:event "\
             #                               "[Evento, Fecha 1, Fecha 2]",
             #                               "integrante"))
@@ -290,9 +293,12 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listAllPointMember:name "\
                                            "[Nombre, Fecha 1, Fecha 2] > e",
                                            "integrante"))
-            #messages.append(Helpers.genMsg("listPointMember:range "\
-            #                               "[Rango, Fecha 1, Fecha 2] > e",
-            #                               "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:range "\
+                                           "[Rango, Fecha 1, Fecha 2] > e",
+                                           "integrante"))
+            messages.append(Helpers.genMsg("listAllPointMember:range "\
+                                           "[Rango, Fecha 1, Fecha 2] > e",
+                                           "integrante"))
             #messages.append(Helpers.genMsg("listPointMember:event "\
             #                               "[Evento, Fecha 1, Fecha 2] > e",
             #                               "integrante"))
