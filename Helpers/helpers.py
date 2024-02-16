@@ -1043,7 +1043,7 @@ class Helpers:
                            "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "que posea ___asistencias___ "\
+                            "que posea ___asistencias___ registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1115,7 +1115,7 @@ class Helpers:
                            "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "que posea ___asistencias___ "\
+                            "que posea ___asistencias___ registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1191,7 +1191,7 @@ class Helpers:
                            "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                           "que posea ___asistencias___ "\
+                           "que posea ___asistencias___ registradas "\
                            "vinculadas "\
                            f"al parametro **_{parameters[1]}_**, "\
                            "en relacion al nombre de" + \
@@ -1475,7 +1475,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___ "\
-                           "que posean ___asistencias___ "\
+                           "que posean ___asistencias___ registradas "\
                            "vinculadas "\
                            f"al parametro **_{parameters[0]}_**, "\
                            "en relacion al nombre de" + \
