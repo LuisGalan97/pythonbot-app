@@ -1511,25 +1511,22 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___ "\
-                            "asociad" + \
-                           ('as ' if controller[0] == 'a' else 'os ') + \
-                           f"al parametro **_{parameters[0]}_**, "\
-                           "en relacion al nombre de" + \
-                           (' la '
-                            if parameters[0][0] == 'a'
-                            else 'l ') + \
-                           f"___{parameters[0].lower()}___ presente en " + \
-                           ('la '
-                            if controller[0] == 'a'
-                            else 'el ') + \
-                           f"___{controller}___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esté "\
                            f"presente cada ___{controller}___ "\
-                           f"entre las fechas **_{parameters[1]}_** "\
+                            "asociadas al parametro "\
+                           f"**_{parameters[0]}_**, "\
+                            "en relacion al nombre de" + \
+                           (' la '
+                            if parameters[0][0] == 'a'
+                            else 'l ') + \
+                           f"___{parameters[0].lower()}___ presente en la "\
+                           f"___asistencia___, "\
+                            "y registradas entre las fechas "\
+                           f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
