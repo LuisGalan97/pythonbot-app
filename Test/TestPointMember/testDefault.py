@@ -348,8 +348,9 @@ async def testPointMemberDefault_listPointMember_partial(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -381,8 +382,9 @@ async def testPointMemberDefault_listPointMember_total(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -420,8 +422,9 @@ async def testPointMemberDefault_listPointMemberId_partial(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -459,8 +462,9 @@ async def testPointMemberDefault_listPointMemberId_total(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -498,8 +502,9 @@ async def testPointMemberDefault_listPointMemberName_partial(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -537,8 +542,9 @@ async def testPointMemberDefault_listPointMemberName_total(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -576,8 +582,9 @@ async def testPointMemberDefault_listPointMemberRange_partial(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -615,8 +622,9 @@ async def testPointMemberDefault_listPointMemberRange_total(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -654,8 +662,9 @@ async def testPointMemberDefault_listPointMemberEvent1_partial(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -691,8 +700,9 @@ async def testPointMemberDefault_listPointMemberEvent1_total(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -728,8 +738,9 @@ async def testPointMemberDefault_listPointMemberEvent2_partial(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -765,8 +776,9 @@ async def testPointMemberDefault_listPointMemberEvent2_total(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -802,8 +814,9 @@ async def testPointMemberDefault_listPointMemberEvent3_partial(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -839,8 +852,9 @@ async def testPointMemberDefault_listPointMemberEvent3_total(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -882,8 +896,9 @@ async def testPointMemberDefault_listPointMemberIdEvent1_partial(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -925,8 +940,9 @@ async def testPointMemberDefault_listPointMemberIdEvent1_total(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -968,8 +984,9 @@ async def testPointMemberDefault_listPointMemberIdEvent2_partial(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1011,8 +1028,9 @@ async def testPointMemberDefault_listPointMemberIdEvent2_total(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1054,8 +1072,9 @@ async def testPointMemberDefault_listPointMemberIdEvent3_partial(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1097,8 +1116,9 @@ async def testPointMemberDefault_listPointMemberIdEvent3_total(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1140,8 +1160,9 @@ async def testPointMemberDefault_listPointMemberNameEvent1_partial(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1183,8 +1204,9 @@ async def testPointMemberDefault_listPointMemberNameEvent1_total(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1226,8 +1248,9 @@ async def testPointMemberDefault_listPointMemberNameEvent2_partial(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1269,8 +1292,9 @@ async def testPointMemberDefault_listPointMemberNameEvent2_total(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1312,8 +1336,9 @@ async def testPointMemberDefault_listPointMemberNameEvent3_partial(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1355,8 +1380,9 @@ async def testPointMemberDefault_listPointMemberNameEvent3_total(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1398,8 +1424,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent1_partial(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1441,8 +1468,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent1_total(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1484,8 +1512,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent2_partial(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1527,8 +1556,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent2_total(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1570,8 +1600,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent3_partial(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1613,8 +1644,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent3_total(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "**___Integrantes___** **___encontrados:___**\n" in out
         assert f"{testData['idmember']}" in out
@@ -1644,8 +1676,9 @@ async def testPointMemberDefault_listPointMember_e(capfd):
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listPointMember", app.getDatas,
                              Helpers.getStruct("member",
-                                               ["assist_date_1",
-                                                "assist_date_2"]))
+                                               ["date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1673,8 +1706,9 @@ async def testPointMemberDefault_listPointMemberId_e(capfd):
             await hdlr.dFMsg("listPointMember:id", app.getDatas,
                              Helpers.getStruct("member",
                                                ["id",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1702,8 +1736,9 @@ async def testPointMemberDefault_listPointMemberName_e(capfd):
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1731,8 +1766,9 @@ async def testPointMemberDefault_listPointMemberRange_e(capfd):
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1760,8 +1796,9 @@ async def testPointMemberDefault_listPointMemberEvent_e(capfd):
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1793,8 +1830,9 @@ async def testPointMemberDefault_listPointMemberIdEvent_e(capfd):
                              Helpers.getStruct("member",
                                                ["id",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1826,8 +1864,9 @@ async def testPointMemberDefault_listPointMemberNameEvent_e(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1859,8 +1898,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent_e(capfd):
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "**___Integrantes___** **___encontrados:___**\n" in out
             assert "discord.file.File object" in out
@@ -1884,8 +1924,9 @@ async def testPointMemberDefault_listPointMember_eIncomplete(capfd):
             hdlr = MessageHandler(message, client, True)
             await hdlr.dFMsg("listPointMember", app.getDatas,
                              Helpers.getStruct("member",
-                                               ["assist_date_1",
-                                                "assist_date_2"]))
+                                               ["date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -1918,8 +1959,9 @@ async def testPointMemberDefault_listPointMemberId_eIncomplete(capfd):
             await hdlr.dFMsg("listPointMember:id", app.getDatas,
                              Helpers.getStruct("member",
                                                ["id",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -1953,8 +1995,9 @@ async def testPointMemberDefault_listPointMemberName_eIncomplete(capfd):
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -1988,8 +2031,9 @@ async def testPointMemberDefault_listPointMemberRange_eIncomplete(capfd):
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -2023,8 +2067,9 @@ async def testPointMemberDefault_listPointMemberEvent_eIncomplete(capfd):
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -2062,8 +2107,9 @@ async def testPointMemberDefault_listPointMemberIdEvent_eIncomplete(capfd):
                              Helpers.getStruct("member",
                                                ["id",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -2103,8 +2149,9 @@ async def testPointMemberDefault_listPointMemberNameEvent_eIncomplete(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -2144,8 +2191,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent_eIncomplete(capfd):
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert "Se ha detectado el uso del operador **>** despues del "\
                    "comando inicial, si desea obtener los datos en un "\
@@ -2321,8 +2369,9 @@ async def testPointMemberDefault_listPointMember_AssistNoExist(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2352,8 +2401,9 @@ async def testPointMemberDefault_listPointMemberId_AssistNoExist(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                             ["id",
-                                             "assist_date_1",
-                                             "assist_date_2"]))
+                                             "date_1",
+                                             "date_2"],
+                                             "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2382,8 +2432,9 @@ async def testPointMemberDefault_listPointMemberName_AssistNoExist(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                             ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2413,8 +2464,9 @@ async def testPointMemberDefault_listPointMemberRange_AssistNoExist(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2444,8 +2496,9 @@ async def testPointMemberDefault_listPointMemberEvent_AssistNoExist(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2481,8 +2534,9 @@ async def testPointMemberDefault_listPointMemberIdEvent_AssistNoExist(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2518,8 +2572,9 @@ async def testPointMemberDefault_listPointMemberNameEvent_AssistNoExist(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2556,8 +2611,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent_AssistNoExist(
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No se encontraron ___integrantes___ "\
                "para la consulta realizada.\n" in out
@@ -2648,8 +2704,9 @@ async def testPointMemberDefault_listPointMemberRange_RangeNoExist(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['ranname']}' "\
                 "ingresado en el campo "\
@@ -2681,8 +2738,9 @@ async def testPointMemberDefault_listPointMemberEvent_EventNoExist(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evname_1']}' "\
                 "ingresado en el campo "\
@@ -2720,8 +2778,9 @@ async def testPointMemberDefault_listPointMemberIdEvent_EventNoExist(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evname_1']}' "\
                 "ingresado en el campo "\
@@ -2759,8 +2818,9 @@ async def testPointMemberDefault_listPointMemberNameEvent_EventNoExist(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evname_1']}' "\
                 "ingresado en el campo "\
@@ -2798,8 +2858,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent_RangeNoExist(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['ranname']}' "\
                 "ingresado en el campo "\
@@ -2837,8 +2898,9 @@ async def testPointMemberDefault_listPointMemberRangeEvent_EventNoExist(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El valor '{testData['evname_1']}' "\
                 "ingresado en el campo "\

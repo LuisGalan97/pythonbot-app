@@ -28,8 +28,9 @@ async def testPointMemberStruct_listPointMember_invalidStruct(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember [_Fecha 1, Fecha 2_]**\n" in out
@@ -51,8 +52,9 @@ async def testPointMemberStruct_listPointMemberId_invalidStruct(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:id [_ID, Fecha 1, Fecha 2_]**\n" in out
@@ -74,8 +76,9 @@ async def testPointMemberStruct_listPointMemberName_invalidStruct(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:name "\
@@ -105,8 +108,9 @@ async def testPointMemberStruct_listPointMemberRange_invalidStruct(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:range "\
@@ -136,8 +140,9 @@ async def testPointMemberStruct_listPointMemberEvent_invalidStruct(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:event "\
@@ -168,8 +173,9 @@ async def testPointMemberStruct_listPointMemberIdEvent_invalidStruct(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:id&event "\
@@ -200,8 +206,9 @@ async def testPointMemberStruct_listPointMemberNameEvent_invalidStruct(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:name&event "\
@@ -232,8 +239,9 @@ async def testPointMemberStruct_listPointMemberRangeEvent_invalidStruct(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
         assert "**$listPointMember:range&event "\

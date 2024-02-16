@@ -8,8 +8,8 @@ class AssistController:
     def __init__(self, db : Database):
         self.__service = AssistService(db)
 
-    def getAssists(self, target = None):
-        assists = self.__service.select(target)
+    def getAssists(self, target, option):
+        assists = self.__service.select(target, option)
         if isinstance(assists, list):
             data = []
             for assist in assists:
@@ -63,20 +63,20 @@ class AssistController:
             return assists
 
     def createAssist(self, member_id, event_id, date):
-        member = MemberModel(member_id, None, None, None, None, None)
-        event = EventModel(event_id, None, None, None)
+        member = MemberModel(member_id)
+        event = EventModel(event_id)
         assist = AssistModel(None, member, event, date)
         result = self.__service.insert(assist)
         return result
 
     def updateAssist(self, id, member_id, event_id, date):
-        member = MemberModel(member_id, None, None, None, None, None)
-        event = EventModel(event_id, None, None, None)
+        member = MemberModel(member_id)
+        event = EventModel(event_id)
         assist = AssistModel(id, member, event, date)
         result = self.__service.update(assist)
         return result
 
     def deleteAssist(self, id):
-        assist = AssistModel(id, None, None, None)
+        assist = AssistModel(id)
         result = self.__service.delete(assist)
         return result

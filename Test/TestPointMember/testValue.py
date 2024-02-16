@@ -41,8 +41,9 @@ async def testPointMemberValue_listPointMember_date1Empty(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -67,8 +68,9 @@ async def testPointMemberValue_listPointMember_date1Invalid(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -95,8 +97,9 @@ async def testPointMemberValue_listPointMember_date2Empty(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -121,8 +124,9 @@ async def testPointMemberValue_listPointMember_date2Invalid(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -155,8 +159,9 @@ async def testPointMemberValue_listPointMemberId_idEmpty(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -187,8 +192,9 @@ async def testPointMemberValue_listPointMemberId_idInvalid(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -221,8 +227,9 @@ async def testPointMemberValue_listPointMemberId_date1Empty(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -253,8 +260,9 @@ async def testPointMemberValue_listPointMemberId_date1Invalid(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -287,8 +295,9 @@ async def testPointMemberValue_listPointMemberId_date2Empty(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -319,8 +328,9 @@ async def testPointMemberValue_listPointMemberId_date2Invalid(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -353,8 +363,9 @@ async def testPointMemberValue_listPointMemberName_nameEmpty(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -386,8 +397,9 @@ async def testPointMemberValue_listPointMemberName_nameLong(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -422,8 +434,9 @@ async def testPointMemberValue_listPointMemberName_nameStartChar(capfd):
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -457,8 +470,9 @@ async def testPointMemberValue_listPointMemberName_nameSpeChar(capfd):
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -491,8 +505,9 @@ async def testPointMemberValue_listPointMemberName_nameRepeatChar(capfd):
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -528,8 +543,9 @@ async def testPointMemberValue_listPointMemberName_date1Empty(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -560,8 +576,9 @@ async def testPointMemberValue_listPointMemberName_date1Invalid(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -594,8 +611,9 @@ async def testPointMemberValue_listPointMemberName_date2Empty(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -626,8 +644,9 @@ async def testPointMemberValue_listPointMemberName_date2Invalid(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -660,8 +679,9 @@ async def testPointMemberValue_listPointMemberRange_rangeEmpty(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Rango_**\n" in out
@@ -693,8 +713,9 @@ async def testPointMemberValue_listPointMemberRange_rangeLong(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -729,8 +750,9 @@ async def testPointMemberValue_listPointMemberRange_rangeStartChar(capfd):
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Rango_** no debe comenzar con valores "\
@@ -764,8 +786,9 @@ async def testPointMemberValue_listPointMemberRange_rangeSpeChar(capfd):
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Rango_** no debe contener caracteres "\
@@ -798,8 +821,9 @@ async def testPointMemberValue_listPointMemberRange_rangeRepeatChar(capfd):
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -835,8 +859,9 @@ async def testPointMemberValue_listPointMemberRange_date1Empty(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -867,8 +892,9 @@ async def testPointMemberValue_listPointMemberRange_date1Invalid(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -901,8 +927,9 @@ async def testPointMemberValue_listPointMemberRange_date2Empty(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -933,8 +960,9 @@ async def testPointMemberValue_listPointMemberRange_date2Invalid(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -967,8 +995,9 @@ async def testPointMemberValue_listPointMemberEvent_eventEmpty(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Evento_**\n" in out
@@ -1000,8 +1029,9 @@ async def testPointMemberValue_listPointMemberEvent_eventLong(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1036,8 +1066,9 @@ async def testPointMemberValue_listPointMemberEvent_eventStartChar(capfd):
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe comenzar con valores "\
@@ -1071,8 +1102,9 @@ async def testPointMemberValue_listPointMemberEvent_eventSpeChar(capfd):
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe contener caracteres "\
@@ -1105,8 +1137,9 @@ async def testPointMemberValue_listPointMemberEvent_eventRepeatChar(capfd):
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1142,8 +1175,9 @@ async def testPointMemberValue_listPointMemberEvent_date1Empty(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -1174,8 +1208,9 @@ async def testPointMemberValue_listPointMemberEvent_date1Invalid(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -1208,8 +1243,9 @@ async def testPointMemberValue_listPointMemberEvent_date2Empty(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -1240,8 +1276,9 @@ async def testPointMemberValue_listPointMemberEvent_date2Invalid(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -1280,8 +1317,9 @@ async def testPointMemberValue_listPointMemberIdEvent_idEmpty(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_ID_**\n" in out
@@ -1318,8 +1356,9 @@ async def testPointMemberValue_listPointMemberIdEvent_idInvalid(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_ID_** "\
@@ -1358,8 +1397,9 @@ async def testPointMemberValue_listPointMemberIdEvent_eventEmpty(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Evento_**\n" in out
@@ -1397,8 +1437,9 @@ async def testPointMemberValue_listPointMemberIdEvent_eventLong(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1439,8 +1480,9 @@ async def testPointMemberValue_listPointMemberIdEvent_eventStartChar(capfd):
                              Helpers.getStruct("member",
                                                ["id",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe comenzar con valores "\
@@ -1480,8 +1522,9 @@ async def testPointMemberValue_listPointMemberIdEvent_eventSpeChar(capfd):
                              Helpers.getStruct("member",
                                                ["id",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe contener caracteres "\
@@ -1520,8 +1563,9 @@ async def testPointMemberValue_listPointMemberIdEvent_eventRepeatChar(capfd):
                              Helpers.getStruct("member",
                                                ["id",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1563,8 +1607,9 @@ async def testPointMemberValue_listPointMemberIdEvent_date1Empty(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -1601,8 +1646,9 @@ async def testPointMemberValue_listPointMemberIdEvent_date1Invalid(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -1641,8 +1687,9 @@ async def testPointMemberValue_listPointMemberIdEvent_date2Empty(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -1679,8 +1726,9 @@ async def testPointMemberValue_listPointMemberIdEvent_date2Invalid(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -1719,8 +1767,9 @@ async def testPointMemberValue_listPointMemberNameEvent_nameEmpty(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Nombre_**\n" in out
@@ -1758,8 +1807,9 @@ async def testPointMemberValue_listPointMemberNameEvent_nameLong(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -1800,8 +1850,9 @@ async def testPointMemberValue_listPointMemberNameEvent_nameStartChar(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe comenzar con valores "\
@@ -1841,8 +1892,9 @@ async def testPointMemberValue_listPointMemberNameEvent_nameSpeChar(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Nombre_** no debe contener caracteres "\
@@ -1881,8 +1933,9 @@ async def testPointMemberValue_listPointMemberNameEvent_nameRepeatChar(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -1924,8 +1977,9 @@ async def testPointMemberValue_listPointMemberNameEvent_eventEmpty(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Evento_**\n" in out
@@ -1963,8 +2017,9 @@ async def testPointMemberValue_listPointMemberNameEvent_eventLong(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -2005,8 +2060,9 @@ async def testPointMemberValue_listPointMemberNameEvent_eventStartChar(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe comenzar con valores "\
@@ -2046,8 +2102,9 @@ async def testPointMemberValue_listPointMemberNameEvent_eventSpeChar(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe contener caracteres "\
@@ -2086,8 +2143,9 @@ async def testPointMemberValue_listPointMemberNameEvent_eventRepeatChar(capfd):
                              Helpers.getStruct("member",
                                                ["name",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -2129,8 +2187,9 @@ async def testPointMemberValue_listPointMemberNameEvent_date1Empty(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -2167,8 +2226,9 @@ async def testPointMemberValue_listPointMemberNameEvent_date1Invalid(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -2207,8 +2267,9 @@ async def testPointMemberValue_listPointMemberNameEvent_date2Empty(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -2245,8 +2306,9 @@ async def testPointMemberValue_listPointMemberNameEvent_date2Invalid(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\
@@ -2285,8 +2347,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeEmpty(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Rango_**\n" in out
@@ -2324,8 +2387,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeLong(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -2366,8 +2430,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeStartChar(capfd):
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Rango_** no debe comenzar con valores "\
@@ -2407,8 +2472,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeSpeChar(capfd):
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Rango_** no debe contener caracteres "\
@@ -2448,8 +2514,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeRepeatChar(
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -2491,8 +2558,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventEmpty(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Evento_**\n" in out
@@ -2530,8 +2598,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventLong(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
@@ -2572,8 +2641,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventStartChar(capfd):
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe comenzar con valores "\
@@ -2613,8 +2683,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventSpeChar(capfd):
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
                     "**_Evento_** no debe contener caracteres "\
@@ -2654,8 +2725,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventRepeatChar(
                              Helpers.getStruct("member",
                                                ["range",
                                                 "event",
-                                                "assist_date_1",
-                                                "assist_date_2"]))
+                                                "date_1",
+                                                "date_2"],
+                                                "rtpoints"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
@@ -2697,8 +2769,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_date1Empty(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 1_**\n" in out
@@ -2735,8 +2808,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_date1Invalid(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 1_** "\
@@ -2775,8 +2849,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_date2Empty(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
                "**_Fecha 2_**\n" in out
@@ -2813,8 +2888,9 @@ async def testPointMemberValue_listPointMemberRangeEvent_date2Invalid(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado en el campo "\
                f"**_Fecha 2_** "\

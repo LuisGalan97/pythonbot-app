@@ -33,8 +33,9 @@ async def testPointMemberParams_listPointMember_invalidParams(capfd):
         hdlr = MessageHandler(message, client, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
-                                           ["assist_date_1",
-                                            "assist_date_2"]))
+                                           ["date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -62,8 +63,9 @@ async def testPointMemberParams_listPointMemberId_invalidParams(capfd):
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -91,8 +93,9 @@ async def testPointMemberParams_listPointMemberName_invalidParams(capfd):
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -120,8 +123,9 @@ async def testPointMemberParams_listPointMemberRange_invalidParams(capfd):
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -149,8 +153,9 @@ async def testPointMemberParams_listPointMemberEvent_invalidParams(capfd):
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -179,8 +184,9 @@ async def testPointMemberParams_listPointMemberIdEvent_invalidParams(capfd):
                          Helpers.getStruct("member",
                                            ["id",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -209,8 +215,9 @@ async def testPointMemberParams_listPointMemberNameEvent_invalidParams(capfd):
                          Helpers.getStruct("member",
                                            ["name",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out
@@ -239,8 +246,9 @@ async def testPointMemberParams_listPointMemberRangeEvent_invalidParams(capfd):
                          Helpers.getStruct("member",
                                            ["range",
                                             "event",
-                                            "assist_date_1",
-                                            "assist_date_2"]))
+                                            "date_1",
+                                            "date_2"],
+                                            "rtpoints"))
         out, _ = capfd.readouterr()
         assert "Datos ingresados invalidos, "\
                "recuerda que debes ingresar:\n" in out

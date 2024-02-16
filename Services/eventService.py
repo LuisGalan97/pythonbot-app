@@ -4,42 +4,54 @@ from Models.eventModel import EventModel
 class EventService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = (
-        "SELECT "\
-            "id, "\
-            "nombre AS name, "\
-            "puntos AS points, "\
-            "descripcion AS description "\
-        "FROM eventos"\
-        )
 
-    def select(self, target = None):
-        self.__db.start_connection()
-        if not target:
-            data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "ORDER BY puntos DESC")
-        elif "id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE id = ?",
-                                           (target["id"],))
-        elif "name" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE nombre = ?",
-                                           (target["name"],))
+    def select(self, target, option):
+        if not option:
+            selectQuery = (
+            "SELECT "\
+                "id, "\
+                "nombre AS name, "\
+                "puntos AS points, "\
+                "descripcion AS description "\
+            "FROM eventos"\
+            )
+            self.__db.start_connection()
+            if not target:
+                data = self.__db.execute_query(
+                       f"{selectQuery} "\
+                        "ORDER BY puntos DESC")
+            elif target.keys() == {"id"}:
+                data = self.__db.execute_query(
+                       f"{selectQuery} "\
+                        "WHERE id = ?",
+                        (target["id"],))
+            elif target.keys() == "name":
+                data = self.__db.execute_query(
+                       f"{selectQuery} "\
+                        "WHERE nombre = ?",
+                        (target["name"],))
+            else:
+                print( "-> No fue posible realizar la consulta "\
+                       "'ya que se especificó un 'target' no valido: "\
+                      f"{target}'.")
+                data = False
+            self.__db.close_connection()
+            if isinstance(data, list):
+                events = []
+                for row in data:
+                    event = EventModel(row['id'],
+                                       row['name'],
+                                       row['points'],
+                                       row['description'])
+                    events.append(event)
+                return events
+            else:
+                return data
         else:
-            data = None
-        self.__db.close_connection()
-        if isinstance(data, list):
-            events = []
-            for row in data:
-                event = EventModel(row['id'],
-                                   row['name'],
-                                   row['points'],
-                                   row['description'])
-                events.append(event)
-            return events
-        else:
-            return data
+            print( "-> No fue posible realizar la consulta "\
+                   "'ya que se especificó un 'option' no valido: "\
+                  f"{option}'.")
+            return False
 
     def insert(self, event : EventModel):
         self.__db.start_connection()

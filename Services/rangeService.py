@@ -4,42 +4,54 @@ from Models.rangeModel import RangeModel
 class RangeService:
     def __init__(self, db : Database):
         self.__db = db
-        self.__selectQuery = (
-        "SELECT "\
-            "id, "\
-            "nombre AS name, "\
-            "control, "\
-            "descripcion AS description "\
-        "FROM rangos"
-        )
 
-    def select(self, target = None):
-        self.__db.start_connection()
-        if not target:
-            data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "ORDER BY control ASC")
-        elif "id" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE id = ?",
-                                           (target["id"],))
-        elif "name" in target:
-            data = self.__db.execute_query(f"{self.__selectQuery} "\
-                                            "WHERE nombre = ?",
-                                           (target["name"],))
+    def select(self, target, option):
+        if not option:
+            selectQuery = (
+            "SELECT "\
+                "id, "\
+                "nombre AS name, "\
+                "control, "\
+                "descripcion AS description "\
+            "FROM rangos"
+            )
+            self.__db.start_connection()
+            if not target:
+                data = self.__db.execute_query(
+                       f"{selectQuery} "\
+                        "ORDER BY control ASC")
+            elif target.keys() == {"id"}:
+                data = self.__db.execute_query(
+                       f"{selectQuery} "\
+                        "WHERE id = ?",
+                        (target["id"],))
+            elif target.keys() == {"name"}:
+                data = self.__db.execute_query(
+                       f"{selectQuery} "\
+                        "WHERE nombre = ?",
+                        (target["name"],))
+            else:
+                print( "-> No fue posible realizar la consulta "\
+                       "'ya que se especificó un 'target' no valido: "\
+                      f"{target}'.")
+                data = False
+            self.__db.close_connection()
+            if isinstance(data, list):
+                ranges = []
+                for row in data:
+                    range = RangeModel(row['id'],
+                                       row['name'],
+                                       row['control'],
+                                       row['description'])
+                    ranges.append(range)
+                return ranges
+            else:
+                return data
         else:
-            data = None
-        self.__db.close_connection()
-        if isinstance(data, list):
-            ranges = []
-            for row in data:
-                range = RangeModel(row['id'],
-                                   row['name'],
-                                   row['control'],
-                                   row['description'])
-                ranges.append(range)
-            return ranges
-        else:
-            return data
+            print( "-> No fue posible realizar la consulta "\
+                   "'ya que se especificó un 'option' no valido: "\
+                  f"{option}'.")
+            return False
 
     def insert(self, range : RangeModel):
         self.__db.start_connection()

@@ -6,8 +6,8 @@ class EventController:
     def __init__(self, db : Database):
         self.__service = EventService(db)
 
-    def getEvents(self, target = None):
-        events = self.__service.select(target)
+    def getEvents(self, target, option):
+        events = self.__service.select(target, option)
         if isinstance(events, list):
             data = []
             for event in events:
@@ -33,6 +33,6 @@ class EventController:
         return result
 
     def deleteEvent(self, id):
-        event = EventModel(id, None, None, None)
+        event = EventModel(id)
         result = self.__service.delete(event)
         return result

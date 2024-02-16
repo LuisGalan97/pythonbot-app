@@ -16,13 +16,15 @@ class AppHandler:
     def getDatas(self, request, struct):
         try:
             target = Helpers.setTarget(self, request, struct["targets"])
+            option = struct["option"]
             nameCtrl, structRef = dict(struct["controller"]).popitem()
             aliasCtrl = structRef["alias"]
             references = structRef["ref"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
                 method = f"get{nameCtrl.capitalize()}s"
-                items = getattr(getattr(self, controller), method)(target)
+                items = getattr(getattr(self, controller),
+                                method)(target, option)
             else:
                 return target
             if isinstance(items, list):

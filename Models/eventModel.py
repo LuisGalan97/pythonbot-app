@@ -1,5 +1,9 @@
 class EventModel:
-    def __init__(self, id, name, points, description):
+    def __init__(self,
+                 id = None,
+                 name = None,
+                 points = None,
+                 description = None):
         self.__id = id
         self.__name = name
         self.__points = points

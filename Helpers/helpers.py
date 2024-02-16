@@ -416,11 +416,11 @@ class Helpers:
             return "Ninguno"
 
     @staticmethod
-    def getStruct(nameCtrl, targets = None, options = None):
+    def getStruct(nameCtrl, targets = None, option = None):
         structCtrl = {}
         structTargets = {}
         if nameCtrl == "assist":
-            if options is None:
+            if not option:
                 reference = {
                     "ID" : "id",
                     #"Integrante ID" : "member_id",
@@ -437,28 +437,35 @@ class Helpers:
                     #"Descripción Evento" : "event_description",
                     "Fecha" : "date"
                 }
-            else:
-                reference = {}
             structCtrl[nameCtrl] = {
                 "alias" : "asistencia",
                 "ref" : reference
             }
         elif nameCtrl == "event":
-            if options is None:
+            if not option:
                 reference = {
                     "ID" : "id",
                     "Nombre" : "name",
                     "Puntos" : "points",
                     "Descripción" : "description"
                 }
-            else:
-                reference = {}
             structCtrl[nameCtrl] = {
                 "alias" : "evento",
                 "ref" : reference
             }
         elif nameCtrl == "member":
-            if options is None:
+            if not option:
+                reference = {
+                    "ID" : "id",
+                    "Nombre" : "name",
+                    #"Rango ID" : "range_id",
+                    "Rango" : "range_name",
+                    #"Control Rango" : "range_control",
+                    #"Descripción Rango" : "range_description",
+                    "Fecha de creación" : "datecreate",
+                    "Fecha de modificación" : "dateupdate"
+                }
+            elif option == "rtpoints":
                 reference = {
                     "ID" : "id",
                     "Nombre" : "name",
@@ -470,22 +477,30 @@ class Helpers:
                     "Fecha de modificación" : "dateupdate",
                     "Puntos acumulados" : "totalpoints"
                 }
-            else:
-                reference = {}
+            elif option == "atpoints":
+                reference = {
+                    "ID" : "id",
+                    "Nombre" : "name",
+                    #"Rango ID" : "range_id",
+                    "Rango" : "range_name",
+                    #"Control Rango" : "range_control",
+                    #"Descripción Rango" : "range_description",
+                    "Fecha de creación" : "datecreate",
+                    "Fecha de modificación" : "dateupdate",
+                    "Puntos acumulados" : "totalpoints"
+                }
             structCtrl[nameCtrl] = {
                 "alias" : "integrante",
                 "ref" : reference
             }
         elif nameCtrl == "range":
-            if options is None:
+            if not option:
                 reference = {
                     "ID" : "id",
                     "Nombre" : "name",
                     "Control" : "control",
                     "Descripción" : "description"
                 }
-            else:
-                reference = {}
             structCtrl[nameCtrl] = {
                 "alias" : "rango",
                 "ref" : reference
@@ -551,19 +566,9 @@ class Helpers:
                     "fk" : False,
                     "alias" : "Fecha 2"
                 }
-            if "assist_date_1" in targets:
-                structTargets["assist_date_1"] = {
-                    "type" : datetime,
-                    "fk" : False,
-                    "alias" : "Fecha 1"
-                }
-            if "assist_date_2" in targets:
-                structTargets["assist_date_2"] = {
-                    "type" : datetime,
-                    "fk" : False,
-                    "alias" : "Fecha 2"
-                }
-        return {"controller" : structCtrl, "targets" : structTargets}
+        return {"controller" : structCtrl,
+                "targets" : structTargets,
+                "option" : option}
 
     @staticmethod
     def setStruct(nameCtrl):

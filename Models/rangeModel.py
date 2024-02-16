@@ -1,5 +1,8 @@
 class RangeModel:
-    def __init__(self, id, name, control, description):
+    def __init__(self, id = None,
+                 name = None,
+                 control = None,
+                 description = None):
         self.__id = id
         self.__name = name
         self.__control = control

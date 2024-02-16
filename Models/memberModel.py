@@ -1,8 +1,13 @@
 from .rangeModel import RangeModel
 
 class MemberModel:
-    def __init__(self, id, name, range : RangeModel,
-                 datecreate, dateupdate, totalpoints):
+    def __init__(self,
+                 id = None,
+                 name = None,
+                 range : RangeModel = None,
+                 datecreate = None,
+                 dateupdate = None,
+                 totalpoints = None):
         self.__id = id
         self.__name = name
         self.__range = range

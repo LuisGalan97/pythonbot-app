@@ -6,8 +6,8 @@ class RangeController:
     def __init__(self, db : Database):
         self.__service = RangeService(db)
 
-    def getRanges(self, target = None):
-        ranges = self.__service.select(target)
+    def getRanges(self, target, option):
+        ranges = self.__service.select(target, option)
         if isinstance(ranges, list):
             data = []
             for range in ranges:
@@ -33,6 +33,6 @@ class RangeController:
         return result
 
     def deleteRange(self, id):
-        range = RangeModel(id, None, None, None)
+        range = RangeModel(id)
         result = self.__service.delete(range)
         return result
