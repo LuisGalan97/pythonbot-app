@@ -1009,7 +1009,7 @@ class Helpers:
                            ('todas las '
                             if controller[0] == 'a'
                             else 'todos los ') + \
-                           f"___{controller}s___ "\
+                           f"___{controller}s___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
                             "asociada a la suma total de "\
@@ -1215,7 +1215,89 @@ class Helpers:
                         "deberán corresponder a valores de fecha "\
                         "en 'Día/Mes/Año'.\n"
             elif target == "id&event" and len(parameters) == 4:
-                pass
+                if head == "listPointMember":
+                    return f"- **${head}:{target} "\
+                           f"[_{', '.join(parameters)}_]** " + \
+                           ('**> e**   ->   Lista en una hoja de excel '
+                            if excelrequest
+                            else '   ->   Lista ') + \
+                           ('el '
+                            if controller[0] == 'a'
+                            else 'la ') + \
+                           f"___{controller}___ "\
+                           "asociad" + \
+                           ('a ' if controller[0] == 'a' else 'o ') + \
+                           f"al parametro **_{parameters[0]}_**, "\
+                           "que posea ___asistencias___ "\
+                           "asociadas "\
+                           f"al parametro **_{parameters[1]}_**, "\
+                           "en relacion al nombre de" + \
+                           (' la '
+                            if parameters[1][0] == 'a'
+                            else 'l ') + \
+                           f"___{parameters[1].lower()}___ presente en la "\
+                           f"___asistencia___, "\
+                            "y registradas "\
+                           f"entre las fechas **_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_**, "\
+                            "todos ingresados como parametros dentro de los "\
+                            "corchetes **[ ]**, "\
+                            "habilitando la "\
+                            "columna **Puntos acumulados**, "\
+                            "asociada a la suma total de "\
+                            "puntos de las ___asistencias___ "\
+                            "en las que esté "\
+                           f"presente en el ___{controller}___ "\
+                           f"para el ___{parameters[1].lower()}___ "\
+                            "y entre las fechas en cuestion, "\
+                            "siendo organizados de mayor a "\
+                           f"menor dependiendo de su puntuacion. "\
+                           f"El parametro **_{parameters[1]}_** deberá "\
+                            "corresponder a un valor de texto y "\
+                           f"los parametros **_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'.\n"
+                elif head == "listAllPointMember":
+                    return f"- **${head}:{target} "\
+                           f"[_{', '.join(parameters)}_]** " + \
+                           ('**> e**   ->   Lista en una hoja de excel '
+                            if excelrequest
+                            else '   ->   Lista ') + \
+                           ('el '
+                            if controller[0] == 'a'
+                            else 'la ') + \
+                           f"___{controller}___ "\
+                            "asociad" + \
+                            ('a ' if controller[0] == 'a' else 'o ') + \
+                           f"al parametro **_{parameters[0]}_**, "\
+                            "habilitando la "\
+                            "columna **Puntos acumulados**, "\
+                            "referente a la suma total de "\
+                            "puntos de las ___asistencias___ "\
+                            "en las que esté "\
+                           f"el ___{controller}___, "\
+                            "asociadas al parametro "\
+                           f"**_{parameters[1]}_**, "\
+                            "en relacion al nombre de" + \
+                           (' la '
+                            if parameters[1][0] == 'a'
+                            else 'l ') + \
+                           f"___{parameters[1].lower()}___ presente en la "\
+                           f"___asistencia___, "\
+                            "y registradas entre las fechas "\
+                           f"**_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_**, "\
+                            "todos ingresados como parametros dentro de los "\
+                            "corchetes **[ ]**, "\
+                            "siendo organizados de mayor a "\
+                           f"menor dependiendo de su puntuacion. "\
+                           f"El parametro **_{parameters[1]}_** deberá "\
+                            "corresponder a un valor de texto y "\
+                           f"los parametros **_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'.\n"
             elif target == "name&event" and len(parameters) == 4:
                 pass
             elif target == "range&event" and len(parameters) == 4:
@@ -1429,7 +1511,7 @@ class Helpers:
                            ('todas las '
                             if controller[0] == 'a'
                             else 'todos los ') + \
-                           f"___{controller}s___ "\
+                           f"___{controller}s___, "\
                             "asociad" + \
                            ('as ' if controller[0] == 'a' else 'os ') + \
                            f"al parametro **_{parameters[0]}_**, "\
@@ -1510,7 +1592,7 @@ class Helpers:
                            ('todas las '
                             if controller[0] == 'a'
                             else 'todos los ') + \
-                           f"___{controller}s___ "\
+                           f"___{controller}s___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
                             "referente a la suma total de "\
