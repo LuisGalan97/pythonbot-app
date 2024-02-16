@@ -1458,10 +1458,7 @@ class Helpers:
                             if parameters[0][0] == 'a'
                             else 'l ') + \
                            f"___{parameters[0].lower()}___ presente en " + \
-                           ('la '
-                            if controller[0] == 'a'
-                            else 'el ') + \
-                            f"___{controller}___, "\
+                           f"cada ___{controller}___, "\
                             "que posean ___asistencias___ "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
@@ -1612,11 +1609,8 @@ class Helpers:
                        (' la '
                         if parameters[0][0] == 'a'
                         else 'l ') + \
-                       f"___{parameters[0].lower()}___ presente en " + \
-                       ('la '
-                        if controller[0] == 'a'
-                        else 'el ') + \
-                       f"___{controller}___. "\
+                       f"___{parameters[0].lower()}___ presente en "\
+                       f"cada ___{controller}___. "\
                        f"Este parametro **_{parameters[0]}_** "\
                         "deberá corresponder a un valor de texto.\n"
         elif mode == "add":
