@@ -5,13 +5,12 @@ class Helpers:
     def checkAccess(command, author, nameChannel):
         user = str(author)
         channel = str(nameChannel)
-        adminUser = ["omegaxis_", "test", 
-                     "lia7624"]
-        adminChannel = ["test"]
+        adminUser = ["test", "lia7624", "evermell", "omegaxis_"]
+        adminChannel = ["test", "👑consejo"]
         access = {}
         access['hello'] = {
             "user" : adminUser + [],
-            "channel" : adminChannel + ["👑consejo"]
+            "channel" : adminChannel + []
         }
         access['help'] = {
             "user" : adminUser + [],
