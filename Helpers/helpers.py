@@ -11,7 +11,7 @@ class Helpers:
         access = {}
         access['hello'] = {
             "user" : adminUser + [],
-            "channel" : adminChannel + ["bot"]
+            "channel" : adminChannel + ["consejo"]
         }
         access['help'] = {
             "user" : adminUser + [],
