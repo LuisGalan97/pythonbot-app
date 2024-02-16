@@ -1472,7 +1472,7 @@ class Helpers:
                             else 'todos los ') + \
                            f"___{controller}s___ "\
                            "que posean ___asistencias___ "\
-                           "asociadas"\
+                           "asociadas "\
                            f"al parametro **_{parameters[0]}_**, "\
                            "en relacion al nombre de" + \
                            (' la '
