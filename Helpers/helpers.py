@@ -972,7 +972,7 @@ class Helpers:
                        f"___{controller}s___.\n"
             elif not target and len(parameters) == 2:
                 if head == "listPointMember":
-                    return f"- **${head}:{target} "\
+                    return f"- **${head} "\
                            f"[_{', '.join(parameters)}_]** " + \
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
