@@ -991,7 +991,7 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "asociada a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté"\
+                            "en las que esté "\
                            f"presente cada ___{controller}___ "\
                             "entre las fechas en cuestion, "\
                             "siendo organizados de mayor a "\
@@ -1014,7 +1014,7 @@ class Helpers:
                             "columna **Puntos acumulados**, "\
                             "asociada a la suma total de "\
                             "puntos de las ___asistencias___ "\
-                            "en las que esté"\
+                            "en las que esté "\
                            f"presente cada ___{controller}___, "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
