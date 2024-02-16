@@ -992,13 +992,13 @@ class Helpers:
                             "deberán corresponder a valores de fecha "\
                             "en 'Día/Mes/Año'. "\
                             "En esta lista se habilita una "\
-                            "columna denominada **Puntos acumulados** "\
+                            "columna denominada **Puntos acumulados**, "\
                             "asociada al total de "\
                             "puntos de todas las ___asistencias___ "\
                             "en las que "\
                            f"se encuentre cada ___{controller}___, "\
-                            "mostrando solo los "\
-                           f" ___{controller}s___ que posean puntos "\
+                            "mostrando de esta forma solo los "\
+                           f" ___{controller}s___ que posean puntos, "\
                             "siendo organizados de mayor a "\
                            f"menor dependiendo de su puntuacion.\n"
 
