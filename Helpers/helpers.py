@@ -981,7 +981,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___ "\
-                            "que posean ___asistencias___ "\
+                            "que posean ___asistencias___ registradas"\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
@@ -1418,7 +1418,7 @@ class Helpers:
                             else 'l ') + \
                            f"___{parameters[0].lower()}___ presente en " + \
                            f"cada ___{controller}___, "\
-                            "que posean ___asistencias___ "\
+                            "que posean ___asistencias___ registradas"\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
