@@ -1003,7 +1003,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___, "\
-                            "mostrando para cada integrante "\
+                            "mostrando para cada uno "\
                             "de mayor a  menor el total de "\
                             "puntos de sus ___asistencias___ registradas "\
                            f"entre las fechas **_{parameters[0]}_** "\
@@ -1071,7 +1071,7 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando para el integrante "\
+                            "mostrando "\
                            f"el total de "\
                             "puntos de sus ___asistencias___ "\
                             "registradas entre las fechas "\
@@ -1144,7 +1144,7 @@ class Helpers:
                             "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando para el integrante "\
+                            "mostrando "\
                             "el total de "\
                             "puntos de sus ___asistencias___ "\
                             "registradas entre las fechas "\
@@ -1229,7 +1229,7 @@ class Helpers:
                             "asociad" + \
                             ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
-                            "mostrando para el integrante "\
+                            "mostrando "\
                             "el total de "\
                             "puntos de sus ___asistencias___ "\
                             "vinculadas al parametro "\
@@ -1452,7 +1452,7 @@ class Helpers:
                             else 'l ') + \
                            f"___{parameters[0].lower()}___ presente en "\
                            f"cada ___{controller}___, "\
-                            "mostrando para cada integrante "\
+                            "mostrando para cada uno "\
                             "de mayor a menor el total de "\
                             "puntos de sus ___asistencias___ "\
                             "registradas entre las fechas "\
@@ -1509,7 +1509,7 @@ class Helpers:
                             if controller[0] == 'a'
                             else 'todos los ') + \
                            f"___{controller}s___, "\
-                            "mostrando para cada integrante "\
+                            "mostrando para cada uno "\
                             "de mayor a menor el total de "\
                             "puntos de sus ___asistencias___ "\
                             "vinculadas al parametro "\
