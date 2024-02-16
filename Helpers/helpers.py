@@ -982,7 +982,6 @@ class Helpers:
                             else 'todos los ') + \
                            f"___{controller}s___ "\
                             "que posean ___asistencias___ "\
-                            "registradas "\
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
@@ -993,9 +992,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___ "\
-                            "para las fechas en cuestion, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "para las fechas en cuestion. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1019,9 +1016,7 @@ class Helpers:
                            f"entre las fechas **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_**, "\
                             "ingresadas como parametros dentro de los "\
-                            "corchetes **[ ]**, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "corchetes **[ ]**. "\
                            f"Los parametros **_{parameters[0]}_** "\
                            f"y **_{parameters[1]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1057,7 +1052,6 @@ class Helpers:
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
                             "que posea ___asistencias___ "\
-                            "registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1068,9 +1062,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___ "\
-                            "para las fechas en cuestion, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "para las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor numerico y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1099,9 +1091,7 @@ class Helpers:
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
-                            "corchetes **[ ]**, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "corchetes **[ ]**. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor numerico y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1141,7 +1131,6 @@ class Helpers:
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
                             "que posea ___asistencias___ "\
-                            "registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1152,9 +1141,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___ "\
-                            "para las fechas en cuestion, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "para las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1183,9 +1170,7 @@ class Helpers:
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
-                            "corchetes **[ ]**, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "corchetes **[ ]**. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1249,9 +1234,7 @@ class Helpers:
                             "en las que esta "\
                            f"presente el ___{controller}___ "\
                            f"para el ___{parameters[1].lower()}___ "\
-                            "y las fechas en cuestion, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "y las fechas en cuestion. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
@@ -1289,9 +1272,7 @@ class Helpers:
                            f"**_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_**, "\
                             "todos ingresados como parametros dentro de los "\
-                            "corchetes **[ ]**, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "corchetes **[ ]**. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
@@ -1482,7 +1463,6 @@ class Helpers:
                             else 'el ') + \
                             f"___{controller}___, "\
                             "que posean ___asistencias___ "\
-                            "registradas "\
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
@@ -1493,9 +1473,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___ "\
-                            "para las fechas en cuestion, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "para las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1533,9 +1511,7 @@ class Helpers:
                            f"entre las fechas **_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
-                            "corchetes **[ ]**, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "corchetes **[ ]**. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1574,9 +1550,7 @@ class Helpers:
                             "en las que esta "\
                            f"presente cada ___{controller}___ "\
                            f"para el ___{parameters[0].lower()}___ "\
-                            "y las fechas en cuestion, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "y las fechas en cuestion. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
@@ -1611,9 +1585,7 @@ class Helpers:
                            f"**_{parameters[1]}_** "\
                            f"y **_{parameters[2]}_**, "\
                             "todos ingresados como parametros dentro de los "\
-                            "corchetes **[ ]**, "\
-                            "siendo organizados de mayor a "\
-                           f"menor dependiendo de su puntuacion. "\
+                            "corchetes **[ ]**. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[1]}_** "\
