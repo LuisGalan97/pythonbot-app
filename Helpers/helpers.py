@@ -989,7 +989,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___ "\
@@ -1012,7 +1012,7 @@ class Helpers:
                            f"___{controller}s___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___, "\
@@ -1064,7 +1064,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___ "\
@@ -1092,7 +1092,7 @@ class Helpers:
                            f"al parametro **_{parameters[0]}_**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___, "\
@@ -1148,7 +1148,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___ "\
@@ -1176,7 +1176,7 @@ class Helpers:
                            f"al parametro **_{parameters[0]}_**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___, "\
@@ -1244,7 +1244,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___ "\
@@ -1273,7 +1273,7 @@ class Helpers:
                            f"al parametro **_{parameters[0]}_**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente el ___{controller}___, "\
@@ -1489,7 +1489,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___ "\
@@ -1526,7 +1526,7 @@ class Helpers:
                            f"___{controller}___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___, "\
@@ -1569,7 +1569,7 @@ class Helpers:
                             "corchetes **[ ]**, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___ "\
@@ -1595,7 +1595,7 @@ class Helpers:
                            f"___{controller}s___, "\
                             "habilitando la "\
                             "columna **Puntos acumulados**, "\
-                            "referente a la suma total de "\
+                            "la cual contiene el total de "\
                             "puntos de las ___asistencias___ "\
                             "en las que esta "\
                            f"presente cada ___{controller}___, "\
