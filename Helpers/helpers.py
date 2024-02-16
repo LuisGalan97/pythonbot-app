@@ -1221,9 +1221,9 @@ class Helpers:
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
                             else '   ->   Lista ') + \
-                           ('el '
+                           ('la '
                             if controller[0] == 'a'
-                            else 'la ') + \
+                            else 'el ') + \
                            f"___{controller}___ "\
                            "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
@@ -1264,9 +1264,9 @@ class Helpers:
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
                             else '   ->   Lista ') + \
-                           ('el '
+                           ('la '
                             if controller[0] == 'a'
-                            else 'la ') + \
+                            else 'el ') + \
                            f"___{controller}___ "\
                             "asociad" + \
                             ('a ' if controller[0] == 'a' else 'o ') + \
