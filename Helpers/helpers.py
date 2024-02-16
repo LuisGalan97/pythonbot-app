@@ -1044,7 +1044,7 @@ class Helpers:
                         "corresponder a un valor numerico.\n"
             elif target == "id" and len(parameters) == 3:
                 if head == "listPointMember":
-                    return f"- **${head} "\
+                    return f"- **${head}:{target} "\
                            f"[_{', '.join(parameters)}_]** " + \
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
@@ -1078,7 +1078,7 @@ class Helpers:
                             "deberán corresponder a valores de fecha "\
                             "en 'Día/Mes/Año'.\n"
                 elif head == "listAllPointMember":
-                    return f"- **${head} "\
+                    return f"- **${head}:{target} "\
                            f"[_{', '.join(parameters)}_]** " + \
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
