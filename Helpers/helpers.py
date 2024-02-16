@@ -497,7 +497,7 @@ class Helpers:
                     "Fecha de creación" : "datecreate",
                     "Fecha de modificación" : "dateupdate"
                 }
-            elif option == "rtpoints":
+            elif option in ["rtpoints", "atpoints"]:
                 reference = {
                     "ID" : "id",
                     "Nombre" : "name",
@@ -505,20 +505,8 @@ class Helpers:
                     "Rango" : "range_name",
                     #"Control Rango" : "range_control",
                     #"Descripción Rango" : "range_description",
-                    "Fecha de creación" : "datecreate",
-                    "Fecha de modificación" : "dateupdate",
-                    "Puntos acumulados" : "totalpoints"
-                }
-            elif option == "atpoints":
-                reference = {
-                    "ID" : "id",
-                    "Nombre" : "name",
-                    #"Rango ID" : "range_id",
-                    "Rango" : "range_name",
-                    #"Control Rango" : "range_control",
-                    #"Descripción Rango" : "range_description",
-                    "Fecha de creación" : "datecreate",
-                    "Fecha de modificación" : "dateupdate",
+                    #"Fecha de creación" : "datecreate",
+                    #"Fecha de modificación" : "dateupdate",
                     "Puntos acumulados" : "totalpoints"
                 }
             structCtrl[nameCtrl] = {
@@ -983,14 +971,37 @@ class Helpers:
                          else 'todos los ') + \
                        f"___{controller}s___.\n"
             elif not target and len(parameters) == 2:
-                return f"- **${head}**   ->   " + \
-                       ('Lista en una hoja de excel '
-                         if excelrequest
-                         else 'Lista ') + \
-                       ('todas las '
-                         if controller[0] == 'a'
-                         else 'todos los ') + \
-                       f"___{controller}s___.\n"
+                if head == "listPointMember":
+                    return f"- **${head}:{target} "\
+                           f"[_{', '.join(parameters)}_]** " + \
+                           ('**> e**   ->   Lista en una hoja de excel '
+                            if excelrequest
+                            else '   ->   Lista ') + \
+                           ('todas las '
+                            if controller[0] == 'a'
+                            else 'todos los ') + \
+                           f"___{controller}s___ "\
+                            "que posean asistencias "\
+                            "registradas "\
+                           f"entre las fechas **_{parameters[0]}_** "\
+                           f"y **_{parameters[1]}_**, "\
+                            "ingresadas como parametros dentro de los "\
+                            "corchetes **[ ]**. "\
+                           f"Estos parametros **_{parameters[0]}_** "\
+                           f"y **_{parameters[1]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'. "\
+                            "En la lista se habilita una nueva "\
+                            "columna denominada 'Puntos acumulados'"\
+                            "correspondiente al total de "\
+                            "puntos para todas  asistencia en la que "\
+                           f"se encuentra cada ___{controller}___ dentro de "\
+                            "las fechas especificadas, "\
+                            "para la cual solo se mostraran los "\
+                           f" ___{controller}s___ que dispongan de puntos "\
+                            "y estarán organizados de mayor a "\
+                           f"menor dependiendo de su puntuacion.\n"
+
             elif target == "id" and len(parameters) == 1:
                 return f"- **${head}:{target} "\
                        f"[_{', '.join(parameters)}_]** " + \
