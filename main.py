@@ -3,6 +3,9 @@ from appHandler import AppHandler
 from Config.config import Config
 from Helpers.helpers import Helpers
 from messageHandler import MessageHandler
+from Certs.certificates import Certificates
+
+cert = Certificates()
 
 app = AppHandler()
 
