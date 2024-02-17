@@ -185,8 +185,8 @@ class Helpers:
             Helpers.setPermission(adminUser, adminChannel)
         }
         #diccionarios_internos = list(access.values())
-        #with open("diccionarios_internos.json", "w") as archivo_json:
-            #json.dump(diccionarios_internos, archivo_json)
+        with open("diccionarios_internos.json", "w") as archivo_json:
+            json.dump(access, archivo_json)
         if command in list(access.keys()):
             for permission in access[command]:
                 permission = json.loads(permission)
