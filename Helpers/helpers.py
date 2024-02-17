@@ -189,6 +189,7 @@ class Helpers:
             json.dump(diccionarios_internos, archivo_json)
         if command in list(access.keys()):
             for permission in access[command]:
+                permission = json.loads(permission)
                 if ((user in permission["user"] or
                     '*' in permission["user"]) and
                     (channel in permission["channel"] or
