@@ -25,9 +25,7 @@ class Certificates:
                 with (open(f'{dir}/Commands/{command}/{file}', "r") 
                       as file_json):
                     json_data = json.load(file_json)
-                    print(json_data)
-                
-                
+                    print(json_data)  
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             with (open(f'{dir}/Commands/{command}/{rule}.json', "w") 
