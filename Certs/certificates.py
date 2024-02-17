@@ -20,8 +20,14 @@ class Certificates:
         filepath = f"{dir}/Commands/{command}/"
         rule = 1
         if os.path.exists(filepath):
-            archivos = os.listdir(filepath)
-            print(archivos)
+            files = os.listdir(filepath)
+            for file in files:
+                with (open(f'{dir}/Commands/{command}/{file}', "r") 
+                      as file_json):
+                    json_data = json.load(file_json)
+                    print(json_data)
+                
+                
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             with (open(f'{dir}/Commands/{command}/{rule}.json', "w") 
@@ -30,7 +36,7 @@ class Certificates:
                     "user" : [item.strip() for item in user.split(',')],
                     "channel" : [item.strip() for item in channel.split(',')]
                 }, file_json, ensure_ascii=False, indent=4)
-            print(f"-> Created rule '/{command}/{rule}.json'!")
+            print(f"-> Created rule '{command}/{rule}.json'!")
 
         '''
         
