@@ -6,8 +6,8 @@ class Helpers:
     def checkAccess(command, author, nameChannel):
         user = str(author)
         channel = str(nameChannel)
-        adminUser = ["test", "lia7624", "evermell", "omegaxis_"]
-        adminChannel = ["general", "test", "🔏alimentacion-bot"]
+        adminUser = "test, lia7624, evermell, omegaxis_"
+        adminChannel = "general, test, 🔏alimentacion-bot"
         access = {}
         access['hello'] = {
             Helpers.setPermission(adminUser, adminChannel)
