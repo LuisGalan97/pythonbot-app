@@ -315,7 +315,7 @@ class Helpers:
                     for key, value in foreignkey.items():
                         foreignid[key] = getattr(getattr(self,
                                          f"_AppHandler__{key}Controller"),
-                                         f"get{struct[key]["fk"]}")(
+                                         f"get{struct[key]['fk']}")(
                                          {"name" : value})
                         if isinstance(foreignid[key], list):
                             target[f"{key}_id"] = foreignid[key][0]["id"]
