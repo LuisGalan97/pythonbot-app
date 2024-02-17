@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     4/02/2024 10:39:34 p. m.                     */
+/* Created on:     16/02/2024 8:51:06 p. m.                     */
 /*==============================================================*/
 
 
@@ -36,8 +36,10 @@ create table integrantes
    id                   bigint not null auto_increment,
    nombre               varchar(200) not null,
    rango_id             bigint not null,
+   principal_id         bigint default null,
    fechacreacion        date not null,
    fechamodificacion    date default null,
+   column_7             char(10),
    primary key (id)
 );
 

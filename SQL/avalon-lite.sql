@@ -30,6 +30,7 @@ create table integrantes (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 nombre               varchar(200)         not null,
 rango_id             integer              default null,
+principal_id         integer              default null,
 fechacreacion        date                 not null,
 fechamodificacion    date                 default null,
 foreign key (rango_id) references rangos (id) ON DELETE SET DEFAULT

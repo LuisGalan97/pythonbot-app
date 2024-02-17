@@ -308,14 +308,14 @@ class Helpers:
             if isinstance(result, dict):
                 foreignkey = {}
                 for key in struct:
-                    if struct[key]["fk"]:
+                    if "fk" in struct[key]:
                         foreignkey[key] = result[key]
                 if foreignkey:
                     foreignid = {}
                     for key, value in foreignkey.items():
                         foreignid[key] = getattr(getattr(self,
                                          f"_AppHandler__{key}Controller"),
-                                         f"get{key.capitalize()}s")(
+                                         f"get{struct[key]["fk"]}")(
                                          {"name" : value})
                         if isinstance(foreignid[key], list):
                             target[f"{key}_id"] = foreignid[key][0]["id"]
@@ -528,61 +528,54 @@ class Helpers:
             if "id" in targets:
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
             if "name" in targets:
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
             if "range" in targets:
                 structTargets["range"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Ranges",
                     "alias" : "Rango"
                 }
             if "range_id" in targets:
                 structTargets["range_id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "Rango ID"
                 }
             if "member" in targets:
                 structTargets["member"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Members",
                     "alias" : "Integrante"
                 }
             if "member_id" in targets:
                 structTargets["member_id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "Integrante ID"
                 }
             if "event" in targets:
                 structTargets["event"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Events",
                     "alias" : "Evento"
                 }
             if "event_id" in targets:
                 structTargets["event_id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "Event ID"
                 }
             if "date_1" in targets:
                 structTargets["date_1"] = {
                     "type" : datetime,
-                    "fk" : False,
                     "alias" : "Fecha 1"
                 }
             if "date_2" in targets:
                 structTargets["date_2"] = {
                     "type" : datetime,
-                    "fk" : False,
                     "alias" : "Fecha 2"
                 }
         return {"controller" : structCtrl,
@@ -600,17 +593,16 @@ class Helpers:
             }
             structTargets["member"] = {
                 "type" : str,
-                "fk" : True,
-                "alias" : "Integrante"
+                "alias" : "Integrante",
+                "fk" : "Members"
             }
             structTargets["event"] = {
                 "type" : str,
-                "fk" : True,
-                "alias" : "Evento"
+                "alias" : "Evento",
+                "fk" : "Events"
             }
             structTargets["date"] = {
                 "type" : datetime,
-                "fk" : False,
                 "alias" : "Fecha"
             }
         elif nameCtrl == "event":
@@ -620,17 +612,14 @@ class Helpers:
             }
             structTargets["name"] = {
                 "type" : str,
-                "fk" : False,
                 "alias" : "Nombre"
             }
             structTargets["points"] = {
                 "type" : float,
-                "fk" : False,
                 "alias" : "Puntos"
             }
             structTargets["description"] = {
                 "type" : str,
-                "fk" : False,
                 "alias" : "Descripción"
             }
         elif nameCtrl == "member":
@@ -640,17 +629,15 @@ class Helpers:
             }
             structTargets["name"] = {
                 "type" : str,
-                "fk" : False,
                 "alias" : "Nombre"
             }
             structTargets["range"] = {
                 "type" : str,
-                "fk" : True,
-                "alias" : "Rango"
+                "alias" : "Rango",
+                "fk" : "Ranges"
             }
             structTargets["date"] = {
                 "type" : datetime,
-                "fk" : False,
                 "alias" : "Fecha"
             }
         elif nameCtrl == "range":
@@ -660,17 +647,14 @@ class Helpers:
             }
             structTargets["name"] = {
                 "type" : str,
-                "fk" : False,
                 "alias" : "Nombre"
             }
             structTargets["control"] = {
                 "type" : int,
-                "fk" : False,
                 "alias" : "Control"
             }
             structTargets["description"] = {
                 "type" : str,
-                "fk" : False,
                 "alias" : "Descripción"
             }
         return {"controller" : structCtrl, "targets" : structTargets}
@@ -688,22 +672,20 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
                 structTargets["member"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Members",
                     "alias" : "Integrante"
                 }
                 structTargets["event"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Events",
                     "alias" : "Evento"
                 }
                 structTargets["date"] = {
                     "type" : datetime,
-                    "fk" : False,
                     "alias" : "Fecha"
                 }
         elif nameCtrl == "event":
@@ -715,17 +697,14 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
                 structTargets["points"] = {
                     "type" : float,
-                    "fk" : False,
                     "alias" : "Puntos"
                 }
                 structTargets["description"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Descripción"
                 }
             elif update == "id":
@@ -736,22 +715,18 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
                 structTargets["points"] = {
                     "type" : float,
-                    "fk" : False,
                     "alias" : "Puntos"
                 }
                 structTargets["description"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Descripción"
                 }
         elif nameCtrl == "member":
@@ -763,17 +738,15 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
                 structTargets["range"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Ranges",
                     "alias" : "Rango"
                 }
                 structTargets["date"] = {
                     "type" : datetime,
-                    "fk" : False,
                     "alias" : "Fecha"
                 }
             elif update == "id":
@@ -784,22 +757,19 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
                 structTargets["range"] = {
                     "type" : str,
-                    "fk" : True,
+                    "fk" : "Ranges",
                     "alias" : "Rango"
                 }
                 structTargets["date"] = {
                     "type" : datetime,
-                    "fk" : False,
                     "alias" : "Fecha"
                 }
         elif nameCtrl == "range":
@@ -811,17 +781,14 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
                 structTargets["control"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "Control"
                 }
                 structTargets["description"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Descripción"
                 }
             elif update == "id":
@@ -832,22 +799,18 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
                 structTargets["control"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "Control"
                 }
                 structTargets["description"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Descripción"
                 }
         return {"controller" : structCtrl, "targets" : structTargets}
@@ -864,7 +827,6 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
         elif nameCtrl == "event":
@@ -875,7 +837,6 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
             elif delete == "id":
@@ -885,7 +846,6 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
         elif nameCtrl == "member":
@@ -896,7 +856,6 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
             elif delete == "id":
@@ -906,7 +865,6 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
         elif nameCtrl == "range":
@@ -917,7 +875,6 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
-                    "fk" : False,
                     "alias" : "Nombre"
                 }
             elif delete == "id":
@@ -927,7 +884,6 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
-                    "fk" : False,
                     "alias" : "ID"
                 }
         return {"controller" : structCtrl, "targets" : structTargets}
