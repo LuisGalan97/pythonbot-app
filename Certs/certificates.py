@@ -17,7 +17,7 @@ class Certificates:
 
     def createRule(self, command, user, channel):
         command = command.replace(":", "_")
-        filepath = f"{dir}/{command}"
+        filepath = f"{dir}/Commands/{command}/"
         if os.path.exists(filepath):
             archivos = os.listdir(filepath)
             print(archivos)
