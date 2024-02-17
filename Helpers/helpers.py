@@ -303,19 +303,43 @@ class Helpers:
     @staticmethod
     def setTarget(self, request, struct):
         target = {}
+        nameCtrl = next(iter(struct["controller"].keys()))
+        struct = struct["targets"]
         if struct:
             result = Helpers.checkRequest(request, struct)
             if isinstance(result, dict):
+                checktarget = {}
                 foreignkey = {}
                 for key in struct:
-                    if "fk" in struct[key]:
+                    if "ct" in struct[key]:
+                        checktarget[key] = result[key]
+                    elif "fk" in struct[key]:
                         foreignkey[key] = result[key]
+                if checktarget:
+                    checkid = {}
+                    for key, value in checktarget.items():
+                        checkid[key] = getattr(getattr(self,
+                                       f"_AppHandler__{nameCtrl}Controller"),
+                                       f"get{nameCtrl.capitalize()}s")(
+                                       {f"{struct[key]['ct']}" : value})
+                        if isinstance(checkid[key], list):
+                            if key == struct[key]['ct']:
+                                target[key] = value
+                            else:
+                                target[key] = checkid[key][0]["id"]
+                        elif checkid[key]:
+                            return f"El valor '{value}' ingresado en el "\
+                                   f"campo **_{struct[key]['alias']}_** "\
+                                    "no fue encontrado en la base de datos."
+                        else:
+                            return False
                 if foreignkey:
                     foreignid = {}
                     for key, value in foreignkey.items():
+                        fkCtrl = struct[key]['fk']
                         foreignid[key] = getattr(getattr(self,
-                                         f"_AppHandler__{key}Controller"),
-                                         f"get{struct[key]['fk']}")(
+                                         f"_AppHandler__{fkCtrl}Controller"),
+                                         f"get{fkCtrl.capitalize()}s")(
                                          {"name" : value})
                         if isinstance(foreignid[key], list):
                             target[f"{key}_id"] = foreignid[key][0]["id"]
@@ -325,12 +349,9 @@ class Helpers:
                                     "no fue encontrado en la base de datos."
                         else:
                             return False
-                    for key, value in result.items():
-                        if not key in foreignid:
-                            target[key] = value
-                else:
-                    target = {}
-                    for key, value in result.items():
+                for key, value in result.items():
+                    if (not key in foreignkey and
+                        not key in checktarget):
                         target[key] = value
             else:
                 return result
@@ -528,17 +549,19 @@ class Helpers:
             if "id" in targets:
                 structTargets["id"] = {
                     "type" : int,
-                    "alias" : "ID"
+                    "alias" : "ID",
+                    "ct" : "id"
                 }
             if "name" in targets:
                 structTargets["name"] = {
                     "type" : str,
-                    "alias" : "Nombre"
+                    "alias" : "Nombre",
+                    "ct" : "name"
                 }
             if "range" in targets:
                 structTargets["range"] = {
                     "type" : str,
-                    "fk" : "Ranges",
+                    "fk" : "range",
                     "alias" : "Rango"
                 }
             if "range_id" in targets:
@@ -549,7 +572,7 @@ class Helpers:
             if "member" in targets:
                 structTargets["member"] = {
                     "type" : str,
-                    "fk" : "Members",
+                    "fk" : "member",
                     "alias" : "Integrante"
                 }
             if "member_id" in targets:
@@ -560,7 +583,7 @@ class Helpers:
             if "event" in targets:
                 structTargets["event"] = {
                     "type" : str,
-                    "fk" : "Events",
+                    "fk" : "event",
                     "alias" : "Evento"
                 }
             if "event_id" in targets:
@@ -594,12 +617,12 @@ class Helpers:
             structTargets["member"] = {
                 "type" : str,
                 "alias" : "Integrante",
-                "fk" : "Members"
+                "fk" : "member"
             }
             structTargets["event"] = {
                 "type" : str,
                 "alias" : "Evento",
-                "fk" : "Events"
+                "fk" : "event"
             }
             structTargets["date"] = {
                 "type" : datetime,
@@ -634,7 +657,7 @@ class Helpers:
             structTargets["range"] = {
                 "type" : str,
                 "alias" : "Rango",
-                "fk" : "Ranges"
+                "fk" : "range"
             }
             structTargets["date"] = {
                 "type" : datetime,
@@ -676,12 +699,12 @@ class Helpers:
                 }
                 structTargets["member"] = {
                     "type" : str,
-                    "fk" : "Members",
+                    "fk" : "member",
                     "alias" : "Integrante"
                 }
                 structTargets["event"] = {
                     "type" : str,
-                    "fk" : "Events",
+                    "fk" : "event",
                     "alias" : "Evento"
                 }
                 structTargets["date"] = {
@@ -742,7 +765,7 @@ class Helpers:
                 }
                 structTargets["range"] = {
                     "type" : str,
-                    "fk" : "Ranges",
+                    "fk" : "range",
                     "alias" : "Rango"
                 }
                 structTargets["date"] = {
@@ -765,7 +788,7 @@ class Helpers:
                 }
                 structTargets["range"] = {
                     "type" : str,
-                    "fk" : "Ranges",
+                    "fk" : "range",
                     "alias" : "Rango"
                 }
                 structTargets["date"] = {

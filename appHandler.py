@@ -15,7 +15,7 @@ class AppHandler:
 
     def getDatas(self, request, struct):
         try:
-            target = Helpers.setTarget(self, request, struct["targets"])
+            target = Helpers.setTarget(self, request, struct)
             option = struct["option"]
             nameCtrl, structRef = dict(struct["controller"]).popitem()
             aliasCtrl = structRef["alias"]
@@ -47,8 +47,8 @@ class AppHandler:
 
     def setData(self, request, struct):
         try:
-            target = Helpers.setTarget(self, request, struct["targets"])
-            nameCtrl, references = struct["controller"].popitem()
+            target = Helpers.setTarget(self, request, struct)
+            nameCtrl, references = dict(struct["controller"]).popitem()
             aliasCtrl = references["alias"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
@@ -87,8 +87,8 @@ class AppHandler:
 
     def updateData(self, request, struct):
         try:
-            target = Helpers.setTarget(self, request, struct["targets"])
-            nameCtrl, references = struct["controller"].popitem()
+            target = Helpers.setTarget(self, request, struct)
+            nameCtrl, references = dict(struct["controller"]).popitem()
             aliasCtrl = references["alias"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
@@ -144,8 +144,8 @@ class AppHandler:
 
     def deleteData(self, request, struct):
         try:
-            target = Helpers.setTarget(self, request, struct["targets"])
-            nameCtrl, references = struct["controller"].popitem()
+            target = Helpers.setTarget(self, request, struct)
+            nameCtrl, references = dict(struct["controller"]).popitem()
             aliasCtrl = references["alias"]
             if isinstance(target, dict):
                 controller = f"_AppHandler__{nameCtrl}Controller"
