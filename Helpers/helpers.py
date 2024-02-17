@@ -207,7 +207,7 @@ class Helpers:
         return json.dumps({
             "user" : [item.strip() for item in user.split(',')],
             "channel" : [item.strip() for item in channel.split(',')]
-        }, ensure_ascii=False, indent=1)
+        }, ensure_ascii=False)
 
     @staticmethod
     def checkCommand(request, command):
