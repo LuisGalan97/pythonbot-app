@@ -24,7 +24,7 @@ class Certificates:
             print(archivos)
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
-            with (open(f'{dir}/Commands/{command}/archivo.json', "w") 
+            with (open(f'{dir}/Commands/{command}/{rule}.json', "w") 
                   as file_json):
                 json.dumps({
                     "user" : [item.strip() for item in user.split(',')],
