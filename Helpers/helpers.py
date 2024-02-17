@@ -9,8 +9,9 @@ class Helpers:
         adminUser = "test, lia7624, evermell, omegaxis_"
         adminChannel = "general, test, 🔏alimentacion-bot"
         access = {}
-        access['hello'] = {}
-        access['hello'].add(Helpers.setPermission(adminUser, adminChannel))
+        access['hello']= {
+            Helpers.setPermission(adminUser, adminChannel)
+        }
         access['help'] = {
             Helpers.setPermission(adminUser, adminChannel)
         }
