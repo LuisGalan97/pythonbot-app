@@ -188,7 +188,8 @@ class Helpers:
                             isinstance(valor, set) else 
                             valor for clave, valor in access.items()}
         with open("diccionarios_internos.json", "w") as archivo_json:
-            json.dump(access_con_lista, archivo_json, indent=4)
+            json.dump(access_con_lista, archivo_json, 
+                      ensure_ascii=False ,indent=1)
         if command in list(access.keys()):
             for permission in access[command]:
                 permission = json.loads(permission)
@@ -206,7 +207,7 @@ class Helpers:
         return json.dumps({
             "user" : [item.strip() for item in user.split(',')],
             "channel" : [item.strip() for item in channel.split(',')]
-        }, ensure_ascii=False, indent=4)
+        }, ensure_ascii=False, indent=1)
 
     @staticmethod
     def checkCommand(request, command):
