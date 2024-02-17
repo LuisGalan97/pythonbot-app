@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 class Helpers:
     @staticmethod
@@ -9,247 +10,200 @@ class Helpers:
         adminChannel = ["general", "test", "🔏alimentacion-bot"]
         access = {}
         access['hello'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['help'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         #-------------------Asistencias-------------------------
         access['addAssist'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updAssist:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delAssist:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:member'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:date'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:member&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:member&date'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:event&date'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAssist:member&event&date'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['checkAssist'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         #-----------------------Eventos-------------------------
         access['addEvent'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updEvent:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updEvent:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delEvent:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delEvent:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listEvent'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listEvent:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listEvent:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         #--------------------Integrantes--------------------------
         access['addMember'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updMember:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updMember:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delMember:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delMember:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listMember'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listMember:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listMember:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listMember:range'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listMember:date'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:range'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:id&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:name&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listPointMember:range&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:range'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:id&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:name&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listAllPointMember:range&event'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         #--------------------------Rangos-----------------------------
         access['addRange'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updRange:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['updRange:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delRange:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['delRange:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listRange'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listRange:id'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
         access['listRange:name'] = {
-            "user" : adminUser + [],
-            "channel" : adminChannel + []
+            Helpers.setPermission(adminUser, adminChannel)
         }
+        diccionarios_internos = list(access.values())
+        with open("diccionarios_internos.json", "w") as archivo_json:
+            json.dump(diccionarios_internos, archivo_json)
         if command in list(access.keys()):
-            if ((user in access[command]["user"] or
-                '*' in access[command]["user"]) and
-                (channel in access[command]["channel"] or
-                '*' in access[command]["channel"])):
-                return True
-            else:
-                return False
+            for permission in access[command]:
+                if ((user in permission["user"] or
+                    '*' in permission["user"]) and
+                    (channel in permission["channel"] or
+                    '*' in permission["channel"])):
+                    return True
+            return False
         else:
             return False
+
+    @staticmethod
+    def setPermission(user, channel):
+        return {
+            "user" : [item.strip() for item in user.split(',')],
+            "channel" : [item.strip() for item in channel.split(',')]
+        }
 
     @staticmethod
     def checkCommand(request, command):
