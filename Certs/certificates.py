@@ -18,22 +18,24 @@ class Certificates:
     def createRule(self, command, user, channel):
         command = command.replace(":", "_")
         filepath = f"{dir}/Commands/{command}/"
+        rule = 1
         if os.path.exists(filepath):
             archivos = os.listdir(filepath)
             print(archivos)
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
-
-        '''
-        rule = 1
-        if not os.path.exists(filepath):
-            
             with open(f'{dir}/{command}/archivo.json', "w") as file_json:
                 json.dumps({
                     "user" : [item.strip() for item in user.split(',')],
                     "channel" : [item.strip() for item in channel.split(',')]
                 }, file_json, ensure_ascii=False, indent=4)
             print(f"-> Created rule '/{command}/{rule}.json'!")
+
+        '''
+        
+        if not os.path.exists(filepath):
+            
+            
         else: 
             print(f"-> Rule '/{command}/{rule}.json' already exist...")
         '''
