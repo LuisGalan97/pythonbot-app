@@ -549,14 +549,14 @@ class Helpers:
             if "id" in targets:
                 structTargets["id"] = {
                     "type" : int,
-                    "alias" : "ID",
-                    "ct" : "id"
+                    "ct" : "id",
+                    "alias" : "ID"
                 }
             if "name" in targets:
                 structTargets["name"] = {
                     "type" : str,
-                    "alias" : "Nombre",
-                    "ct" : "name"
+                    "ct" : "name",
+                    "alias" : "Nombre"
                 }
             if "range" in targets:
                 structTargets["range"] = {
@@ -616,13 +616,13 @@ class Helpers:
             }
             structTargets["member"] = {
                 "type" : str,
-                "alias" : "Integrante",
-                "fk" : "member"
+                "fk" : "member",
+                "alias" : "Integrante"
             }
             structTargets["event"] = {
                 "type" : str,
-                "alias" : "Evento",
-                "fk" : "event"
+                "fk" : "event",
+                "alias" : "Evento"
             }
             structTargets["date"] = {
                 "type" : datetime,
@@ -656,8 +656,8 @@ class Helpers:
             }
             structTargets["range"] = {
                 "type" : str,
-                "alias" : "Rango",
-                "fk" : "range"
+                "fk" : "range",
+                "alias" : "Rango"
             }
             structTargets["date"] = {
                 "type" : datetime,
@@ -695,6 +695,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
                 structTargets["member"] = {
@@ -720,6 +721,7 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
+                    "ct" : "name",
                     "alias" : "Nombre"
                 }
                 structTargets["points"] = {
@@ -738,6 +740,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
                 structTargets["name"] = {
@@ -761,6 +764,7 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
+                    "ct" : "name",
                     "alias" : "Nombre"
                 }
                 structTargets["range"] = {
@@ -780,6 +784,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
                 structTargets["name"] = {
@@ -804,6 +809,7 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
+                    "ct" : "name",
                     "alias" : "Nombre"
                 }
                 structTargets["control"] = {
@@ -822,6 +828,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
                 structTargets["name"] = {
@@ -850,6 +857,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
         elif nameCtrl == "event":
@@ -860,6 +868,7 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
+                    "ct" : "name",
                     "alias" : "Nombre"
                 }
             elif delete == "id":
@@ -869,6 +878,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
         elif nameCtrl == "member":
@@ -879,6 +889,7 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
+                    "ct" : "name",
                     "alias" : "Nombre"
                 }
             elif delete == "id":
@@ -888,6 +899,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
         elif nameCtrl == "range":
@@ -898,6 +910,7 @@ class Helpers:
                 }
                 structTargets["name"] = {
                     "type" : str,
+                    "ct" : "name",
                     "alias" : "Nombre"
                 }
             elif delete == "id":
@@ -907,6 +920,7 @@ class Helpers:
                 }
                 structTargets["id"] = {
                     "type" : int,
+                    "ct" : "id",
                     "alias" : "ID"
                 }
         return {"controller" : structCtrl, "targets" : structTargets}
