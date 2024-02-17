@@ -26,7 +26,7 @@ class Certificates:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             with (open(f'{dir}/Commands/{command}/{rule}.json', "w") 
                   as file_json):
-                json.dumps({
+                json.dump({
                     "user" : [item.strip() for item in user.split(',')],
                     "channel" : [item.strip() for item in channel.split(',')]
                 }, file_json, ensure_ascii=False, indent=4)
