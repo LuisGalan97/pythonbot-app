@@ -9,9 +9,8 @@ class Helpers:
         adminUser = "test, lia7624, evermell, omegaxis_"
         adminChannel = "general, test, 🔏alimentacion-bot"
         access = {}
-        access['hello'] = {
-            Helpers.setPermission(adminUser, adminChannel)
-        }
+        access['hello'] = {}
+        access['hello'].add(Helpers.setPermission(adminUser, adminChannel))
         access['help'] = {
             Helpers.setPermission(adminUser, adminChannel)
         }
@@ -200,10 +199,10 @@ class Helpers:
 
     @staticmethod
     def setPermission(user, channel):
-        return {
+        return json.dumps({
             "user" : [item.strip() for item in user.split(',')],
             "channel" : [item.strip() for item in channel.split(',')]
-        }
+        }, ensure_ascii=False, indent=4)
 
     @staticmethod
     def checkCommand(request, command):
