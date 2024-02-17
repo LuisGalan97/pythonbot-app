@@ -188,7 +188,7 @@ class Helpers:
                             isinstance(valor, set) else 
                             valor for clave, valor in access.items()}
         with open("diccionarios_internos.json", "w") as archivo_json:
-            json.dump(access_con_lista, archivo_json)
+            json.dump(access_con_lista, archivo_json, indent=4)
         if command in list(access.keys()):
             for permission in access[command]:
                 permission = json.loads(permission)
