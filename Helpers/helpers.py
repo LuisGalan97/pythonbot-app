@@ -6,7 +6,7 @@ class Helpers:
         user = str(author)
         channel = str(nameChannel)
         adminUser = ["test", "lia7624", "evermell", "omegaxis_"]
-        adminChannel = ["test", "🔏alimentacion-bot"]
+        adminChannel = ["general", "test", "🔏alimentacion-bot"]
         access = {}
         access['hello'] = {
             "user" : adminUser + [],
