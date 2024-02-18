@@ -492,6 +492,16 @@ async def testHelpDefault_helpMember(capfd):
            "corresponder a un valor numerico y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
            "valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listPointMember:name [_Nombre, Fecha 1, Fecha 2_]**    "\
+           "->   Lista el ___integrante___ asociado al parametro "\
+           "**_Nombre_**, que posea ___asistencias___ registradas "\
+           "entre las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
+           "ingresados como parametros dentro de los corchetes **[ ]**, "\
+           "mostrando el total de puntos de las ___asistencias___ en "\
+           "cuestion para el ___integrante___. El parametro **_Nombre_** "\
+           "deberá corresponder a un valor de texto y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "_Comandos de consulta con impresion en excel:_\n" in out
     assert "Por defecto, los comandos de consulta imprimen los "\
            "registros en el canal de discord, sin embargo, tambien "\
@@ -543,6 +553,17 @@ async def testHelpDefault_helpMember(capfd):
            "total de puntos de las ___asistencias___ en cuestion para "\
            "el ___integrante___. El parametro **_ID_** deberá "\
            "corresponder a un valor numerico y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listPointMember:name "\
+           "[_Nombre, Fecha 1, Fecha 2_]** **> e**   "\
+           "->   Lista el ___integrante___ asociado al parametro "\
+           "**_Nombre_**, que posea ___asistencias___ registradas "\
+           "entre las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
+           "ingresados como parametros dentro de los corchetes **[ ]**, "\
+           "mostrando el total de puntos de las ___asistencias___ en "\
+           "cuestion para el ___integrante___. El parametro **_Nombre_** "\
+           "deberá corresponder a un valor de texto y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
            "valores de fecha en 'Día/Mes/Año'.\n" in out
 
