@@ -195,7 +195,7 @@ async def testHelpDefault_helpAssist(capfd):
            "todas las ___asistencias___ asociadas al parametro "\
            "**_Integrante_** ingresado dentro de los corchetes "\
            "**[ ]**, en relacion al nombre del ___integrante___ "\
-           "presente en la ___asistencia___. Este parametro "\
+           "presente en cada ___asistencia___. Este parametro "\
            "**_Integrante_** deberá corresponder "\
            "a un valor de texto.\n" in out
     assert "- **$listAssist:event [_Evento_]**    ->   Lista todas "\
@@ -215,7 +215,7 @@ async def testHelpDefault_helpAssist(capfd):
            "parametros **_Integrante_** y **_Evento_** ingresados "\
            "dentro de los corchetes **[ ]**, en relacion al nombre "\
            "del ___integrante___ y al nombre del ___evento___ "\
-           "presentes en la ___asistencia___. Ambos parametros "\
+           "presentes en cada ___asistencia___. Ambos parametros "\
            "**_Integrante_** y **_Evento_** deberán "\
            "corresponder a valores de texto.\n" in out
     assert "- **$listAssist:member&date [_Integrante, Fecha 1, "\
@@ -232,7 +232,7 @@ async def testHelpDefault_helpAssist(capfd):
     assert "- **$listAssist:event&date [_Evento, Fecha 1, "\
            "Fecha 2_]**    ->   Lista todas las ___asistencias___ "\
            "asociadas al parametro **_Evento_** en relacion al "\
-           "nombre del ___evento___ presente en la ___asistencia___, "\
+           "nombre del ___evento___ presente en cada ___asistencia___, "\
            "y registradas entre las fechas **_Fecha 1_** y "\
            "**_Fecha 2_**, todos ingresados como parametros dentro "\
            "de los corchetes **[ ]**. El parametro **_Evento_** "\
@@ -244,7 +244,7 @@ async def testHelpDefault_helpAssist(capfd):
            "___asistencias___ asociadas a los parametros "\
            "**_Integrante_** y **_Evento_**, en relacion al nombre "\
            "del ___integrante___ y al nombre del ___evento___ "\
-           "presentes en la ___asistencia___, y registradas entre "\
+           "presentes en cada ___asistencia___, y registradas entre "\
            "las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
            "ingresados como parametros dentro de los corchetes "\
            "**[ ]**. Los parametros **_Integrante_** y **_Evento_** "\
@@ -270,7 +270,7 @@ async def testHelpDefault_helpAssist(capfd):
            "todas las ___asistencias___ asociadas al parametro "\
            "**_Integrante_** ingresado dentro de los corchetes "\
            "**[ ]**, en relacion al nombre del ___integrante___ "\
-           "presente en la ___asistencia___. Este parametro "\
+           "presente en cada ___asistencia___. Este parametro "\
            "**_Integrante_** deberá corresponder "\
            "a un valor de texto.\n" in out
     assert "- **$listAssist:event [_Evento_]** **> e**   ->   Lista "\
@@ -293,7 +293,7 @@ async def testHelpDefault_helpAssist(capfd):
            "parametros **_Integrante_** y **_Evento_** ingresados "\
            "dentro de los corchetes **[ ]**, en relacion al nombre "\
            "del ___integrante___ y al nombre del ___evento___ "\
-           "presentes en la ___asistencia___. Ambos parametros "\
+           "presentes en cada ___asistencia___. Ambos parametros "\
            "**_Integrante_** y **_Evento_** deberán "\
            "corresponder a valores de texto.\n" in out
     assert "- **$listAssist:member&date [_Integrante, Fecha 1, "\
@@ -312,7 +312,7 @@ async def testHelpDefault_helpAssist(capfd):
            "Fecha 2_]** **> e**   ->   Lista en una hoja de excel "\
            "todas las ___asistencias___ "\
            "asociadas al parametro **_Evento_** en relacion al "\
-           "nombre del ___evento___ presente en la ___asistencia___, "\
+           "nombre del ___evento___ presente en cada ___asistencia___, "\
            "y registradas entre las fechas **_Fecha 1_** y "\
            "**_Fecha 2_**, todos ingresados como parametros dentro "\
            "de los corchetes **[ ]**. El parametro **_Evento_** "\
@@ -325,7 +325,7 @@ async def testHelpDefault_helpAssist(capfd):
            "___asistencias___ asociadas a los parametros "\
            "**_Integrante_** y **_Evento_**, en relacion al nombre "\
            "del ___integrante___ y al nombre del ___evento___ "\
-           "presentes en la ___asistencia___, y registradas entre "\
+           "presentes en cada ___asistencia___, y registradas entre "\
            "las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
            "ingresados como parametros dentro de los corchetes "\
            "**[ ]**. Los parametros **_Integrante_** y **_Evento_** "\
@@ -466,7 +466,7 @@ async def testHelpDefault_helpMember(capfd):
     assert "- **$listMember:range [_Rango_]**    ->   Lista todos los "\
            "___integrantes___ asociados al parametro **_Rango_** "\
            "ingresado dentro de los corchetes **[ ]**, en relacion "\
-           "al nombre del ___rango___ presente en el ___integrante___. "\
+           "al nombre del ___rango___ presente en cada ___integrante___. "\
            "Este parametro **_Rango_** deberá corresponder "\
            "a un valor de texto.\n" in out
     assert "- **$listMember:date [_Fecha 1, Fecha 2_]**    ->   "\
@@ -516,7 +516,7 @@ async def testHelpDefault_helpMember(capfd):
            "en una hoja de excel todos los "\
            "___integrantes___ asociados al parametro **_Rango_** "\
            "ingresado dentro de los corchetes **[ ]**, en relacion "\
-           "al nombre del ___rango___ presente en el ___integrante___. "\
+           "al nombre del ___rango___ presente en cada ___integrante___. "\
            "Este parametro **_Rango_** deberá corresponder "\
            "a un valor de texto.\n" in out
     assert "- **$listMember:date [_Fecha 1, Fecha 2_]** **> e**   ->   "\
