@@ -241,6 +241,10 @@ class MessageHandler:
                                            "[ID, Evento, "\
                                            "Fecha 1, Fecha 2]",
                                            "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:name&event "\
+                                           "[Nombre, Evento, "\
+                                           "Fecha 1, Fecha 2]",
+                                           "integrante"))
             messages.append(Helpers.genMsg("listAllPointMember "\
                                            "[Fecha 1, Fecha 2]",
                                            "integrante"))
@@ -260,10 +264,10 @@ class MessageHandler:
                                            "[ID, Evento, "\
                                            "Fecha 1, Fecha 2]",
                                            "integrante"))
-            #messages.append(Helpers.genMsg("listPointMember:name&event "\
-            #                               "[Nombre, Evento, "\
-            #                               "Fecha 1, Fecha 2]",
-            #                               "integrante"))
+            messages.append(Helpers.genMsg("listAllPointMember:name&event "\
+                                           "[Nombre, Evento, "\
+                                           "Fecha 1, Fecha 2]",
+                                           "integrante"))
             #messages.append(Helpers.genMsg("listPointMember:range&event "\
             #                               "[Rango, Evento, Fecha 1, Fecha 2]",
             #                               "integrante"))
@@ -304,6 +308,10 @@ class MessageHandler:
                                            "[ID, Evento, "\
                                            "Fecha 1, Fecha 2] > e",
                                            "integrante"))
+            messages.append(Helpers.genMsg("listPointMember:name&event "\
+                                           "[Nombre, Evento, "\
+                                           "Fecha 1, Fecha 2] > e",
+                                           "integrante"))
             messages.append(Helpers.genMsg("listAllPointMember "\
                                            "[Fecha 1, Fecha 2] > e",
                                            "integrante"))
@@ -323,10 +331,10 @@ class MessageHandler:
                                            "[ID, Evento, "\
                                            "Fecha 1, Fecha 2] > e",
                                            "integrante"))
-            #messages.append(Helpers.genMsg("listPointMember:name&event "\
-            #                               "[Nombre, Evento, "\
-            #                               "Fecha 1, Fecha 2] > e",
-            #                               "integrante"))
+            messages.append(Helpers.genMsg("listAllPointMember:name&event "\
+                                           "[Nombre, Evento, "\
+                                           "Fecha 1, Fecha 2] > e",
+                                           "integrante"))
             #messages.append(Helpers.genMsg("listPointMember:range&event "\
             #                               "[Rango, Evento, "\
             #                               "Fecha 1, Fecha 2] > e",
