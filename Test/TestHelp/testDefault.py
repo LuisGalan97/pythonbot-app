@@ -593,6 +593,20 @@ async def testHelpDefault_helpMember(capfd):
            "deberá corresponder a un valor de texto y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
            "valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listPointMember:event "\
+           "[_Evento, Fecha 1, Fecha 2_]** **> e**   "\
+           "->   Lista en una hoja de excel "\
+           "todos los ___integrantes___ que posean "\
+           "___asistencias___ vinculadas al parametro **_Evento_**, "\
+           "en relacion al nombre del ___evento___ presente en cada "\
+           "___asistencia___, y registradas entre las fechas **_Fecha 1_** "\
+           "y **_Fecha 2_**, todos ingresados como parametros dentro "\
+           "de los corchetes **[ ]**, mostrando de mayor a menor el "\
+           "total de puntos de las ___asistencias___ en cuestion "\
+           "para cada ___integrante___. El parametro **_Evento_** deberá "\
+           "corresponder a un valor de texto y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_helpRange(capfd):
