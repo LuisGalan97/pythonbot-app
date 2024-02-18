@@ -764,6 +764,161 @@ async def testHelpDefault_helpMember(capfd):
            "corresponder a un valor de texto y los parametros "\
            "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
            "valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listPointMember:id&event "\
+           "[_ID, Evento, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "el ___integrante___ asociado al parametro **_ID_**, "\
+           "que posea ___asistencias___ vinculadas al parametro "\
+           "**_Evento_**, en relacion al nombre del ___evento___ presente "\
+           "en cada ___asistencia___, y registradas entre las fechas "\
+           "**_Fecha 1_** y **_Fecha 2_**, todos ingresados como parametros "\
+           "dentro de los corchetes **[ ]**, mostrando el total de puntos de "\
+           "las ___asistencias___ en cuestion para el ___integrante___. "\
+           "El parametro **_ID_** deberá corresponder a un valor numerico, "\
+           "el parametro **_Evento_** deberá corresponder "\
+           "a un valor de texto y los parametros **_Fecha 1_** y "\
+           "**_Fecha 2_** deberán corresponder a valores de "\
+           "fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listPointMember:name&event "\
+           "[_Nombre, Evento, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "el ___integrante___ asociado al parametro "\
+           "**_Nombre_**, que posea ___asistencias___ "\
+           "vinculadas al parametro **_Evento_**, en relacion "\
+           "al nombre del ___evento___ presente en cada "\
+           "___asistencia___, y registradas entre las fechas "\
+           "**_Fecha 1_** y **_Fecha 2_**, todos ingresados "\
+           "como parametros dentro de los corchetes **[ ]**, "\
+           "mostrando el total de puntos de las ___asistencias___ "\
+           "en cuestion para el ___integrante___. El parametro "\
+           "**_Nombre_** y **_Evento_** deberán corresponder a "\
+           "valores de texto y los parametros **_Fecha 1_** "\
+           "y **_Fecha 2_** deberán corresponder a valores "\
+           "de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listPointMember:range&event "\
+           "[_Rango, Evento, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "todos los ___integrantes___ asociado al "\
+           "parametro **_Rango_**, en relacion al nombre "\
+           "del ___rango___ presente en cada ___integrante___, "\
+           "que posea ___asistencias___ vinculadas al parametro "\
+           "**_Evento_**, en relacion al nombre del ___evento___ "\
+           "presente en cada ___asistencia___, y registradas "\
+           "entre las fechas **_Fecha 1_** y **_Fecha 2_**, "\
+           "todos ingresados como parametros dentro de los "\
+           "corchetes **[ ]**, mostrando de mayor a menor el "\
+           "total de puntos de las ___asistencias___ en cuestion "\
+           "para cada ___integrante___. El parametro **_Rango_** "\
+           "y **_Evento_** deberán corresponder a valores de "\
+           "texto y los parametros **_Fecha 1_** y **_Fecha 2_** "\
+           "deberán corresponder a valores de "\
+           "fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember [_Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "todos los ___integrantes___, mostrando "\
+           "para cada uno de mayor a  menor el total de puntos "\
+           "de sus ___asistencias___ registradas entre "\
+           "las fechas **_Fecha 1_** y **_Fecha 2_**, "\
+           "ingresadas como parametros dentro de los "\
+           "corchetes **[ ]**. Los parametros **_Fecha 1_** "\
+           "y **_Fecha 2_** deberán corresponder a valores "\
+           "de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:id "\
+           "[_ID, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "el ___integrante___ asociado al "\
+           "parametro **_ID_**, mostrando el total de "\
+           "puntos de sus ___asistencias___ registradas "\
+           "entre las fechas **_Fecha 1_** y **_Fecha 2_**, "\
+           "todos ingresados como parametros dentro de los "\
+           "corchetes **[ ]**. El parametro **_ID_** deberá "\
+           "corresponder a un valor numerico y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder "\
+           "a valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:name "\
+           "[_Nombre, Fecha 1, Fecha 2_]** **> e**   ->   Lista "\
+           "en una hoja de excel el "\
+           "___integrante___ asociado al parametro **_Nombre_**, "\
+           "mostrando el total de puntos de sus ___asistencias___ "\
+           "registradas entre las fechas **_Fecha 1_** y "\
+           "**_Fecha 2_**, todos ingresados como parametros "\
+           "dentro de los corchetes **[ ]**. El parametro "\
+           "**_Nombre_** deberá corresponder a un valor de "\
+           "texto y los parametros **_Fecha 1_** y **_Fecha 2_** "\
+           "deberán corresponder a valores de fecha en "\
+           "'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:range "\
+           "[_Rango, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "todos los ___integrantes___, asociados "\
+           "al parametro **_Rango_**, en relacion al nombre "\
+           "del ___rango___ presente en cada ___integrante___, "\
+           "mostrando para cada uno de mayor a menor el total de "\
+           "puntos de sus ___asistencias___ registradas entre "\
+           "las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
+           "ingresados como parametros dentro de los corchetes "\
+           "**[ ]**. El parametro **_Rango_** deberá corresponder "\
+           "a un valor de texto y los parametros **_Fecha 1_** "\
+           "y **_Fecha 2_** deberán corresponder a valores "\
+           "de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:event "\
+           "[_Evento, Fecha 1, Fecha 2_]** **> e**   "\
+           "->   Lista en una hoja de excel "\
+           "todos los ___integrantes___, mostrando para "\
+           "cada uno de mayor a menor el total de puntos de sus "\
+           "___asistencias___ vinculadas al parametro **_Evento_**, "\
+           "en relacion al nombre del ___evento___ presente en cada "\
+           "___asistencia___, y registradas entre las fechas **_Fecha 1_** "\
+           "y **_Fecha 2_**, todos ingresados como parametros dentro de "\
+           "los corchetes **[ ]**. El parametro **_Evento_** deberá "\
+           "corresponder a un valor de texto y los parametros **_Fecha 1_** "\
+           "y **_Fecha 2_** deberán corresponder a valores de fecha en "\
+           "'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:id&event "\
+           "[_ID, Evento, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "el ___integrante___ asociado al "\
+           "parametro **_ID_**, mostrando el total de puntos "\
+           "de sus ___asistencias___ vinculadas al parametro "\
+           "**_Evento_**, en relacion al nombre del ___evento___ "\
+           "presente en cada ___asistencia___, y registradas entre "\
+           "las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
+           "ingresados como parametros dentro de los corchetes "\
+           "**[ ]**. El parametro **_ID_** deberá corresponder "\
+           "a un valor numerico, el parametro **_Evento_** deberá "\
+           "corresponder a un valor de texto y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder a "\
+           "valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:name&event "\
+           "[_Nombre, Evento, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "el ___integrante___ asociado al parametro "\
+           "**_Nombre_**, mostrando el total de puntos de sus "\
+           "___asistencias___ vinculadas al parametro "\
+           "**_Evento_**, en relacion al nombre del ___evento___ "\
+           "presente en cada ___asistencia___, y registradas entre "\
+           "las fechas **_Fecha 1_** y **_Fecha 2_**, todos ingresados "\
+           "como parametros dentro de los corchetes **[ ]**. "\
+           "El parametro **_Nombre_** y **_Evento_** deberán "\
+           "corresponder a valores de texto y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder "\
+           "a valores de fecha en 'Día/Mes/Año'.\n" in out
+    assert "- **$listAllPointMember:range&event "\
+           "[_Rango, Evento, Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
+           "todos los ___integrantes___ asociado al parametro "\
+           "**_Rango_**, en relacion al nombre del ___rango___ "\
+           "presente en cada ___integrante___, mostrando de mayor "\
+           "a menor el total de puntos de sus ___asistencias___ "\
+           "vinculadas al parametro **_Evento_**, en relacion "\
+           "al nombre del ___evento___ presente en cada "\
+           "___asistencia___, y registradas entre las fechas "\
+           "**_Fecha 1_** y **_Fecha 2_**, todos ingresados como "\
+           "parametros dentro de los corchetes **[ ]**. "\
+           "El parametro **_Rango_** y **_Evento_** deberán "\
+           "corresponder a valores de texto y los parametros "\
+           "**_Fecha 1_** y **_Fecha 2_** deberán corresponder "\
+           "a valores de fecha en 'Día/Mes/Año'.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_helpRange(capfd):
