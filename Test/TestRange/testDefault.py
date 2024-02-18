@@ -432,8 +432,10 @@ async def testRangeDefault_updRangeId_idNoExist(capfd):
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
-        assert f"El ___rango___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testRangeDefault_updRangeName_nameNoExist(capfd):
@@ -456,9 +458,10 @@ async def testRangeDefault_updRangeName_nameNoExist(capfd):
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
-        assert f"El ___rango___ de **_Nombre_** "\
-               f"'{testData['nameupdate']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['nameupdate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testRangeDefault_delRangeId_idNoExist(capfd):
@@ -475,8 +478,10 @@ async def testRangeDefault_delRangeId_idNoExist(capfd):
         await hdlr.contMsg("delRange:id", app.deleteData,
                            Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
-        assert f"El ___rango___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testRangeDefault_delRangeName_nameNoExist(capfd):
@@ -493,9 +498,10 @@ async def testRangeDefault_delRangeName_nameNoExist(capfd):
         await hdlr.contMsg("delRange:name", app.deleteData,
                            Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
-        assert f"El ___rango___ de **_Nombre_** "\
-               f"'{testData['namecreate']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['namecreate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testRangeDefault_listRangeId_idNoExist(capfd):
@@ -512,8 +518,10 @@ async def testRangeDefault_listRangeId_idNoExist(capfd):
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___rangos___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testRangeDefault_listRangeName_nameNoExist(capfd):
@@ -530,5 +538,7 @@ async def testRangeDefault_listRangeName_nameNoExist(capfd):
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___rangos___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['nameupdate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
