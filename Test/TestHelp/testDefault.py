@@ -9,6 +9,7 @@ Client = namedtuple('Client', ['user'])
 name = 'test'
 author = "test"
 user = "test"
+permissions = Certificates()
 
 @pytest.mark.asyncio
 async def test_hello(capfd):
