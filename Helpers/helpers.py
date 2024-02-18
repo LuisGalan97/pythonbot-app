@@ -953,6 +953,77 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                            f"en cuestion para el ___{controller}___. "\
                            f"El parametro **_{parameters[1]}_** deberá "\
+                            "corresponder a un valor numerico y "\
+                           f"los parametros **_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'.\n"
+                elif head == "listAllPointMember":
+                    return f"- **${head}:{target} "\
+                           f"[_{', '.join(parameters)}_]** " + \
+                           ('**> e**   ->   Lista en una hoja de excel '
+                            if excelrequest
+                            else '   ->   Lista ') + \
+                           ('la '
+                            if controller[0] == 'a'
+                            else 'el ') + \
+                           f"___{controller}___ "\
+                            "asociad" + \
+                            ('a ' if controller[0] == 'a' else 'o ') + \
+                           f"al parametro **_{parameters[0]}_**, "\
+                            "mostrando "\
+                            "el total de "\
+                            "puntos de sus ___asistencias___ "\
+                            "vinculadas al parametro "\
+                           f"**_{parameters[1]}_**, "\
+                            "en relacion al nombre de" + \
+                           (' la '
+                            if parameters[1][0] == 'a'
+                            else 'l ') + \
+                           f"___{parameters[1].lower()}___ presente en "\
+                           f"cada ___asistencia___, "\
+                            "y registradas entre las fechas "\
+                           f"**_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_**, "\
+                            "todos ingresados como parametros dentro de los "\
+                            "corchetes **[ ]**. "\
+                           f"El parametro **_{parameters[1]}_** deberá "\
+                            "corresponder a un numerico y "\
+                           f"los parametros **_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_** "\
+                            "deberán corresponder a valores de fecha "\
+                            "en 'Día/Mes/Año'.\n"
+            elif target == "name&event" and len(parameters) == 4:
+                if head == "listPointMember":
+                    return f"- **${head}:{target} "\
+                           f"[_{', '.join(parameters)}_]** " + \
+                           ('**> e**   ->   Lista en una hoja de excel '
+                            if excelrequest
+                            else '   ->   Lista ') + \
+                           ('la '
+                            if controller[0] == 'a'
+                            else 'el ') + \
+                           f"___{controller}___ "\
+                           "asociad" + \
+                           ('a ' if controller[0] == 'a' else 'o ') + \
+                           f"al parametro **_{parameters[0]}_**, "\
+                           "que posea ___asistencias___ vinculadas "\
+                           f"al parametro **_{parameters[1]}_**, "\
+                           "en relacion al nombre de" + \
+                           (' la '
+                            if parameters[1][0] == 'a'
+                            else 'l ') + \
+                           f"___{parameters[1].lower()}___ presente en "\
+                           f"cada ___asistencia___, "\
+                            "y registradas "\
+                           f"entre las fechas **_{parameters[2]}_** "\
+                           f"y **_{parameters[3]}_**, "\
+                            "todos ingresados como parametros dentro de los "\
+                            "corchetes **[ ]**, "\
+                            "mostrando el total de "\
+                            "puntos de las ___asistencias___ "\
+                           f"en cuestion para el ___{controller}___. "\
+                           f"El parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_** "\
@@ -993,8 +1064,6 @@ class Helpers:
                            f"y **_{parameters[3]}_** "\
                             "deberán corresponder a valores de fecha "\
                             "en 'Día/Mes/Año'.\n"
-            elif target == "name&event" and len(parameters) == 4:
-                pass
             elif target == "range&event" and len(parameters) == 4:
                 pass
             elif target == "member&event" and len(parameters) == 2:
