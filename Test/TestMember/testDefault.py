@@ -521,6 +521,59 @@ async def testMemberDefault_listMemberDate_eIncomplete(capfd):
                    "**> e**\n" in out
 
 @pytest.mark.asyncio
+async def testMemberDefault_updMemberId_rangeNoExist(capfd):
+    commands = [f"$updMember:id[{testData['id']},{testData['nameupdate']},"\
+                f"{testData['ranoexist']},{testData['dateupdate']}]",
+                f"$updMember:id [{testData['id']}, {testData['nameupdate']}, "\
+                f"{testData['ranoexist']}, {testData['dateupdate']}]",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ] ",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ]FILL",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.contMsg("updMember:id", app.updateData,
+                           Helpers.updStruct("member", "id"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['ranoexist']}' "\
+                "ingresado en el campo "\
+                "**_Rango_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_updMemberName_rangeNoExist(capfd):
+    commands = [f"$updMember:name[{testData['nameupdate']},"\
+                f"{testData['ranoexist']},{testData['dateupdate']}]",
+                f"$updMember:name [{testData['nameupdate']}, "\
+                f"{testData['ranoexist']}, {testData['dateupdate']}]",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ] ",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ]FILL",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("member", "name"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['ranoexist']}' "\
+                "ingresado en el campo "\
+                "**_Rango_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
 async def testMemberDefault_delMemberId(capfd):
     command = f"$delMember:id [{testData['id']}]"
     channel = Channel(name=name)
@@ -605,34 +658,6 @@ async def testMemberDefault_updMemberId_idNoExist(capfd):
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
-async def testMemberDefault_updMemberId_rangeNoExist(capfd):
-    commands = [f"$updMember:id[{testData['id']},{testData['nameupdate']},"\
-                f"{testData['ranoexist']},{testData['dateupdate']}]",
-                f"$updMember:id [{testData['id']}, {testData['nameupdate']}, "\
-                f"{testData['ranoexist']}, {testData['dateupdate']}]",
-                f"$updMember:id [ {testData['id']} , "\
-                f"{testData['nameupdate']} , "\
-                f"{testData['ranoexist']} , {testData['dateupdate']} ] ",
-                f"$updMember:id [ {testData['id']} , "\
-                f"{testData['nameupdate']} , "\
-                f"{testData['ranoexist']} , {testData['dateupdate']} ]FILL",
-                f"$updMember:id [ {testData['id']} , "\
-                f"{testData['nameupdate']} , "\
-                f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
-    for command in commands:
-        channel = Channel(name=name)
-        message = Message(author=author, content=command, channel=channel)
-        client = Client(user=user)
-        hdlr = MessageHandler(message, client, permissions, True)
-        await hdlr.contMsg("updMember:id", app.updateData,
-                           Helpers.updStruct("member", "id"))
-        out, _ = capfd.readouterr()
-        assert f"El valor '{testData['ranoexist']}' "\
-                "ingresado en el campo "\
-                "**_Rango_** no fue encontrado en la "\
-                "base de datos.\n" in out
-
-@pytest.mark.asyncio
 async def testMemberDefault_updMemberName_nameNoExist(capfd):
     commands = [f"$updMember:name[{testData['nameupdate']},"\
                 f"{testData['ranupdate']},{testData['dateupdate']}]",
@@ -655,31 +680,6 @@ async def testMemberDefault_updMemberName_nameNoExist(capfd):
         assert f"El valor '{testData['nameupdate']}' "\
                 "ingresado en el campo "\
                 "**_Nombre_** no fue encontrado en la "\
-                "base de datos.\n" in out
-
-@pytest.mark.asyncio
-async def testMemberDefault_updMemberName_rangeNoExist(capfd):
-    commands = [f"$updMember:name[{testData['nameupdate']},"\
-                f"{testData['ranoexist']},{testData['dateupdate']}]",
-                f"$updMember:name [{testData['nameupdate']}, "\
-                f"{testData['ranoexist']}, {testData['dateupdate']}]",
-                f"$updMember:name [ {testData['nameupdate']} , "\
-                f"{testData['ranoexist']} , {testData['dateupdate']} ] ",
-                f"$updMember:name [ {testData['nameupdate']} , "\
-                f"{testData['ranoexist']} , {testData['dateupdate']} ]FILL",
-                f"$updMember:name [ {testData['nameupdate']} , "\
-                f"{testData['ranoexist']} , {testData['dateupdate']} ] FILL "]
-    for command in commands:
-        channel = Channel(name=name)
-        message = Message(author=author, content=command, channel=channel)
-        client = Client(user=user)
-        hdlr = MessageHandler(message, client, permissions, True)
-        await hdlr.contMsg("updMember:name", app.updateData,
-                           Helpers.updStruct("member", "name"))
-        out, _ = capfd.readouterr()
-        assert f"El valor '{testData['ranoexist']}' "\
-                "ingresado en el campo "\
-                "**_Rango_** no fue encontrado en la "\
                 "base de datos.\n" in out
 
 @pytest.mark.asyncio
