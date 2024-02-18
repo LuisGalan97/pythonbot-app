@@ -41,7 +41,7 @@ async def testConstraintsDefault_addRange(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addRange", app.setData,
                        Helpers.setStruct("range"))
     out, _ = capfd.readouterr()
@@ -58,7 +58,7 @@ async def testConstraintsDefault_addMember(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
@@ -74,7 +74,7 @@ async def testConstraintsDefault_addEvent(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addEvent", app.setData,
                        Helpers.setStruct("event"))
     out, _ = capfd.readouterr()
@@ -91,7 +91,7 @@ async def testConstraintsDefault_addAssist(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addAssist", app.setData,
                        Helpers.setStruct("assist"))
     out, _ = capfd.readouterr()
@@ -109,7 +109,7 @@ async def testConstraintsDefault_updRangeId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("updRange:id", app.updateData,
                        Helpers.updStruct("range", "id"))
     out, _ = capfd.readouterr()
@@ -121,7 +121,7 @@ async def testConstraintsDefault_listMemberId_checkUpdRangeCascade(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
                      Helpers.getStruct("member", ["id"]))
     out, _ = capfd.readouterr()
@@ -141,7 +141,7 @@ async def testConstraintsDefault_updMemberId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("updMember:id", app.updateData,
                        Helpers.updStruct("member", "id"))
     out, _ = capfd.readouterr()
@@ -153,7 +153,7 @@ async def testConstraintsDefault_listAssistId_checkUpdMemberCascade(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()
@@ -172,7 +172,7 @@ async def testConstraintsDefault_updEventId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("updEvent:id", app.updateData,
                        Helpers.updStruct("event", "id"))
     out, _ = capfd.readouterr()
@@ -184,7 +184,7 @@ async def testConstraintsDefault_listAssistId_checkUpdEventCascade(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()
@@ -200,7 +200,7 @@ async def testConstraintsDefault_delRangeId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delRange:id", app.deleteData,
                        Helpers.delStruct("range", "id"))
     out, _ = capfd.readouterr()
@@ -212,7 +212,7 @@ async def testConstraintsDefault_listMemberId_checkDelRangeNone(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
                      Helpers.getStruct("member", ["id"]))
     out, _ = capfd.readouterr()
@@ -229,7 +229,7 @@ async def testConstraintsDefault_delEventId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delEvent:id", app.deleteData,
                        Helpers.delStruct("event", "id"))
     out, _ = capfd.readouterr()
@@ -241,7 +241,7 @@ async def testConstraintsDefault_listAssistId_checkDelEventNone(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()
@@ -257,7 +257,7 @@ async def testConstraintsDefault_delMemberId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delMember:id", app.deleteData,
                        Helpers.delStruct("member", "id"))
     out, _ = capfd.readouterr()
@@ -269,7 +269,7 @@ async def testConstraintsDefault_listAssistId_checkDelMemberCascade(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()

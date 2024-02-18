@@ -32,7 +32,7 @@ async def testMemberParams_addMember_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addMember", app.setData,
                            Helpers.setStruct("member"))
         out, _ = capfd.readouterr()
@@ -58,7 +58,7 @@ async def testMemberParams_updMemberId_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -84,7 +84,7 @@ async def testMemberParams_updMemberName_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
@@ -108,7 +108,7 @@ async def testMemberParams_delMemberId_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -132,7 +132,7 @@ async def testMemberParams_delMemberName_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("member", "name"))
         out, _ = capfd.readouterr()
@@ -156,7 +156,7 @@ async def testMemberParams_listMemberId_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
@@ -180,7 +180,7 @@ async def testMemberParams_listMemberName_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
@@ -204,7 +204,7 @@ async def testMemberParams_listMemberRange_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
         out, _ = capfd.readouterr()
@@ -230,7 +230,7 @@ async def testMemberParams_listMemberDate_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()

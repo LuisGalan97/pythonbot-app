@@ -27,7 +27,7 @@ async def testAllPointMemberStruct_listAllPointMember_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember", app.getDatas,
                          Helpers.getStruct("member",
                                            ["date_1",
@@ -57,7 +57,7 @@ async def testAllPointMemberStruct_listAllPointMemberId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -88,7 +88,7 @@ async def testAllPointMemberStruct_listAllPointMemberName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -121,7 +121,7 @@ async def testAllPointMemberStruct_listAllPointMemberRange_invalidStruct(
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -154,7 +154,7 @@ async def testAllPointMemberStruct_listAllPointMemberEvent_invalidStruct(
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -187,7 +187,7 @@ async def testAllPointMemberStruct_listAllPointMemberIdEvent_invalidStruct(
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -221,7 +221,7 @@ async def testAllPointMemberStruct_listAllPointMemberNameEvent_invalidStruct(
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -255,7 +255,7 @@ async def testAllPointMemberStruct_listAllPointMemberRangeEvent_invalidStruct(
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAllPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",

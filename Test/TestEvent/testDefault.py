@@ -32,7 +32,7 @@ async def testEventDefault_addEvent(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addEvent", app.setData,
                        Helpers.setStruct("event"))
     out, _ = capfd.readouterr()
@@ -62,7 +62,7 @@ async def testEventDefault_addEvent_exist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -76,7 +76,7 @@ async def testEventDefault_listEventId_add(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listEvent:id", app.getDatas,
                      Helpers.getStruct("event", ["id"]))
     out, _ = capfd.readouterr()
@@ -92,7 +92,7 @@ async def testEventDefault_listEventName_add(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listEvent:name", app.getDatas,
                      Helpers.getStruct("event", ["name"]))
     out, _ = capfd.readouterr()
@@ -122,7 +122,7 @@ async def testEventDefault_updEventId(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -148,7 +148,7 @@ async def testEventDefault_updEventId_nameExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -171,7 +171,7 @@ async def testEventDefault_updEventName(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -187,7 +187,7 @@ async def testEventDefault_listEvent(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent", app.getDatas,
                          Helpers.getStruct("event"))
         out, _ = capfd.readouterr()
@@ -208,7 +208,7 @@ async def testEventDefault_listEventId(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
@@ -229,7 +229,7 @@ async def testEventDefault_listEventName(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
@@ -250,7 +250,7 @@ async def testEventDefault_listEvent_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent", app.getDatas,
                              Helpers.getStruct("event"))
             out, _ = capfd.readouterr()
@@ -270,7 +270,7 @@ async def testEventDefault_listEventId_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:id", app.getDatas,
                              Helpers.getStruct("event", ["id"]))
             out, _ = capfd.readouterr()
@@ -290,7 +290,7 @@ async def testEventDefault_listEventName_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
                              Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
@@ -308,7 +308,7 @@ async def testEventDefault_listEvent_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent", app.getDatas,
                              Helpers.getStruct("event"))
             out, _ = capfd.readouterr()
@@ -331,7 +331,7 @@ async def testEventDefault_listEventId_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:id", app.getDatas,
                              Helpers.getStruct("event", ["id"]))
             out, _ = capfd.readouterr()
@@ -355,7 +355,7 @@ async def testEventDefault_listEventName_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
                              Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
@@ -372,7 +372,7 @@ async def testEventDefault_delEventId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delEvent:id", app.deleteData,
                        Helpers.delStruct("event", "id"))
     out, _ = capfd.readouterr()
@@ -385,7 +385,7 @@ async def testEventDefault_addEvent_delName(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addEvent", app.setData,
                        Helpers.setStruct("event"))
     out, _ = capfd.readouterr()
@@ -400,7 +400,7 @@ async def testEventDefault_delEventName(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delEvent:name", app.deleteData,
                        Helpers.delStruct("event", "name"))
     out, _ = capfd.readouterr()
@@ -426,7 +426,7 @@ async def testEventDefault_updEventId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -449,7 +449,7 @@ async def testEventDefault_updEventName_nameNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -467,7 +467,7 @@ async def testEventDefault_delEventId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -485,7 +485,7 @@ async def testEventDefault_delEventName_nameNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -503,7 +503,7 @@ async def testEventDefault_listEventId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
@@ -521,7 +521,7 @@ async def testEventDefault_listEventName_nameNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()

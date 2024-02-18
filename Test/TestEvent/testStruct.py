@@ -27,7 +27,7 @@ async def testEventStruct_addEvent_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -47,7 +47,7 @@ async def testEventStruct_updEventId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -67,7 +67,7 @@ async def testEventStruct_updEventName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -87,7 +87,7 @@ async def testEventStruct_delEventId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -107,7 +107,7 @@ async def testEventStruct_delEventName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -127,7 +127,7 @@ async def testEventStruct_listEventId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
@@ -147,7 +147,7 @@ async def testEventStruct_listEventName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()

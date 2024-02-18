@@ -40,7 +40,7 @@ async def testPointMemberValue_listPointMember_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
                                            ["date_1",
@@ -67,7 +67,7 @@ async def testPointMemberValue_listPointMember_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
                                            ["date_1",
@@ -96,7 +96,7 @@ async def testPointMemberValue_listPointMember_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
                                            ["date_1",
@@ -123,7 +123,7 @@ async def testPointMemberValue_listPointMember_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember", app.getDatas,
                          Helpers.getStruct("member",
                                            ["date_1",
@@ -157,7 +157,7 @@ async def testPointMemberValue_listPointMemberId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -190,7 +190,7 @@ async def testPointMemberValue_listPointMemberId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -225,7 +225,7 @@ async def testPointMemberValue_listPointMemberId_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -258,7 +258,7 @@ async def testPointMemberValue_listPointMemberId_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -293,7 +293,7 @@ async def testPointMemberValue_listPointMemberId_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -326,7 +326,7 @@ async def testPointMemberValue_listPointMemberId_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -361,7 +361,7 @@ async def testPointMemberValue_listPointMemberName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -395,7 +395,7 @@ async def testPointMemberValue_listPointMemberName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -432,7 +432,7 @@ async def testPointMemberValue_listPointMemberName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -468,7 +468,7 @@ async def testPointMemberValue_listPointMemberName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -503,7 +503,7 @@ async def testPointMemberValue_listPointMemberName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -541,7 +541,7 @@ async def testPointMemberValue_listPointMemberName_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -574,7 +574,7 @@ async def testPointMemberValue_listPointMemberName_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -609,7 +609,7 @@ async def testPointMemberValue_listPointMemberName_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -642,7 +642,7 @@ async def testPointMemberValue_listPointMemberName_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -677,7 +677,7 @@ async def testPointMemberValue_listPointMemberRange_rangeEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -711,7 +711,7 @@ async def testPointMemberValue_listPointMemberRange_rangeLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -748,7 +748,7 @@ async def testPointMemberValue_listPointMemberRange_rangeStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -784,7 +784,7 @@ async def testPointMemberValue_listPointMemberRange_rangeSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -819,7 +819,7 @@ async def testPointMemberValue_listPointMemberRange_rangeRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -857,7 +857,7 @@ async def testPointMemberValue_listPointMemberRange_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -890,7 +890,7 @@ async def testPointMemberValue_listPointMemberRange_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -925,7 +925,7 @@ async def testPointMemberValue_listPointMemberRange_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -958,7 +958,7 @@ async def testPointMemberValue_listPointMemberRange_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -993,7 +993,7 @@ async def testPointMemberValue_listPointMemberEvent_eventEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -1027,7 +1027,7 @@ async def testPointMemberValue_listPointMemberEvent_eventLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -1064,7 +1064,7 @@ async def testPointMemberValue_listPointMemberEvent_eventStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
@@ -1100,7 +1100,7 @@ async def testPointMemberValue_listPointMemberEvent_eventSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
@@ -1135,7 +1135,7 @@ async def testPointMemberValue_listPointMemberEvent_eventRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["event",
@@ -1173,7 +1173,7 @@ async def testPointMemberValue_listPointMemberEvent_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -1206,7 +1206,7 @@ async def testPointMemberValue_listPointMemberEvent_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -1241,7 +1241,7 @@ async def testPointMemberValue_listPointMemberEvent_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -1274,7 +1274,7 @@ async def testPointMemberValue_listPointMemberEvent_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
@@ -1314,7 +1314,7 @@ async def testPointMemberValue_listPointMemberIdEvent_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1353,7 +1353,7 @@ async def testPointMemberValue_listPointMemberIdEvent_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1394,7 +1394,7 @@ async def testPointMemberValue_listPointMemberIdEvent_eventEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1434,7 +1434,7 @@ async def testPointMemberValue_listPointMemberIdEvent_eventLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1477,7 +1477,7 @@ async def testPointMemberValue_listPointMemberIdEvent_eventStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["id",
@@ -1519,7 +1519,7 @@ async def testPointMemberValue_listPointMemberIdEvent_eventSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["id",
@@ -1560,7 +1560,7 @@ async def testPointMemberValue_listPointMemberIdEvent_eventRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["id",
@@ -1604,7 +1604,7 @@ async def testPointMemberValue_listPointMemberIdEvent_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1643,7 +1643,7 @@ async def testPointMemberValue_listPointMemberIdEvent_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1684,7 +1684,7 @@ async def testPointMemberValue_listPointMemberIdEvent_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1723,7 +1723,7 @@ async def testPointMemberValue_listPointMemberIdEvent_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:id&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["id",
@@ -1764,7 +1764,7 @@ async def testPointMemberValue_listPointMemberNameEvent_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -1804,7 +1804,7 @@ async def testPointMemberValue_listPointMemberNameEvent_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -1847,7 +1847,7 @@ async def testPointMemberValue_listPointMemberNameEvent_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -1889,7 +1889,7 @@ async def testPointMemberValue_listPointMemberNameEvent_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -1930,7 +1930,7 @@ async def testPointMemberValue_listPointMemberNameEvent_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -1974,7 +1974,7 @@ async def testPointMemberValue_listPointMemberNameEvent_eventEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -2014,7 +2014,7 @@ async def testPointMemberValue_listPointMemberNameEvent_eventLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -2057,7 +2057,7 @@ async def testPointMemberValue_listPointMemberNameEvent_eventStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -2099,7 +2099,7 @@ async def testPointMemberValue_listPointMemberNameEvent_eventSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -2140,7 +2140,7 @@ async def testPointMemberValue_listPointMemberNameEvent_eventRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["name",
@@ -2184,7 +2184,7 @@ async def testPointMemberValue_listPointMemberNameEvent_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -2223,7 +2223,7 @@ async def testPointMemberValue_listPointMemberNameEvent_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -2264,7 +2264,7 @@ async def testPointMemberValue_listPointMemberNameEvent_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -2303,7 +2303,7 @@ async def testPointMemberValue_listPointMemberNameEvent_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:name&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["name",
@@ -2344,7 +2344,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2384,7 +2384,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2427,7 +2427,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -2469,7 +2469,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -2511,7 +2511,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_rangeRepeatChar(
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -2555,7 +2555,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2595,7 +2595,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2638,7 +2638,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -2680,7 +2680,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -2722,7 +2722,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_eventRepeatChar(
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                              Helpers.getStruct("member",
                                                ["range",
@@ -2766,7 +2766,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_date1Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2805,7 +2805,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_date1Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2846,7 +2846,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_date2Empty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",
@@ -2885,7 +2885,7 @@ async def testPointMemberValue_listPointMemberRangeEvent_date2Invalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listPointMember:range&event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["range",

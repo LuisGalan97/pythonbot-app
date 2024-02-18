@@ -33,7 +33,7 @@ async def testMemberDefault_addMember(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
@@ -63,7 +63,7 @@ async def testMemberDefault_addMember_exist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addMember", app.setData,
                            Helpers.setStruct("member"))
         out, _ = capfd.readouterr()
@@ -77,7 +77,7 @@ async def testMemberDefault_listMemberId_add(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listMember:id", app.getDatas,
                      Helpers.getStruct("member", ["id"]))
     out, _ = capfd.readouterr()
@@ -94,7 +94,7 @@ async def testMemberDefault_listMemberName_add(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listMember:name", app.getDatas,
                      Helpers.getStruct("member", ["name"]))
     out, _ = capfd.readouterr()
@@ -124,7 +124,7 @@ async def testMemberDefault_updMemberId(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -149,7 +149,7 @@ async def testMemberDefault_updMemberId_nameExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -173,7 +173,7 @@ async def testMemberDefault_updMemberName(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
@@ -189,7 +189,7 @@ async def testMemberDefault_listMember(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember", app.getDatas,
                          Helpers.getStruct("member"))
         out, _ = capfd.readouterr()
@@ -211,7 +211,7 @@ async def testMemberDefault_listMemberId(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
@@ -233,7 +233,7 @@ async def testMemberDefault_listMemberName(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
@@ -255,7 +255,7 @@ async def testMemberDefault_listMemberRange(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
         out, _ = capfd.readouterr()
@@ -282,7 +282,7 @@ async def testMemberDefault_listMemberDate(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
@@ -304,7 +304,7 @@ async def testMemberDefault_listMember_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember", app.getDatas,
                              Helpers.getStruct("member"))
             out, _ = capfd.readouterr()
@@ -324,7 +324,7 @@ async def testMemberDefault_listMemberId_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:id", app.getDatas,
                              Helpers.getStruct("member", ["id"]))
             out, _ = capfd.readouterr()
@@ -344,7 +344,7 @@ async def testMemberDefault_listMemberName_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
                              Helpers.getStruct("member", ["name"]))
             out, _ = capfd.readouterr()
@@ -364,7 +364,7 @@ async def testMemberDefault_listMemberRange_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
                              Helpers.getStruct("member", ["range"]))
             out, _ = capfd.readouterr()
@@ -387,7 +387,7 @@ async def testMemberDefault_listMemberDate_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:date", app.getDatas,
                              Helpers.getStruct("member",
                              ["date_1", "date_2"]))
@@ -406,7 +406,7 @@ async def testMemberDefault_listMember_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember", app.getDatas,
                              Helpers.getStruct("member"))
             out, _ = capfd.readouterr()
@@ -429,7 +429,7 @@ async def testMemberDefault_listMemberId_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:id", app.getDatas,
                              Helpers.getStruct("member", ["id"]))
             out, _ = capfd.readouterr()
@@ -453,7 +453,7 @@ async def testMemberDefault_listMemberName_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:name", app.getDatas,
                              Helpers.getStruct("member", ["name"]))
             out, _ = capfd.readouterr()
@@ -477,7 +477,7 @@ async def testMemberDefault_listMemberRange_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:range", app.getDatas,
                              Helpers.getStruct("member", ["range"]))
             out, _ = capfd.readouterr()
@@ -504,7 +504,7 @@ async def testMemberDefault_listMemberDate_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listMember:date", app.getDatas,
                              Helpers.getStruct("member",
                              ["date_1", "date_2"]))
@@ -526,7 +526,7 @@ async def testMemberDefault_delMemberId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delMember:id", app.deleteData,
                        Helpers.delStruct("member", "id"))
     out, _ = capfd.readouterr()
@@ -539,7 +539,7 @@ async def testMemberDefault_addMember_delName(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
@@ -554,7 +554,7 @@ async def testMemberDefault_delMemberName(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delMember:name", app.deleteData,
                        Helpers.delStruct("member", "name"))
     out, _ = capfd.readouterr()
@@ -567,7 +567,7 @@ async def testMemberDefault_addMember_rangeNoExist(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addMember", app.setData,
                        Helpers.setStruct("member"))
     out, _ = capfd.readouterr()
@@ -595,7 +595,7 @@ async def testMemberDefault_updMemberId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -621,7 +621,7 @@ async def testMemberDefault_updMemberId_rangeNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -646,7 +646,7 @@ async def testMemberDefault_updMemberName_nameNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
@@ -670,7 +670,7 @@ async def testMemberDefault_updMemberName_rangeNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
@@ -690,7 +690,7 @@ async def testMemberDefault_delMemberId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("member", "id"))
         out, _ = capfd.readouterr()
@@ -708,7 +708,7 @@ async def testMemberDefault_delMemberName_nameNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("member", "name"))
         out, _ = capfd.readouterr()
@@ -727,7 +727,7 @@ async def testMemberDefault_listMemberId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
@@ -745,7 +745,7 @@ async def testMemberDefault_listMemberName_nameNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
@@ -763,7 +763,7 @@ async def testMemberDefault_listMemberRange_rangeNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:range", app.getDatas,
                          Helpers.getStruct("member", ["range"]))
         out, _ = capfd.readouterr()
@@ -788,7 +788,7 @@ async def testMemberDefault_listMemberDate_dateNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listMember:date", app.getDatas,
                          Helpers.getStruct("member", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()

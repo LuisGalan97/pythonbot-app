@@ -44,7 +44,7 @@ async def testEventValue_addEvent_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -74,7 +74,7 @@ async def testEventValue_addEvent_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -107,7 +107,7 @@ async def testEventValue_addEvent_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addEvent", app.setData,
                                Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
@@ -139,7 +139,7 @@ async def testEventValue_addEvent_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addEvent", app.setData,
                                Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
@@ -170,7 +170,7 @@ async def testEventValue_addEvent_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addEvent", app.setData,
                                Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
@@ -204,7 +204,7 @@ async def testEventValue_addEvent_pointsEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -233,7 +233,7 @@ async def testEventValue_addEvent_pointsInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -264,7 +264,7 @@ async def testEventValue_addEvent_descriptionEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -294,7 +294,7 @@ async def testEventValue_addEvent_descriptionLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -327,7 +327,7 @@ async def testEventValue_addEvent_descriptionStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addEvent", app.setData,
                                Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
@@ -359,7 +359,7 @@ async def testEventValue_addEvent_descriptionSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addEvent", app.setData,
                                Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
@@ -390,7 +390,7 @@ async def testEventValue_addEvent_descriptionRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addEvent", app.setData,
                                Helpers.setStruct("event"))
             out, _ = capfd.readouterr()
@@ -429,7 +429,7 @@ async def testEventValue_updEventId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -463,7 +463,7 @@ async def testEventValue_updEventId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -499,7 +499,7 @@ async def testEventValue_updEventId_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -534,7 +534,7 @@ async def testEventValue_updEventId_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -572,7 +572,7 @@ async def testEventValue_updEventId_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
@@ -609,7 +609,7 @@ async def testEventValue_updEventId_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
@@ -645,7 +645,7 @@ async def testEventValue_updEventId_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
@@ -684,7 +684,7 @@ async def testEventValue_updEventId_pointsEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -718,7 +718,7 @@ async def testEventValue_updEventId_pointsInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -754,7 +754,7 @@ async def testEventValue_updEventId_descriptionEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -789,7 +789,7 @@ async def testEventValue_updEventId_descriptionLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -827,7 +827,7 @@ async def testEventValue_updEventId_descriptionStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
@@ -864,7 +864,7 @@ async def testEventValue_updEventId_descriptionSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
@@ -900,7 +900,7 @@ async def testEventValue_updEventId_descriptionRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:id", app.updateData,
                                Helpers.updStruct("event", "id"))
             out, _ = capfd.readouterr()
@@ -934,7 +934,7 @@ async def testEventValue_updEventName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -964,7 +964,7 @@ async def testEventValue_updEventName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -997,7 +997,7 @@ async def testEventValue_updEventName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
                                Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1029,7 +1029,7 @@ async def testEventValue_updEventName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
                                Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1060,7 +1060,7 @@ async def testEventValue_updEventName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
                                Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1094,7 +1094,7 @@ async def testEventValue_updEventName_pointsEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -1123,7 +1123,7 @@ async def testEventValue_updEventName_pointsInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -1154,7 +1154,7 @@ async def testEventValue_updEventName_descriptionEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -1184,7 +1184,7 @@ async def testEventValue_updEventName_descriptionLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -1217,7 +1217,7 @@ async def testEventValue_updEventName_descriptionStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
                                Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1249,7 +1249,7 @@ async def testEventValue_updEventName_descriptionSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
                                Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1280,7 +1280,7 @@ async def testEventValue_updEventName_descriptionRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updEvent:name", app.updateData,
                                Helpers.updStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1304,7 +1304,7 @@ async def testEventValue_delEventId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -1323,7 +1323,7 @@ async def testEventValue_delEventId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -1344,7 +1344,7 @@ async def testEventValue_delEventName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -1364,7 +1364,7 @@ async def testEventValue_delEventName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -1387,7 +1387,7 @@ async def testEventValue_delEventName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
                                Helpers.delStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1409,7 +1409,7 @@ async def testEventValue_delEventName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
                                Helpers.delStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1430,7 +1430,7 @@ async def testEventValue_delEventName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("delEvent:name", app.deleteData,
                                Helpers.delStruct("event", "name"))
             out, _ = capfd.readouterr()
@@ -1454,7 +1454,7 @@ async def testEventValue_listEventId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
@@ -1473,7 +1473,7 @@ async def testEventValue_listEventId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
@@ -1494,7 +1494,7 @@ async def testEventValue_listEventName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
@@ -1514,7 +1514,7 @@ async def testEventValue_listEventName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
@@ -1537,7 +1537,7 @@ async def testEventValue_listEventName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
                              Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
@@ -1559,7 +1559,7 @@ async def testEventValue_listEventName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
                              Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()
@@ -1580,7 +1580,7 @@ async def testEventValue_listEventName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listEvent:name", app.getDatas,
                              Helpers.getStruct("event", ["name"]))
             out, _ = capfd.readouterr()

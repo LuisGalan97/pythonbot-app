@@ -32,7 +32,7 @@ async def testEventParams_addEvent_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addEvent", app.setData,
                            Helpers.setStruct("event"))
         out, _ = capfd.readouterr()
@@ -58,7 +58,7 @@ async def testEventParams_updEventId_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -84,7 +84,7 @@ async def testEventParams_updEventName_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -108,7 +108,7 @@ async def testEventParams_delEventId_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
@@ -132,7 +132,7 @@ async def testEventParams_delEventName_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
@@ -156,7 +156,7 @@ async def testEventParams_listEventId_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
@@ -180,7 +180,7 @@ async def testEventParams_listEventName_invalidParams(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()

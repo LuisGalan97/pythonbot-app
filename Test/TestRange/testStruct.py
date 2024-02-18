@@ -27,7 +27,7 @@ async def testRangeStruct_addRange_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -47,7 +47,7 @@ async def testRangeStruct_updRangeId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -67,7 +67,7 @@ async def testRangeStruct_updRangeName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -87,7 +87,7 @@ async def testRangeStruct_delRangeId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
                            Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -107,7 +107,7 @@ async def testRangeStruct_delRangeName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
                            Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -127,7 +127,7 @@ async def testRangeStruct_listRangeId_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
@@ -147,7 +147,7 @@ async def testRangeStruct_listRangeName_invalidStruct(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()

@@ -54,8 +54,6 @@ class Certificates:
                               ensure_ascii=False, indent=4)
                 print( "-> Created permission in "\
                       f"'{command}/{idPermission}.json'!")
-            else:
-                print(f"-> Permission already exist in '{command}/{file}'...")
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             with (open(f'{dir}/.Commands/{command}/{idPermission}.json', "w")

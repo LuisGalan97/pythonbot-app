@@ -44,7 +44,7 @@ async def testRangeValue_addRange_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -74,7 +74,7 @@ async def testRangeValue_addRange_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -107,7 +107,7 @@ async def testRangeValue_addRange_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addRange", app.setData,
                                Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
@@ -139,7 +139,7 @@ async def testRangeValue_addRange_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addRange", app.setData,
                                Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
@@ -170,7 +170,7 @@ async def testRangeValue_addRange_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addRange", app.setData,
                                Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
@@ -204,7 +204,7 @@ async def testRangeValue_addRange_controlEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -233,7 +233,7 @@ async def testRangeValue_addRange_controlInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -264,7 +264,7 @@ async def testRangeValue_addRange_descriptionEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -294,7 +294,7 @@ async def testRangeValue_addRange_descriptionLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addRange", app.setData,
                            Helpers.setStruct("range"))
         out, _ = capfd.readouterr()
@@ -327,7 +327,7 @@ async def testRangeValue_addRange_descriptionStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addRange", app.setData,
                                Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
@@ -359,7 +359,7 @@ async def testRangeValue_addRange_descriptionSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addRange", app.setData,
                                Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
@@ -390,7 +390,7 @@ async def testRangeValue_addRange_descriptionRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("addRange", app.setData,
                                Helpers.setStruct("range"))
             out, _ = capfd.readouterr()
@@ -429,7 +429,7 @@ async def testRangeValue_updRangeId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -463,7 +463,7 @@ async def testRangeValue_updRangeId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -499,7 +499,7 @@ async def testRangeValue_updRangeId_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -534,7 +534,7 @@ async def testRangeValue_updRangeId_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -572,7 +572,7 @@ async def testRangeValue_updRangeId_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:id", app.updateData,
                                Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
@@ -609,7 +609,7 @@ async def testRangeValue_updRangeId_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:id", app.updateData,
                                Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
@@ -645,7 +645,7 @@ async def testRangeValue_updRangeId_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:id", app.updateData,
                                Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
@@ -684,7 +684,7 @@ async def testRangeValue_updRangeId_controlEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -718,7 +718,7 @@ async def testRangeValue_updRangeId_controlInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -754,7 +754,7 @@ async def testRangeValue_updRangeId_descriptionEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -789,7 +789,7 @@ async def testRangeValue_updRangeId_descriptionLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:id", app.updateData,
                            Helpers.updStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -827,7 +827,7 @@ async def testRangeValue_updRangeId_descriptionStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:id", app.updateData,
                                Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
@@ -864,7 +864,7 @@ async def testRangeValue_updRangeId_descriptionSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:id", app.updateData,
                                Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
@@ -900,7 +900,7 @@ async def testRangeValue_updRangeId_descriptionRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:id", app.updateData,
                                Helpers.updStruct("range", "id"))
             out, _ = capfd.readouterr()
@@ -934,7 +934,7 @@ async def testRangeValue_updRangeName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -964,7 +964,7 @@ async def testRangeValue_updRangeName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -997,7 +997,7 @@ async def testRangeValue_updRangeName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:name", app.updateData,
                                Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1029,7 +1029,7 @@ async def testRangeValue_updRangeName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:name", app.updateData,
                                Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1060,7 +1060,7 @@ async def testRangeValue_updRangeName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:name", app.updateData,
                                Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1094,7 +1094,7 @@ async def testRangeValue_updRangeName_controlEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -1123,7 +1123,7 @@ async def testRangeValue_updRangeName_controlInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -1154,7 +1154,7 @@ async def testRangeValue_updRangeName_descriptionEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -1184,7 +1184,7 @@ async def testRangeValue_updRangeName_descriptionLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updRange:name", app.updateData,
                            Helpers.updStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -1217,7 +1217,7 @@ async def testRangeValue_updRangeName_descriptionStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:name", app.updateData,
                                Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1249,7 +1249,7 @@ async def testRangeValue_updRangeName_descriptionSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:name", app.updateData,
                                Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1280,7 +1280,7 @@ async def testRangeValue_updRangeName_descriptionRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("updRange:name", app.updateData,
                                Helpers.updStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1304,7 +1304,7 @@ async def testRangeValue_delRangeId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
                            Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -1323,7 +1323,7 @@ async def testRangeValue_delRangeId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delRange:id", app.deleteData,
                            Helpers.delStruct("range", "id"))
         out, _ = capfd.readouterr()
@@ -1344,7 +1344,7 @@ async def testRangeValue_delRangeName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
                            Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -1364,7 +1364,7 @@ async def testRangeValue_delRangeName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delRange:name", app.deleteData,
                            Helpers.delStruct("range", "name"))
         out, _ = capfd.readouterr()
@@ -1387,7 +1387,7 @@ async def testRangeValue_delRangeName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("delRange:name", app.deleteData,
                                Helpers.delStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1409,7 +1409,7 @@ async def testRangeValue_delRangeName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("delRange:name", app.deleteData,
                                Helpers.delStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1430,7 +1430,7 @@ async def testRangeValue_delRangeName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.contMsg("delRange:name", app.deleteData,
                                Helpers.delStruct("range", "name"))
             out, _ = capfd.readouterr()
@@ -1454,7 +1454,7 @@ async def testRangeValue_listRangeId_idEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
@@ -1473,7 +1473,7 @@ async def testRangeValue_listRangeId_idInvalid(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listRange:id", app.getDatas,
                          Helpers.getStruct("range", ["id"]))
         out, _ = capfd.readouterr()
@@ -1494,7 +1494,7 @@ async def testRangeValue_listRangeName_nameEmpty(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
@@ -1514,7 +1514,7 @@ async def testRangeValue_listRangeName_nameLong(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listRange:name", app.getDatas,
                          Helpers.getStruct("range", ["name"]))
         out, _ = capfd.readouterr()
@@ -1537,7 +1537,7 @@ async def testRangeValue_listRangeName_nameStartChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
                              Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
@@ -1559,7 +1559,7 @@ async def testRangeValue_listRangeName_nameSpeChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
                              Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()
@@ -1580,7 +1580,7 @@ async def testRangeValue_listRangeName_nameRepeatChar(capfd):
             channel = Channel(name=name)
             message = Message(author=author, content=command, channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listRange:name", app.getDatas,
                              Helpers.getStruct("range", ["name"]))
             out, _ = capfd.readouterr()

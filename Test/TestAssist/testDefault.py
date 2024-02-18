@@ -33,7 +33,7 @@ async def testAssistDefault_addAssist(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("addAssist", app.setData,
                        Helpers.setStruct("assist"))
     out, _ = capfd.readouterr()
@@ -48,7 +48,7 @@ async def testAssistDefault_listAssistId_add(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()
@@ -84,7 +84,7 @@ async def testAssistDefault_updAssistId(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
@@ -100,7 +100,7 @@ async def testAssistDefault_listAssist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist", app.getDatas,
                          Helpers.getStruct("assist"))
         out, _ = capfd.readouterr()
@@ -121,7 +121,7 @@ async def testAssistDefault_listAssistId(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("assist", ["id"]))
         out, _ = capfd.readouterr()
@@ -142,7 +142,7 @@ async def testAssistDefault_listAssistMember(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
                          Helpers.getStruct("assist", ["member"]))
         out, _ = capfd.readouterr()
@@ -163,7 +163,7 @@ async def testAssistDefault_listAssistEvent(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
                          Helpers.getStruct("assist", ["event"]))
         out, _ = capfd.readouterr()
@@ -189,7 +189,7 @@ async def testAssistDefault_listAssistDate(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("assist", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
@@ -215,7 +215,7 @@ async def testAssistDefault_listAssistMemberEvent(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
                          ["member", "event"]))
@@ -242,7 +242,7 @@ async def testAssistDefault_listAssistMemberDate(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
                          ["member", "date_1", "date_2"]))
@@ -269,7 +269,7 @@ async def testAssistDefault_listAssistEventDate(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
                          ["event", "date_1", "date_2"]))
@@ -301,7 +301,7 @@ async def testAssistDefault_listAssistMemberEventDate(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event&date",
                          app.getDatas, Helpers.getStruct("assist",
                          ["member", "event", "date_1", "date_2"]))
@@ -323,7 +323,7 @@ async def testAssistDefault_listAssist_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist", app.getDatas,
                              Helpers.getStruct("assist"))
             out, _ = capfd.readouterr()
@@ -343,7 +343,7 @@ async def testAssistDefault_listAssistId_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
                              Helpers.getStruct("assist", ["id"]))
             out, _ = capfd.readouterr()
@@ -363,7 +363,7 @@ async def testAssistDefault_listAssistMember_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
                              Helpers.getStruct("assist", ["member"]))
             out, _ = capfd.readouterr()
@@ -383,7 +383,7 @@ async def testAssistDefault_listAssistEvent_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
                              Helpers.getStruct("assist", ["event"]))
             out, _ = capfd.readouterr()
@@ -406,7 +406,7 @@ async def testAssistDefault_listAssistDate_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
                              Helpers.getStruct("assist",
                              ["date_1", "date_2"]))
@@ -430,7 +430,7 @@ async def testAssistDefault_listAssistMemberDate_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                              Helpers.getStruct("assist",
                              ["member", "date_1", "date_2"]))
@@ -454,7 +454,7 @@ async def testAssistDefault_listAssistEventDate_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                              Helpers.getStruct("assist",
                              ["event", "date_1", "date_2"]))
@@ -481,7 +481,7 @@ async def testAssistDefault_listAssistMemberEventDate_e(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:member&event&date",
                              app.getDatas, Helpers.getStruct("assist",
                              ["member", "event", "date_1", "date_2"]))
@@ -500,7 +500,7 @@ async def testAssistDefault_listAssist_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist", app.getDatas,
                              Helpers.getStruct("assist"))
             out, _ = capfd.readouterr()
@@ -523,7 +523,7 @@ async def testAssistDefault_listAssistId_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:id", app.getDatas,
                              Helpers.getStruct("assist", ["id"]))
             out, _ = capfd.readouterr()
@@ -547,7 +547,7 @@ async def testAssistDefault_listAssistMember_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:member", app.getDatas,
                              Helpers.getStruct("assist", ["member"]))
             out, _ = capfd.readouterr()
@@ -572,7 +572,7 @@ async def testAssistDefault_listAssistEvent_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:event", app.getDatas,
                              Helpers.getStruct("assist", ["event"]))
             out, _ = capfd.readouterr()
@@ -600,7 +600,7 @@ async def testAssistDefault_listAssistDate_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:date", app.getDatas,
                              Helpers.getStruct("assist",
                              ["date_1", "date_2"]))
@@ -632,7 +632,7 @@ async def testAssistDefault_listAssistMemberDate_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                              Helpers.getStruct("assist",
                              ["member", "date_1", "date_2"]))
@@ -665,7 +665,7 @@ async def testAssistDefault_listAssistEventDate_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                              Helpers.getStruct("assist",
                              ["event", "date_1", "date_2"]))
@@ -701,7 +701,7 @@ async def testAssistDefault_listAssistMemberEventDate_eIncomplete(capfd):
             message = Message(author=author, content=f"{command}{eparam}",
                               channel=channel)
             client = Client(user=user)
-            hdlr = MessageHandler(message, client, True)
+            hdlr = MessageHandler(message, client, permissions, True)
             await hdlr.dFMsg("listAssist:member&event&date",
                              app.getDatas, Helpers.getStruct("assist",
                              ["member", "event", "date_1", "date_2"]))
@@ -725,7 +725,7 @@ async def testAssistDefault_delAssistId(capfd):
     channel = Channel(name=name)
     message = Message(author=author, content=command, channel=channel)
     client = Client(user=user)
-    hdlr = MessageHandler(message, client, True)
+    hdlr = MessageHandler(message, client, permissions, True)
     await hdlr.contMsg("delAssist:id", app.deleteData,
                        Helpers.delStruct("assist", "id"))
     out, _ = capfd.readouterr()
@@ -753,7 +753,7 @@ async def testAssistDefault_addAssist_memberNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
         out, _ = capfd.readouterr()
@@ -784,7 +784,7 @@ async def testAssistDefault_addAssist_eventNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("addAssist", app.setData,
                            Helpers.setStruct("assist"))
         out, _ = capfd.readouterr()
@@ -819,7 +819,7 @@ async def testAssistDefault_updAssistId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
@@ -852,7 +852,7 @@ async def testAssistDefault_updAssistId_memberNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
@@ -887,7 +887,7 @@ async def testAssistDefault_updAssistId_eventNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
@@ -907,7 +907,7 @@ async def testAssistDefault_delAssistId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.contMsg("delAssist:id", app.deleteData,
                            Helpers.delStruct("assist", "id"))
         out, _ = capfd.readouterr()
@@ -925,7 +925,7 @@ async def testAssistDefault_listAssistId_idNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("assist", ["id"]))
         out, _ = capfd.readouterr()
@@ -943,7 +943,7 @@ async def testAssistDefault_listAssistMember_memberNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member", app.getDatas,
                          Helpers.getStruct("assist", ["member"]))
         out, _ = capfd.readouterr()
@@ -963,7 +963,7 @@ async def testAssistDefault_listAssistEvent_eventNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:event", app.getDatas,
                          Helpers.getStruct("assist", ["event"]))
         out, _ = capfd.readouterr()
@@ -988,7 +988,7 @@ async def testAssistDefault_listAssistDate_dateNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:date", app.getDatas,
                          Helpers.getStruct("assist", ["date_1", "date_2"]))
         out, _ = capfd.readouterr()
@@ -1011,7 +1011,7 @@ async def testAssistDefault_listAssistMemberEvent_memberNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
                          ["member", "event"]))
@@ -1037,7 +1037,7 @@ async def testAssistDefault_listAssistMemberEvent_eventNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event", app.getDatas,
                          Helpers.getStruct("assist",
                          ["member", "event"]))
@@ -1063,7 +1063,7 @@ async def testAssistDefault_listAssistMemberDate_memberNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
                          ["member", "date_1", "date_2"]))
@@ -1089,7 +1089,7 @@ async def testAssistDefault_listAssistMemberDate_dateNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&date", app.getDatas,
                          Helpers.getStruct("assist",
                          ["member", "date_1", "date_2"]))
@@ -1113,7 +1113,7 @@ async def testAssistDefault_listAssistEventDate_eventNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
                          ["event", "date_1", "date_2"]))
@@ -1139,7 +1139,7 @@ async def testAssistDefault_listAssistEventDate_dateNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:event&date", app.getDatas,
                          Helpers.getStruct("assist",
                          ["event", "date_1", "date_2"]))
@@ -1168,7 +1168,7 @@ async def testAssistDefault_listAssistMemberEventDate_memberNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event&date",
                          app.getDatas, Helpers.getStruct("assist",
                          ["member", "event", "date_1", "date_2"]))
@@ -1199,7 +1199,7 @@ async def testAssistDefault_listAssistMemberEventDate_eventNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event&date",
                          app.getDatas, Helpers.getStruct("assist",
                          ["member", "event", "date_1", "date_2"]))
@@ -1230,7 +1230,7 @@ async def testAssistDefault_listAssistMemberEventDate_dateNoExist(capfd):
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
         client = Client(user=user)
-        hdlr = MessageHandler(message, client, True)
+        hdlr = MessageHandler(message, client, permissions, True)
         await hdlr.dFMsg("listAssist:member&event&date",
                          app.getDatas, Helpers.getStruct("assist",
                          ["member", "event", "date_1", "date_2"]))
