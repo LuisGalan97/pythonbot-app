@@ -952,8 +952,10 @@ class Helpers:
                             "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                            f"en cuestion para el ___{controller}___. "\
-                           f"El parametro **_{parameters[1]}_** deberá "\
-                            "corresponder a un valor numerico y "\
+                           f"El parametro **_{parameters[0]}_** deberá "\
+                            "corresponder a un valor de texto, "\
+                           f"el parametro **_{parameters[1]}_** deberá "\
+                            "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -987,8 +989,10 @@ class Helpers:
                            f"y **_{parameters[3]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**. "\
-                           f"El parametro **_{parameters[1]}_** deberá "\
-                            "corresponder a un numerico y "\
+                           f"El parametro **_{parameters[0]}_** deberá "\
+                            "corresponder a un valor numerico, "\
+                           f"el parametro **_{parameters[1]}_** deberá "\
+                            "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1023,8 +1027,9 @@ class Helpers:
                             "mostrando el total de "\
                             "puntos de las ___asistencias___ "\
                            f"en cuestion para el ___{controller}___. "\
-                           f"El parametro **_{parameters[1]}_** deberá "\
-                            "corresponder a un valor de texto y "\
+                           f"El parametro **_{parameters[0]}_** y "\
+                           f"**_{parameters[1]}_** deberán "\
+                            "corresponder a valores de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_** "\
                             "deberán corresponder a valores de fecha "\
@@ -1058,8 +1063,9 @@ class Helpers:
                            f"y **_{parameters[3]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**. "\
-                           f"El parametro **_{parameters[1]}_** deberá "\
-                            "corresponder a un valor de texto y "\
+                           f"El parametro **_{parameters[0]}_** y "\
+                           f"**_{parameters[1]}_** deberán "\
+                            "corresponder a valores de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
                            f"y **_{parameters[3]}_** "\
                             "deberán corresponder a valores de fecha "\
