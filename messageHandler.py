@@ -6,11 +6,12 @@ from Helpers.helpers import Helpers
 from datetime import datetime
 
 class MessageHandler:
-    def __init__(self, message, client, test = False):
+    def __init__(self, message, client, permissions, test = False):
         self.__message = message
         self.__client = client
+        self.__permissions = permissions
         self.__send = self.defaultFunction if not test else self.testFunction
-
+        
     async def inMsg(self):
         if self.__message.author == self.__client.user:
             return
@@ -18,8 +19,9 @@ class MessageHandler:
     async def sendText(self):
         author = self.__message.author
         nameChannel = self.__message.channel.name
+        permissions = self.__permissions
         msg = ""
-        if Helpers.checkAccess("hello", author, nameChannel):
+        if permissions.checkAccess("hello", author, nameChannel):
             msg = self.__message.content
         if msg.startswith("$hello"):
             await self.__send(message = f"Hola **{author}**!, "\
@@ -30,8 +32,9 @@ class MessageHandler:
     async def helpMsg(self):
         author = self.__message.author
         nameChannel = self.__message.channel.name
+        permissions = self.__permissions
         msg = ""
-        if Helpers.checkAccess("help", author, nameChannel):
+        if permissions.checkAccess("help", author, nameChannel):
             msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
@@ -486,8 +489,9 @@ class MessageHandler:
     async def dFMsg(self, command, method, struct):
         author = self.__message.author
         nameChannel = self.__message.channel.name
+        permissions = self.__permissions
         msg = ""
-        if Helpers.checkAccess(command, author, nameChannel):
+        if permissions.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if Helpers.checkCommand(msg, command):
             content = msg.replace(f'${command}', '').strip()
@@ -615,8 +619,9 @@ class MessageHandler:
     async def contMsg(self, command, method, struct):
         author = self.__message.author
         nameChannel = self.__message.channel.name
+        permissions = self.__permissions
         msg = ""
-        if Helpers.checkAccess(command, author, nameChannel):
+        if permissions.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if Helpers.checkCommand(msg, command):
             content = msg.replace(f'${command}', '').strip()
@@ -635,15 +640,16 @@ class MessageHandler:
     async def checkAssist(self, command, app):
         author = self.__message.author
         channel = self.__message.channel
-        permissions = channel.permissions_for(channel.guild.me)
+        permissions = self.__permissions
+        dcPermissions = channel.permissions_for(channel.guild.me)
         nameChannel = channel.name
         msg = ""
-        if Helpers.checkAccess(command, author, nameChannel):
+        if permissions.checkAccess(command, author, nameChannel):
             msg = self.__message.content
         if msg.startswith(f"${command}"):
-            if (permissions.send_messages and
-                permissions.manage_messages and
-                permissions.add_reactions):
+            if (dcPermissions.send_messages and
+                dcPermissions.manage_messages and
+                dcPermissions.add_reactions):
                 async for message in channel.history(limit=None):
                     if (len(message.reactions) == 1 and
                         str(message.reactions[0]) == '⚜️'):
@@ -725,7 +731,7 @@ class MessageHandler:
                             await message.clear_reactions()
                             await message.add_reaction('❌')
             else:
-                if permissions.send_messages:
+                if dcPermissions.send_messages:
                     await channel.send("**Avalon-bot** no dispone de "\
                     "los permisos necesarios para eliminar o reaccionar "\
                    f"a mensajes por el canal **{channel.name}**. "\
@@ -740,12 +746,12 @@ class MessageHandler:
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel
-        permissions = channel.permissions_for(channel.guild.me)
-        if permissions.send_messages:
+        dcPermissions = channel.permissions_for(channel.guild.me)
+        if dcPermissions.send_messages:
             if message:
                 await channel.send(message)
             elif file:
-                if permissions.attach_files:
+                if dcPermissions.attach_files:
                     await channel.send(file=file)
                 else:
                     await channel.send( "**Avalon-bot** no dispone "\

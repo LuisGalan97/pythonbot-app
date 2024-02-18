@@ -5,9 +5,8 @@ from Helpers.helpers import Helpers
 from messageHandler import MessageHandler
 from Certs.certificates import Certificates
 
-cert = Certificates()
-
 app = AppHandler()
+permissions = Certificates()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -20,7 +19,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    hdlr = MessageHandler(message, client)
+    hdlr = MessageHandler(message, client, permissions)
     await hdlr.inMsg()
     await hdlr.sendText()
     await hdlr.helpMsg()

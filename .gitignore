@@ -1,6 +1,6 @@
 __pycache__/
-Certs/Commands/*
-!Certs/Commands/.gitkeep
+Certs/*
+!Certs/certificates.py
 DB/*
 !DB/database.py
 DF/*

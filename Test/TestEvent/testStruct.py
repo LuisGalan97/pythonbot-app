@@ -1,6 +1,7 @@
 import pytest
 from messageHandler import MessageHandler
 from appHandler import AppHandler
+from Certs.certificates import Certificates
 from Helpers.helpers import Helpers
 from collections import namedtuple
 
@@ -11,6 +12,7 @@ name = 'test'
 author = "test"
 user = "test"
 app = AppHandler()
+permissions = Certificates()
 
 @pytest.mark.asyncio
 async def testEventStruct_addEvent_invalidStruct(capfd):

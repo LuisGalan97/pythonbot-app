@@ -1,5 +1,6 @@
 import pytest
 from messageHandler import MessageHandler
+from Certs.certificates import Certificates
 from collections import namedtuple
 
 Message = namedtuple('Message', ['author', 'content', 'channel'])
