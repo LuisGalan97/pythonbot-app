@@ -201,7 +201,7 @@ async def testHelpDefault_helpAssist(capfd):
     assert "- **$listAssist:event [_Evento_]**    ->   Lista todas "\
            "las ___asistencias___ asociadas al parametro "\
            "**_Evento_** ingresado dentro de los corchetes **[ ]**, "\
-           "en relacion al nombre del ___evento___ presente en la "\
+           "en relacion al nombre del ___evento___ presente en cada "\
            "___asistencia___. Este parametro **_Evento_** deberá "\
            "corresponder a un valor de texto.\n" in out
     assert "- **$listAssist:date [_Fecha 1, Fecha 2_]**    ->   "\
@@ -221,7 +221,7 @@ async def testHelpDefault_helpAssist(capfd):
     assert "- **$listAssist:member&date [_Integrante, Fecha 1, "\
            "Fecha 2_]**    ->   Lista todas las ___asistencias___ "\
            "asociadas al parametro **_Integrante_** en relacion "\
-           "al nombre del ___integrante___ presente en la "\
+           "al nombre del ___integrante___ presente en cada "\
            "___asistencia___, y registradas entre las fechas "\
            "**_Fecha 1_** y **_Fecha 2_**, todos ingresados como "\
            "parametros dentro de los corchetes **[ ]**. El parametro "\
@@ -277,7 +277,7 @@ async def testHelpDefault_helpAssist(capfd):
            "en una hoja de excel todas "\
            "las ___asistencias___ asociadas al parametro "\
            "**_Evento_** ingresado dentro de los corchetes **[ ]**, "\
-           "en relacion al nombre del ___evento___ presente en la "\
+           "en relacion al nombre del ___evento___ presente en cada "\
            "___asistencia___. Este parametro **_Evento_** deberá "\
            "corresponder a un valor de texto.\n" in out
     assert "- **$listAssist:date [_Fecha 1, Fecha 2_]** **> e**   ->   "\
@@ -300,7 +300,7 @@ async def testHelpDefault_helpAssist(capfd):
            "Fecha 2_]** **> e**   ->   Lista en una hoja de excel "\
            "todas las ___asistencias___ "\
            "asociadas al parametro **_Integrante_** en relacion "\
-           "al nombre del ___integrante___ presente en la "\
+           "al nombre del ___integrante___ presente en cada "\
            "___asistencia___, y registradas entre las fechas "\
            "**_Fecha 1_** y **_Fecha 2_**, todos ingresados como "\
            "parametros dentro de los corchetes **[ ]**. El parametro "\
@@ -404,7 +404,6 @@ async def testHelpDefault_helpEvent(capfd):
            "___evento___ asociado al parametro **_Nombre_** ingresado "\
            "dentro de los corchetes **[ ]**. Este parametro "\
            "**_Nombre_** deberá corresponder a un valor de texto.\n" in out
-
 
 @pytest.mark.asyncio
 async def testHelpDefault_helpMember(capfd):
@@ -526,8 +525,8 @@ async def testHelpDefault_helpMember(capfd):
            "como parametros dentro de los corchetes **[ ]**. Estos "\
            "parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
            "corresponder a valores de fecha en 'Día/Mes/Año'.\n" in out
-    assert "- **$listPointMember [_Fecha 1, Fecha 2_]**    ->   Lista "\
-           "en una hoja de excel "\
+    assert "- **$listPointMember [_Fecha 1, Fecha 2_]** **> e**   ->   "\
+           "Lista en una hoja de excel "\
            "todos los ___integrantes___ que posean ___asistencias___ "\
            "registradas entre las fechas **_Fecha 1_** y **_Fecha 2_**, "\
            "ingresadas como parametros dentro de los corchetes **[ ]**, "\
@@ -535,8 +534,8 @@ async def testHelpDefault_helpMember(capfd):
            "___asistencias___ en cuestion para cada ___integrante___. "\
            "Los parametros **_Fecha 1_** y **_Fecha 2_** deberán "\
            "corresponder a valores de fecha en 'Día/Mes/Año'.\n" in out
-    assert "- **$listPointMember:id [_ID, Fecha 1, Fecha 2_]**    ->   "\
-           "Lista en una hoja de excel "\
+    assert "- **$listPointMember:id [_ID, Fecha 1, Fecha 2_]** **> e**   "\
+           "->   Lista en una hoja de excel "\
            "el ___integrante___ asociado al parametro **_ID_**, "\
            "que posea ___asistencias___ registradas entre las fechas "\
            "**_Fecha 1_** y **_Fecha 2_**, todos ingresados como "\
