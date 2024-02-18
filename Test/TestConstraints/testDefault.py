@@ -273,5 +273,7 @@ async def testConstraintsDefault_listAssistId_checkDelMemberCascade(capfd):
     await hdlr.dFMsg("listAssist:id", app.getDatas,
                      Helpers.getStruct("assist", ["id"]))
     out, _ = capfd.readouterr()
-    assert "No se encontraron ___asistencias___ "\
-           "para la consulta realizada.\n" in out
+    assert f"El valor '{testData['assist_id']}' "\
+            "ingresado en el campo "\
+            "**_ID_** no fue encontrado en la "\
+            "base de datos.\n" in out
