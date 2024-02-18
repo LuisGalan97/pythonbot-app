@@ -599,8 +599,10 @@ async def testMemberDefault_updMemberId_idNoExist(capfd):
         await hdlr.contMsg("updMember:id", app.updateData,
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
-        assert f"El ___integrante___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_updMemberId_rangeNoExist(capfd):
@@ -650,9 +652,10 @@ async def testMemberDefault_updMemberName_nameNoExist(capfd):
         await hdlr.contMsg("updMember:name", app.updateData,
                            Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
-        assert f"El ___integrante___ de **_Nombre_** "\
-               f"'{testData['nameupdate']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['nameupdate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_updMemberName_rangeNoExist(capfd):
@@ -694,8 +697,10 @@ async def testMemberDefault_delMemberId_idNoExist(capfd):
         await hdlr.contMsg("delMember:id", app.deleteData,
                            Helpers.delStruct("member", "id"))
         out, _ = capfd.readouterr()
-        assert f"El ___integrante___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_delMemberName_nameNoExist(capfd):
@@ -712,9 +717,10 @@ async def testMemberDefault_delMemberName_nameNoExist(capfd):
         await hdlr.contMsg("delMember:name", app.deleteData,
                            Helpers.delStruct("member", "name"))
         out, _ = capfd.readouterr()
-        assert f"El ___integrante___ de **_Nombre_** "\
-               f"'{testData['namecreate']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['namecreate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_listMemberId_idNoExist(capfd):
@@ -731,8 +737,10 @@ async def testMemberDefault_listMemberId_idNoExist(capfd):
         await hdlr.dFMsg("listMember:id", app.getDatas,
                          Helpers.getStruct("member", ["id"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_listMemberName_nameNoExist(capfd):
@@ -749,8 +757,10 @@ async def testMemberDefault_listMemberName_nameNoExist(capfd):
         await hdlr.dFMsg("listMember:name", app.getDatas,
                          Helpers.getStruct("member", ["name"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___integrantes___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['nameupdate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_listMemberRange_rangeNoExist(capfd):
