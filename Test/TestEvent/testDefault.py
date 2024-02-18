@@ -495,7 +495,7 @@ async def testEventDefault_delEventName_nameNoExist(capfd):
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
-        assert f"El valor '{testData['namcreate']}' "\
+        assert f"El valor '{testData['namecreate']}' "\
                 "ingresado en el campo "\
                 "**_Nombre_** no fue encontrado en la "\
                 "base de datos.\n" in out
