@@ -2716,6 +2716,88 @@ async def testAllPointMemberDefault_delEventId_3(capfd):
     assert "El ___evento___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
+async def testAllPointMemberDefault_listAllPointMemberIdEvent_EventNoExist(
+    capfd):
+    commands = [f"$listAllPointMember:id&event[{testData['idmember']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listAllPointMember:id&event [{testData['idmember']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listAllPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listAllPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listAllPointMember:id&event [ {testData['idmember']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.dFMsg("listAllPointMember:id&event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["id",
+                                            "event",
+                                            "date_1",
+                                            "date_2"],
+                                            "atpoints"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evname_1']}' "\
+                "ingresado en el campo "\
+                "**_Evento_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
+async def testAllPointMemberDefault_listAllPointMemberNameEvent_EventNoExist(
+    capfd):
+    commands = [f"$listAllPointMember:name&event[{testData['memname']},"\
+                f"{testData['evname_1']},"\
+                f"{testData['assistdate_1']},"\
+                f"{testData['assistdate_12']}]",
+                f"$listAllPointMember:name&event [{testData['memname']}, "
+                f"{testData['evname_1']}, "\
+                f"{testData['assistdate_1']}, "\
+                f"{testData['assistdate_12']}]",
+                f"$listAllPointMember:name&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] ",
+                f"$listAllPointMember:name&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ]FILL",
+                f"$listAllPointMember:name&event [ {testData['memname']} ,"\
+                f" {testData['evname_1']}, "\
+                f" {testData['assistdate_1']} , "\
+                f"{testData['assistdate_12']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.dFMsg("listAllPointMember:name&event", app.getDatas,
+                         Helpers.getStruct("member",
+                                           ["name",
+                                            "event",
+                                            "date_1",
+                                            "date_2"],
+                                            "atpoints"))
+        out, _ = capfd.readouterr()
+        assert f"El valor '{testData['evname_1']}' "\
+                "ingresado en el campo "\
+                "**_Evento_** no fue encontrado en la "\
+                "base de datos.\n" in out
+
+@pytest.mark.asyncio
 async def testAllPointMemberDefault_delMemberId(capfd):
     command = f"$delMember:id [{testData['idmember']}]"
     channel = Channel(name=name)
@@ -2801,88 +2883,6 @@ async def testAllPointMemberDefault_listAllPointMemberEvent_EventNoExist(
         await hdlr.dFMsg("listAllPointMember:event", app.getDatas,
                          Helpers.getStruct("member",
                                            ["event",
-                                            "date_1",
-                                            "date_2"],
-                                            "atpoints"))
-        out, _ = capfd.readouterr()
-        assert f"El valor '{testData['evname_1']}' "\
-                "ingresado en el campo "\
-                "**_Evento_** no fue encontrado en la "\
-                "base de datos.\n" in out
-
-@pytest.mark.asyncio
-async def testAllPointMemberDefault_listAllPointMemberIdEvent_EventNoExist(
-    capfd):
-    commands = [f"$listAllPointMember:id&event[{testData['idmember']},"\
-                f"{testData['evname_1']},"\
-                f"{testData['assistdate_1']},"\
-                f"{testData['assistdate_12']}]",
-                f"$listAllPointMember:id&event [{testData['idmember']}, "
-                f"{testData['evname_1']}, "\
-                f"{testData['assistdate_1']}, "\
-                f"{testData['assistdate_12']}]",
-                f"$listAllPointMember:id&event [ {testData['idmember']} ,"\
-                f" {testData['evname_1']}, "\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listAllPointMember:id&event [ {testData['idmember']} ,"\
-                f" {testData['evname_1']}, "\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listAllPointMember:id&event [ {testData['idmember']} ,"\
-                f" {testData['evname_1']}, "\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
-    for command in commands:
-        channel = Channel(name=name)
-        message = Message(author=author, content=command, channel=channel)
-        client = Client(user=user)
-        hdlr = MessageHandler(message, client, permissions, True)
-        await hdlr.dFMsg("listAllPointMember:id&event", app.getDatas,
-                         Helpers.getStruct("member",
-                                           ["id",
-                                            "event",
-                                            "date_1",
-                                            "date_2"],
-                                            "atpoints"))
-        out, _ = capfd.readouterr()
-        assert f"El valor '{testData['evname_1']}' "\
-                "ingresado en el campo "\
-                "**_Evento_** no fue encontrado en la "\
-                "base de datos.\n" in out
-
-@pytest.mark.asyncio
-async def testAllPointMemberDefault_listAllPointMemberNameEvent_EventNoExist(
-    capfd):
-    commands = [f"$listAllPointMember:name&event[{testData['memname']},"\
-                f"{testData['evname_1']},"\
-                f"{testData['assistdate_1']},"\
-                f"{testData['assistdate_12']}]",
-                f"$listAllPointMember:name&event [{testData['memname']}, "
-                f"{testData['evname_1']}, "\
-                f"{testData['assistdate_1']}, "\
-                f"{testData['assistdate_12']}]",
-                f"$listAllPointMember:name&event [ {testData['memname']} ,"\
-                f" {testData['evname_1']}, "\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] ",
-                f"$listAllPointMember:name&event [ {testData['memname']} ,"\
-                f" {testData['evname_1']}, "\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ]FILL",
-                f"$listAllPointMember:name&event [ {testData['memname']} ,"\
-                f" {testData['evname_1']}, "\
-                f" {testData['assistdate_1']} , "\
-                f"{testData['assistdate_12']} ] FILL"]
-    for command in commands:
-        channel = Channel(name=name)
-        message = Message(author=author, content=command, channel=channel)
-        client = Client(user=user)
-        hdlr = MessageHandler(message, client, permissions, True)
-        await hdlr.dFMsg("listAllPointMember:name&event", app.getDatas,
-                         Helpers.getStruct("member",
-                                           ["name",
-                                            "event",
                                             "date_1",
                                             "date_2"],
                                             "atpoints"))
