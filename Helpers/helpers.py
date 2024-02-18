@@ -1103,9 +1103,9 @@ class Helpers:
                            f"y **_{parameters[3]}_**, "\
                             "todos ingresados como parametros dentro de los "\
                             "corchetes **[ ]**, "\
-                            "mostrando el total de "\
+                            "mostrando de mayor a menor el total de "\
                             "puntos de las ___asistencias___ "\
-                           f"en cuestion para el ___{controller}___. "\
+                           f"en cuestion para cada ___{controller}___. "\
                            f"El parametro **_{parameters[0]}_** y "\
                            f"**_{parameters[1]}_** deberán "\
                             "corresponder a valores de texto y "\
@@ -1132,7 +1132,7 @@ class Helpers:
                             else 'l ') + \
                            f"___{parameters[0].lower()}___ presente en " + \
                            f"cada ___{controller}___, "\
-                            "mostrando "\
+                            "mostrando de mayor a menor "\
                             "el total de "\
                             "puntos de sus ___asistencias___ "\
                             "vinculadas al parametro "\
