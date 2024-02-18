@@ -430,8 +430,10 @@ async def testEventDefault_updEventId_idNoExist(capfd):
         await hdlr.contMsg("updEvent:id", app.updateData,
                            Helpers.updStruct("event", "id"))
         out, _ = capfd.readouterr()
-        assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testEventDefault_updEventName_nameNoExist(capfd):
@@ -453,8 +455,10 @@ async def testEventDefault_updEventName_nameNoExist(capfd):
         await hdlr.contMsg("updEvent:name", app.updateData,
                            Helpers.updStruct("event", "name"))
         out, _ = capfd.readouterr()
-        assert f"El ___evento___ de **_Nombre_** '{testData['nameupdate']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['nameupdate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testEventDefault_delEventId_idNoExist(capfd):
@@ -471,8 +475,10 @@ async def testEventDefault_delEventId_idNoExist(capfd):
         await hdlr.contMsg("delEvent:id", app.deleteData,
                            Helpers.delStruct("event", "id"))
         out, _ = capfd.readouterr()
-        assert f"El ___evento___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testEventDefault_delEventName_nameNoExist(capfd):
@@ -489,8 +495,10 @@ async def testEventDefault_delEventName_nameNoExist(capfd):
         await hdlr.contMsg("delEvent:name", app.deleteData,
                            Helpers.delStruct("event", "name"))
         out, _ = capfd.readouterr()
-        assert f"El ___evento___ de **_Nombre_** '{testData['namecreate']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['namcreate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testEventDefault_listEventId_idNoExist(capfd):
@@ -507,8 +515,10 @@ async def testEventDefault_listEventId_idNoExist(capfd):
         await hdlr.dFMsg("listEvent:id", app.getDatas,
                          Helpers.getStruct("event", ["id"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___eventos___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testEventDefault_listEventName_nameNoExist(capfd):
@@ -525,5 +535,7 @@ async def testEventDefault_listEventName_nameNoExist(capfd):
         await hdlr.dFMsg("listEvent:name", app.getDatas,
                          Helpers.getStruct("event", ["name"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___eventos___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['nameupdate']}' "\
+                "ingresado en el campo "\
+                "**_Nombre_** no fue encontrado en la "\
+                "base de datos.\n" in out
