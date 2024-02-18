@@ -823,8 +823,10 @@ async def testAssistDefault_updAssistId_idNoExist(capfd):
         await hdlr.contMsg("updAssist:id", app.updateData,
                            Helpers.updStruct("assist", "id"))
         out, _ = capfd.readouterr()
-        assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testAssistDefault_updAssistId_memberNoExist(capfd):
@@ -911,8 +913,10 @@ async def testAssistDefault_delAssistId_idNoExist(capfd):
         await hdlr.contMsg("delAssist:id", app.deleteData,
                            Helpers.delStruct("assist", "id"))
         out, _ = capfd.readouterr()
-        assert f"La ___asistencia___ de **_ID_** '{testData['id']}' "\
-                "no se encuentra en la base de datos.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testAssistDefault_listAssistId_idNoExist(capfd):
@@ -929,8 +933,10 @@ async def testAssistDefault_listAssistId_idNoExist(capfd):
         await hdlr.dFMsg("listAssist:id", app.getDatas,
                          Helpers.getStruct("assist", ["id"]))
         out, _ = capfd.readouterr()
-        assert "No se encontraron ___asistencias___ "\
-               "para la consulta realizada.\n" in out
+        assert f"El valor '{testData['id']}' "\
+                "ingresado en el campo "\
+                "**_ID_** no fue encontrado en la "\
+                "base de datos.\n" in out
 
 @pytest.mark.asyncio
 async def testAssistDefault_listAssistMember_memberNoExist(capfd):
