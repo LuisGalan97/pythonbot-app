@@ -557,7 +557,8 @@ async def testHelpDefault_helpMember(capfd):
            "valores de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$listPointMember:name "\
            "[_Nombre, Fecha 1, Fecha 2_]** **> e**   "\
-           "->   Lista el ___integrante___ asociado al parametro "\
+           "->   Lista en una hoja de excel "\
+           "el ___integrante___ asociado al parametro "\
            "**_Nombre_**, que posea ___asistencias___ registradas "\
            "entre las fechas **_Fecha 1_** y **_Fecha 2_**, todos "\
            "ingresados como parametros dentro de los corchetes **[ ]**, "\
