@@ -1077,10 +1077,10 @@ class Helpers:
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
                             else '   ->   Lista ') + \
-                           ('la '
+                           ('todas las '
                             if controller[0] == 'a'
-                            else 'el ') + \
-                           f"___{controller}___ "\
+                            else 'todos los ') + \
+                           f"___{controller}s___ "\
                            "asociad" + \
                            ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\
@@ -1119,10 +1119,10 @@ class Helpers:
                            ('**> e**   ->   Lista en una hoja de excel '
                             if excelrequest
                             else '   ->   Lista ') + \
-                           ('la '
+                           ('todas las '
                             if controller[0] == 'a'
-                            else 'el ') + \
-                           f"___{controller}___ "\
+                            else 'todos los ') + \
+                           f"___{controller}s___ "\
                             "asociad" + \
                             ('a ' if controller[0] == 'a' else 'o ') + \
                            f"al parametro **_{parameters[0]}_**, "\

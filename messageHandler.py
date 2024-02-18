@@ -11,7 +11,7 @@ class MessageHandler:
         self.__client = client
         self.__permissions = permissions
         self.__send = self.defaultFunction if not test else self.testFunction
-        
+
     async def inMsg(self):
         if self.__message.author == self.__client.user:
             return
