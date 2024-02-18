@@ -953,7 +953,7 @@ class Helpers:
                             "puntos de las ___asistencias___ "\
                            f"en cuestion para el ___{controller}___. "\
                            f"El parametro **_{parameters[0]}_** deberá "\
-                            "corresponder a un valor de texto, "\
+                            "corresponder a un valor numerico, "\
                            f"el parametro **_{parameters[1]}_** deberá "\
                             "corresponder a un valor de texto y "\
                            f"los parametros **_{parameters[2]}_** "\
