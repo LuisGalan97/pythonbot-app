@@ -19,28 +19,33 @@ class Certificates:
         command = command.replace(":", "_")
         filepath = f"{dir}/Commands/{command}/"
         rule = 1
+        dictrule = {
+            "user" : [item.strip() for item in user.split(',')],
+            "channel" : [item.strip() for item in channel.split(',')]
+        }
         if os.path.exists(filepath):
             files = os.listdir(filepath)
+            dictexist = None
+            exist = False
             for file in files:
-                with (open(f'{dir}/Commands/{command}/{file}', "r") 
+                if str(rule) == file.replace(".json",""):
+                    rule+=1
+                with (open(f'{dir}/Commands/{command}/{file}', "r")
                       as file_json):
-                    json_data = json.load(file_json)
-                    print(json_data)  
+                    dictexist = json.load(file_json)
+                if dictexist == dictrule:
+                    exist = file
+            if not exist:
+                with (open(f'{dir}/Commands/{command}/{rule}.json', "w")
+                      as file_json):
+                    json.dump(dictrule, file_json,
+                              ensure_ascii=False, indent=4)
+                print(f"-> Created rule in '{command}/{rule}.json'!")
+            else:
+                print(f"-> Rule already exist in '{command}/{file}'...")
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
-            with (open(f'{dir}/Commands/{command}/{rule}.json', "w") 
+            with (open(f'{dir}/Commands/{command}/{rule}.json', "w")
                   as file_json):
-                json.dump({
-                    "user" : [item.strip() for item in user.split(',')],
-                    "channel" : [item.strip() for item in channel.split(',')]
-                }, file_json, ensure_ascii=False, indent=4)
-            print(f"-> Created rule '{command}/{rule}.json'!")
-
-        '''
-        
-        if not os.path.exists(filepath):
-            
-            
-        else: 
-            print(f"-> Rule '/{command}/{rule}.json' already exist...")
-        '''
+                json.dump(dictrule, file_json, ensure_ascii=False, indent=4)
+            print(f"-> Created rule in '{command}/{rule}.json'!")
