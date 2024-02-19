@@ -39,16 +39,17 @@ class Helpers:
         if reftarget:
             opts = [value.get("opt", False) for value in reftarget.values()]
             alias = [value['alias'] for value in reftarget.values()]
+            alias = [name + " (Opcional)" 
+                     if opt else name
+                     for opt, name
+                     in zip(opts, alias)]
+            alias = ', '.join(map(str, alias))
             if content.find('[') == 0 and content.rfind(']') != -1:
                 request = content.replace('[', '', 1)
                 request = request[: request.rfind(']')]
                 request = request.split(',')
                 return request
-            else:
-                alias = [name for opt, name
-                         in zip(opts, alias)
-                         if not opt]
-                alias = ', '.join(map(str, alias))
+            else:                
                 return "El comando debe mantener la forma:\n"\
                       f"**${command} [_{alias}_]**"
         else:
