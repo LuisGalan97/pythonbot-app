@@ -32,7 +32,8 @@ async def testMemberStruct_addMember_invalidStruct(capfd):
                            Helpers.setStruct("member"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
-        assert "**$addMember [_Nombre, Rango, Fecha_]**\n" in out
+        assert "**$addMember [_Nombre, Rango, "\
+               "Principal​_**_(____Opcional____)_**_​, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def testMemberStruct_updMemberId_invalidStruct(capfd):
@@ -52,7 +53,8 @@ async def testMemberStruct_updMemberId_invalidStruct(capfd):
                            Helpers.updStruct("member", "id"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
-        assert "**$updMember:id [_ID, Nombre, Rango, Fecha_]**\n" in out
+        assert "**$updMember:id [_ID, Nombre, Rango, "\
+               "Principal​_**_(____Opcional____)_**_​, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def testMemberStruct_updMemberName_invalidStruct(capfd):
@@ -72,7 +74,8 @@ async def testMemberStruct_updMemberName_invalidStruct(capfd):
                            Helpers.updStruct("member", "name"))
         out, _ = capfd.readouterr()
         assert "El comando debe mantener la forma:\n" in out
-        assert "**$updMember:name [_Nombre, Rango, Fecha_]**\n" in out
+        assert "**$updMember:name [_Nombre, Rango, "\
+               "Principal​_**_(____Opcional____)_**_​, Fecha_]**\n" in out
 
 @pytest.mark.asyncio
 async def testMemberStruct_delMemberId_invalidStruct(capfd):
