@@ -42,7 +42,7 @@ class AppHandler:
                 return False
         except Exception as ex:
             print(f"-> Ocurrio un error al intentar seleccionar "\
-                   "en la base de datos: {str(ex)}.")
+                  f"en la base de datos: {str(ex)}.")
             return False
 
     def setData(self, request, struct):
