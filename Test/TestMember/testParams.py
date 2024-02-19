@@ -44,16 +44,16 @@ async def testMemberParams_addMember_invalidParams(capfd):
 async def testMemberParams_updMemberId_invalidParams(capfd):
     commands = ["$updMember:id[]",
                 "$updMember:id []",
-                "$updMember:id[,,,,]",
-                "$updMember:id [,,,,]",
-                "$updMember:id[,,,,]FILL",
-                "$updMember:id[,,,,] FILL",
-                "$updMember:id[,,,,]]FILL",
-                "$updMember:id [,,,,]] FILL",
-                "$updMember:id[[,,,,]FILL",
-                "$updMember:id [[,,,,] FILL",
-                "$updMember:id[[,,,,]]FILL",
-                "$updMember:id [[,,,,]] FILL"]
+                "$updMember:id[,,,,,]",
+                "$updMember:id [,,,,,]",
+                "$updMember:id[,,,,,]FILL",
+                "$updMember:id[,,,,,] FILL",
+                "$updMember:id[,,,,,]]FILL",
+                "$updMember:id [,,,,,]] FILL",
+                "$updMember:id[[,,,,,]FILL",
+                "$updMember:id [[,,,,,] FILL",
+                "$updMember:id[[,,,,,]]FILL",
+                "$updMember:id [[,,,,,]] FILL"]
     for command in commands:
         channel = Channel(name=name)
         message = Message(author=author, content=command, channel=channel)
