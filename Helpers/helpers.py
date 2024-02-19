@@ -76,6 +76,16 @@ class Helpers:
                             if key == struct[key]['ct']:
                                 target[key] = value
                             else:
+                                if "update" in struct["controlller"]:
+                                    update = struct["controlller"]["update"]
+                                    if (result[update]  ==
+                                        checkid[key][0][update]):
+                                        return f"El valor '{value}' "\
+                                        "ingresado en el "\
+                                       f"campo **_{struct[key]['alias']}_** "\
+                                        "no puede hacer referencia al mismo "\
+                                       f"___{nameCtrl}___ que desea "\
+                                        "actualizar."
                                 target[f"{key}_id"] = checkid[key][0]["id"]
                         elif checkid[key]:
                             return f"El valor '{value}' ingresado en el "\
