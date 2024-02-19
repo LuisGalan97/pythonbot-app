@@ -39,7 +39,7 @@ class Helpers:
         if reftarget:
             opts = [value.get("opt", False) for value in reftarget.values()]
             alias = [value['alias'] for value in reftarget.values()]
-            alias = [name + " **(Opcional)**" 
+            alias = [name + " _**_(Opcional)_**_" 
                      if opt else name
                      for opt, name
                      in zip(opts, alias)]
