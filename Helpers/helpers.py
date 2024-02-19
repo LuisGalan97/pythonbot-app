@@ -82,8 +82,8 @@ class Helpers:
                             if key == struct[key]['ct']:
                                 target[key] = value
                             else:
-                                if "update" in struct["controlller"]:
-                                    update = struct["controlller"]["update"]
+                                if "update" in struct["controller"]:
+                                    update = struct["controller"]["update"]
                                     if (result[update]  ==
                                         checkid[key][0][update]):
                                         return f"El valor '{value}' "\
