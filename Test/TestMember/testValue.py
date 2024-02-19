@@ -374,7 +374,7 @@ async def testMemberValue_addMember_principalEmpty(capfd):
                            Helpers.setStruct("member"))
         out, _ = capfd.readouterr()
         assert "No fue ingresado ningun dato en el campo "\
-               "**_Rango_**\n" in out
+               "**_Principal_**\n" in out
 
 @pytest.mark.asyncio
 async def testMemberValue_addMember_principalLong(capfd):
@@ -410,7 +410,7 @@ async def testMemberValue_addMember_principalLong(capfd):
         out, _ = capfd.readouterr()
         assert f"El dato '{value}' ingresado "\
                 "en el campo "\
-               f"**_Rango_** "\
+               f"**_Principal_** "\
                 "no debe exceder los 50 caracteres.\n" in out
 
 @pytest.mark.asyncio
@@ -447,7 +447,7 @@ async def testMemberValue_addMember_principalStartChar(capfd):
                                Helpers.setStruct("member"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
-                    "**_Rango_** no debe comenzar con valores "\
+                    "**_Principal_** no debe comenzar con valores "\
                     "numericos ni caracteres especiales.\n" in out
 
 @pytest.mark.asyncio
@@ -484,7 +484,7 @@ async def testMemberValue_addMember_principalSpeChar(capfd):
                                Helpers.setStruct("member"))
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado en el campo "\
-                    "**_Rango_** no debe contener caracteres "\
+                    "**_Principal_** no debe contener caracteres "\
                     "especiales a excepcion de **-** o **|**.\n" in out
 
 @pytest.mark.asyncio
@@ -521,11 +521,11 @@ async def testMemberValue_addMember_principalRepeatChar(capfd):
             out, _ = capfd.readouterr()
             assert f"El dato '{value}' ingresado "\
                     "en el campo "\
-                   f"**_Rango_** "\
+                   f"**_Principal_** "\
                     "no debe repetir mas de dos veces los "\
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
-            
+
 #----------------------Test $addMember [*, *, Fecha]----------------------
 @pytest.mark.asyncio
 async def testMemberValue_addMember_dateEmpty(capfd):
