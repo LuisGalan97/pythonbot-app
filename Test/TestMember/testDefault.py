@@ -785,6 +785,210 @@ async def testMemberDefault_delMemberName(capfd):
     assert "El ___integrante___ ha sido eliminado con exito.\n" in out
 
 @pytest.mark.asyncio
+async def testMemberDefault_addMember_principal(capfd):
+    command = f"$addMember [{testData['namecreate']}, "\
+              f"{testData['rancreate']}, "\
+              f"{testData['nameexist']}, "\
+              f"{testData['datecreate']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.contMsg("addMember", app.setData,
+                       Helpers.setStruct("member"))
+    out, _ = capfd.readouterr()
+    idTest = out[out.find("**_ID_** '"):]
+    testData["id"] = idTest[idTest.find("'")+1:idTest.find("'.")]
+    assert "El ___integrante___ ha sido creado con exito sobre el "\
+          f"**_ID_** \'{testData['id']}\'.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_listMemberId_addPrincipal(capfd):
+    command = f"$listMember:id [{testData['id']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.dFMsg("listMember:id", app.getDatas,
+                     Helpers.getStruct("member", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['namecreate']}" in out
+    assert f"{testData['rancreate']}" in out
+    assert f"{testData['namexist']}" in out
+    assert f"{testData['datecreate'].replace('-','/')}" in out
+    assert "Ninguno" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_listMemberName_addPrincipal(capfd):
+    command = f"$listMember:name [{testData['namecreate']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.dFMsg("listMember:name", app.getDatas,
+                     Helpers.getStruct("member", ["name"]))
+    out, _ = capfd.readouterr()
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['namecreate']}" in out
+    assert f"{testData['rancreate']}" in out
+    assert f"{testData['namexist']}" in out
+    assert f"{testData['datecreate'].replace('-','/')}" in out
+    assert "Ninguno" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_updMemberId_principal(capfd):
+    commands = [f"$updMember:id[{testData['id']},"\
+                f"{testData['nameupdate']},"\
+                f"{testData['rancreate']},"\
+                f"{testData['dateupdate']}]",
+                f"$updMember:id [{testData['id']}, "\
+                f"{testData['nameupdate']}, "\
+                f"{testData['rancreate']}, "\
+                f"{testData['dateupdate']}]",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['rancreate']} , "\
+                f"{testData['dateupdate']} ] ",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['rancreate']} , "\
+                f"{testData['dateupdate']} ]FILL",
+                f"$updMember:id [ {testData['id']} , "\
+                f"{testData['nameupdate']} , "\
+                f"{testData['rancreate']} , "\
+                f"{testData['dateupdate']} ] FILL "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.contMsg("updMember:id", app.updateData,
+                           Helpers.updStruct("member", "id"))
+        out, _ = capfd.readouterr()
+        assert "El ___integrante___ ha sido actualizado con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_listMemberId_updIdPrincipal(capfd):
+    command = f"$listMember:id [{testData['id']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.dFMsg("listMember:id", app.getDatas,
+                     Helpers.getStruct("member", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['rancreate']}" in out
+    assert f"{testData['datecreate'].replace('-','/')}" in out
+    assert f"{testData['dateupdate'].replace('-','/')}" in out
+    assert "Ninguno" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_listMemberName_updIdPrincipal(capfd):
+    command = f"$listMember:name [{testData['nameupdate']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.dFMsg("listMember:name", app.getDatas,
+                     Helpers.getStruct("member", ["name"]))
+    out, _ = capfd.readouterr()
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['rancreate']}" in out
+    assert f"{testData['datecreate'].replace('-','/')}" in out
+    assert f"{testData['dateupdate'].replace('-','/')}" in out
+    assert "Ninguno" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_updMemberName_principal(capfd):
+    commands = [f"$updMember:name[{testData['nameupdate']},"\
+                f"{testData['ranupdate']},"\
+                f"{testData['nameexist']},"\
+                f"{testData['dateupdate']}]",
+                f"$updMember:name [{testData['nameupdate']}, "\
+                f"{testData['ranupdate']}, "\
+                f"{testData['nameexist']},"\
+                f"{testData['dateupdate']}]",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranupdate']} , "\
+                f"{testData['nameexist']},"\
+                f"{testData['dateupdate']} ] ",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranupdate']} , "\
+                f"{testData['nameexist']},"\
+                f"{testData['dateupdate']} ]FILL",
+                f"$updMember:name [ {testData['nameupdate']} , "\
+                f"{testData['ranupdate']} , "\
+                f"{testData['nameexist']},"\
+                f"{testData['dateupdate']} ] FILL "]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.contMsg("updMember:name", app.updateData,
+                           Helpers.updStruct("member", "name"))
+        out, _ = capfd.readouterr()
+        assert "El ___integrante___ ha sido actualizado con exito.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_listMemberId_updNamePrincipal(capfd):
+    command = f"$listMember:id [{testData['id']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.dFMsg("listMember:id", app.getDatas,
+                     Helpers.getStruct("member", ["id"]))
+    out, _ = capfd.readouterr()
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['rancreate']}" in out
+    assert f"{testData['namexist']}" in out
+    assert f"{testData['datecreate'].replace('-','/')}" in out
+    assert f"{testData['dateupdate'].replace('-','/')}" in out
+    assert "Ninguno" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_listMemberName_updNamePrincipal(capfd):
+    command = f"$listMember:name [{testData['nameupdate']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.dFMsg("listMember:name", app.getDatas,
+                     Helpers.getStruct("member", ["name"]))
+    out, _ = capfd.readouterr()
+    assert "**___Integrantes___** **___encontrados:___**\n" in out
+    assert f"{testData['id']}" in out
+    assert f"{testData['nameupdate']}" in out
+    assert f"{testData['ranupdate']}" in out
+    assert f"{testData['namexist']}" in out
+    assert f"{testData['datecreate'].replace('-','/')}" in out
+    assert f"{testData['dateupdate'].replace('-','/')}" in out
+    assert "Ninguno" in out
+
+@pytest.mark.asyncio
+async def testMemberDefault_delMemberId_principal(capfd):
+    command = f"$delMember:id [{testData['id']}]"
+    channel = Channel(name=name)
+    message = Message(author=author, content=command, channel=channel)
+    client = Client(user=user)
+    hdlr = MessageHandler(message, client, permissions, True)
+    await hdlr.contMsg("delMember:id", app.deleteData,
+                       Helpers.delStruct("member", "id"))
+    out, _ = capfd.readouterr()
+    assert "El ___integrante___ ha sido eliminado con exito.\n" in out
+
+@pytest.mark.asyncio
 async def testMemberDefault_addMember_rangeNoExist(capfd):
     command = f"$addMember [{testData['namecreate']}, "\
               f"{testData['ranoexist']}, {testData['datecreate']}]"
