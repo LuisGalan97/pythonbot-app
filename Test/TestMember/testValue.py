@@ -341,6 +341,191 @@ async def testMemberValue_addMember_rangeRepeatChar(capfd):
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
 
+#-------------------Test $addMember [*, Rango, Principal,*]--------------------
+@pytest.mark.asyncio
+async def testMemberValue_addMember_principalEmpty(capfd):
+    value = ""
+    commands = [f"$addMember[{testData['name']},"\
+                f"{testData['range']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$addMember [{testData['name']}, "\
+                f"{testData['range']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$addMember [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] ",
+                f"$addMember [ {testData['name']} , "\
+                f" {testData['range']}  , "\
+                f" {value}  , "\
+                f" {testData['date']} ]FILL",
+                f"$addMember [ {testData['name']} , "\
+                f" {testData['range']}  , "\
+                f" {value}  , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.contMsg("addMember", app.setData,
+                           Helpers.setStruct("member"))
+        out, _ = capfd.readouterr()
+        assert "No fue ingresado ningun dato en el campo "\
+               "**_Rango_**\n" in out
+
+@pytest.mark.asyncio
+async def testMemberValue_addMember_principalLong(capfd):
+    value = "abcdefghijklmnñopkrstuvwxyz"\
+            "abcdefghijklmnñopkrstuvwxyz"
+    commands = [f"$addMember[{testData['name']},"\
+                f"{testData['range']},"\
+                f"{value},"\
+                f"{testData['date']}]",
+                f"$addMember [{testData['name']}, "\
+                f"{testData['range']}, "\
+                f"{value}, "\
+                f"{testData['date']} ]",
+                f"$addMember [ {testData['name']} , "\
+                f" {testData['range']} , "\
+                f" {value} , "\
+                f" {testData['date']} ] ",
+                f"$addMember [ {testData['name']} , "\
+                f" {testData['range']}  , "\
+                f" {value}  , "\
+                f" {testData['date']} ]FILL",
+                f"$addMember [ {testData['name']} , "\
+                f" {testData['range']}  , "\
+                f" {value}  , "\
+                f" {testData['date']} ] FILL"]
+    for command in commands:
+        channel = Channel(name=name)
+        message = Message(author=author, content=command, channel=channel)
+        client = Client(user=user)
+        hdlr = MessageHandler(message, client, permissions, True)
+        await hdlr.contMsg("addMember", app.setData,
+                           Helpers.setStruct("member"))
+        out, _ = capfd.readouterr()
+        assert f"El dato '{value}' ingresado "\
+                "en el campo "\
+               f"**_Rango_** "\
+                "no debe exceder los 50 caracteres.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberValue_addMember_principalStartChar(capfd):
+    values = ["1test", "[test", "{test", "/test", "|test",
+             "@test", "*test"]
+    for value in values:
+        commands = [f"$addMember[{testData['name']},"\
+                    f"{testData['range']},"\
+                    f"{value},"\
+                    f"{testData['date']}]",
+                    f"$addMember [{testData['name']}, "\
+                    f"{testData['range']}, "\
+                    f"{value}, "\
+                    f"{testData['date']} ]",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']} , "\
+                    f" {value} , "\
+                    f" {testData['date']} ] ",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']}  , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ]FILL",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']}  , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, permissions, True)
+            await hdlr.contMsg("addMember", app.setData,
+                               Helpers.setStruct("member"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Rango_** no debe comenzar con valores "\
+                    "numericos ni caracteres especiales.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberValue_addMember_principalSpeChar(capfd):
+    values = ["test/", "test{", "te/st", "te\\st",
+              "tes@t", "tes*t", "tes--t", "tes||t"]
+    for value in values:
+        commands = [f"$addMember[{testData['name']},"\
+                    f"{testData['range']},"\
+                    f"{value},"\
+                    f"{testData['date']}]",
+                    f"$addMember [{testData['name']}, "\
+                    f"{testData['range']}, "\
+                    f"{value}, "\
+                    f"{testData['date']} ]",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']} , "\
+                    f" {value} , "\
+                    f" {testData['date']} ] ",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']}  , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ]FILL",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']}  , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, permissions, True)
+            await hdlr.contMsg("addMember", app.setData,
+                               Helpers.setStruct("member"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado en el campo "\
+                    "**_Rango_** no debe contener caracteres "\
+                    "especiales a excepcion de **-** o **|**.\n" in out
+
+@pytest.mark.asyncio
+async def testMemberValue_addMember_principalRepeatChar(capfd):
+    values = ["t-e-s-t", "t|e|s|t", "t[e[st", "t]e]st"]
+    for value in values:
+        commands = [f"$addMember[{testData['name']},"\
+                    f"{testData['range']},"\
+                    f"{value},"\
+                    f"{testData['date']}]",
+                    f"$addMember [{testData['name']}, "\
+                    f"{testData['range']}, "\
+                    f"{value}, "\
+                    f"{testData['date']} ]",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']} , "\
+                    f" {value} , "\
+                    f" {testData['date']} ] ",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']}  , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ]FILL",
+                    f"$addMember [ {testData['name']} , "\
+                    f" {testData['range']}  , "\
+                    f" {value}  , "\
+                    f" {testData['date']} ] FILL"]
+        for command in commands:
+            channel = Channel(name=name)
+            message = Message(author=author, content=command, channel=channel)
+            client = Client(user=user)
+            hdlr = MessageHandler(message, client, permissions, True)
+            await hdlr.contMsg("addMember", app.setData,
+                               Helpers.setStruct("member"))
+            out, _ = capfd.readouterr()
+            assert f"El dato '{value}' ingresado "\
+                    "en el campo "\
+                   f"**_Rango_** "\
+                    "no debe repetir mas de dos veces los "\
+                    "caracteres **-** **|**, o mas de una "\
+                    "vez los caracteres **[** **]**.\n" in out
+            
 #----------------------Test $addMember [*, *, Fecha]----------------------
 @pytest.mark.asyncio
 async def testMemberValue_addMember_dateEmpty(capfd):
