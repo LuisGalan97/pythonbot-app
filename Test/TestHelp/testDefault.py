@@ -429,7 +429,7 @@ async def testHelpDefault_helpMember(capfd):
            "de texto, un parametro **_Rango_** como valor de texto "\
            "asociado al nombre de un ___rango___, "\
            "un parametro **_Principal_** como valor de texto ___opcional___ "\
-           "asociado al nombre de otro ___integrante___  y un parametro "\
+           "asociado al nombre de otro ___integrante___ y un parametro "\
            "**_Fecha_** como valor de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$updMember:id [_ID, Nombre, Rango, "\
            "Principal​_**_(____Opcional____)_**_​, Fecha_]**   ->   "\
