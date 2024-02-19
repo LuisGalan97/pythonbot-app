@@ -16,14 +16,21 @@ class Certificates:
         if os.path.exists(filepath):
             files = os.listdir(filepath)
             for file in files:
-                with (open(f'{dir}/.Commands/{command}/{file}', "r")
-                      as file_json):
-                    permission = json.load(file_json)
-                if ((user in permission["user"] or
-                    '*' in permission["user"]) and
-                    (channel in permission["channel"] or
-                    '*' in permission["channel"])):
-                    return True
+                try:
+                    with (open(f'{dir}/.Commands/{command}/{file}', "r")
+                          as file_json):
+                        permission = json.load(file_json)
+                    if ((user in permission["user"] or
+                        '*' in permission["user"]) and
+                        (channel in permission["channel"] or
+                        '*' in permission["channel"])):
+                        return True
+                except Exception as ex:
+                    print( "-> Ocurrio un error al intentar leer "\
+                           "el permiso "\
+                          f"'{command}/{file}', por favor "\
+                           "asegurese que la estructura sea "\
+                           "correcta...")
             return False
         else:
             return False
@@ -52,7 +59,7 @@ class Certificates:
                       "w") as file_json):
                     json.dump(newPermission, file_json,
                               ensure_ascii=False, indent=4)
-                print( "-> Created permission in "\
+                print( "-> Permiso creado en "\
                       f"'{command}/{idPermission}.json'!")
         else:
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
@@ -60,7 +67,7 @@ class Certificates:
                   as file_json):
                 json.dump(newPermission, file_json,
                           ensure_ascii=False, indent=4)
-            print(f"-> Created permission in '{command}/{idPermission}.json'!")
+            print(f"-> Permiso creado en '{command}/{idPermission}.json'!")
 
     def createGlobalPermission(self, user, channel):
         self.createPermission("hello", user, channel)
