@@ -22,6 +22,8 @@ class MemberController:
                         "range_description" : member.
                                               getRange().
                                               getDescription(),
+                        "principal_id" : member.getPrincipal().getId(),
+                        "principal_name" : member.getPrincipal.getName(),
                         "datecreate" : member.getDateCreate(),
                         "dateupdate" : member.getDateUpdate(),
                         "totalpoints" : member.getTotalPoints()

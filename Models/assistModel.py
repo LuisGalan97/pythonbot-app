@@ -4,8 +4,8 @@ from .eventModel import EventModel
 class AssistModel:
     def __init__(self,
                  id = None,
-                 member : MemberModel = None,
-                 event : EventModel = None,
+                 member : 'MemberModel' = None,
+                 event : 'EventModel' = None,
                  date = None):
         self.__id = id
         self.__member = member

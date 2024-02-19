@@ -4,13 +4,15 @@ class MemberModel:
     def __init__(self,
                  id = None,
                  name = None,
-                 range : RangeModel = None,
+                 range : 'RangeModel' = None,
+                 principal : 'MemberModel' = None,
                  datecreate = None,
                  dateupdate = None,
                  totalpoints = None):
         self.__id = id
         self.__name = name
         self.__range = range
+        self.__principal = principal
         self.__datecreate = datecreate
         self.__dateupdate = dateupdate
         self.__totalpoints = totalpoints
@@ -23,6 +25,9 @@ class MemberModel:
 
     def getRange(self):
         return self.__range
+    
+    def getPrincipal(self):
+        return self.__principal
 
     def getDateCreate(self):
         return self.__datecreate

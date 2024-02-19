@@ -14,12 +14,15 @@ class MemberService:
                 "r.nombre AS range_name, "\
                 "r.control AS range_control, "\
                 "r.descripcion AS range_description, "\
+                "pi.id AS principal_id, "\
+                "pi.nombre AS principal_name, "\
                 "i.id, "\
                 "i.nombre AS name, "\
                 "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
                 "strftime('%d/%m/%Y', i.fechamodificacion) AS dateupdate "\
             "FROM integrantes i "\
-            "LEFT JOIN rangos r ON r.id = i.rango_id"\
+            "LEFT JOIN rangos r ON r.id = i.rango_id "\
+            "LEFT JOIN integrantes AS pi ON pi.id = i.principal_id"
             )
             self.__db.start_connection()
             if not target:
@@ -59,9 +62,12 @@ class MemberService:
                                        row['range_name'],
                                        row['range_control'],
                                        row['range_description'])
+                    principal = MemberModel(row['principal_id'],
+                                            row['principal_name'])
                     member = MemberModel(row['id'],
                                          row['name'],
                                          range,
+                                         principal,
                                          row['datecreate'],
                                          row['dateupdate'])
                     members.append(member)
@@ -75,6 +81,8 @@ class MemberService:
                 "r.nombre AS range_name, "\
                 "r.control AS range_control, "\
                 "r.descripcion AS range_description, "\
+                "pi.id AS principal_id, "\
+                "pi.nombre AS principal_name, "\
                 "i.id, "\
                 "i.nombre AS name, "\
                 "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
@@ -82,6 +90,7 @@ class MemberService:
                 "COALESCE(SUM(e.puntos), 0) AS totalpoints "\
             "FROM integrantes i "\
             "LEFT JOIN rangos r ON r.id = i.rango_id "\
+            "LEFT JOIN integrantes AS pi ON pi.id = i.principal_id "\
             "LEFT JOIN asistencias a ON a.integrante_id = i.id "\
             "LEFT JOIN eventos e ON e.id = a.evento_id"
             )
@@ -191,9 +200,12 @@ class MemberService:
                                        row['range_name'],
                                        row['range_control'],
                                        row['range_description'])
+                    principal = MemberModel(row['principal_id'],
+                                            row['principal_name'])
                     member = MemberModel(row['id'],
                                          row['name'],
                                          range,
+                                         principal,
                                          row['datecreate'],
                                          row['dateupdate'],
                                          row['totalpoints'])
@@ -208,6 +220,8 @@ class MemberService:
                 "r.nombre AS range_name, "\
                 "r.control AS range_control, "\
                 "r.descripcion AS range_description, "\
+                "pi.id AS principal_id, "\
+                "pi.nombre AS principal_name, "\
                 "i.id, "\
                 "i.nombre AS name, "\
                 "strftime('%d/%m/%Y', i.fechacreacion) AS datecreate, "\
@@ -215,6 +229,7 @@ class MemberService:
                 "COALESCE(SUM(e.puntos), 0) AS totalpoints "\
             "FROM integrantes i "\
             "LEFT JOIN rangos r ON r.id = i.rango_id "\
+            "LEFT JOIN integrantes AS pi ON pi.id = i.principal_id "\
             "LEFT JOIN asistencias a ON a.integrante_id = i.id"\
             )
             self.__db.start_connection()
@@ -331,9 +346,12 @@ class MemberService:
                                        row['range_name'],
                                        row['range_control'],
                                        row['range_description'])
+                    principal = MemberModel(row['principal_id'],
+                                            row['principal_name'])
                     member = MemberModel(row['id'],
                                          row['name'],
                                          range,
+                                         principal,
                                          row['datecreate'],
                                          row['dateupdate'],
                                          row['totalpoints'])

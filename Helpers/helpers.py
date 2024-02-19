@@ -76,7 +76,7 @@ class Helpers:
                             if key == struct[key]['ct']:
                                 target[key] = value
                             else:
-                                target[key] = checkid[key][0]["id"]
+                                target[f"{key}_id"] = checkid[key][0]["id"]
                         elif checkid[key]:
                             return f"El valor '{value}' ingresado en el "\
                                    f"campo **_{struct[key]['alias']}_** "\

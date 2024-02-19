@@ -106,6 +106,7 @@ class AssistService:
                     member = MemberModel(row['member_id'],
                                          row['member_name'],
                                          range,
+                                         None,
                                          row['member_datecreate'],
                                          row['member_dateupdate'])
                     event = EventModel(row['event_id'],
