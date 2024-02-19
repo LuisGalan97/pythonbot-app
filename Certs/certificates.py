@@ -28,8 +28,8 @@ class Certificates:
                 except Exception as ex:
                     print( "-> Ocurrio un error al intentar leer "\
                            "el permiso "\
-                          f"'{command}/{file}', por favor "\
-                           "asegurese que la estructura sea "\
+                          f"'{command}/{file}' y este ha sido ignorado, "\
+                           "por favor verifique que la estructura sea "\
                            "correcta...")
             print(f"-> El usuario '{author}' no dispone de permisos "\
                   f"para emplear el comando '${command}' por el canal "\
@@ -55,11 +55,18 @@ class Certificates:
             for file in files:
                 if str(idPermission) == file.replace(".json",""):
                     idPermission+=1
-                with (open(f'{dir}/.Commands/{command}/{file}', "r")
-                      as file_json):
-                    permission = json.load(file_json)
-                if newPermission == permission:
-                    exist = file
+                try:
+                    with (open(f'{dir}/.Commands/{command}/{file}', "r")
+                          as file_json):
+                        permission = json.load(file_json)
+                    if newPermission == permission:
+                        exist = file
+                except Exception as ex:
+                    print( "-> Ocurrio un error al intentar leer "\
+                           "el permiso "\
+                          f"'{command}/{file}' y este ha sido ignorado, "\
+                           "por favor verifique que la estructura sea "\
+                           "correcta...")
             if not exist:
                 with (open(f'{dir}/.Commands/{command}/{idPermission}.json',
                       "w") as file_json):
