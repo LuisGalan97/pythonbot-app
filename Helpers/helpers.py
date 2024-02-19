@@ -448,15 +448,15 @@ class Helpers:
                 "fk" : "range",
                 "alias" : "Rango"
             }
+            structTargets["date"] = {
+                "type" : datetime,
+                "alias" : "Fecha"
+            }
             structTargets["principal"] = {
                 "type" : str,
                 "ct" : "name",
                 "opt" : True,
                 "alias" : "Principal"
-            }
-            structTargets["date"] = {
-                "type" : datetime,
-                "alias" : "Fecha"
             }
         elif nameCtrl == "range":
             structCtrl[nameCtrl] = {
