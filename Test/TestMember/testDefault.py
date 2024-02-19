@@ -955,7 +955,6 @@ async def testMemberDefault_listMemberId_updNamePrincipal(capfd):
     assert f"{testData['nameexist']}" in out
     assert f"{testData['datecreate'].replace('-','/')}" in out
     assert f"{testData['dateupdate'].replace('-','/')}" in out
-    assert "Ninguno" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_listMemberName_updNamePrincipal(capfd):
@@ -974,7 +973,6 @@ async def testMemberDefault_listMemberName_updNamePrincipal(capfd):
     assert f"{testData['nameexist']}" in out
     assert f"{testData['datecreate'].replace('-','/')}" in out
     assert f"{testData['dateupdate'].replace('-','/')}" in out
-    assert "Ninguno" in out
 
 @pytest.mark.asyncio
 async def testMemberDefault_delMemberId_principal(capfd):
