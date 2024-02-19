@@ -123,6 +123,8 @@ class Helpers:
             types = [value["type"] for value in reftarget.values()]
             alias = ', '.join(map(str,
                     [value['alias'] for value in reftarget.values()]))
+            opts = [value.get("opt", False) for value in reftarget.values()]
+            print(opts)
             datas = request
             if (isinstance(datas, list) and
                 len(datas) == len(references.split(','))):
@@ -423,6 +425,12 @@ class Helpers:
                 "fk" : "range",
                 "alias" : "Rango"
             }
+            structTargets["principal"] = {
+                "type" : str,
+                "ct" : "name",
+                "opt" : True,
+                "alias" : "Principal"
+            }
             structTargets["date"] = {
                 "type" : datetime,
                 "alias" : "Fecha"
@@ -536,6 +544,12 @@ class Helpers:
                     "fk" : "range",
                     "alias" : "Rango"
                 }
+                structTargets["principal"] = {
+                    "type" : str,
+                    "ct" : "name",
+                    "opt" : True,
+                    "alias" : "Principal"
+                }
                 structTargets["date"] = {
                     "type" : datetime,
                     "alias" : "Fecha"
@@ -559,6 +573,12 @@ class Helpers:
                     "type" : str,
                     "fk" : "range",
                     "alias" : "Rango"
+                }
+                structTargets["principal"] = {
+                    "type" : str,
+                    "ct" : "name",
+                    "opt" : True,
+                    "alias" : "Principal"
                 }
                 structTargets["date"] = {
                     "type" : datetime,
