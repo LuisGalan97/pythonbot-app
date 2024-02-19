@@ -139,14 +139,18 @@ class Helpers:
             alias = [name for opt, name
                      in zip(opts, alias)
                      if not opt]
+            alias = ', '.join(map(str, alias))
         elif (isinstance(datas, list) and
               len(datas) == len(opts)):
-            pass
+            alias = ', '.join(map(str, alias))
         else:
+            alias = [name for opt, name
+                     in zip(opts, alias)
+                     if not opt]
+            alias = ', '.join(map(str, alias))
             return "Datos ingresados invalidos, "\
                    "recuerda que debes ingresar:\n"\
                   f"**[_{alias}_]**"
-        alias = ', '.join(map(str, alias))
         for i in range(len(datas)):
             datas[i] = datas[i].strip()
             if not datas[i]:
