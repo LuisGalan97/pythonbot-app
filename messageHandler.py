@@ -1,6 +1,7 @@
 import os
 dir = os.path.dirname(os.path.abspath(__file__))
 import discord
+import asyncio
 from DF.dataframe import DataFrame
 from Helpers.helpers import Helpers
 from datetime import datetime
@@ -748,6 +749,36 @@ class MessageHandler:
                                       "solicitud en cuestion.\n")
                             await message.clear_reactions()
                             await message.add_reaction('❌')
+            else:
+                if dcPermissions.send_messages:
+                    await channel.send("**Avalon-bot** no dispone de "\
+                    "los permisos necesarios para eliminar o reaccionar "\
+                   f"a mensajes por el canal **{channel.name}**. "\
+                    "Por favor activelos "\
+                    "para acceder a todas las funcionalidades.\n")
+                else:
+                    print( "-> Avalon-bot no dispone de los permisos "\
+                           "necesarios para enviar mensajes "\
+                          f"por el canal '{channel.name}'. Por favor "\
+                           "activelos para acceder a todas "\
+                           "las funcionalidades.\n")
+
+    async def clearAll(self, command):
+        author = self.__message.author
+        channel = self.__message.channel
+        permissions = self.__permissions
+        dcPermissions = channel.permissions_for(channel.guild.me)
+        nameChannel = channel.name
+        msg = ""
+        if permissions.checkAccess(command, author, nameChannel):
+            msg = self.__message.content
+        if msg.startswith(f"${command}"):
+            if (dcPermissions.send_messages and
+                dcPermissions.manage_messages and
+                dcPermissions.add_reactions):
+                async for message in channel.history(limit=None):
+                    await asyncio.sleep(1)
+                    await message.delete()
             else:
                 if dcPermissions.send_messages:
                     await channel.send("**Avalon-bot** no dispone de "\

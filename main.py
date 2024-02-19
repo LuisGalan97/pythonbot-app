@@ -23,6 +23,7 @@ async def on_message(message):
     await hdlr.inMsg()
     await hdlr.sendText()
     await hdlr.helpMsg()
+    await hdlr.clearAll("clearAll")
     #------------------------------Asistencias---------------------------------
     await hdlr.contMsg("addAssist", app.setData,
                        Helpers.setStruct("assist"))
