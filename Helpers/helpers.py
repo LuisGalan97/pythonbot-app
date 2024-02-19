@@ -1518,7 +1518,7 @@ class Helpers:
             value = f"- **${head} "\
                     "[_" + \
                     ((', '.join(parameters)).
-                     replace("(Opcional)", 
+                     replace("(Opcional)",
                      "​_**_(____Opcional____)_**_​")) + \
                      "_]**   ->   "\
                      "Añade " + \
@@ -1563,7 +1563,11 @@ class Helpers:
         elif mode == "upd":
             if target == "id":
                 value = f"- **${head}:{target} "\
-                        f"[_{', '.join(parameters)}_]**   ->   "\
+                         "[_" + \
+                        ((', '.join(parameters)).
+                         replace("(Opcional)",
+                         "​_**_(____Opcional____)_**_​")) + \
+                         "_]**   ->   "\
                          "Actualiza los datos de " + \
                         ('una '
                          if controller[0] == 'a'
@@ -1610,7 +1614,11 @@ class Helpers:
                 return value
             elif target == "name":
                 value = f"- **${head}:{target} "\
-                        f"[_{', '.join(parameters)}_]**   ->   "\
+                         "[_" + \
+                        ((', '.join(parameters)).
+                         replace("(Opcional)",
+                         "​_**_(____Opcional____)_**_​")) + \
+                         "_]**   ->   "\
                          "Actualiza los datos de " + \
                         ('una '
                          if controller[0] == 'a'
