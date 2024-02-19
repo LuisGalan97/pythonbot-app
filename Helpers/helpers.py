@@ -58,7 +58,8 @@ class Helpers:
     @staticmethod
     def setTarget(self, request, struct):
         target = {}
-        nameCtrl = next(iter(struct["controller"].keys()))
+        structCtrl = struct["controller"]
+        nameCtrl = next(iter(structCtrl.keys()))
         struct = struct["targets"]
         if struct:
             result = Helpers.checkRequest(request, struct)
@@ -82,8 +83,8 @@ class Helpers:
                             if key == struct[key]['ct']:
                                 target[key] = value
                             else:
-                                if "update" in struct["controller"]:
-                                    update = struct["controller"]["update"]
+                                if "update" in structCtrl:
+                                    update = structCtrl["update"]
                                     if (result[update]  ==
                                         checkid[key][0][update]):
                                         return f"El valor '{value}' "\
