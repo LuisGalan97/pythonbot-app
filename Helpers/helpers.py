@@ -144,10 +144,9 @@ class Helpers:
             alias = [name for opt, name
                      in zip(opts, alias)
                      if not opt]
-            alias = ', '.join(map(str, alias))
         elif (isinstance(datas, list) and
               len(datas) == len(opts)):
-            alias = ', '.join(map(str, alias))
+            pass
         else:
             alias = [name + "​_**_(____Opcional____)_**_​"
                      if opt else name
@@ -157,6 +156,7 @@ class Helpers:
             return "Datos ingresados invalidos, "\
                    "recuerda que debes ingresar:\n"\
                   f"**[_{alias}_]**"
+        alias = ', '.join(map(str, alias))
         for i in range(len(datas)):
             datas[i] = datas[i].strip()
             if not datas[i]:
@@ -448,15 +448,15 @@ class Helpers:
                 "fk" : "range",
                 "alias" : "Rango"
             }
-            structTargets["date"] = {
-                "type" : datetime,
-                "alias" : "Fecha"
-            }
             structTargets["principal"] = {
                 "type" : str,
                 "ct" : "name",
                 "opt" : True,
                 "alias" : "Principal"
+            }
+            structTargets["date"] = {
+                "type" : datetime,
+                "alias" : "Fecha"
             }
         elif nameCtrl == "range":
             structCtrl[nameCtrl] = {
