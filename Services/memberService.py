@@ -368,10 +368,11 @@ class MemberService:
     def insert(self, member : MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("INSERT INTO "\
-        "integrantes (nombre, rango_id, fechacreacion) "\
-        "VALUES (?, ?, ?)",
+        "integrantes (nombre, rango_id, principal_id, fechacreacion) "\
+        "VALUES (?, ?, ?, ?)",
         (member.getName(),
          member.getRange().getId(),
+         member.getPrincipal().getId(),
          member.getDateCreate(),))
         if data:
             data = self.__db.execute_query("SELECT last_insert_rowid()")[0][0]
@@ -381,10 +382,12 @@ class MemberService:
     def update(self, member: MemberModel):
         self.__db.start_connection()
         data = self.__db.execute_query("UPDATE integrantes "\
-        "SET nombre = ?, rango_id = ?, fechamodificacion = ? "\
+        "SET nombre = ?, rango_id = ?, principal_id = ?, "\
+        "fechamodificacion = ? "\
         "WHERE id = ?",
         (member.getName(),
          member.getRange().getId(),
+         member.getPrincipal().getId(),
          member.getDateUpdate(),
          member.getId(),))
         self.__db.close_connection()

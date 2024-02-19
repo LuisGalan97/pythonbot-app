@@ -33,16 +33,16 @@ class MemberController:
             return members
 
     def createMember(self, name, range_id, date, principal_id = None):
-        print(principal_id)
         range = RangeModel(range_id)
-        member = MemberModel(None, name, range, None, date)
+        principal = MemberModel(principal_id)
+        member = MemberModel(None, name, range, principal, date)
         result = self.__service.insert(member)
         return result
 
     def updateMember(self, id, name, range_id, date, principal_id = None):
-        print(principal_id)
         range = RangeModel(range_id)
-        member = MemberModel(id, name, range, None, None, date)
+        principal = MemberModel(principal_id)
+        member = MemberModel(id, name, range, principal, None, date)
         result = self.__service.update(member)
         return result
 
