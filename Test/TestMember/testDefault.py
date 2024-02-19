@@ -816,7 +816,7 @@ async def testMemberDefault_listMemberId_addPrincipal(capfd):
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['rancreate']}" in out
-    assert f"{testData['namexist']}" in out
+    assert f"{testData['nameexist']}" in out
     assert f"{testData['datecreate'].replace('-','/')}" in out
     assert "Ninguno" in out
 
@@ -834,7 +834,7 @@ async def testMemberDefault_listMemberName_addPrincipal(capfd):
     assert f"{testData['id']}" in out
     assert f"{testData['namecreate']}" in out
     assert f"{testData['rancreate']}" in out
-    assert f"{testData['namexist']}" in out
+    assert f"{testData['nameexist']}" in out
     assert f"{testData['datecreate'].replace('-','/')}" in out
     assert "Ninguno" in out
 
@@ -952,7 +952,7 @@ async def testMemberDefault_listMemberId_updNamePrincipal(capfd):
     assert f"{testData['id']}" in out
     assert f"{testData['nameupdate']}" in out
     assert f"{testData['rancreate']}" in out
-    assert f"{testData['namexist']}" in out
+    assert f"{testData['nameexist']}" in out
     assert f"{testData['datecreate'].replace('-','/')}" in out
     assert f"{testData['dateupdate'].replace('-','/')}" in out
     assert "Ninguno" in out
