@@ -119,72 +119,72 @@ class Helpers:
 
     @staticmethod
     def checkRequest(request, reftarget):
-            references = ', '.join(map(str, list(reftarget.keys())))
-            types = [value["type"] for value in reftarget.values()]
-            alias = ', '.join(map(str,
-                    [value['alias'] for value in reftarget.values()]))
-            opts = [value.get("opt", False) for value in reftarget.values()]
-            print(opts)
-            datas = request
-            if (isinstance(datas, list) and
-                len(datas) == len(references.split(','))):
-                for i in range(len(datas)):
-                    datas[i] = datas[i].strip()
-                    if not datas[i]:
-                        return "No fue ingresado ningun dato en el campo "\
-                              f"**_{alias.split(',')[i].strip()}_**"
-                    try:
-                        if types[i] == datetime:
-                            datas[i] = datetime.strptime(datas[i], "%d/%m/%Y")
-                            datas[i] = datas[i].strftime("%Y-%m-%d")
-                        else:
-                            datas[i] = types[i](datas[i])
-                    except ValueError:
-                        return f"El dato '{datas[i]}' ingresado en el campo "\
+        references = ', '.join(map(str, list(reftarget.keys())))
+        types = [value["type"] for value in reftarget.values()]
+        alias = ', '.join(map(str,
+                [value['alias'] for value in reftarget.values()]))
+        opts = [value.get("opt", False) for value in reftarget.values()]
+        print(opts)
+        datas = request
+        if (isinstance(datas, list) and
+            len(datas) == len(references.split(','))):
+            for i in range(len(datas)):
+                datas[i] = datas[i].strip()
+                if not datas[i]:
+                    return "No fue ingresado ningun dato en el campo "\
+                          f"**_{alias.split(',')[i].strip()}_**"
+                try:
+                    if types[i] == datetime:
+                        datas[i] = datetime.strptime(datas[i], "%d/%m/%Y")
+                        datas[i] = datas[i].strftime("%Y-%m-%d")
+                    else:
+                        datas[i] = types[i](datas[i])
+                except ValueError:
+                    return f"El dato '{datas[i]}' ingresado en el campo "\
+                           f"**_{alias.split(',')[i].strip()}_** "\
+                            "es invalido."
+                if types[i] == str:
+                    if len(datas[i]) > 50:
+                        return f"El dato '{datas[i]}' ingresado "\
+                                "en el campo "\
                                f"**_{alias.split(',')[i].strip()}_** "\
-                                "es invalido."
-                    if types[i] == str:
-                        if len(datas[i]) > 50:
-                            return f"El dato '{datas[i]}' ingresado "\
-                                    "en el campo "\
-                                   f"**_{alias.split(',')[i].strip()}_** "\
-                                    "no debe exceder los 50 caracteres."
-                        if Helpers.checkTrueChar(datas[i][0]):
-                            return f"El dato '{datas[i]}' ingresado "\
-                                    "en el campo "\
-                                   f"**_{alias.split(',')[i].strip()}_** "\
-                                    "no debe comenzar con valores numericos "\
-                                    "ni caracteres especiales."
-                        try:
-                            int(datas[i][0])
-                            return f"El dato '{datas[i]}' ingresado "\
-                                    "en el campo "\
-                                   f"**_{alias.split(',')[i].strip()}_** "\
-                                    "no debe comenzar con valores numericos "\
-                                    "ni caracteres especiales."
-                        except ValueError:
-                            pass
-                        if Helpers.checkChar(datas[i]):
-                            return f"El dato '{datas[i]}' ingresado "\
-                                    "en el campo "\
-                                   f"**_{alias.split(',')[i].strip()}_** "\
-                                    "no debe contener caracteres especiales "\
-                                    "a excepcion de **-** o **|**."
-                        if Helpers.checkRepeatChar(datas[i]):
-                            return f"El dato '{datas[i]}' ingresado "\
-                                    "en el campo "\
-                                   f"**_{alias.split(',')[i].strip()}_** "\
-                                    "no debe repetir mas de dos veces los "\
-                                    "caracteres **-** **|**, o mas de una "\
-                                    "vez los caracteres **[** **]**."
-                references = list(map(lambda x: x.strip(),
-                             references.split(',')))
-                datas = dict(zip(references, datas))
-                return datas
-            else:
-                return "Datos ingresados invalidos, "\
-                       "recuerda que debes ingresar:\n"\
-                      f"**[_{alias}_]**"
+                                "no debe exceder los 50 caracteres."
+                    if Helpers.checkTrueChar(datas[i][0]):
+                        return f"El dato '{datas[i]}' ingresado "\
+                                "en el campo "\
+                               f"**_{alias.split(',')[i].strip()}_** "\
+                                "no debe comenzar con valores numericos "\
+                                "ni caracteres especiales."
+                    try:
+                        int(datas[i][0])
+                        return f"El dato '{datas[i]}' ingresado "\
+                                "en el campo "\
+                               f"**_{alias.split(',')[i].strip()}_** "\
+                                "no debe comenzar con valores numericos "\
+                                "ni caracteres especiales."
+                    except ValueError:
+                        pass
+                    if Helpers.checkChar(datas[i]):
+                        return f"El dato '{datas[i]}' ingresado "\
+                                "en el campo "\
+                               f"**_{alias.split(',')[i].strip()}_** "\
+                                "no debe contener caracteres especiales "\
+                                "a excepcion de **-** o **|**."
+                    if Helpers.checkRepeatChar(datas[i]):
+                        return f"El dato '{datas[i]}' ingresado "\
+                                "en el campo "\
+                               f"**_{alias.split(',')[i].strip()}_** "\
+                                "no debe repetir mas de dos veces los "\
+                                "caracteres **-** **|**, o mas de una "\
+                                "vez los caracteres **[** **]**."
+            references = list(map(lambda x: x.strip(),
+                         references.split(',')))
+            datas = dict(zip(references, datas))
+            return datas
+        else:
+            return "Datos ingresados invalidos, "\
+                   "recuerda que debes ingresar:\n"\
+                  f"**[_{alias}_]**"
 
     @staticmethod
     def checkChar(strValue):
