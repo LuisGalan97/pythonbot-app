@@ -123,11 +123,9 @@ class Helpers:
         partOpts = [item for item, value in zip(opts, opts) if not value]
         references = ', '.join(map(str, list(reftarget.keys())))
         references = list(map(lambda x: x.strip(),
-                         references.split(',')))
+                          references.split(',')))
         types = [value["type"] for value in reftarget.values()]
-
-        alias = ', '.join(map(str,
-                [value['alias'] for value in reftarget.values()]))
+        alias = [value['alias'] for value in reftarget.values()]
         datas = request
         if (isinstance(datas, list) and
             len(datas) == len(partOpts)):
@@ -147,6 +145,7 @@ class Helpers:
             return "Datos ingresados invalidos, "\
                    "recuerda que debes ingresar:\n"\
                   f"**[_{alias}_]**"
+        alias = ', '.join(map(str, alias))
         for i in range(len(datas)):
             datas[i] = datas[i].strip()
             if not datas[i]:
