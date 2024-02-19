@@ -201,14 +201,15 @@ class MessageHandler:
             messages.append("\n")
             messages.append("_Comandos de modificacion:_\n")
             messages.append(Helpers.genMsg("addMember [Nombre, Rango, "\
-                                           "Principal, Fecha]",
+                                           "Principal(Opcional), Fecha]",
                                            "integrante"))
             messages.append(Helpers.genMsg("updMember:id "\
                                            "[ID, Nombre, Rango, "\
-                                           "Principal, Fecha]",
+                                           "Principal(Opcional), Fecha]",
                                            "integrante"))
             messages.append(Helpers.genMsg("updMember:name "\
-                                           "[Nombre, Rango, Principal, Fecha]",
+                                           "[Nombre, Rango, "\
+                                           "Principal(Opcional), Fecha]",
                                            "integrante"))
             messages.append(Helpers.genMsg("delMember:id [ID]", "integrante"))
             messages.append(Helpers.genMsg("delMember:name [Nombre]",
