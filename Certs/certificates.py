@@ -33,12 +33,12 @@ class Certificates:
                            "correcta...")
             print(f"-> El usuario '{author}' no dispone de permisos "\
                   f"para emplear el comando '${command}' por el canal "\
-                  f" de discord '{channel}'.")
+                  f"'{channel}' de discord .")
             return False
         else:
             print(f"-> El usuario '{author}' no dispone de permisos "\
                   f"para emplear el comando '${command}' por el canal "\
-                  f" de discord '{channel}'.")
+                  f"'{channel}' de discord .")
             return False
 
     def createPermission(self, command, user, channel):
