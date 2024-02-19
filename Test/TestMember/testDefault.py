@@ -592,6 +592,7 @@ async def testMemberDefault_addMember_principalNoExist(capfd):
             "**_Principal_** no fue encontrado en la "\
             "base de datos.\n" in out
 
+@pytest.mark.asyncio
 async def testMemberDefault_updMemberId_principalNoExist(capfd):
     commands = [f"$updMember:id[{testData['id']},"\
                 f"{testData['nameupdate']},"\
