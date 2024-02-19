@@ -160,7 +160,7 @@ INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES (
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Arribamasiahc', 18, '2023-07-23');
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Awoh', 18, '2023-08-23');
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Bri-tt', 18, '2023-09-23');
-INSERT INTO integrantes (nombre, rango_id,, fechacreacion) VALUES ('Feel-The-Darkness', 18, '2023-10-23');
+INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Feel-The-Darkness', 18, '2023-10-23');
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Rulof-Enu', 18, '2023-11-23');
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Shizakura', 18, '2023-12-23');
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('Zetha', 18, '2024-01-23');
