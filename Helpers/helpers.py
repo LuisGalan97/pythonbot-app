@@ -39,7 +39,7 @@ class Helpers:
         if reftarget:
             opts = [value.get("opt", False) for value in reftarget.values()]
             alias = [value['alias'] for value in reftarget.values()]
-            alias = [name + " _**_(____Opcional____)_**_​"
+            alias = [name + "​_**_(____Opcional____)_**_​"
                      if opt else name
                      for opt, name
                      in zip(opts, alias)]
@@ -149,7 +149,7 @@ class Helpers:
               len(datas) == len(opts)):
             alias = ', '.join(map(str, alias))
         else:
-            alias = [name + " _**_(____Opcional____)_**_​"
+            alias = [name + "​_**_(____Opcional____)_**_​"
                      if opt else name
                      for opt, name
                      in zip(opts, alias)]
