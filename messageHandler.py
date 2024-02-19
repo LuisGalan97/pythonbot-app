@@ -200,13 +200,15 @@ class MessageHandler:
             "asignado y la fecha de ingreso de cada miembro.\n")
             messages.append("\n")
             messages.append("_Comandos de modificacion:_\n")
-            messages.append(Helpers.genMsg("addMember [Nombre, Rango, Fecha]",
+            messages.append(Helpers.genMsg("addMember [Nombre, Rango, "\
+                                           "Principal, Fecha]",
                                            "integrante"))
             messages.append(Helpers.genMsg("updMember:id "\
-                                           "[ID, Nombre, Rango, Fecha]",
+                                           "[ID, Nombre, Rango, "\
+                                           "Principal, Fecha]",
                                            "integrante"))
             messages.append(Helpers.genMsg("updMember:name "\
-                                           "[Nombre, Rango, Fecha]",
+                                           "[Nombre, Rango, Principal, Fecha]",
                                            "integrante"))
             messages.append(Helpers.genMsg("delMember:id [ID]", "integrante"))
             messages.append(Helpers.genMsg("delMember:name [Nombre]",
