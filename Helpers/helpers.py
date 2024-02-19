@@ -1615,7 +1615,6 @@ class Helpers:
                         value = value + ", "
                 return value
             elif target == "name":
-                parameters[i] = parameters[i].replace("(Opcional)", "")
                 value = f"- **${head}:{target} "\
                          "[_" + \
                         ((', '.join(parameters)).
@@ -1630,6 +1629,7 @@ class Helpers:
                         f"apuntando a su nombre, "\
                          "ingresando dentro de los corchetes **[ ]** "
                 for i in range(len(parameters)):
+                    parameters[i] = parameters[i].replace("(Opcional)", "")
                     if parameters[i] == "Nombre":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
