@@ -1235,7 +1235,7 @@ async def testMemberValue_updMemberId_principalRepeatChar(capfd):
                     "no debe repetir mas de dos veces los "\
                     "caracteres **-** **|**, o mas de una "\
                     "vez los caracteres **[** **]**.\n" in out
-            
+
 #---------------------Test $updMember:id [*, *, *, Fecha]----------------------
 @pytest.mark.asyncio
 async def testMemberValue_updMemberId_dateEmpty(capfd):
