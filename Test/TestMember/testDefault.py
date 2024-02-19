@@ -951,7 +951,7 @@ async def testMemberDefault_listMemberId_updNamePrincipal(capfd):
     assert "**___Integrantes___** **___encontrados:___**\n" in out
     assert f"{testData['id']}" in out
     assert f"{testData['nameupdate']}" in out
-    assert f"{testData['rancreate']}" in out
+    assert f"{testData['ranupdate']}" in out
     assert f"{testData['nameexist']}" in out
     assert f"{testData['datecreate'].replace('-','/')}" in out
     assert f"{testData['dateupdate'].replace('-','/')}" in out
