@@ -1552,7 +1552,7 @@ class Helpers:
                 elif parameters[i] == "Principal":
                     value = value + f"un parametro "\
                             f"**_{parameters[i]}_** "\
-                            "como valor de texto opcional"\
+                            "como valor de texto ___opcional___ "\
                             "asociado al nombre "\
                             f"de otro ___integrante___"
                 else:
@@ -1611,7 +1611,7 @@ class Helpers:
                     elif parameters[i] == "Principal":
                         value = value + f"un parametro "\
                                 f"**_{parameters[i]}_** "\
-                                 "como valor de texto opcional"\
+                                 "como valor de texto ___opcional___ "\
                                  "asociado al nombre "\
                                 f"de otro ___integrante___"
                     else:
@@ -1665,7 +1665,7 @@ class Helpers:
                     elif parameters[i] == "Principal":
                         value = value + f"un parametro "\
                                 f"**_{parameters[i]}_** "\
-                                 "como valor de texto opcional"\
+                                 "como valor de texto ___opcional___ "\
                                  "asociado al nombre "\
                                 f"de otro ___integrante___"
                     else:
