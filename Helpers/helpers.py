@@ -85,6 +85,7 @@ class Helpers:
                             else:
                                 if "update" in structCtrl:
                                     update = structCtrl["update"]
+                                    print(result[update])
                                     if (result[update]  ==
                                         checkid[key][0][update]):
                                         return f"El valor '{value}' "\
