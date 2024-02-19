@@ -41,7 +41,7 @@ class AppHandler:
             else:
                 return False
         except Exception as ex:
-            print(f"-> Ocurrio un error al intentar seleccionar "\
+            print( "-> Ocurrio un error al intentar seleccionar "\
                   f"en la base de datos: {str(ex)}.")
             return False
 
