@@ -62,7 +62,8 @@ class Helpers:
                 foreignkey = {}
                 for key in struct:
                     if "ct" in struct[key]:
-                        checktarget[key] = result[key]
+                        if key in result:
+                            checktarget[key] = result[key]
                     elif "fk" in struct[key]:
                         foreignkey[key] = result[key]
                 if checktarget:
