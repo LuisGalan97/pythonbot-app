@@ -39,7 +39,7 @@ class Helpers:
         if reftarget:
             opts = [value.get("opt", False) for value in reftarget.values()]
             alias = [value['alias'] for value in reftarget.values()]
-            alias = [name + " _**___(Opcional)___**_" 
+            alias = [name + " _**___(Opcional)___**_ "
                      if opt else name
                      for opt, name
                      in zip(opts, alias)]
@@ -49,7 +49,7 @@ class Helpers:
                 request = request[: request.rfind(']')]
                 request = request.split(',')
                 return request
-            else:                
+            else:
                 return "El comando debe mantener la forma:\n"\
                       f"**${command} [_{alias}_]**"
         else:
@@ -149,9 +149,10 @@ class Helpers:
               len(datas) == len(opts)):
             alias = ', '.join(map(str, alias))
         else:
-            alias = [name for opt, name
-                     in zip(opts, alias)
-                     if not opt]
+            alias = [name + " _**___(Opcional)___**_ "
+                     if opt else name
+                     for opt, name
+                     in zip(opts, alias)]
             alias = ', '.join(map(str, alias))
             return "Datos ingresados invalidos, "\
                    "recuerda que debes ingresar:\n"\
