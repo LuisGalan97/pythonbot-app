@@ -1528,6 +1528,7 @@ class Helpers:
                     f"___{controller}___, ingresando "\
                      "dentro de los corchetes **[ ]** "
             for i in range(len(parameters)):
+                parameters[i] = parameters[i].replace("(Opcional)", "")
                 if parameters[i] == "Nombre":
                     value = value + "un parametro "\
                             f"**_{parameters[i]}_** "\
@@ -1576,6 +1577,7 @@ class Helpers:
                          "apuntando a su identificador, "\
                          "ingresando dentro de los corchetes **[ ]** "
                 for i in range(len(parameters)):
+                    parameters[i] = parameters[i].replace("(Opcional)", "")
                     if parameters[i] == "ID":
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
@@ -1613,6 +1615,7 @@ class Helpers:
                         value = value + ", "
                 return value
             elif target == "name":
+                parameters[i] = parameters[i].replace("(Opcional)", "")
                 value = f"- **${head}:{target} "\
                          "[_" + \
                         ((', '.join(parameters)).
