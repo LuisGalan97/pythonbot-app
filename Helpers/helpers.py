@@ -345,7 +345,8 @@ class Helpers:
                 structTargets["name"] = {
                     "type" : str,
                     "ct" : "name",
-                    "alias" : "Nombre"
+                    "alias" : "Nombre",
+                    "opt" : True
                 }
             if "range" in targets:
                 structTargets["range"] = {
