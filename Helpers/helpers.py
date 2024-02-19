@@ -37,14 +37,18 @@ class Helpers:
     @staticmethod
     def checkContent(command, content, reftarget):
         if reftarget:
-            alias = ', '.join(map(str,\
-                    [value['alias'] for value in reftarget.values()]))
+            opts = [value.get("opt", False) for value in reftarget.values()]
+            alias = [value['alias'] for value in reftarget.values()]
             if content.find('[') == 0 and content.rfind(']') != -1:
                 request = content.replace('[', '', 1)
                 request = request[: request.rfind(']')]
                 request = request.split(',')
                 return request
             else:
+                alias = [name for opt, name
+                         in zip(opts, alias)
+                         if not opt]
+                alias = ', '.join(map(str, alias))
                 return "El comando debe mantener la forma:\n"\
                       f"**${command} [_{alias}_]**"
         else:
