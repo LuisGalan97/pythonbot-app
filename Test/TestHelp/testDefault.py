@@ -422,26 +422,37 @@ async def testHelpDefault_helpMember(capfd):
            "informacion complementaria tales como el ___rango___ "\
            "asignado y la fecha de ingreso de cada miembro.\n" in out
     assert "_Comandos de modificacion:_\n" in out
-    assert "- **$addMember [_Nombre, Rango, Fecha_]**   ->   Añade "\
+    assert "- **$addMember [_Nombre, Rango, "\
+           "Principal​_**_(____Opcional____)_**_​, Fecha_]**   ->   Añade "\
            "un nuevo ___integrante___, ingresando dentro de los "\
            "corchetes **[ ]** un parametro **_Nombre_** como valor "\
            "de texto, un parametro **_Rango_** como valor de texto "\
-           "asociado al nombre de un ___rango___ y un parametro "\
+           "asociado al nombre de un ___rango___, "\
+           "un parametro **_Principal_** como valor de texto ___opcional___ "\
+           "asociado al nombre de otro ___integrante___  y un parametro "\
            "**_Fecha_** como valor de fecha en 'Día/Mes/Año'.\n" in out
-    assert "- **$updMember:id [_ID, Nombre, Rango, Fecha_]**   ->   "\
+    assert "- **$updMember:id [_ID, Nombre, Rango, "\
+           "Principal​_**_(____Opcional____)_**_​, Fecha_]**   ->   "\
            "Actualiza los datos de un ___integrante___ apuntando "\
            "a su identificador, ingresando dentro de los corchetes "\
            "**[ ]** un parametro **_ID_** como valor numerico, un "\
            "parametro **_Nombre_** como valor de texto, un parametro "\
            "**_Rango_** como valor de texto asociado al nombre "\
-           "de un ___rango___ y un parametro **_Fecha_** como valor "\
+           "de un ___rango___, "\
+           "un parametro **_Principal_** como valor de texto ___opcional___ "\
+           "asociado al nombre de otro ___integrante___ "\
+           "y un parametro **_Fecha_** como valor "\
            "de fecha en 'Día/Mes/Año'.\n" in out
-    assert "- **$updMember:name [_Nombre, Rango, Fecha_]**   ->   "\
+    assert "- **$updMember:name [_Nombre, Rango, "\
+           "Principal​_**_(____Opcional____)_**_​, Fecha_]**   ->   "\
            "Actualiza los datos de un ___integrante___ apuntando "\
            "a su nombre, ingresando dentro de los corchetes **[ ]** "\
            "un parametro **_Nombre_** como valor de texto, un "\
            "parametro **_Rango_** como valor de texto asociado al "\
-           "nombre de un ___rango___ y un parametro **_Fecha_** "\
+           "nombre de un ___rango___, "\
+           "un parametro **_Principal_** como valor de texto ___opcional___ "\
+           "asociado al nombre de otro ___integrante___ "\
+           "y un parametro **_Fecha_** "\
            "como valor de fecha en 'Día/Mes/Año'.\n" in out
     assert "- **$delMember:id [_ID_]**   ->   Elimina un "\
            "___integrante___ apuntando a su identificador, ingresando "\
