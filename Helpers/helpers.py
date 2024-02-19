@@ -1549,6 +1549,12 @@ class Helpers:
                     value = value + f"un parametro "\
                             f"**_{parameters[i]}_** "\
                             "como valor de texto"
+                elif parameters[i] == "Principal":
+                    value = value + f"un parametro "\
+                            f"**_{parameters[i]}_** "\
+                            "como valor de texto opcional"\
+                            "asociado al nombre "\
+                            f"de otro ___integrante___"
                 else:
                     value = value + "un parametro "\
                             f"**_{parameters[i]}_** "\
@@ -1602,6 +1608,12 @@ class Helpers:
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
                                 "como valor de texto"
+                    elif parameters[i] == "Principal":
+                        value = value + f"un parametro "\
+                                f"**_{parameters[i]}_** "\
+                                 "como valor de texto opcional"\
+                                 "asociado al nombre "\
+                                f"de otro ___integrante___"
                     else:
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
@@ -1650,6 +1662,12 @@ class Helpers:
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
                                 "como valor de texto"
+                    elif parameters[i] == "Principal":
+                        value = value + f"un parametro "\
+                                f"**_{parameters[i]}_** "\
+                                 "como valor de texto opcional"\
+                                 "asociado al nombre "\
+                                f"de otro ___integrante___"
                     else:
                         value = value + "un parametro "\
                                 f"**_{parameters[i]}_** "\
