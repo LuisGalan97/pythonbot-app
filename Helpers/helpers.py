@@ -83,9 +83,8 @@ class Helpers:
                             if key == struct[key]['ct']:
                                 target[key] = value
                             else:
-                                if "update" in structCtrl:
-                                    update = structCtrl["update"]
-                                    print(result[update])
+                                if "update" in structCtrl[nameCtrl]:
+                                    update = structCtrl[nameCtrl]["update"]
                                     if (result[update]  ==
                                         checkid[key][0][update]):
                                         return f"El valor '{value}' "\
