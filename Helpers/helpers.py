@@ -149,7 +149,7 @@ class Helpers:
               len(datas) == len(opts)):
             alias = ', '.join(map(str, alias))
         else:
-            alias = [name + " _**_(____Opcional____)_**_"
+            alias = [name + " _**_(____Opcional____)_**"
                      if opt else name
                      for opt, name
                      in zip(opts, alias)]
@@ -161,7 +161,7 @@ class Helpers:
             datas[i] = datas[i].strip()
             if not datas[i]:
                 return "No fue ingresado ningun dato en el campo "\
-                      f"**_{alias.split(',')[i].strip()}_**"
+                      f"**_{alias.split(',')[i].strip()}_​**"
             try:
                 if types[i] == datetime:
                     datas[i] = datetime.strptime(datas[i], "%d/%m/%Y")
