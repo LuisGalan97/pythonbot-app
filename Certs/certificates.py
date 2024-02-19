@@ -72,6 +72,7 @@ class Certificates:
     def createGlobalPermission(self, user, channel):
         self.createPermission("hello", user, channel)
         self.createPermission("help", user, channel)
+        self.createPermission("clearAll", user, channel)
         self.createPermission("addAssist", user, channel)
         self.createPermission("updAssist:id", user, channel)
         self.createPermission("delAssist:id", user, channel)
