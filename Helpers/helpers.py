@@ -60,6 +60,7 @@ class Helpers:
         target = {}
         structCtrl = struct["controller"]
         nameCtrl = next(iter(structCtrl.keys()))
+        aliasCtrl = structCtrl[nameCtrl]["alias"]
         struct = struct["targets"]
         if struct:
             result = Helpers.checkRequest(request, struct)
@@ -91,7 +92,7 @@ class Helpers:
                                         "ingresado en el "\
                                        f"campo **_{struct[key]['alias']}_** "\
                                         "no puede hacer referencia al mismo "\
-                                       f"___{nameCtrl}___ que desea "\
+                                       f"___{aliasCtrl}___ que desea "\
                                         "actualizar."
                                 target[f"{key}_id"] = checkid[key][0]["id"]
                         elif checkid[key]:
