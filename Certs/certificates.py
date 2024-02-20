@@ -4,8 +4,8 @@ import json
 
 class Certificates:
     def __init__(self):
-        adminUser = "test, omegaxis_"
-        adminChannel = "test"
+        adminUser = "test, omegaxis_, lia7624, evermell"
+        adminChannel = "test, 🔏alimentacion-bot"
         self.createGlobalPermission(adminUser, adminChannel)
 
     def checkAccess(self, command, author, nameChannel):
