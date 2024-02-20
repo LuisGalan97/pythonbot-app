@@ -26,7 +26,7 @@ class MessageHandler:
         if msg.startswith("$hello"):
             if not permissions.checkAccess("hello", author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("hello"):
                 return
             self.__bussy = True
             try:
@@ -47,7 +47,7 @@ class MessageHandler:
         if msg.startswith("$help:assist"):
             if not permissions.checkAccess("help:assist", author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("help:assist"):
                 return
             self.__bussy = True
         #---------------------------Asistencias--------------------------------
@@ -162,7 +162,7 @@ class MessageHandler:
         elif msg.startswith("$help:event"):
             if not permissions.checkAccess("help:event", author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("help:event"):
                 return
             self.__bussy = True
         #-----------------------------Eventos----------------------------------
@@ -208,7 +208,7 @@ class MessageHandler:
         elif msg.startswith("$help:member"):
             if not permissions.checkAccess("help:member", author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("help:member"):
                 return
             self.__bussy = True
         #----------------------------Integrantes-------------------------------
@@ -374,7 +374,7 @@ class MessageHandler:
         elif msg.startswith("$help:range"):
             if not permissions.checkAccess("help:range", author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("help:range"):
                 return
             self.__bussy = True
         #--------------------------------Rangos--------------------------------
@@ -418,7 +418,7 @@ class MessageHandler:
             if not permissions.checkAccess("help:diagram",
                                            author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("help:diagram"):
                 return
             self.__bussy = True
             try:
@@ -432,7 +432,7 @@ class MessageHandler:
         elif msg.startswith("$help"):
             if not permissions.checkAccess("help", author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy("help"):
                 return
             self.__bussy = True
             messages.append("**___Guia de usuario de Avalon-bot___**\n")
@@ -557,7 +557,7 @@ class MessageHandler:
         if Helpers.checkCommand(msg, command):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy(command):
                 return
             self.__bussy = True
             try:
@@ -699,7 +699,7 @@ class MessageHandler:
         if Helpers.checkCommand(msg, command):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy(command):
                 return
             self.__bussy = True
             try:
@@ -731,7 +731,7 @@ class MessageHandler:
         if msg.startswith(f"${command}"):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy(command):
                 return
             self.__bussy = True
             try:
@@ -844,7 +844,7 @@ class MessageHandler:
         if msg.startswith(f"${command}"):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            if await self.checkBussy():
+            if await self.checkBussy(command):
                 return
             self.__bussy = True
             try:
