@@ -103,6 +103,12 @@ async def testHelpDefault_help(capfd):
     assert "** * $help:member**\n" in out
     assert "_Comandos de_ ___rangos___:\n" in out
     assert "** * $help:range**\n" in out
+    assert "_Comandos adicionales_:\n" in out
+    assert "- **$hello**   ->   Genera un "\
+           "saludo por parte del bot.\n" in out
+    assert "- **$clearAll**   ->   Elimina "\
+           "todos los mensajes del canal de "\
+           "discord donde es utilizado el comando.\n" in out
 
 @pytest.mark.asyncio
 async def testHelpDefault_helpDiagram(capfd):
