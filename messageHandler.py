@@ -12,6 +12,7 @@ class MessageHandler:
         self.__client = client
         self.__permissions = permissions
         self.__send = self.defaultFunction if not test else self.testFunction
+        self.__bussy = False
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
@@ -25,10 +26,17 @@ class MessageHandler:
         if msg.startswith("$hello"):
             if not permissions.checkAccess("hello", author, nameChannel):
                 return
-            await self.__send(message = f"Hola **{author}**!, "\
-                                         "soy **Avalon-bot** identificado "\
-                                         "bajo la cuenta "\
-                                        f"**{self.__client.user}**.\n")
+            if await self.checkBussy():
+                return
+            self.__bussy = True
+            try:
+                await self.__send(message = f"Hola **{author}**!, "\
+                                             "soy **Avalon-bot** "\
+                                             "identificado "\
+                                             "bajo la cuenta "\
+                                            f"**{self.__client.user}**.\n")
+            finally:
+                self.__bussy = False
 
     async def helpMsg(self):
         author = self.__message.author
@@ -39,6 +47,9 @@ class MessageHandler:
         if msg.startswith("$help:assist"):
             if not permissions.checkAccess("help:assist", author, nameChannel):
                 return
+            if await self.checkBussy():
+                return
+            self.__bussy = True
         #---------------------------Asistencias--------------------------------
             messages.append("**___Asistencias___**\n")
             messages.append("\n")
@@ -151,6 +162,9 @@ class MessageHandler:
         elif msg.startswith("$help:event"):
             if not permissions.checkAccess("help:event", author, nameChannel):
                 return
+            if await self.checkBussy():
+                return
+            self.__bussy = True
         #-----------------------------Eventos----------------------------------
             messages.append("**___Eventos___**\n")
             messages.append("\n")
@@ -194,6 +208,9 @@ class MessageHandler:
         elif msg.startswith("$help:member"):
             if not permissions.checkAccess("help:member", author, nameChannel):
                 return
+            if await self.checkBussy():
+                return
+            self.__bussy = True
         #----------------------------Integrantes-------------------------------
             messages.append("**___Integrantes___**\n")
             messages.append("\n")
@@ -357,6 +374,9 @@ class MessageHandler:
         elif msg.startswith("$help:range"):
             if not permissions.checkAccess("help:range", author, nameChannel):
                 return
+            if await self.checkBussy():
+                return
+            self.__bussy = True
         #--------------------------------Rangos--------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
@@ -395,15 +415,26 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listRange:name [Nombre] > e",
                                            "rango"))
         elif msg.startswith("$help:diagram"):
-            if not permissions.checkAccess("help:diagram", author, nameChannel):
+            if not permissions.checkAccess("help:diagram",
+                                           author, nameChannel):
                 return
-            await self.__send(message = "**___Diagrama de la estructura "\
-                                        "de los datos:___**")
-            discordFile = discord.File(f"{dir}/SQL/db_diagram.png")
-            await self.__send(file = discordFile)
+            if await self.checkBussy():
+                return
+            self.__bussy = True
+            try:
+                await self.__send(message = "**___Diagrama de la estructura "\
+                                            "de los datos:___**")
+                discordFile = discord.File(f"{dir}/SQL/db_diagram.png")
+                await self.__send(file = discordFile)
+            finally:
+                self.__bussy = False
+                return
         elif msg.startswith("$help"):
             if not permissions.checkAccess("help", author, nameChannel):
                 return
+            if await self.checkBussy():
+                return
+            self.__bussy = True
             messages.append("**___Guia de usuario de Avalon-bot___**\n")
             messages.append("\n")
             messages.append("Bienvenido/a a la guia de usuario del "\
@@ -497,23 +528,26 @@ class MessageHandler:
                             "** * $help:member**\n"\
                             "_Comandos de_ ___rangos___:\n"\
                             "** * $help:range**")
-        if messages:
-            array = []
-            length = 0
-            for i in range(len(messages)):
-                length = length + len(messages[i])
-                if length >= 2000:
-                    await self.__send(message = ''.join(array))
-                    array = []
-                    length = len(messages[i])
-                    array.append(messages[i])
-                    if i == len(messages) - 1:
+        try:
+            if messages:
+                array = []
+                length = 0
+                for i in range(len(messages)):
+                    length = length + len(messages[i])
+                    if length >= 2000:
                         await self.__send(message = ''.join(array))
-                elif i == len(messages) - 1:
-                    array.append(messages[i])
-                    await self.__send(message = ''.join(array))
-                else:
-                    array.append(messages[i])
+                        array = []
+                        length = len(messages[i])
+                        array.append(messages[i])
+                        if i == len(messages) - 1:
+                            await self.__send(message = ''.join(array))
+                    elif i == len(messages) - 1:
+                        array.append(messages[i])
+                        await self.__send(message = ''.join(array))
+                    else:
+                        array.append(messages[i])
+        finally:
+            self.__bussy = False
 
     async def dFMsg(self, command, method, struct):
         author = self.__message.author
@@ -523,127 +557,139 @@ class MessageHandler:
         if Helpers.checkCommand(msg, command):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            content = msg.replace(f'${command}', '').strip()
-            request = Helpers.checkContent(command, content, struct["targets"])
-            if isinstance(request, list):
-                result = method(request, struct)
-                if isinstance(result, list):
-                    if content.find('>') != -1:
-                        excelreq = content.lower()
-                        excelreq = excelreq[excelreq.rfind(']')+1:]
-                        excelreq = excelreq[:excelreq.find('e')+2]
-                        excelreq = excelreq.replace(' ','')
-                        if excelreq == ">e":
-                            strContent = (content[content.find('[')+1:
-                                          content.find(']')]
-                                          .split(","))
-                            strContent = "_".join(data.strip()
-                                                  for data
-                                                  in strContent)
-                            if command.find(':') != -1:
-                                fileName = (command.split(':')[0]) + \
-                                           (command.split(':')[1]
-                                            .capitalize()) + \
-                                           (strContent)
-                            else:
-                                fileName = f"{command}{strContent}"
-                            df = DataFrame(fileName, result)
-                            if df.getSuccess():
-                                discordFile = discord.File(df.getDirectory())
-                                await self.__send(message =
-                                                  "**___" + \
-                                                  ([value['alias'] for
-                                                    value in
-                                                    struct['controller']
-                                                    .values()][0]
-                                                   .capitalize()) + \
-                                                  "s___** "\
-                                                  "**___encontrad" + \
-                                                  ('a'
-                                                   if list(struct['controller']
-                                                      .keys())[0][0] == 'a'
-                                                   else 'o') + \
-                                                  "s:___**")
-                                await self.__send(file = discordFile)
-                                if not df.deleteFrame():
+            if await self.checkBussy():
+                return
+            self.__bussy = True
+            try:
+                content = msg.replace(f'${command}', '').strip()
+                request = Helpers.checkContent(command, content,
+                                               struct["targets"])
+                if isinstance(request, list):
+                    result = method(request, struct)
+                    if isinstance(result, list):
+                        if content.find('>') != -1:
+                            excelreq = content.lower()
+                            excelreq = excelreq[excelreq.rfind(']')+1:]
+                            excelreq = excelreq[:excelreq.find('e')+2]
+                            excelreq = excelreq.replace(' ','')
+                            if excelreq == ">e":
+                                strContent = (content[content.find('[')+1:
+                                              content.find(']')]
+                                              .split(","))
+                                strContent = "_".join(data.strip()
+                                                      for data
+                                                      in strContent)
+                                if command.find(':') != -1:
+                                    fileName = (command.split(':')[0]) + \
+                                               (command.split(':')[1]
+                                                .capitalize()) + \
+                                               (strContent)
+                                else:
+                                    fileName = f"{command}{strContent}"
+                                df = DataFrame(fileName, result)
+                                if df.getSuccess():
+                                    discordFile = discord.File(df
+                                                               .getDirectory())
                                     await self.__send(message =
-                                                      "Error al intentar "\
-                                                      "eliminar el excel, "\
-                                                      "por favor consulte "\
-                                                      "con el administrador.")
+                                          "**___" + \
+                                          ([value['alias'] for
+                                            value in
+                                            struct['controller']
+                                            .values()][0]
+                                           .capitalize()) + \
+                                           "s___** "\
+                                           "**___encontrad" + \
+                                          ('a'
+                                           if list(struct['controller']
+                                           .keys())[0][0] == 'a'
+                                           else 'o') + \
+                                           "s:___**")
+                                    await self.__send(file = discordFile)
+                                    if not df.deleteFrame():
+                                        await self.__send(message =
+                                              "Error al intentar "\
+                                              "eliminar el excel, "\
+                                              "por favor consulte "\
+                                              "con el administrador.")
+                                else:
+                                    await self.__send(message =
+                                          "Error al intentar "\
+                                          "crear el excel, "\
+                                          "por favor consulte "\
+                                          "con el administrador.")
                             else:
+                                parameters = "**[**" + \
+                                             (', '.join([i.strip() for i
+                                              in content[content.find('[')+1:
+                                              content.rfind(']')]
+                                              .split(',')])) + \
+                                             "**]** "
                                 await self.__send(message =
-                                                  "Error al intentar "\
-                                                  "crear el excel, "\
-                                                  "por favor consulte "\
-                                                  "con el administrador.")
+                                      "Se ha detectado el uso del "\
+                                      "operador **>** despues "\
+                                      "del comando "\
+                                      "inicial, si desea obtener "\
+                                      "los datos en un archivo "\
+                                      "de excel, "\
+                                      "debe completar el comando "\
+                                      "ingresadolo de la "\
+                                      "siguiente forma:\n"\
+                                     f"**${command}** " + \
+                                      (parameters
+                                       if request
+                                       else '') + \
+                                       "**> e**")
                         else:
-                            parameters = "**[**" + \
-                                         (', '.join([i.strip() for i
-                                           in content[content.find('[')+1:
-                                           content.rfind(']')]
-                                           .split(',')])) + \
-                                         "**]** "
-                            await self.__send(message =
-                                              "Se ha detectado el uso del "\
-                                              "operador **>** despues "\
-                                              "del comando "\
-                                              "inicial, si desea obtener "\
-                                              "los datos en un archivo "\
-                                              "de excel, "\
-                                              "debe completar el comando "\
-                                              "ingresadolo de la "\
-                                              "siguiente forma:\n"\
-                                              f"**${command}** " + \
-                                              (parameters
-                                               if request
-                                               else '') + \
-                                              "**> e**")
-                    else:
-                        array = []
-                        title = "**___" + \
-                                ([value['alias'] for
-                                  value in
-                                  struct['controller']
-                                  .values()][0]
-                                  .capitalize())  + \
-                                "s___** "\
-                                "**___encontrad" + \
-                                ('a'
-                                 if [value['alias'] for
+                            array = []
+                            title = "**___" + \
+                                    ([value['alias'] for
                                      value in
                                      struct['controller']
-                                     .values()][0][0] == 'a'
-                                 else 'o') + \
-                                "s:___**"
-                        length = len(title)
-                        array.append(title)
-                        for i in range(len(result)):
-                            tempdict = "* " + \
-                                       (', '.join([f'**_{key}_** : _{value}_'
-                                        for key, value in result[i].items()]))
-                            length = length + len(tempdict) + 1
-                            if length >= 2000:
-                                await self.__send(message = '\n'.join(array))
-                                array = []
-                                length = len(tempdict) + 1
-                                array.append(tempdict)
-                                if i == len(result) - 1:
-                                    await self.__send(message =
-                                                      '\n'.join(array))
-                            elif i == len(result) - 1:
-                                array.append(tempdict)
-                                await self.__send(message = '\n'.join(array))
-                            else:
-                                array.append(tempdict)
-                elif isinstance(result, str):
-                    await self.__send(message = result)
+                                     .values()][0]
+                                     .capitalize())  + \
+                                     "s___** "\
+                                     "**___encontrad" + \
+                                    ('a'
+                                     if [value['alias'] for
+                                         value in
+                                         struct['controller']
+                                         .values()][0][0] == 'a'
+                                     else 'o') + \
+                                     "s:___**"
+                            length = len(title)
+                            array.append(title)
+                            for i in range(len(result)):
+                                tempdict = "* " + \
+                                (', '.join([f'**_{key}_** : _{value}_'
+                                 for key, value in result[i].items()]))
+                                length = length + len(tempdict) + 1
+                                if length >= 2000:
+                                    await self.__send(message = '\n'
+                                                      .join(array))
+                                    array = []
+                                    length = len(tempdict) + 1
+                                    array.append(tempdict)
+                                    if i == len(result) - 1:
+                                        await self.__send(message =
+                                              '\n'.join(array))
+                                elif i == len(result) - 1:
+                                    array.append(tempdict)
+                                    await self.__send(message = '\n'
+                                                      .join(array))
+                                else:
+                                    array.append(tempdict)
+                    elif isinstance(result, str):
+                        await self.__send(message = result)
+                    else:
+                        await self.__send(message = "Error en la base "\
+                                                    "de datos, "\
+                                                    "por favor "\
+                                                    "consulte con el "\
+                                                    "administrador.")
                 else:
-                    await self.__send(message = "Error en la base de datos, "\
-                                                "por favor consulte con el "\
-                                                "administrador.")
-            else:
-                await self.__send(message = request)
+                    await self.__send(message = request)
+            finally:
+                self.__bussy = False
 
     async def contMsg(self, command, method, struct):
         author = self.__message.author
@@ -653,18 +699,27 @@ class MessageHandler:
         if Helpers.checkCommand(msg, command):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            content = msg.replace(f'${command}', '').strip()
-            request = Helpers.checkContent(command, content, struct["targets"])
-            if isinstance(request, list):
-                result = method(request, struct)
-                if result:
-                    await self.__send(message = result)
+            if await self.checkBussy():
+                return
+            self.__bussy = True
+            try:
+                content = msg.replace(f'${command}', '').strip()
+                request = Helpers.checkContent(command, content,
+                                               struct["targets"])
+                if isinstance(request, list):
+                    result = method(request, struct)
+                    if result:
+                        await self.__send(message = result)
+                    else:
+                        await self.__send(message = "Error en la base "\
+                                                    "de datos, "\
+                                                    "por favor consulte "\
+                                                    "con el "\
+                                                    "administrador.")
                 else:
-                    await self.__send(message = "Error en la base de datos, "\
-                                                "por favor consulte con el "\
-                                                "administrador.")
-            else:
-                await self.__send(message = request)
+                    await self.__send(message = request)
+            finally:
+                self.__bussy = False
 
     async def checkAssist(self, command, app):
         author = self.__message.author
@@ -676,78 +731,82 @@ class MessageHandler:
         if msg.startswith(f"${command}"):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            if (dcPermissions.send_messages and
-                dcPermissions.manage_messages and
-                dcPermissions.add_reactions):
-                async for message in channel.history(limit=None):
-                    if (len(message.reactions) == 1 and
-                        str(message.reactions[0]) == '⚜️'):
-                        targets = message.content.split(',')
-                        targets = [target.strip() for
-                                   target in
-                                   targets]
-                        if (len(targets) > 1 and
-                            len(message.content) < 100):
-                            event = targets[0].split()
-                            members = targets[1:]
-                            members = [member.capitalize() for
-                                       member in members]
-                            date = datetime.now()
-                            date = date.strftime('%d/%m/%Y')
-                            notfound = False
-                            result = app.getDatas(event,
-                                     Helpers.getStruct("event",
-                                                       ["name"]))
-                            if not isinstance(result, list):
-                                notfound = True
-                            for member in members:
-                                member = member.split()
-                                result = app.getDatas(member,
-                                         Helpers.getStruct("member",
+            if await self.checkBussy():
+                return
+            self.__bussy = True
+            try:
+                if (dcPermissions.send_messages and
+                    dcPermissions.manage_messages and
+                    dcPermissions.add_reactions):
+                    async for message in channel.history(limit=None):
+                        if (len(message.reactions) == 1 and
+                            str(message.reactions[0]) == '⚜️'):
+                            targets = message.content.split(',')
+                            targets = [target.strip() for
+                                       target in
+                                       targets]
+                            if (len(targets) > 1 and
+                                len(message.content) < 100):
+                                event = targets[0].split()
+                                members = targets[1:]
+                                members = [member.capitalize() for
+                                           member in members]
+                                date = datetime.now()
+                                date = date.strftime('%d/%m/%Y')
+                                notfound = False
+                                result = app.getDatas(event,
+                                         Helpers.getStruct("event",
                                                            ["name"]))
                                 if not isinstance(result, list):
                                     notfound = True
-                            if not notfound:
-                                success = True
                                 for member in members:
-                                    assist = [member, event[0], date]
-                                    result = app.setData(assist,
-                                             Helpers.setStruct("assist"))
-                                    if not "exito" in result:
-                                        success = False
-                                if success:
-                                    await channel.send("* La solicitud "\
-                                          f"**_{message.content}_** "\
-                                           "fue registrada con exito. "\
-                                           "Un ✅ ha sido añadido a la "\
-                                            "solicitud en cuestion.\n")
-                                    await message.clear_reactions()
-                                    await message.add_reaction('✅')
+                                    member = member.split()
+                                    result = app.getDatas(member,
+                                             Helpers.getStruct("member",
+                                                               ["name"]))
+                                    if not isinstance(result, list):
+                                        notfound = True
+                                if not notfound:
+                                    success = True
+                                    for member in members:
+                                        assist = [member, event[0], date]
+                                        result = app.setData(assist,
+                                                 Helpers.setStruct("assist"))
+                                        if not "exito" in result:
+                                            success = False
+                                    if success:
+                                        await channel.send("* La solicitud "\
+                                              f"**_{message.content}_** "\
+                                               "fue registrada con exito. "\
+                                               "Un ✅ ha sido añadido a la "\
+                                               "solicitud en cuestion.\n")
+                                        await message.clear_reactions()
+                                        await message.add_reaction('✅')
+                                    else:
+                                        await channel.send("* Ocurrio "\
+                                              "un error al intentar "\
+                                              "registrar la solicitud "\
+                                             f"**_{message.content}_**, "\
+                                              "por lo que puede que no se "\
+                                              "no se hayan realizado todos "\
+                                              "los registros, por favor "\
+                                              "informe al administrador. "\
+                                              "Una ⚠️ ha sido añadida a la "\
+                                              "solicitud en cuestion.\n")
+                                        await message.clear_reactions()
+                                        await message.add_reaction('⚠️')
                                 else:
-                                    await channel.send("* Ocurrio "\
-                                          "un error al intentar "\
-                                          "registrar la solicitud "\
+                                    await channel.send("* No se realizó "\
+                                          "el registro de la solicitud "\
                                          f"**_{message.content}_**, "\
-                                          "por lo que puede que no se "\
-                                          "no se hayan realizado todos "\
-                                          "los registros, por favor "\
-                                          "informe al administrador. "\
-                                          "Una ⚠️ ha sido añadida a la "\
+                                          "ya que existen errores "\
+                                          "en los valores ingresados. "\
+                                          "Una ❌ ha sido añadida a la "\
                                           "solicitud en cuestion.\n")
                                     await message.clear_reactions()
-                                    await message.add_reaction('⚠️')
+                                    await message.add_reaction('❌')
                             else:
                                 await channel.send("* No se realizó "\
-                                      "el registro de la solicitud "\
-                                     f"**_{message.content}_**, "\
-                                      "ya que existen errores "\
-                                      "en los valores ingresados. "\
-                                      "Una ❌ ha sido añadida a la "\
-                                      "solicitud en cuestion.\n")
-                                await message.clear_reactions()
-                                await message.add_reaction('❌')
-                        else:
-                            await channel.send("* No se realizó "\
                                       "el registro de la solicitud "\
                                      f"**_{message.content[:100]}" + \
                                       ('_** ' if
@@ -757,21 +816,23 @@ class MessageHandler:
                                       "en los valores ingresados. "\
                                       "Una ❌ ha sido añadida a la "\
                                       "solicitud en cuestion.\n")
-                            await message.clear_reactions()
-                            await message.add_reaction('❌')
-            else:
-                if dcPermissions.send_messages:
-                    await channel.send("**Avalon-bot** no dispone de "\
-                    "los permisos necesarios para eliminar o reaccionar "\
-                   f"a mensajes por el canal **{channel.name}**. "\
-                    "Por favor activelos "\
-                    "para acceder a todas las funcionalidades.\n")
+                                await message.clear_reactions()
+                                await message.add_reaction('❌')
                 else:
-                    print( "-> Avalon-bot no dispone de los permisos "\
-                           "necesarios para enviar mensajes "\
-                          f"por el canal '{channel.name}'. Por favor "\
-                           "activelos para acceder a todas "\
-                           "las funcionalidades.\n")
+                    if dcPermissions.send_messages:
+                        await channel.send("**Avalon-bot** no dispone de "\
+                        "los permisos necesarios para eliminar o reaccionar "\
+                       f"a mensajes por el canal **{channel.name}**. "\
+                        "Por favor activelos "\
+                        "para acceder a todas las funcionalidades.\n")
+                    else:
+                        print( "-> Avalon-bot no dispone de los permisos "\
+                               "necesarios para enviar mensajes "\
+                              f"por el canal '{channel.name}'. Por favor "\
+                               "activelos para acceder a todas "\
+                               "las funcionalidades.\n")
+            finally:
+                self.__bussy = False
 
     async def clearAll(self, command):
         author = self.__message.author
@@ -783,25 +844,31 @@ class MessageHandler:
         if msg.startswith(f"${command}"):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
-            if (dcPermissions.send_messages and
-                dcPermissions.manage_messages and
-                dcPermissions.add_reactions):
-                async for message in channel.history(limit=None):
-                    await asyncio.sleep(1)
-                    await message.delete()
-            else:
-                if dcPermissions.send_messages:
-                    await channel.send("**Avalon-bot** no dispone de "\
-                    "los permisos necesarios para eliminar o reaccionar "\
-                   f"a mensajes por el canal **{channel.name}**. "\
-                    "Por favor activelos "\
-                    "para acceder a todas las funcionalidades.\n")
+            if await self.checkBussy():
+                return
+            self.__bussy = True
+            try:
+                if (dcPermissions.send_messages and
+                    dcPermissions.manage_messages and
+                    dcPermissions.add_reactions):
+                    async for message in channel.history(limit=None):
+                        await asyncio.sleep(1)
+                        await message.delete()
                 else:
-                    print( "-> Avalon-bot no dispone de los permisos "\
-                           "necesarios para enviar mensajes "\
-                          f"por el canal '{channel.name}'. Por favor "\
-                           "activelos para acceder a todas "\
-                           "las funcionalidades.\n")
+                    if dcPermissions.send_messages:
+                        await channel.send("**Avalon-bot** no dispone de "\
+                        "los permisos necesarios para eliminar o reaccionar "\
+                       f"a mensajes por el canal **{channel.name}**. "\
+                        "Por favor activelos "\
+                        "para acceder a todas las funcionalidades.\n")
+                    else:
+                        print( "-> Avalon-bot no dispone de los permisos "\
+                               "necesarios para enviar mensajes "\
+                              f"por el canal '{channel.name}'. Por favor "\
+                               "activelos para acceder a todas "\
+                               "las funcionalidades.\n")
+            finally:
+                self.__bussy = False
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel
@@ -826,3 +893,13 @@ class MessageHandler:
             print(f"Enviando mensaje a Discord: {message}")
         elif file:
             print(f"Enviando archivo a Discord: {file}")
+
+    async def checkBussy(self, command):
+        if self.__bussy:
+            print(f"-> El bot actualmente se encuentra "\
+                   "ocupado en otro proceso, por lo que el comando "\
+                  f"'${command}' ha sido ignorado, por favor intente "\
+                   "mas tarde...")
+            return True
+        else:
+            return False
