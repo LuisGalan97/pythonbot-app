@@ -12,7 +12,7 @@ class MessageHandler:
         self.__client = client
         self.__permissions = permissions
         self.__send = self.defaultFunction if not test else self.testFunction
-        self.__bussy = False
+        MessageHandler.bussy = False
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
@@ -28,7 +28,7 @@ class MessageHandler:
                 return
             if await self.checkBussy("hello"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             try:
                 await self.__send(message = f"Hola **{author}**!, "\
                                              "soy **Avalon-bot** "\
@@ -36,7 +36,7 @@ class MessageHandler:
                                              "bajo la cuenta "\
                                             f"**{self.__client.user}**.\n")
             finally:
-                self.__bussy = False
+                MessageHandler.bussy = False
 
     async def helpMsg(self):
         author = self.__message.author
@@ -49,7 +49,7 @@ class MessageHandler:
                 return
             if await self.checkBussy("help:assist"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
         #---------------------------Asistencias--------------------------------
             messages.append("**___Asistencias___**\n")
             messages.append("\n")
@@ -164,7 +164,7 @@ class MessageHandler:
                 return
             if await self.checkBussy("help:event"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
         #-----------------------------Eventos----------------------------------
             messages.append("**___Eventos___**\n")
             messages.append("\n")
@@ -210,7 +210,7 @@ class MessageHandler:
                 return
             if await self.checkBussy("help:member"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
         #----------------------------Integrantes-------------------------------
             messages.append("**___Integrantes___**\n")
             messages.append("\n")
@@ -376,7 +376,7 @@ class MessageHandler:
                 return
             if await self.checkBussy("help:range"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
         #--------------------------------Rangos--------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
@@ -420,21 +420,21 @@ class MessageHandler:
                 return
             if await self.checkBussy("help:diagram"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             try:
                 await self.__send(message = "**___Diagrama de la estructura "\
                                             "de los datos:___**")
                 discordFile = discord.File(f"{dir}/SQL/db_diagram.png")
                 await self.__send(file = discordFile)
             finally:
-                self.__bussy = False
+                MessageHandler.bussy = False
                 return
         elif msg.startswith("$help"):
             if not permissions.checkAccess("help", author, nameChannel):
                 return
             if await self.checkBussy("help"):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             messages.append("**___Guia de usuario de Avalon-bot___**\n")
             messages.append("\n")
             messages.append("Bienvenido/a a la guia de usuario del "\
@@ -547,7 +547,7 @@ class MessageHandler:
                     else:
                         array.append(messages[i])
         finally:
-            self.__bussy = False
+            MessageHandler.bussy = False
 
     async def dFMsg(self, command, method, struct):
         author = self.__message.author
@@ -559,7 +559,7 @@ class MessageHandler:
                 return
             if await self.checkBussy(command):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             try:
                 content = msg.replace(f'${command}', '').strip()
                 request = Helpers.checkContent(command, content,
@@ -689,7 +689,7 @@ class MessageHandler:
                 else:
                     await self.__send(message = request)
             finally:
-                self.__bussy = False
+                MessageHandler.bussy = False
 
     async def contMsg(self, command, method, struct):
         author = self.__message.author
@@ -701,7 +701,7 @@ class MessageHandler:
                 return
             if await self.checkBussy(command):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             try:
                 content = msg.replace(f'${command}', '').strip()
                 request = Helpers.checkContent(command, content,
@@ -719,7 +719,7 @@ class MessageHandler:
                 else:
                     await self.__send(message = request)
             finally:
-                self.__bussy = False
+                MessageHandler.bussy = False
 
     async def checkAssist(self, command, app):
         author = self.__message.author
@@ -733,7 +733,7 @@ class MessageHandler:
                 return
             if await self.checkBussy(command):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             try:
                 if (dcPermissions.send_messages and
                     dcPermissions.manage_messages and
@@ -832,7 +832,7 @@ class MessageHandler:
                                "activelos para acceder a todas "\
                                "las funcionalidades.\n")
             finally:
-                self.__bussy = False
+                MessageHandler.bussy = False
 
     async def clearAll(self, command):
         author = self.__message.author
@@ -846,7 +846,7 @@ class MessageHandler:
                 return
             if await self.checkBussy(command):
                 return
-            self.__bussy = True
+            MessageHandler.bussy = True
             try:
                 if (dcPermissions.send_messages and
                     dcPermissions.manage_messages and
@@ -868,7 +868,7 @@ class MessageHandler:
                                "activelos para acceder a todas "\
                                "las funcionalidades.\n")
             finally:
-                self.__bussy = False
+                MessageHandler.bussy = False
 
     async def defaultFunction(self, message = None, file = None):
         channel = self.__message.channel
@@ -895,7 +895,7 @@ class MessageHandler:
             print(f"Enviando archivo a Discord: {file}")
 
     async def checkBussy(self, command):
-        if self.__bussy:
+        if MessageHandler.bussy:
             print(f"-> El bot actualmente se encuentra "\
                    "ocupado en otro proceso, por lo que el comando "\
                   f"'${command}' ha sido ignorado, por favor intente "\
