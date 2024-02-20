@@ -531,7 +531,7 @@ class MessageHandler:
                             "** * $help:range**\n"
                             "_Comandos adicionales_:\n"\
                             "** * $hello**   ->   "\
-                            "Genera un saludo por parte del bot.\n"\
+                            "Genera un saludo por parte del bot."\
                             "** * $clearAll**   ->   "\
                             "Elimina todos los mensajes del "\
                             "canal de discord donde es utilizado el "\
