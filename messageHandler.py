@@ -787,7 +787,7 @@ class MessageHandler:
                 dcPermissions.manage_messages and
                 dcPermissions.add_reactions):
                 async for message in channel.history(limit=None):
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(1)
                     await message.delete()
             else:
                 if dcPermissions.send_messages:
