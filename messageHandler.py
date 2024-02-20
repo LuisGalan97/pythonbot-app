@@ -8,7 +8,7 @@ from datetime import datetime
 
 class MessageHandler:
     bussy = False
-    
+
     def __init__(self, message, client, permissions, test = False):
         self.__message = message
         self.__client = client
@@ -529,8 +529,8 @@ class MessageHandler:
                             "** * $help:member**\n"\
                             "_Comandos de_ ___rangos___:\n"\
                             "** * $help:range**")
-        try:
-            if messages:
+        if messages:
+            try:
                 array = []
                 length = 0
                 for i in range(len(messages)):
@@ -547,8 +547,8 @@ class MessageHandler:
                         await self.__send(message = ''.join(array))
                     else:
                         array.append(messages[i])
-        finally:
-            MessageHandler.bussy = False
+            finally:
+                MessageHandler.bussy = False
 
     async def dFMsg(self, command, method, struct):
         author = self.__message.author
