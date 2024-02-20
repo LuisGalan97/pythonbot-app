@@ -900,7 +900,7 @@ class MessageHandler:
             print(f"-> El bot actualmente se encuentra "\
                    "ocupado en otro proceso, por lo que el comando "\
                   f"'${command}' ha sido ignorado, por favor intente "\
-                   "mas tarde...")
+                   "de nuevo mas tarde...")
             return True
         else:
             return False
