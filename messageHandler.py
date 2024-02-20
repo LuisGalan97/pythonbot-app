@@ -768,8 +768,8 @@ class MessageHandler:
                                     if not isinstance(result, list):
                                         notfound = True
                                     else:
-                                        if result['Principal'] != "Ninguno":
-                                            members[i] = result['Principal']
+                                        if result[0]['Principal'] != "Ninguno":
+                                            members[i] = result[0]['Principal']
                                 if not notfound:
                                     success = True
                                     for member in members:
