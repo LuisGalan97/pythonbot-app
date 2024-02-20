@@ -7,12 +7,13 @@ from Helpers.helpers import Helpers
 from datetime import datetime
 
 class MessageHandler:
+    bussy = False
+    
     def __init__(self, message, client, permissions, test = False):
         self.__message = message
         self.__client = client
         self.__permissions = permissions
         self.__send = self.defaultFunction if not test else self.testFunction
-        MessageHandler.bussy = False
 
     async def inMsg(self):
         if self.__message.author == self.__client.user:
