@@ -896,11 +896,14 @@ class MessageHandler:
             print(f"Enviando archivo a Discord: {file}")
 
     async def checkBussy(self, command):
+        author = self.__message.author
+        nameChannel = self.__message.channel.name
         if MessageHandler.bussy:
             print(f"-> El bot actualmente se encuentra "\
                    "ocupado en otro proceso, por lo que el comando "\
-                  f"'${command}' ha sido ignorado, por favor intente "\
-                   "de nuevo mas tarde...")
+                  f"'${command}' empleado por '{author}' "\
+                  f"en el canal '{nameChannel}' "\
+                   "ha sido ignorado, por favor intente de nuevo mas tarde...")
             return True
         else:
             return False
