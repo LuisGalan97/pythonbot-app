@@ -748,7 +748,7 @@ class MessageHandler:
                                        targets]
                             if (len(targets) > 1 and
                                 len(message.content) < 100):
-                                event = targets[0].split()
+                                event = targets[0].lower().split()
                                 members = targets[1:]
                                 members = [member.capitalize() for
                                            member in members]
@@ -760,13 +760,16 @@ class MessageHandler:
                                                            ["name"]))
                                 if not isinstance(result, list):
                                     notfound = True
-                                for member in members:
-                                    member = member.split()
+                                for i in range(len(members)):
+                                    member = members[i].split()
                                     result = app.getDatas(member,
                                              Helpers.getStruct("member",
                                                                ["name"]))
                                     if not isinstance(result, list):
                                         notfound = True
+                                    else:
+                                        if result['Principal'] != "Ninguno":
+                                            members[i] = result['Principal']
                                 if not notfound:
                                     success = True
                                     for member in members:
