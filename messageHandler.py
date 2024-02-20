@@ -149,6 +149,8 @@ class MessageHandler:
                                             "Fecha 1, Fecha 2] > e",
                                             "asistencia"))
         elif msg.startswith("$help:event"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
         #-----------------------------Eventos----------------------------------
             messages.append("**___Eventos___**\n")
             messages.append("\n")
@@ -190,6 +192,8 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listEvent:name [Nombre] > e",
                                            "evento"))
         elif msg.startswith("$help:member"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
         #----------------------------Integrantes-------------------------------
             messages.append("**___Integrantes___**\n")
             messages.append("\n")
@@ -351,6 +355,8 @@ class MessageHandler:
                                            "Fecha 1, Fecha 2] > e",
                                            "integrante"))
         elif msg.startswith("$help:range"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
         #--------------------------------Rangos--------------------------------
             messages.append("**_Rangos_**\n")
             messages.append("\n")
@@ -389,11 +395,15 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listRange:name [Nombre] > e",
                                            "rango"))
         elif msg.startswith("$help:diagram"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
             await self.__send(message = "**___Diagrama de la estructura "\
                                         "de los datos:___**")
             discordFile = discord.File(f"{dir}/SQL/db_diagram.png")
             await self.__send(file = discordFile)
         elif msg.startswith("$help"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
             messages.append("**___Guia de usuario de Avalon-bot___**\n")
             messages.append("\n")
             messages.append("Bienvenido/a a la guia de usuario del "\
