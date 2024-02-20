@@ -21,10 +21,10 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = ""
-        if permissions.checkAccess("hello", author, nameChannel):
-            msg = self.__message.content
+        msg = self.__message.content
         if msg.startswith("$hello"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
             await self.__send(message = f"Hola **{author}**!, "\
                                          "soy **Avalon-bot** identificado "\
                                          "bajo la cuenta "\
@@ -34,11 +34,11 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = ""
-        if permissions.checkAccess("help", author, nameChannel):
-            msg = self.__message.content
+        msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
+            if not permissions.checkAccess("help", author, nameChannel):
+                return
         #---------------------------Asistencias--------------------------------
             messages.append("**___Asistencias___**\n")
             messages.append("\n")
@@ -509,10 +509,10 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = ""
-        if permissions.checkAccess(command, author, nameChannel):
-            msg = self.__message.content
+        msg = self.__message.content
         if Helpers.checkCommand(msg, command):
+            if not permissions.checkAccess(command, author, nameChannel):
+                return
             content = msg.replace(f'${command}', '').strip()
             request = Helpers.checkContent(command, content, struct["targets"])
             if isinstance(request, list):
@@ -639,10 +639,10 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = ""
-        if permissions.checkAccess(command, author, nameChannel):
-            msg = self.__message.content
+        msg = self.__message.content
         if Helpers.checkCommand(msg, command):
+            if not permissions.checkAccess(command, author, nameChannel):
+                return
             content = msg.replace(f'${command}', '').strip()
             request = Helpers.checkContent(command, content, struct["targets"])
             if isinstance(request, list):
@@ -662,10 +662,10 @@ class MessageHandler:
         permissions = self.__permissions
         dcPermissions = channel.permissions_for(channel.guild.me)
         nameChannel = channel.name
-        msg = ""
-        if permissions.checkAccess(command, author, nameChannel):
-            msg = self.__message.content
+        msg = self.__message.content
         if msg.startswith(f"${command}"):
+            if not permissions.checkAccess(command, author, nameChannel):
+                return
             if (dcPermissions.send_messages and
                 dcPermissions.manage_messages and
                 dcPermissions.add_reactions):
@@ -769,10 +769,10 @@ class MessageHandler:
         permissions = self.__permissions
         dcPermissions = channel.permissions_for(channel.guild.me)
         nameChannel = channel.name
-        msg = ""
-        if permissions.checkAccess(command, author, nameChannel):
-            msg = self.__message.content
+        msg = self.__message.content
         if msg.startswith(f"${command}"):
+            if not permissions.checkAccess(command, author, nameChannel):
+                return
             if (dcPermissions.send_messages and
                 dcPermissions.manage_messages and
                 dcPermissions.add_reactions):
