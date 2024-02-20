@@ -37,7 +37,7 @@ class MessageHandler:
         msg = self.__message.content
         messages = []
         if msg.startswith("$help:assist"):
-            if not permissions.checkAccess("help", author, nameChannel):
+            if not permissions.checkAccess("help:assist", author, nameChannel):
                 return
         #---------------------------Asistencias--------------------------------
             messages.append("**___Asistencias___**\n")
@@ -149,7 +149,7 @@ class MessageHandler:
                                             "Fecha 1, Fecha 2] > e",
                                             "asistencia"))
         elif msg.startswith("$help:event"):
-            if not permissions.checkAccess("help", author, nameChannel):
+            if not permissions.checkAccess("help:event", author, nameChannel):
                 return
         #-----------------------------Eventos----------------------------------
             messages.append("**___Eventos___**\n")
@@ -192,7 +192,7 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listEvent:name [Nombre] > e",
                                            "evento"))
         elif msg.startswith("$help:member"):
-            if not permissions.checkAccess("help", author, nameChannel):
+            if not permissions.checkAccess("help:member", author, nameChannel):
                 return
         #----------------------------Integrantes-------------------------------
             messages.append("**___Integrantes___**\n")
@@ -355,7 +355,7 @@ class MessageHandler:
                                            "Fecha 1, Fecha 2] > e",
                                            "integrante"))
         elif msg.startswith("$help:range"):
-            if not permissions.checkAccess("help", author, nameChannel):
+            if not permissions.checkAccess("help:range", author, nameChannel):
                 return
         #--------------------------------Rangos--------------------------------
             messages.append("**_Rangos_**\n")
@@ -395,7 +395,7 @@ class MessageHandler:
             messages.append(Helpers.genMsg("listRange:name [Nombre] > e",
                                            "rango"))
         elif msg.startswith("$help:diagram"):
-            if not permissions.checkAccess("help", author, nameChannel):
+            if not permissions.checkAccess("help:diagram", author, nameChannel):
                 return
             await self.__send(message = "**___Diagrama de la estructura "\
                                         "de los datos:___**")
