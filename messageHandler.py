@@ -23,7 +23,7 @@ class MessageHandler:
         permissions = self.__permissions
         msg = self.__message.content
         if msg.startswith("$hello"):
-            if not permissions.checkAccess("help", author, nameChannel):
+            if not permissions.checkAccess("hello", author, nameChannel):
                 return
             await self.__send(message = f"Hola **{author}**!, "\
                                          "soy **Avalon-bot** identificado "\
