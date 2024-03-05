@@ -35,7 +35,7 @@ class MemberService:
             elif target.keys() == {"name"}:
                 data = self.__db.execute_query(
                        f"{selectQuery} "\
-                        "WHERE i.nombre = ?",
+                        "WHERE LOWER(i.nombre) = LOWER(?)",
                         (target["name"],))
             elif target.keys() == {"range_id"}:
                 data = self.__db.execute_query(
@@ -120,7 +120,7 @@ class MemberService:
                        f"{selectQuery} "\
                         "WHERE a.fecha BETWEEN "\
                         "? AND ? "\
-                        "AND i.nombre = ? "\
+                        "AND LOWER(i.nombre) = LOWER(?) "\
                         "GROUP BY i.id "\
                         "ORDER BY totalpoints DESC",
                         (target["date_1"],
@@ -166,7 +166,7 @@ class MemberService:
                        f"{selectQuery} "\
                         "WHERE a.fecha BETWEEN "\
                         "? AND ? "\
-                        "AND i.nombre = ? "\
+                        "AND LOWER(i.nombre) = LOWER(?) "\
                         "AND a.evento_id = ? "\
                         "GROUP BY i.id "\
                         "ORDER BY totalpoints DESC",
@@ -261,7 +261,7 @@ class MemberService:
                         "AND a.fecha BETWEEN "\
                         "? AND ? "\
                         "LEFT JOIN eventos e ON e.id = a.evento_id "\
-                        "WHERE i.nombre = ? "\
+                        "WHERE LOWER(i.nombre) = LOWER(?) "\
                         "GROUP BY i.id "\
                         "ORDER BY totalpoints DESC",
                         (target["date_1"],
@@ -312,7 +312,7 @@ class MemberService:
                         "? AND ? "\
                         "LEFT JOIN eventos e ON e.id = a.evento_id "\
                         "AND a.evento_id = ? "\
-                        "AND i.nombre = ? "\
+                        "AND LOWER(i.nombre) = LOWER(?) "\
                         "GROUP BY i.id "\
                         "ORDER BY totalpoints DESC",
                         (target["date_1"],

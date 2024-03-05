@@ -28,7 +28,7 @@ class EventService:
             elif target.keys() == {"name"}:
                 data = self.__db.execute_query(
                        f"{selectQuery} "\
-                        "WHERE nombre = ?",
+                        "WHERE LOWER(nombre) = LOWER(?)",
                         (target["name"],))
             else:
                 print( "-> No fue posible realizar la consulta "\

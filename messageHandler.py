@@ -755,10 +755,8 @@ class MessageHandler:
                                        targets]
                             if (len(targets) > 1 and
                                 len(message.content) < 100):
-                                event = targets[0].lower().split()
+                                event = targets[0].split()
                                 members = targets[1:]
-                                members = [member.capitalize() for
-                                           member in members]
                                 date = datetime.now()
                                 date = date.strftime('%d/%m/%Y')
                                 notfound = False
