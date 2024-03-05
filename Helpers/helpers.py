@@ -86,8 +86,8 @@ class Helpers:
                             else:
                                 if "update" in structCtrl[nameCtrl]:
                                     update = structCtrl[nameCtrl]["update"]
-                                    if (result[update].lower()  ==
-                                        checkid[key][0][update].lower()):
+                                    if (str(result[update]).lower()  ==
+                                        str(checkid[key][0][update]).lower()):
                                         return f"El valor '{value}' "\
                                         "ingresado en el "\
                                        f"campo **_{struct[key]['alias']}_** "\
