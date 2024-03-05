@@ -584,10 +584,10 @@ class MessageHandler:
                                 strContent = (content[content.find('[')+1:
                                               content.find(']')]
                                               .split(","))
-                                strContent = "_".join(str(data
+                                strContent = "_".join(str(data)
                                                       .strip()
                                                       .lower()
-                                                      .capitalize())
+                                                      .capitalize()
                                                       for data
                                                       in strContent)
                                 if command.find(':') != -1:
