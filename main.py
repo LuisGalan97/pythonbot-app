@@ -210,4 +210,7 @@ async def on_message(message):
     await hdlr.dFMsg("listRange:name", app.getDatas,
                      Helpers.getStruct("range", ["name"]))
 
-client.run(Config.TOKEN)
+try:
+    client.run(Config.TOKEN)
+except Exception as e:
+    print(f'-> Error en la conexion del bot con discord: {e}')
