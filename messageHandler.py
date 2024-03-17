@@ -760,7 +760,7 @@ class MessageHandler:
                                 len(message.content) < 100):
                                 event = targets[0].split()
                                 members = targets[1:]
-                                date = datetime.now()
+                                date = message.created_at
                                 date = date.strftime('%d/%m/%Y')
                                 notfound = False
                                 result = app.getDatas(event,
