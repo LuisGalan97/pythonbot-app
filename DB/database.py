@@ -78,11 +78,11 @@ class Database:
                 return True
             else:
                 print(f"-> La integridad de la base de datos "\
-                      f"'{self.__dbName}' se ha visto comprometida.")
+                      f"'{self.__dbName}' ha sido comprometida.")
                 return False
         except Exception as ex:
             print(f"-> La integridad de la base de datos "\
-                  f"'{self.__dbName}' se ha visto comprometida.")
+                  f"'{self.__dbName}' ha sido comprometida.")
             return False
 
     def create_backup(self):
@@ -93,14 +93,28 @@ class Database:
         finalpath = os.path.join(filepath, filename)
         try:
             shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
-            print( "-> Se ha creado un backup de "\
-                   "de los cambios realizados en la base de datos "\
+            print( "-> Se ha creado una copia de seguridad de "\
+                   "de la base de datos "\
                   f"'{self.__dbName}'.")
             return True
         except Exception as e:
-            print( "-> Error al intentar crear un "\
-                   "backup de los cambios realizados "\
-                   f"en la base de datos '{self.__dbName}' : {e}")
+            print( "-> Error al intentar crear una "\
+                   "copia de seguridad de "\
+                  f" la base de datos '{self.__dbName}' : {e}")
+            return False
+
+    def restore_db(self):
+        backupfile = f"{dir}/DB/.backup/{self.__dbName}"
+        try:
+            shutil.copy(backupfile, f"{dir}/DB/"+self.__dbName)
+            print( "-> Se ha restaurado la base de datos "\
+                  f"'{self.__dbName}' a partir de su ultima "\
+                   "copia de seguridad.")
+            return True
+        except Exception as e:
+            print( "-> Error al intentar restaurar "\
+                  f"la base de datos '{self.__dbName}' "\
+                  f"a partir de su ultima copia de seguridad : {e}")
             return False
 
     def execute_script(self, script):
@@ -127,21 +141,22 @@ class Database:
     def execute_query(self, query, parameters = None):
         try:
             if self.check_connection():
-                if self.check_integrity():
-                    if parameters is None:
-                        self.__cursor.execute(query)
-                    else:
-                        self.__cursor.execute(query, parameters)
-                    self.__conn.commit()
-                    result = self.__cursor.fetchall()
-                    print(f"-> La consulta '{query.split()[0]}' se ha "\
-                           "realizado satisfactoriamente en la base de datos "\
-                          f"'{self.__dbName}'.")
+                if not self.check_integrity():
+                    self.restore_db()
+                    return False
+                if query.split()[0] != "SELECT":
                     if not self.create_backup():
                         return False
-                    return True if not result else result
+                if parameters is None:
+                    self.__cursor.execute(query)
                 else:
-                    return False
+                    self.__cursor.execute(query, parameters)
+                self.__conn.commit()
+                result = self.__cursor.fetchall()
+                print(f"-> La consulta '{query.split()[0]}' se ha "\
+                       "realizado satisfactoriamente en la base de datos "\
+                      f"'{self.__dbName}'.")
+                return True if not result else result
             else:
                 print( "-> No fue posible realizar la consulta "\
                       f"'{query.split()[0]}' debido a una ausencia "\
