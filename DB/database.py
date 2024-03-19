@@ -86,13 +86,15 @@ class Database:
                 os.makedirs(os.path.dirname(filepath), exist_ok=True)
             filename = os.path.basename(f"{dir}/DB/"+self.__dbName)
             finalpath = os.path.join(filepath, filename)
-        try:
-            shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
-            print("El archivo se copió exitosamente a la carpeta de destino.")
-        except Exception as e:
-            print("Error al copiar el archivo:", e)
-    else:
-        print("El archivo especificado no existe en la ruta proporcionada.")
+            try:
+                shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
+                print("El archivo se copió exitosamente "\
+                      "a la carpeta de destino.")
+            except Exception as e:
+                print("Error al copiar el archivo:", e)
+        else:
+            print("El archivo especificado no existe "\
+                  "en la ruta proporcionada.")
 
     def execute_script(self, script):
         try:
