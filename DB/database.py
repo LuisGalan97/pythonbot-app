@@ -72,7 +72,7 @@ class Database:
             result = self.__cursor.fetchone()[0]
             print(f"-> Integridad de la base de datos "\
                   f"'{self.__dbName}': {result}")
-            if result == "ok"
+            if result == "ok":
                 return True
             else:
                 return False
@@ -88,13 +88,16 @@ class Database:
             finalpath = os.path.join(filepath, filename)
             try:
                 shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
-                print("El archivo se copió exitosamente "\
+                print("-> El archivo se copió exitosamente "\
                       "a la carpeta de destino.")
+                return True
             except Exception as e:
-                print("Error al copiar el archivo:", e)
+                print(f"-> Error al copiar el archivo: e")
+                return True
         else:
-            print("El archivo especificado no existe "\
+            print("-> El archivo especificado no existe "\
                   "en la ruta proporcionada.")
+            return False
 
     def execute_script(self, script):
         try:
@@ -130,7 +133,8 @@ class Database:
                     print(f"-> La consulta '{query.split()[0]}' se ha "\
                            "realizado satisfactoriamente en la base de datos "\
                           f"'{self.__dbName}'.")
-                    self.create_backup()
+                    if not self.create_backup():
+                        return False
                     return True if not result else result
                 else:
                     return False
