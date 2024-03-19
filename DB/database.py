@@ -92,8 +92,8 @@ class Database:
                       "a la carpeta de destino.")
                 return True
             except Exception as e:
-                print(f"-> Error al copiar el archivo: e")
-                return True
+                print(f"-> Error al copiar el archivo: {e}")
+                return False
         else:
             print("-> El archivo especificado no existe "\
                   "en la ruta proporcionada.")
