@@ -1,4 +1,5 @@
 import os
+import shutil
 dir = os.path.dirname(os.path.abspath(__file__))
 dir = os.path.dirname(dir)
 import sqlite3 as sql
