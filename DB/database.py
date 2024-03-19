@@ -66,6 +66,34 @@ class Database:
                   f"base de datos '{self.__dbName}' : '{str(ex)}'.")
             return False
 
+    def check_integrity(self):
+        try:
+            self.__cursor.execute("PRAGMA integrity_check")
+            result = self.__cursor.fetchone()[0]
+            print(f"-> Integridad de la base de datos "\
+                  f"{self.__dbName}: {result}")
+            return True
+        except Exception as ex:
+            print( "-> Error al verificar la integridad "\
+                  f"de la base de datos "\
+                  f"'{self.__dbName}' : '{str(ex)}'.")
+            return False
+
+    def create_backup(self):
+        if os.path.exists(f"{dir}/DB/"+self.__dbName):
+            filepath = f"{dir}/DB/.backup/"
+            if not os.path.exists(filepath):
+                os.makedirs(os.path.dirname(filepath), exist_ok=True)
+            filename = os.path.basename(f"{dir}/DB/"+self.__dbName)
+            finalpath = os.path.join(filepath, filename)
+        try:
+            shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
+            print("El archivo se copió exitosamente a la carpeta de destino.")
+        except Exception as e:
+            print("Error al copiar el archivo:", e)
+    else:
+        print("El archivo especificado no existe en la ruta proporcionada.")
+
     def execute_script(self, script):
         try:
             if self.check_connection():
@@ -90,16 +118,19 @@ class Database:
     def execute_query(self, query, parameters = None):
         try:
             if self.check_connection():
-                if parameters is None:
-                    self.__cursor.execute(query)
+                if self.check_integrity():
+                    if parameters is None:
+                        self.__cursor.execute(query)
+                    else:
+                        self.__cursor.execute(query, parameters)
+                    self.__conn.commit()
+                    result = self.__cursor.fetchall()
+                    print(f"-> La consulta '{query.split()[0]}' se ha "\
+                           "realizado satisfactoriamente en la base de datos "\
+                          f"'{self.__dbName}'.")
+                    return True if not result else result
                 else:
-                    self.__cursor.execute(query, parameters)
-                self.__conn.commit()
-                result = self.__cursor.fetchall()
-                print(f"-> La consulta '{query.split()[0]}' se ha "\
-                       "realizado satisfactoriamente en la base de datos "\
-                      f"'{self.__dbName}'.")
-                return True if not result else result
+                    return False
             else:
                 print( "-> No fue posible realizar la consulta "\
                       f"'{query.split()[0]}' debido a una ausencia "\
