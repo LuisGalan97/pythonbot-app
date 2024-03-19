@@ -147,7 +147,7 @@ INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES (
 INSERT INTO integrantes (nombre, rango_id, fechacreacion) VALUES ('il-Sejmet-il', 17, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Kayzarcra', 17, 44,'2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Kiizah', 17, 30, '2024-02-20');
-INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Kugh-curas', 17, 36, '2024-02-20');
+INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Kugh-curas', 17, 26, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Latalibana', 17, 20, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Mariaa-P', 17, 80, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Maryrunas', 17, 42, '2024-02-20');
