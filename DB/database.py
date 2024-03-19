@@ -81,23 +81,21 @@ class Database:
             return False
 
     def create_backup(self):
-        if os.path.exists(f"{dir}/DB/"+self.__dbName):
-            filepath = f"{dir}/DB/.backup/"
-            if not os.path.exists(filepath):
-                os.makedirs(os.path.dirname(filepath), exist_ok=True)
-            filename = os.path.basename(f"{dir}/DB/"+self.__dbName)
-            finalpath = os.path.join(filepath, filename)
-            try:
-                shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
-                print("-> El archivo se copió exitosamente "\
-                      "a la carpeta de destino.")
-                return True
-            except Exception as e:
-                print(f"-> Error al copiar el archivo: {e}")
-                return False
-        else:
-            print("-> El archivo especificado no existe "\
-                  "en la ruta proporcionada.")
+        filepath = f"{dir}/DB/.backup/"
+        if not os.path.exists(filepath):
+            os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        filename = os.path.basename(f"{dir}/DB/"+self.__dbName)
+        finalpath = os.path.join(filepath, filename)
+        try:
+            shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
+            print( "-> Se ha creado un backup de "\
+                   "de los cambios realizados en la base de datos "\
+                  f"'{self.__dbName}'.")
+            return True
+        except Exception as e:
+            print( "-> Error al intentar crear un "\
+                   "backup de los cambios realizados "\
+                   f"en la base de datos '{self.__dbName}' : {e}")
             return False
 
     def execute_script(self, script):
