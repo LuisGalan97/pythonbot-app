@@ -23,7 +23,7 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = self.__message.content
+        msg = Helpers.cleanStr(self.__message.content)
         if msg.startswith("$hello"):
             if not permissions.checkAccess("hello", author, nameChannel):
                 return
@@ -43,7 +43,7 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = self.__message.content
+        msg = Helpers.cleanStr(self.__message.content)
         messages = []
         if msg.startswith("$help:assist"):
             if not permissions.checkAccess("help:assist", author, nameChannel):
@@ -561,7 +561,7 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = self.__message.content
+        msg = Helpers.cleanStr(self.__message.content)
         if Helpers.checkCommand(msg, command):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
@@ -706,7 +706,7 @@ class MessageHandler:
         author = self.__message.author
         nameChannel = self.__message.channel.name
         permissions = self.__permissions
-        msg = self.__message.content
+        msg = Helpers.cleanStr(self.__message.content)
         if Helpers.checkCommand(msg, command):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
@@ -738,7 +738,7 @@ class MessageHandler:
         permissions = self.__permissions
         dcPermissions = channel.permissions_for(channel.guild.me)
         nameChannel = channel.name
-        msg = self.__message.content
+        msg = Helpers.cleanStr(self.__message.content)
         if msg.startswith(f"${command}"):
             if not permissions.checkAccess(command, author, nameChannel):
                 return
@@ -852,7 +852,7 @@ class MessageHandler:
         permissions = self.__permissions
         dcPermissions = channel.permissions_for(channel.guild.me)
         nameChannel = channel.name
-        msg = self.__message.content
+        msg = Helpers.cleanStr(self.__message.content)
         if msg.startswith(f"${command}"):
             if not permissions.checkAccess(command, author, nameChannel):
                 return

@@ -255,6 +255,11 @@ class Helpers:
             return "Ninguno"
 
     @staticmethod
+    def cleanStr(value):
+        value = value.replace("​", "")
+        return value
+
+    @staticmethod
     def getStruct(nameCtrl, targets = None, option = None):
         structCtrl = {}
         structTargets = {}
