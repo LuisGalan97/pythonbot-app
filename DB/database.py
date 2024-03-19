@@ -71,13 +71,18 @@ class Database:
         try:
             self.__cursor.execute("PRAGMA integrity_check")
             result = self.__cursor.fetchone()[0]
-            print(f"-> Integridad de la base de datos "\
-                  f"'{self.__dbName}': {result}")
             if result == "ok":
+                print(f"-> La integridad de la base de datos "\
+                      f"'{self.__dbName}' se encuentra "\
+                       "en optimas condiciones.")
                 return True
             else:
+                print(f"-> La integridad de la base de datos "\
+                      f"'{self.__dbName}' se ha visto comprometida.")
                 return False
         except Exception as ex:
+            print(f"-> La integridad de la base de datos "\
+                  f"'{self.__dbName}' se ha visto comprometida.")
             return False
 
     def create_backup(self):
