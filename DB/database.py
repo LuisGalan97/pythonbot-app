@@ -71,12 +71,12 @@ class Database:
             self.__cursor.execute("PRAGMA integrity_check")
             result = self.__cursor.fetchone()[0]
             print(f"-> Integridad de la base de datos "\
-                  f"{self.__dbName}: {result}")
-            return True
+                  f"'{self.__dbName}': {result}")
+            if result == "ok"
+                return True
+            else:
+                return False
         except Exception as ex:
-            print( "-> Error al verificar la integridad "\
-                  f"de la base de datos "\
-                  f"'{self.__dbName}' : '{str(ex)}'.")
             return False
 
     def create_backup(self):
@@ -130,6 +130,7 @@ class Database:
                     print(f"-> La consulta '{query.split()[0]}' se ha "\
                            "realizado satisfactoriamente en la base de datos "\
                           f"'{self.__dbName}'.")
+                    self.create_backup()
                     return True if not result else result
                 else:
                     return False
