@@ -136,8 +136,8 @@ INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES (
 
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Ahuramazda', 17, 59, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Blondiechan', 17, 39, '2024-02-20');
-INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Chary-Cur', 17, 33, '2024-02-20');
-INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Chary-Escudos', 17, 33, '2024-02-20');
+INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Chary-Cur', 17, 23, '2024-02-20');
+INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Chary-Escudos', 17, 23, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Docteur-Doflamingo', 17, 68, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Estebo-J', 17, 9, '2024-02-20');
 INSERT INTO integrantes (nombre, rango_id, principal_id, fechacreacion) VALUES ('Eve-Arc', 17, 37, '2024-02-20');
