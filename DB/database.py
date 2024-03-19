@@ -78,11 +78,11 @@ class Database:
                 return True
             else:
                 print(f"-> La integridad de la base de datos "\
-                      f"'{self.__dbName}' ha sido comprometida.")
+                      f"'{self.__dbName}' se ha visto comprometida.")
                 return False
         except Exception as ex:
             print(f"-> La integridad de la base de datos "\
-                  f"'{self.__dbName}' ha sido comprometida.")
+                  f"'{self.__dbName}' se ha visto comprometida.")
             return False
 
     def create_backup(self):
@@ -94,13 +94,13 @@ class Database:
         try:
             shutil.copy(f"{dir}/DB/"+self.__dbName, finalpath)
             print( "-> Se ha creado una copia de seguridad de "\
-                   "de la base de datos "\
+                   "la base de datos "\
                   f"'{self.__dbName}'.")
             return True
         except Exception as e:
             print( "-> Error al intentar crear una "\
                    "copia de seguridad de "\
-                  f" la base de datos '{self.__dbName}' : {e}")
+                  f"la base de datos '{self.__dbName}' : {e}")
             return False
 
     def restore_db(self):
