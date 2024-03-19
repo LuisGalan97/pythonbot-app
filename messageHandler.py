@@ -750,14 +750,15 @@ class MessageHandler:
                     dcPermissions.manage_messages and
                     dcPermissions.add_reactions):
                     async for message in channel.history(limit=None):
+                        msgContent = Helpers.cleanStr(message.content)
                         if (len(message.reactions) == 1 and
                             str(message.reactions[0]) == '⚜️'):
-                            targets = message.content.split(',')
+                            targets = msgContent.split(',')
                             targets = [target.strip() for
                                        target in
                                        targets]
                             if (len(targets) > 1 and
-                                len(message.content) < 100):
+                                len(msgContent) < 100):
                                 event = targets[0].split()
                                 members = targets[1:]
                                 date = message.created_at
@@ -788,7 +789,7 @@ class MessageHandler:
                                             success = False
                                     if success:
                                         await channel.send("* La solicitud "\
-                                              f"**_{message.content}_** "\
+                                              f"**_{msgContent}_** "\
                                                "fue registrada con exito. "\
                                                "Un ✅ ha sido añadido a la "\
                                                "solicitud en cuestion.\n")
@@ -798,7 +799,7 @@ class MessageHandler:
                                         await channel.send("* Ocurrio "\
                                               "un error al intentar "\
                                               "registrar la solicitud "\
-                                             f"**_{message.content}_**, "\
+                                             f"**_{msgContent}_**, "\
                                               "por lo que puede que no se "\
                                               "no se hayan realizado todos "\
                                               "los registros, por favor "\
@@ -810,7 +811,7 @@ class MessageHandler:
                                 else:
                                     await channel.send("* No se realizó "\
                                           "el registro de la solicitud "\
-                                         f"**_{message.content}_**, "\
+                                         f"**_{msgContent}_**, "\
                                           "ya que existen errores "\
                                           "en los valores ingresados. "\
                                           "Una ❌ ha sido añadida a la "\
@@ -820,9 +821,9 @@ class MessageHandler:
                             else:
                                 await channel.send("* No se realizó "\
                                       "el registro de la solicitud "\
-                                     f"**_{message.content[:100]}" + \
+                                     f"**_{msgContent[:100]}" + \
                                       ('_** ' if
-                                       len(message.content) < 100 else
+                                       len(msgContent) < 100 else
                                       '..._** ') + \
                                       "ya que existen errores "\
                                       "en los valores ingresados. "\
