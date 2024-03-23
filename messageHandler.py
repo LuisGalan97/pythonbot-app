@@ -757,8 +757,7 @@ class MessageHandler:
                             targets = [target.strip() for
                                        target in
                                        targets]
-                            if (len(targets) > 1 and
-                                len(msgContent) < 100):
+                            if len(targets) > 1:
                                 event = targets[0].split()
                                 members = targets[1:]
                                 date = message.created_at
@@ -789,7 +788,10 @@ class MessageHandler:
                                             success = False
                                     if success:
                                         await channel.send("* La solicitud "\
-                                              f"**_{msgContent}_** "\
+                                              f"**_{msgContent[:100]}" + \
+                                              ('_** ' if
+                                               len(msgContent) < 100 else
+                                               '..._**, ') + \
                                                "fue registrada con exito. "\
                                                "Un ✅ ha sido añadido a la "\
                                                "solicitud en cuestion.\n")
@@ -799,7 +801,10 @@ class MessageHandler:
                                         await channel.send("* Ocurrio "\
                                               "un error al intentar "\
                                               "registrar la solicitud "\
-                                             f"**_{msgContent}_**, "\
+                                             f"**_{msgContent[:100]}" + \
+                                              ('_** ' if
+                                               len(msgContent) < 100 else
+                                               '..._**, ') + \
                                               "por lo que puede que no se "\
                                               "no se hayan realizado todos "\
                                               "los registros, por favor "\
@@ -810,12 +815,15 @@ class MessageHandler:
                                         await message.add_reaction('⚠️')
                                 else:
                                     await channel.send("* No se realizó "\
-                                          "el registro de la solicitud "\
-                                         f"**_{msgContent}_**, "\
-                                          "ya que existen errores "\
-                                          "en los valores ingresados. "\
-                                          "Una ❌ ha sido añadida a la "\
-                                          "solicitud en cuestion.\n")
+                                        "el registro de la solicitud "\
+                                       f"**_{msgContent[:100]}" + \
+                                        ('_** ' if
+                                         len(msgContent) < 100 else
+                                         '..._**, ') + \
+                                        "ya que existen errores "\
+                                        "en los valores ingresados. "\
+                                        "Una ❌ ha sido añadida a la "\
+                                        "solicitud en cuestion.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
                             else:
@@ -824,7 +832,7 @@ class MessageHandler:
                                      f"**_{msgContent[:100]}" + \
                                       ('_** ' if
                                        len(msgContent) < 100 else
-                                      '..._** ') + \
+                                       '..._**, ') + \
                                       "ya que existen errores "\
                                       "en los valores ingresados. "\
                                       "Una ❌ ha sido añadida a la "\
