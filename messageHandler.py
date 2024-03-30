@@ -777,20 +777,25 @@ class MessageHandler:
                                         if not isinstance(result, list):
                                             notfound = True
                                         else:
-                                            if result[0]['Principal'] != "Ninguno":
-                                                members[i] = result[0]['Principal']
+                                            if (result[0]['Principal']
+                                                != "Ninguno"):
+                                                members[i] = (
+                                                    result[0]['Principal']
+                                                )
                                     if not notfound:
                                         success = True
                                         for member in members:
                                             assist = [member, event[0], date]
                                             result = app.setData(assist,
-                                                     Helpers.setStruct("assist"))
+                                                     Helpers.setStruct(
+                                                     "assist"))
                                             if not "exito" in result:
                                                 success = False
                                         if success:
-                                            await message.reply("* La solicitud "\
-                                                   "fue registrada con exito. "\
-                                                   "Un ✅ ha sido añadido a la "\
+                                            await message.reply(
+                                                  "* La solicitud "\
+                                                  "fue registrada con exito. "\
+                                                  "Un ✅ ha sido añadido a la "\
                                                    "solicitud en cuestion.\n")
                                             await message.clear_reactions()
                                             await message.add_reaction('✅')
@@ -798,11 +803,14 @@ class MessageHandler:
                                             await message.reply("* Ocurrio "\
                                                   "un error al intentar "\
                                                   "registrar la solicitud "\
-                                                  "por lo que puede que no se "\
-                                                  "no se hayan realizado todos "\
+                                                  "por lo que puede "\
+                                                  "que no se "\
+                                                  "no se hayan "\
+                                                  "realizado todos "\
                                                   "los registros, por favor "\
                                                   "informe al administrador. "\
-                                                  "Una ⚠️ ha sido añadida a la "\
+                                                  "Una ⚠️ ha sido "\
+                                                  "añadida a la "\
                                                   "solicitud en cuestion.\n")
                                             await message.clear_reactions()
                                             await message.add_reaction('⚠️')
@@ -872,7 +880,6 @@ class MessageHandler:
                         except Exception as ex:
                             print( "-> Ocurrio un error al intentar acceder "\
                             f"a un mensaje de discord: {str(ex)}.")
-            return False
                 else:
                     if dcPermissions.send_messages:
                         await channel.send("**Avalon-bot** no dispone de "\
