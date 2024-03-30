@@ -795,8 +795,7 @@ class MessageHandler:
                                             await message.reply(
                                                   "* La solicitud "\
                                                   "fue registrada con exito. "\
-                                                  "Un ✅ ha sido añadido a la "\
-                                                   "solicitud en cuestion.\n")
+                                                  "Un ✅ ha sido añadido.\n")
                                             await message.clear_reactions()
                                             await message.add_reaction('✅')
                                         else:
@@ -810,31 +809,23 @@ class MessageHandler:
                                                   "los registros, por favor "\
                                                   "informe al administrador. "\
                                                   "Una ⚠️ ha sido "\
-                                                  "añadida a la "\
-                                                  "solicitud en cuestion.\n")
+                                                  "añadida.\n")
                                             await message.clear_reactions()
                                             await message.add_reaction('⚠️')
                                     else:
                                         await message.reply("* No se realizó "\
                                             "el registro de la solicitud "\
-                                           f"**_{msgContent[:100]}" + \
                                             "ya que existen errores "\
                                             "en los valores ingresados. "\
-                                            "Una ❌ ha sido añadida a la "\
-                                            "solicitud en cuestion.\n")
+                                            "Una ❌ ha sido añadida.\n")
                                         await message.clear_reactions()
                                         await message.add_reaction('❌')
                                 else:
                                     await message.reply("* No se realizó "\
                                           "el registro de la solicitud "\
-                                         f"**_{msgContent[:100]}" + \
-                                          ('_** ' if
-                                           len(msgContent) < 100 else
-                                           '..._**, ') + \
                                           "ya que existen errores "\
                                           "en los valores ingresados. "\
-                                          "Una ❌ ha sido añadida a la "\
-                                          "solicitud en cuestion.\n")
+                                          "Una ❌ ha sido añadida.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
                         except Exception as ex:
