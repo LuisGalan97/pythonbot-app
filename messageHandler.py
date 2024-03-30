@@ -750,95 +750,88 @@ class MessageHandler:
                     dcPermissions.manage_messages and
                     dcPermissions.add_reactions):
                     async for message in channel.history(limit=None):
-                        msgContent = Helpers.cleanStr(message.content)
-                        if (len(message.reactions) == 1 and
-                            str(message.reactions[0]) == '⚜️'):
-                            targets = msgContent.split(',')
-                            targets = [target.strip() for
-                                       target in
-                                       targets]
-                            if len(targets) > 1:
-                                event = targets[0].split()
-                                members = targets[1:]
-                                date = message.created_at
-                                date = date.strftime('%d/%m/%Y')
-                                notfound = False
-                                result = app.getDatas(event,
-                                         Helpers.getStruct("event",
-                                                           ["name"]))
-                                if not isinstance(result, list):
-                                    notfound = True
-                                for i in range(len(members)):
-                                    member = members[i].split()
-                                    result = app.getDatas(member,
-                                             Helpers.getStruct("member",
+                        try:
+                            msgContent = Helpers.cleanStr(message.content)
+                            if (len(message.reactions) == 1 and
+                                str(message.reactions[0]) == '⚜️'):
+                                targets = msgContent.split(',')
+                                targets = [target.strip() for
+                                           target in
+                                           targets]
+                                if len(targets) > 1:
+                                    event = targets[0].split()
+                                    members = targets[1:]
+                                    date = message.created_at
+                                    date = date.strftime('%d/%m/%Y')
+                                    notfound = False
+                                    result = app.getDatas(event,
+                                             Helpers.getStruct("event",
                                                                ["name"]))
                                     if not isinstance(result, list):
                                         notfound = True
+                                    for i in range(len(members)):
+                                        member = members[i].split()
+                                        result = app.getDatas(member,
+                                                 Helpers.getStruct("member",
+                                                                   ["name"]))
+                                        if not isinstance(result, list):
+                                            notfound = True
+                                        else:
+                                            if result[0]['Principal'] != "Ninguno":
+                                                members[i] = result[0]['Principal']
+                                    if not notfound:
+                                        success = True
+                                        for member in members:
+                                            assist = [member, event[0], date]
+                                            result = app.setData(assist,
+                                                     Helpers.setStruct("assist"))
+                                            if not "exito" in result:
+                                                success = False
+                                        if success:
+                                            await message.reply("* La solicitud "\
+                                                   "fue registrada con exito. "\
+                                                   "Un ✅ ha sido añadido a la "\
+                                                   "solicitud en cuestion.\n")
+                                            await message.clear_reactions()
+                                            await message.add_reaction('✅')
+                                        else:
+                                            await message.reply("* Ocurrio "\
+                                                  "un error al intentar "\
+                                                  "registrar la solicitud "\
+                                                  "por lo que puede que no se "\
+                                                  "no se hayan realizado todos "\
+                                                  "los registros, por favor "\
+                                                  "informe al administrador. "\
+                                                  "Una ⚠️ ha sido añadida a la "\
+                                                  "solicitud en cuestion.\n")
+                                            await message.clear_reactions()
+                                            await message.add_reaction('⚠️')
                                     else:
-                                        if result[0]['Principal'] != "Ninguno":
-                                            members[i] = result[0]['Principal']
-                                if not notfound:
-                                    success = True
-                                    for member in members:
-                                        assist = [member, event[0], date]
-                                        result = app.setData(assist,
-                                                 Helpers.setStruct("assist"))
-                                        if not "exito" in result:
-                                            success = False
-                                    if success:
-                                        await message.reply("* La solicitud "\
-                                              f"**_{msgContent[:100]}" + \
-                                              ('_** ' if
-                                               len(msgContent) < 100 else
-                                               '..._**, ') + \
-                                               "fue registrada con exito. "\
-                                               "Un ✅ ha sido añadido a la "\
-                                               "solicitud en cuestion.\n")
+                                        await message.reply("* No se realizó "\
+                                            "el registro de la solicitud "\
+                                           f"**_{msgContent[:100]}" + \
+                                            "ya que existen errores "\
+                                            "en los valores ingresados. "\
+                                            "Una ❌ ha sido añadida a la "\
+                                            "solicitud en cuestion.\n")
                                         await message.clear_reactions()
-                                        await message.add_reaction('✅')
-                                    else:
-                                        await message.reply("* Ocurrio "\
-                                              "un error al intentar "\
-                                              "registrar la solicitud "\
-                                             f"**_{msgContent[:100]}" + \
-                                              ('_** ' if
-                                               len(msgContent) < 100 else
-                                               '..._**, ') + \
-                                              "por lo que puede que no se "\
-                                              "no se hayan realizado todos "\
-                                              "los registros, por favor "\
-                                              "informe al administrador. "\
-                                              "Una ⚠️ ha sido añadida a la "\
-                                              "solicitud en cuestion.\n")
-                                        await message.clear_reactions()
-                                        await message.add_reaction('⚠️')
+                                        await message.add_reaction('❌')
                                 else:
                                     await message.reply("* No se realizó "\
-                                        "el registro de la solicitud "\
-                                       f"**_{msgContent[:100]}" + \
-                                        ('_** ' if
-                                         len(msgContent) < 100 else
-                                         '..._**, ') + \
-                                        "ya que existen errores "\
-                                        "en los valores ingresados. "\
-                                        "Una ❌ ha sido añadida a la "\
-                                        "solicitud en cuestion.\n")
+                                          "el registro de la solicitud "\
+                                         f"**_{msgContent[:100]}" + \
+                                          ('_** ' if
+                                           len(msgContent) < 100 else
+                                           '..._**, ') + \
+                                          "ya que existen errores "\
+                                          "en los valores ingresados. "\
+                                          "Una ❌ ha sido añadida a la "\
+                                          "solicitud en cuestion.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
-                            else:
-                                await message.reply("* No se realizó "\
-                                      "el registro de la solicitud "\
-                                     f"**_{msgContent[:100]}" + \
-                                      ('_** ' if
-                                       len(msgContent) < 100 else
-                                       '..._**, ') + \
-                                      "ya que existen errores "\
-                                      "en los valores ingresados. "\
-                                      "Una ❌ ha sido añadida a la "\
-                                      "solicitud en cuestion.\n")
-                                await message.clear_reactions()
-                                await message.add_reaction('❌')
+                        except Exception as ex:
+                            print( "-> Ocurrio un error al intentar acceder "\
+                            f"a un mensaje de discord: {str(ex)}.")
                 else:
                     if dcPermissions.send_messages:
                         await channel.send("**Avalon-bot** no dispone de "\
@@ -873,8 +866,13 @@ class MessageHandler:
                     dcPermissions.manage_messages and
                     dcPermissions.add_reactions):
                     async for message in channel.history(limit=None):
-                        await asyncio.sleep(1)
-                        await message.delete()
+                        try:
+                            await asyncio.sleep(1)
+                            await message.delete()
+                        except Exception as ex:
+                            print( "-> Ocurrio un error al intentar acceder "\
+                            f"a un mensaje de discord: {str(ex)}.")
+            return False
                 else:
                     if dcPermissions.send_messages:
                         await channel.send("**Avalon-bot** no dispone de "\
