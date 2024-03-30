@@ -787,7 +787,7 @@ class MessageHandler:
                                         if not "exito" in result:
                                             success = False
                                     if success:
-                                        await channel.send("* La solicitud "\
+                                        await message.reply("* La solicitud "\
                                               f"**_{msgContent[:100]}" + \
                                               ('_** ' if
                                                len(msgContent) < 100 else
@@ -798,7 +798,7 @@ class MessageHandler:
                                         await message.clear_reactions()
                                         await message.add_reaction('✅')
                                     else:
-                                        await channel.send("* Ocurrio "\
+                                        await message.reply("* Ocurrio "\
                                               "un error al intentar "\
                                               "registrar la solicitud "\
                                              f"**_{msgContent[:100]}" + \
@@ -814,7 +814,7 @@ class MessageHandler:
                                         await message.clear_reactions()
                                         await message.add_reaction('⚠️')
                                 else:
-                                    await channel.send("* No se realizó "\
+                                    await message.reply("* No se realizó "\
                                         "el registro de la solicitud "\
                                        f"**_{msgContent[:100]}" + \
                                         ('_** ' if
@@ -827,7 +827,7 @@ class MessageHandler:
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
                             else:
-                                await channel.send("* No se realizó "\
+                                await message.reply("* No se realizó "\
                                       "el registro de la solicitud "\
                                      f"**_{msgContent[:100]}" + \
                                       ('_** ' if
