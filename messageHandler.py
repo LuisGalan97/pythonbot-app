@@ -751,10 +751,10 @@ class MessageHandler:
                     dcPermissions.add_reactions):
                     async for message in channel.history(limit=None):
                         try:
-                            await channel.fetch_message(message.id)
                             msgContent = Helpers.cleanStr(message.content)
                             if (len(message.reactions) == 1 and
                                 str(message.reactions[0]) == '⚜️'):
+                                await channel.fetch_message(message.id)
                                 targets = msgContent.split(',')
                                 targets = [target.strip() for
                                            target in
