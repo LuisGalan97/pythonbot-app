@@ -766,8 +766,8 @@ class MessageHandler:
                                     date = date.strftime('%d/%m/%Y')
                                     notfound = False
                                     reason = {
-                                        "evento" = [],
-                                        "miembros" = []
+                                        "evento" : [],
+                                        "miembros" : []
                                     }
                                     result = app.getDatas(event,
                                              Helpers.getStruct("event",
