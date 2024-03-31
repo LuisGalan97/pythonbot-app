@@ -759,7 +759,8 @@ class MessageHandler:
                                 targets = [target.strip() for
                                            target in
                                            targets]
-                                if len(targets) > 1:
+                                if (len(targets) > 1 and
+                                    targets[-1]):
                                     event = targets[0].split()
                                     members = targets[1:]
                                     date = message.created_at
