@@ -841,9 +841,8 @@ class MessageHandler:
                                         await message.add_reaction('❌')
                                 else:
                                     await message.reply("* No se realizó "\
-                                        "el registro de la solicitud "\
-                                        "ya que solo fue ingresado "\
-                                        "un valor. "\
+                                        "el registro de la solicitud ya que "\
+                                        "su estructura es incorrecta. "\
                                         "Una ❌ ha sido añadida.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
