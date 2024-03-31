@@ -833,7 +833,7 @@ class MessageHandler:
                                              in reason.items()
                                              if value])
                                             ) + \
-                                            "**)**_. "\
+                                            "​**)**_. "\
                                             "Una ❌ ha sido añadida.\n")
                                         await message.clear_reactions()
                                         await message.add_reaction('❌')
