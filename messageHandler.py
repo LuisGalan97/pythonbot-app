@@ -833,7 +833,7 @@ class MessageHandler:
                             print( "-> Un mensaje de discord "\
                             "no fue encontrado durante la ejecucion del "\
                            f"comando '${command}', por tanto "\
-                            "el proceso se ha interrumpido.\n")
+                            "el proceso se ha interrumpido.")
                             break
                 else:
                     if dcPermissions.send_messages:
@@ -847,7 +847,7 @@ class MessageHandler:
                                "necesarios para enviar mensajes "\
                               f"por el canal '{channel.name}'. Por favor "\
                                "activelos para acceder a todas "\
-                               "las funcionalidades.\n")
+                               "las funcionalidades.")
             finally:
                 MessageHandler.bussy = False
 
@@ -877,7 +877,7 @@ class MessageHandler:
                             print( "-> Un mensaje de discord "\
                             "no fue encontrado durante la ejecucion del "\
                            f"comando '${command}', por tanto "\
-                            "el proceso se ha interrumpido.\n")
+                            "el proceso se ha interrumpido.")
                             break
                 else:
                     if dcPermissions.send_messages:
@@ -891,7 +891,7 @@ class MessageHandler:
                                "necesarios para enviar mensajes "\
                               f"por el canal '{channel.name}'. Por favor "\
                                "activelos para acceder a todas "\
-                               "las funcionalidades.\n")
+                               "las funcionalidades.")
             finally:
                 MessageHandler.bussy = False
 
@@ -908,7 +908,7 @@ class MessageHandler:
                     await channel.send( "**Avalon-bot** no dispone "\
                                         "de permisos para enviar "\
                                         "archivos por el canal "\
-                                       f"**{channel.name}**.")
+                                       f"**{channel.name}**.\n")
         else:
             print( "-> Avalon-bot no dispone de permisos para "\
                   f"enviar mensajes por el canal '{channel.name}'.")
