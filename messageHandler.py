@@ -823,8 +823,8 @@ class MessageHandler:
                                         await message.reply("* No se realizó "\
                                             "el registro de la solicitud "\
                                             "ya que existen errores "\
-                                            "en los siguientes valores "\
-                                           f"ingresados: **" + \
+                                            "en los valores "\
+                                           f"ingresados **" + \
                                             (
                                              " | ".join([
                                             f"{key.capitalize()} "\
@@ -841,8 +841,8 @@ class MessageHandler:
                                     await message.reply("* No se realizó "\
                                         "el registro de la solicitud "\
                                         "ya que existen errores "\
-                                        "en los siguientes valores "\
-                                       f"ingresados: **_" + \
+                                        "en los valores "\
+                                       f"ingresados **_" + \
                                         (
                                          " | ".join([
                                         f"{key.capitalize()} "\
