@@ -824,16 +824,16 @@ class MessageHandler:
                                             "el registro de la solicitud "\
                                             "ya que existen errores "\
                                             "en los valores "\
-                                           f"ingresados _**(** " + \
+                                           f"ingresados _**(**" + \
                                             (
                                              " | ".join([
                                             f"{key.capitalize()} "\
-                                            f": **{', '.join(value)}**"
+                                            f": **{'**,** '.join(value)}**"
                                              for key, value
                                              in reason.items()
                                              if value])
                                             ) + \
-                                            " **)**_. "\
+                                            "**)**_. "\
                                             "Una ❌ ha sido añadida.\n")
                                         await message.clear_reactions()
                                         await message.add_reaction('❌')
