@@ -765,11 +765,13 @@ class MessageHandler:
                                     date = message.created_at
                                     date = date.strftime('%d/%m/%Y')
                                     notfound = False
+                                    reason = []
                                     result = app.getDatas(event,
                                              Helpers.getStruct("event",
                                                                ["name"]))
                                     if not isinstance(result, list):
                                         notfound = True
+                                        reason.append(event)
                                     for i in range(len(members)):
                                         member = members[i].split()
                                         result = app.getDatas(member,
@@ -777,6 +779,7 @@ class MessageHandler:
                                                                    ["name"]))
                                         if not isinstance(result, list):
                                             notfound = True
+                                            reason.append(member)
                                         else:
                                             if (result[0]['Principal']
                                                 != "Ninguno"):
@@ -817,16 +820,26 @@ class MessageHandler:
                                         await message.reply("* No se realizó "\
                                             "el registro de la solicitud "\
                                             "ya que existen errores "\
-                                            "en los valores ingresados. "\
+                                            "en los siguientes valores "\
+                                           f"ingresados: **_" + \
+                                            (
+                                             ", ".join(reason)
+                                            ) + \
+                                            "_**. "
                                             "Una ❌ ha sido añadida.\n")
                                         await message.clear_reactions()
                                         await message.add_reaction('❌')
                                 else:
                                     await message.reply("* No se realizó "\
-                                          "el registro de la solicitud "\
-                                          "ya que existen errores "\
-                                          "en los valores ingresados. "\
-                                          "Una ❌ ha sido añadida.\n")
+                                        "el registro de la solicitud "\
+                                        "ya que existen errores "\
+                                        "en los siguientes valores "\
+                                       f"ingresados: **_" + \
+                                        (
+                                         ", ".join(reason)
+                                        ) + \
+                                        "_**. "
+                                        "Una ❌ ha sido añadida.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
                         except Exception as ex:
