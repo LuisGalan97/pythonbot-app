@@ -765,13 +765,16 @@ class MessageHandler:
                                     date = message.created_at
                                     date = date.strftime('%d/%m/%Y')
                                     notfound = False
-                                    reason = []
+                                    reason = {
+                                        "evento" = [],
+                                        "miembros" = []
+                                    }
                                     result = app.getDatas(event,
                                              Helpers.getStruct("event",
                                                                ["name"]))
                                     if not isinstance(result, list):
                                         notfound = True
-                                        reason.append(event)
+                                        reason["evento"].append(event[0])
                                     for i in range(len(members)):
                                         member = members[i].split()
                                         result = app.getDatas(member,
@@ -779,7 +782,7 @@ class MessageHandler:
                                                                    ["name"]))
                                         if not isinstance(result, list):
                                             notfound = True
-                                            reason.append(member)
+                                            reason["miembros"].append(member[0])
                                         else:
                                             if (result[0]['Principal']
                                                 != "Ninguno"):
@@ -821,11 +824,16 @@ class MessageHandler:
                                             "el registro de la solicitud "\
                                             "ya que existen errores "\
                                             "en los siguientes valores "\
-                                           f"ingresados: **_" + \
+                                           f"ingresados: **" + \
                                             (
-                                             ", ".join(reason)
+                                             " | ".join([
+                                            f"{key.capitalize()} "\
+                                            f": _{', '.join(value)}_"
+                                             for key, value
+                                             in reason.items()
+                                             if value])
                                             ) + \
-                                            "_**. "
+                                            "**. "\
                                             "Una ❌ ha sido añadida.\n")
                                         await message.clear_reactions()
                                         await message.add_reaction('❌')
@@ -836,9 +844,14 @@ class MessageHandler:
                                         "en los siguientes valores "\
                                        f"ingresados: **_" + \
                                         (
-                                         ", ".join(reason)
+                                         " | ".join([
+                                        f"{key.capitalize()} "\
+                                        f": _{', '.join(value)}_"
+                                         for key, value
+                                         in reason.items()
+                                         if value])
                                         ) + \
-                                        "_**. "
+                                        "_**. "\
                                         "Una ❌ ha sido añadida.\n")
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
