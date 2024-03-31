@@ -831,6 +831,7 @@ class MessageHandler:
                         except Exception as ex:
                             print( "-> Ocurrio un error al intentar acceder "\
                             f"a un mensaje de discord: {str(ex)}.")
+                            break
                 else:
                     if dcPermissions.send_messages:
                         await channel.send("**Avalon-bot** no dispone de "\
@@ -871,6 +872,7 @@ class MessageHandler:
                         except Exception as ex:
                             print( "-> Ocurrio un error al intentar acceder "\
                             f"a un mensaje de discord: {str(ex)}.")
+                            break
                 else:
                     if dcPermissions.send_messages:
                         await channel.send("**Avalon-bot** no dispone de "\
