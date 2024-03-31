@@ -827,8 +827,8 @@ class MessageHandler:
                                            f"ingresados _(" + \
                                             (
                                              " | ".join([
-                                            f"**{key.capitalize()} "\
-                                            f":** {', '.join(value)}"
+                                            f"**{key.capitalize()}** "\
+                                            f": {', '.join(value)}"
                                              for key, value
                                              in reason.items()
                                              if value])
