@@ -782,8 +782,8 @@ class MessageHandler:
                                                                    ["name"]))
                                         if not isinstance(result, list):
                                             notfound = True
-                                            reason["integrantes"]
-                                            .append(member[0])
+                                            reason["integrantes"].append(
+                                            member[0])
                                         else:
                                             if (result[0]['Principal']
                                                 != "Ninguno"):
