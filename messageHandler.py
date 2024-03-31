@@ -751,6 +751,7 @@ class MessageHandler:
                     dcPermissions.add_reactions):
                     async for message in channel.history(limit=None):
                         try:
+                            await channel.fetch_message(message.id)
                             msgContent = Helpers.cleanStr(message.content)
                             if (len(message.reactions) == 1 and
                                 str(message.reactions[0]) == '⚜️'):
@@ -829,8 +830,10 @@ class MessageHandler:
                                     await message.clear_reactions()
                                     await message.add_reaction('❌')
                         except Exception as ex:
-                            print( "-> Ocurrio un error al intentar acceder "\
-                            f"a un mensaje de discord: {str(ex)}.")
+                            print( "-> Un mensaje de discord "\
+                            "no fue encontrado durante la ejecucion del "\
+                           f"comando '${command}', por tanto "\
+                            "el proceso se ha interrumpido.\n")
                             break
                 else:
                     if dcPermissions.send_messages:
@@ -868,10 +871,13 @@ class MessageHandler:
                     async for message in channel.history(limit=None):
                         try:
                             await asyncio.sleep(1)
+                            await channel.fetch_message(message.id)
                             await message.delete()
                         except Exception as ex:
-                            print( "-> Ocurrio un error al intentar acceder "\
-                            f"a un mensaje de discord: {str(ex)}.")
+                            print( "-> Un mensaje de discord "\
+                            "no fue encontrado durante la ejecucion del "\
+                           f"comando '${command}', por tanto "\
+                            "el proceso se ha interrumpido.\n")
                             break
                 else:
                     if dcPermissions.send_messages:
