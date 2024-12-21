@@ -1,6 +1,14 @@
 # Aplicacion pythonbot
-
 Repositorio asociado a aplicacion desarrollada en lenguaje python para implementacion de bot en discord, diseñado para la gestion de informacion asociada a una lista de usuarios, asistencias y eventos registrados, esto mediante implementacion de controladores, modelos y servicios, estructurados para el correcto guardado de datos en una base de datos diseñada y desplegada en SQLite. La interaccion con el bot se permite mediante la habilitacion de comandos empleables en el chat de un servidor con los permisos apropiados, para la posterior lectura y escritura de datos en la base de datos.
+
+## Funcionamiento
+En esta seccion se explicarán una serie de pasos para habilitar el funcionamiento de ___pythonbot-app___ con el fin de poder explorar todas sus funcionalidades, esto implica:
+- __Crear un servidor de discord.__
+- __Habilitar una API de discord.__
+- __Enlazar la API con el servidor de discord.__
+- __Descargar y configurar _pythonbot-app_ en un entorno local o web.__
+- __Poner en funcionamiento _pythonbot-app_.__
+- __Explorar todas las funcionalidades que dispone.__
 
 ### Consideraciones:
 
