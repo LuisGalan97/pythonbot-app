@@ -3,11 +3,11 @@ Repositorio asociado a aplicacion desarrollada en lenguaje python para implement
 
 ## Funcionamiento
 En esta seccion se explicarán una serie de pasos para habilitar el funcionamiento de ___pythonbot-app___ con el fin de explorar todas sus funcionalidades, esto implica:
-- __Crear un servidor de discord.__
-- __Registrar la aplicacion en discord.__
+- __Crear un servidor en discord.__
+- __Registrar una aplicacion en discord.__
 - __Agregar la aplicacion al servidor.__
-- __Configurar y ejecutar _pythonbot-app_ en un entorno.__
-- __Explorar todas sus funcionalidades.__
+- __Configurar _pythonbot-app_ en un entorno.__
+- __Ejecutar _pythonbot-app_ y explorar sus funcionalidades.__
 
 ### Consideraciones:
 
