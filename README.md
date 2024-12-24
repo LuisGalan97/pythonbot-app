@@ -2,16 +2,16 @@
 Repositorio asociado a aplicacion desarrollada en lenguaje python para implementacion de bot en discord, diseñado para la gestion de informacion asociada a una lista de usuarios, asistencias y eventos registrados, esto mediante implementacion de controladores, modelos y servicios, estructurados para el correcto guardado de datos en una base de datos diseñada y desplegada en SQLite. La interaccion con el bot se permite mediante la habilitacion de comandos empleables en el chat de un servidor con los permisos apropiados, para la posterior lectura y escritura de datos en la base de datos.
 
 ## Instalacion
-En esta seccion se explicarán una serie de pasos para habilitar el funcionamiento de ___pythonbot-app___ con el fin de explorar todas sus funcionalidades.
+En esta seccion se explicarán los pasos para habilitar ___pythonbot-app___ con el fin de explorar todas sus funcionalidades.
 
-### Crear un servidor en discord
-Como primer paso es necesario habilitar un servidor de discord cuyo proposito será el de servir de interfaz de usuario, para permitir la interaccion entre el usuario con __pythonbot-app__.
+### 1. Crear un servidor en discord
+Como primer paso es necesario habilitar un servidor de discord que servirá de interfaz de usuario, para permitir la interaccion entre el usuario con __pythonbot-app__.
 
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/1.png)
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/2.png)
 
-### Registrar y configurar una aplicacion en discord
-Ahora deberemos registrar la aplicacion en la plataforma de desarrollo de discord, esta funcionará como instancia fisica para __pythonbot-app__, para ello deberemos dirigirnos al enlace:
+### 2. Registrar y configurar un bot en discord
+Ahora debemos registrar un bot en la plataforma de desarrollo de discord, este funcionará como instancia fisica para __pythonbot-app__, para ello nos dirigirnos al enlace:
 
 https://discord.com/developers/applications
 
@@ -21,6 +21,13 @@ Una vez allí, creamos una nueva aplicacion, especificando un nombre y un logo(o
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/4.png)
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/5.png)
 
+Buscamos el apartado "bot" y pulsamos el boton ___Reset Token___ para generar un token para el acceso de __pythonbot-app__ a la instancia del bot que hemos registrado en discord. 
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/6.png)
+
+Posteriormente vamos a la seccion "Privileged Gateway Intents", activamos las tres opciones evidenciadas en la imagen y guardamos cambios.
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/7.png)
 
 #### Agregar la aplicacion al servidor
 #### Configurar _pythonbot-app_ en un entorno
