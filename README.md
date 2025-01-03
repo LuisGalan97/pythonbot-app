@@ -74,7 +74,7 @@ Dentro de la consola, con el fin de realizar la descarga del repositorio de _pyt
 
 `git clone https://github.com/LuisGalan97/pythonbot-app.git`
 
-Finalizada la descarga, podremos ver el repositorio descargado, en el visor de archivos visible con el primer boton del panel izquierdo.
+Finalizada la descarga, podremos ver el repositorio en el visor de archivos accesible desde el primer boton del panel izquierdo.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/20.png)
 
@@ -93,6 +93,18 @@ Ahora nos dirigimos al archivo de configuracion ".replit" con el fin de modifica
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/23.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/24.png)
+
+Si el archivo ".replit" no es visible, deberemos habilitar la visualizacion de archivos ocultos desde la opcion mostrada en la imagen.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/25.png)
+
+Realizado lo anterior, como ultimo paso de configuracion, deberemos registrar el token obtenido con el registro de la aplicacion en discord, como una variable de entorno o "Secret" de replit, para el cual _pythonbot-app_ esta programado a acceder por defecto. 
+
+Para ello vamos al apartado "All tools > Secrets", dentro de este creamos un nuevo "Secret" de nombre "TOKEN", y cuyo valor debera corresponder al token obtenido con el registro de la aplicacion en discord, pulsando en el boton "Add secret" para finalizar.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/26.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/27.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/28.png)
 
 
 
