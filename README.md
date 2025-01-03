@@ -78,7 +78,7 @@ Finalizada la descarga, podremos ver el repositorio descargado, en el visor de a
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/20.png)
 
-Ahora deberemos realizar la instalacion de todas los modulos y librerias que necesita el proyecto _pythonbot-app_ para poder funcionar correctamente, para el cual desde la consola nos ubicamos en la carpeta del proyecto _pythonbot-app_ mediante el comando:
+Deberemos realizar la instalacion de todas los modulos y librerias que necesita el proyecto _pythonbot-app_ para poder funcionar correctamente, para el cual desde la consola nos ubicamos en la carpeta del proyecto mediante el comando:
 
 `cd pythonbot-app/`
 
@@ -88,6 +88,13 @@ Y posteriormente realizamos dicha instalacion con el comando:
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/21.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/22.png)
+
+Ahora nos dirigimos al archivo de configuracion ".replit" con el fin de modificar los parametros "entrypoint" y "run" los cuales referencian la ubicacion del archivo "main.py", ya que este se encuentra ubicado en el path _pythonbot-app/main.py_, este mismo debe ser especificado en este archivo, como se muestra a continuacion.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/23.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/24.png)
+
+
 
 
 
