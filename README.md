@@ -98,7 +98,7 @@ Si el archivo ".replit" no es visible, deberemos habilitar la visualizacion de a
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/25.png)
 
-Realizado lo anterior, como ultimo paso de configuracion, deberemos registrar el token obtenido con el registro de la aplicacion en discord, como una variable de entorno o "Secret" de replit, para el cual _pythonbot-app_ esta programado a acceder por defecto, para ello debemos ir al apartado "All tools > Secrets" como se muestra en la imagen.
+Realizado lo anterior, deberemos registrar el token obtenido con el registro de la aplicacion en discord, como una variable de entorno o "Secret" de replit, para el cual _pythonbot-app_ esta programado a acceder por defecto, para ello debemos ir al apartado "All tools > Secrets" como se muestra en la imagen.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/26.png)
 
@@ -106,6 +106,20 @@ Dentro de este apartado creamos un nuevo "Secret" de nombre "TOKEN", y cuyo valo
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/27.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/28.png)
+
+Como ultimo paso de configuracion, deberemos abrir el archivo en el directorio "pythonbot-app/Certs/certificates.py" y dentro de este modificar dos valores en las lineas de codigo.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/29.png)
+
+En el apartado donde esta "omegaxis_" debemos reemplazarlo por nuestro id de discord.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/30.png)
+
+Y en "adminChannel" haremos el cambio mostrado en la imagen. 
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/31.png)
+
+Esto es con el fin de facilitarnos el acceso a los comandos de _pythonbot-app_, ya que este tiene un sistema que permite o impide sus llamados dependiendo del usuario y el canal de discord.
 
 ### 5. Testear _pythonbot-app_ en un entorno.
 Por defecto _pythonbot-app_ tiene habilitado una serie de pruebas automatizadas que se encargan de evaluar el correcto funcionamiento del mismo, para ello simplemente deberemos emplear el comando:
@@ -118,8 +132,8 @@ Y posteriormente el comando
 
 Esto lanzará una serie de 882 test, los cuales comprobarán que todo este funcionando para diferentes escenarios, para los cuales deberemos esperar a que finalizen, siendo el resultado idoneo al mostrado en las imagenes.
 
-![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/29.png)
-![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/30.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/32.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/33.png)
  
 #### Ejecutar _pythonbot-app_ y explorar sus funcionalidades
 
