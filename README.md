@@ -70,13 +70,24 @@ Al hacerlo, podremos cerrar las ventanas que se abren por defecto como el asiste
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/18.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/19.png)
 
-Dentro de la consola, digitaremos el comando:
+Dentro de la consola, con el fin de realizar la descarga del repositorio de _pythonbot-app_ en la raiz del proyecto, digitaremos el comando:
 
-__git clone https://github.com/LuisGalan97/pythonbot-app.git__
+`git clone https://github.com/LuisGalan97/pythonbot-app.git`
 
-Con el fin de realizar la descarga del repositorio de _pythonbot-app_ en la raiz del proyecto, para el cual finalizada la descarga, podremos ver el repositorio descargado, en el visor de carpetas visible con el primer boton del panel izquierdo.
+Finalizada la descarga, podremos ver el repositorio descargado, en el visor de archivos visible con el primer boton del panel izquierdo.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/20.png)
+
+Ahora deberemos realizar la instalacion de todas los modulos y librerias que necesita el proyecto _pythonbot-app_ para poder funcionar correctamente, para el cual desde la consola nos ubicamos en la carpeta del proyecto _pythonbot-app_ mediante el comando:
+
+`cd pythonbot-app/`
+
+Y posteriormente realizamos dicha instalacion con el comando:
+
+`pip install -r requirements.txt`
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/21.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/22.png)
 
 
 
