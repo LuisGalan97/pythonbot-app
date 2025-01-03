@@ -10,8 +10,8 @@ Como primer paso es necesario habilitar un servidor de discord que servirá de i
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/1.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/2.png)
 
-### 2. Registrar y configurar un bot en discord
-Ahora debemos registrar un bot en la plataforma de desarrollo de discord, este funcionará como instancia fisica para __pythonbot-app__, para ello nos dirigirnos al enlace:
+### 2. Registrar y configurar un aplicacion en discord
+Ahora debemos registrar una aplicacion/bot en la plataforma de desarrollo de discord, este funcionará como instancia fisica para __pythonbot-app__, para ello nos dirigirnos al enlace:
 
 https://discord.com/developers/applications
 
@@ -42,7 +42,7 @@ Por ultimo vamos al apartado "GENERATED URL", y guardamos en enlace que contiene
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/10.png)
 
 ### 3. Agregar la aplicacion al servidor
-En esta seccion enlazaremos la aplicacion/instancia del bot previamente configurada, al servidor que tambien creamos previamente en discord, para ello, del enlace que guardamos en la seccion anterior, lo copiamos y pegamos en el navegador. 
+En esta seccion enlazaremos la aplicacion/instancia del bot previamente configurada, al servidor que tambien creamos en discord, para ello, del enlace que guardamos en la seccion anterior, lo copiamos y pegamos en el navegador. 
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/11.png)
 
@@ -59,7 +59,32 @@ Con lo anterior nuestra instancia del bot se habrá añadido satisfactoriamente 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/14.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/15.png)
 
-#### Configurar _pythonbot-app_ en un entorno
+### 4. Configurar _pythonbot-app_ en un entorno
+Con la instancia de la aplicacion configurada en discord, el siguiente paso consiste en descargar y configurar _pythonbot-app_ en un entorno que permita su ejecucion. Para ello nos dirigiremos a replit.com (si no tenemos una cuenta la creamos) y creamos un nuevo proyecto en lenguaje python como se muestra en la imagen.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/16.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/17.png)
+
+Al hacerlo, podremos cerrar las ventanas que se abren por defecto como el asistente IA, y posteriormente deberemos abrir la consola "Shell", accesible desde "All tools > Workspace Features > Shell" como se muestra a continuacion.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/18.png)
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/19.png)
+
+Dentro de la consola, digitaremos el comando:
+
+__git clone https://github.com/LuisGalan97/pythonbot-app.git__
+
+Con el fin de realizar la descarga del repositorio de _pythonbot-app_ en la raiz del proyecto, para el cual finalizada la descarga, podremos ver el repositorio descargado, en el visor de carpetas visible con el primer boton del panel izquierdo.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/20.png)
+
+
+
+
+
+
+
+
 #### Ejecutar _pythonbot-app_ y explorar sus funcionalidades
 
 
