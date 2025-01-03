@@ -107,7 +107,7 @@ Dentro de este apartado creamos un nuevo "Secret" de nombre "TOKEN", y cuyo valo
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/27.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/28.png)
 
-### 4. Testear _pythonbot-app_ en el entorno.
+### 4. Testear _pythonbot-app_.
 Por defecto _pythonbot-app_ tiene habilitado una serie de pruebas automatizadas que se encargan de evaluar el correcto funcionamiento del mismo, para ello simplemente deberemos emplear el comando:
 
 `cd pythonbot-app/`
