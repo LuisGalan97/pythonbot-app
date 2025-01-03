@@ -21,15 +21,41 @@ Una vez allí, creamos una nueva aplicacion, especificando un nombre y un logo(o
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/4.png)
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/5.png)
 
-Buscamos el apartado "bot" y pulsamos el boton ___Reset Token___ para generar un token para el acceso de __pythonbot-app__ a la instancia del bot que hemos registrado en discord. 
+Buscamos el apartado "bot" y pulsamos el boton ___Reset Token___ para generar un token para el acceso de __pythonbot-app__ a la instancia del bot que hemos registrado en discord. Es muy importante tener anotado pues lo usaremos mas adelante.
 
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/6.png)
 
-Posteriormente vamos a la seccion "Privileged Gateway Intents", activamos las tres opciones evidenciadas en la imagen y guardamos cambios.
+Vamos a la seccion "Privileged Gateway Intents", activamos las tres opciones evidenciadas en la imagen y guardamos cambios.
 
 ![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/7.png)
 
+Nos dirigimos al apartado "OAuth2" y en la seccion "OAuth2 URL Generator", activamos las opciones mostradas en la imagen.
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/8.png)
+
+En la seccion "BOT PERMISSIONS" activamos los siguientes permisos.
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/9.png)
+
+Por ultimo vamos al apartado "GENERATED URL", y guardamos el enlace que esta dispuesto en el mismo, ya que lo utilizaremos mas adelante para poder añadir la instancia del bot a un servidor de discord.
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/10.png)
+
 #### Agregar la aplicacion al servidor
+En esta seccion enlazaremos la aplicacion/instancia del bot previamente configurada, al servidor que tambien creamos previamente en discord, para ello, del enlace que guardamos en la seccion anterior, lo copiamos y pegamos en el navegador. Al hacerlo, este nos dirigirá a nuestra sesion en discord si se encuentra abierta (en caso de no estarlo pedira iniciar sesion) y nos solicitará seleccionar el servidor al cual queremos enlazar el bot, para el cual escogemos el creado previamente en pasos anteriores y pulsamos en "continuar".
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/11.png)
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/12.png)
+
+Posteriormente se nos pedirá confirmar si los permisos asignados al bot son los adecuados, no modificamos nada y pulsamos en "autorizar".
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/13.png)
+
+Con lo anterior nuestra instancia del bot se habrá añadido satisfactoriamente al servidor de discord que tambien creamos previamente para este proyecto.
+
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/14.png)
+![Imagen GUI](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/15.png)
+
 #### Configurar _pythonbot-app_ en un entorno
 #### Ejecutar _pythonbot-app_ y explorar sus funcionalidades
 
