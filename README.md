@@ -135,7 +135,22 @@ Esto lanzará una serie de 882 test, los cuales comprobarán que todo este funci
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/32.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/33.png)
  
-#### Ejecutar _pythonbot-app_ y explorar sus funcionalidades
+### 6. Ejecutar _pythonbot-app_ y explorar sus funcionalidades
+Con los pasos anteriores, _pythonbot-app_ ya se encuentra listo para ser utilizado, por lo que todo lo que deberemos hacer es pulsar el boton "Run" dispuesto en replit
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/34.png)
+
+Al hacerlo en la consola de replit se mostrara algo de informacion del proceso de ejecucion de la aplicacion. 
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/35.png)
+
+Y Posteriormente _pythonbot-app_ iniciara sesion en la instancia que registramos y enlazamos en discord, apareciendo como un usuario conectado.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/36.png)
+
+Para el cual desde el canal "general" podremos interactuar con este empleando comandos como "hello", para el cual emitirá una respuesta.
+
+![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/37.png)
 
 
 ### Consideraciones:
