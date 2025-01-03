@@ -98,11 +98,12 @@ Si el archivo ".replit" no es visible, deberemos habilitar la visualizacion de a
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/25.png)
 
-Realizado lo anterior, como ultimo paso de configuracion, deberemos registrar el token obtenido con el registro de la aplicacion en discord, como una variable de entorno o "Secret" de replit, para el cual _pythonbot-app_ esta programado a acceder por defecto. 
-
-Para ello vamos al apartado "All tools > Secrets", dentro de este creamos un nuevo "Secret" de nombre "TOKEN", y cuyo valor debera corresponder al token obtenido con el registro de la aplicacion en discord, pulsando en el boton "Add secret" para finalizar.
+Realizado lo anterior, como ultimo paso de configuracion, deberemos registrar el token obtenido con el registro de la aplicacion en discord, como una variable de entorno o "Secret" de replit, para el cual _pythonbot-app_ esta programado a acceder por defecto, para ello debemos ir al apartado "All tools > Secrets" como se muestra en la imagen.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/26.png)
+
+Dentro de este apartado creamos un nuevo "Secret" de nombre "TOKEN", y cuyo valor debera corresponder al token obtenido con el registro de la aplicacion en discord, pulsando en el boton "Add Secret" para completar su creacion.
+
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/27.png)
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/28.png)
 
