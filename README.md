@@ -152,13 +152,11 @@ Desde el canal "general" podremos interactuar con este empleando comandos como _
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/37.png)
 
-Para obtener informacion de todos los comandos disponibles y sus funcionalidades, deberemos escribir el comando __$help__ y automaticamente _pythonbot-app_ nos mostrara una lista completa con los mismos.
+Para obtener informacion de todos los comandos disponibles y sus funcionalidades, deberemos escribir el comando __$help__ y automaticamente _pythonbot-app_ nos mostrará informacion asociada a estos.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/38.png)
 
-
-
-### Consideraciones:
+## Consideraciones:
 
 - _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento para posteriormente en el chat del servidor habilitado, emplear el comando_:<br />`$help` <- _Al hacerlo podremos encontrar toda la informacion asociada a su modo de uso._
 
