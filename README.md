@@ -156,7 +156,7 @@ Para obtener informacion de todos los comandos disponibles y sus funcionalidades
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/38.png)
 
-## Consideraciones:
+## Consideraciones
 
 - _Para obtener las instrucciones de interaccion con el bot de discord, deberemos ponerlo en funcionamiento para posteriormente en el chat del servidor habilitado, emplear el comando_:<br />`$help` <- _Al hacerlo podremos encontrar toda la informacion asociada a su modo de uso._
 
