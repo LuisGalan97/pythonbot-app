@@ -140,15 +140,15 @@ Con los pasos anteriores, _pythonbot-app_ ya se encuentra listo para ser utiliza
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/34.png)
 
-Al hacerlo, en la consola de replit se mostrara algo de informacion del proceso de ejecucion de la aplicacion. 
+Al hacerlo, en la consola de replit se mostrará informacion del proceso de ejecucion de la aplicacion. 
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/35.png)
 
-Y posteriormente _pythonbot-app_ iniciara sesion en la instancia que registramos y enlazamos en discord, apareciendo como un usuario conectado.
+Y posteriormente _pythonbot-app_ iniciará sesion en la instancia que registramos y enlazamos en discord, apareciendo como un usuario conectado.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/36.png)
 
-Desde el canal "general" podremos interactuar con este empleando comandos como __$hello__, para el cual emitirá una respuesta.
+Desde el canal "general" podremos interactuar con este, empleando comandos como __$hello__, para el cual emitirá una respuesta.
 
 ![Imagen](https://github.com/LuisGalan97/pythonbot-app/blob/docs/docs/37.png)
 
